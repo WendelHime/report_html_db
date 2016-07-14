@@ -1,0 +1,5 @@
+<div class="content-wrapper">
+	<div class="container">
+		[% INCLUDE 'site/home/_panelInformation.tt' %]
+	</div>
+</div>

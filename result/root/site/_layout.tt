@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		[% INCLUDE 'site/shared/_head.tt' %]
+		<!-- import _head from Views/Shared -->
+	</head>
+	<body>
+		[% INCLUDE 'site/shared/_header.tt' %]
+		<!--import _header from Views/Shared-->
+		[% INCLUDE 'site/shared/_menu.tt' %]
+		<!--import _menu from Views/Shared-->
+		[% content %]
+		<!--Content page-->
+		[% INCLUDE 'site/shared/_footer.tt' %]
+		<!--import _footer from Views/Shared-->
+	</body>
+</html>

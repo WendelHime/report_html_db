@@ -1,0 +1,260 @@
+<div class="row">
+	<div class="col-md-12">
+		<form action="http://puma.icb.usp.br/blast/blast.cgi" method="POST" name="MainBlastForm" enctype="multipart/form-data">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				[% FOREACH text IN texts %]
+			    		[% IF text.tag.search('blast-form-title') %]
+			    			[% text.value %]
+			    		[% END %]
+			    	[% END %]
+    			</div>
+    			<div class="panel-body">
+    				<div class="form-group">
+    					[% FOREACH text IN texts %]
+							[% IF text.tag.search('blast-program-title') %]
+								<label><a href="[% text.details %]">[% text.value %]</a></label>
+							[% END %]
+						[% END %]
+						<select name="PROGRAM">
+							[% FOREACH text IN texts %]
+								[% IF text.tag.search('blast-program-option') %]
+										<option> [% text.value %] </option>
+								[% END %]
+							[% END %]
+						</select>
+    				</div>
+    				<div class="form-group">
+    					[% FOREACH text IN texts %]
+							[% IF text.tag.search('blast-program-title') %]
+								<label>[% text.value %]</label>
+							[% END %]
+						[% END %]
+    					<select name="DATALIB">
+    						[% FOREACH text IN texts %]
+								[% IF text.tag.search('blast-program-title') %]
+									<option value="[% text.details %]"> [% text.value %]</option>
+								[% END %]
+							[% END %]
+						</select>
+    				</div>
+    				<div class="form-group">
+    					[% FOREACH text IN texts %]
+							[% IF text.tag.search('blast-format-title') %]
+								<label>[% text.value %]</label>
+							[% END %]
+						[% END %]
+    					<textarea class="form-control" name="SEQUENCE" rows="6" cols="60"></textarea>
+    				</div>
+    				<div class="form-group">
+    					[% FOREACH text IN texts %]
+							[% IF text.tag.search('blast-sequence-file-title') %]
+								<label>[% text.value %]</label>
+							[% END %]
+						[% END %]
+    					<input id="SEQFILE" type="file">
+    				</div>
+    				<div class="form-group">
+    					[% FOREACH text IN texts %]
+							[% IF text.tag.search('blast-subsequence') %]
+								[% IF text.tag.search('blast-subsequence-title') %]
+									<label>[% text.value %]</label>
+								[% ELSE IF text.tag.search('blast-subsequence-value') %]
+									<label for="[% text.details %]"> [% text.value %] </label>
+									<input type="text" id="[% text.details %]" name="[% text.details %]" value="" size="10">
+								[% END %]
+							[% END %]
+						[% END %]
+    				</div>
+    				
+    				<div class="panel-group" id="accordion">
+    					<div class="panel panel-info">
+		                    <div class="panel-heading">
+		                        <h4 class="panel-title">
+		                        	[% FOREACH text IN texts %]
+							    		[% IF text.tag.search('blast-search-options-title') %]
+							    			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+							    		[% END %]
+							    	[% END %]
+		                        </h4>
+		                    </div>
+		                    <div id="collapseOne" class="panel-collapse collapse">
+		                        <div class="panel-body">
+		                        	[% FOREACH text IN texts %]
+							    		[% IF text.tag.search('blast-search-options-sequence-title') %]
+											<label>[% text.value %]</label>
+										[% END %]
+									[% END %]
+									<div class="form-group">
+										[% FOREACH text IN texts %]
+											[% IF text.tag.search('blast-search-options-filter-title') %]
+												<label>[% text.value %]</label>
+											[% END %]
+										[% END %]
+										[% FOREACH text IN texts %]
+											[% IF text.tag.search('blast-search-options-filter-options') %]
+												<div class="checkbox">
+													<label><input type="checkbox" value="[% text.details %]" name="FILTER" checked=""> [% text.value %] </label>
+												</div>
+											[% END %]
+										[% END %]
+									</div>
+									<div class="form-group">
+										<label><a href="http://puma.icb.usp.br/blast/docs/newoptions.html#expect">Expect</a> (e.g. 1e-6)</label>
+										<input class="form-control" type="text" name="EXPECT" size="3" value="10">
+									</div>
+									<div class="form-group">
+										<label><a href="http://puma.icb.usp.br/blast/docs/matrix_info.html">Matrix</a>
+										<select name="MAT_PARAM">
+											<option value="PAM30	 9	 1"> PAM30 </option>
+											<option value="PAM70	 10	 1"> PAM70 </option> 
+											<option value="BLOSUM80	 10	 1"> BLOSUM80 </option>
+											<option selected="" value="BLOSUM62	 11	 1"> BLOSUM62 </option>
+											<option value="BLOSUM45	 14	 2"> BLOSUM45 </option>
+										</select>
+									</div>
+									<div class="form-group">
+										<div class="checkbox">
+											<label><input type="checkbox" name="UNGAPPED_ALIGNMENT" value="is_set"> Perform ungapped alignment </label>
+										</div>
+									</div>
+									<div class="form-group">
+										<label><a href="http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes">Query Genetic Codes (blastx only)</a></label>
+										<select name="GENETIC_CODE">
+											<option> Standard (1) </option>
+											<option> Vertebrate Mitochondrial (2) </option>
+											<option> Yeast Mitochondrial (3) </option>
+											<option> Mold Mitochondrial; ... (4) </option>
+											<option> Invertebrate Mitochondrial (5) </option>
+											<option> Ciliate Nuclear; ... (6) </option>
+											<option> Echinoderm Mitochondrial (9) </option>
+											<option> Euplotid Nuclear (10) </option>
+											<option> Bacterial (11) </option>
+											<option> Alternative Yeast Nuclear (12) </option>
+											<option> Ascidian Mitochondrial (13) </option>
+											<option> Flatworm Mitochondrial (14) </option>
+											<option> Blepharisma Macronuclear (15) </option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label><a href="http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes">Database Genetic Codes (tblast[nx] only)</a></label>
+										<select name="DB_GENETIC_CODE">
+											<option> Standard (1)</option>
+											<option> Vertebrate Mitochondrial (2)</option>
+											<option> Yeast Mitochondrial (3)</option>
+											<option> Mold Mitochondrial; ... (4)</option>
+											<option> Invertebrate Mitochondrial (5)</option>
+											<option> Ciliate Nuclear; ... (6)</option>
+											<option> Echinoderm Mitochondrial (9)</option>
+											<option> Euplotid Nuclear (10)</option>
+											<option> Bacterial (11)</option>
+											<option> Alternative Yeast Nuclear (12)</option>
+											<option> Ascidian Mitochondrial (13)</option>
+											<option> Flatworm Mitochondrial (14)</option>
+											<option> Blepharisma Macronuclear (15)</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label><a href="http://puma.icb.usp.br/blast/docs/oof_notation.html">Frame shift penalty</a> for blastx </label>
+										<select name="OOF_ALIGN"> 
+											<option> 6</option>
+											<option> 7</option>
+											<option> 8</option>
+											<option> 9</option>
+											<option> 10</option>
+											<option> 11</option>
+											<option> 12</option>
+											<option> 13</option>
+											<option> 14</option>
+											<option> 15</option>
+											<option> 16</option>
+											<option> 17</option>
+											<option> 18</option>
+											<option> 19</option>
+											<option> 20</option>
+											<option> 25</option>
+											<option> 30</option>
+											<option> 50</option>
+											<option> 1000</option>
+											<option selected="" value="0"> No OOF</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="OTHER_ADVANCED"><a href="http://puma.icb.usp.br/blast/docs/full_options.html">Other advanced options:</a></label>
+										<input class="form-control" type="text" id="OTHER_ADVANCED" name="OTHER_ADVANCED" value="" maxlength="50">
+									</div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div class="panel panel-info">
+		                    <div class="panel-heading">
+		                        <h4 class="panel-title">
+		                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">Display options</a>
+		                        </h4>
+		                    </div>
+		                    <div id="collapseTwo" class="panel-collapse collapse">
+		                        <div class="panel-body">
+		                        	<div class="form-group">
+		                        		<div class="checkbox">
+		                        			<label><input type="checkbox" name="OVERVIEW" checked=""><a href="http://puma.icb.usp.br/blast/docs/newoptions.html#graphical-overview">Graphical Overview</a></label>
+		                        		</div>
+		                        	</div>
+		                        	<div class="form-group">
+		                        		<label><a href="http://puma.icb.usp.br/blast/docs/options.html#alignmentviews">Alignment view</a></label>
+		                        		<select name="ALIGNMENT_VIEW">
+											<option value="0"> Pairwise</option>
+											<option value="1"> master-slave with identities</option>
+											<option value="2"> master-slave without identities</option>
+											<option value="3"> flat master-slave with identities</option>
+											<option value="4"> flat master-slave without identities</option>
+											<option value="7"> BLAST XML</option><option value="9"> Hit Table</option>
+										</select>
+		                        	</div>
+		                        	<div class="form-group">
+		                        		<label><a href="http://puma.icb.usp.br/blast/docs/newoptions.html#descriptions">Descriptions</a></label>
+		                        		<select name="DESCRIPTIONS">
+											<option> 0 </option>
+											<option> 10 </option>
+											<option> 50 </option>
+											<option selected=""> 100 </option>
+											<option> 250 </option>
+											<option> 500 </option>
+										</select>
+		                        	</div>
+		                        	<div class="form-group">
+		                        		<label><a href="http://puma.icb.usp.br/blast/docs/newoptions.html#alignments">Alignments</a></label>
+		                        		<select name="ALIGNMENTS">
+											<option> 0 </option>
+											<option> 10 </option>
+											<option selected=""> 50 </option>
+											<option> 100 </option>
+											<option> 250 </option>
+											<option> 500 </option>
+										</select>
+		                        	</div>
+		                        	<div class="form-group">
+		                        		<label><a href="http://puma.icb.usp.br/blast/docs/color_schema.html">Color schema</a></label>
+		                        		<select name="COLOR_SCHEMA">
+											<option selected="" value="0"> No color schema </option>
+											<option value="1"> Color schema 1 </option>
+											<option value="2"> Color schema 2 </option>
+											<option value="3"> Color schema 3 </option>
+											<option value="4"> Color schema 4 </option>
+											<option value="5"> Color schema 5 </option>
+											<option value="6"> Color schema 6 </option>
+										</select>
+		                        	</div>
+		                        </div>
+		                    </div>
+	                    </div>
+	                    
+    				</div>
+    								    				
+    				<input type="button" value="Clear sequence" onclick="MainBlastForm.SEQUENCE.value='';MainBlastForm.QUERY_FROM.value='';MainBlastForm.QUERY_TO.value='';MainBlastForm.SEQUENCE.focus();">
+    				<input type="submit" value="Search">
+				</div>
+    		</div>
+    	</form>
+	</div>
+</div>
+
