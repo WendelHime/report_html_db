@@ -1,728 +1,818 @@
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
-        	<div class="col-md-12">
-        		<div class="panel panel-default">
+            <div class="col-md-12">
+                <div class="panel panel-default">
                     <div class="panel-heading">
-                        Search based on sequences or annotations
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag.search('search-database-form-title') %]
+                                [% text.value %]
+                            [% END %]
+                        [% END %]
                     </div>
                     <div class="panel-body">
                         <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
+                            <div id="parentCollapseOne" class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">Protein-coding gene IDs and descriptions</a>
+                                        [% FOREACH text IN texts %]
+                                            [% IF text.tag.search('search-database-gene-ids-descriptions-title') %]
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+                                            [% END %]
+                                        [% END %]
                                     </h4>
                                 </div>
-                                <div id="collapseOne" class="panel-collapse collapse" style="height: 0px;">
+                                <div id="collapseOne" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        
+
                                         <ul class="nav nav-pills">
-							                <li class="active"><a href="#geneIdentifier" data-toggle="tab">Gene identifier</a></li>
-							                <li class=""><a href="#geneDescription" data-toggle="tab">Gene description</a></li>
-							            </ul>
-							            <div class="tab-content">
-							            	<div id="geneIdentifier" class="tab-pane fade active in">
-							            		<h4></h4>
-							            		<form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
-										    		<div class="form-group">
-									    				<label>Gene ID: </label>
-									    				<input class="form-control" type="text" name="geneID">
-										    		</div>
-								    				<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-								    				<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-						                    	</form>
-							            	</div>
-							            	<div id="geneDescription" class="tab-pane fade">
-							            		<h4></h4>
-							            		<form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
-							            			<div class="form-group">
-							            				<label>Description: </label>
-							            				<input class="form-control" type="text" name="geneDesc">
-							            			</div>
-							            			<div class="form-group">
-						            					<label>Excluding: </label>
-								        				<input class="form-control" type="text" name="noDesc">
-							            			</div>
-								    				<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-								    				<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-							            		</form>
-							            	</div>
-							            </div>
-                                     
-                                        
+                                            [% FOREACH text IN texts %]
+                                                [% IF text.tag.search('search-database-gene-ids-descriptions-tab') %]
+                                                    <li [% text.details %]>[% text.value %]</li>
+                                                [% END %]
+                                            [% END %]
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="geneIdentifier" class="tab-pane fade active in">
+                                                <h4></h4>
+                                                <form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="geneID">
+                                                    </div>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </form>
+                                            </div>
+                                            <div id="geneDescription" class="tab-pane fade">
+                                                <h4></h4>
+                                                <form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="geneDesc">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-excluding') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="noDesc">
+                                                    </div>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </form>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
+                            <div id="parentCollapseTwo" class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Analyses of protein-coding genes</a>
+                                        [% FOREACH text IN texts %]
+                                            [% IF text.tag.search('search-database-analyses-protein-code-title') %]
+                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">[% text.value %]</a>
+                                            [% END %]
+                                        [% END %]
                                     </h4>
                                 </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
+                                <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <form method="post" action="/cgi-bin/searchPMNann.cgi" enctype="multipart/form-data">
-                                        	<div class="form-group">
-                                        		<label>Limit by term(s) in gene description(optional): </label>
-                                        		<input class="form-control" type="text" name="geneDesc">
-                                        	</div>
-                                        	<div class="form-group">
-                                        		<label>Excluding: </label>
-                                        		<input class="form-control" type="text" name="noDesc">
-                                        	</div>
-                                        	<ul class="nav nav-pills">
-                                        		<li class=""><a href="#geneOntology" data-toggle="tab">Gene ontology</a></li>
-								                <li class=""><a href="#transporterClassification" data-toggle="tab">Transporter classification</a></li>
-								                <li class=""><a href="#phobius" data-toggle="tab">Phobius</a></li>
-								                <li class=""><a href="#blast" data-toggle="tab">BLAST</a></li>
-								                <li class=""><a href="#rpsBlast" data-toggle="tab">RPSBLAST</a></li>
-								                <li class=""><a href="#kegg" data-toggle="tab">KEGG</a></li>
-								                <li class=""><a href="#orthologyAnalysis" data-toggle="tab">Orthology analysis (eggNOG)</a></li>
-								                <li class=""><a href="#interpro" data-toggle="tab">Interpro</a></li>
-                                        	</ul>
-                                        	<div class="tab-content">
-                                        		<div id="geneOntology" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noGO"> not containing Gene Ontology classification</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Search by sequence identifier of match:</label>
-                                        				<input class="form-control" type="text" name="goID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by description of match:</label>
-                                        				<input class="form-control" type="text" name="goDesc">
-                                        			</div>
-                                        		</div>
-                                        		<div id="transporterClassification" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noGO"> not containing TCDB classification</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Search by transporter identifier(e.g. 1.A.3.1.1):</label>
-                                        				<input class="form-control" type="text" name="tcdbID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by transporter family(e.g. 3.A.17):</label>
-                                        				<input class="form-control" type="text" name="tcdbFam">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by transporter subclass:</label>
-                                        				<select class="form-control" name="tcdbSubclass">
-															<option value=""></option>
-															<option value="1.A α-Type Channels">1.A α-Type Channels</option>
-															<option value="1.B β-Barrel Porins">1.B β-Barrel Porins</option>
-															<option value="1.C Pore-Forming Toxins (Proteins and Peptides)">1.C Pore-Forming Toxins (Proteins and Peptides)</option>
-															<option value="1.D Non-Ribosomally Synthesized Channels">1.D Non-Ribosomally Synthesized Channels</option>
-															<option value="1.E Holins">1.E Holins</option>
-															<option value="1.F Vesicle Fusion Pores">1.F Vesicle Fusion Pores</option>
-															<option value="1.G Viral Fusion Pores">1.G Viral Fusion Pores</option>
-															<option value="1.H Paracellular Channels">1.H Paracellular Channels</option>
-															<option value="1.I Membrane-bounded Channels">1.I Membrane-bounded Channels</option>
-															<option value="1.J Virion Egress Pyramidal Apertures">1.J Virion Egress Pyramidal Apertures</option>
-															<option value="2.A Porters (uniporters, symporters, antiporters)">2.A Porters (uniporters, symporters, antiporters)</option>
-															<option value="2.B Nonribosomally synthesized porters">2.B Nonribosomally synthesized porters</option>
-															<option value="2.C Ion-gradient-driven energizers">2.C Ion-gradient-driven energizers</option>
-															<option value="3.A P-P-bond-hydrolysis-driven transporters">3.A P-P-bond-hydrolysis-driven transporters</option>
-															<option value="3.B Decarboxylation-driven transporters">3.B Decarboxylation-driven transporters</option>
-															<option value="3.C Methyltransfer-driven transporters">3.C Methyltransfer-driven transporters</option>
-															<option value="3.D Oxidoreduction-driven transporters">3.D Oxidoreduction-driven transporters</option>
-															<option value="3.E Light absorption-driven transporters">3.E Light absorption-driven transporters</option>
-															<option value="4.A Phosphotransfer-driven Group Translocators">4.A Phosphotransfer-driven Group Translocators</option>
-															<option value="4.B Nicotinamide ribonucleoside uptake transporters">4.B Nicotinamide ribonucleoside uptake transporters</option>
-															<option value="4.C Acyl CoA ligase-coupled transporters">4.C Acyl CoA ligase-coupled transporters</option>
-															<option value="4.D Polysaccharide Synthase/Exporters">4.D Polysaccharide Synthase/Exporters</option>
-															<option value="5.A Transmembrane Electron Carriers">5.A Transmembrane Electron Carriers</option>
-															<option value="5.B Transmembrane 1-electron transfer carriers">5.B Transmembrane 1-electron transfer carriers</option>
-															<option value="8.A Auxiliary transport proteins">8.A Auxiliary transport proteins</option>
-															<option value="8.B Ribosomally synthesized protein/peptide toxins/agonists that target channels and carriers">8.B Ribosomally synthesized protein/peptide toxins/agonists that target channels and carriers</option>
-															<option value="8.C Non-ribosomally synthesized toxins that target channels and carriers">8.C Non-ribosomally synthesized toxins that target channels and carriers</option>
-															<option value="9.A Recognized transporters of unknown biochemical mechanism">9.A Recognized transporters of unknown biochemical mechanism</option>
-															<option value="9.B Putative transport proteins">9.B Putative transport proteins</option>
-															<option value="9.C Functionally characterized transporters lacking identified sequences">9.C Functionally characterized transporters lacking identified sequences</option>
-														</select>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by transporter class:</label>
-                                        				<select class="form-control" name="tcdbClass">
-															<option value=""></option>
-															<option value="1 Channels/Pores">1 Channels/Pores</option>
-															<option value="2 Electrochemical Potential-driven Transporters">2 Electrochemical Potential-driven Transporters</option>
-															<option value="3 Primary Active Transporters">3 Primary Active Transporters</option>
-															<option value="4 Group Translocators">4 Group Translocators</option>
-															<option value="5 Transmembrane Electron Carriers">5 Transmembrane Electron Carriers</option>
-															<option value="8 Accessory Factors Involved in Transport">8 Accessory Factors Involved in Transport</option>
-															<option value="9 Incompletely Characterized Transport Systems">9 Incompletely Characterized Transport Systems</option>
-														</select>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by description of match: </label>
-                                        				<input class="form-control" type="text" name="tcdbDesc">
-                                        			</div>
-                                        		</div>
-                                        		<div id="phobius" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noPhobius"> not containing Phobius results</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Number of transmembrane domains:</label>
-                                        				<input class="form-control" type="text" name="TMdom">
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="tmQuant" value="orLess"> or less</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="tmQuant" value="orMore"> or more</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="tmQuant" value="exact" checked=""> exactly</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>With signal peptide?</labe>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="sigP" value="sigPyes"> yes</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="sigP" value="sigPno">no </label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="sigP" value="sigPwhatever" checked=""> do not care</label>
-                                        				</div>
-                                        			</div>
-                                        		</div>
-                                        		<div id="blast" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noBlast"> not containing BLAST matches</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Search by sequence identifier of match:</label>
-                                        				<input class="form-control" type="text" name="blastID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by description of match:</label>
-                                        				<input class="form-control" type="text" name="blastDesc">
-                                        			</div>
-                                        		</div>
-                                        		<div id="rpsBlast" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noRps"> not containing RPSBLAST matches</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Search by sequence identifier of match:</label>
-                                        				<input class="form-control" type="text" name="rpsID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by description of match: </label>
-                                        				<input class="form-control" type="text" name="rpsDesc">
-                                        			</div>
-                                        		</div>
-                                        		<div id="kegg" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noKEGG"> not containing KEGG pathway matches</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Search by KEGG orthology identifier:</label>
-                                        				<input class="form-control" type="text" name="koID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by KEGG pathway:</label>
-                                        				<select class="form-control" name="keggPath">
-															<option value=""></option>
-															<option value="07112">1,2-Diphenyl substitution family</option>
-															<option value="07111">2-Aminothiazole family</option>
-															<option value="01210">2-Oxocarboxylic acid metabolism</option>
-															<option value="02010">ABC transporters</option>
-															<option value="01058">Acridone alkaloid biosynthesis</option>
-															<option value="05221">Acute myeloid leukemia</option>
-															<option value="04520">Adherens junction</option>
-															<option value="04920">Adipocytokine signaling pathway</option>
-															<option value="05143">African trypanosomiasis</option>
-															<option value="00250">Alanine, aspartate and glutamate metabolism</option>
-															<option value="05034">Alcoholism</option>
-															<option value="04960">Aldosterone-regulated sodium reabsorption</option>
-															<option value="05330">Allograft rejection</option>
-															<option value="07215">alpha-Adrenergic receptor agonists/antagonists</option>
-															<option value="00592">alpha-Linolenic acid metabolism</option>
-															<option value="05010">Alzheimer's disease</option>
-															<option value="00970">Aminoacyl-tRNA biosynthesis</option>
-															<option value="00627">Aminobenzoate degradation</option>
-															<option value="07021">Aminoglycosides</option>
-															<option value="00520">Amino sugar and nucleotide sugar metabolism</option>
-															<option value="05146">Amoebiasis</option>
-															<option value="05031">Amphetamine addiction</option>
-															<option value="05014">Amyotrophic lateral sclerosis (ALS)</option>
-															<option value="07229">Angiotensin receptor and endothelin receptor antagonists</option>
-															<option value="00942">Anthocyanin biosynthesis</option>
-															<option value="07037">Antiarrhythmic drugs</option>
-															<option value="07033">Anticonvulsants</option>
-															<option value="07027">Antidepressants</option>
-															<option value="07051">Antidiabetics</option>
-															<option value="07052">Antidyslipidemic agents</option>
-															<option value="07026">Antifungal agents</option>
-															<option value="04612">Antigen processing and presentation</option>
-															<option value="07053">Anti-HIV agents</option>
-															<option value="07048">Antimigraines</option>
-															<option value="07042">Antineoplastics - agents from natural products</option>
-															<option value="07040">Antineoplastics - alkylating agents</option>
-															<option value="07041">Antineoplastics - antimetabolic agents</option>
-															<option value="07043">Antineoplastics - hormones</option>
-															<option value="07045">Antineoplastics - protein kinases inhibitors</option>
-															<option value="07028">Antipsychotics</option>
-															<option value="07050">Antirheumatics - DMARDs and biological agents</option>
-															<option value="07049">Antithrombosis agents</option>
-															<option value="07038">Antiulcer drugs</option>
-															<option value="07044">Antiviral agents</option>
-															<option value="07030">Anxiolytics</option>
-															<option value="04210">Apoptosis</option>
-															<option value="00590">Arachidonic acid metabolism</option>
-															<option value="00330">Arginine and proline metabolism</option>
-															<option value="05412">Arrhythmogenic right ventricular cardiomyopathy (ARVC)</option>
-															<option value="00053">Ascorbate and aldarate metabolism</option>
-															<option value="05310">Asthma</option>
-															<option value="00791">Atrazine degradation</option>
-															<option value="05320">Autoimmune thyroid disease</option>
-															<option value="04360">Axon guidance</option>
-															<option value="02030">Bacterial chemotaxis</option>
-															<option value="05100">Bacterial invasion of epithelial cells</option>
-															<option value="03070">Bacterial secretion system</option>
-															<option value="05217">Basal cell carcinoma</option>
-															<option value="03022">Basal transcription factors</option>
-															<option value="03410">Base excision repair</option>
-															<option value="04662">B cell receptor signaling pathway</option>
-															<option value="00362">Benzoate degradation</option>
-															<option value="07117">Benzodiazepine family</option>
-															<option value="07110">Benzoic acid family</option>
-															<option value="00402">Benzoxazinoid biosynthesis</option>
-															<option value="07214">beta-Adrenergic receptor agonists/antagonists</option>
-															<option value="00410">beta-Alanine metabolism</option>
-															<option value="00312">beta-Lactam resistance</option>
-															<option value="00965">Betalain biosynthesis</option>
-															<option value="04976">Bile secretion</option>
-															<option value="00522">Biosynthesis of 12-, 14- and 16-membered macrolides</option>
-															<option value="01065">Biosynthesis of alkaloids derived from histidine and purine</option>
-															<option value="01064">Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid</option>
-															<option value="01063">Biosynthesis of alkaloids derived from shikimate pathway</option>
-															<option value="01066">Biosynthesis of alkaloids derived from terpenoid and polyketide</option>
-															<option value="01051">Biosynthesis of ansamycins</option>
-															<option value="01061">Biosynthesis of phenylpropanoids</option>
-															<option value="01070">Biosynthesis of plant hormones</option>
-															<option value="01060">Biosynthesis of plant secondary metabolites</option>
-															<option value="01110">Biosynthesis of secondary metabolites</option>
-															<option value="01053">Biosynthesis of siderophore group nonribosomal peptides</option>
-															<option value="01062">Biosynthesis of terpenoids and steroids</option>
-															<option value="01056">Biosynthesis of type II polyketide backbone</option>
-															<option value="01057">Biosynthesis of type II polyketide products</option>
-															<option value="01040">Biosynthesis of unsaturated fatty acids</option>
-															<option value="01055">Biosynthesis of vancomycin group antibiotics</option>
-															<option value="00780">Biotin metabolism</option>
-															<option value="00363">Bisphenol degradation</option>
-															<option value="05219">Bladder cancer</option>
-															<option value="00905">Brassinosteroid biosynthesis</option>
-															<option value="00650">Butanoate metabolism</option>
-															<option value="00524">Butirosin and neomycin biosynthesis</option>
-															<option value="07116">Butyrophenone family</option>
-															<option value="07031">Butyrophenones</option>
-															<option value="00660">C5-Branched dibasic acid metabolism</option>
-															<option value="00232">Caffeine metabolism</option>
-															<option value="07036">Calcium channel blocking drugs</option>
-															<option value="04020">Calcium signaling pathway</option>
-															<option value="00930">Caprolactam degradation</option>
-															<option value="04973">Carbohydrate digestion and absorption</option>
-															<option value="00710">Carbon fixation in photosynthetic organisms</option>
-															<option value="00720">Carbon fixation pathways in prokaryotes</option>
-															<option value="04260">Cardiac muscle contraction</option>
-															<option value="00906">Carotenoid biosynthesis</option>
-															<option value="07216">Catecholamine transferase inhibitors</option>
-															<option value="04514">Cell adhesion molecules (CAMs)</option>
-															<option value="04112">Cell cycle - Caulobacter</option>
-															<option value="04110">Cell cycle</option>
-															<option value="04111">Cell cycle - yeast</option>
-															<option value="07013">Cephalosporins - oral agents</option>
-															<option value="07012">Cephalosporins - parenteral agents</option>
-															<option value="05142">Chagas disease (American trypanosomiasis)</option>
-															<option value="05204">Chemical carcinogenesis</option>
-															<option value="04062">Chemokine signaling pathway</option>
-															<option value="00625">Chloroalkane and chloroalkene degradation</option>
-															<option value="00361">Chlorocyclohexane and chlorobenzene degradation</option>
-															<option value="07220">Cholinergic and anticholinergic drugs</option>
-															<option value="04725">Cholinergic synapse</option>
-															<option value="05220">Chronic myeloid leukemia</option>
-															<option value="04713">Circadian entrainment</option>
-															<option value="04711">Circadian rhythm - fly</option>
-															<option value="04710">Circadian rhythm</option>
-															<option value="04712">Circadian rhythm - plant</option>
-															<option value="00020">Citrate cycle (TCA cycle)</option>
-															<option value="00331">Clavulanic acid biosynthesis</option>
-															<option value="05030">Cocaine addiction</option>
-															<option value="04966">Collecting duct acid secretion</option>
-															<option value="05210">Colorectal cancer</option>
-															<option value="04610">Complement and coagulation cascades</option>
-															<option value="00073">Cutin, suberine and wax biosynthesis</option>
-															<option value="00460">Cyanoamino acid metabolism</option>
-															<option value="07219">Cyclooxygenase inhibitors</option>
-															<option value="00270">Cysteine and methionine metabolism</option>
-															<option value="04060">Cytokine-cytokine receptor interaction</option>
-															<option value="04623">Cytosolic DNA-sensing pathway</option>
-															<option value="00473">D-Alanine metabolism</option>
-															<option value="00472">D-Arginine and D-ornithine metabolism</option>
-															<option value="00351">DDT degradation</option>
-															<option value="01220">Degradation of aromatic compounds</option>
-															<option value="00471">D-Glutamine and D-glutamate metabolism</option>
-															<option value="05414">Dilated cardiomyopathy</option>
-															<option value="00621">Dioxin degradation</option>
-															<option value="00904">Diterpenoid biosynthesis</option>
-															<option value="03030">DNA replication</option>
-															<option value="07213">Dopamine receptor agonists/antagonists</option>
-															<option value="04728">Dopaminergic synapse</option>
-															<option value="04320">Dorso-ventral axis formation</option>
-															<option value="00982">Drug metabolism - cytochrome P450</option>
-															<option value="00983">Drug metabolism - other enzymes</option>
-															<option value="04512">ECM-receptor interaction</option>
-															<option value="07228">Eicosanoid receptor agonists/antagonists</option>
-															<option value="07034">Eicosanoids</option>
-															<option value="04961">Endocrine and other factor-regulated calcium reabsorption</option>
-															<option value="04144">Endocytosis</option>
-															<option value="05213">Endometrial cancer</option>
-															<option value="05120">Epithelial cell signaling in Helicobacter pylori infection</option>
-															<option value="05169">Epstein-Barr virus infection</option>
-															<option value="04012">ErbB signaling pathway</option>
-															<option value="00565">Ether lipid metabolism</option>
-															<option value="00642">Ethylbenzene degradation</option>
-															<option value="03460">Fanconi anemia pathway</option>
-															<option value="04975">Fat digestion and absorption</option>
-															<option value="00061">Fatty acid biosynthesis</option>
-															<option value="00062">Fatty acid elongation</option>
-															<option value="00071">Fatty acid metabolism</option>
-															<option value="04664">Fc epsilon RI signaling pathway</option>
-															<option value="04666">Fc gamma R-mediated phagocytosis</option>
-															<option value="02040">Flagellar assembly</option>
-															<option value="00944">Flavone and flavonol biosynthesis</option>
-															<option value="00941">Flavonoid biosynthesis</option>
-															<option value="00364">Fluorobenzoate degradation</option>
-															<option value="04510">Focal adhesion</option>
-															<option value="00790">Folate biosynthesis</option>
-															<option value="00051">Fructose and mannose metabolism</option>
-															<option value="07113">Furan family</option>
-															<option value="07230">GABA-A receptor agonists/antagonists</option>
-															<option value="04727">GABAergic synapse</option>
-															<option value="00052">Galactose metabolism</option>
-															<option value="04540">Gap junction</option>
-															<option value="04971">Gastric acid secretion</option>
-															<option value="00281">Geraniol degradation</option>
-															<option value="05214">Glioma</option>
-															<option value="07225">Glucocorticoid and meneralocorticoid receptor agonists/antagonists</option>
-															<option value="00966">Glucosinolate biosynthesis</option>
-															<option value="04724">Glutamatergic synapse</option>
-															<option value="00480">Glutathione metabolism</option>
-															<option value="00561">Glycerolipid metabolism</option>
-															<option value="00564">Glycerophospholipid metabolism</option>
-															<option value="00260">Glycine, serine and threonine metabolism</option>
-															<option value="00010">Glycolysis / Gluconeogenesis</option>
-															<option value="00532">Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate</option>
-															<option value="00534">Glycosaminoglycan biosynthesis - heparan sulfate / heparin</option>
-															<option value="00533">Glycosaminoglycan biosynthesis - keratan sulfate</option>
-															<option value="00531">Glycosaminoglycan degradation</option>
-															<option value="00604">Glycosphingolipid biosynthesis - ganglio series</option>
-															<option value="00603">Glycosphingolipid biosynthesis - globo series</option>
-															<option value="00601">Glycosphingolipid biosynthesis - lacto and neolacto series</option>
-															<option value="00563">Glycosylphosphatidylinositol(GPI)-anchor biosynthesis</option>
-															<option value="00630">Glyoxylate and dicarboxylate metabolism</option>
-															<option value="04912">GnRH signaling pathway</option>
-															<option value="05332">Graft-versus-host disease</option>
-															<option value="04340">Hedgehog signaling pathway</option>
-															<option value="04640">Hematopoietic cell lineage</option>
-															<option value="05161">Hepatitis B</option>
-															<option value="05160">Hepatitis C</option>
-															<option value="05168">Herpes simplex infection</option>
-															<option value="04066">HIF-1 signaling pathway</option>
-															<option value="04391">Hippo signaling pathway - fly</option>
-															<option value="04390">Hippo signaling pathway</option>
-															<option value="07212">Histamine H1 receptor antagonists</option>
-															<option value="07227">Histamine H2/H3 receptor agonists/antagonists</option>
-															<option value="00340">Histidine metabolism</option>
-															<option value="07218">HIV protease inhibitors</option>
-															<option value="07024">HMG-CoA reductase inhibitors</option>
-															<option value="03440">Homologous recombination</option>
-															<option value="05166">HTLV-I infection</option>
-															<option value="05016">Huntington's disease</option>
-															<option value="05410">Hypertrophic cardiomyopathy (HCM)</option>
-															<option value="07032">Hypnotics</option>
-															<option value="07046">Immunosuppressive agents</option>
-															<option value="00901">Indole alkaloid biosynthesis</option>
-															<option value="05164">Influenza A</option>
-															<option value="00562">Inositol phosphate metabolism</option>
-															<option value="00981">Insect hormone biosynthesis</option>
-															<option value="04911">Insulin secretion</option>
-															<option value="04910">Insulin signaling pathway</option>
-															<option value="04672">Intestinal immune network for IgA production</option>
-															<option value="07233">Ion transporter inhibitors</option>
-															<option value="00943">Isoflavonoid biosynthesis</option>
-															<option value="00950">Isoquinoline alkaloid biosynthesis</option>
-															<option value="04630">Jak-STAT signaling pathway</option>
-															<option value="05134">Legionellosis</option>
-															<option value="05140">Leishmaniasis</option>
-															<option value="04670">Leukocyte transendothelial migration</option>
-															<option value="00903">Limonene and pinene degradation</option>
-															<option value="00591">Linoleic acid metabolism</option>
-															<option value="00785">Lipoic acid metabolism</option>
-															<option value="00540">Lipopolysaccharide biosynthesis</option>
-															<option value="07015">Local analgesics</option>
-															<option value="04730">Long-term depression</option>
-															<option value="04720">Long-term potentiation</option>
-															<option value="00300">Lysine biosynthesis</option>
-															<option value="00310">Lysine degradation</option>
-															<option value="04142">Lysosome</option>
-															<option value="07020">Macrolides and ketolides</option>
-															<option value="05144">Malaria</option>
-															<option value="04013">MAPK signaling pathway - fly</option>
-															<option value="04010">MAPK signaling pathway</option>
-															<option value="04011">MAPK signaling pathway - yeast</option>
-															<option value="04950">Maturity onset diabetes of the young</option>
-															<option value="05162">Measles</option>
-															<option value="04113">Meiosis - yeast</option>
-															<option value="04916">Melanogenesis</option>
-															<option value="05218">Melanoma</option>
-															<option value="01100">Metabolic pathways</option>
-															<option value="00980">Metabolism of xenobiotics by cytochrome P450</option>
-															<option value="00680">Methane metabolism</option>
-															<option value="01120">Microbial metabolism in diverse environments</option>
-															<option value="04978">Mineral absorption</option>
-															<option value="03430">Mismatch repair</option>
-															<option value="00902">Monoterpenoid biosynthesis</option>
-															<option value="05032">Morphine addiction</option>
-															<option value="03015">mRNA surveillance pathway</option>
-															<option value="04150">mTOR signaling pathway</option>
-															<option value="00512">Mucin type O-Glycan biosynthesis</option>
-															<option value="00626">Naphthalene degradation</option>
-															<option value="07114">Naphthalene family</option>
-															<option value="04650">Natural killer cell mediated cytotoxicity</option>
-															<option value="04080">Neuroactive ligand-receptor interaction</option>
-															<option value="07234">Neurotransmitter transporter inhibitors</option>
-															<option value="04722">Neurotrophin signaling pathway</option>
-															<option value="04064">NF-kappa B signaling pathway</option>
-															<option value="00510">N-Glycan biosynthesis</option>
-															<option value="00760">Nicotinate and nicotinamide metabolism</option>
-															<option value="05033">Nicotine addiction</option>
-															<option value="07221">Nicotinic cholinergic receptor antagonists</option>
-															<option value="00910">Nitrogen metabolism</option>
-															<option value="00633">Nitrotoluene degradation</option>
-															<option value="07235">N-Metyl-D-aspartic acid receptor antagonists</option>
-															<option value="04621">NOD-like receptor signaling pathway</option>
-															<option value="03450">Non-homologous end-joining</option>
-															<option value="01054">Nonribosomal peptide structures</option>
-															<option value="05223">Non-small cell lung cancer</option>
-															<option value="04330">Notch signaling pathway</option>
-															<option value="00401">Novobiocin biosynthesis</option>
-															<option value="03420">Nucleotide excision repair</option>
-															<option value="04740">Olfactory transduction</option>
-															<option value="00670">One carbon pool by folate</option>
-															<option value="04114">Oocyte meiosis</option>
-															<option value="07039">Opioid analgesics</option>
-															<option value="07224">Opioid receptor agonists/antagonists</option>
-															<option value="04380">Osteoclast differentiation</option>
-															<option value="07047">Osteoporosis drugs</option>
-															<option value="00511">Other glycan degradation</option>
-															<option value="00514">Other types of O-glycan biosynthesis</option>
-															<option value="01010">Overview of biosynthetic pathways</option>
-															<option value="00190">Oxidative phosphorylation</option>
-															<option value="04115">p53 signaling pathway</option>
-															<option value="05212">Pancreatic cancer</option>
-															<option value="04972">Pancreatic secretion</option>
-															<option value="00770">Pantothenate and CoA biosynthesis</option>
-															<option value="05012">Parkinson's disease</option>
-															<option value="05130">Pathogenic Escherichia coli infection</option>
-															<option value="05200">Pathways in cancer</option>
-															<option value="00311">Penicillin and cephalosporin biosynthesis</option>
-															<option value="07011">Penicillins</option>
-															<option value="00040">Pentose and glucuronate interconversions</option>
-															<option value="00030">Pentose phosphate pathway</option>
-															<option value="00550">Peptidoglycan biosynthesis</option>
-															<option value="04146">Peroxisome</option>
-															<option value="07222">Peroxisome proliferator-activated receptor (PPAR) agonists</option>
-															<option value="05133">Pertussis</option>
-															<option value="04145">Phagosome</option>
-															<option value="07029">Phenothiazines</option>
-															<option value="00360">Phenylalanine metabolism</option>
-															<option value="00400">Phenylalanine, tyrosine and tryptophan biosynthesis</option>
-															<option value="00940">Phenylpropanoid biosynthesis</option>
-															<option value="04070">Phosphatidylinositol signaling system</option>
-															<option value="00440">Phosphonate and phosphinate metabolism</option>
-															<option value="02060">Phosphotransferase system (PTS)</option>
-															<option value="00196">Photosynthesis - antenna proteins</option>
-															<option value="00195">Photosynthesis</option>
-															<option value="04745">Phototransduction - fly</option>
-															<option value="04744">Phototransduction</option>
-															<option value="04151">PI3K-Akt signaling pathway</option>
-															<option value="04075">Plant hormone signal transduction</option>
-															<option value="04626">Plant-pathogen interaction</option>
-															<option value="00624">Polycyclic aromatic hydrocarbon degradation</option>
-															<option value="00523">Polyketide sugar unit biosynthesis</option>
-															<option value="00860">Porphyrin and chlorophyll metabolism</option>
-															<option value="07232">Potassium channel blocking and opening drugs</option>
-															<option value="03320">PPAR signaling pathway</option>
-															<option value="00120">Primary bile acid biosynthesis</option>
-															<option value="05340">Primary immunodeficiency</option>
-															<option value="05020">Prion diseases</option>
-															<option value="07226">Progesterone, androgen and estrogen receptor agonists/antagonists</option>
-															<option value="04914">Progesterone-mediated oocyte maturation</option>
-															<option value="00640">Propanoate metabolism</option>
-															<option value="07035">Prostaglandins</option>
-															<option value="05215">Prostate cancer</option>
-															<option value="03050">Proteasome</option>
-															<option value="04974">Protein digestion and absorption</option>
-															<option value="03060">Protein export</option>
-															<option value="04141">Protein processing in endoplasmic reticulum</option>
-															<option value="04964">Proximal tubule bicarbonate reclamation</option>
-															<option value="00230">Purine metabolism</option>
-															<option value="00231">Puromycin biosynthesis</option>
-															<option value="00240">Pyrimidine metabolism</option>
-															<option value="00620">Pyruvate metabolism</option>
-															<option value="07025">Quinolines</option>
-															<option value="07014">Quinolones</option>
-															<option value="04810">Regulation of actin cytoskeleton</option>
-															<option value="04140">Regulation of autophagy</option>
-															<option value="05211">Renal cell carcinoma</option>
-															<option value="07217">Renin-angiotensin system inhibitors</option>
-															<option value="04614">Renin-angiotensin system</option>
-															<option value="07223">Retinoic acid receptor (RAR) and retinoid X receptor (RXR) agonists/antagonists</option>
-															<option value="00830">Retinol metabolism</option>
-															<option value="04723">Retrograde endocannabinoid signaling</option>
-															<option value="05323">Rheumatoid arthritis</option>
-															<option value="00740">Riboflavin metabolism</option>
-															<option value="03008">Ribosome biogenesis in eukaryotes</option>
-															<option value="03010">Ribosome</option>
-															<option value="07023">Rifamycins</option>
-															<option value="04622">RIG-I-like receptor signaling pathway</option>
-															<option value="03018">RNA degradation</option>
-															<option value="03020">RNA polymerase</option>
-															<option value="03013">RNA transport</option>
-															<option value="04970">Salivary secretion</option>
-															<option value="05132">Salmonella infection</option>
-															<option value="00121">Secondary bile acid biosynthesis</option>
-															<option value="00450">Selenocompound metabolism</option>
-															<option value="04726">Serotonergic synapse</option>
-															<option value="07211">Serotonin receptor agonists/antagonists</option>
-															<option value="00909">Sesquiterpenoid and triterpenoid biosynthesis</option>
-															<option value="05131">Shigellosis</option>
-															<option value="05222">Small cell lung cancer</option>
-															<option value="04130">SNARE interactions in vesicular transport</option>
-															<option value="07231">Sodium channel blocking drugs</option>
-															<option value="00600">Sphingolipid metabolism</option>
-															<option value="03040">Spliceosome</option>
-															<option value="05150">Staphylococcus aureus infection</option>
-															<option value="00500">Starch and sucrose metabolism</option>
-															<option value="00100">Steroid biosynthesis</option>
-															<option value="00984">Steroid degradation</option>
-															<option value="00140">Steroid hormone biosynthesis</option>
-															<option value="00945">Stilbenoid, diarylheptanoid and gingerol biosynthesis</option>
-															<option value="00521">Streptomycin biosynthesis</option>
-															<option value="00643">Styrene degradation</option>
-															<option value="07017">Sulfonamide derivatives - diuretics</option>
-															<option value="07018">Sulfonamide derivatives - hypoglycemic agents</option>
-															<option value="07016">Sulfonamide derivatives - sulfa drugs</option>
-															<option value="07115">Sulfonamide family</option>
-															<option value="00920">Sulfur metabolism</option>
-															<option value="04122">Sulfur relay system</option>
-															<option value="04721">Synaptic vesicle cycle</option>
-															<option value="00072">Synthesis and degradation of ketone bodies</option>
-															<option value="05322">Systemic lupus erythematosus</option>
-															<option value="04742">Taste transduction</option>
-															<option value="00430">Taurine and hypotaurine metabolism</option>
-															<option value="04660">T cell receptor signaling pathway</option>
-															<option value="00900">Terpenoid backbone biosynthesis</option>
-															<option value="00253">Tetracycline biosynthesis</option>
-															<option value="07019">Tetracyclines</option>
-															<option value="04350">TGF-beta signaling pathway</option>
-															<option value="00730">Thiamine metabolism</option>
-															<option value="05216">Thyroid cancer</option>
-															<option value="04530">Tight junction</option>
-															<option value="04620">Toll-like receptor signaling pathway</option>
-															<option value="00623">Toluene degradation</option>
-															<option value="05145">Toxoplasmosis</option>
-															<option value="05202">Transcriptional misregulation in cancer</option>
-															<option value="00960">Tropane, piperidine and pyridine alkaloid biosynthesis</option>
-															<option value="00380">Tryptophan metabolism</option>
-															<option value="05152">Tuberculosis</option>
-															<option value="02020">Two-component system</option>
-															<option value="04940">Type I diabetes mellitus</option>
-															<option value="04930">Type II diabetes mellitus</option>
-															<option value="01052">Type I polyketide structures</option>
-															<option value="00350">Tyrosine metabolism</option>
-															<option value="00130">Ubiquinone and other terpenoid-quinone biosynthesis</option>
-															<option value="04120">Ubiquitin mediated proteolysis</option>
-															<option value="00290">Valine, leucine and isoleucine biosynthesis</option>
-															<option value="00280">Valine, leucine and isoleucine degradation</option>
-															<option value="00513">Various types of N-glycan biosynthesis</option>
-															<option value="04270">Vascular smooth muscle contraction</option>
-															<option value="04962">Vasopressin-regulated water reabsorption</option>
-															<option value="04370">VEGF signaling pathway</option>
-															<option value="05110">Vibrio cholerae infection</option>
-															<option value="05111">Vibrio cholerae pathogenic cycle</option>
-															<option value="05203">Viral carcinogenesis</option>
-															<option value="05416">Viral myocarditis</option>
-															<option value="00750">Vitamin B6 metabolism</option>
-															<option value="04977">Vitamin digestion and absorption</option>
-															<option value="04310">Wnt signaling pathway</option>
-															<option value="00622">Xylene degradation</option>
-															<option value="00908">Zeatin biosynthesis</option>
-														</select>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by description of match:</label>
-                                        				<input class="form-control" type="text" name="keggDesc">
-                                        			</div>
-                                        		</div>
-                                        		<div id="orthologyAnalysis" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noOrth"> not containing eggNOG matches</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Search by eggNOG identifier: </label>
-                                        				<input class="form-control" type="text" name="orthID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by description of match: </label>
-                                        				<input class="form-control" type="text" name="orthDesc">
-                                        			</div>
-                                        		</div>
-                                        		<div id="interpro" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="noIP"> not containing InterProScan matches</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Search by InterPro identifier:</label>
-                                        				<input class="form-control" type="text" name="interproID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by description of match: </label>
-                                        				<input class="form-control" type="text" name="interproDesc">
-                                        			</div>
-                                        		</div>
-                                        	</div>
-                                        	<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    				<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                            <div class="form-group">
+                                                [% FOREACH text IN texts %]
+                                                    [% IF text.tag.search('search-database-analyses-protein-code-limit') %]
+                                                        <label>[% text.value %]</label>
+                                                    [% END %]
+                                                [% END %]
+                                                <input class="form-control" type="text" name="geneDesc">
+                                            </div>
+                                            <div class="form-group">
+                                                [% FOREACH text IN texts %]
+                                                    [% IF text.tag.search('search-database-analyses-protein-code-excluding') %]
+                                                        <label>[% text.value %]</label>
+                                                    [% END %]
+                                                [% END %]
+                                                <input class="form-control" type="text" name="noDesc">
+                                            </div>
+                                            <ul class="nav nav-pills">
+                                                [% FOREACH text IN texts %]
+                                                    [% IF text.tag.search('search-database-analyses-protein-code-tab') %]
+                                                        <li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
+                                                    [% END %]
+                                                [% END %]
+                                            </ul>
+                                            <h4></h4>
+                                            <div class="tab-content">
+                                                <div id="geneOntology" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-analyses-protein-code-not-containing-classification' %]
+                                                                    <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="goID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="goDesc">
+                                                    </div>
+                                                </div>
+                                                <div id="transporterClassification" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-tcdb') %]
+                                                                    <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-identifier') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="tcdbID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-family') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="tcdbFam">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-analyses-protein-code-search-by-transporter-subclass' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <select class="form-control" name="tcdbSubclass">
+                                                            <option value=""></option>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-subclass-option') %]
+                                                                    <option value='[% text.value %]'>[% text.value %]</option>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-analyses-protein-code-search-by-transporter-class' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <select class="form-control" name="tcdbClass">
+                                                            <option value=""></option>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-class') %]
+                                                                    <option value="[% text.value %]">[% text.value %]</option>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                                    <label>[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
+                                                        <input class="form-control" type="text" name="tcdbDesc">
+                                                    </div>
+                                                </div>
+                                                <div id="phobius" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-phobius') %]
+                                                                    <label><input type="checkbox" name="noPhobius">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-analyses-protein-code-number-transmembrane-domain' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="TMdom">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="tmQuant" [% text.details %]> [% text.value %] </label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-analyses-protein-code-signal-peptide' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-signal-peptide-option') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="sigP" [% text.details %]> [% text.value %] </label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
+                                                    </div>
+                                                </div>
+                                                <div id="blast" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-blast') %]
+                                                                    <label><input type="checkbox" name="noBlast">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="blastID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="blastDesc">
+                                                    </div>
+                                                </div>
+                                                <div id="rpsBlast" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-rpsblast') %]
+                                                                    <label><input type="checkbox" name="noRps">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="rpsID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="rpsDesc">
+                                                    </div>
+                                                </div>
+                                                <div id="kegg" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-kegg') %]
+                                                                    <label><input type="checkbox" name="noKEGG">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-by-orthology-identifier-kegg') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="koID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-by-kegg-pathway') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <select class="form-control" name="keggPath">
+                                                            <option value=""></option>
+                                                            <option value="07112">1,2-Diphenyl substitution family</option>
+                                                            <option value="07111">2-Aminothiazole family</option>
+                                                            <option value="01210">2-Oxocarboxylic acid metabolism</option>
+                                                            <option value="02010">ABC transporters</option>
+                                                            <option value="01058">Acridone alkaloid biosynthesis</option>
+                                                            <option value="05221">Acute myeloid leukemia</option>
+                                                            <option value="04520">Adherens junction</option>
+                                                            <option value="04920">Adipocytokine signaling pathway</option>
+                                                            <option value="05143">African trypanosomiasis</option>
+                                                            <option value="00250">Alanine, aspartate and glutamate metabolism</option>
+                                                            <option value="05034">Alcoholism</option>
+                                                            <option value="04960">Aldosterone-regulated sodium reabsorption</option>
+                                                            <option value="05330">Allograft rejection</option>
+                                                            <option value="07215">alpha-Adrenergic receptor agonists/antagonists</option>
+                                                            <option value="00592">alpha-Linolenic acid metabolism</option>
+                                                            <option value="05010">Alzheimer's disease</option>
+                                                            <option value="00970">Aminoacyl-tRNA biosynthesis</option>
+                                                            <option value="00627">Aminobenzoate degradation</option>
+                                                            <option value="07021">Aminoglycosides</option>
+                                                            <option value="00520">Amino sugar and nucleotide sugar metabolism</option>
+                                                            <option value="05146">Amoebiasis</option>
+                                                            <option value="05031">Amphetamine addiction</option>
+                                                            <option value="05014">Amyotrophic lateral sclerosis (ALS)</option>
+                                                            <option value="07229">Angiotensin receptor and endothelin receptor antagonists</option>
+                                                            <option value="00942">Anthocyanin biosynthesis</option>
+                                                            <option value="07037">Antiarrhythmic drugs</option>
+                                                            <option value="07033">Anticonvulsants</option>
+                                                            <option value="07027">Antidepressants</option>
+                                                            <option value="07051">Antidiabetics</option>
+                                                            <option value="07052">Antidyslipidemic agents</option>
+                                                            <option value="07026">Antifungal agents</option>
+                                                            <option value="04612">Antigen processing and presentation</option>
+                                                            <option value="07053">Anti-HIV agents</option>
+                                                            <option value="07048">Antimigraines</option>
+                                                            <option value="07042">Antineoplastics - agents from natural products</option>
+                                                            <option value="07040">Antineoplastics - alkylating agents</option>
+                                                            <option value="07041">Antineoplastics - antimetabolic agents</option>
+                                                            <option value="07043">Antineoplastics - hormones</option>
+                                                            <option value="07045">Antineoplastics - protein kinases inhibitors</option>
+                                                            <option value="07028">Antipsychotics</option>
+                                                            <option value="07050">Antirheumatics - DMARDs and biological agents</option>
+                                                            <option value="07049">Antithrombosis agents</option>
+                                                            <option value="07038">Antiulcer drugs</option>
+                                                            <option value="07044">Antiviral agents</option>
+                                                            <option value="07030">Anxiolytics</option>
+                                                            <option value="04210">Apoptosis</option>
+                                                            <option value="00590">Arachidonic acid metabolism</option>
+                                                            <option value="00330">Arginine and proline metabolism</option>
+                                                            <option value="05412">Arrhythmogenic right ventricular cardiomyopathy (ARVC)</option>
+                                                            <option value="00053">Ascorbate and aldarate metabolism</option>
+                                                            <option value="05310">Asthma</option>
+                                                            <option value="00791">Atrazine degradation</option>
+                                                            <option value="05320">Autoimmune thyroid disease</option>
+                                                            <option value="04360">Axon guidance</option>
+                                                            <option value="02030">Bacterial chemotaxis</option>
+                                                            <option value="05100">Bacterial invasion of epithelial cells</option>
+                                                            <option value="03070">Bacterial secretion system</option>
+                                                            <option value="05217">Basal cell carcinoma</option>
+                                                            <option value="03022">Basal transcription factors</option>
+                                                            <option value="03410">Base excision repair</option>
+                                                            <option value="04662">B cell receptor signaling pathway</option>
+                                                            <option value="00362">Benzoate degradation</option>
+                                                            <option value="07117">Benzodiazepine family</option>
+                                                            <option value="07110">Benzoic acid family</option>
+                                                            <option value="00402">Benzoxazinoid biosynthesis</option>
+                                                            <option value="07214">beta-Adrenergic receptor agonists/antagonists</option>
+                                                            <option value="00410">beta-Alanine metabolism</option>
+                                                            <option value="00312">beta-Lactam resistance</option>
+                                                            <option value="00965">Betalain biosynthesis</option>
+                                                            <option value="04976">Bile secretion</option>
+                                                            <option value="00522">Biosynthesis of 12-, 14- and 16-membered macrolides</option>
+                                                            <option value="01065">Biosynthesis of alkaloids derived from histidine and purine</option>
+                                                            <option value="01064">Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid</option>
+                                                            <option value="01063">Biosynthesis of alkaloids derived from shikimate pathway</option>
+                                                            <option value="01066">Biosynthesis of alkaloids derived from terpenoid and polyketide</option>
+                                                            <option value="01051">Biosynthesis of ansamycins</option>
+                                                            <option value="01061">Biosynthesis of phenylpropanoids</option>
+                                                            <option value="01070">Biosynthesis of plant hormones</option>
+                                                            <option value="01060">Biosynthesis of plant secondary metabolites</option>
+                                                            <option value="01110">Biosynthesis of secondary metabolites</option>
+                                                            <option value="01053">Biosynthesis of siderophore group nonribosomal peptides</option>
+                                                            <option value="01062">Biosynthesis of terpenoids and steroids</option>
+                                                            <option value="01056">Biosynthesis of type II polyketide backbone</option>
+                                                            <option value="01057">Biosynthesis of type II polyketide products</option>
+                                                            <option value="01040">Biosynthesis of unsaturated fatty acids</option>
+                                                            <option value="01055">Biosynthesis of vancomycin group antibiotics</option>
+                                                            <option value="00780">Biotin metabolism</option>
+                                                            <option value="00363">Bisphenol degradation</option>
+                                                            <option value="05219">Bladder cancer</option>
+                                                            <option value="00905">Brassinosteroid biosynthesis</option>
+                                                            <option value="00650">Butanoate metabolism</option>
+                                                            <option value="00524">Butirosin and neomycin biosynthesis</option>
+                                                            <option value="07116">Butyrophenone family</option>
+                                                            <option value="07031">Butyrophenones</option>
+                                                            <option value="00660">C5-Branched dibasic acid metabolism</option>
+                                                            <option value="00232">Caffeine metabolism</option>
+                                                            <option value="07036">Calcium channel blocking drugs</option>
+                                                            <option value="04020">Calcium signaling pathway</option>
+                                                            <option value="00930">Caprolactam degradation</option>
+                                                            <option value="04973">Carbohydrate digestion and absorption</option>
+                                                            <option value="00710">Carbon fixation in photosynthetic organisms</option>
+                                                            <option value="00720">Carbon fixation pathways in prokaryotes</option>
+                                                            <option value="04260">Cardiac muscle contraction</option>
+                                                            <option value="00906">Carotenoid biosynthesis</option>
+                                                            <option value="07216">Catecholamine transferase inhibitors</option>
+                                                            <option value="04514">Cell adhesion molecules (CAMs)</option>
+                                                            <option value="04112">Cell cycle - Caulobacter</option>
+                                                            <option value="04110">Cell cycle</option>
+                                                            <option value="04111">Cell cycle - yeast</option>
+                                                            <option value="07013">Cephalosporins - oral agents</option>
+                                                            <option value="07012">Cephalosporins - parenteral agents</option>
+                                                            <option value="05142">Chagas disease (American trypanosomiasis)</option>
+                                                            <option value="05204">Chemical carcinogenesis</option>
+                                                            <option value="04062">Chemokine signaling pathway</option>
+                                                            <option value="00625">Chloroalkane and chloroalkene degradation</option>
+                                                            <option value="00361">Chlorocyclohexane and chlorobenzene degradation</option>
+                                                            <option value="07220">Cholinergic and anticholinergic drugs</option>
+                                                            <option value="04725">Cholinergic synapse</option>
+                                                            <option value="05220">Chronic myeloid leukemia</option>
+                                                            <option value="04713">Circadian entrainment</option>
+                                                            <option value="04711">Circadian rhythm - fly</option>
+                                                            <option value="04710">Circadian rhythm</option>
+                                                            <option value="04712">Circadian rhythm - plant</option>
+                                                            <option value="00020">Citrate cycle (TCA cycle)</option>
+                                                            <option value="00331">Clavulanic acid biosynthesis</option>
+                                                            <option value="05030">Cocaine addiction</option>
+                                                            <option value="04966">Collecting duct acid secretion</option>
+                                                            <option value="05210">Colorectal cancer</option>
+                                                            <option value="04610">Complement and coagulation cascades</option>
+                                                            <option value="00073">Cutin, suberine and wax biosynthesis</option>
+                                                            <option value="00460">Cyanoamino acid metabolism</option>
+                                                            <option value="07219">Cyclooxygenase inhibitors</option>
+                                                            <option value="00270">Cysteine and methionine metabolism</option>
+                                                            <option value="04060">Cytokine-cytokine receptor interaction</option>
+                                                            <option value="04623">Cytosolic DNA-sensing pathway</option>
+                                                            <option value="00473">D-Alanine metabolism</option>
+                                                            <option value="00472">D-Arginine and D-ornithine metabolism</option>
+                                                            <option value="00351">DDT degradation</option>
+                                                            <option value="01220">Degradation of aromatic compounds</option>
+                                                            <option value="00471">D-Glutamine and D-glutamate metabolism</option>
+                                                            <option value="05414">Dilated cardiomyopathy</option>
+                                                            <option value="00621">Dioxin degradation</option>
+                                                            <option value="00904">Diterpenoid biosynthesis</option>
+                                                            <option value="03030">DNA replication</option>
+                                                            <option value="07213">Dopamine receptor agonists/antagonists</option>
+                                                            <option value="04728">Dopaminergic synapse</option>
+                                                            <option value="04320">Dorso-ventral axis formation</option>
+                                                            <option value="00982">Drug metabolism - cytochrome P450</option>
+                                                            <option value="00983">Drug metabolism - other enzymes</option>
+                                                            <option value="04512">ECM-receptor interaction</option>
+                                                            <option value="07228">Eicosanoid receptor agonists/antagonists</option>
+                                                            <option value="07034">Eicosanoids</option>
+                                                            <option value="04961">Endocrine and other factor-regulated calcium reabsorption</option>
+                                                            <option value="04144">Endocytosis</option>
+                                                            <option value="05213">Endometrial cancer</option>
+                                                            <option value="05120">Epithelial cell signaling in Helicobacter pylori infection</option>
+                                                            <option value="05169">Epstein-Barr virus infection</option>
+                                                            <option value="04012">ErbB signaling pathway</option>
+                                                            <option value="00565">Ether lipid metabolism</option>
+                                                            <option value="00642">Ethylbenzene degradation</option>
+                                                            <option value="03460">Fanconi anemia pathway</option>
+                                                            <option value="04975">Fat digestion and absorption</option>
+                                                            <option value="00061">Fatty acid biosynthesis</option>
+                                                            <option value="00062">Fatty acid elongation</option>
+                                                            <option value="00071">Fatty acid metabolism</option>
+                                                            <option value="04664">Fc epsilon RI signaling pathway</option>
+                                                            <option value="04666">Fc gamma R-mediated phagocytosis</option>
+                                                            <option value="02040">Flagellar assembly</option>
+                                                            <option value="00944">Flavone and flavonol biosynthesis</option>
+                                                            <option value="00941">Flavonoid biosynthesis</option>
+                                                            <option value="00364">Fluorobenzoate degradation</option>
+                                                            <option value="04510">Focal adhesion</option>
+                                                            <option value="00790">Folate biosynthesis</option>
+                                                            <option value="00051">Fructose and mannose metabolism</option>
+                                                            <option value="07113">Furan family</option>
+                                                            <option value="07230">GABA-A receptor agonists/antagonists</option>
+                                                            <option value="04727">GABAergic synapse</option>
+                                                            <option value="00052">Galactose metabolism</option>
+                                                            <option value="04540">Gap junction</option>
+                                                            <option value="04971">Gastric acid secretion</option>
+                                                            <option value="00281">Geraniol degradation</option>
+                                                            <option value="05214">Glioma</option>
+                                                            <option value="07225">Glucocorticoid and meneralocorticoid receptor agonists/antagonists</option>
+                                                            <option value="00966">Glucosinolate biosynthesis</option>
+                                                            <option value="04724">Glutamatergic synapse</option>
+                                                            <option value="00480">Glutathione metabolism</option>
+                                                            <option value="00561">Glycerolipid metabolism</option>
+                                                            <option value="00564">Glycerophospholipid metabolism</option>
+                                                            <option value="00260">Glycine, serine and threonine metabolism</option>
+                                                            <option value="00010">Glycolysis / Gluconeogenesis</option>
+                                                            <option value="00532">Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate</option>
+                                                            <option value="00534">Glycosaminoglycan biosynthesis - heparan sulfate / heparin</option>
+                                                            <option value="00533">Glycosaminoglycan biosynthesis - keratan sulfate</option>
+                                                            <option value="00531">Glycosaminoglycan degradation</option>
+                                                            <option value="00604">Glycosphingolipid biosynthesis - ganglio series</option>
+                                                            <option value="00603">Glycosphingolipid biosynthesis - globo series</option>
+                                                            <option value="00601">Glycosphingolipid biosynthesis - lacto and neolacto series</option>
+                                                            <option value="00563">Glycosylphosphatidylinositol(GPI)-anchor biosynthesis</option>
+                                                            <option value="00630">Glyoxylate and dicarboxylate metabolism</option>
+                                                            <option value="04912">GnRH signaling pathway</option>
+                                                            <option value="05332">Graft-versus-host disease</option>
+                                                            <option value="04340">Hedgehog signaling pathway</option>
+                                                            <option value="04640">Hematopoietic cell lineage</option>
+                                                            <option value="05161">Hepatitis B</option>
+                                                            <option value="05160">Hepatitis C</option>
+                                                            <option value="05168">Herpes simplex infection</option>
+                                                            <option value="04066">HIF-1 signaling pathway</option>
+                                                            <option value="04391">Hippo signaling pathway - fly</option>
+                                                            <option value="04390">Hippo signaling pathway</option>
+                                                            <option value="07212">Histamine H1 receptor antagonists</option>
+                                                            <option value="07227">Histamine H2/H3 receptor agonists/antagonists</option>
+                                                            <option value="00340">Histidine metabolism</option>
+                                                            <option value="07218">HIV protease inhibitors</option>
+                                                            <option value="07024">HMG-CoA reductase inhibitors</option>
+                                                            <option value="03440">Homologous recombination</option>
+                                                            <option value="05166">HTLV-I infection</option>
+                                                            <option value="05016">Huntington's disease</option>
+                                                            <option value="05410">Hypertrophic cardiomyopathy (HCM)</option>
+                                                            <option value="07032">Hypnotics</option>
+                                                            <option value="07046">Immunosuppressive agents</option>
+                                                            <option value="00901">Indole alkaloid biosynthesis</option>
+                                                            <option value="05164">Influenza A</option>
+                                                            <option value="00562">Inositol phosphate metabolism</option>
+                                                            <option value="00981">Insect hormone biosynthesis</option>
+                                                            <option value="04911">Insulin secretion</option>
+                                                            <option value="04910">Insulin signaling pathway</option>
+                                                            <option value="04672">Intestinal immune network for IgA production</option>
+                                                            <option value="07233">Ion transporter inhibitors</option>
+                                                            <option value="00943">Isoflavonoid biosynthesis</option>
+                                                            <option value="00950">Isoquinoline alkaloid biosynthesis</option>
+                                                            <option value="04630">Jak-STAT signaling pathway</option>
+                                                            <option value="05134">Legionellosis</option>
+                                                            <option value="05140">Leishmaniasis</option>
+                                                            <option value="04670">Leukocyte transendothelial migration</option>
+                                                            <option value="00903">Limonene and pinene degradation</option>
+                                                            <option value="00591">Linoleic acid metabolism</option>
+                                                            <option value="00785">Lipoic acid metabolism</option>
+                                                            <option value="00540">Lipopolysaccharide biosynthesis</option>
+                                                            <option value="07015">Local analgesics</option>
+                                                            <option value="04730">Long-term depression</option>
+                                                            <option value="04720">Long-term potentiation</option>
+                                                            <option value="00300">Lysine biosynthesis</option>
+                                                            <option value="00310">Lysine degradation</option>
+                                                            <option value="04142">Lysosome</option>
+                                                            <option value="07020">Macrolides and ketolides</option>
+                                                            <option value="05144">Malaria</option>
+                                                            <option value="04013">MAPK signaling pathway - fly</option>
+                                                            <option value="04010">MAPK signaling pathway</option>
+                                                            <option value="04011">MAPK signaling pathway - yeast</option>
+                                                            <option value="04950">Maturity onset diabetes of the young</option>
+                                                            <option value="05162">Measles</option>
+                                                            <option value="04113">Meiosis - yeast</option>
+                                                            <option value="04916">Melanogenesis</option>
+                                                            <option value="05218">Melanoma</option>
+                                                            <option value="01100">Metabolic pathways</option>
+                                                            <option value="00980">Metabolism of xenobiotics by cytochrome P450</option>
+                                                            <option value="00680">Methane metabolism</option>
+                                                            <option value="01120">Microbial metabolism in diverse environments</option>
+                                                            <option value="04978">Mineral absorption</option>
+                                                            <option value="03430">Mismatch repair</option>
+                                                            <option value="00902">Monoterpenoid biosynthesis</option>
+                                                            <option value="05032">Morphine addiction</option>
+                                                            <option value="03015">mRNA surveillance pathway</option>
+                                                            <option value="04150">mTOR signaling pathway</option>
+                                                            <option value="00512">Mucin type O-Glycan biosynthesis</option>
+                                                            <option value="00626">Naphthalene degradation</option>
+                                                            <option value="07114">Naphthalene family</option>
+                                                            <option value="04650">Natural killer cell mediated cytotoxicity</option>
+                                                            <option value="04080">Neuroactive ligand-receptor interaction</option>
+                                                            <option value="07234">Neurotransmitter transporter inhibitors</option>
+                                                            <option value="04722">Neurotrophin signaling pathway</option>
+                                                            <option value="04064">NF-kappa B signaling pathway</option>
+                                                            <option value="00510">N-Glycan biosynthesis</option>
+                                                            <option value="00760">Nicotinate and nicotinamide metabolism</option>
+                                                            <option value="05033">Nicotine addiction</option>
+                                                            <option value="07221">Nicotinic cholinergic receptor antagonists</option>
+                                                            <option value="00910">Nitrogen metabolism</option>
+                                                            <option value="00633">Nitrotoluene degradation</option>
+                                                            <option value="07235">N-Metyl-D-aspartic acid receptor antagonists</option>
+                                                            <option value="04621">NOD-like receptor signaling pathway</option>
+                                                            <option value="03450">Non-homologous end-joining</option>
+                                                            <option value="01054">Nonribosomal peptide structures</option>
+                                                            <option value="05223">Non-small cell lung cancer</option>
+                                                            <option value="04330">Notch signaling pathway</option>
+                                                            <option value="00401">Novobiocin biosynthesis</option>
+                                                            <option value="03420">Nucleotide excision repair</option>
+                                                            <option value="04740">Olfactory transduction</option>
+                                                            <option value="00670">One carbon pool by folate</option>
+                                                            <option value="04114">Oocyte meiosis</option>
+                                                            <option value="07039">Opioid analgesics</option>
+                                                            <option value="07224">Opioid receptor agonists/antagonists</option>
+                                                            <option value="04380">Osteoclast differentiation</option>
+                                                            <option value="07047">Osteoporosis drugs</option>
+                                                            <option value="00511">Other glycan degradation</option>
+                                                            <option value="00514">Other types of O-glycan biosynthesis</option>
+                                                            <option value="01010">Overview of biosynthetic pathways</option>
+                                                            <option value="00190">Oxidative phosphorylation</option>
+                                                            <option value="04115">p53 signaling pathway</option>
+                                                            <option value="05212">Pancreatic cancer</option>
+                                                            <option value="04972">Pancreatic secretion</option>
+                                                            <option value="00770">Pantothenate and CoA biosynthesis</option>
+                                                            <option value="05012">Parkinson's disease</option>
+                                                            <option value="05130">Pathogenic Escherichia coli infection</option>
+                                                            <option value="05200">Pathways in cancer</option>
+                                                            <option value="00311">Penicillin and cephalosporin biosynthesis</option>
+                                                            <option value="07011">Penicillins</option>
+                                                            <option value="00040">Pentose and glucuronate interconversions</option>
+                                                            <option value="00030">Pentose phosphate pathway</option>
+                                                            <option value="00550">Peptidoglycan biosynthesis</option>
+                                                            <option value="04146">Peroxisome</option>
+                                                            <option value="07222">Peroxisome proliferator-activated receptor (PPAR) agonists</option>
+                                                            <option value="05133">Pertussis</option>
+                                                            <option value="04145">Phagosome</option>
+                                                            <option value="07029">Phenothiazines</option>
+                                                            <option value="00360">Phenylalanine metabolism</option>
+                                                            <option value="00400">Phenylalanine, tyrosine and tryptophan biosynthesis</option>
+                                                            <option value="00940">Phenylpropanoid biosynthesis</option>
+                                                            <option value="04070">Phosphatidylinositol signaling system</option>
+                                                            <option value="00440">Phosphonate and phosphinate metabolism</option>
+                                                            <option value="02060">Phosphotransferase system (PTS)</option>
+                                                            <option value="00196">Photosynthesis - antenna proteins</option>
+                                                            <option value="00195">Photosynthesis</option>
+                                                            <option value="04745">Phototransduction - fly</option>
+                                                            <option value="04744">Phototransduction</option>
+                                                            <option value="04151">PI3K-Akt signaling pathway</option>
+                                                            <option value="04075">Plant hormone signal transduction</option>
+                                                            <option value="04626">Plant-pathogen interaction</option>
+                                                            <option value="00624">Polycyclic aromatic hydrocarbon degradation</option>
+                                                            <option value="00523">Polyketide sugar unit biosynthesis</option>
+                                                            <option value="00860">Porphyrin and chlorophyll metabolism</option>
+                                                            <option value="07232">Potassium channel blocking and opening drugs</option>
+                                                            <option value="03320">PPAR signaling pathway</option>
+                                                            <option value="00120">Primary bile acid biosynthesis</option>
+                                                            <option value="05340">Primary immunodeficiency</option>
+                                                            <option value="05020">Prion diseases</option>
+                                                            <option value="07226">Progesterone, androgen and estrogen receptor agonists/antagonists</option>
+                                                            <option value="04914">Progesterone-mediated oocyte maturation</option>
+                                                            <option value="00640">Propanoate metabolism</option>
+                                                            <option value="07035">Prostaglandins</option>
+                                                            <option value="05215">Prostate cancer</option>
+                                                            <option value="03050">Proteasome</option>
+                                                            <option value="04974">Protein digestion and absorption</option>
+                                                            <option value="03060">Protein export</option>
+                                                            <option value="04141">Protein processing in endoplasmic reticulum</option>
+                                                            <option value="04964">Proximal tubule bicarbonate reclamation</option>
+                                                            <option value="00230">Purine metabolism</option>
+                                                            <option value="00231">Puromycin biosynthesis</option>
+                                                            <option value="00240">Pyrimidine metabolism</option>
+                                                            <option value="00620">Pyruvate metabolism</option>
+                                                            <option value="07025">Quinolines</option>
+                                                            <option value="07014">Quinolones</option>
+                                                            <option value="04810">Regulation of actin cytoskeleton</option>
+                                                            <option value="04140">Regulation of autophagy</option>
+                                                            <option value="05211">Renal cell carcinoma</option>
+                                                            <option value="07217">Renin-angiotensin system inhibitors</option>
+                                                            <option value="04614">Renin-angiotensin system</option>
+                                                            <option value="07223">Retinoic acid receptor (RAR) and retinoid X receptor (RXR) agonists/antagonists</option>
+                                                            <option value="00830">Retinol metabolism</option>
+                                                            <option value="04723">Retrograde endocannabinoid signaling</option>
+                                                            <option value="05323">Rheumatoid arthritis</option>
+                                                            <option value="00740">Riboflavin metabolism</option>
+                                                            <option value="03008">Ribosome biogenesis in eukaryotes</option>
+                                                            <option value="03010">Ribosome</option>
+                                                            <option value="07023">Rifamycins</option>
+                                                            <option value="04622">RIG-I-like receptor signaling pathway</option>
+                                                            <option value="03018">RNA degradation</option>
+                                                            <option value="03020">RNA polymerase</option>
+                                                            <option value="03013">RNA transport</option>
+                                                            <option value="04970">Salivary secretion</option>
+                                                            <option value="05132">Salmonella infection</option>
+                                                            <option value="00121">Secondary bile acid biosynthesis</option>
+                                                            <option value="00450">Selenocompound metabolism</option>
+                                                            <option value="04726">Serotonergic synapse</option>
+                                                            <option value="07211">Serotonin receptor agonists/antagonists</option>
+                                                            <option value="00909">Sesquiterpenoid and triterpenoid biosynthesis</option>
+                                                            <option value="05131">Shigellosis</option>
+                                                            <option value="05222">Small cell lung cancer</option>
+                                                            <option value="04130">SNARE interactions in vesicular transport</option>
+                                                            <option value="07231">Sodium channel blocking drugs</option>
+                                                            <option value="00600">Sphingolipid metabolism</option>
+                                                            <option value="03040">Spliceosome</option>
+                                                            <option value="05150">Staphylococcus aureus infection</option>
+                                                            <option value="00500">Starch and sucrose metabolism</option>
+                                                            <option value="00100">Steroid biosynthesis</option>
+                                                            <option value="00984">Steroid degradation</option>
+                                                            <option value="00140">Steroid hormone biosynthesis</option>
+                                                            <option value="00945">Stilbenoid, diarylheptanoid and gingerol biosynthesis</option>
+                                                            <option value="00521">Streptomycin biosynthesis</option>
+                                                            <option value="00643">Styrene degradation</option>
+                                                            <option value="07017">Sulfonamide derivatives - diuretics</option>
+                                                            <option value="07018">Sulfonamide derivatives - hypoglycemic agents</option>
+                                                            <option value="07016">Sulfonamide derivatives - sulfa drugs</option>
+                                                            <option value="07115">Sulfonamide family</option>
+                                                            <option value="00920">Sulfur metabolism</option>
+                                                            <option value="04122">Sulfur relay system</option>
+                                                            <option value="04721">Synaptic vesicle cycle</option>
+                                                            <option value="00072">Synthesis and degradation of ketone bodies</option>
+                                                            <option value="05322">Systemic lupus erythematosus</option>
+                                                            <option value="04742">Taste transduction</option>
+                                                            <option value="00430">Taurine and hypotaurine metabolism</option>
+                                                            <option value="04660">T cell receptor signaling pathway</option>
+                                                            <option value="00900">Terpenoid backbone biosynthesis</option>
+                                                            <option value="00253">Tetracycline biosynthesis</option>
+                                                            <option value="07019">Tetracyclines</option>
+                                                            <option value="04350">TGF-beta signaling pathway</option>
+                                                            <option value="00730">Thiamine metabolism</option>
+                                                            <option value="05216">Thyroid cancer</option>
+                                                            <option value="04530">Tight junction</option>
+                                                            <option value="04620">Toll-like receptor signaling pathway</option>
+                                                            <option value="00623">Toluene degradation</option>
+                                                            <option value="05145">Toxoplasmosis</option>
+                                                            <option value="05202">Transcriptional misregulation in cancer</option>
+                                                            <option value="00960">Tropane, piperidine and pyridine alkaloid biosynthesis</option>
+                                                            <option value="00380">Tryptophan metabolism</option>
+                                                            <option value="05152">Tuberculosis</option>
+                                                            <option value="02020">Two-component system</option>
+                                                            <option value="04940">Type I diabetes mellitus</option>
+                                                            <option value="04930">Type II diabetes mellitus</option>
+                                                            <option value="01052">Type I polyketide structures</option>
+                                                            <option value="00350">Tyrosine metabolism</option>
+                                                            <option value="00130">Ubiquinone and other terpenoid-quinone biosynthesis</option>
+                                                            <option value="04120">Ubiquitin mediated proteolysis</option>
+                                                            <option value="00290">Valine, leucine and isoleucine biosynthesis</option>
+                                                            <option value="00280">Valine, leucine and isoleucine degradation</option>
+                                                            <option value="00513">Various types of N-glycan biosynthesis</option>
+                                                            <option value="04270">Vascular smooth muscle contraction</option>
+                                                            <option value="04962">Vasopressin-regulated water reabsorption</option>
+                                                            <option value="04370">VEGF signaling pathway</option>
+                                                            <option value="05110">Vibrio cholerae infection</option>
+                                                            <option value="05111">Vibrio cholerae pathogenic cycle</option>
+                                                            <option value="05203">Viral carcinogenesis</option>
+                                                            <option value="05416">Viral myocarditis</option>
+                                                            <option value="00750">Vitamin B6 metabolism</option>
+                                                            <option value="04977">Vitamin digestion and absorption</option>
+                                                            <option value="04310">Wnt signaling pathway</option>
+                                                            <option value="00622">Xylene degradation</option>
+                                                            <option value="00908">Zeatin biosynthesis</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="keggDesc">
+                                                    </div>
+                                                </div>
+                                                <div id="orthologyAnalysis" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="noOrth"> not containing eggNOG matches</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Search by eggNOG identifier: </label>
+                                                        <input class="form-control" type="text" name="orthID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or by description of match: </label>
+                                                        <input class="form-control" type="text" name="orthDesc">
+                                                    </div>
+                                                </div>
+                                                <div id="interpro" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="noIP"> not containing InterProScan matches</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Search by InterPro identifier:</label>
+                                                        <input class="form-control" type="text" name="interproID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or by description of match: </label>
+                                                        <input class="form-control" type="text" name="interproDesc">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                            <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
+                            <div id="parentCollapseThree" class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">DNA-based analyses</a>
@@ -731,349 +821,350 @@
                                 <div id="collapseThree" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <form method="post" action="/cgi-bin/searchPMNdna.cgi" enctype="multipart/form-data">
-                                        	<p>Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose "Search" button has been pressed will be searched.</p>
-                                        	<ul class="nav nav-pills">
-                                        		<li class=""><a href="#contigs" data-toggle="tab">Contigs</a></li>
-								                <li class=""><a href="#trna" data-toggle="tab">tRNA</a></li>
-								                <li class=""><a href="#tandemRepeats" data-toggle="tab">Tandem repeats</a></li>
-								                <li class=""><a href="#otherNonCodingRNAs" data-toggle="tab">Other non-coding RNAs</a></li>
-								                <li class=""><a href="#ribosomalBindingSites" data-toggle="tab">Ribosomal binding sites</a></li>
-								                <li class=""><a href="#transcriptionalTerminators" data-toggle="tab">Transcriptional terminators</a></li>
-								                <li class=""><a href="#horizontalGeneTransfers" data-toggle="tab">Horizontal gene transfers</a></li>
-                                        	</ul>
-                                        	<div class="tab-content">
-                                        		<div id="contigs" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<label>Get only contig: </label>
-                                        				<select name="contig">
-															<option value=""></option>
-															<option value="contig00028">contig00028</option>
-															<option value="contig00044">contig00044</option>
-															<option value="contig00045">contig00045</option>
-															<option value="contig00046">contig00046</option>
-															<option value="contig00053">contig00053</option>
-															<option value="contig00060">contig00060</option>
-															<option value="contig00076">contig00076</option>
-															<option value="contig00078">contig00078</option>
-															<option value="contig00086">contig00086</option>
-															<option value="contig00089">contig00089</option>
-															<option value="contig00093">contig00093</option>
-															<option value="contig_1.2">contig_1.2</option>
-															<option value="contig_1.3">contig_1.3</option>
-															<option value="contig_1.7">contig_1.7</option>
-															<option value="contig_2.1">contig_2.1</option>
-															<option value="contig_2.2">contig_2.2</option>
-															<option value="contig_2.3">contig_2.3</option>
-															<option value="contig_2.4">contig_2.4</option>
-															<option value="contig_2.5">contig_2.5</option>
-														</select>
-														<label> from base </label>
-														<input class="form-control" type="text" name="contigStart">
-														<label>to </label>
-														<input class="form-control" type="text" name="contigEnd">
-														<div class="checkbox">
-															<label><input type="checkbox" name="revCompContig"> reverse complement?</label>
-														</div>
-                                        			</div>
-                                        			<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    						<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-                                        		</div>
-                                        		<div id="trna" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="tRNAall"> List all tRNAs</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or get tRNAs by amino acid: </label>
-                                        				<select class="form-control" name="tRNAaa">
-															<option value=""></option>
-															<option value="Ala">Alanine (A)</option>
-															<option value="Arg">Arginine (R)</option>
-															<option value="Asp">Asparagine (N)</option>
-															<option value="Ala">Aspartic acid (D)</option>
-															<option value="Cys">Cysteine (C)</option>
-															<option value="Glu">Glutamic acid (E)</option>
-															<option value="Gln">Glutamine (Q)</option>
-															<option value="Gly">Glycine (G)</option>
-															<option value="His">Histidine (H)</option>
-															<option value="Ile">Isoleucine (I)</option>
-															<option value="Leu">Leucine (L)</option>
-															<option value="Lys">Lysine (K)</option>
-															<option value="Met">Methionine (M)</option>
-															<option value="Phe">Phenylalanine (F)</option>
-															<option value="Pro">Proline (P)</option>
-															<option value="Ser">Serine (S)</option>
-															<option value="Thr">Threonine (T)</option>
-															<option value="Trp">Tryptophan (W)</option>
-															<option value="Tyr">Tyrosine (Y)</option>
-															<option value="Val">Valine (V)</option>
-														</select>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or get tRNAs by codon: </label>
-                                        				<select class="form-control" name="tRNAcd">
-															<option value=""></option>
-															<option value="AAA">AAA</option>
-															<option value="AAC">AAC</option>
-															<option value="AAG">AAG</option>
-															<option value="AAT">AAT</option>
-															<option value="ACA">ACA</option>
-															<option value="ACC">ACC</option>
-															<option value="ACG">ACG</option>
-															<option value="ACT">ACT</option>
-															<option value="AGA">AGA</option>
-															<option value="AGC">AGC</option>
-															<option value="AGG">AGG</option>
-															<option value="AGT">AGT</option>
-															<option value="ATA">ATA</option>
-															<option value="ATC">ATC</option>
-															<option value="ATG">ATG</option>
-															<option value="ATT">ATT</option>
-															<option value="CAA">CAA</option>
-															<option value="CAC">CAC</option>
-															<option value="CAG">CAG</option>
-															<option value="CAT">CAT</option>
-															<option value="CCA">CCA</option>
-															<option value="CCC">CCC</option>
-															<option value="CCG">CCG</option>
-															<option value="CCT">CCT</option>
-															<option value="CGA">CGA</option>
-															<option value="CGC">CGC</option>
-															<option value="CGG">CGG</option>
-															<option value="CGT">CGT</option>
-															<option value="CTA">CTA</option>
-															<option value="CTC">CTC</option>
-															<option value="CTG">CTG</option>
-															<option value="CTT">CTT</option>
-															<option value="GAA">GAA</option>
-															<option value="GAC">GAC</option>
-															<option value="GAG">GAG</option>
-															<option value="GAT">GAT</option>
-															<option value="GCA">GCA</option>
-															<option value="GCC">GCC</option>
-															<option value="GCG">GCG</option>
-															<option value="GCT">GCT</option>
-															<option value="GGA">GGA</option>
-															<option value="GGC">GGC</option>
-															<option value="GGG">GGG</option>
-															<option value="GGT">GGT</option>
-															<option value="GTA">GTA</option>
-															<option value="GTC">GTC</option>
-															<option value="GTG">GTG</option>
-															<option value="GTT">GTT</option>
-															<option value="TAC">TAC</option>
-															<option value="TAT">TAT</option>
-															<option value="TCA">TCA</option>
-															<option value="TCC">TCC</option>
-															<option value="TCG">TCG</option>
-															<option value="TCT">TCT</option>
-															<option value="TGC">TGC</option>
-															<option value="TGG">TGG</option>
-															<option value="TGT">TGT</option>
-															<option value="TTA">TTA</option>
-															<option value="TTC">TTC</option>
-															<option value="TTG">TTG</option>
-															<option value="TTT">TTT</option>
-														</select>
-                                        			</div>
-                                        			<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    						<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-                                        		</div>
-                                        		<div id="tandemRepeats" class="tab-pane fade">
-                                        			<p>Get all tandem repeats that: </p>
-                                        			<div class="form-group">
-                                        				<label>Contain the sequence </label><input class="form-control" type="text" name="TRFrepSeq"> <label> in the repetition unit</label>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Has repetition units of </label><input class="form-control" type="text" name="TRFrepSize"><label> bases </label>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TRFsize" value="orLessTRF"> or less </label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TRFsize" value="orMoreTRF"> or more </label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TRFsize" value="exactTRF" checked=""> exactly</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Occurs between </label>
-                                        				<input class="form-control" type="text" name="TRFrepNumMin">
-                                        				<label> and </label>
-                                        				<input class="form-control" type="text" name="TRFrepNumMax">
-                                        				<label> times</label>
-                                        			</div>
-                                        			<p>*NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the "Help" section for further instructions.</p>
-                                        			<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    						<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-                                        		</div>
-                                        		<div id="otherNonCodingRNAs" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<label>Search ncRNA by target identifier: </label>
-                                        				<input class="form-control" type="text" name="ncRNAtargetID">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by E-value of match: </label>
-                                        				<input class="form-control" type="text" name="ncRNAevalue">
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="ncRNAevM" value="orLessEv" checked=""> or less</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="ncRNAevM" value="orMoreEv"> or more</label>                                            					
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="ncRNAevM" value="exactEv"> exactly</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by target name: </label>
-                                        				<input class="form-control" type="text" name="ncRNAtargetName">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by target class: </label>
-                                        				<select name="ncRNAtargetClass">
-															<option value=""></option>
-															<option value="antisense_RNA">antisense_RNA</option>
-															<option value="hammerhead_ribozyme">hammerhead_ribozyme</option>
-															<option value="miRNA">miRNA</option>
-															<option value="other">other</option>
-															<option value="ribozyme">ribozyme</option>
-															<option value="RNase_MRP_RNA">RNase_MRP_RNA</option>
-															<option value="RNase_P_RNA">RNase_P_RNA</option>
-															<option value="snoRNA">snoRNA</option>
-															<option value="snRNA">snRNA</option>
-															<option value="SRP_RNA">SRP_RNA</option>
-															<option value="telomerase_RNA">telomerase_RNA</option>
-															<option value="vault_RNA">vault_RNA</option>
-														</select>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by target type: </label>
-                                        				<input class="form-control" type="text" name="ncRNAtargetType">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or by target description: </label>
-                                        				<input class="form-control" type="text" name="ncRNAtargetDesc">
-                                        			</div>
-                                        			<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    						<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-                                        		</div>
-                                        		<div id="ribosomalBindingSites" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<label>Search ribosomal binding sites containing sequence pattern: </label>
-                                        				<input class="form-control" type="text" name="RBSpattern">
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="RBSshift"> Or search for all ribosomal binding site predictions that recommend a shift in start codon position</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="RBSshiftM" value="neg" checked=""> upstream</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="RBSshiftM" value="pos"> downstream</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="RBSshiftM" value="both"> either</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<div class="checkbox">
-                                        					<label><input type="checkbox" name="RBSnewcodon">Or search for all ribosomal binding site predictions that recommend a change of  start codon</label>
-                                        				</div>
-                                        			</div>
-                                        			<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    						<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-                                        		</div>
-                                        		<div id="transcriptionalTerminators" class="tab-pane fade">
-                                        			<div class="form-group">
-                                        				<label>Get transcriptional terminators with confidence score: </label>
-                                        				<input class="form-control" type="text" name="TTconf">
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TTconfM" value="orLess"> or less</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TTconfM" value="orMore" checked=""> or more</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TTconfM" value="exact"> exactly</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or with hairpin score: </label>
-                                        				<input class="form-control" type="text" name="TThp">
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TThpM" value="orLess"> or less</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TThpM" value="orMore" checked=""> or more</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TThpM" value="exact"> exactly</label>
-                                        				</div>
-                                        			</div>
-                                        			<div class="form-group">
-                                        				<label>Or with tail score: </label>
-                                        				<input class="form-control" type="text" name="TTtail">
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TTtailM" value="orLess"> or less</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TTtailM" value="orMore" checked=""> or more</label>
-                                        				</div>
-                                        				<div class="radio">
-                                        					<label><input type="radio" name="TTtailM" value="exact"> exactly</label>
-                                        				</div>
-                                        			</div>
-                                        			<p>*NOTE: hairpin and tail scores are negative.</p>
-                                        			<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    						<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-                                    			</div>
-                                    			<div id="horizontalGeneTransfers" class="tab-pane fade">
-                                    				<div class="form-group">
-                                    					<label>Get predicted AlienHunter regions of length: </label>
-                                    					<input class="form-control" type="text" name="AHlen">
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHlenM" value="orLess"> or less</label>
-                                    					</div>
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHlenM" value="orMore"> or more</label>
-                                    					</div>
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHlenM" value="exact" checked=""> exactly</label>
-                                    					</div>
-                                    				</div>
-                                    				<div class="form-group">
-                                    					<label>Or get regions of score: </label>
-                                    					<input class="form-control" type="text" name="AHscore">
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHscM" value="orLess"> or less</label>
-                                    					</div>
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHscM" value="orMore"> or more</label>
-                                    					</div>
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHscM" value="exact" checked=""> exactly</label>
-                                    					</div>
-                                    				</div>
-                                    				<div class="form-group">
-                                    					<label>Or get regions of threshold: </label>
-                                    					<input class="form-control" type="text" name="AHthr">
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHthrM" value="orLess"> or less</label>
-                                    					</div>
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHthrM" value="orMore"> or more</label>
-                                    					</div>
-                                    					<div class="radio">
-                                    						<label><input type="radio" name="AHthrM" value="exact" checked=""> exactly</label>
-                                    					</div>
-                                    				</div>
-                                    				<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-						    						<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-                                    			</div>
-                                        	</div>
+                                            <p>Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose "Search" button has been pressed will be searched.</p>
+                                            <ul class="nav nav-pills">
+                                                <li class=""><a href="#contigs" data-toggle="tab">Contigs</a></li>
+                                                <li class=""><a href="#trna" data-toggle="tab">tRNA</a></li>
+                                                <li class=""><a href="#tandemRepeats" data-toggle="tab">Tandem repeats</a></li>
+                                                <li class=""><a href="#otherNonCodingRNAs" data-toggle="tab">Other non-coding RNAs</a></li>
+                                                <li class=""><a href="#ribosomalBindingSites" data-toggle="tab">Ribosomal binding sites</a></li>
+                                                <li class=""><a href="#transcriptionalTerminators" data-toggle="tab">Transcriptional terminators</a></li>
+                                                <li class=""><a href="#horizontalGeneTransfers" data-toggle="tab">Horizontal gene transfers</a></li>
+                                            </ul>
+                                            <h4></h4>
+                                            <div class="tab-content">
+                                                <div id="contigs" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <label>Get only contig: </label>
+                                                        <select class="form-control"  name="contig">
+                                                            <option value=""></option>
+                                                            <option value="contig00028">contig00028</option>
+                                                            <option value="contig00044">contig00044</option>
+                                                            <option value="contig00045">contig00045</option>
+                                                            <option value="contig00046">contig00046</option>
+                                                            <option value="contig00053">contig00053</option>
+                                                            <option value="contig00060">contig00060</option>
+                                                            <option value="contig00076">contig00076</option>
+                                                            <option value="contig00078">contig00078</option>
+                                                            <option value="contig00086">contig00086</option>
+                                                            <option value="contig00089">contig00089</option>
+                                                            <option value="contig00093">contig00093</option>
+                                                            <option value="contig_1.2">contig_1.2</option>
+                                                            <option value="contig_1.3">contig_1.3</option>
+                                                            <option value="contig_1.7">contig_1.7</option>
+                                                            <option value="contig_2.1">contig_2.1</option>
+                                                            <option value="contig_2.2">contig_2.2</option>
+                                                            <option value="contig_2.3">contig_2.3</option>
+                                                            <option value="contig_2.4">contig_2.4</option>
+                                                            <option value="contig_2.5">contig_2.5</option>
+                                                        </select>
+                                                        <label> from base </label>
+                                                        <input class="form-control" type="text" name="contigStart">
+                                                        <label>to </label>
+                                                        <input class="form-control" type="text" name="contigEnd">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="revCompContig"> reverse complement?</label>
+                                                        </div>
+                                                    </div>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </div>
+                                                <div id="trna" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="tRNAall"> List all tRNAs</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or get tRNAs by amino acid: </label>
+                                                        <select class="form-control" name="tRNAaa">
+                                                            <option value=""></option>
+                                                            <option value="Ala">Alanine (A)</option>
+                                                            <option value="Arg">Arginine (R)</option>
+                                                            <option value="Asp">Asparagine (N)</option>
+                                                            <option value="Ala">Aspartic acid (D)</option>
+                                                            <option value="Cys">Cysteine (C)</option>
+                                                            <option value="Glu">Glutamic acid (E)</option>
+                                                            <option value="Gln">Glutamine (Q)</option>
+                                                            <option value="Gly">Glycine (G)</option>
+                                                            <option value="His">Histidine (H)</option>
+                                                            <option value="Ile">Isoleucine (I)</option>
+                                                            <option value="Leu">Leucine (L)</option>
+                                                            <option value="Lys">Lysine (K)</option>
+                                                            <option value="Met">Methionine (M)</option>
+                                                            <option value="Phe">Phenylalanine (F)</option>
+                                                            <option value="Pro">Proline (P)</option>
+                                                            <option value="Ser">Serine (S)</option>
+                                                            <option value="Thr">Threonine (T)</option>
+                                                            <option value="Trp">Tryptophan (W)</option>
+                                                            <option value="Tyr">Tyrosine (Y)</option>
+                                                            <option value="Val">Valine (V)</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or get tRNAs by codon: </label>
+                                                        <select class="form-control" name="tRNAcd">
+                                                            <option value=""></option>
+                                                            <option value="AAA">AAA</option>
+                                                            <option value="AAC">AAC</option>
+                                                            <option value="AAG">AAG</option>
+                                                            <option value="AAT">AAT</option>
+                                                            <option value="ACA">ACA</option>
+                                                            <option value="ACC">ACC</option>
+                                                            <option value="ACG">ACG</option>
+                                                            <option value="ACT">ACT</option>
+                                                            <option value="AGA">AGA</option>
+                                                            <option value="AGC">AGC</option>
+                                                            <option value="AGG">AGG</option>
+                                                            <option value="AGT">AGT</option>
+                                                            <option value="ATA">ATA</option>
+                                                            <option value="ATC">ATC</option>
+                                                            <option value="ATG">ATG</option>
+                                                            <option value="ATT">ATT</option>
+                                                            <option value="CAA">CAA</option>
+                                                            <option value="CAC">CAC</option>
+                                                            <option value="CAG">CAG</option>
+                                                            <option value="CAT">CAT</option>
+                                                            <option value="CCA">CCA</option>
+                                                            <option value="CCC">CCC</option>
+                                                            <option value="CCG">CCG</option>
+                                                            <option value="CCT">CCT</option>
+                                                            <option value="CGA">CGA</option>
+                                                            <option value="CGC">CGC</option>
+                                                            <option value="CGG">CGG</option>
+                                                            <option value="CGT">CGT</option>
+                                                            <option value="CTA">CTA</option>
+                                                            <option value="CTC">CTC</option>
+                                                            <option value="CTG">CTG</option>
+                                                            <option value="CTT">CTT</option>
+                                                            <option value="GAA">GAA</option>
+                                                            <option value="GAC">GAC</option>
+                                                            <option value="GAG">GAG</option>
+                                                            <option value="GAT">GAT</option>
+                                                            <option value="GCA">GCA</option>
+                                                            <option value="GCC">GCC</option>
+                                                            <option value="GCG">GCG</option>
+                                                            <option value="GCT">GCT</option>
+                                                            <option value="GGA">GGA</option>
+                                                            <option value="GGC">GGC</option>
+                                                            <option value="GGG">GGG</option>
+                                                            <option value="GGT">GGT</option>
+                                                            <option value="GTA">GTA</option>
+                                                            <option value="GTC">GTC</option>
+                                                            <option value="GTG">GTG</option>
+                                                            <option value="GTT">GTT</option>
+                                                            <option value="TAC">TAC</option>
+                                                            <option value="TAT">TAT</option>
+                                                            <option value="TCA">TCA</option>
+                                                            <option value="TCC">TCC</option>
+                                                            <option value="TCG">TCG</option>
+                                                            <option value="TCT">TCT</option>
+                                                            <option value="TGC">TGC</option>
+                                                            <option value="TGG">TGG</option>
+                                                            <option value="TGT">TGT</option>
+                                                            <option value="TTA">TTA</option>
+                                                            <option value="TTC">TTC</option>
+                                                            <option value="TTG">TTG</option>
+                                                            <option value="TTT">TTT</option>
+                                                        </select>
+                                                    </div>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </div>
+                                                <div id="tandemRepeats" class="tab-pane fade">
+                                                    <p>Get all tandem repeats that: </p>
+                                                    <div class="form-group">
+                                                        <label>Contain the sequence </label><input class="form-control" type="text" name="TRFrepSeq"> <label> in the repetition unit</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Has repetition units of </label><input class="form-control" type="text" name="TRFrepSize"><label> bases </label>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TRFsize" value="orLessTRF"> or less </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TRFsize" value="orMoreTRF"> or more </label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TRFsize" value="exactTRF" checked=""> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Occurs between </label>
+                                                        <input class="form-control" type="text" name="TRFrepNumMin">
+                                                        <label> and </label>
+                                                        <input class="form-control" type="text" name="TRFrepNumMax">
+                                                        <label> times</label>
+                                                    </div>
+                                                    <p>*NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the "Help" section for further instructions.</p>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </div>
+                                                <div id="otherNonCodingRNAs" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <label>Search ncRNA by target identifier: </label>
+                                                        <input class="form-control" type="text" name="ncRNAtargetID">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or by E-value of match: </label>
+                                                        <input class="form-control" type="text" name="ncRNAevalue">
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="ncRNAevM" value="orLessEv" checked=""> or less</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="ncRNAevM" value="orMoreEv"> or more</label>                                            					
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="ncRNAevM" value="exactEv"> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or by target name: </label>
+                                                        <input class="form-control" type="text" name="ncRNAtargetName">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or by target class: </label>
+                                                        <select class="form-control"  name="ncRNAtargetClass">
+                                                            <option value=""></option>
+                                                            <option value="antisense_RNA">antisense_RNA</option>
+                                                            <option value="hammerhead_ribozyme">hammerhead_ribozyme</option>
+                                                            <option value="miRNA">miRNA</option>
+                                                            <option value="other">other</option>
+                                                            <option value="ribozyme">ribozyme</option>
+                                                            <option value="RNase_MRP_RNA">RNase_MRP_RNA</option>
+                                                            <option value="RNase_P_RNA">RNase_P_RNA</option>
+                                                            <option value="snoRNA">snoRNA</option>
+                                                            <option value="snRNA">snRNA</option>
+                                                            <option value="SRP_RNA">SRP_RNA</option>
+                                                            <option value="telomerase_RNA">telomerase_RNA</option>
+                                                            <option value="vault_RNA">vault_RNA</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or by target type: </label>
+                                                        <input class="form-control" type="text" name="ncRNAtargetType">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or by target description: </label>
+                                                        <input class="form-control" type="text" name="ncRNAtargetDesc">
+                                                    </div>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </div>
+                                                <div id="ribosomalBindingSites" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <label>Search ribosomal binding sites containing sequence pattern: </label>
+                                                        <input class="form-control" type="text" name="RBSpattern">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="RBSshift"> Or search for all ribosomal binding site predictions that recommend a shift in start codon position</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="RBSshiftM" value="neg" checked=""> upstream</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="RBSshiftM" value="pos"> downstream</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="RBSshiftM" value="both"> either</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="RBSnewcodon">Or search for all ribosomal binding site predictions that recommend a change of  start codon</label>
+                                                        </div>
+                                                    </div>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </div>
+                                                <div id="transcriptionalTerminators" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <label>Get transcriptional terminators with confidence score: </label>
+                                                        <input class="form-control" type="text" name="TTconf">
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TTconfM" value="orLess"> or less</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TTconfM" value="orMore" checked=""> or more</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TTconfM" value="exact"> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or with hairpin score: </label>
+                                                        <input class="form-control" type="text" name="TThp">
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TThpM" value="orLess"> or less</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TThpM" value="orMore" checked=""> or more</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TThpM" value="exact"> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or with tail score: </label>
+                                                        <input class="form-control" type="text" name="TTtail">
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TTtailM" value="orLess"> or less</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TTtailM" value="orMore" checked=""> or more</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="TTtailM" value="exact"> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <p>*NOTE: hairpin and tail scores are negative.</p>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </div>
+                                                <div id="horizontalGeneTransfers" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <label>Get predicted AlienHunter regions of length: </label>
+                                                        <input class="form-control" type="text" name="AHlen">
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHlenM" value="orLess"> or less</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHlenM" value="orMore"> or more</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHlenM" value="exact" checked=""> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or get regions of score: </label>
+                                                        <input class="form-control" type="text" name="AHscore">
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHscM" value="orLess"> or less</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHscM" value="orMore"> or more</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHscM" value="exact" checked=""> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Or get regions of threshold: </label>
+                                                        <input class="form-control" type="text" name="AHthr">
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHthrM" value="orLess"> or less</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHthrM" value="orMore"> or more</label>
+                                                        </div>
+                                                        <div class="radio">
+                                                            <label><input type="radio" name="AHthrM" value="exact" checked=""> exactly</label>
+                                                        </div>
+                                                    </div>
+                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>

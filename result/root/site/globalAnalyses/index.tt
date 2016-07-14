@@ -1,5 +1,5 @@
 <div class="content-wrapper">
     <div class="container">
-		[% INCLUDE 'site/globalAnalyses/_content.tt' %]
-	</div>
+        [% INCLUDE 'site/globalAnalyses/_content.tt' %]
+    </div>
 </div>

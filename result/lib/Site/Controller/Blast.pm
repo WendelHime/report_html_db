@@ -23,8 +23,9 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-	$c->stash->{template} = 'site/blast/index.tt';
-	$c->stash->{titlePage} = "Blast";
+    $c->stash->{template} = 'site/blast/index.tt';
+    $c->stash->{titlePage} = "Blast";
+    $c->stash(texts => [$c->model('Model::Text')->all]);
     #$c->response->body('Matched Site::Controller::Blast in Blast.');
 }
 

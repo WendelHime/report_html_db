@@ -23,10 +23,10 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-	$c->stash->{titlePage} = "Home";
+    $c->stash->{titlePage} = "Home";
     $c->stash(currentPage => "home");
     $c->stash(texts => [$c->model('Model::Text')->all]);
-	$c->stash(template => 'site/home/index.tt');
+    $c->stash(template => 'site/home/index.tt');
     #$c->response->body('Matched Site::Controller::Home in Home.');
 
 }
