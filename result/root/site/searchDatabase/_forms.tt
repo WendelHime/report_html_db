@@ -321,449 +321,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         [% FOREACH text IN texts %]
-                                                            [% IF text.tag.search('search-database-analyses-protein-code-by-kegg-pathway') %]
+                                                            [% IF text.tag == 'search-database-analyses-protein-code-by-kegg-pathway' %]
                                                                 <label>[% text.value %]</label>
                                                             [% END %]
                                                         [% END %]
                                                         <select class="form-control" name="keggPath">
                                                             <option value=""></option>
-                                                            <option value="07112">1,2-Diphenyl substitution family</option>
-                                                            <option value="07111">2-Aminothiazole family</option>
-                                                            <option value="01210">2-Oxocarboxylic acid metabolism</option>
-                                                            <option value="02010">ABC transporters</option>
-                                                            <option value="01058">Acridone alkaloid biosynthesis</option>
-                                                            <option value="05221">Acute myeloid leukemia</option>
-                                                            <option value="04520">Adherens junction</option>
-                                                            <option value="04920">Adipocytokine signaling pathway</option>
-                                                            <option value="05143">African trypanosomiasis</option>
-                                                            <option value="00250">Alanine, aspartate and glutamate metabolism</option>
-                                                            <option value="05034">Alcoholism</option>
-                                                            <option value="04960">Aldosterone-regulated sodium reabsorption</option>
-                                                            <option value="05330">Allograft rejection</option>
-                                                            <option value="07215">alpha-Adrenergic receptor agonists/antagonists</option>
-                                                            <option value="00592">alpha-Linolenic acid metabolism</option>
-                                                            <option value="05010">Alzheimer's disease</option>
-                                                            <option value="00970">Aminoacyl-tRNA biosynthesis</option>
-                                                            <option value="00627">Aminobenzoate degradation</option>
-                                                            <option value="07021">Aminoglycosides</option>
-                                                            <option value="00520">Amino sugar and nucleotide sugar metabolism</option>
-                                                            <option value="05146">Amoebiasis</option>
-                                                            <option value="05031">Amphetamine addiction</option>
-                                                            <option value="05014">Amyotrophic lateral sclerosis (ALS)</option>
-                                                            <option value="07229">Angiotensin receptor and endothelin receptor antagonists</option>
-                                                            <option value="00942">Anthocyanin biosynthesis</option>
-                                                            <option value="07037">Antiarrhythmic drugs</option>
-                                                            <option value="07033">Anticonvulsants</option>
-                                                            <option value="07027">Antidepressants</option>
-                                                            <option value="07051">Antidiabetics</option>
-                                                            <option value="07052">Antidyslipidemic agents</option>
-                                                            <option value="07026">Antifungal agents</option>
-                                                            <option value="04612">Antigen processing and presentation</option>
-                                                            <option value="07053">Anti-HIV agents</option>
-                                                            <option value="07048">Antimigraines</option>
-                                                            <option value="07042">Antineoplastics - agents from natural products</option>
-                                                            <option value="07040">Antineoplastics - alkylating agents</option>
-                                                            <option value="07041">Antineoplastics - antimetabolic agents</option>
-                                                            <option value="07043">Antineoplastics - hormones</option>
-                                                            <option value="07045">Antineoplastics - protein kinases inhibitors</option>
-                                                            <option value="07028">Antipsychotics</option>
-                                                            <option value="07050">Antirheumatics - DMARDs and biological agents</option>
-                                                            <option value="07049">Antithrombosis agents</option>
-                                                            <option value="07038">Antiulcer drugs</option>
-                                                            <option value="07044">Antiviral agents</option>
-                                                            <option value="07030">Anxiolytics</option>
-                                                            <option value="04210">Apoptosis</option>
-                                                            <option value="00590">Arachidonic acid metabolism</option>
-                                                            <option value="00330">Arginine and proline metabolism</option>
-                                                            <option value="05412">Arrhythmogenic right ventricular cardiomyopathy (ARVC)</option>
-                                                            <option value="00053">Ascorbate and aldarate metabolism</option>
-                                                            <option value="05310">Asthma</option>
-                                                            <option value="00791">Atrazine degradation</option>
-                                                            <option value="05320">Autoimmune thyroid disease</option>
-                                                            <option value="04360">Axon guidance</option>
-                                                            <option value="02030">Bacterial chemotaxis</option>
-                                                            <option value="05100">Bacterial invasion of epithelial cells</option>
-                                                            <option value="03070">Bacterial secretion system</option>
-                                                            <option value="05217">Basal cell carcinoma</option>
-                                                            <option value="03022">Basal transcription factors</option>
-                                                            <option value="03410">Base excision repair</option>
-                                                            <option value="04662">B cell receptor signaling pathway</option>
-                                                            <option value="00362">Benzoate degradation</option>
-                                                            <option value="07117">Benzodiazepine family</option>
-                                                            <option value="07110">Benzoic acid family</option>
-                                                            <option value="00402">Benzoxazinoid biosynthesis</option>
-                                                            <option value="07214">beta-Adrenergic receptor agonists/antagonists</option>
-                                                            <option value="00410">beta-Alanine metabolism</option>
-                                                            <option value="00312">beta-Lactam resistance</option>
-                                                            <option value="00965">Betalain biosynthesis</option>
-                                                            <option value="04976">Bile secretion</option>
-                                                            <option value="00522">Biosynthesis of 12-, 14- and 16-membered macrolides</option>
-                                                            <option value="01065">Biosynthesis of alkaloids derived from histidine and purine</option>
-                                                            <option value="01064">Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid</option>
-                                                            <option value="01063">Biosynthesis of alkaloids derived from shikimate pathway</option>
-                                                            <option value="01066">Biosynthesis of alkaloids derived from terpenoid and polyketide</option>
-                                                            <option value="01051">Biosynthesis of ansamycins</option>
-                                                            <option value="01061">Biosynthesis of phenylpropanoids</option>
-                                                            <option value="01070">Biosynthesis of plant hormones</option>
-                                                            <option value="01060">Biosynthesis of plant secondary metabolites</option>
-                                                            <option value="01110">Biosynthesis of secondary metabolites</option>
-                                                            <option value="01053">Biosynthesis of siderophore group nonribosomal peptides</option>
-                                                            <option value="01062">Biosynthesis of terpenoids and steroids</option>
-                                                            <option value="01056">Biosynthesis of type II polyketide backbone</option>
-                                                            <option value="01057">Biosynthesis of type II polyketide products</option>
-                                                            <option value="01040">Biosynthesis of unsaturated fatty acids</option>
-                                                            <option value="01055">Biosynthesis of vancomycin group antibiotics</option>
-                                                            <option value="00780">Biotin metabolism</option>
-                                                            <option value="00363">Bisphenol degradation</option>
-                                                            <option value="05219">Bladder cancer</option>
-                                                            <option value="00905">Brassinosteroid biosynthesis</option>
-                                                            <option value="00650">Butanoate metabolism</option>
-                                                            <option value="00524">Butirosin and neomycin biosynthesis</option>
-                                                            <option value="07116">Butyrophenone family</option>
-                                                            <option value="07031">Butyrophenones</option>
-                                                            <option value="00660">C5-Branched dibasic acid metabolism</option>
-                                                            <option value="00232">Caffeine metabolism</option>
-                                                            <option value="07036">Calcium channel blocking drugs</option>
-                                                            <option value="04020">Calcium signaling pathway</option>
-                                                            <option value="00930">Caprolactam degradation</option>
-                                                            <option value="04973">Carbohydrate digestion and absorption</option>
-                                                            <option value="00710">Carbon fixation in photosynthetic organisms</option>
-                                                            <option value="00720">Carbon fixation pathways in prokaryotes</option>
-                                                            <option value="04260">Cardiac muscle contraction</option>
-                                                            <option value="00906">Carotenoid biosynthesis</option>
-                                                            <option value="07216">Catecholamine transferase inhibitors</option>
-                                                            <option value="04514">Cell adhesion molecules (CAMs)</option>
-                                                            <option value="04112">Cell cycle - Caulobacter</option>
-                                                            <option value="04110">Cell cycle</option>
-                                                            <option value="04111">Cell cycle - yeast</option>
-                                                            <option value="07013">Cephalosporins - oral agents</option>
-                                                            <option value="07012">Cephalosporins - parenteral agents</option>
-                                                            <option value="05142">Chagas disease (American trypanosomiasis)</option>
-                                                            <option value="05204">Chemical carcinogenesis</option>
-                                                            <option value="04062">Chemokine signaling pathway</option>
-                                                            <option value="00625">Chloroalkane and chloroalkene degradation</option>
-                                                            <option value="00361">Chlorocyclohexane and chlorobenzene degradation</option>
-                                                            <option value="07220">Cholinergic and anticholinergic drugs</option>
-                                                            <option value="04725">Cholinergic synapse</option>
-                                                            <option value="05220">Chronic myeloid leukemia</option>
-                                                            <option value="04713">Circadian entrainment</option>
-                                                            <option value="04711">Circadian rhythm - fly</option>
-                                                            <option value="04710">Circadian rhythm</option>
-                                                            <option value="04712">Circadian rhythm - plant</option>
-                                                            <option value="00020">Citrate cycle (TCA cycle)</option>
-                                                            <option value="00331">Clavulanic acid biosynthesis</option>
-                                                            <option value="05030">Cocaine addiction</option>
-                                                            <option value="04966">Collecting duct acid secretion</option>
-                                                            <option value="05210">Colorectal cancer</option>
-                                                            <option value="04610">Complement and coagulation cascades</option>
-                                                            <option value="00073">Cutin, suberine and wax biosynthesis</option>
-                                                            <option value="00460">Cyanoamino acid metabolism</option>
-                                                            <option value="07219">Cyclooxygenase inhibitors</option>
-                                                            <option value="00270">Cysteine and methionine metabolism</option>
-                                                            <option value="04060">Cytokine-cytokine receptor interaction</option>
-                                                            <option value="04623">Cytosolic DNA-sensing pathway</option>
-                                                            <option value="00473">D-Alanine metabolism</option>
-                                                            <option value="00472">D-Arginine and D-ornithine metabolism</option>
-                                                            <option value="00351">DDT degradation</option>
-                                                            <option value="01220">Degradation of aromatic compounds</option>
-                                                            <option value="00471">D-Glutamine and D-glutamate metabolism</option>
-                                                            <option value="05414">Dilated cardiomyopathy</option>
-                                                            <option value="00621">Dioxin degradation</option>
-                                                            <option value="00904">Diterpenoid biosynthesis</option>
-                                                            <option value="03030">DNA replication</option>
-                                                            <option value="07213">Dopamine receptor agonists/antagonists</option>
-                                                            <option value="04728">Dopaminergic synapse</option>
-                                                            <option value="04320">Dorso-ventral axis formation</option>
-                                                            <option value="00982">Drug metabolism - cytochrome P450</option>
-                                                            <option value="00983">Drug metabolism - other enzymes</option>
-                                                            <option value="04512">ECM-receptor interaction</option>
-                                                            <option value="07228">Eicosanoid receptor agonists/antagonists</option>
-                                                            <option value="07034">Eicosanoids</option>
-                                                            <option value="04961">Endocrine and other factor-regulated calcium reabsorption</option>
-                                                            <option value="04144">Endocytosis</option>
-                                                            <option value="05213">Endometrial cancer</option>
-                                                            <option value="05120">Epithelial cell signaling in Helicobacter pylori infection</option>
-                                                            <option value="05169">Epstein-Barr virus infection</option>
-                                                            <option value="04012">ErbB signaling pathway</option>
-                                                            <option value="00565">Ether lipid metabolism</option>
-                                                            <option value="00642">Ethylbenzene degradation</option>
-                                                            <option value="03460">Fanconi anemia pathway</option>
-                                                            <option value="04975">Fat digestion and absorption</option>
-                                                            <option value="00061">Fatty acid biosynthesis</option>
-                                                            <option value="00062">Fatty acid elongation</option>
-                                                            <option value="00071">Fatty acid metabolism</option>
-                                                            <option value="04664">Fc epsilon RI signaling pathway</option>
-                                                            <option value="04666">Fc gamma R-mediated phagocytosis</option>
-                                                            <option value="02040">Flagellar assembly</option>
-                                                            <option value="00944">Flavone and flavonol biosynthesis</option>
-                                                            <option value="00941">Flavonoid biosynthesis</option>
-                                                            <option value="00364">Fluorobenzoate degradation</option>
-                                                            <option value="04510">Focal adhesion</option>
-                                                            <option value="00790">Folate biosynthesis</option>
-                                                            <option value="00051">Fructose and mannose metabolism</option>
-                                                            <option value="07113">Furan family</option>
-                                                            <option value="07230">GABA-A receptor agonists/antagonists</option>
-                                                            <option value="04727">GABAergic synapse</option>
-                                                            <option value="00052">Galactose metabolism</option>
-                                                            <option value="04540">Gap junction</option>
-                                                            <option value="04971">Gastric acid secretion</option>
-                                                            <option value="00281">Geraniol degradation</option>
-                                                            <option value="05214">Glioma</option>
-                                                            <option value="07225">Glucocorticoid and meneralocorticoid receptor agonists/antagonists</option>
-                                                            <option value="00966">Glucosinolate biosynthesis</option>
-                                                            <option value="04724">Glutamatergic synapse</option>
-                                                            <option value="00480">Glutathione metabolism</option>
-                                                            <option value="00561">Glycerolipid metabolism</option>
-                                                            <option value="00564">Glycerophospholipid metabolism</option>
-                                                            <option value="00260">Glycine, serine and threonine metabolism</option>
-                                                            <option value="00010">Glycolysis / Gluconeogenesis</option>
-                                                            <option value="00532">Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate</option>
-                                                            <option value="00534">Glycosaminoglycan biosynthesis - heparan sulfate / heparin</option>
-                                                            <option value="00533">Glycosaminoglycan biosynthesis - keratan sulfate</option>
-                                                            <option value="00531">Glycosaminoglycan degradation</option>
-                                                            <option value="00604">Glycosphingolipid biosynthesis - ganglio series</option>
-                                                            <option value="00603">Glycosphingolipid biosynthesis - globo series</option>
-                                                            <option value="00601">Glycosphingolipid biosynthesis - lacto and neolacto series</option>
-                                                            <option value="00563">Glycosylphosphatidylinositol(GPI)-anchor biosynthesis</option>
-                                                            <option value="00630">Glyoxylate and dicarboxylate metabolism</option>
-                                                            <option value="04912">GnRH signaling pathway</option>
-                                                            <option value="05332">Graft-versus-host disease</option>
-                                                            <option value="04340">Hedgehog signaling pathway</option>
-                                                            <option value="04640">Hematopoietic cell lineage</option>
-                                                            <option value="05161">Hepatitis B</option>
-                                                            <option value="05160">Hepatitis C</option>
-                                                            <option value="05168">Herpes simplex infection</option>
-                                                            <option value="04066">HIF-1 signaling pathway</option>
-                                                            <option value="04391">Hippo signaling pathway - fly</option>
-                                                            <option value="04390">Hippo signaling pathway</option>
-                                                            <option value="07212">Histamine H1 receptor antagonists</option>
-                                                            <option value="07227">Histamine H2/H3 receptor agonists/antagonists</option>
-                                                            <option value="00340">Histidine metabolism</option>
-                                                            <option value="07218">HIV protease inhibitors</option>
-                                                            <option value="07024">HMG-CoA reductase inhibitors</option>
-                                                            <option value="03440">Homologous recombination</option>
-                                                            <option value="05166">HTLV-I infection</option>
-                                                            <option value="05016">Huntington's disease</option>
-                                                            <option value="05410">Hypertrophic cardiomyopathy (HCM)</option>
-                                                            <option value="07032">Hypnotics</option>
-                                                            <option value="07046">Immunosuppressive agents</option>
-                                                            <option value="00901">Indole alkaloid biosynthesis</option>
-                                                            <option value="05164">Influenza A</option>
-                                                            <option value="00562">Inositol phosphate metabolism</option>
-                                                            <option value="00981">Insect hormone biosynthesis</option>
-                                                            <option value="04911">Insulin secretion</option>
-                                                            <option value="04910">Insulin signaling pathway</option>
-                                                            <option value="04672">Intestinal immune network for IgA production</option>
-                                                            <option value="07233">Ion transporter inhibitors</option>
-                                                            <option value="00943">Isoflavonoid biosynthesis</option>
-                                                            <option value="00950">Isoquinoline alkaloid biosynthesis</option>
-                                                            <option value="04630">Jak-STAT signaling pathway</option>
-                                                            <option value="05134">Legionellosis</option>
-                                                            <option value="05140">Leishmaniasis</option>
-                                                            <option value="04670">Leukocyte transendothelial migration</option>
-                                                            <option value="00903">Limonene and pinene degradation</option>
-                                                            <option value="00591">Linoleic acid metabolism</option>
-                                                            <option value="00785">Lipoic acid metabolism</option>
-                                                            <option value="00540">Lipopolysaccharide biosynthesis</option>
-                                                            <option value="07015">Local analgesics</option>
-                                                            <option value="04730">Long-term depression</option>
-                                                            <option value="04720">Long-term potentiation</option>
-                                                            <option value="00300">Lysine biosynthesis</option>
-                                                            <option value="00310">Lysine degradation</option>
-                                                            <option value="04142">Lysosome</option>
-                                                            <option value="07020">Macrolides and ketolides</option>
-                                                            <option value="05144">Malaria</option>
-                                                            <option value="04013">MAPK signaling pathway - fly</option>
-                                                            <option value="04010">MAPK signaling pathway</option>
-                                                            <option value="04011">MAPK signaling pathway - yeast</option>
-                                                            <option value="04950">Maturity onset diabetes of the young</option>
-                                                            <option value="05162">Measles</option>
-                                                            <option value="04113">Meiosis - yeast</option>
-                                                            <option value="04916">Melanogenesis</option>
-                                                            <option value="05218">Melanoma</option>
-                                                            <option value="01100">Metabolic pathways</option>
-                                                            <option value="00980">Metabolism of xenobiotics by cytochrome P450</option>
-                                                            <option value="00680">Methane metabolism</option>
-                                                            <option value="01120">Microbial metabolism in diverse environments</option>
-                                                            <option value="04978">Mineral absorption</option>
-                                                            <option value="03430">Mismatch repair</option>
-                                                            <option value="00902">Monoterpenoid biosynthesis</option>
-                                                            <option value="05032">Morphine addiction</option>
-                                                            <option value="03015">mRNA surveillance pathway</option>
-                                                            <option value="04150">mTOR signaling pathway</option>
-                                                            <option value="00512">Mucin type O-Glycan biosynthesis</option>
-                                                            <option value="00626">Naphthalene degradation</option>
-                                                            <option value="07114">Naphthalene family</option>
-                                                            <option value="04650">Natural killer cell mediated cytotoxicity</option>
-                                                            <option value="04080">Neuroactive ligand-receptor interaction</option>
-                                                            <option value="07234">Neurotransmitter transporter inhibitors</option>
-                                                            <option value="04722">Neurotrophin signaling pathway</option>
-                                                            <option value="04064">NF-kappa B signaling pathway</option>
-                                                            <option value="00510">N-Glycan biosynthesis</option>
-                                                            <option value="00760">Nicotinate and nicotinamide metabolism</option>
-                                                            <option value="05033">Nicotine addiction</option>
-                                                            <option value="07221">Nicotinic cholinergic receptor antagonists</option>
-                                                            <option value="00910">Nitrogen metabolism</option>
-                                                            <option value="00633">Nitrotoluene degradation</option>
-                                                            <option value="07235">N-Metyl-D-aspartic acid receptor antagonists</option>
-                                                            <option value="04621">NOD-like receptor signaling pathway</option>
-                                                            <option value="03450">Non-homologous end-joining</option>
-                                                            <option value="01054">Nonribosomal peptide structures</option>
-                                                            <option value="05223">Non-small cell lung cancer</option>
-                                                            <option value="04330">Notch signaling pathway</option>
-                                                            <option value="00401">Novobiocin biosynthesis</option>
-                                                            <option value="03420">Nucleotide excision repair</option>
-                                                            <option value="04740">Olfactory transduction</option>
-                                                            <option value="00670">One carbon pool by folate</option>
-                                                            <option value="04114">Oocyte meiosis</option>
-                                                            <option value="07039">Opioid analgesics</option>
-                                                            <option value="07224">Opioid receptor agonists/antagonists</option>
-                                                            <option value="04380">Osteoclast differentiation</option>
-                                                            <option value="07047">Osteoporosis drugs</option>
-                                                            <option value="00511">Other glycan degradation</option>
-                                                            <option value="00514">Other types of O-glycan biosynthesis</option>
-                                                            <option value="01010">Overview of biosynthetic pathways</option>
-                                                            <option value="00190">Oxidative phosphorylation</option>
-                                                            <option value="04115">p53 signaling pathway</option>
-                                                            <option value="05212">Pancreatic cancer</option>
-                                                            <option value="04972">Pancreatic secretion</option>
-                                                            <option value="00770">Pantothenate and CoA biosynthesis</option>
-                                                            <option value="05012">Parkinson's disease</option>
-                                                            <option value="05130">Pathogenic Escherichia coli infection</option>
-                                                            <option value="05200">Pathways in cancer</option>
-                                                            <option value="00311">Penicillin and cephalosporin biosynthesis</option>
-                                                            <option value="07011">Penicillins</option>
-                                                            <option value="00040">Pentose and glucuronate interconversions</option>
-                                                            <option value="00030">Pentose phosphate pathway</option>
-                                                            <option value="00550">Peptidoglycan biosynthesis</option>
-                                                            <option value="04146">Peroxisome</option>
-                                                            <option value="07222">Peroxisome proliferator-activated receptor (PPAR) agonists</option>
-                                                            <option value="05133">Pertussis</option>
-                                                            <option value="04145">Phagosome</option>
-                                                            <option value="07029">Phenothiazines</option>
-                                                            <option value="00360">Phenylalanine metabolism</option>
-                                                            <option value="00400">Phenylalanine, tyrosine and tryptophan biosynthesis</option>
-                                                            <option value="00940">Phenylpropanoid biosynthesis</option>
-                                                            <option value="04070">Phosphatidylinositol signaling system</option>
-                                                            <option value="00440">Phosphonate and phosphinate metabolism</option>
-                                                            <option value="02060">Phosphotransferase system (PTS)</option>
-                                                            <option value="00196">Photosynthesis - antenna proteins</option>
-                                                            <option value="00195">Photosynthesis</option>
-                                                            <option value="04745">Phototransduction - fly</option>
-                                                            <option value="04744">Phototransduction</option>
-                                                            <option value="04151">PI3K-Akt signaling pathway</option>
-                                                            <option value="04075">Plant hormone signal transduction</option>
-                                                            <option value="04626">Plant-pathogen interaction</option>
-                                                            <option value="00624">Polycyclic aromatic hydrocarbon degradation</option>
-                                                            <option value="00523">Polyketide sugar unit biosynthesis</option>
-                                                            <option value="00860">Porphyrin and chlorophyll metabolism</option>
-                                                            <option value="07232">Potassium channel blocking and opening drugs</option>
-                                                            <option value="03320">PPAR signaling pathway</option>
-                                                            <option value="00120">Primary bile acid biosynthesis</option>
-                                                            <option value="05340">Primary immunodeficiency</option>
-                                                            <option value="05020">Prion diseases</option>
-                                                            <option value="07226">Progesterone, androgen and estrogen receptor agonists/antagonists</option>
-                                                            <option value="04914">Progesterone-mediated oocyte maturation</option>
-                                                            <option value="00640">Propanoate metabolism</option>
-                                                            <option value="07035">Prostaglandins</option>
-                                                            <option value="05215">Prostate cancer</option>
-                                                            <option value="03050">Proteasome</option>
-                                                            <option value="04974">Protein digestion and absorption</option>
-                                                            <option value="03060">Protein export</option>
-                                                            <option value="04141">Protein processing in endoplasmic reticulum</option>
-                                                            <option value="04964">Proximal tubule bicarbonate reclamation</option>
-                                                            <option value="00230">Purine metabolism</option>
-                                                            <option value="00231">Puromycin biosynthesis</option>
-                                                            <option value="00240">Pyrimidine metabolism</option>
-                                                            <option value="00620">Pyruvate metabolism</option>
-                                                            <option value="07025">Quinolines</option>
-                                                            <option value="07014">Quinolones</option>
-                                                            <option value="04810">Regulation of actin cytoskeleton</option>
-                                                            <option value="04140">Regulation of autophagy</option>
-                                                            <option value="05211">Renal cell carcinoma</option>
-                                                            <option value="07217">Renin-angiotensin system inhibitors</option>
-                                                            <option value="04614">Renin-angiotensin system</option>
-                                                            <option value="07223">Retinoic acid receptor (RAR) and retinoid X receptor (RXR) agonists/antagonists</option>
-                                                            <option value="00830">Retinol metabolism</option>
-                                                            <option value="04723">Retrograde endocannabinoid signaling</option>
-                                                            <option value="05323">Rheumatoid arthritis</option>
-                                                            <option value="00740">Riboflavin metabolism</option>
-                                                            <option value="03008">Ribosome biogenesis in eukaryotes</option>
-                                                            <option value="03010">Ribosome</option>
-                                                            <option value="07023">Rifamycins</option>
-                                                            <option value="04622">RIG-I-like receptor signaling pathway</option>
-                                                            <option value="03018">RNA degradation</option>
-                                                            <option value="03020">RNA polymerase</option>
-                                                            <option value="03013">RNA transport</option>
-                                                            <option value="04970">Salivary secretion</option>
-                                                            <option value="05132">Salmonella infection</option>
-                                                            <option value="00121">Secondary bile acid biosynthesis</option>
-                                                            <option value="00450">Selenocompound metabolism</option>
-                                                            <option value="04726">Serotonergic synapse</option>
-                                                            <option value="07211">Serotonin receptor agonists/antagonists</option>
-                                                            <option value="00909">Sesquiterpenoid and triterpenoid biosynthesis</option>
-                                                            <option value="05131">Shigellosis</option>
-                                                            <option value="05222">Small cell lung cancer</option>
-                                                            <option value="04130">SNARE interactions in vesicular transport</option>
-                                                            <option value="07231">Sodium channel blocking drugs</option>
-                                                            <option value="00600">Sphingolipid metabolism</option>
-                                                            <option value="03040">Spliceosome</option>
-                                                            <option value="05150">Staphylococcus aureus infection</option>
-                                                            <option value="00500">Starch and sucrose metabolism</option>
-                                                            <option value="00100">Steroid biosynthesis</option>
-                                                            <option value="00984">Steroid degradation</option>
-                                                            <option value="00140">Steroid hormone biosynthesis</option>
-                                                            <option value="00945">Stilbenoid, diarylheptanoid and gingerol biosynthesis</option>
-                                                            <option value="00521">Streptomycin biosynthesis</option>
-                                                            <option value="00643">Styrene degradation</option>
-                                                            <option value="07017">Sulfonamide derivatives - diuretics</option>
-                                                            <option value="07018">Sulfonamide derivatives - hypoglycemic agents</option>
-                                                            <option value="07016">Sulfonamide derivatives - sulfa drugs</option>
-                                                            <option value="07115">Sulfonamide family</option>
-                                                            <option value="00920">Sulfur metabolism</option>
-                                                            <option value="04122">Sulfur relay system</option>
-                                                            <option value="04721">Synaptic vesicle cycle</option>
-                                                            <option value="00072">Synthesis and degradation of ketone bodies</option>
-                                                            <option value="05322">Systemic lupus erythematosus</option>
-                                                            <option value="04742">Taste transduction</option>
-                                                            <option value="00430">Taurine and hypotaurine metabolism</option>
-                                                            <option value="04660">T cell receptor signaling pathway</option>
-                                                            <option value="00900">Terpenoid backbone biosynthesis</option>
-                                                            <option value="00253">Tetracycline biosynthesis</option>
-                                                            <option value="07019">Tetracyclines</option>
-                                                            <option value="04350">TGF-beta signaling pathway</option>
-                                                            <option value="00730">Thiamine metabolism</option>
-                                                            <option value="05216">Thyroid cancer</option>
-                                                            <option value="04530">Tight junction</option>
-                                                            <option value="04620">Toll-like receptor signaling pathway</option>
-                                                            <option value="00623">Toluene degradation</option>
-                                                            <option value="05145">Toxoplasmosis</option>
-                                                            <option value="05202">Transcriptional misregulation in cancer</option>
-                                                            <option value="00960">Tropane, piperidine and pyridine alkaloid biosynthesis</option>
-                                                            <option value="00380">Tryptophan metabolism</option>
-                                                            <option value="05152">Tuberculosis</option>
-                                                            <option value="02020">Two-component system</option>
-                                                            <option value="04940">Type I diabetes mellitus</option>
-                                                            <option value="04930">Type II diabetes mellitus</option>
-                                                            <option value="01052">Type I polyketide structures</option>
-                                                            <option value="00350">Tyrosine metabolism</option>
-                                                            <option value="00130">Ubiquinone and other terpenoid-quinone biosynthesis</option>
-                                                            <option value="04120">Ubiquitin mediated proteolysis</option>
-                                                            <option value="00290">Valine, leucine and isoleucine biosynthesis</option>
-                                                            <option value="00280">Valine, leucine and isoleucine degradation</option>
-                                                            <option value="00513">Various types of N-glycan biosynthesis</option>
-                                                            <option value="04270">Vascular smooth muscle contraction</option>
-                                                            <option value="04962">Vasopressin-regulated water reabsorption</option>
-                                                            <option value="04370">VEGF signaling pathway</option>
-                                                            <option value="05110">Vibrio cholerae infection</option>
-                                                            <option value="05111">Vibrio cholerae pathogenic cycle</option>
-                                                            <option value="05203">Viral carcinogenesis</option>
-                                                            <option value="05416">Viral myocarditis</option>
-                                                            <option value="00750">Vitamin B6 metabolism</option>
-                                                            <option value="04977">Vitamin digestion and absorption</option>
-                                                            <option value="04310">Wnt signaling pathway</option>
-                                                            <option value="00622">Xylene degradation</option>
-                                                            <option value="00908">Zeatin biosynthesis</option>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-by-kegg-pathway-options') %]
+                                                                    <option value="[% text.details %]">[% text.value %]</option>
+                                                                [% END %]
+                                                            [% END %]
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -778,30 +346,54 @@
                                                 <div id="orthologyAnalysis" class="tab-pane fade">
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" name="noOrth"> not containing eggNOG matches</label>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-eggNOG') %]
+                                                                    <label><input type="checkbox" name="noOrth"> [% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Search by eggNOG identifier: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-eggNOG') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="orthID">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or by description of match: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="orthDesc">
                                                     </div>
                                                 </div>
                                                 <div id="interpro" class="tab-pane fade">
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" name="noIP"> not containing InterProScan matches</label>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-interpro') %]
+                                                                    <label><input type="checkbox" name="noIP"> [% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Search by InterPro identifier:</label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-interpro') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="interproID">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or by description of match: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="interproDesc">
                                                     </div>
                                                 </div>
@@ -1174,18 +766,7 @@
                 </div>
             </div>
         </div>
-        <!--<div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-warning">
-                    This is blank page for which you can customize for your project. 
-                    Use this admin template 100% free to use for personal and commercial use which is crafted by 
-                    <br />
-                    <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . For more free templates and snippets keep looking <a href="http://www.designbootstrap.com/" target="_blank">DesignBootstrap.com</a> . Hope you will like our work
-              
-                </div>
-            </div>
-
-        </div>-->
+        
     </div>
 </div>
 <!-- CONTENT-WRAPPER SECTION END-->
