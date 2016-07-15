@@ -446,7 +446,45 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
         ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", ""),
         ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
-        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", "")
---         ("search-database-analyses-protein-code-", "", ""),
+        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", ""),
+        ("search-database-dna-based-analyses-title", "DNA-based analyses", ""),
+        ("search-database-dna-based-analyses-tab", "Contigs", "#contigs"),
+        ("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
+        ("search-database-dna-based-analyses-tab", "Tandem repeats", "#tandemRepeats"),
+        ("search-database-dna-based-analyses-tab", "Other non-coding RNAs", "#otherNonCodingRNAs"),
+        ("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
+        ("search-database-dna-based-analyses-tab", "Transcriptional terminators", "#transcriptionalTerminators"),
+        ("search-database-dna-based-analyses-tab", "Horizontal gene transfers", "#horizontalGeneTransfers"),
+        ("search-database-dna-based-analyses-only-contig-title", "Get only contig: ", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00044", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00045", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00046", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00053", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00060", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00076", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00078", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00086", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00089", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig00093", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_1.2", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_1.3", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_1.7", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_2.1", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_2.2", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_2.3", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_2.4", ""),
+        ("search-database-dna-based-analyses-only-contig", "contig_2.5", ""),
+        ("search-database-dna-based-analyses-from-base", " from base ", ""),
+        ("search-database-dna-based-analyses-to", " to ", ""),
+        ("search-database-dna-based-analyses-reverse-complement", " reverse complement?", "")
+
+
+
+
+
+
+
+--         ("search-database-dna-based-analyses-", "", "")
 --         ("search-database-", "", "")
 ;

@@ -407,55 +407,64 @@
                             <div id="parentCollapseThree" class="panel panel-default">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">DNA-based analyses</a>
+                                        [% FOREACH text IN texts %]
+                                            [% IF text.tag.search('search-database-dna-based-analyses-title') %]
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
+                                            [% END %]
+                                        [% END %]
                                     </h4>
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <form method="post" action="/cgi-bin/searchPMNdna.cgi" enctype="multipart/form-data">
-                                            <p>Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose "Search" button has been pressed will be searched.</p>
                                             <ul class="nav nav-pills">
-                                                <li class=""><a href="#contigs" data-toggle="tab">Contigs</a></li>
-                                                <li class=""><a href="#trna" data-toggle="tab">tRNA</a></li>
-                                                <li class=""><a href="#tandemRepeats" data-toggle="tab">Tandem repeats</a></li>
-                                                <li class=""><a href="#otherNonCodingRNAs" data-toggle="tab">Other non-coding RNAs</a></li>
-                                                <li class=""><a href="#ribosomalBindingSites" data-toggle="tab">Ribosomal binding sites</a></li>
-                                                <li class=""><a href="#transcriptionalTerminators" data-toggle="tab">Transcriptional terminators</a></li>
-                                                <li class=""><a href="#horizontalGeneTransfers" data-toggle="tab">Horizontal gene transfers</a></li>
+                                                [% FOREACH text IN texts %]
+                                                    [% IF text.tag.search('search-database-dna-based-analyses-tab') %]
+                                                        <li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
+                                                    [% END %]
+                                                [% END %]
                                             </ul>
                                             <h4></h4>
                                             <div class="tab-content">
                                                 <div id="contigs" class="tab-pane fade">
                                                     <div class="form-group">
-                                                        <label>Get only contig: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-only-contig-title' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <select class="form-control"  name="contig">
                                                             <option value=""></option>
-                                                            <option value="contig00028">contig00028</option>
-                                                            <option value="contig00044">contig00044</option>
-                                                            <option value="contig00045">contig00045</option>
-                                                            <option value="contig00046">contig00046</option>
-                                                            <option value="contig00053">contig00053</option>
-                                                            <option value="contig00060">contig00060</option>
-                                                            <option value="contig00076">contig00076</option>
-                                                            <option value="contig00078">contig00078</option>
-                                                            <option value="contig00086">contig00086</option>
-                                                            <option value="contig00089">contig00089</option>
-                                                            <option value="contig00093">contig00093</option>
-                                                            <option value="contig_1.2">contig_1.2</option>
-                                                            <option value="contig_1.3">contig_1.3</option>
-                                                            <option value="contig_1.7">contig_1.7</option>
-                                                            <option value="contig_2.1">contig_2.1</option>
-                                                            <option value="contig_2.2">contig_2.2</option>
-                                                            <option value="contig_2.3">contig_2.3</option>
-                                                            <option value="contig_2.4">contig_2.4</option>
-                                                            <option value="contig_2.5">contig_2.5</option>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-only-contig' %]
+                                                                    <option value="[% text.value %]">[% text.value %]</option>
+                                                                [% END %]
+                                                            [% END %]
                                                         </select>
-                                                        <label> from base </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-from-base' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="contigStart">
-                                                        <label>to </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-to' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="contigEnd">
+                                                    </div>
+                                                    <div class="form-group">
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" name="revCompContig"> reverse complement?</label>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-reverse-complement' %]
+                                                                    <label><input type="checkbox" name="revCompContig">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
                                                         </div>
                                                     </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
@@ -587,7 +596,9 @@
                                                         <input class="form-control" type="text" name="TRFrepNumMax">
                                                         <label> times</label>
                                                     </div>
-                                                    <p>*NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the "Help" section for further instructions.</p>
+                                                    <div class="alert alert-warning">
+                                                        *NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the "Help" section for further instructions.
+                                                    </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
                                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
                                                 </div>
@@ -709,7 +720,9 @@
                                                             <label><input type="radio" name="TTtailM" value="exact"> exactly</label>
                                                         </div>
                                                     </div>
-                                                    <p>*NOTE: hairpin and tail scores are negative.</p>
+                                                    <div class="alert alert-warning">
+                                                        *NOTE: hairpin and tail scores are negative.
+                                                    </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
                                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
                                                 </div>
@@ -758,6 +771,9 @@
                                                 </div>
                                             </div>
                                         </form>
+                                    </div>
+                                    <div class="panel-footer">
+                                        Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose "Search" button has been pressed will be searched.
                                     </div>
                                 </div>
                             </div>
