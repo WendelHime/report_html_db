@@ -652,13 +652,13 @@
                                                     <div class="form-group">
                                                         <div class="checkbox">
                                                             [% FOREACH text IN texts %]
-                                                                [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding-shift' %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift' %]
                                                                     <label><input type="checkbox" name="RBSshift">[% text.value %]</label>
                                                                 [% END %]
                                                             [% END %]
                                                         </div>
                                                         [% FOREACH text IN texts %]
-                                                            [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-options' %]
                                                                 <div class="radio">
                                                                     <label><input type="radio" name="RBSshiftM" [% text.details %]>[% text.value %]</label>
                                                                 </div>
@@ -668,7 +668,7 @@
                                                     <div class="form-group">
                                                         <div class="checkbox">
                                                             [% FOREACH text IN texts %]
-                                                                [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding-start' %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-start' %]
                                                                     <label><input type="checkbox" name="RBSnewcodon">[% text.value %]</label>
                                                                 [% END %]
                                                             [% END %]
