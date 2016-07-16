@@ -24,7 +24,8 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{titlePage} = "Global analysis";
-	$c->stash->{template} = 'site/globalAnalyses/index.tt';
+    $c->stash(texts => [$c->model('Model::Text')->all]);
+    $c->stash->{template} = 'site/globalAnalyses/index.tt';
     #$c->response->body('Matched Site::Controller::GlobalAnalyses in GlobalAnalyses.');
 }
 
