@@ -473,181 +473,168 @@
                                                 <div id="trna" class="tab-pane fade">
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" name="tRNAall"> List all tRNAs</label>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-list-rnas' %]
+                                                                    <label><input type="checkbox" name="tRNAall">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or get tRNAs by amino acid: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <select class="form-control" name="tRNAaa">
                                                             <option value=""></option>
-                                                            <option value="Ala">Alanine (A)</option>
-                                                            <option value="Arg">Arginine (R)</option>
-                                                            <option value="Asp">Asparagine (N)</option>
-                                                            <option value="Ala">Aspartic acid (D)</option>
-                                                            <option value="Cys">Cysteine (C)</option>
-                                                            <option value="Glu">Glutamic acid (E)</option>
-                                                            <option value="Gln">Glutamine (Q)</option>
-                                                            <option value="Gly">Glycine (G)</option>
-                                                            <option value="His">Histidine (H)</option>
-                                                            <option value="Ile">Isoleucine (I)</option>
-                                                            <option value="Leu">Leucine (L)</option>
-                                                            <option value="Lys">Lysine (K)</option>
-                                                            <option value="Met">Methionine (M)</option>
-                                                            <option value="Phe">Phenylalanine (F)</option>
-                                                            <option value="Pro">Proline (P)</option>
-                                                            <option value="Ser">Serine (S)</option>
-                                                            <option value="Thr">Threonine (T)</option>
-                                                            <option value="Trp">Tryptophan (W)</option>
-                                                            <option value="Tyr">Tyrosine (Y)</option>
-                                                            <option value="Val">Valine (V)</option>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid-options' %]
+                                                                    <option value="[% text.details %]">[% text.value %]</option>
+                                                                [% END %]
+                                                            [% END %]
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or get tRNAs by codon: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-get-by-codon' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <select class="form-control" name="tRNAcd">
                                                             <option value=""></option>
-                                                            <option value="AAA">AAA</option>
-                                                            <option value="AAC">AAC</option>
-                                                            <option value="AAG">AAG</option>
-                                                            <option value="AAT">AAT</option>
-                                                            <option value="ACA">ACA</option>
-                                                            <option value="ACC">ACC</option>
-                                                            <option value="ACG">ACG</option>
-                                                            <option value="ACT">ACT</option>
-                                                            <option value="AGA">AGA</option>
-                                                            <option value="AGC">AGC</option>
-                                                            <option value="AGG">AGG</option>
-                                                            <option value="AGT">AGT</option>
-                                                            <option value="ATA">ATA</option>
-                                                            <option value="ATC">ATC</option>
-                                                            <option value="ATG">ATG</option>
-                                                            <option value="ATT">ATT</option>
-                                                            <option value="CAA">CAA</option>
-                                                            <option value="CAC">CAC</option>
-                                                            <option value="CAG">CAG</option>
-                                                            <option value="CAT">CAT</option>
-                                                            <option value="CCA">CCA</option>
-                                                            <option value="CCC">CCC</option>
-                                                            <option value="CCG">CCG</option>
-                                                            <option value="CCT">CCT</option>
-                                                            <option value="CGA">CGA</option>
-                                                            <option value="CGC">CGC</option>
-                                                            <option value="CGG">CGG</option>
-                                                            <option value="CGT">CGT</option>
-                                                            <option value="CTA">CTA</option>
-                                                            <option value="CTC">CTC</option>
-                                                            <option value="CTG">CTG</option>
-                                                            <option value="CTT">CTT</option>
-                                                            <option value="GAA">GAA</option>
-                                                            <option value="GAC">GAC</option>
-                                                            <option value="GAG">GAG</option>
-                                                            <option value="GAT">GAT</option>
-                                                            <option value="GCA">GCA</option>
-                                                            <option value="GCC">GCC</option>
-                                                            <option value="GCG">GCG</option>
-                                                            <option value="GCT">GCT</option>
-                                                            <option value="GGA">GGA</option>
-                                                            <option value="GGC">GGC</option>
-                                                            <option value="GGG">GGG</option>
-                                                            <option value="GGT">GGT</option>
-                                                            <option value="GTA">GTA</option>
-                                                            <option value="GTC">GTC</option>
-                                                            <option value="GTG">GTG</option>
-                                                            <option value="GTT">GTT</option>
-                                                            <option value="TAC">TAC</option>
-                                                            <option value="TAT">TAT</option>
-                                                            <option value="TCA">TCA</option>
-                                                            <option value="TCC">TCC</option>
-                                                            <option value="TCG">TCG</option>
-                                                            <option value="TCT">TCT</option>
-                                                            <option value="TGC">TGC</option>
-                                                            <option value="TGG">TGG</option>
-                                                            <option value="TGT">TGT</option>
-                                                            <option value="TTA">TTA</option>
-                                                            <option value="TTC">TTC</option>
-                                                            <option value="TTG">TTG</option>
-                                                            <option value="TTT">TTT</option>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-get-by-codon-options' %]
+                                                                    <option value="[% text.details %]">[% text.value %]</option>
+                                                                [% END %]
+                                                            [% END %]
                                                         </select>
                                                     </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
                                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
                                                 </div>
                                                 <div id="tandemRepeats" class="tab-pane fade">
-                                                    <p>Get all tandem repeats that: </p>
-                                                    <div class="form-group">
-                                                        <label>Contain the sequence </label><input class="form-control" type="text" name="TRFrepSeq"> <label> in the repetition unit</label>
+                                                    <div class="alert alert-info">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats' %]
+                                                                [% text.value %]
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Has repetition units of </label><input class="form-control" type="text" name="TRFrepSize"><label> bases </label>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TRFsize" value="orLessTRF"> or less </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TRFsize" value="orMoreTRF"> or more </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TRFsize" value="exactTRF" checked=""> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-contain-sequence-repetition-unit' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="TRFrepSeq">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Occurs between </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-repetition-unit-bases' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
+                                                        <input class="form-control" type="text" name="TRFrepSize">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="TRFsize" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
+                                                    </div>
+                                                    <div class="form-group">
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-occours-between' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="TRFrepNumMin">
-                                                        <label> and </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-occours-between-and' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="TRFrepNumMax">
-                                                        <label> times</label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-occours-between-and-times' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="alert alert-warning">
-                                                        *NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the "Help" section for further instructions.
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats-note' %]
+                                                                [% text.value %]
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
                                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
                                                 </div>
                                                 <div id="otherNonCodingRNAs" class="tab-pane fade">
                                                     <div class="form-group">
-                                                        <label>Search ncRNA by target identifier: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="ncRNAtargetID">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or by E-value of match: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-evalue-match' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="ncRNAevalue">
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="ncRNAevM" value="orLessEv" checked=""> or less</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="ncRNAevM" value="orMoreEv"> or more</label>                                            					
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="ncRNAevM" value="exactEv"> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="ncRNAevM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Or by target name: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-name' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="ncRNAtargetName">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or by target class: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <select class="form-control"  name="ncRNAtargetClass">
                                                             <option value=""></option>
-                                                            <option value="antisense_RNA">antisense_RNA</option>
-                                                            <option value="hammerhead_ribozyme">hammerhead_ribozyme</option>
-                                                            <option value="miRNA">miRNA</option>
-                                                            <option value="other">other</option>
-                                                            <option value="ribozyme">ribozyme</option>
-                                                            <option value="RNase_MRP_RNA">RNase_MRP_RNA</option>
-                                                            <option value="RNase_P_RNA">RNase_P_RNA</option>
-                                                            <option value="snoRNA">snoRNA</option>
-                                                            <option value="snRNA">snRNA</option>
-                                                            <option value="SRP_RNA">SRP_RNA</option>
-                                                            <option value="telomerase_RNA">telomerase_RNA</option>
-                                                            <option value="vault_RNA">vault_RNA</option>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class-options' %]
+                                                                    <option value="[% text.details %]">[% text.value %]</option>
+                                                                [% END %]
+                                                            [% END %]
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or by target type: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-type' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="ncRNAtargetType">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or by target description: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-description' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="ncRNAtargetDesc">
                                                     </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
@@ -655,26 +642,36 @@
                                                 </div>
                                                 <div id="ribosomalBindingSites" class="tab-pane fade">
                                                     <div class="form-group">
-                                                        <label>Search ribosomal binding sites containing sequence pattern: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="RBSpattern">
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" name="RBSshift"> Or search for all ribosomal binding site predictions that recommend a shift in start codon position</label>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding-shift' %]
+                                                                    <label><input type="checkbox" name="RBSshift">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
                                                         </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="RBSshiftM" value="neg" checked=""> upstream</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="RBSshiftM" value="pos"> downstream</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="RBSshiftM" value="both"> either</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="RBSshiftM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" name="RBSnewcodon">Or search for all ribosomal binding site predictions that recommend a change of  start codon</label>
+                                                            [% FOREACH text IN texts %]
+                                                                [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding-start' %]
+                                                                    <label><input type="checkbox" name="RBSnewcodon">[% text.value %]</label>
+                                                                [% END %]
+                                                            [% END %]
                                                         </div>
                                                     </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
@@ -682,89 +679,105 @@
                                                 </div>
                                                 <div id="transcriptionalTerminators" class="tab-pane fade">
                                                     <div class="form-group">
-                                                        <label>Get transcriptional terminators with confidence score: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="TTconf">
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TTconfM" value="orLess"> or less</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TTconfM" value="orMore" checked=""> or more</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TTconfM" value="exact"> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="TTconfM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or with hairpin score: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-hairpin-score' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="TThp">
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TThpM" value="orLess"> or less</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TThpM" value="orMore" checked=""> or more</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TThpM" value="exact"> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="TThpM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or with tail score: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-tail-score' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="TTtail">
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TTtailM" value="orLess"> or less</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TTtailM" value="orMore" checked=""> or more</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="TTtailM" value="exact"> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="TTtailM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="alert alert-warning">
-                                                        *NOTE: hairpin and tail scores are negative.
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-hairpin-note' %]
+                                                                [% text.value %]
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
                                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
                                                 </div>
                                                 <div id="horizontalGeneTransfers" class="tab-pane fade">
                                                     <div class="form-group">
-                                                        <label>Get predicted AlienHunter regions of length: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="AHlen">
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHlenM" value="orLess"> or less</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHlenM" value="orMore"> or more</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHlenM" value="exact" checked=""> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="AHlenM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or get regions of score: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-score' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="AHscore">
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHscM" value="orLess"> or less</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHscM" value="orMore"> or more</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHscM" value="exact" checked=""> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="AHscM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Or get regions of threshold: </label>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-threshold' %]
+                                                                <label>[% text.value %]</label>
+                                                            [% END %]
+                                                        [% END %]
                                                         <input class="form-control" type="text" name="AHthr">
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHthrM" value="orLess"> or less</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHthrM" value="orMore"> or more</label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label><input type="radio" name="AHthrM" value="exact" checked=""> exactly</label>
-                                                        </div>
+                                                        [% FOREACH text IN texts %]
+                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="AHthrM" [% text.details %]>[% text.value %]</label>
+                                                                </div>
+                                                            [% END %]
+                                                        [% END %]
                                                     </div>
                                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
                                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
@@ -773,7 +786,11 @@
                                         </form>
                                     </div>
                                     <div class="panel-footer">
-                                        Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose "Search" button has been pressed will be searched.
+                                        [% FOREACH text IN texts %]
+                                            [% IF text.tag == 'search-database-dna-based-analyses-footer' %]
+                                                [% text.value %]
+                                            [% END %]
+                                        [% END %]
                                     </div>
                                 </div>
                             </div>
