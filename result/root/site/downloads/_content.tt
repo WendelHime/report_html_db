@@ -1,50 +1,57 @@
 <div class="row">
-	<div class="col-md-12">
-		<div class="panel-group" id="accordion">
-			
-			<div class="panel panel-default">
+    <div class="col-md-12">
+        <div class="panel-group" id="accordion">
+
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">Genes</a>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'downloads-genes' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
                     </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
                     <div class="panel-body">
-                    	<div class="notice-board">
-                    		<ul>
-	                    		<li><a href="/cgi-bin/getPMN.cgi?t=ag">All genes</a> (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)</li>
-	                    		<li><a href="/cgi-bin/getPMN.cgi?t=pcg">Protein-coding genes only</a></li>
-	                    		<li><a href="/cgi-bin/getPMN.cgi?t=pro">All protein sequences</a></li>
-	                    		<li><a href="/cgi-bin/getPMN.cgi?t=rrg">Ribosomal RNA genes only</a></li>
-	                    		<li><a href="/cgi-bin/getPMN.cgi?t=trg">Transfer RNA genes only</a></li>
-	                    		<li><a href="/cgi-bin/getPMN.cgi?t=oncg">Other non-coding RNA genes only</a></li>
-	                    	</ul>
-                    	</div>
+                        <div class="notice-board">
+                            <ul>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag == 'downloads-genes-links' %]
+                                        <li><a href="[% text.details %]">[% text.value %]</a></li>
+                                    [% END %]
+                                [% END %]
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-			
-			<div class="panel panel-default">
+
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">Other sequences</a>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'downloads-other-sequences' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="panel-body">
-                    	<div class="notice-board">
-	                    	<ul>
-							  <li><a href="/cgi-bin/getPMN.cgi?t=ac">Get all contigs</a></li>
-							  <li><a href="/cgi-bin/getPMN.cgi?t=ig">All intergenic regions</a> (sequences that are not a protein-coding, ribosomal RNA, transfer RNA, or non-coding RNA gene)</li>
-							  <li><a href="/cgi-bin/getPMN.cgi?t=ah">All regions identified as possible lateral transfer</a> (predicted by AlienHunter)</li>
-							  <li><a href="/cgi-bin/getPMN.cgi?t=tt">All transcriptional terminators</a> (predicted by TransTermHP)</li>
-							  <li><a href="/cgi-bin/getPMN.cgi?t=rbs">All ribosomal binding sites</a> (predicted by RBSfinder)</li>
-							</ul>
-						</div>
+                        <div class="notice-board">
+                            <ul>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag == 'downloads-other-sequences-links' %]
+                                        <li><a href="[% text.details %]">[% text.value %]</a></li>
+                                    [% END %]
+                                [% END %]
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-			
-		</div>
-	</div>
+
+        </div>
+    </div>
 </div>
