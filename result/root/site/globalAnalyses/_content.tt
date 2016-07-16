@@ -5,114 +5,58 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">GO terms mapping</a>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'global-analyses-go-terms-mapping' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
                     </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label><a href="data/GO_mapping.xml">Expansible tree</a></label>
-                        </div>
-                        <div class=<div class="row">
-                                <div class="col-md-12">
-                                    <div class="panel-group" id="accordion">
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">GO terms mapping</a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="form-group">
-                                                        <label><a href="data/GO_mapping.xml">Expansible tree</a></label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><a href="data/GO_mapping.html">Table of ontologies</a></label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>*NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to "Table of ontologies" to visualize the results.</label>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">eggNOG</a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="form-group">
-                                                        <label><a href="data/MN7_eggnog_report/classes.html">Orthology analysis</a> by evolutionary genealogy of genes: Non-supervised Orthologous Groups</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">KEGG Pathways</a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseThree" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="form-group">
-                                                        <label><a href="data/MN7_kegg_report/classes.html">Enzyme by enzyme</a> report of KEGG results</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><a href="data/MN7_kegg_global/html_page/classes.html">Map by map</a> report of KEGG results</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                <h4 class="panel-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed">Comparative Metabolic Reconstruction</a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseFour" class="panel-collapse collapse">
-                                                <div class="panel-body">
-                                                    <div class="form-group">
-                                                        <label><a href="data/MN7_X_Pasym/html_page/classes.html"><i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label><a href="data/MN7_X_TT01/html_page/classes.html"><i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>"form-group">
-                            <label><a href="data/GO_mapping.html">Table of ontologies</a></label>
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag == 'global-analyses-expansible-tree' %]
+                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+                                [% END %]
+                            [% END %]
                         </div>
                         <div class="form-group">
-                            <label>*NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to "Table of ontologies" to visualize the results.</label>
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag == 'global-analyses-table-ontologies' %]
+                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+                                [% END %]
+                            [% END %]
                         </div>
-
+                    </div>
+                    <div class="panel-footer">
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'global-analyses-go-terms-mapping-footer' %]
+                                [% text.value %]
+                            [% END %]
+                        [% END %]
                     </div>
                 </div>
             </div>
-
+            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">eggNOG</a>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'global-analyses-eggNOG' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
                     </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label><a href="data/MN7_eggnog_report/classes.html">Orthology analysis</a> by evolutionary genealogy of genes: Non-supervised Orthologous Groups</label>
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag == 'global-analyses-orthology-analysis-classes' %]
+                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+                                [% END %]
+                            [% END %]
                         </div>
                     </div>
                 </div>
@@ -121,17 +65,22 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">KEGG Pathways</a>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'global-analyses-kegg-pathways' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="form-group">
-                            <label><a href="data/MN7_kegg_report/classes.html">Enzyme by enzyme</a> report of KEGG results</label>
-                        </div>
-                        <div class="form-group">
-                            <label><a href="data/MN7_kegg_global/html_page/classes.html">Map by map</a> report of KEGG results</label>
-                        </div>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag.search('global-analyses-kegg-report') %]
+                                <div class="form-group">
+                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+                                </div>
+                            [% END %]
+                        [% END %]
                     </div>
                 </div>
             </div>
@@ -139,21 +88,26 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed">Comparative Metabolic Reconstruction</a>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
                     </h4>
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <div class="form-group">
-                            <label><a href="data/MN7_X_Pasym/html_page/classes.html"><i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)</label>
-                        </div>
-                        <div class="form-group">
-                            <label><a href="data/MN7_X_TT01/html_page/classes.html"><i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)</label>
-                        </div>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction-topics' %]
+                                <div class="form-group">
+                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+                                </div>
+                            [% END %]
+                        [% END %]
                     </div>
                 </div>
             </div>
-
+            
         </div>
     </div>
 </div>
