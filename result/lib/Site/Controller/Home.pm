@@ -25,7 +25,14 @@ sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{titlePage} = "Home";
     $c->stash(currentPage => "home");
-    $c->stash(texts => [$c->model('Model::Text')->all]);
+    $c->stash(texts => [$c->model('Model::Text')->search({
+        -or => [
+            tag => {'like', 'header%'},
+            tag => 'menu',
+            tag => 'footer',
+            tag => {'like', 'panel-home%'}
+        ]
+    })]);
     $c->stash(template => 'site/home/index.tt');
     #$c->response->body('Matched Site::Controller::Home in Home.');
 

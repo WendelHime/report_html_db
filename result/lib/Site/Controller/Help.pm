@@ -24,7 +24,15 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{titlePage} = "Help";
-	$c->stash->{template} = 'site/help/index.tt';
+    $c->stash(texts => [$c->model('Model::Text')->search({
+        -or => [
+            tag => {'like', 'header%'},
+            tag => 'menu',
+            tag => 'footer',
+            tag => {'like', 'help%'}
+        ]
+    })]);
+    $c->stash->{template} = 'site/help/index.tt';
     #$c->response->body('Matched Site::Controller::Help in Help.');
 }
 

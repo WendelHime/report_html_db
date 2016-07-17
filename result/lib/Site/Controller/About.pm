@@ -23,7 +23,16 @@ Catalyst Controller.
 
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
-	$c->stash->{template} = 'site/about/index.tt';
+    $c->stash->{titlePage} = "About";
+    $c->stash(texts => [$c->model('Model::Text')->search({
+        -or => [
+            tag => {'like', 'header%'},
+            tag => 'menu',
+            tag => 'footer',
+            tag => {'like', 'about%'}
+        ]
+    })]);
+    $c->stash->{template} = 'site/about/index.tt';
     #$c->response->body('Matched Site::Controller::About in About.');
 }
 

@@ -24,7 +24,14 @@ Catalyst Controller.
 sub index :Path :Args(0) {
     my ( $self, $c ) = @_;
     $c->stash->{titlePage} = "Search database";
-    $c->stash(texts => [$c->model('Model::Text')->all]);
+    $c->stash(texts => [$c->model('Model::Text')->search({
+        -or => [
+            tag => {'like', 'header%'},
+            tag => 'menu',
+            tag => 'footer',
+            tag => {'like', 'search-database%'}
+        ]
+    })]);
     $c->stash->{template} = 'site/searchDatabase/index.tt';
     #$c->response->body('Matched Site::Controller::SearchDatabase in SearchDatabase.');
 }
