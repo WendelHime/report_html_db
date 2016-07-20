@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-	<div class="container">	
-		[% INCLUDE 'site/blast/_forms.tt' %]
-	</div>
+    <div class="container">	
+        [% INCLUDE 'site/blast/_forms.tt' %]
+    </div>
 </div>
