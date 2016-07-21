@@ -9,5 +9,10 @@ Para rodar:
 
 ./report_html_db.pl -name Test
 
+Inicialize o servidor:
+
 ./Test/script/test_server.pl -r
   
+Acesse o site:
+
+http://127.0.0.1:3000
