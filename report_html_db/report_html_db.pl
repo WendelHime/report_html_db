@@ -46,6 +46,11 @@ if($help || !$nameProject)
 
 #path catalyst file
 my $pathCatalyst = `which catalyst.pl`;
+unless($pathCatalyst)
+{
+    print "Catalyst not found, please install dependences:\ncpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema DBIx::Class::Schema::Loader MooseX::NonMoose";
+    exit;
+}
 chomp $pathCatalyst;
 #give permission to execute catalyst.pl
 chmod("0755", $pathCatalyst);
@@ -2675,7 +2680,7 @@ writeFile("$nameProject/lib/$nameProject/Controller/Root.pm", $data);
 #inicialize server project
 #`./$nameProject/script/"$lowCaseName"_server.pl -r`;
 print "Done\nTurn on the server with this command:\n./$nameProject/script/".$lowCaseName."_server.pl -r\n".
-    "http://localhost:3000\n";
+    "http://localhost:3000\n";      
 exit;
 
 ###
