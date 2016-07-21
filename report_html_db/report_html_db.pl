@@ -11,7 +11,9 @@ use Getopt::Long;
 
 my $help;
 my $nameProject;
-my $databaseFilepath = "/tmp/database.db";
+my $databaseFilepath = `pwd`;
+chomp $databaseFilepath;
+$databaseFilepath .= "/database.db";
 my $optret = GetOptions("h|help" => \$help, 
                                         "name=s" => \$nameProject,
                                          "database=s" => \$databaseFilepath);
@@ -32,7 +34,7 @@ Optional parameters:
 
 -h          Print this help message and exit
 
--database = /tmp/database.db     Filepath to be used like static contents of the project
+-database = ./database.db     Filepath to be used like static contents of the project
 
 HELP
 
@@ -57,12 +59,12 @@ $lowCaseName = lc $lowCaseName;
 #create view
 `./$nameProject/script/"$lowCaseName"_create.pl view TT TT`;
 my $fileHandler;
-open($fileHandler, "<", "$nameProject/lib/$lowCaseName/View/TT.pm");
+open($fileHandler, "<", "$nameProject/lib/$nameProject/View/TT.pm");
 my $contentToBeChanged = "__PACKAGE__->config(\n     TEMPLATE_EXTENSION  => '.tt',\n     TIMER   =>  0,\n    WRAPPER     =>  '$lowCaseName/_layout.tt',\n);";
 my $data = do { local $/; <$fileHandler>};
 $data =~ s/__\w+->config\(([\w\s=>''"".,\/]*)\s\);/$contentToBeChanged/igm;
 close($fileHandler);
-writeFile("$nameProject/lib/$lowCaseName/View/TT.pm", $data);
+writeFile("$nameProject/lib/$nameProject/View/TT.pm", $data);
 
 my $scriptSQL = <<SQL;
 CREATE TABLE TEXTS (
@@ -927,11 +929,11 @@ sub index :Path :Args(0) {
     \$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');
 }";
     
-    open(my $fileHandler, "<", "$nameProject/lib/$lowCaseName/Controller/".$controller.".pm");
+    open(my $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/".$controller.".pm");
     $data = do { local $/; <$fileHandler>};
     $data =~ s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*/$controllerContent/igm;
     close($fileHandler);
-    writeFile("$nameProject/lib/$lowCaseName/Controller/".$controller.".pm", $data);
+    writeFile("$nameProject/lib/$nameProject/Controller/".$controller.".pm", $data);
 }
 
 #Descompacta assets
@@ -2626,6 +2628,8 @@ foreach my $directory (keys %contentHTML)
     }
 }
 
+
+#Create file wrapper
 my $wrapper = <<WRAPPER;
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -2650,10 +2654,28 @@ my $wrapper = <<WRAPPER;
 </html>
 WRAPPER
 writeFile("$nameProject/root/$lowCaseName/_layout.tt", $wrapper);
-print "Done\nTurn on the server with this command:\n./$nameProject/script/".$lowCaseName."_server.pl -r\n";
+
+my $changeRootFile = "
+sub index :Path :Args(0) {
+    my ( \$self, \$c ) = \@_;
+
+    # Hello World
+    #\$c->response->body( \$c->welcome_message );
+    \$c->res->redirect('/home');
+}
+
+=head2 default
+";
+
+open($fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm");
+$data = do { local $/; <$fileHandler>};
+$data =~ s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*\s*=head2 default*/$changeRootFile/igm;
+close($fileHandler);
+writeFile("$nameProject/lib/$nameProject/Controller/Root.pm", $data);
 #inicialize server project
 #`./$nameProject/script/"$lowCaseName"_server.pl -r`;
-
+print "Done\nTurn on the server with this command:\n./$nameProject/script/".$lowCaseName."_server.pl -r\n".
+    "http://localhost:3000\n";
 exit;
 
 ###
@@ -2664,7 +2686,7 @@ exit;
 sub writeFile
 {
     my($filepath, $content) = @_;
-    open(my $filehandler, ">", $filepath) or die "Error opening file";
-    print $filehandler $content;
-    close($filehandler);
+    open(my $FILEHANDLER, ">", $filepath) or die "Error opening file";
+    print $FILEHANDLER $content;
+    close($FILEHANDLER);
 }
