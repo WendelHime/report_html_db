@@ -14,9 +14,11 @@ my $nameProject;
 my $databaseFilepath = `pwd`;
 chomp $databaseFilepath;
 $databaseFilepath .= "/database.db";
-my $optret = GetOptions("h|help" => \$help, 
-                                        "name=s" => \$nameProject,
-                                         "database=s" => \$databaseFilepath);
+my $optret = GetOptions(
+	"h|help"     => \$help,
+	"name=s"     => \$nameProject,
+	"database=s" => \$databaseFilepath
+);
 my $helpMessage = <<HELP;
 
 ##### report_html_db.pl - In development stage 19/06/2016 - Wendel Hime #####
@@ -38,38 +40,41 @@ Optional parameters:
 
 HELP
 
-if($help || !$nameProject)
-{
-    print $helpMessage;
-    exit;
+if ( $help || !$nameProject ) {
+	print $helpMessage;
+	exit;
 }
 
 #path catalyst file
 my $pathCatalyst = `which catalyst.pl`;
-unless($pathCatalyst)
-{
-    print "Catalyst not found, please install dependences:\ncpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema DBIx::Class::Schema::Loader MooseX::NonMoose";
-    exit;
+unless ($pathCatalyst) {
+	print
+"Catalyst not found, please install dependences:\ncpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema DBIx::Class::Schema::Loader MooseX::NonMoose";
+	exit;
 }
 chomp $pathCatalyst;
+
 #give permission to execute catalyst.pl
-chmod("0755", $pathCatalyst);
+chmod( "0755", $pathCatalyst );
+
 #create project
 print `$pathCatalyst $nameProject`;
 my $lowCaseName = $nameProject;
 $lowCaseName = lc $lowCaseName;
+
 #give permission to execute files script
 #chmod("111", "$nameProject/script/".$lowCaseName."_server.pl");
 #chmod("111", "$nameProject/script/".$lowCaseName."_create.pl");
 #create view
 `./$nameProject/script/"$lowCaseName"_create.pl view TT TT`;
 my $fileHandler;
-open($fileHandler, "<", "$nameProject/lib/$nameProject/View/TT.pm");
-my $contentToBeChanged = "__PACKAGE__->config(\n     TEMPLATE_EXTENSION  => '.tt',\n     TIMER   =>  0,\n    WRAPPER     =>  '$lowCaseName/_layout.tt',\n);";
-my $data = do { local $/; <$fileHandler>};
+open( $fileHandler, "<", "$nameProject/lib/$nameProject/View/TT.pm" );
+my $contentToBeChanged =
+"__PACKAGE__->config(\n     TEMPLATE_EXTENSION  => '.tt',\n     TIMER   =>  0,\n    WRAPPER     =>  '$lowCaseName/_layout.tt',\n);";
+my $data = do { local $/; <$fileHandler> };
 $data =~ s/__\w+->config\(([\w\s=>''"".,\/]*)\s\);/$contentToBeChanged/igm;
 close($fileHandler);
-writeFile("$nameProject/lib/$nameProject/View/TT.pm", $data);
+writeFile( "$nameProject/lib/$nameProject/View/TT.pm", $data );
 
 my $scriptSQL = <<SQL;
 CREATE TABLE TEXTS (
@@ -862,13 +867,12 @@ INSERT INTO TEXTS(tag, value, details) VALUES
 SQL
 
 #if database file exists, delete
-if(-e $databaseFilepath)
-{
-    unlink $databaseFilepath;
+if ( -e $databaseFilepath ) {
+	unlink $databaseFilepath;
 }
 
 #create the file sql to be used
-writeFile("script.sql", $scriptSQL);
+writeFile( "script.sql", $scriptSQL );
 
 #create file database
 `sqlite3 $databaseFilepath < script.sql`;
@@ -877,48 +881,44 @@ writeFile("script.sql", $scriptSQL);
 `$nameProject/script/"$lowCaseName"_create.pl model Model DBIC::Schema "$nameProject"::Schema create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON"`;
 
 #create controllers project
-my @controllers = ("Home", "Blast", "SearchDatabase", "GlobalAnalyses", "Downloads", "Help", "About");
-foreach my $controller (@controllers)
-{
-    `$nameProject/script/"$lowCaseName"_create.pl controller $controller`;
-    
-    
-    #se nome do controller possuir letra maiuscula no meio da string, adicionar - e passar para low case
-    
-    #    s/"*sub index :Path :Args\(0\) {([\s\w()$,=@_;\->{}""#"\[\]'':%\/.]+)*//igm;
-    
-    #métodos possuem mesmos nomes, passar nome do controller para low case, abrir arquivo controller, pegar conteúdo
-    #usar expressão regular para pegar conteúdo do método index, criar variavel com conteúdo substituído, substituír conteudo
-    #s/$oldContent/$newContent/igm;
-    
-    my $lowCaseController = $controller;
-    if($lowCaseController =~ /([A-Z]+[a-z]+)([A-Z]+[a-z]+)/gm)
-    {
-        my @words = ();
-        push @words, $1;
-        push @words, $2;
-        my $counterWords = 0;
-        $lowCaseController = "";
-        foreach my $word (@words)
-        {
-            $word = lc $word;
-            if($counterWords < (scalar @words) - 1)
-            {
-                $lowCaseController .= $word."-";
-            }
-            else
-            {
-                $lowCaseController .= $word;
-            }
-            $counterWords++;
-        }
-    }
-    else
-    {
-        $lowCaseController = lc $lowCaseController;
-    }
-    
-    my $controllerContent = "
+my @controllers = (
+	"Home",      "Blast", "SearchDatabase", "GlobalAnalyses",
+	"Downloads", "Help",  "About"
+);
+foreach my $controller (@controllers) {
+	`$nameProject/script/"$lowCaseName"_create.pl controller $controller`;
+
+#se nome do controller possuir letra maiuscula no meio da string, adicionar - e passar para low case
+
+#    s/"*sub index :Path :Args\(0\) {([\s\w()$,=@_;\->{}""#"\[\]'':%\/.]+)*//igm;
+
+#métodos possuem mesmos nomes, passar nome do controller para low case, abrir arquivo controller, pegar conteúdo
+#usar expressão regular para pegar conteúdo do método index, criar variavel com conteúdo substituído, substituír conteudo
+#s/$oldContent/$newContent/igm;
+
+	my $lowCaseController = $controller;
+	if ( $lowCaseController =~ /([A-Z]+[a-z]+)([A-Z]+[a-z]+)/gm ) {
+		my @words = ();
+		push @words, $1;
+		push @words, $2;
+		my $counterWords = 0;
+		$lowCaseController = "";
+		foreach my $word (@words) {
+			$word = lc $word;
+			if ( $counterWords < ( scalar @words ) - 1 ) {
+				$lowCaseController .= $word . "-";
+			}
+			else {
+				$lowCaseController .= $word;
+			}
+			$counterWords++;
+		}
+	}
+	else {
+		$lowCaseController = lc $lowCaseController;
+	}
+
+	my $controllerContent = "
 sub index :Path :Args(0) {
     my ( \$self, \$c ) = \@_;
     \$c->stash->{titlePage} = '$controller';
@@ -933,12 +933,17 @@ sub index :Path :Args(0) {
     })]);
     \$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');
 }";
-    
-    open(my $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/".$controller.".pm");
-    $data = do { local $/; <$fileHandler>};
-    $data =~ s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*/$controllerContent/igm;
-    close($fileHandler);
-    writeFile("$nameProject/lib/$nameProject/Controller/".$controller.".pm", $data);
+
+	open( my $fileHandler,
+		"<",
+		"$nameProject/lib/$nameProject/Controller/" . $controller . ".pm" );
+	$data = do { local $/; <$fileHandler> };
+	$data =~
+s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*/$controllerContent/igm;
+	close($fileHandler);
+	writeFile(
+		"$nameProject/lib/$nameProject/Controller/" . $controller . ".pm",
+		$data );
 }
 
 #Descompacta assets
@@ -948,8 +953,9 @@ sub index :Path :Args(0) {
 
 #Conteúdo HTML da pasta root, primeira chave refere-se ao nome do diretório
 #O valor do vetor possuí o primeiro valor como nome do arquivo, e os demais como conteúdo do arquivo
-my %contentHTML = ("about" => {"_content.tt" => 
-<<CONTENTABOUT
+my %contentHTML = (
+	"about" => {
+		"_content.tt" => <<CONTENTABOUT
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -1000,19 +1006,17 @@ my %contentHTML = ("about" => {"_content.tt" =>
     </div>
 </div>
 CONTENTABOUT
-, 
-"index.tt" => 
-<<CONTENTABOUTINDEX
+		,
+		"index.tt" => <<CONTENTABOUTINDEX
 <div class="content-wrapper">
     <div class="container">		
         [% INCLUDE '$lowCaseName/about/_content.tt' %]
     </div>
 </div>
 CONTENTABOUTINDEX
-},
-                            "blast" => {
-"_forms.tt" => 
-<<CONTENTBLAST
+	},
+	"blast" => {
+		"_forms.tt" => <<CONTENTBLAST
 <div class="row">
     <div class="col-md-12">
         <form action="http://puma.icb.usp.br/blast/blast.cgi" method="POST" name="MainBlastForm" enctype="multipart/form-data">
@@ -1293,18 +1297,17 @@ CONTENTABOUTINDEX
     </div>
 </div>
 CONTENTBLAST
-, 
-"index.tt" => 
-<<CONTENTINDEXBLAST
+		,
+		"index.tt" => <<CONTENTINDEXBLAST
 <div class="content-wrapper">
     <div class="container">	
         [% INCLUDE '$lowCaseName/blast/_forms.tt' %]
     </div>
 </div>
 CONTENTINDEXBLAST
-},
-                            "downloads" => {"_content.tt" => 
-<<CONTENTDOWNLOADS
+	},
+	"downloads" => {
+		"_content.tt" => <<CONTENTDOWNLOADS
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -1364,18 +1367,17 @@ CONTENTINDEXBLAST
 </div>
 
 CONTENTDOWNLOADS
-,
-"index.tt" => 
-<<CONTENTINDEXDOWNLOADS
+		,
+		"index.tt" => <<CONTENTINDEXDOWNLOADS
 <div class="content-wrapper">
     <div class="container">		
         [% INCLUDE '$lowCaseName/downloads/_content.tt' %]
     </div>
 </div>
 CONTENTINDEXDOWNLOADS
-},
-                            "global-analyses" => {"_content.tt" => 
-<<CONTENTGLOBALANALYSES
+	},
+	"global-analyses" => {
+		"_content.tt" => <<CONTENTGLOBALANALYSES
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -1490,17 +1492,18 @@ CONTENTINDEXDOWNLOADS
     </div>
 </div>
 CONTENTGLOBALANALYSES
-, "index.tt" => 
-<<CONTENTGLOBALANALYSESINDEX
+		,
+		"index.tt" => <<CONTENTGLOBALANALYSESINDEX
 <div class="content-wrapper">
     <div class="container">
         [% INCLUDE '$lowCaseName/global-analyses/_content.tt' %]
     </div>
 </div>
 CONTENTGLOBALANALYSESINDEX
-},
-                            "help" => {"_content.tt", 
-<<CONTENTHELP
+	},
+	"help" => {
+		"_content.tt",
+		<<CONTENTHELP
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -1610,17 +1613,16 @@ CONTENTGLOBALANALYSESINDEX
     </div>
 </div>
 CONTENTHELP
-, "index.tt" =>
-<<CONTENTINDEXHELP
+		, "index.tt" => <<CONTENTINDEXHELP
 <div class="content-wrapper">
     <div class="container">		
         [% INCLUDE '$lowCaseName/help/_content.tt' %]
     </div>
 </div>
 CONTENTINDEXHELP
-},
-                            "home" => {"_panelInformation.tt" => 
-<<CONTENTHOME
+	},
+	"home" => {
+		"_panelInformation.tt" => <<CONTENTHOME
 <div class="content-wrapper">
     <div class="container">	
         <div class="row">
@@ -1647,17 +1649,17 @@ CONTENTINDEXHELP
     </div>
 </div>
 CONTENTHOME
-, "index.tt" =>
-<<CONTENTINDEXHOME
+		,
+		"index.tt" => <<CONTENTINDEXHOME
 <div class="content-wrapper">
     <div class="container">
         [% INCLUDE '$lowCaseName/home/_panelInformation.tt' %]
     </div>
 </div>
 CONTENTINDEXHOME
-},
-                            "search-database" => {"_forms.tt" =>
-<<CONTENTSEARCHDATABASE
+	},
+	"search-database" => {
+		"_forms.tt" => <<CONTENTSEARCHDATABASE
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
@@ -2464,8 +2466,8 @@ CONTENTINDEXHOME
 </div>
 <!-- CONTENT-WRAPPER SECTION END-->
 CONTENTSEARCHDATABASE
-, "index.tt" =>
-<<CONTENTINDEXSEARCHDATABASE
+		,
+		"index.tt" => <<CONTENTINDEXSEARCHDATABASE
 <div class="content-wrapper">
     <div class="container">
         [% INCLUDE '$lowCaseName/search-database/_forms.tt' %]
@@ -2502,9 +2504,9 @@ CONTENTSEARCHDATABASE
 </script>
 
 CONTENTINDEXSEARCHDATABASE
-},
-                            shared => {"_footer.tt" =>
-<<FOOTER
+	},
+	shared => {
+		"_footer.tt" => <<FOOTER
 <footer>
     <div class="container">
         <div class="row">
@@ -2521,8 +2523,8 @@ CONTENTINDEXSEARCHDATABASE
     </div>
 </footer>
 FOOTER
-, "_head.tt" =>
-<<HEAD
+		,
+		"_head.tt" => <<HEAD
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta name="description" content="" />
@@ -2546,8 +2548,8 @@ FOOTER
 
 
 HEAD
-, "_header.tt" =>
-<<HEADER
+		,
+		"_header.tt" => <<HEADER
 <header>
     <div class="container">
         <div class="row">
@@ -2568,8 +2570,8 @@ HEAD
     </div>
 </header>
 HEADER
-, "_menu.tt" =>
-<<MENU
+		,
+		"_menu.tt" => <<MENU
 <div class="navbar navbar-inverse set-radius-zero">
     <div class="container">
         <div class="navbar-header">
@@ -2618,21 +2620,18 @@ HEADER
 </section>
 
 MENU
-});
+	}
+);
 
-foreach my $directory (keys %contentHTML)
-{
-    if(!(-e "$nameProject/root/$lowCaseName/$directory"))
-    {
-        `mkdir -p "$nameProject/root/$lowCaseName/$directory"`;
-    }
-
-    foreach my $file (keys $contentHTML{$directory})
-    {
-        writeFile("$nameProject/root/$lowCaseName/$directory/$file", $contentHTML{$directory}{$file});
-    }
+foreach my $directory ( keys %contentHTML ) {
+	if ( !( -e "$nameProject/root/$lowCaseName/$directory" ) ) {
+		`mkdir -p "$nameProject/root/$lowCaseName/$directory"`;
+	}
+	foreach my $file ( keys %{ $contentHTML{$directory} } ) {
+		writeFile( "$nameProject/root/$lowCaseName/$directory/$file",
+			$contentHTML{$directory}{$file} );
+	}
 }
-
 
 #Create file wrapper
 my $wrapper = <<WRAPPER;
@@ -2658,7 +2657,7 @@ my $wrapper = <<WRAPPER;
     </body>
 </html>
 WRAPPER
-writeFile("$nameProject/root/$lowCaseName/_layout.tt", $wrapper);
+writeFile( "$nameProject/root/$lowCaseName/_layout.tt", $wrapper );
 
 my $changeRootFile = "
 sub index :Path :Args(0) {
@@ -2672,15 +2671,19 @@ sub index :Path :Args(0) {
 =head2 default
 ";
 
-open($fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm");
-$data = do { local $/; <$fileHandler>};
-$data =~ s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*\s*=head2 default*/$changeRootFile/igm;
+open( $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm" );
+$data = do { local $/; <$fileHandler> };
+$data =~
+s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*\s*=head2 default*/$changeRootFile/igm;
 close($fileHandler);
-writeFile("$nameProject/lib/$nameProject/Controller/Root.pm", $data);
+writeFile( "$nameProject/lib/$nameProject/Controller/Root.pm", $data );
+
 #inicialize server project
 #`./$nameProject/script/"$lowCaseName"_server.pl -r`;
-print "Done\nTurn on the server with this command:\n./$nameProject/script/".$lowCaseName."_server.pl -r\n".
-    "http://localhost:3000\n";      
+print "Done\nTurn on the server with this command:\n./$nameProject/script/"
+  . $lowCaseName
+  . "_server.pl -r\n"
+  . "http://localhost:3000\n";
 exit;
 
 ###
@@ -2688,10 +2691,9 @@ exit;
 #   @param $filepath => path with the file to be write or edit
 #   @param $content => content to be insert
 #
-sub writeFile
-{
-    my($filepath, $content) = @_;
-    open(my $FILEHANDLER, ">", $filepath) or die "Error opening file";
-    print $FILEHANDLER $content;
-    close($FILEHANDLER);
+sub writeFile {
+	my ( $filepath, $content ) = @_;
+	open( my $FILEHANDLER, ">", $filepath ) or die "Error opening file";
+	print $FILEHANDLER $content;
+	close($FILEHANDLER);
 }
