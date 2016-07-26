@@ -3,6 +3,8 @@ Projeto de iniciação científica, componente utilizado para gerar site(com con
 
 Para instalar dependencias:
 
+sudo apt-get install sqlite3
+
 cpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema  DBIx::Class::Schema::Loader MooseX::NonMoose
 
 Para rodar:
