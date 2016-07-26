@@ -1,0 +1,30 @@
+Bacteria.trna1 (18910-18838)	Length: 73 bp
+Type: Thr	Anticodon: GGT at 34-36 (18877-18875)	Score: 81.23
+         *    |    *    |    *    |    *    |    *    |    *    |    *    |  
+Seq: GCTGATATGGCTCAGTTGGTAGAGCACACCCTTGGTAAGGGTGAGGtCCCCAGTTCGAATCTGGGTATCAGCA
+Str: >>>>>>>..>>>>........<<<<.>>>>>.......<<<<<.....>>>>>.......<<<<<<<<<<<<.
+
+Bacteria.trna2 (15152-15080)	Length: 73 bp
+Type: Thr	Anticodon: TGT at 34-36 (15119-15117)	Score: 82.45
+         *    |    *    |    *    |    *    |    *    |    *    |    *    |  
+Seq: GCCGGCATAGCTCAGTTGGTAGAGCAACTGACTTGTAATCAGTAGGtCCCGAGTTCGATTCTTGGTGCCGGCA
+Str: >>>>>>>..>>>>........<<<<.>>>>>.......<<<<<.....>>>>>.......<<<<<<<<<<<<.
+
+Bacteria.trna3 (15060-14979)	Length: 82 bp
+Type: Tyr	Anticodon: GTA at 35-37 (15026-15024)	Score: 57.88
+         *    |    *    |    *    |    *    |    *    |    *    |    *    |    *    | 
+Seq: GGTGGGGTTCCCGAGCGGCcaAAGGGAGCAGACTGTAAATCTGCCGTCACAGACTtCGAAGGTTCGAATCCTTCCCCCACCA
+Str: >>>>>>>..>>>...........<<<.>>>>>.......<<<<<.>>>...<<<...>>>>>.......<<<<<<<<<<<<.
+
+Bacteria.trna4 (14875-14804)	Length: 72 bp
+Type: Gly	Anticodon: TCC at 34-36 (14842-14840)	Score: 65.97
+         *    |    *    |    *    |    *    |    *    |    *    |    *    | 
+Seq: GCGGGCATCGTATAATGGCtATTACCTCAGCCTTCCAAGCTGATGATGCGGGTTCGATTCCCGCTGCCCGCT
+Str: >>>>>>>..>>>..........<<<.>>>>>.......<<<<<....>>>>>.......<<<<<<<<<<<<.
+
+Bacteria.trna5 (14794-14722)	Length: 73 bp
+Type: Thr	Anticodon: GGT at 34-36 (14761-14759)	Score: 82.49
+         *    |    *    |    *    |    *    |    *    |    *    |    *    |  
+Seq: GCTGATATAGCTCAGTTGGTAGAGCACACCCTTGGTAAGGGTGAGGtCGGCAGTTCGAATCTGCCTATCAGCA
+Str: >>>>>>>..>>>>........<<<<.>>>>>.......<<<<<.....>>>>>.......<<<<<<<<<<<<.
+

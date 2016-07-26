@@ -1,0 +1,220 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_8_47
+
+Length=63
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|178971  PRK00306, PRK00306, 50S ribosomal protein L29; Re...  64.1    5e-15
+gnl|CDD|250162  pfam00831, Ribosomal_L29, Ribosomal L29 protein       58.3    6e-13
+gnl|CDD|238243  cd00427, Ribosomal_L29_HIP, Ribosomal L29 protein...  57.5    1e-12
+gnl|CDD|223333  COG0255, RpmC, Ribosomal protein L29 [Translation...  56.6    4e-12
+gnl|CDD|129124  TIGR00012, L29, ribosomal protein L29. This model...  48.0    5e-09
+gnl|CDD|234773  PRK00461, rpmC, 50S ribosomal protein L29; Reviewed   46.6    3e-08
+gnl|CDD|177071  CHL00154, rpl29, ribosomal protein L29; Validated     30.9    0.007
+gnl|CDD|237751  PRK14549, PRK14549, 50S ribosomal protein L29P; P...  30.0    0.018
+gnl|CDD|271157  cd07954, AP_MHD_Cterm, C-terminal domain of adapt...  24.7    3.4  
+gnl|CDD|249661  pfam00183, HSP90, Hsp90 protein                       24.0    6.7  
+gnl|CDD|171679  PRK12717, flgL, flagellar hook-associated protein...  23.9    6.9  
+
+
+>gnl|CDD|178971 PRK00306, PRK00306, 50S ribosomal protein L29; Reviewed.
+Length=66
+
+ Score = 64.1 bits (157),  Expect = 5e-15, Method: Composition-based stats.
+ Identities = 38/63 (60%), Positives = 50/63 (79%), Gaps = 0/63 (0%)
+
+Query  1   MKAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK  60
+           MKA+ELRE SVEELN +LL L +E FNLR Q A+GQL+ +H L++VRR+IAR+KT+L E+
+Sbjct  1   MKAKELRELSVEELNEKLLELKKELFNLRFQKATGQLENTHRLREVRRDIARIKTVLRER  60
+
+Query  61  AGA  63
+              
+Sbjct  61  ELG  63
+
+
+>gnl|CDD|250162 pfam00831, Ribosomal_L29, Ribosomal L29 protein.  
+Length=58
+
+ Score = 58.3 bits (142),  Expect = 6e-13, Method: Composition-based stats.
+ Identities = 32/58 (55%), Positives = 43/58 (74%), Gaps = 0/58 (0%)
+
+Query  3   AQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK  60
+           A+ELRE S EEL  +L  L +E FNLR Q A+GQL+  H +K+VRR+IAR+ T+L E+
+Sbjct  1   AKELRELSDEELKEKLKELKKELFNLRFQKATGQLENPHKIKEVRRDIARILTVLRER  58
+
+
+>gnl|CDD|238243 cd00427, Ribosomal_L29_HIP, Ribosomal L29 protein/HIP.  L29 is 
+a protein of the large ribosomal Subunit. A homolog, called 
+heparin/heparan sulfate interacting protein (HIP), has also 
+been identified in mammals.  L29 is located on the surface 
+of the large ribosomal subunit, where it participates in forming 
+a protein ring that surrounds the polypeptide exit channel, 
+providing structural support for the ribosome.  L29 is 
+involved in forming the translocon binding site, along with 
+L19, L22, L23, L24, and L31e.  In addition, L29 and L23 form 
+the interaction site for trigger factor (TF) on the ribosomal 
+surface, adjacent to the exit tunnel.  L29 forms numerous 
+interactions with L23 and with the 23S rRNA. In some eukaryotes, 
+L29 is referred to as L35, which is distinct from L35 
+found in bacteria and some eukaryotes (primarily plastids and 
+mitochondria).  The mammalian homolog, HIP, is found on the 
+surface of many tissues and cell lines. It is believed to 
+play a role in cell adhesion and modulation of blood coagulation. 
+It has also been shown to inhibit apoptosis in cancer 
+cells.
+Length=57
+
+ Score = 57.5 bits (140),  Expect = 1e-12, Method: Composition-based stats.
+ Identities = 32/57 (56%), Positives = 44/57 (77%), Gaps = 0/57 (0%)
+
+Query  4   QELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK  60
+           +ELREKS EEL  +L  L +E FNLR Q A+GQL+  H +++VR++IAR+KT+L EK
+Sbjct  1   KELREKSDEELQEKLDELKKELFNLRFQKATGQLENPHRIRKVRKDIARIKTVLNEK  57
+
+
+>gnl|CDD|223333 COG0255, RpmC, Ribosomal protein L29 [Translation, ribosomal 
+structure and biogenesis].
+Length=69
+
+ Score = 56.6 bits (137),  Expect = 4e-12, Method: Composition-based stats.
+ Identities = 35/62 (56%), Positives = 45/62 (73%), Gaps = 0/62 (0%)
+
+Query  2   KAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEKA  61
+           K +ELREKSVEEL  EL  L +E FNLR Q A+GQL+  H +++VRR+IAR+ T+L EK 
+Sbjct  4   KRKELREKSVEELEEELRELKKELFNLRFQLATGQLENPHRIREVRRDIARILTVLREKE  63
+
+Query  62  GA  63
+             
+Sbjct  64  LE  65
+
+
+>gnl|CDD|129124 TIGR00012, L29, ribosomal protein L29.  This model describes 
+a ribosomal large subunit protein, called L29 in prokaryotic 
+(50S) large subunits and L35 in eukaryotic (60S) large subunits 
+[Protein synthesis, Ribosomal proteins: synthesis and modification].
+Length=55
+
+ Score = 48.0 bits (115),  Expect = 5e-09, Method: Composition-based stats.
+ Identities = 31/55 (56%), Positives = 40/55 (73%), Gaps = 0/55 (0%)
+
+Query  5   ELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTE  59
+           ELREKS EEL  +L  L +E F LR Q A+GQL + H ++QVRR+IAR+ T+L E
+Sbjct  1   ELREKSKEELAKKLDELKKELFELRFQKATGQLAKPHRIRQVRRDIARLLTVLRE  55
+
+
+>gnl|CDD|234773 PRK00461, rpmC, 50S ribosomal protein L29; Reviewed.
+Length=87
+
+ Score = 46.6 bits (111),  Expect = 3e-08, Method: Composition-based stats.
+ Identities = 27/59 (46%), Positives = 42/59 (71%), Gaps = 0/59 (0%)
+
+Query  2   KAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK  60
+             +ELR+KSVEEL   ++ L  E F LR + A+G L Q+H +K++R++IAR+ T+L E+
+Sbjct  1   LFKELRKKSVEELEKLVIELKAELFTLRFKNATGSLDQTHKIKEIRKDIARILTILNER  59
+
+
+>gnl|CDD|177071 CHL00154, rpl29, ribosomal protein L29; Validated.
+Length=67
+
+ Score = 30.9 bits (70),  Expect = 0.007, Method: Composition-based stats.
+ Identities = 13/39 (33%), Positives = 25/39 (64%), Gaps = 0/39 (0%)
+
+Query  23  REQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEKA  61
+           +E F+LR++ A+ Q  + HL K  +  +A++ TLL+ + 
+Sbjct  26  KELFDLRLKKATRQNFKPHLFKHKKHRLAQLLTLLSSRL  64
+
+
+>gnl|CDD|237751 PRK14549, PRK14549, 50S ribosomal protein L29P; Provisional.
+Length=69
+
+ Score = 30.0 bits (68),  Expect = 0.018, Method: Composition-based stats.
+ Identities = 22/61 (36%), Positives = 33/61 (54%), Gaps = 1/61 (2%)
+
+Query  1   MKAQELREKSVEELNTELLNLLREQFNLRMQ-AASGQLQQSHLLKQVRRNIARVKTLLTE  59
+           ++A E+RE S EE   +L  L  E    R Q A  G  +    ++++RR IAR+ T+  E
+Sbjct  4   LRASEIREMSPEEREEKLEELKLELLKERAQAAMGGAPENPGRIREIRRTIARILTIQRE  63
+
+Query  60  K  60
+           K
+Sbjct  64  K  64
+
+
+>gnl|CDD|271157 cd07954, AP_MHD_Cterm, C-terminal domain of adaptor protein (AP) 
+complexes medium mu subunits and its homologs (MHD).  This 
+family corresponds to the C-terminal domain of heterotetrameric 
+AP complexes medium mu subunits and its homologs existing 
+in monomeric stonins, delta-subunit of the heteroheptameric 
+coat protein I (delta-COPI), a protein encoded by a pro-death 
+gene referred as MuD (also known as MUDENG, mu-2 related 
+death-inducing gene), an endocytic adaptor syp1, the mammalian 
+FCH domain only proteins (FCHo1/2), SH3-containing GRB2-like 
+protein 3-interacting protein 1 (SGIP1), and related 
+proteins. AP complexes participate in the formation of intracellular 
+coated transport vesicles and select cargo molecules 
+for incorporation into the coated vesicles in the late secretory 
+and endocytic pathways. Stonins have been characterized 
+as clathrin-dependent AP-2 mu chain related factors and 
+may act as cargo-specific sorting adaptors in endocytosis. Coat 
+protein complex I (COPI)-coated vesicles function in the 
+early secretory pathway. They mediate the retrograde transport 
+from the Golgi to the ER, and intra-Golgi transport. MuD 
+is distantly related to the C-terminal domain of mu2 subunit 
+of AP-2. It is able to induce cell death by itself and plays 
+an important role in cell death in various tissues. Syp1 
+represents a novel type of endocytic adaptor protein that participates 
+in endocytosis, promotes vesicle tabulation, and 
+contributes to cell polarity and stress responses. It shares 
+the same domain architecture with its two ubiquitously expressed 
+mammalian counterparts, FCHo1/2, which represent key initial 
+proteins ultimately controlling cellular nutrient uptake, 
+receptor regulation, and synaptic vesicle retrieval. They 
+bind specifically to the plasma membrane and recruit the 
+scaffold proteins eps15 and intersectin, which subsequently 
+engage the adaptor complex AP2 and clathrin, leading to coated 
+vesicle formation. Another mammalian neuronal-specific protein 
+SGIP1 does have a C-terminal MHD and has been classified 
+into this family as well. It is an endophilin-interacting 
+protein that plays an obligatory role in the regulation of 
+energy homeostasis. It is also involved in clathrin-mediated 
+endocytosis by interacting with phospholipids and eps15.
+Length=245
+
+ Score = 24.7 bits (54),  Expect = 3.4, Method: Composition-based stats.
+ Identities = 6/28 (21%), Positives = 12/28 (43%), Gaps = 1/28 (4%)
+
+Query  23  REQFNLRMQAASGQLQQSHLLKQVRRNI  50
+            E+ NL + +  G L  S +  ++    
+Sbjct  7   VEKVNL-LISKDGSLLNSEVQGEIALKS  33
+
+
+>gnl|CDD|249661 pfam00183, HSP90, Hsp90 protein.  
+Length=529
+
+ Score = 24.0 bits (52),  Expect = 6.7, Method: Composition-based stats.
+ Identities = 9/20 (45%), Positives = 15/20 (75%), Gaps = 1/20 (5%)
+
+Query  37   LQQSHLLKQVRRNIARVKTL  56
+            LQQ+ +LK +R+N+ + K L
+Sbjct  200  LQQNKILKVIRKNLVK-KCL  218
+
+
+>gnl|CDD|171679 PRK12717, flgL, flagellar hook-associated protein FlgL; Provisional.
+Length=523
+
+ Score = 23.9 bits (52),  Expect = 6.9, Method: Composition-based stats.
+ Identities = 9/21 (43%), Positives = 11/21 (52%), Gaps = 0/21 (0%)
+
+Query  38  QQSHLLKQVRRNIARVKTLLT  58
+           QQ  +L Q   NI  +K  LT
+Sbjct  54  QQQAMLDQYSGNITTIKNSLT  74
+
+
+
+Lambda      K        H        a         alpha
+   0.314    0.126    0.311    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 283716947

@@ -8,42 +8,558 @@
 use strict;
 use warnings;
 use Getopt::Long;
+use Data::Dumper;
+use DB_File;
 
-my $help;
-my $nameProject;
-my $databaseFilepath = `pwd`;
-chomp $databaseFilepath;
-$databaseFilepath .= "/database.db";
-my $optret = GetOptions(
-	"h|help"     => \$help,
-	"name=s"     => \$nameProject,
-	"database=s" => \$databaseFilepath
-);
-my $helpMessage = <<HELP;
+#
+# ==> BEGIN OF AUTO GENERATED CODE (do not edit!!!)
+#
+# generateConfigRead.pl version 2.2
+#
+#
+#begin of module configuration
+my $print_conf =  <<'CONF';
+# Configuration parameters for component (see documentation for details)
+# * lines starting with == indicate mandatory parameters, and must be changed to parameter=value
+# * parameters containing predefined values indicate component defaults
+==organism_name
+==fasta_file
+html_dir = html_dir
+component_name_list=
+FT_artemis_dir=
+FT_submission_dir=
+FT_artemis_selected_dir=
+FT_submission_selected_dir=
+GFF_dir=
+GFF_selected_dir=
+aa_fasta_dir=
+nt_fasta_dir=
+fasta_dir=
+blast_dir=
+rpsblast_dir=
+hmmer_dir=
+signalp_dir=
+tmhmm_dir=
+phobius_dir=
+dgpi_dir=
+predgpi_dir =
+bigpi_dir =
+interpro_dir=
+eggnog_dir=
+cog_dir=
+kog_dir=
+pathways_dir=
+aa_orf_file=
+nt_orf_file=
+background_image_file=
+index_file=
+export_subgroup=yes
+overwrite_output=yes
+report_pathways_dir
+report_eggnog_dir
+report_cog_dir
+report_kog_dir
+alienhunter_output_file =
+alienhunter_dir = 
+infernal_output_file =
+infernal_dir = 
+rbs_dir =
+rnammer_dir = 
+transterm_dir = 
+tcdb_dir = 
+skews_dir =
+trf_dir = 
+trna_dir = 
+string_dir = 
+mreps_dir = 
+report_go_dir = go_report_dir
+report_csv_dir =
+csv_file =
+go_file
+CONF
 
-##### report_html_db.pl - In development stage 19/06/2016 - Wendel Hime #####
-
-Project of scientific iniciation used to generate site based on content of evidences and results of analysis.
-
-Usage:  report_html_db.pl -name <Name site>
-
-
-Mandatory parameters:
-
--name       Name of the site or project to be created
-
-Optional parameters:
-
--h          Print this help message and exit
-
--database = ./database.db     Filepath to be used like static contents of the project
-
-HELP
-
-if ( $help || !$nameProject ) {
-	print $helpMessage;
-	exit;
+unless(@ARGV) {
+    print $print_conf;
+    exit;
 }
+
+use strict;
+use EGeneUSP::SequenceObject;
+use EGeneUSP::Config;
+#
+#get program version (assumnes CVS)
+#
+my $version = '$Revision$';
+$version =~ s/.*?: ([\d.]+) \$/$1/;#
+#mandatory fields
+#
+my $organism_name;
+my $fasta_file;
+#
+#optional arguments and configuration defaults
+#
+#####
+
+my $html_dir = "";
+my $component_name_list="";
+my $FT_artemis_dir="";
+my $FT_submission_dir="";
+my $FT_artemis_selected_dir="";
+my $FT_submission_selected_dir="";
+my $GFF_dir="";
+my $GFF_selected_dir="";
+my $aa_fasta_dir="";
+my $nt_fasta_dir="";
+#my $xml_dir="xml_dir";
+my $fasta_dir="";
+my $blast_dir="";
+my $rpsblast_dir="";
+my $hmmer_dir="";
+my $signalp_dir="";
+my $tmhmm_dir="";
+my $phobius_dir="";
+my $dgpi_dir="";
+my $predgpi_dir = "";
+my $bigpi_dir = "";
+my $interpro_dir="";
+#my $orthology_dir="";
+my $eggnog_dir;
+my $cog_dir;
+my $kog_dir;
+my $orthology_extension="";
+my $pathways_dir="";
+my $aa_orf_file="";
+my $nt_orf_file="";
+my $background_image_file="";
+my $index_file="";
+my $export_subgroup="yes";
+my $overwrite_output="yes";
+my $report_pathways_dir;
+#my $report_orthology_dir;
+my $report_eggnog_dir;
+my $report_cog_dir;
+my $report_kog_dir;
+#componentes jota
+my $alienhunter_output_file = "";
+my $alienhunter_dir = "";
+my $infernal_output_file = "";
+my $infernal_dir = "";
+#my $rbs_output_file = "";
+my $rbs_dir = "";
+my $rnammer_dir = "";
+#my $transterm_output_file = "";
+my $transterm_dir = "";
+my $tcdb_dir = "";
+my $skews_dir = "";
+my $trf_dir = "";
+my $trna_dir = "";
+my $string_dir = "";
+my $mreps_dir = "";
+my $report_go_dir;
+my $go_file;
+my $report_csv_dir;
+my $csv_file;
+#local variables
+my @arguments;
+my $config;
+my $configFile;
+my $missingArgument=0;
+my $conf;
+my $databases_code;
+my $databases_dir;
+
+#
+#read configuration file
+#
+
+my $module=new EGeneUSP::Config($version);
+
+$module->initialize();
+
+$config=$module->config;
+#
+#check if any mandatory argument is missing
+#
+if (!exists($config->{"organism_name"})){
+    $missingArgument = 1;
+    print "Missing mandatory configuration argument:organism_name\n";
+}
+else {$organism_name = $config->{"organism_name"}};
+if (!exists($config->{"fasta_file"})){
+}
+else {$fasta_file = $config->{"fasta_file"}};
+if ($missingArgument) {
+    die "\n\nCannot run $0, mandatory configuration argument missing (see above)\n"
+}
+#
+#set optional arguments that were declared in configuration file
+#
+if (defined($config->{"component_name_list"})){
+   $component_name_list = $config->{"component_name_list"};
+}
+if (defined($config->{"FT_artemis_dir"})){
+   $FT_artemis_dir = $config->{"FT_artemis_dir"};
+}
+else{
+   $FT_artemis_dir = undef;
+}
+if (defined($config->{"FT_submission_dir"})){
+   $FT_submission_dir = $config->{"FT_submission_dir"};
+}
+else{
+   $FT_submission_dir = undef;
+}
+if (defined($config->{"FT_artemis_selected_dir"})){
+   $FT_artemis_selected_dir = $config->{"FT_artemis_selected_dir"};
+}
+else{
+   $FT_artemis_selected_dir = undef;
+}
+if (defined($config->{"html_dir"})){
+   $html_dir = $config->{"html_dir"};
+}
+else{
+   $html_dir= "html_dir";
+}
+if (defined($config->{"FT_submission_selected_dir"})){
+   $FT_submission_selected_dir = $config->{"FT_submission_selected_dir"};
+}
+else{
+    $FT_submission_selected_dir = undef;
+}
+if (defined($config->{"GFF_dir"})){
+   $GFF_dir = $config->{"GFF_dir"};
+}
+else{
+   $GFF_dir = undef;
+}
+if (defined($config->{"GFF_selected_dir"})){
+   $GFF_selected_dir = $config->{"GFF_selected_dir"};
+}
+else{
+   $GFF_selected_dir = undef;
+}
+if (defined($config->{"aa_fasta_dir"})){
+   $aa_fasta_dir = $config->{"aa_fasta_dir"};
+}
+if (defined($config->{"nt_fasta_dir"})){
+   $nt_fasta_dir = $config->{"nt_fasta_dir"};
+}
+if (defined($config->{"fasta_dir"})){
+   $fasta_dir = $config->{"fasta_dir"};
+}
+=pod
+if (defined($config->{"blast_dir"})){
+   $blast_dir = $config->{"blast_dir"};
+}
+=cut
+if (defined($config->{"rpsblast_dir"})){
+   $rpsblast_dir = $config->{"rpsblast_dir"};
+}
+if (defined($config->{"hmmer_dir"})){
+   $hmmer_dir = $config->{"hmmer_dir"};
+}
+if (defined($config->{"signalp_dir"})){
+   $signalp_dir = $config->{"signalp_dir"};
+}
+if (defined($config->{"tmhmm_dir"})){
+   $tmhmm_dir = $config->{"tmhmm_dir"};
+}
+if (defined($config->{"phobius_dir"})){
+   $phobius_dir = $config->{"phobius_dir"};
+}
+if (defined($config->{"dgpi_dir"})){
+   $dgpi_dir = $config->{"dgpi_dir"};
+}
+if (defined($config->{"predgpi_dir"})){
+   $predgpi_dir = $config->{"predgpi_dir"};
+}
+if (defined($config->{"bigpi_dir"})){
+   $bigpi_dir = $config->{"bigpi_dir"};
+}
+if (defined($config->{"interpro_dir"})){
+   $interpro_dir = $config->{"interpro_dir"};
+}
+if (defined($config->{"eggnog_dir"})){
+   $eggnog_dir = $config->{"eggnog_dir"};
+}
+if (defined($config->{"cog_dir"})){
+   $cog_dir = $config->{"cog_dir"};
+}
+if (defined($config->{"kog_dir"})){
+   $kog_dir = $config->{"kog_dir"};
+}
+if (defined($config->{"report_eggnog_dir"})){
+   $report_eggnog_dir = $config->{"report_eggnog_dir"};
+}
+if (defined($config->{"report_cog_dir"})){
+   $report_cog_dir = $config->{"report_cog_dir"};
+}
+if (defined($config->{"report_kog_dir"})){
+   $report_kog_dir = $config->{"report_kog_dir"};
+}
+if (defined($config->{"pathways_dir"})){
+   $pathways_dir = $config->{"pathways_dir"};
+}
+if (defined($config->{"report_pathways_dir"})){
+   $report_pathways_dir = $config->{"report_pathways_dir"};
+}
+if (defined($config->{"aa_orf_file"})){
+   $aa_orf_file = $config->{"aa_orf_file"};
+}
+if (defined($config->{"nt_orf_file"})){
+   $nt_orf_file = $config->{"nt_orf_file"};
+}
+if (defined($config->{"background_image_file"})){
+   $background_image_file = $config->{"background_image_file"};
+}
+if (defined($config->{"index_file"})){
+   $index_file = $config->{"index_file"};
+}
+else{
+   $index_file = "index.html";
+}
+if (defined($config->{"export_subgroup"})){
+   $export_subgroup = $config->{"export_subgroup"};
+}
+if (defined($config->{"overwrite_output"})){
+   $overwrite_output = $config->{"overwrite_output"};
+}
+#componentes do Jota
+if (defined($config->{"alienhunter_output_file"})){
+   $alienhunter_output_file = $config->{"alienhunter_output_file"};
+}
+if (defined($config->{"alienhunter_dir"})){
+   $alienhunter_dir = $config->{"alienhunter_dir"};
+}
+if (defined($config->{"infernal_output_file"})){
+   $infernal_output_file = $config->{"infernal_output_file"};
+}
+if (defined($config->{"infernal_dir"})){
+   $infernal_dir= $config->{"infernal_dir"};
+}
+if (defined($config->{"rbs_dir"})){
+   $rbs_dir= $config->{"rbs_dir"};
+}
+if (defined($config->{"rnammer_dir"})){
+   $rnammer_dir= $config->{"rnammer_dir"};
+}
+if (defined($config->{"transterm_dir"})){
+   $transterm_dir= $config->{"transterm_dir"};
+}
+if (defined($config->{"tcdb_dir"})){
+   $tcdb_dir= $config->{"tcdb_dir"};
+}
+if (defined($config->{"skews_dir"})){
+   $skews_dir = $config->{"skews_dir"};
+}
+if (defined($config->{"trf_dir"})){
+   $trf_dir = $config->{"trf_dir"};
+}
+
+if (defined($config->{"trna_dir"})){
+   $trna_dir = $config->{"trna_dir"};
+}
+
+if (defined($config->{"string_dir"})){
+   $string_dir = $config->{"string_dir"};
+}
+
+if (defined($config->{"mreps_dir"})){
+   $mreps_dir = $config->{"mreps_dir"};
+}
+
+if (defined($config->{"report_go_dir"})){
+   $report_go_dir = $config->{"report_go_dir"};
+}
+
+if (defined($config->{"go_file"})){
+   $go_file = $config->{"go_file"};
+}
+
+if (defined($config->{"database_code_list"})){
+   $databases_code = $config->{"database_code_list"};
+}
+
+if (defined($config->{"blast_dir_list"})){
+   $databases_dir = $config->{"blast_dir_list"};
+}
+if (defined($config->{"report_csv_dir"})){
+   $report_csv_dir = $config->{"report_csv_dir"};
+}
+if (defined($config->{"csv_file"})){
+   $csv_file = $config->{"csv_file"};
+}
+
+
+
+#
+# ==> END OF AUTO GENERATED CODE 
+#
+
+#apaga diretorios antigos com fastas
+if(-d "$html_dir/$fasta_dir" && -d "$html_dir/$aa_fasta_dir" && -d "$html_dir/$nt_fasta_dir"){
+    !system("rm -r $html_dir/$fasta_dir $html_dir/$aa_fasta_dir $html_dir/$nt_fasta_dir")
+	or die "Could not removed directories\n";
+}
+
+#separa sequencias do multifasta e cria diretorio
+if(not -d $html_dir){
+    !system("mkdir $html_dir")
+        or die "Could not created directory $html_dir\n";
+}
+if(not -d "$html_dir/$fasta_dir"){
+    !system("mkdir $html_dir/$fasta_dir")
+        or die "Could not created directory $html_dir/$fasta_dir\n";
+}
+
+$/ = ">";
+
+my $seq;
+
+#separa ORFs em aa do multifasta aa
+if(not -d "$html_dir/$aa_fasta_dir"){
+    !system("mkdir $html_dir/$aa_fasta_dir")
+        or die "Could not created directory $html_dir/$aa_fasta_dir\n";
+}
+
+if($aa_orf_file ne ""){
+    open(FILE_AA,"$aa_orf_file")
+	or die "Could not open file $aa_orf_file\n";
+}
+
+#separa ORFs nt do multifasta nt
+if(not -d "$html_dir/$nt_fasta_dir"){
+    !system("mkdir $html_dir/$nt_fasta_dir")
+        or die "Could not created directory $html_dir/$nt_fasta_dir\n";
+}
+
+if($nt_orf_file ne ""){
+    open(FILE,"$nt_orf_file")
+	or die "Could not open file $nt_orf_file\n";
+}
+
+$/ = ">";
+
+
+my $name;
+my $seq;
+my $new_file;
+my $name1;
+my $preffix;
+#termina funcao para separar sequencias nt das ORFs
+
+my $output_seqs;
+my $count = 0;
+my $count_ev = 0;
+my $count_dna;
+
+#prefix_name for sequence
+my $prefix_name;
+my $sequence;
+
+my %ip_id;
+my $tmhmm_result = "";
+my $signalP_result = "";
+my $phobius_result = "";
+my $dgpi_result = "";
+my $predgpi_result = "";
+my $bigpi_result = "";
+my $blast_result = "";
+my $rpsblast_result = "";
+my $hmmer_result = "";
+my $interpro_result = "";
+my $ortholgy_result = "";
+my $GO_result = "";
+my $header;
+my $locus_tag;
+my $locus = 0;
+
+my @components_name = split (';',$component_name_list);
+#push @components_name,"go_terms";
+my %comp_names = map {$_ => 1} @components_name;
+
+my @comp_dna;
+my @comp_ev;
+foreach my $c (sort @components_name){   
+    if($c eq "annotation_alienhunter.pl" || $c eq "annotation_skews.pl" || $c eq "annotation_infernal.pl" || $c eq "annotation_rbsfinder.pl" || $c eq "annotation_rnammer.pl" || $c eq "annotation_transterm.pl" || $c eq "annotation_trf.pl" || $c eq "annotation_trna.pl" || $c eq "annotation_string.pl" || $c eq "annotation_mreps.pl" || $c eq "annotation_trna.pl" || $c eq "annotation_alienhunter.pl"){
+    	$c =~ s/annotation_//g;
+    	$c =~ s/.pl//g;
+	push @comp_dna, $c;	
+    }
+    else{
+	$c =~ s/annotation_//g;
+        $c =~ s/.pl//g;
+	push @comp_ev, $c;
+    }
+}
+
+my @databases_blast = split(";", $databases_code);
+my @blast_dirs = split(";", $databases_dir);
+#
+# Read ALL Sequence Objects and sort by name for nice display
+#
+
+my @sequence_objects;
+my $index=0;
+
+my $strlen=4;
+my $count_seq = 1;
+
+my $sequence_object  = new EGeneUSP::SequenceObject();
+my %hash_dna;
+my @seq_links;
+my $seq_count = 0;
+while($sequence_object->read())
+{
+    ++$seq_count;
+    $count_ev = 0;
+    $count_dna = 0;
+    
+}
+
+
+
+
+
+
+#my $help;
+my $nameProject = "html_dir";
+my $filepath =  `pwd`;
+chomp $filepath;
+$filepath .= "/".$nameProject;
+my $databaseFilepath = $filepath . "/database.db";
+#my $optret = GetOptions(
+#	"h|help"     => \$help,
+#	"name=s"     => \$nameProject,
+#	"database=s" => \$databaseFilepath
+#);
+
+#my $helpMessage = <<HELP;
+#
+###### report_html_db.pl - In development stage 19/06/2016 - Wendel Hime #####
+#
+#Project of scientific iniciation used to generate site based on content of evidences and results of analysis.
+#
+#Usage:  report_html_db.pl -name <Name site>
+#
+#
+#Mandatory parameters:
+#
+#Optional parameters:
+#
+#-h          Print this help message and exit
+#
+#-name = html_dir      Name of the site or project to be created
+#
+#-database = database.db     Filepath to be used like static contents of the project
+#
+#HELP
+#
+#if ( $help ) {
+#	print $helpMessage;
+#	exit;
+#}
 
 #path catalyst file
 my $pathCatalyst = `which catalyst.pl`;
@@ -58,6 +574,7 @@ chomp $pathCatalyst;
 chmod( "0755", $pathCatalyst );
 
 #create project
+print "Creating project...\n";
 print `$pathCatalyst $nameProject`;
 my $lowCaseName = $nameProject;
 $lowCaseName = lc $lowCaseName;
@@ -66,6 +583,7 @@ $lowCaseName = lc $lowCaseName;
 #chmod("111", "$nameProject/script/".$lowCaseName."_server.pl");
 #chmod("111", "$nameProject/script/".$lowCaseName."_create.pl");
 #create view
+print "Creating view\n";
 `./$nameProject/script/"$lowCaseName"_create.pl view TT TT`;
 my $fileHandler;
 open( $fileHandler, "<", "$nameProject/lib/$nameProject/View/TT.pm" );
@@ -74,6 +592,7 @@ my $contentToBeChanged =
 my $data = do { local $/; <$fileHandler> };
 $data =~ s/__\w+->config\(([\w\s=>''"".,\/]*)\s\);/$contentToBeChanged/igm;
 close($fileHandler);
+print "Editing view";
 writeFile( "$nameProject/lib/$nameProject/View/TT.pm", $data );
 
 my $scriptSQL = <<SQL;
@@ -872,12 +1391,15 @@ if ( -e $databaseFilepath ) {
 }
 
 #create the file sql to be used
+print "Creating SQL file\n";
 writeFile( "script.sql", $scriptSQL );
 
 #create file database
+print "Creating database file\n";
 `sqlite3 $databaseFilepath < script.sql`;
 
 #create models project
+print "Creating models\n";
 `$nameProject/script/"$lowCaseName"_create.pl model Model DBIC::Schema "$nameProject"::Schema create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON"`;
 
 #create controllers project
@@ -886,6 +1408,7 @@ my @controllers = (
 	"Downloads", "Help",  "About"
 );
 foreach my $controller (@controllers) {
+	print "Creating controller $controller\n";
 	`$nameProject/script/"$lowCaseName"_create.pl controller $controller`;
 
 #se nome do controller possuir letra maiuscula no meio da string, adicionar - e passar para low case
@@ -947,6 +1470,7 @@ s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*/$
 }
 
 #Descompacta assets
+print "Copy files assets\n";
 `tar -zxf assets.tar.gz`;
 `cp -r assets $nameProject/root/`;
 `rm -Rf assets`;
@@ -2623,6 +3147,7 @@ MENU
 	}
 );
 
+print "Creating html views\n";
 foreach my $directory ( keys %contentHTML ) {
 	if ( !( -e "$nameProject/root/$lowCaseName/$directory" ) ) {
 		`mkdir -p "$nameProject/root/$lowCaseName/$directory"`;
@@ -2634,6 +3159,7 @@ foreach my $directory ( keys %contentHTML ) {
 }
 
 #Create file wrapper
+print "Creating wrapper\n";
 my $wrapper = <<WRAPPER;
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -2670,7 +3196,7 @@ sub index :Path :Args(0) {
 
 =head2 default
 ";
-
+print "Editing root file\n";
 open( $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm" );
 $data = do { local $/; <$fileHandler> };
 $data =~

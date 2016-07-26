@@ -1,0 +1,2051 @@
+FT   repeat_region   1505..1525
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 42"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CAGCCAGTTC(2.1)"
+FT                   /color=000 255 000
+
+FT   repeat_region   1799..1812
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="ATGGCCG(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   7236..7252
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 34"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="TTACCT(2.8)"
+FT                   /color=000 255 000
+
+FT   repeat_region   10914..10926
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="ACCTTT(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   13159..13172
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GATGAAT(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   17706..17721
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 32"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="AGATGCAC(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   18561..18576
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 32"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="TACTCAA(2.3)"
+FT                   /color=000 255 000
+
+FT   tRNA            complement(18910..18838)
+FT                   /locus_tag="Bact_46"
+FT                   /note="Bact_46"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_3_8"
+FT                   /gene="tRNA-Thr(GGT)"
+FT                   /product="Threonine (GGT) transfer RNA"
+FT                   /anticodon=(pos:18877..18875,aa:Thr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 81.23"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(15152..15080)
+FT                   /locus_tag="Bact_35"
+FT                   /note="Bact_35"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_3_9"
+FT                   /gene="tRNA-Thr(TGT)"
+FT                   /product="Threonine (TGT) transfer RNA"
+FT                   /anticodon=(pos:15119..15117,aa:Thr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 82.45"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(15060..14979)
+FT                   /locus_tag="Bact_33"
+FT                   /note="Bact_33"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_3_10"
+FT                   /gene="tRNA-Tyr(GTA)"
+FT                   /product="Tyrosine (GTA) transfer RNA"
+FT                   /anticodon=(pos:15026..15024,aa:Tyr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 57.88"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(14875..14804)
+FT                   /locus_tag="Bact_31"
+FT                   /note="Bact_31"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_3_11"
+FT                   /gene="tRNA-Gly(TCC)"
+FT                   /product="Glycine (TCC) transfer RNA"
+FT                   /anticodon=(pos:14842..14840,aa:Gly)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 65.97"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(14794..14722)
+FT                   /locus_tag="Bact_30"
+FT                   /note="Bact_30"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_3_12"
+FT                   /gene="tRNA-Thr(GGT)"
+FT                   /product="Threonine (GGT) transfer RNA"
+FT                   /anticodon=(pos:14761..14759,aa:Thr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 82.49"
+FT                   /color=255 000 000
+
+FT   misc_feature    15000..23419
+FT                   /note="alien_15000"
+FT                   /inference="ab initio prediction:AlienHunter:1.7"
+FT                   /note="score is 72.252, threshold is 43.592"
+FT                   /color=152 152 152
+
+FT   ncRNA           complement(864..751)
+FT                   /locus_tag="Bact_03"
+FT                   /label="Alpha_RBS"
+FT                   /note="Bact_03"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_14"
+FT                   /ncRNA_class="other"
+FT                   /product="Alpha operon ribosome binding site"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00140, Rfam type: Cis-reg;, score is 105.8, e-value is 1.7e-25, bias is 0.5"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(18706..18649)
+FT                   /locus_tag="Bact_43"
+FT                   /label="STnc370"
+FT                   /note="Bact_43"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_15"
+FT                   /ncRNA_class="other"
+FT                   /product="Enterobacterial sRNA STnc370"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF02064, Rfam type: Gene;sRNA;, score is 27.1, e-value is 0.14, bias is 0.1"
+FT                   /color=123 234 255
+
+FT   ncRNA           18625..18686
+FT                   /locus_tag="Bact_41"
+FT                   /label="Phe_leader"
+FT                   /note="Bact_41"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_16"
+FT                   /ncRNA_class="other"
+FT                   /product="Phenylalanine leader peptide"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01859, Rfam type: Cis-reg;leader;, score is 20.2, e-value is 0.74, bias is 0.6"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(14828..14812)
+FT                   /locus_tag="Bact_32"
+FT                   /label="beta_tmRNA"
+FT                   /note="Bact_32"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_17"
+FT                   /ncRNA_class="other"
+FT                   /product="Betaproteobacteria transfer-messenger RNA"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01850, Rfam type: Gene;, score is 12.8, e-value is 1.2, bias is 0.4"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(15074..15030)
+FT                   /locus_tag="Bact_34"
+FT                   /label="RF_site9"
+FT                   /note="Bact_34"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_18"
+FT                   /ncRNA_class="other"
+FT                   /product="Gag/pro ribosomal frameshift site"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01098, Rfam type: Cis-reg;frameshift_element;, score is 22.1, e-value is 1.4, bias is 1.7"
+FT                   /color=123 234 255
+
+FT   ncRNA           18587..18685
+FT                   /locus_tag="Bact_40"
+FT                   /label="RNAI"
+FT                   /note="Bact_40"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_19"
+FT                   /ncRNA_class="antisense_RNA"
+FT                   /product="RNAI"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00106, Rfam type: Gene;antisense;, score is 18.4, e-value is 2.3, bias is 2.6"
+FT                   /color=123 234 255
+
+FT   ncRNA           1111..1179
+FT                   /locus_tag="Bact_05"
+FT                   /label="SNORD59"
+FT                   /note="Bact_05"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_20"
+FT                   /ncRNA_class="snoRNA"
+FT                   /product="Small nucleolar RNA SNORD59"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00273, Rfam type: Gene;snRNA;snoRNA;CD-box;, score is 19.5, e-value is 4.5, bias is 0.2"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(8162..8069)
+FT                   /locus_tag="Bact_20"
+FT                   /label="mir-183"
+FT                   /note="Bact_20"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_21"
+FT                   /ncRNA_class="miRNA"
+FT                   /product="microRNA mir-183"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00663, Rfam type: Gene;miRNA;, score is 16.9, e-value is 5.7, bias is 0.5"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(18695..18650)
+FT                   /locus_tag="Bact_44"
+FT                   /label="HIV_FE"
+FT                   /note="Bact_44"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_22"
+FT                   /ncRNA_class="other"
+FT                   /product="HIV Ribosomal frameshift signal"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00480, Rfam type: Cis-reg;frameshift_element;, score is 21.2, e-value is 6.1, bias is 0.1"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(23039..22993)
+FT                   /locus_tag="Bact_53"
+FT                   /label="sR60"
+FT                   /note="Bact_53"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_23"
+FT                   /ncRNA_class="snoRNA"
+FT                   /product="Small nucleolar RNA sR60"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01309, Rfam type: Gene;snRNA;snoRNA;CD-box;, score is 16.1, e-value is 9.7, bias is 0.3"
+FT                   /color=123 234 255
+
+FT   rRNA            complement(18696..18810)
+FT                   /locus_tag="Bact_45"
+FT                   /label="5S"
+FT                   /note="Bact_45"
+FT                   /product="5S ribosomal RNA"
+FT                   /note="internal name: Bacteria_rRNA_prediction_annotation_rnammer.pl_6_24"
+FT                   /inference="ab initio prediction:RNAmmer:1.2"
+FT                   /note="score is 87.8"
+FT                   /color=254 234 255
+
+FT   rRNA            complement(18963..21873)
+FT                   /locus_tag="Bact_47"
+FT                   /label="23S"
+FT                   /note="Bact_47"
+FT                   /product="23S ribosomal RNA"
+FT                   /note="internal name: Bacteria_rRNA_prediction_annotation_rnammer.pl_6_25"
+FT                   /inference="ab initio prediction:RNAmmer:1.2"
+FT                   /note="score is 3651.1"
+FT                   /color=254 234 255
+
+FT   rRNA            complement(21945..23419)
+FT                   /locus_tag="Bact_49"
+FT                   /label="16S"
+FT                   /note="Bact_49"
+FT                   /product="16S ribosomal RNA"
+FT                   /note="internal name: Bacteria_rRNA_prediction_annotation_rnammer.pl_6_26"
+FT                   /inference="ab initio prediction:RNAmmer:1.2"
+FT                   /note="score is 1775.9"
+FT                   /color=254 234 255
+
+FT   terminator      6604..6622
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_6604"
+FT                   /note="hairpin sequence= GATAGAAAAAATAAA CGGCTCA TCGCC TGAGCCG TTTACTCTATTCGAG, confidence = 84, hairpin score = -10.3, tail score = -3.93262, observation = opp_overlap 6600, overlap 6599"
+FT                   /color=100 100 100
+
+FT   terminator      10586..10598
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_10586"
+FT                   /note="hairpin sequence= TTCGGAAACAGTCAG CGCGC CTT GCGCG TCTTTCATTACCAAT, confidence = 79, hairpin score = -10.5, tail score = -3.54414, observation = opp_overlap 10581, overlap 10585"
+FT                   /color=100 100 100
+
+FT   terminator      11068..11078
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_11068"
+FT                   /note="hairpin sequence= GCTTTAGCGAAATGG CCTG CTT CAGG TTTGTTTATACGGTT, confidence = 80, hairpin score = -6.8, tail score = -4.56969"
+FT                   /color=100 100 100
+
+FT   terminator      11872..11895
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_11872"
+FT                   /note="hairpin sequence= GAGCATGAAACAAGA TGCCCTAACT TAAC AGATAGGGCA TTTGTAACTATTCTC, confidence = 80, hairpin score = -9.6, tail score = -3.98842, observation = opp_overlap 11872 11870 11867"
+FT                   /color=100 100 100
+
+FT   terminator      18659..18678
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_18659"
+FT                   /note="hairpin sequence= TATTAAATGCAAAAA GGCCACCC TTCT GGATGGCC TTTTTGTCTCAAAAT, confidence = 100, hairpin score = -9.2, tail score = -4.9725, observation = opp_overlap 18659"
+FT                   /color=100 100 100
+
+FT   terminator      20578..20594
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_20578"
+FT                   /note="hairpin sequence= TTGGTCTTCCGGCGA GCGGGT TTTTC ACCCGC TTTATCGTTACTTAT, confidence = 79, hairpin score = -9.4, tail score = -4.10934, observation = overlap 20570"
+FT                   /color=100 100 100
+
+FT   CDS             complement(22..411)
+FT                   /locus_tag="Bact_01"
+FT                   /note="Bact_01"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_33"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MAKAPIRARKRVRKQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTPFAAQVAAERCAEAVKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNGCRPPKKRRV"
+FT                   /transl_table="4"
+FT                   /note="score is 1.64"
+FT                   /product="MULTISPECIES: 30S ribosomal protein S11 [Enterobacteriaceae]"
+FT                   /inference="similar to AA sequence:INSD:WP_002919257.1"
+FT                   /note="similar to INSD:WP_002919257.1:percent identity is 100.00, e-value is 0.00, score is 234.00"
+FT                   /inference="similar to AA sequence:INSD:WP_006657026.1"
+FT                   /note="similar to INSD:WP_006657026.1:percent identity is 99.22, e-value is 0.00, score is 234.00"
+FT                   /note="CDD:PRK05309, 30S ribosomal protein S11; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 248.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05309"
+FT                   /note="CDD:COG0100, RpsK, Ribosomal protein S11, method is RPS-BLAST+, version is 2.2.31+, score is 214.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0100"
+FT                   /inference="protein motif:InterPro:IPR001971"
+FT                   /inference="protein motif:InterPro:IPR019981"
+FT                   /inference="protein motif:InterPro:IPR018102"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="KEGG:K02948"
+FT                   /note="KEGG:K02948,  small subunit ribosomal protein S11"
+FT                   /color=0 0 255
+
+FT   CDS             complement(427..783)
+FT                   /locus_tag="Bact_02"
+FT                   /note="Bact_02"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_34"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="VARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAKYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK"
+FT                   /transl_table="4"
+FT                   /note="score is 2.92"
+FT                   /product="MULTISPECIES: 30S ribosomal protein S13 [Photorhabdus]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148774.1"
+FT                   /note="similar to INSD:WP_011148774.1:percent identity is 99.15, e-value is 0.00, score is 234.00"
+FT                   /inference="similar to AA sequence:INSD:EYU13806.1"
+FT                   /note="similar to INSD:EYU13806.1:percent identity is 98.31, e-value is 0.00, score is 233.00"
+FT                   /note="CDD:PRK05179, rpsM, 30S ribosomal protein S13; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 222.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05179"
+FT                   /note="CDD:TIGR03631, 30S ribosomal protein S13, method is RPS-BLAST+, version is 2.2.31+, score is 195.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR03631"
+FT                   /inference="protein motif:InterPro:IPR001892"
+FT                   /inference="protein motif:InterPro:IPR027437"
+FT                   /inference="protein motif:InterPro:IPR019980"
+FT                   /inference="protein motif:InterPro:IPR018269"
+FT                   /inference="protein motif:InterPro:IPR010979"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:RNA binding (GO:0003723)"
+FT                   /note="GO_function:nucleic acid binding (GO:0003676)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG92580"
+FT                   /note="eggNOG:bactNOG92580, J, Located at the top of the head of the 30S subunit, it contacts several helices of the 16S rRNA. In the 70S ribosome it contacts the 23S rRNA (bridge B1a) and protein L5 of the 50S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="eggNOG:gproNOG13280"
+FT                   /note="eggNOG:gproNOG13280, J, Located at the top of the head of the 30S subunit, it contacts several helices of the 16S rRNA. In the 70S ribosome it contacts the 23S rRNA (bridge B1a) and protein L5 of the 50S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="eggNOG:COG0099"
+FT                   /note="eggNOG:COG0099, J, Located at the top of the head of the 30S subunit, it contacts several helices of the 16S rRNA. In the 70S ribosome it contacts the 23S rRNA (bridge B1a) and protein L5 of the 50S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="eggNOG:proNOG42873"
+FT                   /note="eggNOG:proNOG42873, J, Located at the top of the head of the 30S subunit, it contacts several helices of the 16S rRNA. In the 70S ribosome it contacts the 23S rRNA (bridge B1a) and protein L5 of the 50S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="KEGG:K02952"
+FT                   /note="KEGG:K02952,  small subunit ribosomal protein S13"
+FT                   /color=0 0 255
+
+FT   CDS             complement(1082..2413)
+FT                   /locus_tag="Bact_04"
+FT                   /note="Bact_04"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_35"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MAKQPGLDFQSAKGGLGELKRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTIIEMFNMFSGGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISIIIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLMMSSQYESALKKANLKGYNR"
+FT                   /transl_table="4"
+FT                   /note="score is 2.95"
+FT                   /product="MULTISPECIES: preprotein translocase subunit SecY [Photorhabdus]"
+FT                   /inference="protein motif:Phobius:1.01"
+FT                   /note="10 probable transmembrane helices predicted by Phobius"
+FT                   /inference="protein motif:TMHMM:2.0"
+FT                   /note="10 probable transmembrane helices predicted by TMHMM"
+FT                   /inference="similar to AA sequence:INSD:WP_011148775.1"
+FT                   /note="similar to INSD:WP_011148775.1:percent identity is 100.00, e-value is 0.00, score is 794.00"
+FT                   /inference="similar to AA sequence:INSD:EYU13808.1"
+FT                   /note="similar to INSD:EYU13808.1:percent identity is 99.77, e-value is 0.00, score is 794.00"
+FT                   /note="CDD:PRK09204, secY, preprotein translocase subunit SecY; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 616.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK09204"
+FT                   /note="CDD:COG0201, SecY, Preprotein translocase subunit SecY, method is RPS-BLAST+, version is 2.2.31+, score is 479.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0201"
+FT                   /inference="protein motif:InterPro:IPR026593"
+FT                   /inference="protein motif:InterPro:IPR030659"
+FT                   /inference="protein motif:InterPro:IPR002208"
+FT                   /inference="protein motif:InterPro:IPR023201"
+FT                   /note="GO_component:membrane (GO:0016020)"
+FT                   /note="GO_process:protein transport (GO:0015031)"
+FT                   /db_xref="eggNOG:bactNOG01136"
+FT                   /note="eggNOG:bactNOG01136, U, The central subunit of the protein translocation channel SecYEG. Consists of two halves formed by TMs 1-5 and 6-10. These two domains form a lateral gate at the front which open onto the bilayer between TMs 2 and 7, and are clamped together by SecE at the back. The channel is closed by both a pore ring composed of hydrophobic SecY resides and a short helix (helix 2A) on the extracellular side of the membrane which forms a plug. The plug probably moves laterally to allow the channel to open. The ring and the pore may move independently (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG01035"
+FT                   /note="eggNOG:gproNOG01035, U, The central subunit of the protein translocation channel SecYEG. Consists of two halves formed by TMs 1-5 and 6-10. These two domains form a lateral gate at the front which open onto the bilayer between TMs 2 and 7, and are clamped together by SecE at the back. The channel is closed by both a pore ring composed of hydrophobic SecY resides and a short helix (helix 2A) on the extracellular side of the membrane which forms a plug. The plug probably moves laterally to allow the channel to open. The ring and the pore may move independently (By similarity)"
+FT                   /db_xref="eggNOG:COG0201"
+FT                   /note="eggNOG:COG0201, U, The central subunit of the protein translocation channel SecYEG. Consists of two halves formed by TMs 1-5 and 6-10. These two domains form a lateral gate at the front which open onto the bilayer between TMs 2 and 7, and are clamped together by SecE at the back. The channel is closed by both a pore ring composed of hydrophobic SecY resides and a short helix (helix 2A) on the extracellular side of the membrane which forms a plug. The plug probably moves laterally to allow the channel to open. The ring and the pore may move independently (By similarity)"
+FT                   /db_xref="eggNOG:proNOG00697"
+FT                   /note="eggNOG:proNOG00697, U, The central subunit of the protein translocation channel SecYEG. Consists of two halves formed by TMs 1-5 and 6-10. These two domains form a lateral gate at the front which open onto the bilayer between TMs 2 and 7, and are clamped together by SecE at the back. The channel is closed by both a pore ring composed of hydrophobic SecY resides and a short helix (helix 2A) on the extracellular side of the membrane which forms a plug. The plug probably moves laterally to allow the channel to open. The ring and the pore may move independently (By similarity)"
+FT                   /db_xref="KEGG:K03076"
+FT                   /note="KEGG:K03076,  preprotein translocase subunit SecY"
+FT                   /color=0 0 255
+
+FT   CDS             complement(2421..2855)
+FT                   /locus_tag="Bact_06"
+FT                   /note="Bact_06"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_36"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MRLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRLPKFGFTSRKAMVTAEVRLSDFAAVEGDIIDLNALKAANVVGTQIEFAKVILSGEINRAVTVRGLRVTKGARAAIEAAGGKIEE"
+FT                   /transl_table="4"
+FT                   /note="score is 5.44"
+FT                   /product="50S ribosomal protein L15 [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148776.1"
+FT                   /note="similar to INSD:WP_011148776.1:percent identity is 98.44, e-value is 0.00, score is 174.00"
+FT                   /inference="similar to AA sequence:INSD:EYU13809.1"
+FT                   /note="similar to INSD:EYU13809.1:percent identity is 98.44, e-value is 0.00, score is 174.00"
+FT                   /note="CDD:PRK05592, rplO, 50S ribosomal protein L15; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 227.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05592"
+FT                   /note="CDD:TIGR01071, bacterial/organelle, method is RPS-BLAST+, version is 2.2.31+, score is 179.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR01071"
+FT                   /inference="protein motif:InterPro:IPR030878"
+FT                   /inference="protein motif:InterPro:IPR021131"
+FT                   /inference="protein motif:InterPro:IPR005749"
+FT                   /inference="protein motif:InterPro:IPR001196"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:large ribosomal subunit (GO:0015934)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG238709"
+FT                   /note="eggNOG:bactNOG238709, J, Binds to the 23S rRNA (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG13538"
+FT                   /note="eggNOG:gproNOG13538, J, Binds to the 23S rRNA (By similarity)"
+FT                   /db_xref="eggNOG:COG0200"
+FT                   /note="eggNOG:COG0200, J, Binds to the 23S rRNA (By similarity)"
+FT                   /db_xref="eggNOG:proNOG103125"
+FT                   /note="eggNOG:proNOG103125, J, Binds to the 23S rRNA (By similarity)"
+FT                   /db_xref="KEGG:K02876"
+FT                   /note="KEGG:K02876,  large subunit ribosomal protein L15"
+FT                   /color=0 0 255
+
+FT   CDS             complement(2859..3038)
+FT                   /locus_tag="Bact_07"
+FT                   /note="Bact_07"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_37"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MAKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE"
+FT                   /transl_table="4"
+FT                   /note="score is 1.62"
+FT                   /product="LSU ribosomal protein L30P"
+FT                   /inference="similar to AA sequence:INSD:EYU13810.1"
+FT                   /note="similar to INSD:EYU13810.1:percent identity is 100.00, e-value is 0.00, score is 119.00"
+FT                   /inference="similar to AA sequence:INSD:WP_015836270.1"
+FT                   /note="similar to INSD:WP_015836270.1:percent identity is 98.31, e-value is 0.00, score is 118.00"
+FT                   /note="CDD:PRK05611, rpmD, 50S ribosomal protein L30; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 105.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05611"
+FT                   /note="CDD:cd01658, which is found in eukaryotes and prokaryotes but not in archaea, is one of the smallest ribosomal proteins with a molecular mass of about 7kDa, method is RPS-BLAST+, version is 2.2.31+, score is 86.30, e-value is 0.00"
+FT                   /db_xref="CDD:cd01658"
+FT                   /inference="protein motif:InterPro:IPR005996"
+FT                   /inference="protein motif:InterPro:IPR016082"
+FT                   /inference="protein motif:InterPro:IPR018038"
+FT                   /note="GO_component:large ribosomal subunit (GO:0015934)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG138680"
+FT                   /note="eggNOG:bactNOG138680, J, 50S ribosomal protein L30"
+FT                   /db_xref="eggNOG:gproNOG22346"
+FT                   /note="eggNOG:gproNOG22346, J, 50S ribosomal protein L30"
+FT                   /db_xref="eggNOG:COG1841"
+FT                   /note="eggNOG:COG1841, J, 50S ribosomal protein L30"
+FT                   /db_xref="eggNOG:proNOG62107"
+FT                   /note="eggNOG:proNOG62107, J, 50S ribosomal protein L30"
+FT                   /db_xref="KEGG:K02907"
+FT                   /note="KEGG:K02907,  large subunit ribosomal protein L30"
+FT                   /color=0 0 255
+
+FT   CDS             complement(3044..3544)
+FT                   /locus_tag="Bact_08"
+FT                   /note="Bact_08"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_38"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MAHIEKQAGELQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAIQKAMEKARRNMKTVALNSGTLYHPVKGAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGVRNVLAKTYGSTNPINVVRATLDALDSMKSPEMVAAKRGKSVEEILG"
+FT                   /transl_table="4"
+FT                   /note="score is 3.32"
+FT                   /product="30S ribosomal protein S5 [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148778.1"
+FT                   /note="similar to INSD:WP_011148778.1:percent identity is 100.00, e-value is 0.00, score is 333.00"
+FT                   /inference="similar to AA sequence:INSD:CDG16005.1"
+FT                   /note="similar to INSD:CDG16005.1:percent identity is 99.40, e-value is 0.00, score is 333.00"
+FT                   /note="CDD:PRK00550, rpsE, 30S ribosomal protein S5; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 289.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00550"
+FT                   /note="CDD:COG0098, RpsE, Ribosomal protein S5, method is RPS-BLAST+, version is 2.2.31+, score is 243.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0098"
+FT                   /inference="protein motif:InterPro:IPR014720"
+FT                   /inference="protein motif:InterPro:IPR014721"
+FT                   /inference="protein motif:InterPro:IPR005712"
+FT                   /inference="protein motif:InterPro:IPR013810"
+FT                   /inference="protein motif:InterPro:IPR005324"
+FT                   /inference="protein motif:InterPro:IPR020568"
+FT                   /inference="protein motif:InterPro:IPR018192"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_component:small ribosomal subunit (GO:0015935)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:RNA binding (GO:0003723)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG52253"
+FT                   /note="eggNOG:bactNOG52253, J, Located at the back of the 30S subunit body where it stabilizes the conformation of the head with respect to the body (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG02182"
+FT                   /note="eggNOG:gproNOG02182, J, Located at the back of the 30S subunit body where it stabilizes the conformation of the head with respect to the body (By similarity)"
+FT                   /db_xref="eggNOG:COG0098"
+FT                   /note="eggNOG:COG0098, J, Located at the back of the 30S subunit body where it stabilizes the conformation of the head with respect to the body (By similarity)"
+FT                   /db_xref="eggNOG:proNOG01789"
+FT                   /note="eggNOG:proNOG01789, J, Located at the back of the 30S subunit body where it stabilizes the conformation of the head with respect to the body (By similarity)"
+FT                   /db_xref="KEGG:K02988"
+FT                   /note="KEGG:K02988,  small subunit ribosomal protein S5"
+FT                   /color=0 0 255
+
+FT   CDS             complement(3559..3912)
+FT                   /locus_tag="Bact_09"
+FT                   /note="Bact_09"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_39"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MDKKAARIRRATRARRKLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF"
+FT                   /transl_table="4"
+FT                   /note="score is 3.21"
+FT                   /product="MULTISPECIES: 50S ribosomal protein L18 [Photorhabdus]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148779.1"
+FT                   /note="similar to INSD:WP_011148779.1:percent identity is 99.15, e-value is 0.00, score is 202.00"
+FT                   /inference="similar to AA sequence:INSD:CDL84387.1"
+FT                   /note="similar to INSD:CDL84387.1:percent identity is 95.00, e-value is 0.00, score is 196.00"
+FT                   /note="CDD:PRK05593, rplR, 50S ribosomal protein L18; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 158.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05593"
+FT                   /note="CDD:COG0256, RplR, Ribosomal protein L18, method is RPS-BLAST+, version is 2.2.31+, score is 137.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0256"
+FT                   /inference="protein motif:InterPro:IPR005484"
+FT                   /inference="protein motif:InterPro:IPR004389"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG115214"
+FT                   /note="eggNOG:bactNOG115214, J, This is one of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG16022"
+FT                   /note="eggNOG:gproNOG16022, J, This is one of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance (By similarity)"
+FT                   /db_xref="eggNOG:COG0256"
+FT                   /note="eggNOG:COG0256, J, This is one of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance (By similarity)"
+FT                   /db_xref="eggNOG:proNOG52589"
+FT                   /note="eggNOG:proNOG52589, J, This is one of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance (By similarity)"
+FT                   /db_xref="KEGG:K02881"
+FT                   /note="KEGG:K02881,  large subunit ribosomal protein L18"
+FT                   /color=0 0 255
+
+FT   CDS             complement(3922..4455)
+FT                   /locus_tag="Bact_10"
+FT                   /note="Bact_10"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_40"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDGWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAGITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKKK"
+FT                   /transl_table="4"
+FT                   /note="score is 1.58"
+FT                   /product="50S ribosomal protein L6 [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148780.1"
+FT                   /note="similar to INSD:WP_011148780.1:percent identity is 97.74, e-value is 0.00, score is 353.00"
+FT                   /inference="similar to AA sequence:INSD:EYU13813.1"
+FT                   /note="similar to INSD:EYU13813.1:percent identity is 97.74, e-value is 0.00, score is 353.00"
+FT                   /note="CDD:PRK05498, rplF, 50S ribosomal protein L6; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 322.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05498"
+FT                   /note="CDD:TIGR03654, L6_bact, ribosomal protein L6, bacterial type, method is RPS-BLAST+, version is 2.2.31+, score is 308.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR03654"
+FT                   /inference="protein motif:InterPro:IPR020040"
+FT                   /inference="protein motif:InterPro:IPR000702"
+FT                   /inference="protein motif:InterPro:IPR002358"
+FT                   /inference="protein motif:InterPro:IPR019906"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:rRNA binding (GO:0019843)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG51268"
+FT                   /note="eggNOG:bactNOG51268, J, This protein binds to the 23S rRNA, and is important in its secondary structure. It is located near the subunit interface in the base of the L7 L12 stalk, and near the tRNA binding site of the peptidyltransferase center (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG03385"
+FT                   /note="eggNOG:gproNOG03385, J, This protein binds to the 23S rRNA, and is important in its secondary structure. It is located near the subunit interface in the base of the L7 L12 stalk, and near the tRNA binding site of the peptidyltransferase center (By similarity)"
+FT                   /db_xref="eggNOG:COG0097"
+FT                   /note="eggNOG:COG0097, J, This protein binds to the 23S rRNA, and is important in its secondary structure. It is located near the subunit interface in the base of the L7 L12 stalk, and near the tRNA binding site of the peptidyltransferase center (By similarity)"
+FT                   /db_xref="eggNOG:proNOG08152"
+FT                   /note="eggNOG:proNOG08152, J, This protein binds to the 23S rRNA, and is important in its secondary structure. It is located near the subunit interface in the base of the L7 L12 stalk, and near the tRNA binding site of the peptidyltransferase center (By similarity)"
+FT                   /db_xref="KEGG:K02933"
+FT                   /note="KEGG:K02933,  large subunit ribosomal protein L6"
+FT                   /color=0 0 255
+
+FT   CDS             complement(4470..4763)
+FT                   /locus_tag="Bact_11"
+FT                   /note="Bact_11"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_41"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="VAIAKVLKEEGYIEDYKIEGDTKPELELVLKYFQGKAVVESIQRVSRPSLRIYKKKDELPQVMAGLGIAVVSTSKGVMTDRAARQAGLGGEILCYVA"
+FT                   /transl_table="4"
+FT                   /note="score is 3.92"
+FT                   /product="30S ribosomal protein S8 [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148781.1"
+FT                   /note="similar to INSD:WP_011148781.1:percent identity is 100.00, e-value is 0.00, score is 194.00"
+FT                   /inference="similar to AA sequence:INSD:WP_015836273.1"
+FT                   /note="similar to INSD:WP_015836273.1:percent identity is 98.97, e-value is 0.00, score is 193.00"
+FT                   /note="CDD:PRK00136, rpsH, 30S ribosomal protein S8; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 174.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00136"
+FT                   /note="CDD:pfam00410, Ribosomal_S8, Ribosomal protein S8, method is RPS-BLAST+, version is 2.2.31+, score is 151.00, e-value is 0.00"
+FT                   /db_xref="CDD:pfam00410"
+FT                   /inference="protein motif:InterPro:IPR000630"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG71342"
+FT                   /note="eggNOG:bactNOG71342, J, One of the primary rRNA binding proteins, it binds directly to 16S rRNA central domain where it helps coordinate assembly of the platform of the 30S subunit (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG13373"
+FT                   /note="eggNOG:gproNOG13373, J, One of the primary rRNA binding proteins, it binds directly to 16S rRNA central domain where it helps coordinate assembly of the platform of the 30S subunit (By similarity)"
+FT                   /db_xref="eggNOG:COG0096"
+FT                   /note="eggNOG:COG0096, J, One of the primary rRNA binding proteins, it binds directly to 16S rRNA central domain where it helps coordinate assembly of the platform of the 30S subunit (By similarity)"
+FT                   /db_xref="eggNOG:proNOG34076"
+FT                   /note="eggNOG:proNOG34076, J, One of the primary rRNA binding proteins, it binds directly to 16S rRNA central domain where it helps coordinate assembly of the platform of the 30S subunit (By similarity)"
+FT                   /db_xref="KEGG:K02994"
+FT                   /note="KEGG:K02994,  small subunit ribosomal protein S8"
+FT                   /color=0 0 255
+
+FT   CDS             complement(4896..5201)
+FT                   /locus_tag="Bact_12"
+FT                   /note="Bact_12"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_42"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MAKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW"
+FT                   /transl_table="4"
+FT                   /note="score is 5.01"
+FT                   /product="30S ribosomal protein S14 [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148782.1"
+FT                   /note="similar to INSD:WP_011148782.1:percent identity is 99.01, e-value is 0.00, score is 204.00"
+FT                   /inference="similar to AA sequence:INSD:EYU13815.1"
+FT                   /note="similar to INSD:EYU13815.1:percent identity is 97.03, e-value is 0.00, score is 201.00"
+FT                   /note="CDD:PRK08881, rpsN, 30S ribosomal protein S14; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 167.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK08881"
+FT                   /note="CDD:CHL00074, ribosomal protein S14, method is RPS-BLAST+, version is 2.2.31+, score is 101.00, e-value is 0.00"
+FT                   /db_xref="CDD:CHL00074"
+FT                   /inference="protein motif:InterPro:IPR018271"
+FT                   /inference="protein motif:InterPro:IPR023036"
+FT                   /inference="protein motif:InterPro:IPR001209"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG138078"
+FT                   /note="eggNOG:bactNOG138078, J, Binds 16S rRNA, required for the assembly of 30S particles and may also be responsible for determining the conformation of the 16S rRNA at the A site (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG16292"
+FT                   /note="eggNOG:gproNOG16292, J, Binds 16S rRNA, required for the assembly of 30S particles and may also be responsible for determining the conformation of the 16S rRNA at the A site (By similarity)"
+FT                   /db_xref="eggNOG:COG0199"
+FT                   /note="eggNOG:COG0199, J, Binds 16S rRNA, required for the assembly of 30S particles and may also be responsible for determining the conformation of the 16S rRNA at the A site (By similarity)"
+FT                   /db_xref="eggNOG:proNOG54109"
+FT                   /note="eggNOG:proNOG54109, J, Binds 16S rRNA, required for the assembly of 30S particles and may also be responsible for determining the conformation of the 16S rRNA at the A site (By similarity)"
+FT                   /db_xref="KEGG:K02954"
+FT                   /note="KEGG:K02954,  small subunit ribosomal protein S14"
+FT                   /color=0 0 255
+
+FT   CDS             complement(5214..5642)
+FT                   /locus_tag="Bact_13"
+FT                   /note="Bact_13"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_43"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMWEFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITITTTAKSDDEGRALLAAFNFPFRK"
+FT                   /transl_table="4"
+FT                   /note="score is 3.51"
+FT                   /product="50S ribosomal protein L5 [Providencia alcalifaciens]"
+FT                   /inference="similar to AA sequence:INSD:WP_006657019.1"
+FT                   /note="similar to INSD:WP_006657019.1:percent identity is 99.30, e-value is 0.00, score is 249.00"
+FT                   /inference="similar to AA sequence:INSD:WP_011095504.1"
+FT                   /note="similar to INSD:WP_011095504.1:percent identity is 99.30, e-value is 0.00, score is 249.00"
+FT                   /note="CDD:PRK00010, rplE, 50S ribosomal protein L5; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 288.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00010"
+FT                   /note="CDD:COG0094, RplE, Ribosomal protein L5, method is RPS-BLAST+, version is 2.2.31+, score is 246.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0094"
+FT                   /inference="protein motif:InterPro:IPR022803"
+FT                   /inference="protein motif:InterPro:IPR020929"
+FT                   /inference="protein motif:InterPro:IPR002132"
+FT                   /inference="protein motif:InterPro:IPR031310"
+FT                   /inference="protein motif:InterPro:IPR031309"
+FT                   /inference="protein motif:InterPro:IPR020930"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG02081"
+FT                   /note="eggNOG:bactNOG02081, J, This is 1 of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance. In the 70S ribosome it contacts protein S13 of the 30S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="eggNOG:gproNOG00494"
+FT                   /note="eggNOG:gproNOG00494, J, This is 1 of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance. In the 70S ribosome it contacts protein S13 of the 30S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="eggNOG:COG0094"
+FT                   /note="eggNOG:COG0094, J, This is 1 of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance. In the 70S ribosome it contacts protein S13 of the 30S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="eggNOG:proNOG00969"
+FT                   /note="eggNOG:proNOG00969, J, This is 1 of the proteins that binds and probably mediates the attachment of the 5S RNA into the large ribosomal subunit, where it forms part of the central protuberance. In the 70S ribosome it contacts protein S13 of the 30S subunit (bridge B1b), connecting the 2 subunits"
+FT                   /db_xref="KEGG:K02931"
+FT                   /note="KEGG:K02931,  large subunit ribosomal protein L5"
+FT                   /color=0 0 255
+
+FT   CDS             complement(5768..6082)
+FT                   /locus_tag="Bact_14"
+FT                   /note="Bact_14"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_44"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MAAKIRRDDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVEKEAAIQVSNVAIFNAATGKADRVGFRFEDGKKVRFFKSNSETIK"
+FT                   /transl_table="4"
+FT                   /note="score is 4.13"
+FT                   /product="LSU ribosomal protein L24P"
+FT                   /inference="similar to AA sequence:INSD:EYU13817.1"
+FT                   /note="similar to INSD:EYU13817.1:percent identity is 100.00, e-value is 0.00, score is 204.00"
+FT                   /inference="similar to AA sequence:INSD:WP_011148784.1"
+FT                   /note="similar to INSD:WP_011148784.1:percent identity is 99.04, e-value is 0.00, score is 204.00"
+FT                   /note="CDD:PRK00004, rplX, 50S ribosomal protein L24; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 150.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00004"
+FT                   /note="CDD:TIGR01079, bacterial/organelle, method is RPS-BLAST+, version is 2.2.31+, score is 127.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR01079"
+FT                   /inference="protein motif:InterPro:IPR003256"
+FT                   /inference="protein motif:InterPro:IPR005824"
+FT                   /inference="protein motif:InterPro:IPR014722"
+FT                   /inference="protein motif:InterPro:IPR005825"
+FT                   /inference="protein motif:InterPro:IPR008991"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG115633"
+FT                   /note="eggNOG:bactNOG115633, J, One of the proteins that surrounds the polypeptide exit tunnel on the outside of the subunit (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG19256"
+FT                   /note="eggNOG:gproNOG19256, J, One of the proteins that surrounds the polypeptide exit tunnel on the outside of the subunit (By similarity)"
+FT                   /db_xref="eggNOG:COG0198"
+FT                   /note="eggNOG:COG0198, J, One of the proteins that surrounds the polypeptide exit tunnel on the outside of the subunit (By similarity)"
+FT                   /db_xref="eggNOG:proNOG53295"
+FT                   /note="eggNOG:proNOG53295, J, One of the proteins that surrounds the polypeptide exit tunnel on the outside of the subunit (By similarity)"
+FT                   /db_xref="KEGG:K02895"
+FT                   /note="KEGG:K02895,  large subunit ribosomal protein L24"
+FT                   /color=0 0 255
+
+FT   CDS             complement(6093..6464)
+FT                   /locus_tag="Bact_15"
+FT                   /note="Bact_15"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_45"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKAVVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAPEVL"
+FT                   /transl_table="4"
+FT                   /note="score is 2.58"
+FT                   /product="LSU ribosomal protein L14P"
+FT                   /inference="similar to AA sequence:INSD:EYU13818.1"
+FT                   /note="similar to INSD:EYU13818.1:percent identity is 100.00, e-value is 0.00, score is 248.00"
+FT                   /inference="similar to AA sequence:INSD:WP_015836277.1"
+FT                   /note="similar to INSD:WP_015836277.1:percent identity is 99.19, e-value is 0.00, score is 247.00"
+FT                   /note="CDD:PRK05483, rplN, 50S ribosomal protein L14; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 243.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05483"
+FT                   /note="CDD:COG0093, RplN, Ribosomal protein L14, method is RPS-BLAST+, version is 2.2.31+, score is 205.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0093"
+FT                   /inference="protein motif:InterPro:IPR000218"
+FT                   /inference="protein motif:InterPro:IPR019972"
+FT                   /inference="protein motif:InterPro:IPR005745"
+FT                   /note="GO_component:large ribosomal subunit (GO:0015934)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG71726"
+FT                   /note="eggNOG:bactNOG71726, J, Binds to 23S rRNA. Forms part of two intersubunit bridges in the 70S ribosome (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG12827"
+FT                   /note="eggNOG:gproNOG12827, J, Binds to 23S rRNA. Forms part of two intersubunit bridges in the 70S ribosome (By similarity)"
+FT                   /db_xref="eggNOG:COG0093"
+FT                   /note="eggNOG:COG0093, J, Binds to 23S rRNA. Forms part of two intersubunit bridges in the 70S ribosome (By similarity)"
+FT                   /db_xref="eggNOG:proNOG32865"
+FT                   /note="eggNOG:proNOG32865, J, Binds to 23S rRNA. Forms part of two intersubunit bridges in the 70S ribosome (By similarity)"
+FT                   /db_xref="KEGG:K02874"
+FT                   /note="KEGG:K02874,  large subunit ribosomal protein L14"
+FT                   /color=0 0 255
+
+FT   CDS             complement(6643..6897)
+FT                   /locus_tag="Bact_16"
+FT                   /note="Bact_16"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_46"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MTDKIRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETRPLSKTKSWTLVRVVEKAIL"
+FT                   /transl_table="4"
+FT                   /note="score is 3.71"
+FT                   /product="MULTISPECIES: 30S ribosomal protein S17 [Photorhabdus]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148786.1"
+FT                   /note="similar to INSD:WP_011148786.1:percent identity is 100.00, e-value is 0.00, score is 169.00"
+FT                   /inference="similar to AA sequence:INSD:WP_010847485.1"
+FT                   /note="similar to INSD:WP_010847485.1:percent identity is 98.81, e-value is 0.00, score is 169.00"
+FT                   /note="CDD:PRK05610, rpsQ, 30S ribosomal protein S17; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 139.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05610"
+FT                   /note="CDD:TIGR03635, S17_bact, 30S ribosomal protein S17, method is RPS-BLAST+, version is 2.2.31+, score is 124.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR03635"
+FT                   /inference="protein motif:InterPro:IPR000266"
+FT                   /inference="protein motif:InterPro:IPR019979"
+FT                   /inference="protein motif:InterPro:IPR019984"
+FT                   /inference="protein motif:InterPro:IPR012340"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG115456"
+FT                   /note="eggNOG:bactNOG115456, J, One of the primary rRNA binding proteins, it binds specifically to the 5-end of 16S ribosomal"
+FT                   /db_xref="eggNOG:gproNOG18859"
+FT                   /note="eggNOG:gproNOG18859, J, One of the primary rRNA binding proteins, it binds specifically to the 5-end of 16S ribosomal"
+FT                   /db_xref="eggNOG:COG0186"
+FT                   /note="eggNOG:COG0186, J, One of the primary rRNA binding proteins, it binds specifically to the 5-end of 16S ribosomal"
+FT                   /db_xref="eggNOG:proNOG51710"
+FT                   /note="eggNOG:proNOG51710, J, One of the primary rRNA binding proteins, it binds specifically to the 5-end of 16S ribosomal"
+FT                   /db_xref="KEGG:K02961"
+FT                   /note="KEGG:K02961,  small subunit ribosomal protein S17"
+FT                   /color=0 0 255
+
+FT   CDS             complement(6897..7088)
+FT                   /locus_tag="Bact_17"
+FT                   /note="Bact_17"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_47"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MKAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEKAGA"
+FT                   /transl_table="4"
+FT                   /note="score is 4.65"
+FT                   /product="50S ribosomal protein L29 [Xenorhabdus nematophila]"
+FT                   /inference="similar to AA sequence:INSD:WP_010847484.1"
+FT                   /note="similar to INSD:WP_010847484.1:percent identity is 100.00, e-value is 0.00, score is 92.80"
+FT                   /inference="similar to AA sequence:INSD:WP_012990490.1"
+FT                   /note="similar to INSD:WP_012990490.1:percent identity is 98.41, e-value is 0.00, score is 92.00"
+FT                   /note="CDD:PRK00306, 50S ribosomal protein L29; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 64.10, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00306"
+FT                   /note="CDD:pfam00831, Ribosomal L29 protein, method is RPS-BLAST+, version is 2.2.31+, score is 58.30, e-value is 0.00"
+FT                   /db_xref="CDD:pfam00831"
+FT                   /inference="protein motif:InterPro:IPR001854"
+FT                   /inference="protein motif:InterPro:IPR018254"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG249655"
+FT                   /note="eggNOG:bactNOG249655, J, 50s ribosomal protein l29"
+FT                   /db_xref="eggNOG:gproNOG22262"
+FT                   /note="eggNOG:gproNOG22262, J, 50S ribosomal protein L29"
+FT                   /db_xref="eggNOG:COG0255"
+FT                   /note="eggNOG:COG0255, J, 50s ribosomal protein l29"
+FT                   /db_xref="eggNOG:proNOG105076"
+FT                   /note="eggNOG:proNOG105076, J, 50s ribosomal protein l29"
+FT                   /db_xref="KEGG:K02904"
+FT                   /note="KEGG:K02904,  large subunit ribosomal protein L29"
+FT                   /color=0 0 255
+
+FT   CDS             complement(7088..7498)
+FT                   /locus_tag="Bact_18"
+FT                   /note="Bact_18"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_48"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MLQPKRTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAKLPIKTTFVTKTVM"
+FT                   /transl_table="4"
+FT                   /note="score is 2.86"
+FT                   /product="50S ribosomal protein L16 [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148788.1"
+FT                   /note="similar to INSD:WP_011148788.1:percent identity is 100.00, e-value is 0.00, score is 273.00"
+FT                   /inference="similar to AA sequence:INSD:WP_012990491.1"
+FT                   /note="similar to INSD:WP_012990491.1:percent identity is 99.26, e-value is 0.00, score is 271.00"
+FT                   /note="CDD:PRK09203, rplP, 50S ribosomal protein L16; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 268.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK09203"
+FT                   /note="CDD:TIGR01164, bacterial/organelle, method is RPS-BLAST+, version is 2.2.31+, score is 208.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR01164"
+FT                   /inference="protein motif:InterPro:IPR016180"
+FT                   /inference="protein motif:InterPro:IPR020798"
+FT                   /inference="protein motif:InterPro:IPR000114"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:rRNA binding (GO:0019843)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG51563"
+FT                   /note="eggNOG:bactNOG51563, J, Binds 23S rRNA and is also seen to make contacts with the A and possibly P site tRNAs (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG10406"
+FT                   /note="eggNOG:gproNOG10406, J, Binds 23S rRNA and is also seen to make contacts with the A and possibly P site tRNAs (By similarity)"
+FT                   /db_xref="eggNOG:COG0197"
+FT                   /note="eggNOG:COG0197, J, Binds 23S rRNA and is also seen to make contacts with the A and possibly P site tRNAs (By similarity)"
+FT                   /db_xref="eggNOG:proNOG33157"
+FT                   /note="eggNOG:proNOG33157, J, Binds 23S rRNA and is also seen to make contacts with the A and possibly P site tRNAs (By similarity)"
+FT                   /db_xref="KEGG:K02878"
+FT                   /note="KEGG:K02878,  large subunit ribosomal protein L16"
+FT                   /color=0 0 255
+
+FT   CDS             complement(7511..8212)
+FT                   /locus_tag="Bact_19"
+FT                   /note="Bact_19"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_49"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MGQKVHPNGIRLGIVKPWNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERPAKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEVRKPELDAKLVADSITSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEWYREGRVPLHTLRADIDYNTSEAHTTYGVLGVKVWIFKGEILGGMAAVEQAEKPAAQPKKQQRKGRK"
+FT                   /transl_table="4"
+FT                   /note="score is 3.91"
+FT                   /product="MULTISPECIES: 30S ribosomal protein S3 [Photorhabdus]"
+FT                   /inference="similar to AA sequence:INSD:WP_015836279.1"
+FT                   /note="similar to INSD:WP_015836279.1:percent identity is 100.00, e-value is 0.00, score is 440.00"
+FT                   /inference="similar to AA sequence:INSD:WP_012990492.1"
+FT                   /note="similar to INSD:WP_012990492.1:percent identity is 98.28, e-value is 0.00, score is 434.00"
+FT                   /note="CDD:PRK00310, rpsC, 30S ribosomal protein S3; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 441.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00310"
+FT                   /note="CDD:TIGR01009, rpsC_bact, ribosomal protein S3, bacterial type, method is RPS-BLAST+, version is 2.2.31+, score is 375.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR01009"
+FT                   /inference="protein motif:InterPro:IPR015946"
+FT                   /inference="protein motif:InterPro:IPR004044"
+FT                   /inference="protein motif:InterPro:IPR005704"
+FT                   /inference="protein motif:InterPro:IPR009019"
+FT                   /inference="protein motif:InterPro:IPR004088"
+FT                   /inference="protein motif:InterPro:IPR004087"
+FT                   /inference="protein motif:InterPro:IPR001351"
+FT                   /inference="protein motif:InterPro:IPR018280"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_component:small ribosomal subunit (GO:0015935)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:RNA binding (GO:0003723)"
+FT                   /note="GO_function:nucleic acid binding (GO:0003676)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG01409"
+FT                   /note="eggNOG:bactNOG01409, J, Binds the lower part of the 30S subunit head. Binds mRNA in the 70S ribosome, positioning it for translation (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG01456"
+FT                   /note="eggNOG:gproNOG01456, J, Binds the lower part of the 30S subunit head. Binds mRNA in the 70S ribosome, positioning it for translation (By similarity)"
+FT                   /db_xref="eggNOG:COG0092"
+FT                   /note="eggNOG:COG0092, J, Binds the lower part of the 30S subunit head. Binds mRNA in the 70S ribosome, positioning it for translation (By similarity)"
+FT                   /db_xref="eggNOG:proNOG01256"
+FT                   /note="eggNOG:proNOG01256, J, Binds the lower part of the 30S subunit head. Binds mRNA in the 70S ribosome, positioning it for translation (By similarity)"
+FT                   /db_xref="KEGG:K02982"
+FT                   /note="KEGG:K02982,  small subunit ribosomal protein S3"
+FT                   /color=0 0 255
+
+FT   CDS             complement(8215..8562)
+FT                   /locus_tag="Bact_21"
+FT                   /note="Bact_21"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_50"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDRWDSGD"
+FT                   /transl_table="4"
+FT                   /note="score is 6.78"
+FT                   /product="MULTISPECIES: 50S ribosomal protein L22 [Photorhabdus]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148790.1"
+FT                   /note="similar to INSD:WP_011148790.1:percent identity is 100.00, e-value is 0.00, score is 219.00"
+FT                   /inference="similar to AA sequence:INSD:WP_010847481.1"
+FT                   /note="similar to INSD:WP_010847481.1:percent identity is 99.09, e-value is 0.00, score is 218.00"
+FT                   /note="CDD:PRK00565, rplV, 50S ribosomal protein L22; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 198.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00565"
+FT                   /note="CDD:COG0091, RplV, Ribosomal protein L22, method is RPS-BLAST+, version is 2.2.31+, score is 166.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0091"
+FT                   /inference="protein motif:InterPro:IPR001063"
+FT                   /inference="protein motif:InterPro:IPR005727"
+FT                   /inference="protein motif:InterPro:IPR018260"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:large ribosomal subunit (GO:0015934)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG115628"
+FT                   /note="eggNOG:bactNOG115628, J, The globular domain of the protein is located near the polypeptide exit tunnel on the outside of the subunit, while an extended beta-hairpin is found that lines the wall of the exit tunnel in the center of the 70S ribosome (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG15655"
+FT                   /note="eggNOG:gproNOG15655, J, The globular domain of the protein is located near the polypeptide exit tunnel on the outside of the subunit, while an extended beta-hairpin is found that lines the wall of the exit tunnel in the center of the 70S ribosome (By similarity)"
+FT                   /db_xref="eggNOG:COG0091"
+FT                   /note="eggNOG:COG0091, J, The globular domain of the protein is located near the polypeptide exit tunnel on the outside of the subunit, while an extended beta-hairpin is found that lines the wall of the exit tunnel in the center of the 70S ribosome (By similarity)"
+FT                   /db_xref="eggNOG:proNOG41935"
+FT                   /note="eggNOG:proNOG41935, J, The globular domain of the protein is located near the polypeptide exit tunnel on the outside of the subunit, while an extended beta-hairpin is found that lines the wall of the exit tunnel in the center of the 70S ribosome (By similarity)"
+FT                   /db_xref="KEGG:K02890"
+FT                   /note="KEGG:K02890,  large subunit ribosomal protein L22"
+FT                   /color=0 0 255
+
+FT   CDS             complement(8577..8855)
+FT                   /locus_tag="Bact_22"
+FT                   /note="Bact_22"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_51"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MPRSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPVFVSDEMVGHKLGEFAPTRTYRGHAADKKAKKR"
+FT                   /transl_table="4"
+FT                   /note="score is 0.97"
+FT                   /product="MULTISPECIES: 30S ribosomal protein S19 [Enterobacteriaceae]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148791.1"
+FT                   /note="similar to INSD:WP_011148791.1:percent identity is 100.00, e-value is 0.00, score is 189.00"
+FT                   /inference="similar to AA sequence:INSD:WP_029095678.1"
+FT                   /note="similar to INSD:WP_029095678.1:percent identity is 98.91, e-value is 0.00, score is 189.00"
+FT                   /note="CDD:PRK00357, rpsS, 30S ribosomal protein S19; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 198.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00357"
+FT                   /note="CDD:COG0185, RpsS, Ribosomal protein S19, method is RPS-BLAST+, version is 2.2.31+, score is 166.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0185"
+FT                   /inference="protein motif:InterPro:IPR002222"
+FT                   /inference="protein motif:InterPro:IPR023575"
+FT                   /inference="protein motif:InterPro:IPR020934"
+FT                   /inference="protein motif:InterPro:IPR005732"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_component:small ribosomal subunit (GO:0015935)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:RNA binding (GO:0003723)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:COG0185"
+FT                   /note="eggNOG:COG0185, J, Protein S19 forms a complex with S13 that binds strongly to the 16S ribosomal RNA (By similarity)"
+FT                   /db_xref="KEGG:K02965"
+FT                   /note="KEGG:K02965,  small subunit ribosomal protein S19"
+FT                   /color=0 0 255
+
+FT   CDS             complement(8870..9694)
+FT                   /locus_tag="Bact_23"
+FT                   /note="Bact_23"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_52"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MAIVKCKPTSPGRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQHYRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGADAAIKTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGEMRKVLSDCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGKHPVTPWGVQTKGKKTRSNKRTDQFIVRRRTKK"
+FT                   /transl_table="4"
+FT                   /note="score is 3.48"
+FT                   /product="LSU ribosomal protein L2P"
+FT                   /inference="similar to AA sequence:INSD:EYU13825.1"
+FT                   /note="similar to INSD:EYU13825.1:percent identity is 100.00, e-value is 0.00, score is 557.00"
+FT                   /inference="similar to AA sequence:INSD:WP_021322795.1"
+FT                   /note="similar to INSD:WP_021322795.1:percent identity is 99.64, e-value is 0.00, score is 555.00"
+FT                   /note="CDD:PRK09374, rplB, 50S ribosomal protein L2; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 572.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK09374"
+FT                   /note="CDD:TIGR01171, rplB_bact, ribosomal protein L2, bacterial/organellar, method is RPS-BLAST+, version is 2.2.31+, score is 488.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR01171"
+FT                   /inference="protein motif:InterPro:IPR014726"
+FT                   /inference="protein motif:InterPro:IPR008991"
+FT                   /inference="protein motif:InterPro:IPR002171"
+FT                   /inference="protein motif:InterPro:IPR014722"
+FT                   /inference="protein motif:InterPro:IPR012340"
+FT                   /inference="protein motif:InterPro:IPR022671"
+FT                   /inference="protein motif:InterPro:IPR022666"
+FT                   /inference="protein motif:InterPro:IPR022669"
+FT                   /inference="protein motif:InterPro:IPR005880"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:large ribosomal subunit (GO:0015934)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:RNA binding (GO:0003723)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /note="GO_function:transferase activity (GO:0016740)"
+FT                   /db_xref="eggNOG:bactNOG01046"
+FT                   /note="eggNOG:bactNOG01046, J, One of the primary rRNA binding proteins. Required for association of the 30S and 50S subunits to form the 70S ribosome, for tRNA binding and peptide bond formation. It has been suggested to have peptidyltransferase activity"
+FT                   /db_xref="eggNOG:gproNOG01004"
+FT                   /note="eggNOG:gproNOG01004, J, One of the primary rRNA binding proteins. Required for association of the 30S and 50S subunits to form the 70S ribosome, for tRNA binding and peptide bond formation. It has been suggested to have peptidyltransferase activity"
+FT                   /db_xref="eggNOG:COG0090"
+FT                   /note="eggNOG:COG0090, J, One of the primary rRNA binding proteins. Required for association of the 30S and 50S subunits to form the 70S ribosome, for tRNA binding and peptide bond formation. It has been suggested to have peptidyltransferase activity"
+FT                   /db_xref="eggNOG:proNOG00729"
+FT                   /note="eggNOG:proNOG00729, J, One of the primary rRNA binding proteins. Required for association of the 30S and 50S subunits to form the 70S ribosome, for tRNA binding and peptide bond formation. It has been suggested to have peptidyltransferase activity"
+FT                   /db_xref="KEGG:K02886"
+FT                   /note="KEGG:K02886,  large subunit ribosomal protein L2"
+FT                   /color=0 0 255
+
+FT   CDS             complement(9701..10618)
+FT                   /locus_tag="Bact_24"
+FT                   /note="Bact_24"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_53"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MELVMKDAQGALTVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVSGSGKKPWRQKGTGRARSGSIKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSELVRQDRLIVVEKFSVEAPKTKLLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDVAGIDPVSLIAFDKVVMTADAVKQVEEMLAWSVKNVCWKYCARRTYLKKLLQRWKRATPSFSKLQKTRLKQKSKLLCRNFLKSKLKVLTLCWLKAKLNATVSVLVVVATGKKLTSHWRKARIWTSSVVQSKPEE"
+FT                   /transl_table="4"
+FT                   /note="score is 2.92"
+FT                   /product="LSU ribosomal protein L4P"
+FT                   /inference="similar to AA sequence:INSD:EYU13827.1"
+FT                   /note="similar to INSD:EYU13827.1:percent identity is 100.00, e-value is 0.00, score is 411.00"
+FT                   /inference="similar to AA sequence:INSD:WP_011148794.1"
+FT                   /note="similar to INSD:WP_011148794.1:percent identity is 99.50, e-value is 0.00, score is 408.00"
+FT                   /note="CDD:PRK05319, rplD, 50S ribosomal protein L4; Provisional, method is RPS-BLAST+, version is 2.2.31+, score is 326.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05319"
+FT                   /note="CDD:TIGR03953, rplD_bact, 50S ribosomal protein L4, bacterial/organelle, method is RPS-BLAST+, version is 2.2.31+, score is 287.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR03953"
+FT                   /inference="protein motif:InterPro:IPR013005"
+FT                   /inference="protein motif:InterPro:IPR002136"
+FT                   /inference="protein motif:InterPro:IPR023574"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG18413"
+FT                   /note="eggNOG:bactNOG18413, J, One of the primary rRNA binding proteins, this protein initially binds near the 5-end of the 23S rRNA. It is important during the early stages of 50S assembly. It makes multiple contacts with different domains of the 23S rRNA in the assembled 50S subunit and ribosome (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG00881"
+FT                   /note="eggNOG:gproNOG00881, J, One of the primary rRNA binding proteins, this protein initially binds near the 5-end of the 23S rRNA. It is important during the early stages of 50S assembly. It makes multiple contacts with different domains of the 23S rRNA in the assembled 50S subunit and ribosome (By similarity)"
+FT                   /db_xref="eggNOG:COG0088"
+FT                   /note="eggNOG:COG0088, J, One of the primary rRNA binding proteins, this protein initially binds near the 5-end of the 23S rRNA. It is important during the early stages of 50S assembly. It makes multiple contacts with different domains of the 23S rRNA in the assembled 50S subunit and ribosome (By similarity)"
+FT                   /db_xref="eggNOG:proNOG00678"
+FT                   /note="eggNOG:proNOG00678, J, One of the primary rRNA binding proteins, this protein initially binds near the 5-end of the 23S rRNA. It is important during the early stages of 50S assembly. It makes multiple contacts with different domains of the 23S rRNA in the assembled 50S subunit and ribosome (By similarity)"
+FT                   /db_xref="KEGG:K02926"
+FT                   /note="KEGG:K02926,  large subunit ribosomal protein L4"
+FT                   /color=0 0 255
+
+FT   CDS             complement(10635..11264)
+FT                   /locus_tag="Bact_25"
+FT                   /note="Bact_25"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_54"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MIGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRINKPEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAGTVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRVDAERNLLLVKGAVPGATGGNLIVKPAVKA"
+FT                   /transl_table="4"
+FT                   /note="score is 3.88"
+FT                   /product="LSU ribosomal protein L3P"
+FT                   /inference="similar to AA sequence:INSD:EYU13828.1"
+FT                   /note="similar to INSD:EYU13828.1:percent identity is 99.04, e-value is 0.00, score is 416.00"
+FT                   /inference="similar to AA sequence:INSD:ETS29480.1"
+FT                   /note="similar to INSD:ETS29480.1:percent identity is 98.56, e-value is 0.00, score is 413.00"
+FT                   /note="CDD:PRK00001, rplC, 50S ribosomal protein L3; Validated, method is RPS-BLAST+, version is 2.2.31+, score is 370.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00001"
+FT                   /note="CDD:TIGR03625, L3_bact, 50S ribosomal protein L3, bacterial, method is RPS-BLAST+, version is 2.2.31+, score is 364.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR03625"
+FT                   /inference="protein motif:InterPro:IPR019926"
+FT                   /inference="protein motif:InterPro:IPR009000"
+FT                   /inference="protein motif:InterPro:IPR000597"
+FT                   /inference="protein motif:InterPro:IPR019927"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="eggNOG:bactNOG06623"
+FT                   /note="eggNOG:bactNOG06623, J, One of the primary rRNA binding proteins, it binds directly near the 3-end of the 23S rRNA, where it nucleates assembly of the 50S subunit (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG00879"
+FT                   /note="eggNOG:gproNOG00879, J, One of the primary rRNA binding proteins, it binds directly near the 3-end of the 23S rRNA, where it nucleates assembly of the 50S subunit (By similarity)"
+FT                   /db_xref="eggNOG:COG0087"
+FT                   /note="eggNOG:COG0087, J, One of the primary rRNA binding proteins, it binds directly near the 3-end of the 23S rRNA, where it nucleates assembly of the 50S subunit (By similarity)"
+FT                   /db_xref="eggNOG:proNOG06274"
+FT                   /note="eggNOG:proNOG06274, J, One of the primary rRNA binding proteins, it binds directly near the 3-end of the 23S rRNA, where it nucleates assembly of the 50S subunit (By similarity)"
+FT                   /db_xref="KEGG:K02906"
+FT                   /note="KEGG:K02906,  large subunit ribosomal protein L3"
+FT                   /color=0 0 255
+
+FT   CDS             complement(11297..11608)
+FT                   /locus_tag="Bact_26"
+FT                   /note="Bact_26"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_55"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MQNQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISLG"
+FT                   /transl_table="4"
+FT                   /note="score is 1.67"
+FT                   /product="MULTISPECIES: 30S ribosomal protein S10 [Haemophilus]"
+FT                   /inference="similar to AA sequence:INSD:WP_005625908.1"
+FT                   /note="similar to INSD:WP_005625908.1:percent identity is 100.00, e-value is 0.00, score is 209.00"
+FT                   /inference="similar to AA sequence:INSD:WP_005690383.1"
+FT                   /note="similar to INSD:WP_005690383.1:percent identity is 100.00, e-value is 0.00, score is 209.00"
+FT                   /note="CDD:PRK00596, rpsJ, 30S ribosomal protein S10; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 206.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00596"
+FT                   /note="CDD:TIGR01049, bacterial/organelle, method is RPS-BLAST+, version is 2.2.31+, score is 173.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR01049"
+FT                   /inference="protein motif:InterPro:IPR027486"
+FT                   /inference="protein motif:InterPro:IPR001848"
+FT                   /inference="protein motif:InterPro:IPR018268"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_component:ribosome (GO:0005840)"
+FT                   /note="GO_process:translation (GO:0006412)"
+FT                   /note="GO_function:RNA binding (GO:0003723)"
+FT                   /note="GO_function:structural constituent of ribosome (GO:0003735)"
+FT                   /db_xref="KEGG:K02946"
+FT                   /note="KEGG:K02946,  small subunit ribosomal protein S10"
+FT                   /color=0 0 255
+
+FT   CDS             complement(11903..12379)
+FT                   /locus_tag="Bact_27"
+FT                   /note="Bact_27"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_56"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIERILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLMIDILDEEEEHIDWLETQFELIERMGIQNYTQAQILEGE"
+FT                   /transl_table="4"
+FT                   /note="score is 5.47"
+FT                   /product="bacterioferritin"
+FT                   /inference="similar to AA sequence:INSD:EYU13830.1"
+FT                   /note="similar to INSD:EYU13830.1:percent identity is 98.73, e-value is 0.00, score is 273.00"
+FT                   /inference="similar to AA sequence:INSD:WP_011148796.1"
+FT                   /note="similar to INSD:WP_011148796.1:percent identity is 98.10, e-value is 0.00, score is 272.00"
+FT                   /note="CDD:PRK10635, bacterioferritin; Provisional, method is RPS-BLAST+, version is 2.2.31+, score is 283.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK10635"
+FT                   /note="CDD:cd00907, Bacterioferritin, Bacterioferritin, ferritin-like diiron-binding domain, method is RPS-BLAST+, version is 2.2.31+, score is 244.00, e-value is 0.00"
+FT                   /db_xref="CDD:cd00907"
+FT                   /inference="protein motif:InterPro:IPR008331"
+FT                   /inference="protein motif:InterPro:IPR009078"
+FT                   /inference="protein motif:InterPro:IPR002024"
+FT                   /inference="protein motif:InterPro:IPR009040"
+FT                   /inference="protein motif:InterPro:IPR012347"
+FT                   /note="GO_process:cellular iron ion homeostasis (GO:0006879)"
+FT                   /note="GO_process:iron ion transport (GO:0006826)"
+FT                   /note="GO_function:ferric iron binding (GO:0008199)"
+FT                   /db_xref="eggNOG:bactNOG72054"
+FT                   /note="eggNOG:bactNOG72054, P, Iron-storage protein"
+FT                   /db_xref="eggNOG:gproNOG10598"
+FT                   /note="eggNOG:gproNOG10598, P, Iron-storage protein"
+FT                   /db_xref="eggNOG:COG2193"
+FT                   /note="eggNOG:COG2193, P, Iron-storage protein"
+FT                   /db_xref="eggNOG:proNOG34754"
+FT                   /note="eggNOG:proNOG34754, P, Iron-storage protein"
+FT                   /db_xref="KEGG:K03594"
+FT                   /note="KEGG:K03594,  bacterioferritin [EC1.16.3.1]"
+FT                   /color=0 0 255
+
+FT   CDS             complement(12453..12659)
+FT                   /locus_tag="Bact_28"
+FT                   /note="Bact_28"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_57"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="VLFMYVCLCNAVSDKTIRNAVRQHHIHSIRELKRIVPVGRDCGKCIRQARELINEEIAQLPKIDNVAW"
+FT                   /transl_table="4"
+FT                   /note="score is 5.25"
+FT                   /product="bacterioferritin-associated ferredoxin [Photorhabdus temperata]"
+FT                   /inference="similar to AA sequence:INSD:WP_021322800.1"
+FT                   /note="similar to INSD:WP_021322800.1:percent identity is 98.44, e-value is 0.00, score is 130.00"
+FT                   /inference="similar to AA sequence:INSD:EYU13831.1"
+FT                   /note="similar to INSD:EYU13831.1:percent identity is 98.44, e-value is 0.00, score is 130.00"
+FT                   /note="CDD:PRK10509, bacterioferritin-associated ferredoxin; Provisional, method is RPS-BLAST+, version is 2.2.31+, score is 113.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK10509"
+FT                   /note="CDD:COG2906, Bfd, Bacterioferritin-associated ferredoxin, method is RPS-BLAST+, version is 2.2.31+, score is 78.90, e-value is 0.00"
+FT                   /db_xref="CDD:COG2906"
+FT                   /inference="protein motif:InterPro:IPR007419"
+FT                   /db_xref="eggNOG:bactNOG139460"
+FT                   /note="eggNOG:bactNOG139460, C, bacterioferritin-associated ferredoxin"
+FT                   /db_xref="eggNOG:gproNOG22830"
+FT                   /note="eggNOG:gproNOG22830, C, Bacterioferritin-associated ferredoxin"
+FT                   /db_xref="eggNOG:COG2906"
+FT                   /note="eggNOG:COG2906, P, Bacterioferritin-associated ferredoxin"
+FT                   /db_xref="eggNOG:proNOG61982"
+FT                   /note="eggNOG:proNOG61982, C, bacterioferritin-associated ferredoxin"
+FT                   /db_xref="KEGG:K02192"
+FT                   /note="KEGG:K02192,  bacterioferritin-associated ferredoxin"
+FT                   /color=0 0 255
+
+FT   CDS             complement(13422..14606)
+FT                   /locus_tag="Bact_29"
+FT                   /note="Bact_29"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_58"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGITISTSHVEYDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEWESKILELAEALDSYIPEPERAIDQPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIKDTTKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKRDEIERGQVLAKPGSIKPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIQMKVTLIAPIAMDQGLRFAIREGGRTVGAGVVAKIIA"
+FT                   /transl_table="4"
+FT                   /note="score is 2.94"
+FT                   /product="elongation factor Tu [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148798.1"
+FT                   /note="similar to INSD:WP_011148798.1:percent identity is 99.24, e-value is 0.00, score is 674.00"
+FT                   /inference="similar to AA sequence:INSD:EYU13832.1"
+FT                   /note="similar to INSD:EYU13832.1:percent identity is 99.24, e-value is 0.00, score is 674.00"
+FT                   /note="CDD:PRK00049, elongation factor Tu; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 887.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00049"
+FT                   /note="CDD:PRK12735, elongation factor Tu; Reviewed, method is RPS-BLAST+, version is 2.2.31+, score is 865.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK12735"
+FT                   /inference="protein motif:InterPro:IPR027417"
+FT                   /inference="protein motif:InterPro:IPR009000"
+FT                   /inference="protein motif:InterPro:IPR004160"
+FT                   /inference="protein motif:InterPro:IPR005225"
+FT                   /inference="protein motif:InterPro:IPR000795"
+FT                   /inference="protein motif:InterPro:IPR009001"
+FT                   /inference="protein motif:InterPro:IPR031157"
+FT                   /inference="protein motif:InterPro:IPR004161"
+FT                   /inference="protein motif:InterPro:IPR004541"
+FT                   /inference="protein motif:InterPro:IPR033720"
+FT                   /note="GO_component:intracellular (GO:0005622)"
+FT                   /note="GO_process:translational elongation (GO:0006414)"
+FT                   /note="GO_function:GTP binding (GO:0005525)"
+FT                   /note="GO_function:GTPase activity (GO:0003924)"
+FT                   /note="GO_function:translation elongation factor activity (GO:0003746)"
+FT                   /db_xref="eggNOG:bactNOG01161"
+FT                   /note="eggNOG:bactNOG01161, J, This protein promotes the GTP-dependent binding of aminoacyl-tRNA to the A-site of ribosomes during protein biosynthesis (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG00577"
+FT                   /note="eggNOG:gproNOG00577, J, This protein promotes the GTP-dependent binding of aminoacyl-tRNA to the A-site of ribosomes during protein biosynthesis (By similarity)"
+FT                   /db_xref="eggNOG:COG0050"
+FT                   /note="eggNOG:COG0050, J, This protein promotes the GTP-dependent binding of aminoacyl-tRNA to the A-site of ribosomes during protein biosynthesis (By similarity)"
+FT                   /db_xref="eggNOG:proNOG00432"
+FT                   /note="eggNOG:proNOG00432, J, This protein promotes the GTP-dependent binding of aminoacyl-tRNA to the A-site of ribosomes during protein biosynthesis (By similarity)"
+FT                   /db_xref="KEGG:K02358"
+FT                   /note="KEGG:K02358,  elongation factor Tu"
+FT                   /color=0 0 255
+
+FT   CDS             15145..15345
+FT                   /locus_tag="Bact_36"
+FT                   /note="Bact_36"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_59"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MPASSAAHSRQCERTMQQKNRHLWSFGHKTLILIQLAVFFNIFRSNNRQKSLTTIEELITVPDKTW"
+FT                   /transl_table="4"
+FT                   /note="score is 5.33"
+FT                   /product="hypothetical protein"
+FT                   /inference="protein motif:Phobius:1.01"
+FT                   /note="1 probable transmembrane helix predicted by Phobius"
+FT                   /inference="protein motif:TMHMM:2.0"
+FT                   /note="1 probable transmembrane helix predicted by TMHMM"
+FT                   /color=0 0 255
+
+FT   CDS             15379..16533
+FT                   /locus_tag="Bact_37"
+FT                   /note="Bact_37"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_60"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MINKQLKLTLSKATQFFTLLHSLQKKPIKIQKSLRLPLISRYHAIYFLPGTGCLLQLVQPAQTGRCWFMNKKEPFLATPYLQFNREQWATLRDSVPLTLTKEELIDLKGINEEISLEEVVEIYLPLSRLLNFYISSNLRRQAVLEQFLGTDGQKVPYVIGIAGSVAVGKSTTARLLQALLSRWPEHRSVELITTDGFLHSNNVLNERGLMKKKGFPQSYDMHSLVKFVSDIKSGSKQVSAPVYSHLTYDIVPNEQKFIKQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAPEKLLKSWYISRFLKFRQGAFSDPDSYFHSYSKLSEEEAINTASDIWQEINGLNLRQNILPTRERASLIMTKGTNHTIESVRLRK"
+FT                   /transl_table="4"
+FT                   /note="score is 6.76"
+FT                   /product="pantothenate kinase"
+FT                   /inference="similar to AA sequence:INSD:EYU13834.1"
+FT                   /note="similar to INSD:EYU13834.1:percent identity is 98.48, e-value is 0.00, score is 672.00"
+FT                   /inference="similar to AA sequence:INSD:WP_011148799.1"
+FT                   /note="similar to INSD:WP_011148799.1:percent identity is 99.68, e-value is 0.00, score is 649.00"
+FT                   /note="CDD:PRK05439, pantothenate kinase; Provisional, method is RPS-BLAST+, version is 2.2.31+, score is 597.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK05439"
+FT                   /note="CDD:TIGR00554, panK_bact, pantothenate kinase, bacterial type, method is RPS-BLAST+, version is 2.2.31+, score is 488.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR00554"
+FT                   /inference="protein motif:InterPro:IPR027417"
+FT                   /inference="protein motif:InterPro:IPR004566"
+FT                   /inference="protein motif:InterPro:IPR006083"
+FT                   /note="GO_component:cytoplasm (GO:0005737)"
+FT                   /note="GO_process:coenzyme A biosynthetic process (GO:0015937)"
+FT                   /note="GO_process:metabolic process (GO:0008152)"
+FT                   /note="GO_function:ATP binding (GO:0005524)"
+FT                   /note="GO_function:kinase activity (GO:0016301)"
+FT                   /note="GO_function:pantothenate kinase activity (GO:0004594)"
+FT                   /db_xref="eggNOG:bactNOG01788"
+FT                   /note="eggNOG:bactNOG01788, H, pantothenic acid kinase"
+FT                   /db_xref="eggNOG:gproNOG01860"
+FT                   /note="eggNOG:gproNOG01860, H, Pantothenic acid kinase"
+FT                   /db_xref="eggNOG:COG1072"
+FT                   /note="eggNOG:COG1072, H, Pantothenic acid kinase"
+FT                   /db_xref="eggNOG:proNOG01614"
+FT                   /note="eggNOG:proNOG01614, H, pantothenic acid kinase"
+FT                   /db_xref="KEGG:K00867"
+FT                   /note="KEGG:K00867,  type I pantothenate kinase [EC:2.7.1.33]"
+FT                   /color=0 0 255
+
+FT   CDS             complement(16578..17522)
+FT                   /locus_tag="Bact_38"
+FT                   /note="Bact_38"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_61"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="VPLQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGYSLVEPMQLLDESTIFQYLPQDRITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVSPFGKNLYLSMYWRLEQGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLAGILVELIGKTGDAAQVVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILDLRKALIQFENEGLSSFVSRWFELDNFMDRPVKLIIGSQEVYGIARGINQQGALLLDQNGVITPYIGGEISLRGC"
+FT                   /transl_table="4"
+FT                   /note="score is 3.76"
+FT                   /product="birA, biotin-(acetyl-CoA-carboxylase) ligase"
+FT                   /inference="similar to AA sequence:INSD:EYU13835.1"
+FT                   /note="similar to INSD:EYU13835.1:percent identity is 97.13, e-value is 0.00, score is 618.00"
+FT                   /inference="similar to AA sequence:INSD:WP_011148800.1"
+FT                   /note="similar to INSD:WP_011148800.1:percent identity is 96.82, e-value is 0.00, score is 610.00"
+FT                   /note="CDD:PRK11886, bifunctional biotin-- synthetase/biotin operon repressor; Provisional, method is RPS-BLAST+, version is 2.2.31+, score is 536.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK11886"
+FT                   /note="CDD:COG0340, BirA, Biotin-(acetyl-CoA carboxylase) ligase, method is RPS-BLAST+, version is 2.2.31+, score is 254.00, e-value is 0.00"
+FT                   /db_xref="CDD:COG0340"
+FT                   /inference="protein motif:InterPro:IPR004409"
+FT                   /inference="protein motif:InterPro:IPR004408"
+FT                   /inference="protein motif:InterPro:IPR011991"
+FT                   /inference="protein motif:InterPro:IPR004143"
+FT                   /inference="protein motif:InterPro:IPR013196"
+FT                   /inference="protein motif:InterPro:IPR008988"
+FT                   /inference="protein motif:InterPro:IPR030855"
+FT                   /inference="protein motif:InterPro:IPR003142"
+FT                   /note="GO_process:cellular protein modification process (GO:0006464)"
+FT                   /note="GO_process:regulation of transcription, DNA-dependent (GO:0006355)"
+FT                   /note="GO_function:biotin-[acetyl-CoA-carboxylase] ligase activity (GO:0004077)"
+FT                   /db_xref="eggNOG:bactNOG10718"
+FT                   /note="eggNOG:bactNOG10718, H, Biotin- acetyl-CoA-carboxylase ligase"
+FT                   /db_xref="eggNOG:gproNOG03177"
+FT                   /note="eggNOG:gproNOG03177, H, Biotin-protein ligase"
+FT                   /db_xref="eggNOG:COG0340"
+FT                   /note="eggNOG:COG0340, H, Biotin- acetyl-CoA-carboxylase ligase"
+FT                   /db_xref="eggNOG:COG1654"
+FT                   /note="eggNOG:COG1654, H, Biotin- acetyl-CoA-carboxylase ligase"
+FT                   /db_xref="eggNOG:proNOG10151"
+FT                   /note="eggNOG:proNOG10151, H, Biotin-(acetyl-CoA-carboxylase) ligase"
+FT                   /db_xref="KEGG:K03524"
+FT                   /note="KEGG:K03524,  BirA family transcriptional regulator, biotin operon repressor / biotin-[acetyl-CoA-carboxylase] ligase [EC:6.3.4.15]"
+FT                   /color=0 0 255
+
+FT   CDS             complement(17525..18559)
+FT                   /locus_tag="Bact_39"
+FT                   /note="Bact_39"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_62"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MLSLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEVRFIGSKGEIDAVECISWKI"
+FT                   /transl_table="4"
+FT                   /note="score is 6.95"
+FT                   /product="UDP-N-acetylenolpyruvoylglucosamine reductase [Photorhabdus luminescens]"
+FT                   /inference="similar to AA sequence:INSD:WP_011148801.1"
+FT                   /note="similar to INSD:WP_011148801.1:percent identity is 93.26, e-value is 0.00, score is 661.00"
+FT                   /inference="similar to AA sequence:INSD:WP_021326384.1"
+FT                   /note="similar to INSD:WP_021326384.1:percent identity is 86.80, e-value is 0.00, score is 619.00"
+FT                   /note="CDD:PRK00046, murB, UDP-N-acetylenolpyruvoylglucosamine reductase; Provisional, method is RPS-BLAST+, version is 2.2.31+, score is 564.00, e-value is 0.00"
+FT                   /db_xref="CDD:PRK00046"
+FT                   /note="CDD:TIGR00179, murB, UDP-N-acetylenolpyruvoylglucosamine reductase, method is RPS-BLAST+, version is 2.2.31+, score is 340.00, e-value is 0.00"
+FT                   /db_xref="CDD:TIGR00179"
+FT                   /inference="protein motif:InterPro:IPR016169"
+FT                   /inference="protein motif:InterPro:IPR006094"
+FT                   /inference="protein motif:InterPro:IPR003170"
+FT                   /inference="protein motif:InterPro:IPR011601"
+FT                   /inference="protein motif:InterPro:IPR016166"
+FT                   /inference="protein motif:InterPro:IPR016167"
+FT                   /note="GO_process:oxidation-reduction process (GO:0055114)"
+FT                   /note="GO_function:UDP-N-acetylmuramate dehydrogenase activity (GO:0008762)"
+FT                   /note="GO_function:catalytic activity (GO:0003824)"
+FT                   /note="GO_function:flavin adenine dinucleotide binding (GO:0050660)"
+FT                   /note="GO_function:oxidoreductase activity (GO:0016491)"
+FT                   /note="GO_function:oxidoreductase activity, acting on CH-OH group of donors (GO:0016614)"
+FT                   /db_xref="eggNOG:bactNOG228537"
+FT                   /note="eggNOG:bactNOG228537, M, Cell wall formation (By similarity)"
+FT                   /db_xref="eggNOG:gproNOG01719"
+FT                   /note="eggNOG:gproNOG01719, M, Cell wall formation (By similarity)"
+FT                   /db_xref="eggNOG:COG0812"
+FT                   /note="eggNOG:COG0812, M, cell wall formation (By similarity)"
+FT                   /db_xref="KEGG:K00075"
+FT                   /note="KEGG:K00075,  UDP-N-acetylmuramate dehydrogenase [EC:1.3.1.98]"
+FT                   /color=0 0 255
+
+FT   CDS             complement(18630..18776)
+FT                   /locus_tag="Bact_42"
+FT                   /note="Bact_42"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_63"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MPNSAVKRRSADGSVGSPHVRVGNCQTLFWDKKAIQKGGLFAFNKKLT"
+FT                   /transl_table="4"
+FT                   /note="score is 0.70"
+FT                   /product="hypothetical protein"
+FT                   /inference="similar to AA sequence:INSD:WP_020437913.1"
+FT                   /note="similar to INSD:WP_020437913.1:percent identity is 65.12, e-value is 0.00, score is 61.20"
+FT                   /inference="similar to AA sequence:INSD:WP_020437521.1"
+FT                   /note="similar to INSD:WP_020437521.1:percent identity is 62.79, e-value is 0.00, score is 57.00"
+FT                   /color=0 0 255
+
+FT   CDS             complement(20682..20840)
+FT                   /locus_tag="Bact_48"
+FT                   /note="Bact_48"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_64"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MWEGPDSQDVGLEAAIIERKRNSSLVESACAEDVTGLNHAPKLRQRHVGVVG"
+FT                   /transl_table="4"
+FT                   /note="score is 0.60"
+FT                   /product="hypothetical protein"
+FT                   /inference="similar to AA sequence:INSD:WP_023019833.1"
+FT                   /note="similar to INSD:WP_023019833.1:percent identity is 61.90, e-value is 0.00, score is 57.40"
+FT                   /inference="similar to AA sequence:INSD:WP_005325849.1"
+FT                   /note="similar to INSD:WP_005325849.1:percent identity is 61.90, e-value is 0.00, score is 57.00"
+FT                   /color=0 0 255
+
+FT   CDS             complement(22262..22534)
+FT                   /locus_tag="Bact_50"
+FT                   /note="Bact_50"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_65"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="MWFNSMQREEPYLLLTSREDLRDEVVPSGALRQVLHGCRQLVLWNVGLSPATSATLILCCQRVKAGTQRRLPVINRRKVGMTSSHHGPYE"
+FT                   /transl_table="4"
+FT                   /note="score is 1.11"
+FT                   /product="hypothetical protein"
+FT                   /inference="similar to AA sequence:INSD:WP_001348234.1"
+FT                   /note="similar to INSD:WP_001348234.1:percent identity is 83.72, e-value is 0.00, score is 77.80"
+FT                   /inference="similar to AA sequence:INSD:EYA21976.1"
+FT                   /note="similar to INSD:EYA21976.1:percent identity is 81.40, e-value is 0.00, score is 74.70"
+FT                   /color=0 0 255
+
+FT   CDS             complement(22610..22879)
+FT                   /locus_tag="Bact_51"
+FT                   /note="Bact_51"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_66"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="VKSPGSTWEWHLRLVGWSLVEGGRIPCVAVKCVEMWRNTGGEGGPLDEDWRSGAKAWGANRIRYPGSPRCKRCRFGGCGLELWLPKLTR"
+FT                   /transl_table="4"
+FT                   /note="score is 1.90"
+FT                   /product="hypothetical protein"
+FT                   /inference="similar to AA sequence:INSD:ETJ19329.1"
+FT                   /note="similar to INSD:ETJ19329.1:percent identity is 60.87, e-value is 0.00, score is 54.30"
+FT                   /color=0 0 255
+
+FT   CDS             22980..23141
+FT                   /locus_tag="Bact_52"
+FT                   /note="Bact_52"
+FT                   /note="internal name: Bacteria_CDS_annotation_glimmer3.pl_8_67"
+FT                   /inference="ab initio prediction:Glimmer3:3.02"
+FT                   /inference="non-experimental evidence, no additional details recorded"
+FT                   /translation="VLLLRVTSKFNSVQAEPFLPAESTLQPEGLLHTRGMAASGLRPLCNIPHCCLP"
+FT                   /transl_table="4"
+FT                   /note="score is 0.01"
+FT                   /product="hypothetical protein"
+FT                   /inference="similar to AA sequence:INSD:WP_001335214.1"
+FT                   /note="similar to INSD:WP_001335214.1:percent identity is 83.02, e-value is 0.00, score is 90.50"
+FT                   /inference="similar to AA sequence:INSD:KFV20713.1"
+FT                   /note="similar to INSD:KFV20713.1:percent identity is 86.84, e-value is 0.00, score is 72.40"
+FT                   /color=0 0 255
+
+FT   RBS             complement(425..421)
+FT                   /note="RBS_425"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(794..790)
+FT                   /note="RBS_794"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(2866..2862)
+FT                   /note="RBS_2866"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(3555..3551)
+FT                   /note="RBS_3555"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGAGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(3941..3937)
+FT                   /note="RBS_3941"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AAGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(4466..4462)
+FT                   /note="RBS_4466"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(4876..4872)
+FT                   /note="RBS_4876"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=-99, New start codon=ATG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(5213..5209)
+FT                   /note="RBS_5213"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGCAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(5765..5761)
+FT                   /note="RBS_5765"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=TGGAG, Position shift=-111, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(6093..6089)
+FT                   /note="RBS_6093"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(6476..6472)
+FT                   /note="RBS_6476"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(6910..6906)
+FT                   /note="RBS_6910"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(7511..7507)
+FT                   /note="RBS_7511"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(8224..8220)
+FT                   /note="RBS_8224"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=TGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(8573..8569)
+FT                   /note="RBS_8573"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(8867..8863)
+FT                   /note="RBS_8867"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGAGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(9708..9704)
+FT                   /note="RBS_9708"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(10629..10625)
+FT                   /note="RBS_10629"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(11278..11274)
+FT                   /note="RBS_11278"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GAGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(11653..11649)
+FT                   /note="RBS_11653"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(12390..12386)
+FT                   /note="RBS_12390"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(17567..17563)
+FT                   /note="RBS_17567"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(18584..18580)
+FT                   /note="RBS_18584"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGTAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(18823..18819)
+FT                   /note="RBS_18823"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AAGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(20851..20847)
+FT                   /note="RBS_20851"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGTGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(22545..22541)
+FT                   /note="RBS_22545"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGCGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             22968..22972
+FT                   /note="RBS_22968"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+SQ   Sequence 23423 BP; 6172 A; 6124 C; 4731 G; 6396 T; 0 other
+     aacctaaaaa agtaaacgct attaaacgcg acgtttttta ggtggacgac aaccgttatg         60
+     agggatcgga gtcacatcag taatgttagt aatgcggaaa cctgccgcat ttaacgctcg        120
+     aatagttgac tcgcggccag gaccaggtcc tttaaccata acttccaggt tcttaattcc        180
+     gtattctttc actgcttcgg cacagcgctc tgctgcaacc tgagctgcaa acggagtaga        240
+     tttacgagaa ccacggaaac cggaaccacc ggcagttgcc caacccaggg cgttaccctg        300
+     acggtcagta atggtcacga tggtgttgtt gaaagaagca tggatatgag ccacaccgtc        360
+     agagacttgc tttcttacac gcttacgtgc acgaataggt gcttttgcca ttatacaata        420
+     ccccgattat ttcttgatcg gcttacgtgg acccttacgg gtacgtgcat tggtcttagt        480
+     acgctggccg cgaacaggta gaccacgacg gtgacgtaaa ccacgataag taccaagatc        540
+     catcagacgt ttgatgctca gggttacttc acgacgcaaa tcgccttcta caacgtattt        600
+     agcaacttcg tcacgcagct tatcaatttg ctcttcagac agctcgctga tcttaacatg        660
+     ttcagcaata cccgccgccg cacaaatggc ttgggagcga gttttaccaa ttccgtaaat        720
+     cgatgttaaa gcgattacag tatgtttttg atcaggaatg ttaatgcctg ctatacgggc        780
+     cactatgcac tcctaagtta tttatttacc gcaacatcat tctgaaaagc ccgttttcag        840
+     gatactcaaa caatgttgct gtgatataaa aaagattggc tggctaattt agccagctca        900
+     aaccgacttt gcaagaaaaa tatgctattt tattagcctt ggcgttgttt atgcttaggc        960
+     tctgcactac aaatcacacg aacgacaccg ttacgcttaa cgattttgca gttgcggcat       1020
+     aatttcttga cggaagcacg aactttcatt tttactctcc gtaacttctc aagcaaacca       1080
+     attaacggtt ataaccttta agatttgctt tcttcaatgc agactcatac tgacttgaca       1140
+     tcatcagagt ttgcacttga gccataaagt ccatgatgac tacaactacg ataagtagcg       1200
+     aagtaccgcc aaaataaaat ggcaccttca tcgcgtcacg catgaactcc gggattaagc       1260
+     agataaaagt aatatacatc gcgccaacta aagttaggcg tgtcattact ttatcaatgt       1320
+     acttggctgt ttgctctccc ggacgaattc ctggtacaaa tgcaccggac ttcttcaggt       1380
+     tatctgctgt ttctctcggg ttgaaaacca acgcagtata gaaaaaacag aagaagatga       1440
+     ttgcagacgc gtagagtaac acataaagcg gttgcccagg ctgcaagtac attgaaatag       1500
+     tagtcagcca gttccagcca gttcctcccc cgaaccaaga agctatggta ccagggaaca       1560
+     gaataatgct ggaagcaaaa attgcaggga taaccccagc catattcact ttcaacggta       1620
+     aatgtgtgct ctgtgcagca taaactcggc gaccctgttg acgtttcgca tagttaacaa       1680
+     cgatacgtcg ctgaccacgc tccatgaaaa caacgaagaa agttactgca aacactaaca       1740
+     ctgcaaccaa cagcaacagg aggaagtgca gatcgccttg ccgagcttgc tcaatggtat       1800
+     ggccgatggc cggcggcaaa cccgcaacaa taccagcaaa gattatgata gagataccgt       1860
+     ttccaatacc acgttcagta atctgttcac ccagccacat taggaacata gtcccagtaa       1920
+     ctaggctcac aacagccgtg aagtagaaag caaaccctgg attgatcacc agcccttgca       1980
+     ttcctggcat attcggcaaa ccagtagcaa taccgattga ctggaatata gccagcacta       2040
+     aagtaccata gcgagtatac tggctaatct tacgacgacc agcttcccct tccttcttaa       2100
+     tctctgccaa cgttggatga accaccgtca acaactgaat aataatagac gcagaaatat       2160
+     acggcattat ccccagtgca aagatagaag cacgactcaa agcaccacca gagaacatgt       2220
+     taaacatttc aatgatggtg cccctttgct gttcgagcaa tttggcaagc acagtggcat       2280
+     caataccagg gataggaata aaagaaccaa tgcggaaaac aattaacgcg ccaataacaa       2340
+     acaacagcct acgtttcagc tcgcccagtc cacctttagc actttgaaaa tctaatcctg       2400
+     gttgtttagc catctgttac ttattcctca attttaccgc cagcagcttc gattgcagca       2460
+     cgagcgcctt tagtaacacg aaggccacgc acagttactg cacgattgat ttcaccagaa       2520
+     agaataactt tcgcgaattc aatttgagtg ccaacaacat tagcggcttt caatgcattc       2580
+     agatcgataa tatcgccttc aacggcagca aaatcagaca aacgaacttc tgctgtaacc       2640
+     atcgccttac gtgaagtaaa accaaatttt ggcaaacgac ggtataaagg catctgacca       2700
+     ccttcaaaac cgcgacgtac gccaccacca gaacgagact tctggccttt gtgaccacgg       2760
+     ccaccggttt tacccaggcc agaaccaata ccacgaccta cacgtttagg cgcatgcttg       2820
+     gaaccttcag ccggagacag agtatttaag cgcatctgtt actcctcaac tttaaccata       2880
+     taggaaacca agttgatcat accacgtata gcaggagtat cttcacgctc tactgtatga       2940
+     ccgatacggc gcagacctaa accaaccaaa gttgccttat gtttaggcag acggccgatt       3000
+     gaactgcgaa tctgtgttat tttaatagtc ttagccatgg tcattacccc agaatttctt       3060
+     cgacggattt accacgctta gctgcgacca tttctggaga cttcatgctg tctaaagcat       3120
+     ccagagttgc acgaaccaca ttaatagggt tagtggaacc ataggtttta gccagtacgt       3180
+     tacgaacacc agccacttcc aaaacagcac gcatagcacc gcctgcgatg ataccagtac       3240
+     cttcgtgagc aggctgcatg aacacacggg aaccagtgtg tgcacctttt actgggtgat       3300
+     acaaagtgcc gctgttcagt gcgacggttt tcatattgcg acgggctttt tccatcgctt       3360
+     tctggattgc tgccggaact tcgcgtgctt tgccgtagcc aaaaccaacg cgaccattac       3420
+     catcacctac aacagtcagt gcggtaaagc tgaaaatccg gccacctttt acggttttag       3480
+     atacgcgatt taccgcaatc agcttttcct gcagttcgcc agcttgtttt tcgatgtgag       3540
+     ccatcttaca cctctacctt agaactgaag gccagcttca cgggcagcat ctgccagtgc       3600
+     ctggactcga ccatgatatt ggaaaccaga acggtcaaag gatacatctt taataccttt       3660
+     ttccagagca cgttcagcaa ttaccttgcc aaccgctgct gctgcttctt tatttccagt       3720
+     gtatttcagt tgctcattga tagctttttc tgtagtagaa gctgccacca aagtttcaga       3780
+     accgtttggt gctataacct gcgcatatat atggcgaggg gtacgatgta ccaccaggcg       3840
+     agttgcaccc agttcctgga gcttgcggcg tgcgcgggtc gcacgacgga tacgagctgc       3900
+     tttcttatcc atagtgttac cttacttctt cttagcctct ttgatacgca cgacttcgtc       3960
+     ggcgtaacga acacccttac ctttataagg ctcaggacga cgataggcac gcaattctgc       4020
+     cgcaacctga ccgattacct gtttatcagc accctttagt acgatttcag tttgtgacgg       4080
+     acattctgca gtaatgcctg ctggcagttc gtggtcaact ggatgtgaga agcccagaga       4140
+     catgttgata gcattgcctt tgactgctgc acgataacca acacctacca attgaagctt       4200
+     cttagtgaag ccttcggtaa caccgataac catagcattc agcaaagaac gagttgtacc       4260
+     cgcctgtgcc caaccatcaa cataaccatc gcgtggagcg aaagtcagtt gattatctgc       4320
+     atgcttaact tcaactgcgc tgtggattgt acgacttagc tcgccgtttt tacccttaat       4380
+     cgaaataacc tgaccgtcga gttttacctc tacgccggca ggaataacga cgggtgcttt       4440
+     tgcaacacga gacattcttt cctcccgaat taagctacgt agcagagaat ctcgccacca       4500
+     agaccagctt ggcgagctgc acgatcagtc attacacctt tagaggtaga aacaacagcg       4560
+     atacccaaac cagccataac ttgtggcagc tcatcttttt tcttatagat gcgcagactt       4620
+     ggacggctta cacgctgaat actttctaca acagccttac cctggaagta tttcagtact       4680
+     aattccagct ctggcttggt gtcgccttca attttataat cttcaatata accttcttcc       4740
+     ttcagcacct tggcaattgc cactttcagc ttggaggaag gcatggtgac cgcaacttta       4800
+     ttcgcggcct gaccgttacg gatacgggtc agcatatccg cgatgggatc ttgcatgctc       4860
+     atctgtcttt actcccgtga ttcaattggt gacaattacc agctagcctt tttaaggccc       4920
+     ggaatttcac cgcgcatggc ggcttcacgg actttaatac ggctcaaccc aaacttccgc       4980
+     aaaaacgcat gcggacgacc agtttggcga cagcggttac gctgacgaga agggctggaa       5040
+     tcacgtggca atgtttgcag cttaagaaca gcattccaac gctcttcatc agatgcattc       5100
+     acatcagaaa tgacagcctt caattccacg cgtttagtga agaatttttc agctaatttc       5160
+     gcacgtttta catcacgtgc tttcaatgat tgcttagcca tgaataccct gccttacttg       5220
+     cggaacggga agttaaaagc agccaacagt gcgcggcctt catcatcaga tttcgcagtt       5280
+     gtggtgatag taatatccag accacgaaca cgatccactt tatcataatc gatttcaggg       5340
+     aagatgattt gctcacgtac acccatgctg taattgccac gaccatcaaa tgacttagca       5400
+     gacaaaccgc ggaagtcacg aatacgaggt acagcaatag aaatcaggcg ctcaagaaac       5460
+     tcccacatac gttcaccacg cagggtcact ttacagccga ttggatagcc ctgacggatt       5520
+     ttgaagcctg caactgattt gcgtgctttg gtgatcaatg gtttttgacc agagattgct       5580
+     gccagatccg ctgccgcatt atccagcagt ttcttatcag caatcgcttc accaacaccc       5640
+     atgttcaggg tgatcttctc gacccgaggg acttgcatga cagaattgta gtcaaactga       5700
+     gtcatcagtt tttggactac ctcgtctttg tagtaatcat gcagtttcgc catcgtatta       5760
+     ctccaaatta cttgatagtt tcgctgttag atttaaagaa acgaactttt tttccgtctt       5820
+     caaatctaaa acctacacgg tcagccttac cggttgccgc attgaagatc gcaacgtttg       5880
+     aaacctgaat tgcagcttct ttttcaacga tgccacctgg ctggttcaga gccggaacag       5940
+     gcttctgatg ctttttaacc aagttgatac cttcaacaat gactttccca gtagaaagaa       6000
+     cctgttttac tttaccgcgc ttacctttat cttttccagt caacacgata acttcgtcat       6060
+     cacgacggat tttcgctgcc attgtccgct ccttagagta cttctggtgc cagggagata       6120
+     attttcatga acttttcatt acgaagttca cgagttaccg gcccaaaaat acgcgtaccg       6180
+     ataacttgct cacttgtgtt gtttaacaac acgcaagcat tgccatcgaa gcgaatgaca       6240
+     gaaccgtcag ggcgacgaac acccttcttg gtgcgcacca ctaccgcttt caggacatca       6300
+     ccttttttca ctttaccacg aggaattgct tccttgatgg tgacttttat gatgtcgccg       6360
+     acgtgtgcat agcgacggtg cgagccaccc agaaccttga tacacattac gcgacgtgca       6420
+     ccggagttgt cggccacgtt cagcatagtc tgttcttgga tcattttagt gctccgctaa       6480
+     atgtcaacta ctactgagcc acttcactac tataatttaa tatgaagagg ccgttcagat       6540
+     accccatatc atgagggcgc ggcattataa caccacatct cagatataga tagaaaaaat       6600
+     aaacggctca tcgcctgagc cgtttactct attcgagcca gcttacagaa tcgctttctc       6660
+     tacaacgcga actaaagtcc aagatttagt tttggacagt ggacgggttt cgcggatttc       6720
+     caccacatca ccgatgccac attcattgtt ctcgtcatgt acatgcagtt tagtcgtacg       6780
+     tttgatgaat ttaccataca gagggtgttt caccttacgc tcaatagcaa caacaataga       6840
+     tttctccatt ttgtcactta caacacgacc ttgcaaagta cggattttat cggtcattac       6900
+     gcacccgcct tctcagtcaa taaagtctta acgcgtgcga tattacgacg cacttgtttc       6960
+     aacagatgag actgttgtag ctggccactt gcagcctgca tgcgcaggtt aaattgttca       7020
+     cgcagcaaat tcagcagctc agtgttcagc tcttcaacgc ttttttcgcg cagctcttgt       7080
+     gctttcatta catcaccgtc ttagttacaa aggtggtctt gataggcagt ttcgctgctg       7140
+     ccagcttgaa tgcttcacga gccagctctt caggcacacc gtccatttca taaaggactt       7200
+     taccaggctg gatcaaggca acccaatatt ctacgttacc tttaccttta cccatacgca       7260
+     cttcgagtgg cttttcagtg ataggtttat ctggaaatac acgtatccag attttacctt       7320
+     gacgtttaat tgcacgagtc atagcacggc gtgccgcttc aatctgacgt gccgtcagac       7380
+     ggccacggcc cacagctttc agaccgaaag tgccgaagct aacatccgca cctgctgcca       7440
+     ggccacggtt acggcctttg tgcattttac ggaatttcgt acgctttggt tgtaacatca       7500
+     gcgactctcc ttacttgcgg cctttacgct gctgcttttt cggttgcgca gccggttttt       7560
+     ccgcctgttc aacagcagcc ataccaccca agatctcacc tttgaagatc cataccttaa       7620
+     cgccgagtac accataagtg gtgtgcgctt ctgaagtgtt gtagtcgata tctgcacgca       7680
+     gtgtgtgcaa cggtacacga ccttcacgat accattcagt acgcgcgatt tcagcaccgc       7740
+     ccaaacggcc actgacttcc actttaatgc ctttagcgcc caaacgcatc gcattttgaa       7800
+     ctgcacgctt catagcgcga cggaacataa cacgacgttc tagctgtgaa gtaatactgt       7860
+     cagcaaccag tttcgcgtcc agttcgggct tacgcacttc agagatatta atttgcgcag       7920
+     gaacaccagc gatttccgct acagttttac gcaatttttc tacgtcttca cctttcttac       7980
+     cgattacgat acctgggcga gcagtgtgaa tagttacacg aatactttta gcaggacgtt       8040
+     caataacaat gcgtgaaata gacgcttttg ccagttcttt attcaagtac tggcgaactt       8100
+     taaaatcgct gtctaggttg tcagcgaatt ctttagtatt cgcataccaa gtagagttcc       8160
+     aaggtttgac aatacccagg cgaataccat taggatgtac tttctgaccc attgctagtc       8220
+     tccagagtct cagcgatcgg acacaaccac agtaatgtgg ctgctgcgct tcaggatgcg       8280
+     atctgcacga ccttttgcac gaggcataat acgcttcatg gtcgggcctt cgtctacgaa       8340
+     aatcttcgtg accttcagat catcaatgtc agcaccatcg ttgtgttctg cattagcaat       8400
+     agcagactca agtactttct tcactaaacc agcagctttc ttattggtat aggtcagagt       8460
+     ttccagagct tgcgacactt tcttaccgcg aatcaggtca gctacaaggc gaaccttctg       8520
+     agcagaagaa cgagcgtggc gatgtttagc gatagtttcc atctcttcct cctaccttag       8580
+     cgctttttag cctttttatc ggccgcatgg ccgcgataag tacgggtcgg cgcgaattca       8640
+     cctagtttat gaccaaccat ttcgtcggaa acaaaaactg gtacatgctg acgaccatta       8700
+     tggacagcga tggtcaaacc gatcatgtta ggaaagatcg ttgaacgacg ggaccaagtc       8760
+     ttgataggct ttttgtctcc gctttccacc gctttctcta ccttcttcag caagtgcagg       8820
+     tcaataaatg gacctttctt gagagaacgt ggcatggttt atcctctaat tattttttag       8880
+     tacggcgacg tacgatgaac tgatcagtac gtttattact acgggtcttc ttacctttag       8940
+     tttgaacacc ccaaggagtt acaggatgct taccaaagtt acgaccttca ccaccaccat       9000
+     gagggtgatc taccgggttc atcgccgtac cacgaacggt aggacgaatg ccacgccagc       9060
+     gacttgcacc agctttaccc agaacgcgta gcatatgttc tgcattacca acttcaccta       9120
+     aggtggcgcg gcaatcagac agaactttac gcatttcacc agaacgcaga cgcaaagtta       9180
+     cataagaacc atcacgggca acgatctgaa cgtatgcacc agcggaacga gccaattgac       9240
+     cacctttacc cggcttcatt tctacgttat gcacggtaga accaacaggg atattgcgca       9300
+     ttggcaatgc gttaccagtt ttgatagctg cgtcagcacc agattggatc tgatcaccag       9360
+     ctttcagccc cttaggtgca aggatataac gacgctcacc atctttatac agaaccaggg       9420
+     cgatattcgc tgaacggttt ggatcatatt ccaaacgctc aactacagca gggataccat       9480
+     ctttattacg tttaaagtca atcaaacgat agtgctgctt gtggccacca ccaatgtgac       9540
+     gagtggtaat acggccattg ttgttacgac caccggtttt gctgcttttt tccagcaatg       9600
+     gagcataagg tttaccctta tgcagctcag ggttaaccac tttaacaacg tggcgacggc       9660
+     ccggagacgt aggtttacat ttaacaattg ccattgttct ttactcctcc ggcttactct       9720
+     gcaccaccga tgaagtccat attctggcct tccttcagtg tgacgtaagc ttttttccag       9780
+     tcgctacgac gaccaatacg ctgaccgtgg cgtttagttt tgcctttaac cagcaaagtg       9840
+     ttaacacctt caacttcgac ttcaaaaagt ttctgcacag cagctttgat ttctgcttta       9900
+     gtcgcgtctt ttgcaacttt gagaacgatg gtgttgctct tttccatcgc tgtagaagct       9960
+     ttttcagata cgtgcggcgc gcgcagtact ttcagcagac gttcttcacg gatcatgcca      10020
+     gcatctcctc aacttgcttc acagcatcag cagtcataac cactttatca aaggcgatta      10080
+     agctaactgg atcaatacca gctacatcac gaacatcaac cttgtacagg ttgcgagctg      10140
+     ctaagaataa attctcatca acttcatgag tgataatcag cacatcttcc agagccatct      10200
+     ctttcagttt ctgaaccaga agcttggttt taggagcttc tacagaaaac ttctcgacaa      10260
+     cgatcaaacg atcttgacgt accaattcag ataggatgct ttttaaagca ccacggtaca      10320
+     ttttcttatt aactttttga ctgtggtcct gtggtttagc tgcaaaagtt acaccaccag      10380
+     agcgccaaat tgggctctta atagaaccag aacgtgcacg gccagtgcct ttctgacgcc      10440
+     acggtttctt acctgaacca gaaacttcag cacgggtttt ctgagcacga gtaccttgac      10500
+     gtgcaccagc tgcgtaagca acaactactt gatgcacaag cgcttcattg aaatcacgcc      10560
+     cgaaggtagt ttcggaaaca gtcagcgcgc cttgcgcgtc tttcattacc aattccattc      10620
+     ctatctcctc gacgttacgc cttgacagcc ggttttacga tcaggttgcc gccagttgca      10680
+     cctgggacag cacctttgac cagcagcagg ttgcgctcag cgtcaacacg tactacatct      10740
+     aggctttgaa cagttacacg ttcattaccc agttggcctg ccattttctt gcctttaaat      10800
+     accttgcccg gagtttggtt ctgaccaata gaacccggaa cacgatgaga caaagagtta      10860
+     ccgtggctag catcttgggt acggaagttc cagcgcttaa cagtaccagc aaaaccttta      10920
+     cctttagatg taccagtaac gtcgactttc ttaacgtcag cgaaaatctc aacgctaatg      10980
+     ttttgaccta cagcatattc ttcgccttca gacagacgga attcacgtag gatacggcca      11040
+     gcttcaacgc cagctttagc gaaatggcct gcttcaggtt tgtttatacg gttagctttt      11100
+     ttgctaccag tagtaacctg aattgcacga taaccatcac tatccagatc tttaacctga      11160
+     gtgactcggt tatcttcaat ttcgataaca gttacaggga tagaaacgcc atcttcagtg      11220
+     aagatacgag tcatacccac ttttttaccg actaaaccaa tcattgtttc aacctctcaa      11280
+     tcgttcaatg acctgattaa cccaggctga tctgcacgtc tacaccggca gccagatcca      11340
+     gacgcatcag agcatcaacg gttttctcgg ttggctcaac gatgtcaacc agacgcttat      11400
+     gagtgcgaat ttcgtactga tcacgcgcat ctttattaac atgcggagaa attagaacgg      11460
+     taaaacgctc tttacgagtc ggtagcggga tcggaccacg aacctgcgca ccagtacgct      11520
+     tagcggtctc gacaatttcc gcagttgatt gatcgatcaa acgatgatca aatgctttca      11580
+     ggcgaatacg gattctttgg ttctgcatga gaccagagct ccaactattt tataaacgta      11640
+     aataattact cctcgtaccc atttcgattg acgggagagt gtaatcgttc aatatataac      11700
+     ccccacatcg ggagtatttt aaatggcagc aaagcaatac tgcacattta tactggttaa      11760
+     caaaccagac ttacacgtag gtaaggtggc gtattatacg caaatcaatt aacaaagcaa      11820
+     gatacagatg aagatctgtt cagagtagag ttaaaggagc atgaaacaag atgccctaac      11880
+     ttaacagata gggcatttgt aactattctc cttcaaggat ctgtgcttga gtgtaatttt      11940
+     gaatccccat acgttcaatt agttcaaatt gagtttctaa ccaatcaatg tgctcttctt      12000
+     cctcatctag gatatcgatc atcaaatcac gactaacata gtcatgaatc gaatcagcat      12060
+     aagcaattgc ttctttcaaa tctctcgctc cttgcaattc gagctgcaag tcagatttga      12120
+     gcatttcttc aatatcttct ccgatattaa gctttcccaa atcctgcaaa ttaggaattc      12180
+     cttcaagaaa aagaatacgt tcaatgtacc tatcggcatg cttcatttca tcgatagatt      12240
+     catgatattc cttatcatta aggcgggtaa ggccccagtt tttgaacatc cgggcgtgta      12300
+     gaaaatactg attaattgca acaagctcat ttccaagaag tttgttcaaa tgagcaatca      12360
+     tttttttatc acctttcata gtttactcct ccgcttccag tacttaaagt gtagtaccta      12420
+     ttcagcagag tagtagtaaa cttatccctt ttttatcaag caacgttatc tatcttaggc      12480
+     agctgtgcaa tctcctcatt aataagctct ctggcttggc gtatgcattt gccacaatca      12540
+     cggcctacag gcacaatacg ttttagttct ctaatagagt gaatatgatg ttgacgcacc      12600
+     gcattacgta ttgttttgtc acttaccgca ttacataggc agacatacat aaataacact      12660
+     ctctggtaca cattatagcg catattaaat aataatgagt ctcatttcaa taatcattcg      12720
+     cattttaatt ttctaattca agtttttcca aatacccttt taactttgtc aaatagagat      12780
+     agttatctca tttctgtaac atactgacta ggaagaattt ttatccctct tgggagcttt      12840
+     cttgaactta tttcatccta aaactatctc ctacctcaca tcagcaattt gctccagaac      12900
+     tgatagttag acagcacaat ccacttaaga tattacggga tacagaattc acacatttag      12960
+     ttatacgaaa acaagcatgc tatatcgtaa ccttttcggt gatctcttct ctttttgtta      13020
+     gagcatacca acagaggcag aacaagcatg agttagatat tactacctat atataaaaga      13080
+     aaagatgact catctaagtt tgaaaacaaa tacttattcg ggaaaatcac gagttggtta      13140
+     ccgctaacgc attctatcga tgaatgatga atatatatac tctagaagag taggtagaac      13200
+     agctagataa cgatgacacc actagaaaca agcagccaaa atcaaagaat taagacacta      13260
+     agagataaca taatggggta gttcatacag ggaatttaag gaagggtgat atcaattaaa      13320
+     atattaacta acagacacct agtgcaacac aaccaggtgt ctgttctaaa acaagccaaa      13380
+     atacaaactt gtcctaaggt taggtactta attattagct attaagcaat aattttagca      13440
+     acaacaccag caccgacagt acggccacct tcacggatag cgaagcgcag accctggtcc      13500
+     attgcgattg gcgcaatcag ggtgactttc atctgaatgt tatcacctgg catcaccatt      13560
+     tccacgcctt ctggcagctc gattgtgccg gttacgtcag ttgtacggaa gtagaactgt      13620
+     ggacggtagc ctttgaagaa tggcgtgtga cggccgcctt cgtctttgct cagaatataa      13680
+     acttctgatt cgaaagtggt gtgtggcttg attgaacctg gttttgccag tacctgacca      13740
+     cgttcgattt cgtcacgttt ggtaccacgc agcagaacac ccacgttctc acccgcacgg      13800
+     ccttcgtcca gcagtttgcg gaacatttct acgccagtac aagtggtttt agtcgtgtct      13860
+     ttgataccca cgatttcaac ttcttcaccc actttaacaa taccgcgctc tacacgacca      13920
+     gtaactacag taccacgacc tgaaatagag aatacgtctt cgattggcag caggaatggc      13980
+     tggtcgattg cacgctctgg ttctgggatg tagctatcca gcgcttccgc cagttccagg      14040
+     attttgcttt cccactcagc atcgccttcc agcgctttca gcgcggaacc gcggataact      14100
+     ggggtatcgt cgcctgggaa atcgtactga gacagcagct cacgcacttc catctcaacc      14160
+     agttccagca gctcttcgtc gtctaccatg tcacatttgt tcaggaacac gatgatgtaa      14220
+     ggaacgccta cctgacgacc taacaggatg tgctcacgag tctgtggcat tgggccgtca      14280
+     gtcgcagcaa ctaccaggat tgcgccgtcc atctgagccg cgccggtgat catgtttttc      14340
+     acatagtcag cgtggcctgg gcagtcaacg tgcgcatagt ggcggcttgg ggtatcgtat      14400
+     tctacgtgag aagtagagat ggtgatacca cgcgcttttt cttctggcgc gttatcgatt      14460
+     tggtcgaatg cgcgagcgtt accaccgtag gttttagcca gtacagtagt gatggcagca      14520
+     gtcagggtag ttttaccgtg gtcaacgtgg ccgatagtac caacgttaac gtgcggtttt      14580
+     gtacgttcaa acttttcttt agacatttag attgtccctc taagacacgg aatcggtggt      14640
+     tccaccacat caaccaagca attgctcgtt ggatatcgct tacaggaata aaatcgggag      14700
+     acaaggacat tagggaagtg gtgctgatag gcagattcga actgccgacc tcacccttac      14760
+     caagggtgtg ctctaccaac tgagctatat cagcacatct tggagcgggc agcgggaatc      14820
+     gaacccgcat catcagcttg gaaggctgag gtaatagcca ttatacgatg cccgcattga      14880
+     actcggctac ctgactttaa tcagctgtac gttggtctcg atatgctttt cctctagtaa      14940
+     gtactaaagg gataccaaga ctaagtctga ttctttggtg gtgggggaag gattcgaacc      15000
+     ttcgaagtct gtgacggcag atttacagtc tgctcccttt ggccgctcgg gaaccccacc      15060
+     ttttccaaat ttttaatggt gccggcacca agaatcgaac tcgggaccta ctgattacaa      15120
+     gtcagttgct ctaccaactg agctatgccg gcatcaagtg ctgcgcattc taggcagtgt      15180
+     gagcgcacta tgcaacaaaa aaatcgccac ctttgatcat tcggtcataa aacgctcatt      15240
+     cttattcaat tagctgtttt tttcaatata tttagatcaa ataatagaca aaaatcattg      15300
+     acaactatcg aggaactgat cacagtgccc gataaaactt gataggtcac ttcattttac      15360
+     gtcatttaaa tttccatcat gataaataaa cagctaaagc taacattaag taaagcaact      15420
+     caatttttta cgcttctgca ttccttgcaa aaaaaaccga taaaaataca aaaaagccta      15480
+     cgcctgccgc tcatcagtcg atatcatgca atttattttt tgccgggtac aggttgttta      15540
+     ttgcaacttg tccaacctgc acaaacaggc agatgttggt ttatgaataa aaaagaacct      15600
+     tttttggcta ctccatattt gcaattcaat cgtgaacaat gggcaacctt acgcgattca      15660
+     gttccactga cactaacaaa agaagaatta attgatttaa aaggaattaa tgaagaaatt      15720
+     tctttagaag aagttgttga gatttacctt cctttgtccc gcttacttaa tttttatatt      15780
+     agttcaaatt tacgtcgtca agcagtgctc gaacaatttc taggtactga tggacaaaaa      15840
+     gttccttacg tcataggaat tgctggtagt gtcgctgttg gtaaaagtac tactgcacgt      15900
+     ctattgcaag ccctgctgag tcgttggcct gaacacagaa gtgtagaatt aattactaca      15960
+     gatggctttc tacattctaa caacgtgctg aatgaacgtg gactaatgaa aaagaaaggg      16020
+     ttcccacaat catatgatat gcatagctta gtaaaatttg tatctgacat taaatcaggc      16080
+     tccaaacaag tatccgcacc cgtctactct catcttacct atgatatcgt accaaatgag      16140
+     caaaaattca ttaaacaacc agacattttg attctagagg gtttaaatgt attacaaagc      16200
+     ggtatggatt atccccatga tccacaccat gtttttgtct ctgattttgt tgatttttct      16260
+     atctatgtag atgcaccaga aaaattactc aagagttggt atatcagtcg tttcttaaaa      16320
+     ttccgccaag gcgccttttc cgatccggat tcttattttc acagctattc caagctatca      16380
+     gaagaagaag ccataaatac tgcatctgac atctggcaag agatcaatgg actgaatttg      16440
+     cgacaaaata ttttaccaac tcgagaacgc gcaagtctaa tcatgacaaa aggtactaat      16500
+     cacactattg aaagcgtaag gctgcgtaag taaaagtagt ttccgaaccc ggaagacatt      16560
+     atctcttccg gtcattgcta acaacctctt aaagaaatct ccccaccgat atatggggtt      16620
+     ataacaccgt tctgatcaag taacaaagca ccttgctggt taatacccct agctatacca      16680
+     tacacttcct gactaccaat aattaatttc accggtctat ccataaaatt atctaactca      16740
+     aaccaccgag aaacaaatga agacaaacct tcattttcaa actgaattaa agccttcctt      16800
+     agatcaagta ttatttctac agccaattta ttacgatcaa cttcaatgcc tgcctgcaac      16860
+     aaattaatcc attgctgatt aatagattct tcatccttat gatccattga aatatttata      16920
+     cccgcaccta tcacaacctg agcagcatca ccagtctttc ctattaattc aactaagatt      16980
+     cccgctaatt tcttatcatc aagatataaa tcatttggcc attttaccct aattctatca      17040
+     gctccaaatc gatgtaatac ttcagcaata acaatgccaa caaccagact caatccgatt      17100
+     gcagcagcag gtccttgttc aaggcgccaa tacatagata aataaagatt ttttccaaag      17160
+     ggcgaaaccc atttccttcc acgccgccct ctgccagcat actgatactc tgcaacacaa      17220
+     gcatcccctg atttcaattc agataaacgt tcaagcaagt actgattagt cgaatcaata      17280
+     actggcaaaa cagttatacg atcctgaggt aagtattgaa aaatagtaga ttcatcaagt      17340
+     aattgcatag gttccacaag gctatagccc ttgccaggag ttgtttctag ttcaattccc      17400
+     cattcacgaa ttgtctgtat atgtttatta atcccagctc tactcattcc taaatcttgc      17460
+     cccaactgtt ggccagaatg aacgtcaccg tcagacaaaa tcttaatcaa ctgtaatggc      17520
+     acggttatat ctttcatgaa atacattcca cagcatcaat ttcgccttta gaaccaataa      17580
+     aacgaacctc aggttcaagt aacacaccaa acttacttat cacttgctgg cgaatgtagg      17640
+     cagccaatga gactacatcc ttgcctgtag cattttcctg atttatcaat actagagctt      17700
+     gtctaagatg cacagatgca cctccaatgc gataaccttt taaattacaa tgttcaatga      17760
+     gccaacctgc cgctaattta aacatcccat tcatgtaagg atattgggga ctatcagggt      17820
+     aattttctct aatctttgcc gcaacttcct cactgacaat tgggtttttg aagaaactcc      17880
+     ctgcgtttcc tgttattaca ggatcaggca atttactggt gcgcattgca catattgaat      17940
+     caaaaatctg ctgaggagtt acattatctt tcgaaaacct agttaagtca ccatagttca      18000
+     atatcggctg ccaattcttt ttcaacaata atcctacgga gataatagaa tgatttgtct      18060
+     tatatttatt cttaaaaaca ctatcccgat atccaaactg acattcacca acactaaggc      18120
+     gcgttttttc cccagtttct aaattaagaa catctacata ttcacacaca tctctaaatt      18180
+     caatgccata tgcaccaata ttttgaatcg gtgccgcgcc aacgcaacca ggaatcaaag      18240
+     ccaagttttc taacccatag atttgatttt taagagaacg gcagactaat ttatgccaat      18300
+     tttctcctgc ccctacatgt aaatgccacg attcatctgt ctcccgctgt tgaatcccca      18360
+     taattctatt cagaatcaca gttccttcaa aatttgcagt aaataagaca ttactacctc      18420
+     caccaagtaa taatgcaggt tgtttttcac ttttggcttt ctgccataaa gttaataaag      18480
+     actcggcaga ttcagctata tctaaacgtt tagcgtaagc tgataaccca aaggtattaa      18540
+     actctttaag agaaagcatt tactcaatac tcaataaaac tacttaataa gtagtttatc      18600
+     agctataggc gtggaaaaca gttggaaaac taagttagtt ttttattaaa tgcaaaaagg      18660
+     ccacccttct ggatggcctt tttgtctcaa aataaagtct ggcagttccc tactctcaca      18720
+     tggggagacc ccacactacc atcggcgcta cggcgtttca ctgctgagtt cggcatgggg      18780
+     tcaggtggga ccgccgcgct atcgctgcca gacaaattct cttatacgtt atcatggtgc      18840
+     tgatacccag attcgaactg gggacctcac ccttaccaag ggtgtgctct accaactgag      18900
+     ccatatcagc aatggttgcc caaactcact gttggcgcac gccaaaacac cttcggcgtt      18960
+     gtaaggttaa gcctctcggt tcattagtac tggtcagctc aatgcatcgc tgcacttaca      19020
+     cacccagcct atccacgtct tcgtcttaaa cgttccttcc gtgaccttaa agtcaaggga      19080
+     agactcatct caaggcaagt ttcccgctta gatgctttca gcggttatct ctcccgcact      19140
+     tagctaccgg gcgatgccat tggcatgaca acccgtacac cagcggtgcg tccactccgg      19200
+     tcctctcgta ctaggagcag cccctttcaa tcttcctgcg cccacggcag atagggaccg      19260
+     aactgtctca cgacgttcta aacccagctc gcgtaccact ttaaatggcg aacagccata      19320
+     cccttgggac ctacttcagc cccaggatgt gatgagccga catcgaggtg ccaaacaccg      19380
+     ccgtcgatat gaactcttgg gcggtatcag cctgttatcc ccggagtacc ttttatccgt      19440
+     tgagcgatgg cccttccatg cagaaccacc ggatcactaa gacctacttt cgtacctgct      19500
+     cgaaccgtca ctctcgcagt taagctggct tatgcctttg cactaacctc acgatgtccg      19560
+     accgtgatta gccaaccttc gtgctcctcc gttacgcttt gggaggagac cgccccagtc      19620
+     aaactacccg ccagacactg tcctcggccc ggatgacggg cctaagtgag aacatcgaac      19680
+     attcaagggt ggtatttcaa ggatggctcc atgcagactg gcgtccgcac ttccaagcct      19740
+     cccacctatc ctacacatca aggctccatg ttcagtgtca agctatagta aaggttcacg      19800
+     gggtctttcc gtcttgccgc ggggacactg catcttcaca gcgagttcaa tttcactgag      19860
+     tctcgggtgg agacagcctg gccatcatta cgccattcgt gcaggtcgga acttacccga      19920
+     caaggaattt cgctacctta ggaccgttat agttacggcc gccgtttact ggggcttcga      19980
+     tcaagagcgt cgccttaacg gctaacccca tcaattaacc ttccagcacc gggcaggcgt      20040
+     cacaccgtat acgtccactt acgtgttggc acagtgctgt gtttttaata aacagttgca      20100
+     gccagctggt ctctgcgact ggcttcggct ccgggagtca atcccttcac ctaacgccag      20160
+     cgtgccttct cccgaagtta cggcaccatt ttgcctagtt ccttcacccg agttctctca      20220
+     agcgcctgag tattctctac ctgaccacct gtgtcggttt ggggtacgat tgtctgtgac      20280
+     ctggtgctta gaggcttttc ctggaagccg ggcatcaacc acttcaccgc cgtagcggct      20340
+     cgtcatcacg cctcagtgtt cacagaagag cggatttgcc tgctcttccc acctacacgc      20400
+     ttaaaccggg acgaccgtcg cccggatggc ctagccttct ccgtcccccc ttcgcagtca      20460
+     ccttcagtac aggaatatta acctgtttcc catcagctac gccgttcggc ctcgccttag      20520
+     gggtcgactc accctgcccc gattaacgtt ggacaggaac ccttggtctt ccggcgagcg      20580
+     ggtttttcac ccgctttatc gttacttatg tcagcattcg cacttctgat acctccagca      20640
+     ggcctcacgg cgccgccttc accggcttac agaacgctcc cctacccaac aacacctaca      20700
+     tgtcgctgcc gcagcttcgg tgcatggttt agccccgtta catcttccgc gcaggccgac      20760
+     tcgaccagtg agctattacg ctttctttca atgatggctg cttctaagcc aacatcctgg      20820
+     ctgtctgggc cttcccacat cgtttcccac ttaaccatga cttcgggacc ttagctggcg      20880
+     gtctgggttg tttccctctt cacgacggac gttagcaccc gccgtgtgtc tcccgtgatg      20940
+     acattcttcg gtattcgcag tttgcatcgg gttggtaagc cgggatggcc ccctagccga      21000
+     aacagtgctc tacccccgaa gatgaactca cgaggcgcta cctaaatagc tttcggggag      21060
+     aaccagctat ctcccggttt gattggcctt tcacccccag ccacaagtca tccgctaatt      21120
+     tttcaacatt agtcggttcg gtcctccagt tagtgttacc caaccttcaa cctgcccatg      21180
+     gctagctcac cgggtttcgg gtctataccc tgcaactcat tcgcccagtt aagactcggt      21240
+     ttccctgcgg ctcccctatt cggttaacct tgctacagaa tataagtcgc tgacccatta      21300
+     tacaaaaggt acgcagtcac cctgattcat caaggctccc actgcttgta cgtacacggt      21360
+     ttcaggttct ctttcactcc cctcgccggg gttcttttcg cctttccctc acggtactgg      21420
+     ttcactatcg gtcagtcagg agtatttagc cttggaggat ggtcccccca tccttcagac      21480
+     aggatttctc gtgtcccgcc ttactcgtcg aactcacaac cacgccatct tcgagtacgg      21540
+     ggctgtcacc ctctctcgcc ggcctttcca gaccgttcct ctgatgctgt ggctgatgct      21600
+     ggttctgggc tcctccccgt tcgctcgccg ctactggggg aatctcggtt gatttctttt      21660
+     cctcggggta ctgagatgtt tcagttcccc cggttcgcct cattaaccta tggattcagt      21720
+     taatgatagt gcaacgcatt gcactgggtt tccccattcg gacatcgccg gctataacgc      21780
+     ttcatatcag cttaccgacg cttttcgcag attagcacgt ccttcatcgc ctctgactgc      21840
+     ctaggcatcc accgtgtacg cttagtcgct taacctcaca acccgaaact gtctcggatc      21900
+     agacaatctg tgtgagcact tcacttctcg tatctcaggt aaggaggtga tccaaccgca      21960
+     ggttccccta cggttacctt gttacgactt caccccagtc atgagccaca aagtggtcag      22020
+     cgccctcctt gcggttaagc taccgacttc ttttgcaacc cactcccatg gtgtgacggg      22080
+     cggtgtgtac aaggcccggg aacgtattca ccgtagcatg ctgatctacg attactagcg      22140
+     attccgactt catggagtcg agttgcagac tccaatccgg actacgacag actttgtgtg      22200
+     ttccgcttgc tctcgcgagg tcgcttcact ttgtatccgc cattgtagca cgtgtgtagc      22260
+     cctactcgta agggccatga tgacttgacg tcatccccac cttcctccgg tttatcaccg      22320
+     gcagtctcct ttgagttccc gcctttacgc gctggcaaca aaggataagg gttgcgctcg      22380
+     ttgcgggact taacccaaca tttcacaaca cgagctgacg acagccatgc agcacctgtc      22440
+     tcagagctcc cgaaggcaca acctcatctc tgaggtcttc tctggatgtc aagagtaggt      22500
+     aaggttcttc gcgttgcatc gaattaaacc acatgctcca ccgcttgtgc gggcccccgt      22560
+     caattcattt gagttttaac cttgcggccg tactccccag gcggtcgatt taacgcgtta      22620
+     gcttcggaag ccacagttca agaccgcaac ctccaaatcg acatcgttta cagcgtggac      22680
+     taccagggta tctaatcctg tttgctcccc acgctttcgc acctgagcgt cagtcttcgt      22740
+     ccagggggcc gccttcgcca ccggtattcc tccacatctc tacgcatttc accgctacac      22800
+     atggaattct acccccctct acgagactcc agccaaccag tcttagatgc cattcccagg      22860
+     ttgagcccgg ggatttcaca tctaacttaa ttgaccgcct gcgtgcgctt tacgcccagt      22920
+     cattccgatt aacgcttgca ccctccgtat taccgcggct gctggcacgg agttagccgg      22980
+     tgcttcttct gcgggtaacg tcaaaattca actctgttca agctgaaccc ttcctccccg      23040
+     ctgaaagtac tttacaaccc gaaggccttc ttcatacacg cggcatggct gcatcaggct      23100
+     tgcgcccatt gtgcaatatt ccccactgct gcctcccgta ggagtctggg ccgtgtctca      23160
+     gtcccagtgt ggctggtcat cctctcagac cagctaggga tcgtcgccta ggtaggcctt      23220
+     taccctacct actagctaat cccatctggg ttcatccgac ggcgtgaggc cctttcaggt      23280
+     cccccacttt ggtctcgcga cattatgcgg tattagccac cgtttccagt ggttatcccc      23340
+     cgccctcggg cagatcccca gacattactc acccgtccgc cgctcgtcag caaaagcgca      23400
+     agcgctttcc tgttaccgc                                                  23419
+//

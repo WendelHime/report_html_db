@@ -1,0 +1,5 @@
+<div class="content-wrapper">
+    <div class="container">		
+        [% INCLUDE 'html_dir/help/_content.tt' %]
+    </div>
+</div>

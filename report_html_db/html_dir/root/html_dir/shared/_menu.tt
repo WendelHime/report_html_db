@@ -1,0 +1,47 @@
+<div class="navbar navbar-inverse set-radius-zero">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+
+                <img src="assets/img/logo.png" />
+            </a>
+
+        </div>
+    </div>
+</div>
+<!-- LOGO HEADER END-->
+<section class="menu-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar-collapse collapse ">
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag.search('menu') %]
+                                [% IF text.value == currentPage %]
+                                    <li><a class="menu-top-active" href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
+                                [% ELSE %]
+                                    <li><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
+                                [% END %]
+                            [% END %]
+                        [% END %]
+                        <!--<li><a  class="menu-top-active" href="[% c.uri_for('/home') %]">Home</a></li>
+                        <li><a	href="[% c.uri_for('/blast') %]">BLAST</a></li>
+                        <li><a  href="[% c.uri_for('/searchdatabase') %]">Search database</a></li>
+                        <li><a	href="[% c.uri_for('/globalanalyses') %]">Global analyses</a></li>
+                        <li><a	href="[% c.uri_for('/downloads') %]">Downloads</a></li>
+                        <li><a	href="[% c.uri_for('/help') %]">Help</a></li>
+                        <li><a	href="[% c.uri_for('/about') %]">About</a></li>-->
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

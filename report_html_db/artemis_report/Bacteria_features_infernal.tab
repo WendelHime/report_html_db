@@ -1,0 +1,110 @@
+FT   ncRNA           complement(864..751)
+FT                   /locus_tag="Bact_03"
+FT                   /label="Alpha_RBS"
+FT                   /note="Bact_03"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_14"
+FT                   /ncRNA_class="other"
+FT                   /product="Alpha operon ribosome binding site"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00140, Rfam type: Cis-reg;, score is 105.8, e-value is 1.7e-25, bias is 0.5"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(18706..18649)
+FT                   /locus_tag="Bact_43"
+FT                   /label="STnc370"
+FT                   /note="Bact_43"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_15"
+FT                   /ncRNA_class="other"
+FT                   /product="Enterobacterial sRNA STnc370"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF02064, Rfam type: Gene;sRNA;, score is 27.1, e-value is 0.14, bias is 0.1"
+FT                   /color=123 234 255
+
+FT   ncRNA           18625..18686
+FT                   /locus_tag="Bact_41"
+FT                   /label="Phe_leader"
+FT                   /note="Bact_41"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_16"
+FT                   /ncRNA_class="other"
+FT                   /product="Phenylalanine leader peptide"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01859, Rfam type: Cis-reg;leader;, score is 20.2, e-value is 0.74, bias is 0.6"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(14828..14812)
+FT                   /locus_tag="Bact_32"
+FT                   /label="beta_tmRNA"
+FT                   /note="Bact_32"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_17"
+FT                   /ncRNA_class="other"
+FT                   /product="Betaproteobacteria transfer-messenger RNA"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01850, Rfam type: Gene;, score is 12.8, e-value is 1.2, bias is 0.4"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(15074..15030)
+FT                   /locus_tag="Bact_34"
+FT                   /label="RF_site9"
+FT                   /note="Bact_34"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_18"
+FT                   /ncRNA_class="other"
+FT                   /product="Gag/pro ribosomal frameshift site"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01098, Rfam type: Cis-reg;frameshift_element;, score is 22.1, e-value is 1.4, bias is 1.7"
+FT                   /color=123 234 255
+
+FT   ncRNA           18587..18685
+FT                   /locus_tag="Bact_40"
+FT                   /label="RNAI"
+FT                   /note="Bact_40"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_19"
+FT                   /ncRNA_class="antisense_RNA"
+FT                   /product="RNAI"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00106, Rfam type: Gene;antisense;, score is 18.4, e-value is 2.3, bias is 2.6"
+FT                   /color=123 234 255
+
+FT   ncRNA           1111..1179
+FT                   /locus_tag="Bact_05"
+FT                   /label="SNORD59"
+FT                   /note="Bact_05"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_20"
+FT                   /ncRNA_class="snoRNA"
+FT                   /product="Small nucleolar RNA SNORD59"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00273, Rfam type: Gene;snRNA;snoRNA;CD-box;, score is 19.5, e-value is 4.5, bias is 0.2"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(8162..8069)
+FT                   /locus_tag="Bact_20"
+FT                   /label="mir-183"
+FT                   /note="Bact_20"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_21"
+FT                   /ncRNA_class="miRNA"
+FT                   /product="microRNA mir-183"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00663, Rfam type: Gene;miRNA;, score is 16.9, e-value is 5.7, bias is 0.5"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(18695..18650)
+FT                   /locus_tag="Bact_44"
+FT                   /label="HIV_FE"
+FT                   /note="Bact_44"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_22"
+FT                   /ncRNA_class="other"
+FT                   /product="HIV Ribosomal frameshift signal"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00480, Rfam type: Cis-reg;frameshift_element;, score is 21.2, e-value is 6.1, bias is 0.1"
+FT                   /color=123 234 255
+
+FT   ncRNA           complement(23039..22993)
+FT                   /locus_tag="Bact_53"
+FT                   /label="sR60"
+FT                   /note="Bact_53"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_5_23"
+FT                   /ncRNA_class="snoRNA"
+FT                   /product="Small nucleolar RNA sR60"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01309, Rfam type: Gene;snRNA;snoRNA;CD-box;, score is 16.1, e-value is 9.7, bias is 0.3"
+FT                   /color=123 234 255
+

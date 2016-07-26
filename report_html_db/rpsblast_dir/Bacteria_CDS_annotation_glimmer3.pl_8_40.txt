@@ -1,0 +1,325 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_8_40
+
+Length=177
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|235495  PRK05498, rplF, 50S ribosomal protein L6; Validated   322     5e-113
+gnl|CDD|213843  TIGR03654, L6_bact, ribosomal protein L6, bacteri...  308     2e-107
+gnl|CDD|223175  COG0097, RplF, Ribosomal protein L6P/L9E [Transla...  257     3e-87 
+gnl|CDD|177062  CHL00140, rpl6, ribosomal protein L6; Validated       207     9e-68 
+gnl|CDD|249789  pfam00347, Ribosomal_L6, Ribosomal protein L6         85.7    9e-22 
+gnl|CDD|234296  TIGR03653, arch_L6P, archaeal ribosomal protein L...  74.2    1e-16 
+gnl|CDD|235496  PRK05518, rpl6p, 50S ribosomal protein L6P; Reviewed  65.3    2e-13 
+gnl|CDD|240234  PTZ00027, PTZ00027, 60S ribosomal protein L6; Pro...  39.0    6e-04 
+gnl|CDD|140206  PTZ00179, PTZ00179, 60S ribosomal protein L9; Pro...  34.9    0.013 
+gnl|CDD|132162  TIGR03118, PEPCTERM_chp_1, TIGR03118 family prote...  31.0    0.29  
+gnl|CDD|235718  PRK06154, PRK06154, hypothetical protein; Provisi...  30.2    0.74  
+gnl|CDD|225239  COG2364, COG2364, Predicted membrane protein [Fun...  27.3    3.7   
+gnl|CDD|258465  pfam14284, PcfJ, PcfJ-like protein. The PcfJ-like...  26.9    4.4   
+gnl|CDD|182331  PRK10247, PRK10247, putative ABC transporter ATP-...  27.0    4.9   
+gnl|CDD|199909  cd10747, DnaJ_C, C-terminal substrate binding dom...  26.2    7.5   
+gnl|CDD|180820  PRK07064, PRK07064, hypothetical protein; Provisi...  26.9    8.4   
+
+
+>gnl|CDD|235495 PRK05498, rplF, 50S ribosomal protein L6; Validated.
+Length=178
+
+ Score = 322 bits (829),  Expect = 5e-113, Method: Composition-based stats.
+ Identities = 110/177 (62%), Positives = 138/177 (78%), Gaps = 0/177 (0%)
+
+Query  1    MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVD  60
+            MSR+ K P+ IPAGVEV ++G V+++KG  GELSRT++  V VK  DN++T    D    
+Sbjct  1    MSRIGKKPIAIPAGVEVTINGNVVTVKGPKGELSRTLNPDVTVKVEDNEITVTRPDDSKK  60
+
+Query  61   GWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAG  120
+              A  GTTR+L+N MV+GVTEGF KKL++VGVGYRA VKG  +N+SLG+SHPV++E+P G
+Sbjct  61   ARALHGTTRALINNMVVGVTEGFEKKLEIVGVGYRAQVKGKKLNLSLGYSHPVEYEIPEG  120
+
+Query  121  ITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKKK  177
+            IT E P  TEIV+KG DKQ++GQVAAE+R+YR PEPYKGKG+RYA EVVR KE KKK
+Sbjct  121  ITVEVPKPTEIVVKGIDKQLVGQVAAEIRSYRPPEPYKGKGIRYAGEVVRRKEGKKK  177
+
+
+>gnl|CDD|213843 TIGR03654, L6_bact, ribosomal protein L6, bacterial type.  [Protein 
+synthesis, Ribosomal proteins: synthesis and modification].
+Length=175
+
+ Score = 308 bits (791),  Expect = 2e-107, Method: Composition-based stats.
+ Identities = 108/175 (62%), Positives = 138/175 (79%), Gaps = 0/175 (0%)
+
+Query  2    SRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDG  61
+            SR+ K P+ IPAGVEV +DG V+++KG  GELSRT+H  V VK  D QLT +  +   + 
+Sbjct  1    SRIGKKPIAIPAGVEVTIDGNVVTVKGPKGELSRTLHPGVTVKVEDGQLTVSRPNDSKEA  60
+
+Query  62   WAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAGI  121
+             A  GTTR+L+N MVIGV+EGF KKL++VGVGYRA ++G  +N+SLG+SHPV++E+P GI
+Sbjct  61   RALHGTTRALINNMVIGVSEGFEKKLEIVGVGYRAQLQGKKLNLSLGYSHPVEYEIPEGI  120
+
+Query  122  TAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKK  176
+            T E P  TEIV+KG DKQ++GQVAAE+RA+R+PEPYKGKG+RYA EVVR KE KK
+Sbjct  121  TVEVPKPTEIVVKGIDKQLVGQVAAEIRAFRKPEPYKGKGIRYAGEVVRRKEGKK  175
+
+
+>gnl|CDD|223175 COG0097, RplF, Ribosomal protein L6P/L9E [Translation, ribosomal 
+structure and biogenesis].
+Length=178
+
+ Score = 257 bits (658),  Expect = 3e-87, Method: Composition-based stats.
+ Identities = 99/177 (56%), Positives = 126/177 (71%), Gaps = 2/177 (1%)
+
+Query  1    MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSA-VEVKHADNQLTFAPRDGYV  59
+            MSR+ K P+VIPAGV V ++GQV+++KG  GEL+R  H   V+V+  DN L   P DG  
+Sbjct  1    MSRIGKRPIVIPAGVTVSIEGQVVTVKGPKGELTREFHDNVVKVEVEDNILVVRPVDG-K  59
+
+Query  60   DGWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPA  119
+               A  GT R+L+N MV GVTEGF KKL++VGVGYRA V G  + + LG+SHPV  E+P 
+Sbjct  60   RKRALHGTVRALINNMVKGVTEGFEKKLEIVGVGYRAQVVGGNLELFLGYSHPVVIEIPE  119
+
+Query  120  GITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKK  176
+            GIT E P  TEIV++G DK+++GQVAA +RA R+PEPYKGKG+RY  E +R KE K 
+Sbjct  120  GITVEVPGPTEIVVEGIDKELVGQVAANIRAARKPEPYKGKGIRYDGEYIRRKEGKT  176
+
+
+>gnl|CDD|177062 CHL00140, rpl6, ribosomal protein L6; Validated.
+Length=178
+
+ Score = 207 bits (530),  Expect = 9e-68, Method: Composition-based stats.
+ Identities = 85/175 (49%), Positives = 117/175 (67%), Gaps = 0/175 (0%)
+
+Query  1    MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVD  60
+            MSR+ K P+ IP  V V +D Q+I +KG  G LSR I   + ++  DN L  + +D    
+Sbjct  1    MSRIGKLPIKIPDNVNVSIDDQIIKVKGPKGTLSRKIPDLITIEIQDNSLFVSKKDESKK  60
+
+Query  61   GWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAG  120
+              A  G  R+L+N MVIGV+EGF KKL+L GVGYRA V+G  + ++LG+SHPV  ++P G
+Sbjct  61   ARALHGLYRTLINNMVIGVSEGFEKKLELQGVGYRAQVQGKDLILNLGYSHPVKIKIPPG  120
+
+Query  121  ITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAK  175
+            I+ E  + T I +KG DK+++GQ AA++R+ R PEPYKGKG+RY  EV+R K  K
+Sbjct  121  ISVEVENNTNITIKGIDKELVGQFAAKIRSVRPPEPYKGKGIRYKGEVIRRKAGK  175
+
+
+>gnl|CDD|249789 pfam00347, Ribosomal_L6, Ribosomal protein L6.  
+Length=76
+
+ Score = 85.7 bits (213),  Expect = 9e-22, Method: Composition-based stats.
+ Identities = 28/75 (37%), Positives = 42/75 (56%), Gaps = 0/75 (0%)
+
+Query  90   VGVGYRAAVKGNAINMSLGFSHPVDHELPAGITAECPSQTEIVLKGADKQVIGQVAAELR  149
+            + VG R ++ G  + + LG    +  E+P G+T +    T I++ G DK+ +GQ AA + 
+Sbjct  1    IPVGVRVSIDGKNLVLVLGPKGELTREIPPGVTVKVKKITVIIVSGIDKEKVGQFAALIG  60
+
+Query  150  AYRRPEPYKGKGVRY  164
+             YR P P  GKGV Y
+Sbjct  61   TYRAPIPNMGKGVSY  75
+
+
+ Score = 52.2 bits (126),  Expect = 1e-09, Method: Composition-based stats.
+ Identities = 26/78 (33%), Positives = 36/78 (46%), Gaps = 8/78 (10%)
+
+Query  11  IPAGVEVKLDG-QVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDGW-----AQ  64
+           IP GV V +DG  ++ + G  GEL+R I   V VK    ++T     G          A 
+Sbjct  1   IPVGVRVSIDGKNLVLVLGPKGELTREIPPGVTVKV--KKITVIIVSGIDKEKVGQFAAL  58
+
+Query  65  AGTTRSLLNAMVIGVTEG  82
+            GT R+ +  M  GV+ G
+Sbjct  59  IGTYRAPIPNMGKGVSYG  76
+
+
+>gnl|CDD|234296 TIGR03653, arch_L6P, archaeal ribosomal protein L6P.  Members 
+of this protein family are the archaeal ribosomal protein L6P. 
+The top-scoring proteins not selected by this model are 
+eukaryotic cytosolic ribosomal protein L9. Bacterial ribosomal 
+protein L6 scores lower and is described by a distinct model 
+[Protein synthesis, Ribosomal proteins: synthesis and modification].
+Length=170
+
+ Score = 74.2 bits (183),  Expect = 1e-16, Method: Composition-based stats.
+ Identities = 47/148 (32%), Positives = 78/148 (53%), Gaps = 20/148 (14%)
+
+Query  11   IPAGVEVKLDGQVISIKGKNGELSRTI-HSAVEVKHADNQL----TFAPRDGYVDGWAQA  65
+            IP GV V ++G ++++KG  GE++R + +  +E+   D ++     FA +       A  
+Sbjct  6    IPEGVSVTIEGNIVTVKGPKGEVTRELWYPGIEISVEDGKVVIETDFARKKDK----AMV  61
+
+Query  66   GTTRSLLNAMVIGVTEGFTKKLQLVGVGY-----RAAVKGN--AINMSLGFSHPVDHELP  118
+            GT RS +  M+ GVTEGF  K+++V   Y     +  V+GN   I   LG   P   ++P
+Sbjct  62   GTYRSHIKNMIKGVTEGFEYKMKVV---YSHFPMQVKVEGNKVVIENFLGEKAPRRAKIP  118
+
+Query  119  AGITAECPSQTEIVLKGADKQVIGQVAA  146
+             G+  +     E+++ G DK+ +GQ AA
+Sbjct  119  GGVKVKV-KGEEVIVTGIDKEDVGQTAA  145
+
+
+>gnl|CDD|235496 PRK05518, rpl6p, 50S ribosomal protein L6P; Reviewed.
+Length=180
+
+ Score = 65.3 bits (160),  Expect = 2e-13, Method: Composition-based stats.
+ Identities = 47/150 (31%), Positives = 78/150 (52%), Gaps = 20/150 (13%)
+
+Query  9    VVIPAGVEVKLDGQVISIKGKNGELSRTI-HSAVEVKHADNQL----TFAPRDGYVDGWA  63
+            + IP GV V+++G V+++KG  GEL+R   +  V +   D ++     FA +       A
+Sbjct  10   IEIPEGVTVEIEGLVVTVKGPKGELTRDFWYPGVTISVEDGKVVIETEFARKKTK----A  65
+
+Query  64   QAGTTRSLLNAMVIGVTEGFTKKLQLVGVGY-----RAAVKGN--AINMSLGFSHPVDHE  116
+              GT  S +  M+ GVTEGF  KL++V   Y     +  V+GN   I   LG   P   +
+Sbjct  66   MVGTFASHIKNMIKGVTEGFEYKLKIV---YSHFPMQVKVQGNEVVIENFLGEKSPRRAK  122
+
+Query  117  LPAGITAECPSQTEIVLKGADKQVIGQVAA  146
+            +  G+  +   + +++++G DK+ +GQ AA
+Sbjct  123  ILGGVKVKVKGE-DVIVEGIDKEDVGQTAA  151
+
+
+>gnl|CDD|240234 PTZ00027, PTZ00027, 60S ribosomal protein L6; Provisional.
+Length=190
+
+ Score = 39.0 bits (91),  Expect = 6e-04, Method: Composition-based stats.
+ Identities = 26/85 (31%), Positives = 43/85 (51%), Gaps = 3/85 (4%)
+
+Query  9   VVIPAGVEVKLDGQVISIKGKNGELSRTI-HSAVEVKHADNQLTFAPRD--GYVDGWAQA  65
+           + IP GV V +  + +++ GK GEL+R+  H  V++K + +          G     A  
+Sbjct  10  IRIPEGVTVTVKSRKVTVTGKYGELTRSFRHLPVDIKLSKDGKYIKVEMWFGTPSHLACI  69
+
+Query  66  GTTRSLLNAMVIGVTEGFTKKLQLV  90
+            T  S +  M+ GVT+ F  K++LV
+Sbjct  70  RTVCSHIKNMMTGVTKKFQYKMRLV  94
+
+
+>gnl|CDD|140206 PTZ00179, PTZ00179, 60S ribosomal protein L9; Provisional.
+Length=189
+
+ Score = 34.9 bits (80),  Expect = 0.013, Method: Composition-based stats.
+ Identities = 22/88 (25%), Positives = 41/88 (47%), Gaps = 13/88 (15%)
+
+Query  9   VVIPAGVEVKLDGQVISIKGKNGELSRTI-HSAVEVKHADNQLTFAPRDGYVDGW-----  62
+           + IP  V V +  +++++KGK G L++ + H  ++ +      TF         W     
+Sbjct  9   ITIPEDVTVSVKDRIVTVKGKRGTLTKDLRHLQLDFRVNKKNRTFT-----AVRWFGSKI  63
+
+Query  63  --AQAGTTRSLLNAMVIGVTEGFTKKLQ  88
+             +   T  S +  M+ GVT+GF  K++
+Sbjct  64  PNSTINTALSHVRNMITGVTKGFRFKVR  91
+
+
+>gnl|CDD|132162 TIGR03118, PEPCTERM_chp_1, TIGR03118 family protein.  This model 
+describes and uncharacterized conserved hypothetical protein. 
+Members are found with the C-terminal putative exosortase 
+interaction domain, PEP-CTERM, in Nitrosospira multiformis, 
+Rhodoferax ferrireducens, Solibacter usitatus Ellin6076, 
+and Acidobacteria bacterium Ellin345. It is found without the 
+PEP-CTERM domain in several other species, including Burkholderia 
+ambifaria, Gloeobacter violaceus PCC 7421, and three 
+copies in the Acanthamoeba polyphaga mimivirus [Hypothetical 
+proteins, Conserved].
+Length=336
+
+ Score = 31.0 bits (70),  Expect = 0.29, Method: Composition-based stats.
+ Identities = 19/69 (28%), Positives = 29/69 (42%), Gaps = 3/69 (4%)
+
+Query  9    VVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDGWAQAGTT  68
+            VVIPA   +  +G      G+    S T   + E     ++  F   DG + GWA A  T
+Sbjct  65   VVIPAPPPLAAEGTP---TGQVFNGSDTFVVSGEGITGPSRFLFVTEDGTLSGWAPALGT  121
+
+Query  69   RSLLNAMVI  77
+              +  A ++
+Sbjct  122  TRMTRAEIV  130
+
+
+>gnl|CDD|235718 PRK06154, PRK06154, hypothetical protein; Provisional.
+Length=565
+
+ Score = 30.2 bits (68),  Expect = 0.74, Method: Composition-based stats.
+ Identities = 26/74 (35%), Positives = 33/74 (45%), Gaps = 14/74 (19%)
+
+Query  112  PVDHELPAGITAE---------CPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGV  162
+            PV  ELP  + AE          PS+      GAD   + + AA L A  RP  Y G+GV
+Sbjct  168  PVVLELPVDVLAEELDELPLDHRPSRR--SRPGADPVEVVEAAALLLAAERPVIYAGQGV  225
+
+Query  163  RYA---DEVVRIKE  173
+             YA    E+  + E
+Sbjct  226  LYAQATPELKELAE  239
+
+
+>gnl|CDD|225239 COG2364, COG2364, Predicted membrane protein [Function unknown].
+Length=210
+
+ Score = 27.3 bits (61),  Expect = 3.7, Method: Composition-based stats.
+ Identities = 18/85 (21%), Positives = 31/85 (36%), Gaps = 14/85 (16%)
+
+Query  33   LSRTIHSAVEVKHADNQLTFAPRDGYVDGWAQA-----GTTRSLLNAMVIGVTEGFTKKL  87
+            +S TI +          L  +P D    G +       G+   +L + +IG T    +K 
+Sbjct  24   ISLTILA---------GLGTSPWDVLHVGLSMQFGLTVGSWSIILGSCLIGCTWILLRKK  74
+
+Query  88   QLVGVGYRAAVKGNAINMSLGFSHP  112
+              +G    A + G  I++ L     
+Sbjct  75   PGLGTLLNALLIGVFIDLFLFLLPT  99
+
+
+>gnl|CDD|258465 pfam14284, PcfJ, PcfJ-like protein.  The PcfJ-like protein family 
+includes the E. faecalis PcfJ protein, which is functionally 
+uncharacterized. It is found in bacteria and viruses, 
+and is typically between 159 and 170 amino acids in length. 
+There is a conserved HCV sequence motif.
+Length=169
+
+ Score = 26.9 bits (60),  Expect = 4.4, Method: Composition-based stats.
+ Identities = 11/30 (37%), Positives = 16/30 (53%), Gaps = 0/30 (0%)
+
+Query  1    MSRVAKAPVVIPAGVEVKLDGQVISIKGKN  30
+             +R+   P      VEV LDG+V+  +GK 
+Sbjct  115  FARIKDKPDEPYYTVEVSLDGKVVQSRGKC  144
+
+
+>gnl|CDD|182331 PRK10247, PRK10247, putative ABC transporter ATP-binding protein 
+YbbL; Provisional.
+Length=225
+
+ Score = 27.0 bits (60),  Expect = 4.9, Method: Composition-based stats.
+ Identities = 8/20 (40%), Positives = 10/20 (50%), Gaps = 0/20 (0%)
+
+Query  38   HSAVEVKHADNQLTFAPRDG  57
+            H   E+ HAD  +T  P  G
+Sbjct  196  HDKDEINHADKVITLQPHAG  215
+
+
+>gnl|CDD|199909 cd10747, DnaJ_C, C-terminal substrate binding domain of DnaJ 
+and HSP40.  The C-terminal region of the DnaJ/Hsp40 protein 
+mediates oligomerization and binding to denatured polypeptide 
+substrate. DnaJ/Hsp40 is a widely conserved heat-shock protein. 
+It prevents the aggregation of unfolded substrate and 
+forms a ternary complex with both substrate and DnaK/Hsp70; 
+the N-terminal J-domain of DnaJ/Hsp40 stimulates the ATPase 
+activity of DnaK/Hsp70.
+Length=158
+
+ Score = 26.2 bits (59),  Expect = 7.5, Method: Composition-based stats.
+ Identities = 10/21 (48%), Positives = 15/21 (71%), Gaps = 3/21 (14%)
+
+Query  9   VVIPAGVEVKLDGQVISIKGK  29
+           V IPAGV+   DGQ + ++G+
+Sbjct  39  VKIPAGVD---DGQRLRLRGE  56
+
+
+>gnl|CDD|180820 PRK07064, PRK07064, hypothetical protein; Provisional.
+Length=544
+
+ Score = 26.9 bits (60),  Expect = 8.4, Method: Composition-based stats.
+ Identities = 21/70 (30%), Positives = 32/70 (46%), Gaps = 7/70 (10%)
+
+Query  112  PVDHELPAGI-TAECPSQTE-----IVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYA  165
+            PV  E+P  I  AE     +     + +   D   + ++A  L A RRP  + G G R+A
+Sbjct  158  PVSVEIPIDIQAAEIELPDDLAPVHVAVPEPDAAAVAELAERLAAARRPLLWLGGGARHA  217
+
+Query  166  -DEVVRIKEA  174
+              EV R+ + 
+Sbjct  218  GAEVKRLVDL  227
+
+
+
+Lambda      K        H        a         alpha
+   0.315    0.133    0.376    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 612566648

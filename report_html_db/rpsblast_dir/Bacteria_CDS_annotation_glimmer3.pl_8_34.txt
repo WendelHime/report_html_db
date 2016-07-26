@@ -1,0 +1,875 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_8_34
+
+Length=118
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|235358  PRK05179, rpsM, 30S ribosomal protein S13; Validated  222     3e-75
+gnl|CDD|213840  TIGR03631, bact_S13, 30S ribosomal protein S13. T...  195     5e-65
+gnl|CDD|223177  COG0099, RpsM, Ribosomal protein S13 [Translation...  183     5e-60
+gnl|CDD|249844  pfam00416, Ribosomal_S13, Ribosomal protein S13/S...  137     3e-42
+gnl|CDD|177059  CHL00137, rps13, ribosomal protein S13; Validated     132     6e-40
+gnl|CDD|235215  PRK04053, rps13p, 30S ribosomal protein S13P; Rev...  92.2    3e-24
+gnl|CDD|213839  TIGR03629, arch_S13P, archaeal ribosomal protein ...  90.8    1e-23
+gnl|CDD|185469  PTZ00134, PTZ00134, 40S ribosomal protein S18; Pr...  52.3    1e-09
+gnl|CDD|255497  pfam09704, Cas_Cas5d, CRISPR-associated protein (...  33.6    0.012
+gnl|CDD|236126  PRK07899, rpsA, 30S ribosomal protein S1; Reviewed    32.3    0.037
+gnl|CDD|253410  pfam05833, FbpA, Fibronectin-binding protein A N-...  29.9    0.24 
+gnl|CDD|256794  pfam12006, DUF3500, Protein of unknown function (...  28.9    0.65 
+gnl|CDD|234624  PRK00089, era, GTPase Era; Reviewed                   28.9    0.67 
+gnl|CDD|181731  PRK09257, PRK09257, aromatic amino acid aminotran...  28.6    0.73 
+gnl|CDD|254541  pfam07957, DUF3294, Protein of unknown function (...  28.6    0.79 
+gnl|CDD|224365  COG1448, TyrB, Aspartate/tyrosine/aromatic aminot...  28.0    1.1  
+gnl|CDD|235246  PRK04184, PRK04184, DNA topoisomerase VI subunit ...  27.9    1.4  
+gnl|CDD|132370  TIGR03327, AMP_phos, AMP phosphorylase. This enzy...  27.7    1.6  
+gnl|CDD|240273  PTZ00110, PTZ00110, helicase; Provisional             27.4    1.9  
+gnl|CDD|227655  COG5352, COG5352, Uncharacterized protein conserv...  27.2    2.3  
+gnl|CDD|258931  pfam14794, DUF4479, Domain of unknown function (D...  26.0    2.5  
+gnl|CDD|232901  TIGR00275, TIGR00275, flavoprotein, HI0933 family...  27.2    2.7  
+gnl|CDD|233962  TIGR02645, ARCH_P_rylase, putative thymidine phos...  27.1    2.9  
+gnl|CDD|234422  TIGR03971, SDR_subfam_1, oxidoreductase, SDR fami...  26.7    3.3  
+gnl|CDD|188437  TIGR03922, T7SS_EccA, type VII secretion AAA-ATPa...  26.7    3.5  
+gnl|CDD|198363  cd07791, FGGY_GK2_bacteria, bacterial glycerol ki...  26.6    3.9  
+gnl|CDD|240629  cd05304, Rubrum_tdh, Rubrum transdehydrogenase NA...  26.6    4.0  
+gnl|CDD|234437  TIGR03998, thiol_BshC, bacillithiol biosynthesis ...  26.5    4.3  
+gnl|CDD|252997  pfam05088, Bac_GDH, Bacterial NAD-glutamate dehyd...  26.7    4.3  
+gnl|CDD|238975  cd02017, TPP_E1_EcPDC_like, Thiamine pyrophosphat...  26.5    4.4  
+gnl|CDD|185407  PTZ00035, PTZ00035, Rad51 protein; Provisional        26.5    4.5  
+gnl|CDD|240196  cd05691, S1_RPS1_repeat_ec6, S1_RPS1_repeat_ec6: ...  25.3    4.6  
+gnl|CDD|252521  pfam04315, DUF462, Protein of unknown function, D...  26.0    5.6  
+gnl|CDD|132724  cd02737, RNAP_IV_NRPD1_C, Largest subunit (NRPD1)...  26.2    5.7  
+gnl|CDD|237952  PRK15362, PRK15362, pathogenicity island 2 effect...  25.9    6.1  
+gnl|CDD|234623  PRK00087, PRK00087, 4-hydroxy-3-methylbut-2-enyl ...  26.1    6.4  
+gnl|CDD|178801  PRK00024, PRK00024, hypothetical protein; Reviewed    25.8    6.7  
+gnl|CDD|235739  PRK06200, PRK06200, 2,3-dihydroxy-2,3-dihydrophen...  25.7    6.8  
+gnl|CDD|182479  PRK10463, PRK10463, hydrogenase nickel incorporat...  25.9    7.2  
+gnl|CDD|251379  pfam02566, OsmC, OsmC-like protein. Osmotically i...  25.0    7.6  
+gnl|CDD|240227  PTZ00009, PTZ00009, heat shock 70 kDa protein; Pr...  25.9    7.7  
+gnl|CDD|107120  PHA02100, PHA02100, hypothetical protein              25.4    7.8  
+gnl|CDD|236995  PRK11824, PRK11824, polynucleotide phosphorylase/...  25.8    8.4  
+gnl|CDD|153339  cd07655, F-BAR_PACSIN, The F-BAR (FES-CIP4 Homolo...  25.4    8.5  
+gnl|CDD|234271  TIGR03591, polynuc_phos, polyribonucleotide nucle...  25.5    8.6  
+gnl|CDD|255739  pfam10079, DUF2317, Uncharacterized protein conse...  25.6    9.0  
+gnl|CDD|250596  pfam01408, GFO_IDH_MocA, Oxidoreductase family, N...  25.2    9.1  
+gnl|CDD|132488  TIGR03447, mycothiol_MshC, cysteine--1-D-myo-inos...  25.5    9.6  
+gnl|CDD|237219  PRK12827, PRK12827, short chain dehydrogenase; Pr...  25.5    9.8  
+
+
+>gnl|CDD|235358 PRK05179, rpsM, 30S ribosomal protein S13; Validated.
+Length=122
+
+ Score = 222 bits (568),  Expect = 3e-75, Method: Composition-based stats.
+ Identities = 80/118 (68%), Positives = 99/118 (84%), Gaps = 1/118 (1%)
+
+Query  2    ARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVA  61
+            ARIAG++IP  K  VIALT IYGIG+TR++ I AAAGI    ++ +L++E++DK+R+E+ 
+Sbjct  2    ARIAGVDIPRNKRVVIALTYIYGIGRTRAKEILAAAGIDPDTRVKDLTDEELDKIREEID  61
+
+Query  62   K-YVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK  118
+            K Y VEGDLRREV+++IKRLMD+G YRGLRHRRGLPVRGQRTKTNARTRKGPRK I  
+Sbjct  62   KNYKVEGDLRREVSMNIKRLMDIGCYRGLRHRRGLPVRGQRTKTNARTRKGPRKTIAG  119
+
+
+>gnl|CDD|213840 TIGR03631, bact_S13, 30S ribosomal protein S13.  This model describes 
+bacterial ribosomal protein S13, to the exclusion of 
+the homologous archaeal S13P and eukaryotic ribosomal protein 
+S18. This model identifies some (but not all) instances 
+of chloroplast and mitochondrial S13, which is of bacterial 
+type [Protein synthesis, Ribosomal proteins: synthesis and modification].
+Length=113
+
+ Score = 195 bits (499),  Expect = 5e-65, Method: Composition-based stats.
+ Identities = 76/113 (67%), Positives = 95/113 (84%), Gaps = 1/113 (1%)
+
+Query  3    RIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEV-A  61
+            RIAG++IP+ K   IALT IYGIG+TR++ I   AGI    ++ +L+EE+++ +R+E+ A
+Sbjct  1    RIAGVDIPNNKRVEIALTYIYGIGRTRARKILEKAGIDPDKRVKDLTEEELNAIREEIEA  60
+
+Query  62   KYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRK  114
+            KY VEGDLRREV+L+IKRLMD+G YRGLRHRRGLPVRGQRTKTNARTRKGPRK
+Sbjct  61   KYKVEGDLRREVSLNIKRLMDIGCYRGLRHRRGLPVRGQRTKTNARTRKGPRK  113
+
+
+>gnl|CDD|223177 COG0099, RpsM, Ribosomal protein S13 [Translation, ribosomal 
+structure and biogenesis].
+Length=121
+
+ Score = 183 bits (467),  Expect = 5e-60, Method: Composition-based stats.
+ Identities = 78/119 (66%), Positives = 96/119 (81%), Gaps = 1/119 (1%)
+
+Query  1    VARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEV  60
+            +ARIAG++IP  K  VIALT IYGIG+ R++ IC  AGI    ++ EL+EE+I++LRD +
+Sbjct  1    MARIAGVDIPGNKRVVIALTYIYGIGRRRAKEICKKAGIDPDKRVGELTEEEIERLRDAI  60
+
+Query  61   A-KYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK  118
+              KY+VEGDLRREV + IKRLM +G YRG+RHRRGLPVRGQRTKTNARTRKGPRK + K
+Sbjct  61   QNKYLVEGDLRREVRMDIKRLMKIGCYRGIRHRRGLPVRGQRTKTNARTRKGPRKGVAK  119
+
+
+>gnl|CDD|249844 pfam00416, Ribosomal_S13, Ribosomal protein S13/S18.  This family 
+includes ribosomal protein S13 from prokaryotes and S18 
+from eukaryotes.
+Length=107
+
+ Score = 137 bits (348),  Expect = 3e-42, Method: Composition-based stats.
+ Identities = 57/107 (53%), Positives = 74/107 (69%), Gaps = 1/107 (1%)
+
+Query  3    RIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAK  62
+            RI   NI   K   IALT I GIG+ ++  I   AG+ +  ++ EL+EE+ID++RD V+ 
+Sbjct  1    RILNTNIDGNKKIEIALTYIKGIGRRKANQILKKAGVDKDKRVGELTEEEIDRIRDIVSN  60
+
+Query  63   -YVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNART  108
+             +VVE DLRR++   I+RL  +  YRGLRH RGLPVRGQRTKTNART
+Sbjct  61   PHVVENDLRRKIRNDIERLKKIRCYRGLRHIRGLPVRGQRTKTNART  107
+
+
+>gnl|CDD|177059 CHL00137, rps13, ribosomal protein S13; Validated.
+Length=122
+
+ Score = 132 bits (333),  Expect = 6e-40, Method: Composition-based stats.
+ Identities = 61/114 (54%), Positives = 81/114 (71%), Gaps = 1/114 (1%)
+
+Query  2    ARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVA  61
+             RIAG+++P  K    ALT IYGIG T ++ I   A I   ++  +L++EQI  LR+ + 
+Sbjct  2    VRIAGVDLPRNKRIEYALTYIYGIGLTSAKEILEKANIDPDIRTKDLTDEQISALREIIE  61
+
+Query  62   K-YVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRK  114
+            + Y VEGDLRR  +L+IKRLM++  YRG RHR GLPVRGQRT+TNARTR+G +K
+Sbjct  62   ENYQVEGDLRRFESLNIKRLMEINCYRGRRHRLGLPVRGQRTRTNARTRRGAKK  115
+
+
+>gnl|CDD|235215 PRK04053, rps13p, 30S ribosomal protein S13P; Reviewed.
+Length=149
+
+ Score = 92.2 bits (230),  Expect = 3e-24, Method: Composition-based stats.
+ Identities = 41/129 (32%), Positives = 64/129 (50%), Gaps = 23/129 (18%)
+
+Query  3    RIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVA-  61
+            RIAG ++   K    ALT I GIG+  ++AI    G+  + K+  LS+E+I+K+ + +  
+Sbjct  11   RIAGTDLDGTKPVEYALTGIKGIGRRTARAIARKLGLDPNAKLGYLSDEEIEKIEEALED  70
+
+Query  62   ----------------------KYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRG  99
+                                   +++  DL   V   I R+  + +YRG+RH  GL VRG
+Sbjct  71   PAEEGIPSWMLNRRKDYETGEDLHLIGSDLILTVREDINRMKKIRSYRGIRHELGLKVRG  130
+
+Query  100  QRTKTNART  108
+            QRT++  RT
+Sbjct  131  QRTRSTGRT  139
+
+
+>gnl|CDD|213839 TIGR03629, arch_S13P, archaeal ribosomal protein S13P.  This 
+model describes exclusively the archaeal ribosomal protein S13P. 
+It excludes the homologous eukaryotic 40S ribosomal protein 
+S18 and bacterial 30S ribosomal protein S13 [Protein synthesis, 
+Ribosomal proteins: synthesis and modification].
+Length=144
+
+ Score = 90.8 bits (226),  Expect = 1e-23, Method: Composition-based stats.
+ Identities = 42/128 (33%), Positives = 61/128 (48%), Gaps = 22/128 (17%)
+
+Query  3    RIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAK  62
+            RIA  ++   K    ALT I GIG+  ++AI    G+  + K+  L +E+I+KL + V  
+Sbjct  7    RIADTDLDGNKPVEYALTGIKGIGRRFARAIARKLGVDPNAKLGYLDDEEIEKLEEAVEN  66
+
+Query  63   Y----------------------VVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQ  100
+            Y                      ++  DL   V   I R+  + +YRG+RH  GL VRGQ
+Sbjct  67   YEYGIPSWLLNRRKDYETGEDLHLIGSDLDMTVREDINRMKKIRSYRGIRHELGLKVRGQ  126
+
+Query  101  RTKTNART  108
+            RTK+  R 
+Sbjct  127  RTKSTGRR  134
+
+
+>gnl|CDD|185469 PTZ00134, PTZ00134, 40S ribosomal protein S18; Provisional.
+Length=154
+
+ Score = 52.3 bits (126),  Expect = 1e-09, Method: Composition-based stats.
+ Identities = 38/128 (30%), Positives = 60/128 (47%), Gaps = 23/128 (18%)
+
+Query  3    RIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVA-  61
+            RI   N+  ++    ALT+I GIG+  +  +C  AGI    +  EL+ E+I+K+ + +A 
+Sbjct  16   RILNTNVDGKRKVPYALTAIKGIGRRFAYLVCKKAGIDVTKRAGELTAEEIEKIVEIIAN  75
+
+Query  62   ----------------------KYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRG  99
+                                   ++    L  ++   ++RL  +  +RGLRH  GL VRG
+Sbjct  76   PLQFKIPDWFLNRQRDPKDGKNSHLTSNMLDTKLREDLERLKKIRLHRGLRHHWGLRVRG  135
+
+Query  100  QRTKTNAR  107
+            Q TKT  R
+Sbjct  136  QHTKTTGR  143
+
+
+>gnl|CDD|255497 pfam09704, Cas_Cas5d, CRISPR-associated protein (Cas_Cas5).  
+CRISPR is a term for Clustered, Regularly Interspaced Short 
+Palindromic Repeats. A number of protein families appear only 
+in association with these repeats and are designated Cas (CRISPR-Associated) 
+proteins. This small Cas family is represented 
+by CT1134 of Chlorobium tepidum.
+Length=210
+
+ Score = 33.6 bits (77),  Expect = 0.012, Method: Composition-based stats.
+ Identities = 20/78 (26%), Positives = 30/78 (38%), Gaps = 12/78 (15%)
+
+Query  32   AICAAAGIAEHVKISELSEEQIDKLRDEVAKYVVEGDLRREVTLSIKRLMDLGTYRGLRH  91
+             + AA GI          +E++  L+  + ++ V  D   E+     R  D  T + L  
+Sbjct  36   LLAAALGI-------RRGDERLLALKPAL-RFAVRVDRPGEL----LRYNDYHTVQKLTR  83
+
+Query  92   RRGLPVRGQRTKTNARTR  109
+            R  L  R QR  T    R
+Sbjct  84   RDELSDRKQRAGTILSDR  101
+
+
+>gnl|CDD|236126 PRK07899, rpsA, 30S ribosomal protein S1; Reviewed.
+Length=486
+
+ Score = 32.3 bits (74),  Expect = 0.037, Method: Composition-based stats.
+ Identities = 21/48 (44%), Positives = 30/48 (63%), Gaps = 7/48 (15%)
+
+Query  38   GIAEHVKISELSE------EQIDKLRDEVAKYVVEGDL-RREVTLSIK  78
+            GI   V ISEL+E      EQ+ ++ DEV   V++ DL RR ++LS+K
+Sbjct  316  GIEGLVHISELAERHVEVPEQVVQVGDEVFVKVIDIDLERRRISLSLK  363
+
+
+>gnl|CDD|253410 pfam05833, FbpA, Fibronectin-binding protein A N-terminus (FbpA). 
+ This family consists of the N-terminal region of the prokaryotic 
+fibronectin-binding protein. Fibronectin binding 
+is considered to be an important virulence factor in streptococcal 
+infections. Fibronectin is a dimeric glycoprotein that 
+is present in a soluble form in plasma and extracellular fluids; 
+it is also present in a fibrillar form on cell surfaces. 
+Both the soluble and cellular forms of fibronectin may be 
+incorporated into the extracellular tissue matrix. While fibronectin 
+has critical roles in eukaryotic cellular processes, 
+such as adhesion, migration and differentiation, it is also 
+a substrate for the attachment of bacteria. The binding 
+of pathogenic Streptococcus pyogenes and Staphylococcus aureus 
+to epithelial cells via fibronectin facilitates their internalisation 
+and systemic spread within the host.
+Length=446
+
+ Score = 29.9 bits (68),  Expect = 0.24, Method: Composition-based stats.
+ Identities = 9/41 (22%), Positives = 22/41 (54%), Gaps = 0/41 (0%)
+
+Query  19   LTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDE  59
+            + +  G+    ++ +C  AG+ +   + ELS+E  ++L + 
+Sbjct  191  VQAFQGLSPLLAEELCYRAGLDKETPVEELSDEDWERLYEA  231
+
+
+>gnl|CDD|256794 pfam12006, DUF3500, Protein of unknown function (DUF3500).  This 
+family of proteins is functionally uncharacterized. This 
+protein is found in bacteria and eukaryotes. Proteins in this 
+family are typically between 335 to 438 amino acids in length. 
+This protein has a conserved GHH sequence motif. This 
+protein has two completely conserved G residues that may be 
+functionally important.
+Length=314
+
+ Score = 28.9 bits (65),  Expect = 0.65, Method: Composition-based stats.
+ Identities = 19/71 (27%), Positives = 29/71 (41%), Gaps = 6/71 (8%)
+
+Query  12   QKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAKYVVEGDLRR  71
+            +   VIA      I +T   A        E +K+S+L+ EQ + L   + +Y+  G L  
+Sbjct  187  RAAAVIAEAPPDDI-RTLPGADQDNPVPPEGLKVSDLTPEQQELLLALIEQYL--GYLPE  243
+
+Query  72   EVTLSIKRLMD  82
+            E     K  M 
+Sbjct  244  EAA---KERMA  251
+
+
+>gnl|CDD|234624 PRK00089, era, GTPase Era; Reviewed.
+Length=292
+
+ Score = 28.9 bits (66),  Expect = 0.67, Method: Composition-based stats.
+ Identities = 14/28 (50%), Positives = 19/28 (68%), Gaps = 0/28 (0%)
+
+Query  40   AEHVKISELSEEQIDKLRDEVAKYVVEG  67
+            AE V IS L  + +D+L D +AKY+ EG
+Sbjct  146  AEIVPISALKGDNVDELLDVIAKYLPEG  173
+
+
+>gnl|CDD|181731 PRK09257, PRK09257, aromatic amino acid aminotransferase; Provisional.
+Length=396
+
+ Score = 28.6 bits (65),  Expect = 0.73, Method: Composition-based stats.
+ Identities = 9/18 (50%), Positives = 13/18 (72%), Gaps = 0/18 (0%)
+
+Query  48   LSEEQIDKLRDEVAKYVV  65
+            L+ EQ+D+LR+E   Y V
+Sbjct  353  LTPEQVDRLREEFGVYAV  370
+
+
+>gnl|CDD|254541 pfam07957, DUF3294, Protein of unknown function (DUF3294).  This 
+family was annotated as mitochondrial Ribosomal protein 
+MRP8, based on the presumed similarity of the S.cerevisiae protein 
+to an E.coli mitochondrial ribosomal protein; however, 
+this similarity is spurious, and the function is not known 
+[Wood, V].
+Length=217
+
+ Score = 28.6 bits (64),  Expect = 0.79, Method: Composition-based stats.
+ Identities = 13/51 (25%), Positives = 24/51 (47%), Gaps = 23/51 (45%)
+
+Query  44   KISELSEEQIDKLRDEVAKYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRG  94
+            +I + S++++D++ DE+A+Y+                       GLR RRG
+Sbjct  186  EIKKYSKKELDEIFDELARYL-----------------------GLRSRRG  213
+
+
+>gnl|CDD|224365 COG1448, TyrB, Aspartate/tyrosine/aromatic aminotransferase [Amino 
+acid transport and metabolism].
+Length=396
+
+ Score = 28.0 bits (63),  Expect = 1.1, Method: Composition-based stats.
+ Identities = 10/21 (48%), Positives = 14/21 (67%), Gaps = 0/21 (0%)
+
+Query  48   LSEEQIDKLRDEVAKYVVEGD  68
+            LS EQ+D+LR+E   Y+V   
+Sbjct  353  LSPEQVDRLREEFGIYLVASG  373
+
+
+>gnl|CDD|235246 PRK04184, PRK04184, DNA topoisomerase VI subunit B; Validated.
+Length=535
+
+ Score = 27.9 bits (63),  Expect = 1.4, Method: Composition-based stats.
+ Identities = 9/33 (27%), Positives = 18/33 (55%), Gaps = 0/33 (0%)
+
+Query  24   GIGKTRSQAICAAAGIAEHVKISELSEEQIDKL  56
+             +G   +  I   AG+  + K  EL+ E++++L
+Sbjct  268  RVGDKTADEILEKAGLDPNKKPKELTREELERL  300
+
+
+>gnl|CDD|132370 TIGR03327, AMP_phos, AMP phosphorylase.  This enzyme family is 
+found, so far, strictly in the Archaea, and only in those 
+with a type III Rubisco enzyme. Most of the members previously 
+were annotated as thymidine phosphorylase, or DeoA. The AMP 
+metabolized by this enzyme may be produced by ADP-dependent 
+sugar kinases.
+Length=500
+
+ Score = 27.7 bits (62),  Expect = 1.6, Method: Composition-based stats.
+ Identities = 15/46 (33%), Positives = 28/46 (61%), Gaps = 3/46 (7%)
+
+Query  25   IGKTRSQAICAAAGIAEHVKI---SELSEEQIDKLRDEVAKYVVEG  67
+            I KT S+AI +AAG A+ +++    E S ++I ++ ++    +V G
+Sbjct  189  IPKTSSRAITSAAGTADVMEVLAPVEFSADEIKRIVEKTGGCLVWG  234
+
+
+>gnl|CDD|240273 PTZ00110, PTZ00110, helicase; Provisional.
+Length=545
+
+ Score = 27.4 bits (61),  Expect = 1.9, Method: Composition-based stats.
+ Identities = 9/27 (33%), Positives = 18/27 (67%), Gaps = 0/27 (0%)
+
+Query  41   EHVKISELSEEQIDKLRDEVAKYVVEG  67
+            EH ++S LS +++D++R E    ++ G
+Sbjct  96   EHPEVSALSSKEVDEIRKEKEITIIAG  122
+
+
+>gnl|CDD|227655 COG5352, COG5352, Uncharacterized protein conserved in bacteria 
+[Function unknown].
+Length=169
+
+ Score = 27.2 bits (60),  Expect = 2.3, Method: Composition-based stats.
+ Identities = 12/28 (43%), Positives = 14/28 (50%), Gaps = 3/28 (11%)
+
+Query  91   HRRGLPVRGQRTKTNARTRK---GPRKP  115
+            HR GL  R + T   AR +K    PR P
+Sbjct  41   HRLGLSGRAKPTAAPARQKKTTSAPRAP  68
+
+
+>gnl|CDD|258931 pfam14794, DUF4479, Domain of unknown function (DUF4479).  This 
+domain family is found in bacteria, and is approximately 
+70 amino acids in length. The family is found in association 
+with pfam01588.
+Length=74
+
+ Score = 26.0 bits (58),  Expect = 2.5, Method: Composition-based stats.
+ Identities = 10/37 (27%), Positives = 19/37 (51%), Gaps = 5/37 (14%)
+
+Query  38  GIAEHVKIS-----ELSEEQIDKLRDEVAKYVVEGDL  69
+             + ++ I      +L+EEQ+ KL   +AK   + +L
+Sbjct  34  NASSYLDIEGNGQVKLTEEQVAKLNQALAKAGFDEEL  70
+
+
+>gnl|CDD|232901 TIGR00275, TIGR00275, flavoprotein, HI0933 family.  The model 
+when searched with a partial length search brings in proteins 
+with a dinucleotide-binding motif (Rossman fold) over the 
+initial 40 residues of the model, including oxidoreductases 
+and dehydrogenases. Partially characterized members include 
+an FAD-binding protein from Bacillus cereus and flavoprotein 
+HI0933 from Haemophilus influenzae [Unknown function, Enzymes 
+of unknown specificity].
+Length=400
+
+ Score = 27.2 bits (61),  Expect = 2.7, Method: Composition-based stats.
+ Identities = 7/26 (27%), Positives = 15/26 (58%), Gaps = 0/26 (0%)
+
+Query  31   QAICAAAGIAEHVKISELSEEQIDKL  56
+            + +    GI   +  ++LS+++I KL
+Sbjct  300  ELLLEQLGIDPDLPAAQLSKKEIKKL  325
+
+
+>gnl|CDD|233962 TIGR02645, ARCH_P_rylase, putative thymidine phosphorylase.  
+Members of this family are closely related to characterized 
+examples of thymidine phosphorylase (EC 2.4.2.4) and pyrimidine 
+nucleoside phosphorylase (RC 2.4.2.2). Most examples are 
+found in the archaea, but other examples in Legionella pneumophila 
+str. Paris and Rhodopseudomonas palustris CGA009.
+Length=493
+
+ Score = 27.1 bits (60),  Expect = 2.9, Method: Composition-based stats.
+ Identities = 20/70 (29%), Positives = 39/70 (56%), Gaps = 8/70 (11%)
+
+Query  25   IGKTRSQAICAAAGIAEHVKI---SELSEEQIDKLRDEVAKYVVEG---DLR--REVTLS  76
+            I KT S+AI +AAG A+ +++     LS E+I ++ ++V   +V G   +L    +V + 
+Sbjct  188  IPKTSSRAITSAAGTADTMEVLTRVALSAEEIKRIVEKVGGCLVWGGALNLAPADDVLIR  247
+
+Query  77   IKRLMDLGTY  86
+            ++R + +   
+Sbjct  248  VERPLSIDPR  257
+
+
+>gnl|CDD|234422 TIGR03971, SDR_subfam_1, oxidoreductase, SDR family.  Members 
+of this protein subfamily are putative oxidoreductases belonging 
+to the larger SDR family. Members of the present subfamily 
+may occur several to a genome and are largely restricted 
+to genomes that contain members of families TIGR03962, TIGR03967, 
+and TIGR03969. Many members have been annotated by homology 
+as carveol dehydrogenases.
+Length=265
+
+ Score = 26.7 bits (59),  Expect = 3.3, Method: Composition-based stats.
+ Identities = 17/59 (29%), Positives = 27/59 (46%), Gaps = 5/59 (8%)
+
+Query  1    VARIAGINIPDQKHTVIALT-SIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRD  58
+            +AR A +    +   V+      +G    R   + A AG+  + +  ELSEEQ D + D
+Sbjct  68   LARKADVRDLAEVRAVVEDGVEQFG----RLDVVVANAGVLSYGRSWELSEEQWDTVLD  122
+
+
+>gnl|CDD|188437 TIGR03922, T7SS_EccA, type VII secretion AAA-ATPase EccA.  This 
+model represents the AAA family ATPase, EccA, of the actinobacterial 
+flavor of type VII secretion systems. Species such 
+as Mycobacterium tuberculosis have several instances of this 
+system per genome, designated EccA1, EccA2, etc [Protein 
+fate, Protein and peptide secretion and trafficking].
+Length=557
+
+ Score = 26.7 bits (59),  Expect = 3.5, Method: Composition-based stats.
+ Identities = 14/64 (22%), Positives = 21/64 (33%), Gaps = 9/64 (14%)
+
+Query  46   SELSEEQID--KLRDEVAKYVVEGD--LRREVTL-----SIKRLMDLGTYRGLRHRRGLP  96
+            S  S  +       +  AK + E +  L  ++ L      +  L         R  RGLP
+Sbjct  248  SAPSRAEFVDPAAAERKAKLLAEAEAELAEQIGLERVKRQVAALKSSTAMALARAERGLP  307
+
+Query  97   VRGQ  100
+            V   
+Sbjct  308  VAQT  311
+
+
+>gnl|CDD|198363 cd07791, FGGY_GK2_bacteria, bacterial glycerol kinase 2-like 
+proteins; belongs to the FGGY family of carbohydrate kinases. 
+ This subgroup corresponds to a group of putative bacterial 
+glycerol kinases (GK), which may be coded by the GK-like gene, 
+GK2. Sequence comparison shows members in this CD are homologs 
+of Escherichia coli GK. They retain all functionally 
+important residues, and may catalyze the Mg-ATP dependent phosphorylation 
+of glycerol to yield glycerol 3-phosphate (G3P). 
+GKs belong to the FGGY family of carbohydrate kinases, the 
+monomers of which contain two large domains, which are separated 
+by a deep cleft that forms the active site. This model 
+includes both the N-terminal domain, which adopts a ribonuclease 
+H-like fold, and the structurally related C-terminal 
+domain.
+Length=484
+
+ Score = 26.6 bits (59),  Expect = 3.9, Method: Composition-based stats.
+ Identities = 15/64 (23%), Positives = 26/64 (41%), Gaps = 9/64 (14%)
+
+Query  2    ARIAGINIPDQKHTVI--------ALTSIYGIGKTRSQAICAAAGIAEHVK-ISELSEEQ  52
+            A +A I I +Q+ +V+         L  +      R+ A CAA     H   ++  +   
+Sbjct  66   AEVAAIAISNQRESVVIWDRQTGAPLGPVLSWQCRRTAAACAALRAEGHEPMVAARTGLP  125
+
+Query  53   IDKL  56
+            ID +
+Sbjct  126  IDPM  129
+
+
+>gnl|CDD|240629 cd05304, Rubrum_tdh, Rubrum transdehydrogenase NAD-binding and 
+catalytic domains.  Transhydrogenases found in bacterial and 
+inner mitochondrial membranes link NAD(P)(H)-dependent redox 
+reactions to proton translocation. The energy of the proton 
+electrochemical gradient (delta-p), generated by the respiratory 
+electron transport chain, is consumed by transhydrogenase 
+in NAD(P)+ reduction. Transhydrogenase is likely involved 
+in the regulation of the citric acid cycle. Rubrum transhydrogenase 
+has 3 components, dI, dII, and dIII. dII spans 
+the membrane while dI and dIII protrude on the cytoplasmic/matrix 
+side. DI contains 2 domains in Rossmann-like folds, linked 
+by a long alpha helix, and contains a NAD binding site. 
+Two dI polypeptides (represented in this sub-family) spontaneously 
+form a heterotrimer with dIII in the absence of dII. 
+In the heterotrimer, both dI chains may bind NAD, but only 
+one is well-ordered. dIII also binds a well-ordered NADP, but 
+in a different orientation than a classical Rossmann domain.
+Length=363
+
+ Score = 26.6 bits (60),  Expect = 4.0, Method: Composition-based stats.
+ Identities = 11/23 (48%), Positives = 17/23 (74%), Gaps = 0/23 (0%)
+
+Query  47   ELSEEQIDKLRDEVAKYVVEGDL  69
+            ELSEE + K R+ +AK++ E D+
+Sbjct  230  ELSEEFLAKQRELLAKHIAEADI  252
+
+
+>gnl|CDD|234437 TIGR03998, thiol_BshC, bacillithiol biosynthesis cysteine-adding 
+enzyme BshC.  Members of this protein family are BshC, an 
+enzyme required for bacillithiol biosynthesis and described 
+as a cysteine-adding enzyme. Bacillithiol is a low-molecular-weight 
+thiol, an analog of glutathione and mycothiol, and 
+is found largely in the Firmicutes [Biosynthesis of cofactors, 
+prosthetic groups, and carriers, Glutathione and analogs].
+Length=528
+
+ Score = 26.5 bits (59),  Expect = 4.3, Method: Composition-based stats.
+ Identities = 11/23 (48%), Positives = 15/23 (65%), Gaps = 0/23 (0%)
+
+Query  45  ISELSEEQIDKLRDEVAKYVVEG  67
+           +SE +E+ I+KL D  A  VV G
+Sbjct  59  LSEATEQNIEKLADGNAVVVVTG  81
+
+
+>gnl|CDD|252997 pfam05088, Bac_GDH, Bacterial NAD-glutamate dehydrogenase.  This 
+family consists of several bacterial proteins which are 
+closely related to NAD-glutamate dehydrogenase found in Streptomyces 
+clavuligerus. Glutamate dehydrogenases (GDHs) are a 
+broadly distributed group of enzymes that catalyse the reversible 
+oxidative deamination of glutamate to ketoglutarate and 
+ammonia.
+Length=1526
+
+ Score = 26.7 bits (60),  Expect = 4.3, Method: Composition-based stats.
+ Identities = 12/44 (27%), Positives = 21/44 (48%), Gaps = 2/44 (5%)
+
+Query  53    IDKLRDEVAK--YVVEGDLRREVTLSIKRLMDLGTYRGLRHRRG  94
+             +  L DE+      V   ++  + L ++RL+   T   LR+RR 
+Sbjct  1297  LPALWDEIEALDNKVPAAVQLRLLLELRRLLRRATRWLLRNRRQ  1340
+
+
+>gnl|CDD|238975 cd02017, TPP_E1_EcPDC_like, Thiamine pyrophosphate (TPP) family, 
+E1 of E. coli PDC-like subfamily, TPP-binding module; composed 
+of proteins similar to the E1 component of the Escherichia 
+coli pyruvate dehydrogenase multienzyme complex (PDC). 
+PDC catalyzes the oxidative decarboxylation of pyruvate and 
+the subsequent acetylation of coenzyme A to acetyl-CoA. The 
+E1 component of PDC catalyzes the first step of the multistep 
+process, using TPP and a divalent cation as cofactors. E. 
+coli PDC is a homodimeric enzyme.
+Length=386
+
+ Score = 26.5 bits (59),  Expect = 4.4, Method: Composition-based stats.
+ Identities = 8/18 (44%), Positives = 10/18 (56%), Gaps = 0/18 (0%)
+
+Query  47  ELSEEQIDKLRDEVAKYV  64
+            L+EEQ+D  R EV    
+Sbjct  82  RLTEEQLDNFRQEVGGGG  99
+
+
+>gnl|CDD|185407 PTZ00035, PTZ00035, Rad51 protein; Provisional.
+Length=337
+
+ Score = 26.5 bits (59),  Expect = 4.5, Method: Composition-based stats.
+ Identities = 13/48 (27%), Positives = 23/48 (48%), Gaps = 5/48 (10%)
+
+Query  25  IGKTRSQAICAAAGIAEHVK-----ISELSEEQIDKLRDEVAKYVVEG  67
+           I K +   IC    +A   K     I  +SE +++K+++  +K V  G
+Sbjct  36  IKKLKEAGICTVESVAYATKKDLCNIKGISEAKVEKIKEAASKLVPMG  83
+
+
+>gnl|CDD|240196 cd05691, S1_RPS1_repeat_ec6, S1_RPS1_repeat_ec6: Ribosomal protein 
+S1 (RPS1) domain. RPS1 is a component of the small ribosomal 
+subunit thought to be involved in the recognition and 
+binding of mRNA's during translation initiation. The bacterial 
+RPS1 domain architecture consists of 4-6 tandem S1 domains. 
+In some bacteria, the tandem S1 array is located C-terminal 
+to a 4-hydroxy-3-methylbut-2-enyl diphosphate reductase 
+(HMBPP reductase) domain. While RPS1 is found primarily in bacteria, 
+proteins with tandem RPS1-like domains have been identified 
+in plants and humans, however these lack the N-terminal 
+HMBPP reductase domain. This CD includes S1 repeat 6 (ec6) 
+of the Escherichia coli RPS1. Autoantibodies to double-stranded 
+DNA from patients with systemic lupus erythematosus 
+cross-react with the human RPS1 homolog.
+Length=73
+
+ Score = 25.3 bits (56),  Expect = 4.6, Method: Composition-based stats.
+ Identities = 13/50 (26%), Positives = 26/50 (52%), Gaps = 7/50 (14%)
+
+Query  36  AAGIAEHVKISELSEEQIDKLR------DEVAKYVVEGDLR-REVTLSIK  78
+             G+   ++ +ELS ++++         DEV   +   D + R+++LSIK
+Sbjct  21  GDGVEGFLRAAELSRDRVEDATERFKVGDEVEAKITNVDRKNRKISLSIK  70
+
+
+>gnl|CDD|252521 pfam04315, DUF462, Protein of unknown function, DUF462.  This 
+family consists of bacterial proteins of uncharacterized function.
+Length=165
+
+ Score = 26.0 bits (58),  Expect = 5.6, Method: Composition-based stats.
+ Identities = 13/49 (27%), Positives = 22/49 (45%), Gaps = 10/49 (20%)
+
+Query  29   RSQAI----CAAAGIAEHVKISELSEEQID------KLRDEVAKYVVEG  67
+            + QA+      AAG    V +  LS ++ D      K+  +V +Y+  G
+Sbjct  88   KPQALEWLFSVAAGFKFRVSVDNLSGDEPDRQAFKRKVHAQVLRYLENG  136
+
+
+>gnl|CDD|132724 cd02737, RNAP_IV_NRPD1_C, Largest subunit (NRPD1) of Higher plant 
+RNA polymerase IV, C-terminal domain.  Higher plants have 
+five multi-subunit nuclear RNA polymerases: RNAP I, RNAP 
+II and RNAP III, which are essential for viability; plus the 
+two isoforms of the non-essential polymerase RNAP IV (IVa and 
+IVb), which specialize in small RNA-mediated gene silencing 
+pathways. RNAP IVa and/or RNAP IVb might be involved in RNA-directed 
+DNA methylation of endogenous repetitive elements, 
+silencing of transgenes, regulation of flowering-time genes, 
+inducible regulation of adjacent gene pairs, and spreading 
+of mobile silencing signals. NRPD1a is the largest subunit 
+of RNAP IVa, whereas NRPD1b is the largest subunit of RNAP 
+IVb. The full subunit compositions of RNAP IVa and RNAP IVb 
+are not known, nor are their templates or enzymatic products. 
+However, it has been shown that RNAP IVa and, to a lesser 
+extent, RNAP IVb are crucial for several RNA-mediated gene 
+silencing phenomena.
+Length=381
+
+ Score = 26.2 bits (58),  Expect = 5.7, Method: Composition-based stats.
+ Identities = 12/30 (40%), Positives = 19/30 (63%), Gaps = 4/30 (13%)
+
+Query  45   ISELSEEQIDKLRDEVA----KYVVEGDLR  70
+            +S+ SEE +D LRD +     + V++GD R
+Sbjct  163  VSKSSEELLDVLRDRIIPFLLETVIKGDER  192
+
+
+>gnl|CDD|237952 PRK15362, PRK15362, pathogenicity island 2 effector protein SseC; 
+Provisional.
+Length=473
+
+ Score = 25.9 bits (57),  Expect = 6.1, Method: Composition-based stats.
+ Identities = 14/43 (33%), Positives = 22/43 (51%), Gaps = 0/43 (0%)
+
+Query  24   GIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAKYVVE  66
+            GI K   + + + AG     ++   SEE I++L +E  K V E
+Sbjct  251  GIAKAAEKVLDSGAGEELVERMVGGSEEAIEELAEEFGKQVSE  293
+
+
+>gnl|CDD|234623 PRK00087, PRK00087, 4-hydroxy-3-methylbut-2-enyl diphosphate 
+reductase/S1 RNA-binding domain protein; Reviewed.
+Length=647
+
+ Score = 26.1 bits (58),  Expect = 6.4, Method: Composition-based stats.
+ Identities = 16/45 (36%), Positives = 25/45 (56%), Gaps = 9/45 (20%)
+
+Query  43   VKISELSEEQIDKLRDEV-------AKYVVEGD-LRREVTLSIKR  79
+            V IS++S ++IDK  D +       AK ++E D   + + LSIK 
+Sbjct  590  VHISQISWKRIDKPEDVLSEGEEVKAK-ILEVDPEEKRIRLSIKE  633
+
+
+>gnl|CDD|178801 PRK00024, PRK00024, hypothetical protein; Reviewed.
+Length=224
+
+ Score = 25.8 bits (58),  Expect = 6.7, Method: Composition-based stats.
+ Identities = 16/58 (28%), Positives = 28/58 (48%), Gaps = 2/58 (3%)
+
+Query  18   ALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAKYVVE--GDLRREV  73
+             L SI GIG  ++  + AA  +A  +    L E ++    ++VA Y++    D  +E 
+Sbjct  67   ELQSIKGIGPAKAAQLKAALELARRILAERLREREVLLSPEDVADYLMAELRDEEQEH  124
+
+
+>gnl|CDD|235739 PRK06200, PRK06200, 2,3-dihydroxy-2,3-dihydrophenylpropionate 
+dehydrogenase; Provisional.
+Length=263
+
+ Score = 25.7 bits (57),  Expect = 6.8, Method: Composition-based stats.
+ Identities = 12/37 (32%), Positives = 20/37 (54%), Gaps = 4/37 (11%)
+
+Query  39  IAEHVKIS--ELSEEQIDKLRDEVAKYV--VEGDLRR  71
+           +AE  +++  E S E++  LR     +V  VEGD+  
+Sbjct  27  LAEGARVAVLERSAEKLASLRQRFGDHVLVVEGDVTS  63
+
+
+>gnl|CDD|182479 PRK10463, PRK10463, hydrogenase nickel incorporation protein 
+HypB; Provisional.
+Length=290
+
+ Score = 25.9 bits (57),  Expect = 7.2, Method: Composition-based stats.
+ Identities = 20/69 (29%), Positives = 27/69 (39%), Gaps = 21/69 (30%)
+
+Query  3    RIAGIN---IPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDE  59
+            R+A  N      +K  V+ L S  G GKT                   L  E + +L+D 
+Sbjct  90   RLAERNRARFAARKQLVLNLVSSPGSGKT------------------TLLTETLMRLKDS  131
+
+Query  60   VAKYVVEGD  68
+            V   V+EGD
+Sbjct  132  VPCAVIEGD  140
+
+
+>gnl|CDD|251379 pfam02566, OsmC, OsmC-like protein.  Osmotically inducible protein 
+C (OsmC) is a stress -induced protein found in Escherichia 
+coli. This family also contains a organic hydroperoxide 
+detoxification protein that has a novel pattern of oxidative 
+stress regulation.
+Length=98
+
+ Score = 25.0 bits (55),  Expect = 7.6, Method: Composition-based stats.
+ Identities = 10/38 (26%), Positives = 21/38 (55%), Gaps = 1/38 (3%)
+
+Query  42  HVKISELSEEQIDKLRDEVAKY-VVEGDLRREVTLSIK  78
+            VK+ +  EE++++L +   KY  V   L+  V + ++
+Sbjct  61  EVKLGDADEEKLERLLELAEKYCPVSNTLKNGVPIEVE  98
+
+
+>gnl|CDD|240227 PTZ00009, PTZ00009, heat shock 70 kDa protein; Provisional.
+Length=653
+
+ Score = 25.9 bits (57),  Expect = 7.7, Method: Composition-based stats.
+ Identities = 12/39 (31%), Positives = 20/39 (51%), Gaps = 4/39 (10%)
+
+Query  38   GIAEHVKIS----ELSEEQIDKLRDEVAKYVVEGDLRRE  72
+            G +  + I+     LS+  ID++ +E  KY  E +  RE
+Sbjct  498  GKSNKITITNDKGRLSKADIDRMVNEAEKYKAEDEANRE  536
+
+
+>gnl|CDD|107120 PHA02100, PHA02100, hypothetical protein.
+Length=112
+
+ Score = 25.4 bits (55),  Expect = 7.8, Method: Composition-based stats.
+ Identities = 11/27 (41%), Positives = 18/27 (67%), Gaps = 0/27 (0%)
+
+Query  34  CAAAGIAEHVKISELSEEQIDKLRDEV  60
+           CAA    +++  + +SEEQID + +EV
+Sbjct  16  CAAKFATDNILGNRISEEQIDAVENEV  42
+
+
+>gnl|CDD|236995 PRK11824, PRK11824, polynucleotide phosphorylase/polyadenylase; 
+Provisional.
+Length=693
+
+ Score = 25.8 bits (58),  Expect = 8.4, Method: Composition-based stats.
+ Identities = 15/46 (33%), Positives = 27/46 (59%), Gaps = 8/46 (17%)
+
+Query  43   VKISELSEEQIDKLRDEVA-------KYVVEGDLRREVTLSIKRLM  81
+            V ISE+++E+++K+ D +        K V+E D R  + LS K ++
+Sbjct  649  VHISEIADERVEKVEDVLKEGDEVKVK-VLEIDKRGRIRLSRKAVL  693
+
+
+>gnl|CDD|153339 cd07655, F-BAR_PACSIN, The F-BAR (FES-CIP4 Homology and Bin/Amphiphysin/Rvs) 
+domain of Protein kinase C and Casein kinase 
+Substrate in Neurons (PACSIN) proteins.  F-BAR domains are 
+dimerization modules that bind and bend membranes and are found 
+in proteins involved in membrane dynamics and actin reorganization. 
+Protein kinase C and Casein kinase Substrate in 
+Neurons (PACSIN) proteins, also called Synaptic dynamin-associated 
+proteins (Syndapins), act as regulators of cytoskeletal 
+and membrane dynamics. They bind both dynamin and Wiskott-Aldrich 
+syndrome protein (WASP), and may provide direct links 
+between the actin cytoskeletal machinery through WASP and 
+dynamin-dependent endocytosis. Vetebrates harbor three isoforms 
+with distinct expression patterns and specific functions. 
+PACSINs contain an N-terminal F-BAR domain and a C-terminal 
+SH3 domain. F-BAR domains form banana-shaped dimers with 
+a positively-charged concave surface that binds to negatively-charged 
+lipid membranes. They can induce membrane deformation 
+in the form of long tubules.
+Length=258
+
+ Score = 25.4 bits (56),  Expect = 8.5, Method: Composition-based stats.
+ Identities = 15/45 (33%), Positives = 24/45 (53%), Gaps = 10/45 (22%)
+
+Query  46   SELSEEQIDKLRDEVAKYVVEGDLRREVTLSI----KRLMDLGTY  86
+            + LS +Q+ KL+D+V K       ++EV+ +     K L DL  Y
+Sbjct  163  TSLSPDQVKKLQDKVEK------CKQEVSKTKDKYEKALEDLNKY  201
+
+
+>gnl|CDD|234271 TIGR03591, polynuc_phos, polyribonucleotide nucleotidyltransferase. 
+ Members of this protein family are polyribonucleotide 
+nucleotidyltransferase, also called polynucleotide phosphorylase. 
+Some members have been shown also to have additional 
+functions as guanosine pentaphosphate synthetase and as poly(A) 
+polymerase (see model TIGR02696 for an exception clade, 
+within this family) [Transcription, Degradation of RNA].
+Length=684
+
+ Score = 25.5 bits (57),  Expect = 8.6, Method: Composition-based stats.
+ Identities = 10/26 (38%), Positives = 17/26 (65%), Gaps = 4/26 (15%)
+
+Query  43   VKISELSEEQIDKLRDEVAKYVVEGD  68
+            V ISE++ E+++K+ D     + EGD
+Sbjct  646  VHISEIANERVEKVED----VLKEGD  667
+
+
+>gnl|CDD|255739 pfam10079, DUF2317, Uncharacterized protein conserved in bacteria 
+(DUF2317).  Members of this family of hypothetical bacterial 
+proteins have no known function.
+Length=541
+
+ Score = 25.6 bits (57),  Expect = 9.0, Method: Composition-based stats.
+ Identities = 9/22 (41%), Positives = 12/22 (55%), Gaps = 0/22 (0%)
+
+Query  46  SELSEEQIDKLRDEVAKYVVEG  67
+           SE + + I+KLR      VV G
+Sbjct  70  SEATLQNIEKLRSPNTFTVVTG  91
+
+
+>gnl|CDD|250596 pfam01408, GFO_IDH_MocA, Oxidoreductase family, NAD-binding Rossmann 
+fold.  This family of enzymes utilize NADP or NAD. This 
+family is called the GFO/IDH/MOCA family in swiss-prot.
+Length=120
+
+ Score = 25.2 bits (56),  Expect = 9.1, Method: Composition-based stats.
+ Identities = 7/32 (22%), Positives = 14/32 (44%), Gaps = 0/32 (0%)
+
+Query  19  LTSIYGIGKTRSQAICAAAGIAEHVKISELSE  50
+           L  I      R++A+  + G+  +  + EL  
+Sbjct  28  LVGILDPDPARAEAVAESFGVPAYSDLEELLA  59
+
+
+>gnl|CDD|132488 TIGR03447, mycothiol_MshC, cysteine--1-D-myo-inosityl 2-amino-2-deoxy-alpha-D-glucopyranoside 
+ligase.  Members of this protein 
+family are MshC, l-cysteine:1-D-myo-inosityl 2-amino-2-deoxy-alpha-D-glucopyranoside 
+ligase, an enzyme that uses ATP 
+to ligate a Cys residue to a mycothiol precursor molecule, 
+in the second to last step in mycothiol biosynthesis. This 
+enzyme shows considerable homology to Cys--tRNA ligases, and 
+many instances are misannotated as such. Mycothiol is found 
+in Mycobacterium tuberculosis, Corynebacterium glutamicum, 
+Streptomyces coelicolor, and various other members of the Actinobacteria. 
+Mycothiol is an analog to glutathione [Biosynthesis 
+of cofactors, prosthetic groups, and carriers, Glutathione 
+and analogs].
+Length=411
+
+ Score = 25.5 bits (56),  Expect = 9.6, Method: Composition-based stats.
+ Identities = 13/39 (33%), Positives = 17/39 (44%), Gaps = 0/39 (0%)
+
+Query  51   EQIDKLRDEVAKYVVEGDLRREVTLSIKRLMDLGTYRGL  89
+            E ++KL    A Y+VEG    +V  SI      G   G 
+Sbjct  137  EMVEKLLASGAAYIVEGPEYPDVYFSIDATEQFGYESGY  175
+
+
+>gnl|CDD|237219 PRK12827, PRK12827, short chain dehydrogenase; Provisional.
+Length=249
+
+ Score = 25.5 bits (56),  Expect = 9.8, Method: Composition-based stats.
+ Identities = 10/26 (38%), Positives = 13/26 (50%), Gaps = 0/26 (0%)
+
+Query  29   RSQAICAAAGIAEHVKISELSEEQID  54
+            R   +   AGIA     +ELS E+ D
+Sbjct  87   RLDILVNNAGIATDAAFAELSIEEWD  112
+
+
+
+Lambda      K        H        a         alpha
+   0.319    0.136    0.376    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 280815866

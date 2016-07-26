@@ -1,0 +1,550 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_8_48
+
+Length=136
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|236411  PRK09203, rplP, 50S ribosomal protein L16; Reviewed   268     5e-93
+gnl|CDD|211627  TIGR01164, rplP_bact, ribosomal protein L16, bact...  208     2e-69
+gnl|CDD|176985  CHL00044, rpl16, ribosomal protein L16                205     4e-68
+gnl|CDD|223275  COG0197, RplP, Ribosomal protein L16/L10E [Transl...  204     1e-67
+gnl|CDD|249717  pfam00252, Ribosomal_L16, Ribosomal protein L16p/...  196     1e-64
+gnl|CDD|238714  cd01433, Ribosomal_L16_L10e, Ribosomal_L16_L10e: ...  157     8e-50
+gnl|CDD|235252  PRK04199, rpl10e, 50S ribosomal protein L10e; Rev...  34.8    0.006
+gnl|CDD|129380  TIGR00279, L10e, ribosomal protein L10.e. This mo...  30.2    0.29 
+gnl|CDD|255729  pfam10065, DUF2303, Uncharacterized conserved pro...  29.6    0.53 
+gnl|CDD|223479  COG0402, SsnA, Cytosine deaminase and related met...  28.2    1.8  
+gnl|CDD|130918  TIGR01859, fruc_bis_ald_, fructose-1,6-bisphospha...  27.7    2.1  
+gnl|CDD|256132  pfam10712, NAD-GH, NAD-specific glutamate dehydro...  27.7    2.5  
+gnl|CDD|183710  PRK12737, gatY, tagatose-bisphosphate aldolase; R...  27.3    3.2  
+gnl|CDD|234128  TIGR03159, cas_Csc1, CRISPR type I-D/CYANO-associ...  27.1    3.3  
+gnl|CDD|237235  PRK12857, PRK12857, fructose-1,6-bisphosphate ald...  27.0    3.7  
+gnl|CDD|234041  TIGR02868, CydC, thiol reductant ABC exporter, Cy...  26.9    3.9  
+gnl|CDD|235120  PRK03363, fixB, putative electron transfer flavop...  26.9    4.5  
+gnl|CDD|111332  pfam02426, MIase, Muconolactone delta-isomerase. ...  25.9    5.0  
+gnl|CDD|187842  cd09711, Csc1_I-D, CRISPR/Cas system-associated p...  26.3    5.5  
+gnl|CDD|188542  TIGR04027, LLM_KPN_01858, putative FMN-dependent ...  26.6    5.7  
+gnl|CDD|249658  pfam00180, Iso_dh, Isocitrate/isopropylmalate deh...  26.5    6.4  
+gnl|CDD|249792  pfam00350, Dynamin_N, Dynamin family                  26.0    6.6  
+gnl|CDD|236477  PRK09355, PRK09355, hydroxyethylthiazole kinase; ...  26.3    6.7  
+gnl|CDD|233714  TIGR02082, metH, 5-methyltetrahydrofolate--homocy...  26.3    6.7  
+gnl|CDD|223486  COG0409, HypD, Hydrogenase maturation factor [Pos...  26.1    7.6  
+gnl|CDD|270412  cd13694, PBP2_Cysteine, Substrate binding domain ...  25.8    7.9  
+gnl|CDD|183049  PRK11240, PRK11240, penicillin-binding protein 1C...  26.2    8.0  
+gnl|CDD|237089  PRK12398, PRK12398, pyruvoyl-dependent arginine d...  25.8    8.1  
+gnl|CDD|234722  PRK00310, rpsC, 30S ribosomal protein S3; Reviewed    25.9    8.5  
+
+
+>gnl|CDD|236411 PRK09203, rplP, 50S ribosomal protein L16; Reviewed.
+Length=138
+
+ Score = 268 bits (689),  Expect = 5e-93, Method: Composition-based stats.
+ Identities = 96/134 (72%), Positives = 114/134 (85%), Gaps = 1/134 (1%)
+
+Query  1    MLQPKRTKFRKMHKGRNRGLA-AGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKR  59
+            MLQPKRTK+RK HKGRNRG A  G  V+FG FGLKA+  G +TARQIEAAR AMTR IKR
+Sbjct  1    MLQPKRTKYRKQHKGRNRGKAKRGNTVAFGEFGLKALEPGWITARQIEAARIAMTRHIKR  60
+
+Query  60   QGKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKL  119
+             GK+WIR+FPDKP+T+KP EVRMGKGKG+ EYWVA+++PG++L+E+ GV EELAREA +L
+Sbjct  61   GGKVWIRIFPDKPVTKKPAEVRMGKGKGSPEYWVAVVKPGRILFEIAGVSEELAREALRL  120
+
+Query  120  AAAKLPIKTTFVTK  133
+            AAAKLPIKT FV +
+Sbjct  121  AAAKLPIKTKFVKR  134
+
+
+>gnl|CDD|211627 TIGR01164, rplP_bact, ribosomal protein L16, bacterial/organelle. 
+ This model describes bacterial and organellar ribosomal 
+protein L16. The homologous protein of the eukaryotic cytosol 
+is designated L10 [Protein synthesis, Ribosomal proteins: 
+synthesis and modification].
+Length=126
+
+ Score = 208 bits (531),  Expect = 2e-69, Method: Composition-based stats.
+ Identities = 86/126 (68%), Positives = 107/126 (85%), Gaps = 1/126 (1%)
+
+Query  2    LQPKRTKFRKMHKGRNRGLA-AGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQ  60
+            L PKRTK+RK H+GR +G A  G  V+FG +GL+A+  G +TARQIEAAR AMTR +KR 
+Sbjct  1    LSPKRTKYRKQHRGRMKGKAKRGNTVAFGEYGLQALEPGWITARQIEAARVAMTRYVKRG  60
+
+Query  61   GKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLA  120
+            GK+WIR+FPDKP T+KPLE RMGKGKGN EYWVA+++PGK+L+E+ GVPEE+AREAF+LA
+Sbjct  61   GKLWIRIFPDKPYTKKPLETRMGKGKGNPEYWVAVVKPGKILFEIAGVPEEVAREAFRLA  120
+
+Query  121  AAKLPI  126
+            A+KLPI
+Sbjct  121  ASKLPI  126
+
+
+>gnl|CDD|176985 CHL00044, rpl16, ribosomal protein L16.
+Length=135
+
+ Score = 205 bits (523),  Expect = 4e-68, Method: Composition-based stats.
+ Identities = 77/134 (57%), Positives = 102/134 (76%), Gaps = 1/134 (1%)
+
+Query  1    MLQPKRTKFRKMHKGRNRGLAA-GADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKR  59
+            ML PKRTKFRK H+GR +G++  G  + FG + L+A+    +T+RQIEA RRA+TR  +R
+Sbjct  1    MLSPKRTKFRKQHRGRMKGISYRGNRICFGRYALQALEPAWITSRQIEAGRRAITRYARR  60
+
+Query  60   QGKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKL  119
+             GKIWIR+FPDKP+T +P E RMG GKG+ EYWVA+++PG++LYEM GV E +AR A K+
+Sbjct  61   GGKIWIRIFPDKPVTMRPAETRMGSGKGSPEYWVAVVKPGRILYEMGGVSETIARAAIKI  120
+
+Query  120  AAAKLPIKTTFVTK  133
+            AA K+PIKT F+  
+Sbjct  121  AAYKMPIKTQFIIS  134
+
+
+>gnl|CDD|223275 COG0197, RplP, Ribosomal protein L16/L10E [Translation, ribosomal 
+structure and biogenesis].
+Length=146
+
+ Score = 204 bits (521),  Expect = 1e-67, Method: Composition-based stats.
+ Identities = 86/136 (63%), Positives = 103/136 (76%), Gaps = 3/136 (2%)
+
+Query  1    MLQPKRTKFRKMHKGRNRGLAA---GADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAI  57
+            MLQPKRTK+RK HKGR  G+     G  V FG +GL A+  G++TARQIEAAR A  R +
+Sbjct  2    MLQPKRTKYRKQHKGRGPGITIAKGGNKVFFGEYGLVALEPGQITARQIEAARIAANRYL  61
+
+Query  58   KRQGKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAF  117
+            KR G +WIRVFPDKP+TEKP E RMGKGKG  E W A ++PG+VL+E+ GVPEELAREA 
+Sbjct  62   KRGGGLWIRVFPDKPLTEKPGEDRMGKGKGKPEGWAARVKPGRVLFEIAGVPEELAREAL  121
+
+Query  118  KLAAAKLPIKTTFVTK  133
+            + AAAKLP+KT FV +
+Sbjct  122  RRAAAKLPVKTKFVIR  137
+
+
+>gnl|CDD|249717 pfam00252, Ribosomal_L16, Ribosomal protein L16p/L10e.  
+Length=131
+
+ Score = 196 bits (500),  Expect = 1e-64, Method: Composition-based stats.
+ Identities = 79/131 (60%), Positives = 100/131 (76%), Gaps = 2/131 (2%)
+
+Query  4    PKRTKFRKMHKGRNRGLAA--GADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQG  61
+            PKRTK+RK  KGR     A  G  ++FG +GLKA+  GR+TARQIEAAR A+ R +KR G
+Sbjct  1    PKRTKYRKYQKGRLEYGKAVPGNKLAFGDYGLKALEPGRITARQIEAARIAINRYLKRGG  60
+
+Query  62   KIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAA  121
+            K+WIRVFPDKP+T+KP E RMGKGKG  E WVA ++PG++L+E+ GV EE+A+EA + AA
+Sbjct  61   KLWIRVFPDKPVTKKPAETRMGKGKGKPEGWVARVKPGQILFEISGVSEEVAKEALRRAA  120
+
+Query  122  AKLPIKTTFVT  132
+            +KLPIKT  V 
+Sbjct  121  SKLPIKTKIVK  131
+
+
+>gnl|CDD|238714 cd01433, Ribosomal_L16_L10e, Ribosomal_L16_L10e: L16 is an essential 
+protein in the large ribosomal subunit of bacteria, 
+mitochondria, and chloroplasts. Large subunits that lack L16 
+are defective in peptidyl transferase activity, peptidyl-tRNA 
+hydrolysis activity, association with the 30S subunit, binding 
+of aminoacyl-tRNA and interaction with antibiotics. L16 
+is required for the function of elongation factor P (EF-P), 
+a protein involved in peptide bond synthesis through the stimulation 
+of peptidyl transferase activity by the ribosome. 
+Mutations in L16 and the adjoining bases of 23S rRNA confer 
+antibiotic resistance in bacteria, suggesting a role for L16 
+in the formation of the antibiotic binding site. The GTPase 
+RbgA (YlqF) is essential for the assembly of the large subunit, 
+and it is believed to regulate the incorporation of L16. 
+L10e is the archaeal and eukaryotic cytosolic homolog of 
+bacterial L16. L16 and L10e exhibit structural differences at 
+the N-terminus.
+Length=112
+
+ Score = 157 bits (400),  Expect = 8e-50, Method: Composition-based stats.
+ Identities = 65/112 (58%), Positives = 86/112 (77%), Gaps = 2/112 (2%)
+
+Query  22   AGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQ-GKIWIRVFPDKPITEKPLEV  80
+             G  + FG +GL A+  GR+TA Q+EAAR A+ R +K++ GK+WIRVFPD P+T+KPLE 
+Sbjct  1    KGNKLFFGEYGLVALEPGRITAEQLEAARIAINRYLKKKGGKLWIRVFPDHPVTKKPLET  60
+
+Query  81   RMGKGKGNVEYWVALIQPGKVLYEMDGVP-EELAREAFKLAAAKLPIKTTFV  131
+            RMGKGKG  E WVA ++PG++L+E+ GVP EE+A+EA + AA KLPIKT  V
+Sbjct  61   RMGKGKGKPEGWVARVKPGQILFEVRGVPEEEVAKEALRRAAKKLPIKTKIV  112
+
+
+>gnl|CDD|235252 PRK04199, rpl10e, 50S ribosomal protein L10e; Reviewed.
+Length=172
+
+ Score = 34.8 bits (81),  Expect = 0.006, Method: Composition-based stats.
+ Identities = 29/106 (27%), Positives = 47/106 (44%), Gaps = 24/106 (23%)
+
+Query  46   IEAAR----RAMTRAIKRQG-KIWIRVFPDKPITEKPLEV-----------RM--GKGKG  87
+            +EAAR    + +T+ + R    + IRV+P   + E  +             R+  GK  G
+Sbjct  62   LEAARIAANKYLTKTVGRSNYHLKIRVYPHHVLRENKMATGAGADRVSDGMRLAFGKPVG  121
+
+Query  88   NVEYWVALIQPGKVLYEMDGVPE--ELAREAFKLAAAKLPIKTTFV  131
+                  A ++ G+ ++ +   PE  E A+EA + AA KLP     V
+Sbjct  122  TA----ARVEKGQKIFTVRVNPEHLEAAKEALRRAAMKLPTPCRIV  163
+
+
+>gnl|CDD|129380 TIGR00279, L10e, ribosomal protein L10.e.  This model finds the 
+archaeal and eukaryotic forms of ribosomal protein L10. The 
+protein is encoded by multiple loci in some eukaryotes and 
+has been assigned a number of extra-ribosomal functions, some 
+of which will require re-evaluation in the context of identification 
+as a ribosomal protein. L10.e is distantly related 
+to eubacterial ribosomal protein L16 [Protein synthesis, 
+Ribosomal proteins: synthesis and modification].
+Length=172
+
+ Score = 30.2 bits (68),  Expect = 0.29, Method: Composition-based stats.
+ Identities = 27/108 (25%), Positives = 47/108 (44%), Gaps = 16/108 (15%)
+
+Query  40   RLTARQIEAAR----RAMTRAIKRQG-KIWIRVFPDKPITEKPLEVRMGKGK--------  86
+            ++    +EAAR    + MTR   R G  + IRV+P   + E  +    G  +        
+Sbjct  56   QIRHNALEAARIAANKYMTRRAGRMGYHLKIRVYPHHILRENKMATGAGADRIQQGMRGA  115
+
+Query  87   -GNVEYWVALIQPGKVLYEMDGVPE--ELAREAFKLAAAKLPIKTTFV  131
+             G      A ++ G+ ++ +   P   ++A+EA + AA K P+    V
+Sbjct  116  FGKPVGTAARVKIGQKIFSVWTKPSNFDVAKEALRRAAMKFPVPCKIV  163
+
+
+>gnl|CDD|255729 pfam10065, DUF2303, Uncharacterized conserved protein (DUF2303). 
+ Members of this family of hypothetical bacterial proteins 
+have no known function.
+Length=272
+
+ Score = 29.6 bits (67),  Expect = 0.53, Method: Composition-based stats.
+ Identities = 17/58 (29%), Positives = 24/58 (41%), Gaps = 9/58 (16%)
+
+Query  75   EKPLEVRMG--KGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAKLPIKTTF  130
+            E+  E R+      G +  W+ L++P  VL       EE ARE  +L  A       F
+Sbjct  217  ERRFEARLSYRTKGGELVLWLRLVRPEAVL-------EEAAREFRELIEAAFGDTAIF  267
+
+
+>gnl|CDD|223479 COG0402, SsnA, Cytosine deaminase and related metal-dependent 
+hydrolases [Nucleotide transport and metabolism / General function 
+prediction only].
+Length=421
+
+ Score = 28.2 bits (63),  Expect = 1.8, Method: Composition-based stats.
+ Identities = 30/116 (26%), Positives = 36/116 (31%), Gaps = 9/116 (8%)
+
+Query  17   NRGLAAGADVSFGTFGLKAVGRGRLTARQI--EAARRAMTRAIKRQGKIWIRVFPD----  70
+             RGLA    +             RL   +     A  A+   + R G    R   D    
+Sbjct  71   LRGLADDLPLLEWLERYVWPREARLLTEEDLYARALLALLEML-RNGTTTARTHVDVVAE  129
+
+Query  71   --KPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAKL  124
+                  E  LEV +    G V   VA   PG    E     EEL REA  L    +
+Sbjct  130  SADAAFEAALEVGLRAVLGPVLQDVAFPDPGAETDEELEETEELLREAHGLGRDVV  185
+
+
+>gnl|CDD|130918 TIGR01859, fruc_bis_ald_, fructose-1,6-bisphosphate aldolase, 
+class II, various bacterial and amitochondriate protist.  This 
+model represents of one of several subtypes of the class 
+II fructose-1,6-bisphosphate aldolase, an enzyme of glycolysis. 
+The subtypes are split into several models to allow separation 
+of a family of tagatose bisphosphate aldolases. This 
+form is found in Gram-positive bacteria, a variety of Gram-negative, 
+and in amitochondriate protists. The class II enzymes 
+share homology with tagatose bisphosphate aldolase but not 
+with class I aldolase [Energy metabolism, Glycolysis/gluconeogenesis].
+Length=282
+
+ Score = 27.7 bits (62),  Expect = 2.1, Method: Composition-based stats.
+ Identities = 13/28 (46%), Positives = 18/28 (64%), Gaps = 0/28 (0%)
+
+Query  101  VLYEMDGVPEELAREAFKLAAAKLPIKT  128
+            VL+   G+PEE  ++A KL  AK+ I T
+Sbjct  204  VLHGASGIPEEQIKKAIKLGIAKINIDT  231
+
+
+>gnl|CDD|256132 pfam10712, NAD-GH, NAD-specific glutamate dehydrogenase.  The 
+members of this are annotated as being NAD-specific glutamate 
+dehydrogenase encoded in antisense gene pair with DnaK-J.
+Length=574
+
+ Score = 27.7 bits (62),  Expect = 2.5, Method: Composition-based stats.
+ Identities = 16/41 (39%), Positives = 20/41 (49%), Gaps = 1/41 (2%)
+
+Query  15   GRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTR  55
+            GR+   A G DV  G   L+   R R  A Q+E A R + R
+Sbjct  92   GRDVQDAVGVDVE-GDLDLRHAARCRRDALQVELAERLVVR  131
+
+
+>gnl|CDD|183710 PRK12737, gatY, tagatose-bisphosphate aldolase; Reviewed.
+Length=284
+
+ Score = 27.3 bits (61),  Expect = 3.2, Method: Composition-based stats.
+ Identities = 10/28 (36%), Positives = 16/28 (57%), Gaps = 0/28 (0%)
+
+Query  101  VLYEMDGVPEELAREAFKLAAAKLPIKT  128
+            VL+   GVP+E  ++A  L   K+ + T
+Sbjct  206  VLHGASGVPDEDVKKAISLGICKVNVAT  233
+
+
+>gnl|CDD|234128 TIGR03159, cas_Csc1, CRISPR type I-D/CYANO-associated protein 
+Csc1.  CRISPR (Clustered Regularly Interspaced Short Palindromic 
+Repeats) is a widespread family of prokaryotic direct 
+repeats with spacers of unique sequence between consecutive 
+repeats. This protein family is a CRISPR-associated (Cas) family 
+strictly associated with the Cyano subtype of CRISPR/Cas 
+locus, found in several species of Cyanobacteria and several 
+archaeal species. This family is designated Csc1 for CRISPR/Cas 
+Subtype Cyano protein 1, as it is often the first gene 
+upstream of the core cas genes, cas3-cas4-cas1-cas2 [Mobile 
+and extrachromosomal element functions, Other].
+Length=223
+
+ Score = 27.1 bits (60),  Expect = 3.3, Method: Composition-based stats.
+ Identities = 11/39 (28%), Positives = 18/39 (46%), Gaps = 2/39 (5%)
+
+Query  55   RAIKRQGKIWIRVFPDKPITEKPLEVRMGK--GKGNVEY  91
+            + I    K +  VF D+   + P+ +R+GK   K  V  
+Sbjct  119  KEIAPGNKFYFYVFTDQGEEKLPVYIRLGKKRSKAKVTV  157
+
+
+>gnl|CDD|237235 PRK12857, PRK12857, fructose-1,6-bisphosphate aldolase; Reviewed.
+Length=284
+
+ Score = 27.0 bits (60),  Expect = 3.7, Method: Composition-based stats.
+ Identities = 12/28 (43%), Positives = 16/28 (57%), Gaps = 0/28 (0%)
+
+Query  101  VLYEMDGVPEELAREAFKLAAAKLPIKT  128
+            VL+   GVP+E  R+A  L   K+ I T
+Sbjct  206  VLHGSSGVPDEAIRKAISLGVRKVNIDT  233
+
+
+>gnl|CDD|234041 TIGR02868, CydC, thiol reductant ABC exporter, CydC subunit. 
+ The gene pair cydCD encodes an ABC-family transporter in which 
+each gene contains an N-terminal membrane-spanning domain 
+(pfam00664) and a C-terminal ATP-binding domain (pfam00005). 
+In E. coli these genes were discovered as mutants which caused 
+the terminal heme-copper oxidase complex cytochrome bd 
+to fail to assemble. Recent work has shown that the transporter 
+is involved in export of redox-active thiol compounds such 
+as cysteine and glutathione. The linkage to assembly of 
+the cytochrome bd complex is further supported by the conserved 
+operon structure found outside the gammaproteobacteria (cydABCD) 
+containing both the transporter and oxidase genes components. 
+The genes used as the seed members for this model 
+are all either found in the gammproteobacterial context or 
+the CydABCD context. All members of this family scoring above 
+trusted at the time of its creation were from genomes which 
+encode a cytochrome bd complex.
+Length=530
+
+ Score = 26.9 bits (60),  Expect = 3.9, Method: Composition-based stats.
+ Identities = 16/57 (28%), Positives = 22/57 (39%), Gaps = 0/57 (0%)
+
+Query  6    RTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGK  62
+            R   + + + R    A   D   G   L A G       Q+E A R +TRA +R   
+Sbjct  179  RAAEQALARLRGELAAQLTDALDGAAELVASGALPAALAQVEEADRELTRAERRAAA  235
+
+
+>gnl|CDD|235120 PRK03363, fixB, putative electron transfer flavoprotein FixB; 
+Provisional.
+Length=313
+
+ Score = 26.9 bits (59),  Expect = 4.5, Method: Composition-based stats.
+ Identities = 15/63 (24%), Positives = 24/63 (38%), Gaps = 7/63 (11%)
+
+Query  19   GLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGKIWIRVFPDKPITEKPL  78
+            GLA G +     + +  +  G   A Q +A+R   T  ++ Q        P   IT    
+Sbjct  130  GLAIGEERIATPYAVLTISSGTFDAAQPDASRTGETHTVEWQA-------PAVAITRTAT  182
+
+Query  79   EVR  81
+            + R
+Sbjct  183  QAR  185
+
+
+>gnl|CDD|111332 pfam02426, MIase, Muconolactone delta-isomerase.  This small 
+enzyme forms a homodecameric complex, that catalyses the third 
+step in the catabolism of catechol to succinate- and acetyl-coa 
+in the beta-ketoadipate pathway EC:5.3.3.4. The protein 
+has a ferredoxin-like fold according to SCOP.
+Length=91
+
+ Score = 25.9 bits (57),  Expect = 5.0, Method: Composition-based stats.
+ Identities = 9/28 (32%), Positives = 17/28 (61%), Gaps = 3/28 (11%)
+
+Query  43  ARQIEAARRAMTRAIKRQGK---IWIRV  67
+           A +I+A  +A ++ ++RQGK   +W   
+Sbjct  20  AERIKAREKARSQELQRQGKWRHLWRIA  47
+
+
+>gnl|CDD|187842 cd09711, Csc1_I-D, CRISPR/Cas system-associated protein Csc1. 
+ CRISPR (Clustered Regularly Interspaced Short Palindromic 
+Repeats) and associated Cas proteins comprise a system for heritable 
+host defense by prokaryotic cells against phage and 
+other foreign DNA; RAMP superfamily protein; predicted Cas5 
+ortholog; also known as CasA/Cse1 family.
+Length=210
+
+ Score = 26.3 bits (58),  Expect = 5.5, Method: Composition-based stats.
+ Identities = 11/39 (28%), Positives = 18/39 (46%), Gaps = 2/39 (5%)
+
+Query  55   RAIKRQGKIWIRVFPDKPITEKPLEVRMGK--GKGNVEY  91
+            + I    K +  VF D+   + P+ +R+GK   K  V  
+Sbjct  106  KEIAPGNKFYFYVFSDQGEEKLPVYIRLGKKRSKAKVTV  144
+
+
+>gnl|CDD|188542 TIGR04027, LLM_KPN_01858, putative FMN-dependent luciferase-like 
+monooxygenase, KPN_01858 family.  This protein family consists 
+of luciferase-like monooxygenases (LLM), and include 
+KPN_01858 from Klebsiella pneumoniae as a representative member. 
+Most are from species that lack F420 biosynthesis, so the 
+family is likely to bind FMN as its cofactor. This family 
+is closely associated with a binding protein-dependent ABC 
+transporter, suggesting a role in catabolism [Unknown function, 
+Enzymes of unknown specificity].
+Length=326
+
+ Score = 26.6 bits (59),  Expect = 5.7, Method: Composition-based stats.
+ Identities = 13/35 (37%), Positives = 17/35 (49%), Gaps = 1/35 (3%)
+
+Query  19   GLAAGA-DVSFGTFGLKAVGRGRLTARQIEAARRA  52
+            GL +G    SF  FGL +  RG + A  +   R A
+Sbjct  103  GLGSGGTPSSFAAFGLDSAQRGEIFADHLAVLRDA  137
+
+
+>gnl|CDD|249658 pfam00180, Iso_dh, Isocitrate/isopropylmalate dehydrogenase. 
+ 
+Length=348
+
+ Score = 26.5 bits (59),  Expect = 6.4, Method: Composition-based stats.
+ Identities = 15/36 (42%), Positives = 20/36 (56%), Gaps = 2/36 (6%)
+
+Query  102  LYEMDGVPEELAREAFKLAAAKLPIKTTFVTK-TVM  136
+            LY  D + E +AR AF+LA  +   K T V K  V+
+Sbjct  157  LYSRDEI-ERIARVAFELARKRGRKKVTSVDKANVL  191
+
+
+>gnl|CDD|249792 pfam00350, Dynamin_N, Dynamin family.  
+Length=168
+
+ Score = 26.0 bits (58),  Expect = 6.6, Method: Composition-based stats.
+ Identities = 18/70 (26%), Positives = 29/70 (41%), Gaps = 10/70 (14%)
+
+Query  72   PITEKPLEVRMGK------GKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAKLP  125
+            P T +PL +R+G+      G   VEY        K   +   V EE+ +E  K+A     
+Sbjct  30   PTTRRPLVLRLGEEPGAIPGAVKVEYK----DGLKKFEDFSEVREEIEKETDKIAGTGKG  85
+
+Query  126  IKTTFVTKTV  135
+            I +  +   +
+Sbjct  86   ISSEPIILEI  95
+
+
+>gnl|CDD|236477 PRK09355, PRK09355, hydroxyethylthiazole kinase; Validated.
+Length=263
+
+ Score = 26.3 bits (59),  Expect = 6.7, Method: Composition-based stats.
+ Identities = 10/27 (37%), Positives = 12/27 (44%), Gaps = 1/27 (4%)
+
+Query  39  GRLTARQIEAARRAMTRAIKRQGKIWI  65
+           G LT  +IEA   A   A    GK  +
+Sbjct  63  GTLTEERIEAMLAAGKIA-NEAGKPVV  88
+
+
+>gnl|CDD|233714 TIGR02082, metH, 5-methyltetrahydrofolate--homocysteine methyltransferase. 
+ This family represents 5-methyltetrahydrofolate--homocysteine 
+methyltransferase (EC 2.1.1.13), one of at 
+least three different enzymes able to convert homocysteine to 
+methionine by transferring a methyl group on to the sulfur 
+atom. It is also called the vitamin B12(or cobalamine)-dependent 
+methionine synthase. Other methionine synthases include 
+5-methyltetrahydropteroyltriglutamate--homocysteine S-methyltransferase 
+(MetE, EC 2.1.1.14, the cobalamin-independent 
+methionine synthase) and betaine-homocysteine methyltransferase 
+[Amino acid biosynthesis, Aspartate family].
+Length=1178
+
+ Score = 26.3 bits (58),  Expect = 6.7, Method: Composition-based stats.
+ Identities = 17/63 (27%), Positives = 26/63 (41%), Gaps = 8/63 (13%)
+
+Query  23   GADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGKIWIRVFPDKPITEKPLEVRM  82
+            GA V    F  +  G+ R   R+IE  +RA     ++ G      FP + I   P  + +
+Sbjct  464  GAAVVVMAFDEE--GQARTADRKIEICKRAYNILTEKVG------FPPEDIIFDPNILTI  515
+
+Query  83   GKG  85
+              G
+Sbjct  516  ATG  518
+
+
+>gnl|CDD|223486 COG0409, HypD, Hydrogenase maturation factor [Posttranslational 
+modification, protein turnover, chaperones].
+Length=364
+
+ Score = 26.1 bits (58),  Expect = 7.6, Method: Composition-based stats.
+ Identities = 8/24 (33%), Positives = 11/24 (46%), Gaps = 0/24 (0%)
+
+Query  107  GVPEELAREAFKLAAAKLPIKTTF  130
+              P      A +LA++K  I  TF
+Sbjct  68   VTPMGRIDTAIELASSKDVIFCTF  91
+
+
+>gnl|CDD|270412 cd13694, PBP2_Cysteine, Substrate binding domain of ABC cysteine 
+transporter; the type 2 periplasmic binding protein fold. 
+ This subfamily comprises of the periplasmic-binding protein 
+component of ABC transporter specific for cysteine and its 
+closely related proteins. The cysteine-binding domains belong 
+to the type 2 periplasmic binding protein fold superfamily 
+(PBP2), whose many  members are involved in chemotaxis and 
+uptake of nutrients and other small molecules from the extracellular 
+space as a primary receptor. The PBP2 proteins are 
+typically comprised of two globular subdomains connected by 
+a flexible hinge and bind their ligand in the cleft between 
+these domains in a manner resembling a Venus flytrap. After 
+binding their specific ligand with high affinity, they can 
+interact with a cognate membrane transport complex comprised 
+of two integral membrane domains and two receptor cytoplasmically-located 
+ATPase domains. This interaction triggers the 
+ligand translocation across the cytoplasmic membrane energized 
+by ATP hydrolysis.
+Length=229
+
+ Score = 25.8 bits (57),  Expect = 7.9, Method: Composition-based stats.
+ Identities = 10/17 (59%), Positives = 11/17 (65%), Gaps = 0/17 (0%)
+
+Query  56  AIKRQGKIWIRVFPDKP  72
+            IK+ G I I VF DKP
+Sbjct  3   QIKQSGVIRIGVFGDKP  19
+
+
+>gnl|CDD|183049 PRK11240, PRK11240, penicillin-binding protein 1C; Provisional.
+Length=772
+
+ Score = 26.2 bits (58),  Expect = 8.0, Method: Composition-based stats.
+ Identities = 11/24 (46%), Positives = 15/24 (63%), Gaps = 1/24 (4%)
+
+Query  56   AIKRQGKI-WIRVFPDKPITEKPL  78
+            A  R GK   +R+ PD P+ E+PL
+Sbjct  452  AFARHGKAAKLRLQPDDPLLERPL  475
+
+
+>gnl|CDD|237089 PRK12398, PRK12398, pyruvoyl-dependent arginine decarboxylase; 
+Provisional.
+Length=162
+
+ Score = 25.8 bits (57),  Expect = 8.1, Method: Composition-based stats.
+ Identities = 8/25 (32%), Positives = 15/25 (60%), Gaps = 0/25 (0%)
+
+Query  110  EELAREAFKLAAAKLPIKTTFVTKT  134
+            E+LARE       + P++T  +T++
+Sbjct  118  EKLAREMLSTWTNEEPLRTFNITRS  142
+
+
+>gnl|CDD|234722 PRK00310, rpsC, 30S ribosomal protein S3; Reviewed.
+Length=232
+
+ Score = 25.9 bits (58),  Expect = 8.5, Method: Composition-based stats.
+ Identities = 11/20 (55%), Positives = 15/20 (75%), Gaps = 3/20 (15%)
+
+Query  43   ARQIE---AARRAMTRAIKR  59
+            A+Q+E   + RRAM RAI+R
+Sbjct  121  AQQLERRVSFRRAMKRAIQR  140
+
+
+
+Lambda      K        H        a         alpha
+   0.322    0.137    0.401    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 358168832

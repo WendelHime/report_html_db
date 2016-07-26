@@ -785,5 +785,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("about_4-4-paragraph", "If you use this database, please cite this page as follows:", ""),
         ("about_4-5-list-1", "Winter, C.E. &amp; Gruber, A. (2013) The <i>Photorhabdus luminescens</i> MN7 genome database, version 1.0: http://www.coccidia.icb.usp.br/PMN.", "")
 
+        
+        
 -- ("", "", "")
 ;
