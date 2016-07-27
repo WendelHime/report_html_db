@@ -415,8 +415,6 @@ if(not -d "$html_dir/$fasta_dir"){
 
 $/ = ">";
 
-my $seq;
-
 #separa ORFs em aa do multifasta aa
 if(not -d "$html_dir/$aa_fasta_dir"){
     !system("mkdir $html_dir/$aa_fasta_dir")
@@ -424,8 +422,7 @@ if(not -d "$html_dir/$aa_fasta_dir"){
 }
 
 if($aa_orf_file ne ""){
-    open(FILE_AA,"$aa_orf_file")
-	or die "Could not open file $aa_orf_file\n";
+    open(FILE_AA,"$aa_orf_file") or die "Could not open file $aa_orf_file\n";
 }
 
 #separa ORFs nt do multifasta nt
@@ -435,8 +432,7 @@ if(not -d "$html_dir/$nt_fasta_dir"){
 }
 
 if($nt_orf_file ne ""){
-    open(FILE,"$nt_orf_file")
-	or die "Could not open file $nt_orf_file\n";
+    open(FILE,"$nt_orf_file") or die "Could not open file $nt_orf_file\n";
 }
 
 $/ = ">";
@@ -444,9 +440,6 @@ $/ = ">";
 
 my $name;
 my $seq;
-my $new_file;
-my $name1;
-my $preffix;
 #termina funcao para separar sequencias nt das ORFs
 
 my $output_seqs;
@@ -458,7 +451,7 @@ my $count_dna;
 my $prefix_name;
 my $sequence;
 
-my %ip_id;
+#my %ip_id;
 my $tmhmm_result = "";
 my $signalP_result = "";
 my $phobius_result = "";
@@ -469,8 +462,8 @@ my $blast_result = "";
 my $rpsblast_result = "";
 my $hmmer_result = "";
 my $interpro_result = "";
-my $ortholgy_result = "";
-my $GO_result = "";
+#my $ortholgy_result = "";
+#my $GO_result = "";
 my $header;
 my $locus_tag;
 my $locus = 0;
@@ -509,22 +502,995 @@ my $count_seq = 1;
 my $sequence_object  = new EGeneUSP::SequenceObject();
 my %hash_dna;
 my @seq_links;
+#contador de sequencias
 my $seq_count = 0;
 while($sequence_object->read())
 {
     ++$seq_count;
     $count_ev = 0;
-    $count_dna = 0;
+    my @conclusions = @{$sequence_object->get_conclusions()};
+    $header = $sequence_object->fasta_header();
+    my $bases = $sequence_object->current_sequence();
+    my $name = $sequence_object->sequence_name();
+    #criar controller annotations, ann_file passa a ser a URL para as anotações
+    my $ann_file = "annotations/".$name;
+    # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
+    #pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
+    open(FASTAOUT, ">$html_dir/root/$fasta_dir/$name.fasta") or die "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
+    my $length = length($bases);
+    print FASTAOUT ">$name\n";
+    for (my $i = 0; $i < $length; $i += 60)
+    {
+		my $line = substr($bases, $i, 60);
+		print FASTAOUT "$line\n";
+    }
+    close(FASTAOUT);
     
+    $header =~ s/>//g;
+    $header =~ m/(\S+)_(\d+)/;
+    $prefix_name = $1;
+    my $orf_count;
+    #aqui começaria a geração da pagina relacionada a cada anotação
+    #pulando isso, passamos para geração dos arquivos, volta a duvida sobre a necessidade desses arquivos
+    my $file_aa = $name."_CDS_AA.fasta";
+    my $file_nt = $name."_CDS_NT.fasta";
+    open(FILE_AA,">$html_dir/root/$aa_fasta_dir/$file_aa");
+    open(FILE_NT,">$html_dir/root/$nt_fasta_dir/$file_nt");
+    my $count;
+    my %hash_ev = ();
+    my %hash_dna = ();
+    my $ev_name;
+    my $line_subev; 
+    
+    foreach my $component_dna (sort @comp_dna)
+    {
+    	if($component_dna eq "alienhunter")
+    	{
+    		#no report original ele utilizaria isso como a coluna da tabela só para passar o caminho do arquivo
+    		#precisamos inserir no banco de dados a key e o valor = caminho do arquivo
+    		#ou podemos pegar o valor do arquivo e inserir no banco de dados
+    		my $file = $alienhunter_output_file."_".$header;
+    		$hash_dna{alienhunter} = "$alienhunter_dir/$file";
+    	}
+    	elsif($component_dna eq "skews")
+    	{
+    		my $filestring = `ls $skews_dir`;
+            my @phdfilenames = split(/\n/,$filestring);
+            my $seq_name = $sequence_object->sequence_name();
+	    	my $aux = "";
+            foreach my $file (@phdfilenames)
+            {
+            	if($file =~ m/$seq_name/ and $file =~ m/.png/)
+            	{
+                    $aux .= "$skews_dir/$file\n";
+                }
+            }
+	    	$hash_dna{skews} = $aux;	    
+    	}
+    	elsif($component_dna eq "infernal")
+    	{
+    		my $file = $infernal_output_file."_".$header;
+	    	$hash_dna{infernal} = "$infernal_dir/$file";
+    	}
+    	elsif($component_dna eq "rbsfinder")
+    	{
+            my $file = $header.".txt";
+            $hash_dna{rbsfinder} = "$rbs_dir/$file";	
+		}
+		elsif($component_dna eq "rnammer")
+		{
+		    my $file = $header."_rnammer.gff";
+            $hash_dna{rnammer} = "$rnammer_dir/$file";
+		}
+		elsif($component_dna eq "transterm")
+		{
+            my $file = $header.".txt";
+            $hash_dna{transterm} = "$transterm_dir/$file";
+		}
+		elsif($component_dna eq "trf")
+		{
+		     my $file = $trf_dir."/".$name."_trf.txt";
+             $hash_dna{trf} = "$file";
+		}
+		elsif($component_dna eq "trna")
+		{
+		    my $file = $trna_dir."/".$name."_trna.txt";
+		    $hash_dna{trna} = "$file";
+		}
+		elsif($component_dna eq "mreps")
+		{
+		    my $name = $sequence_object->{sequence_name};
+            my $file = $mreps_dir."/".$name."_mreps.txt";
+            $hash_dna{mreps} = "$file";
+		}
+		elsif($component_dna eq "string")
+		{
+		    my $name = $sequence_object->{sequence_name};
+            my $file = $string_dir."/".$name."_string.txt";
+            $hash_dna{string} = "$file";
+		}
+    }
+    #começa analise das conclusões aqui
+    foreach my $conclusion (@conclusions)
+    {
+    	$sequence_object->get_evidence_for_conclusion();
+    	my %hash = %{$sequence_object->{array_evidence}};
+    	#evidencias para serem passadas para o banco de dados
+    	my @evidences = @{$conclusion->{evidence_number}};
+    	foreach my $ev(@evidences)
+    	{
+    		my $evidence = $hash{$ev};
+    		$ev_name = $sequence_object->fasta_header_evidence($evidence);
+    		$ev_name =~ s/>//;
+    		my $fasta_header_evidence = $sequence_object->fasta_header_evidence($evidence);
+    		my $locus_tag;
+    		if($conclusion->{locus_tag})
+    		{
+    			$locus_tag = $conclusion->{locus_tag};
+    		}
+    		else
+    		{
+    			$locus++;
+    			$locus_tag = "NOLOCUSTAG_$locus";
+    		}
+    		$fasta_header_evidence =~ s/>//g;
+    		my $html_file = $fasta_header_evidence.".html";
+		    my $txt_file = $fasta_header_evidence.".txt";
+		    my $png_file = $fasta_header_evidence.".png";
+    		my $component_name = $evidence->{log}{name};
+    		if($evidence->{tag} eq "CDS")
+    		{
+    			my $number = $evidence->{number};
+    			my $start;
+    			my $end;
+    			if($evidence->{start} < $evidence->{end})
+    			{
+    				$start = $evidence->{start};
+    				$end = $evidence->{end}; 
+    			}
+    			else
+    			{
+    				$start = $evidence->{end};
+                    $end = $evidence->{start};
+    			}
+    			my $len_nt = ($end - $start)+1;
+            	my $sequence_nt;
+            	my $nt_seq = substr($bases, $start-1, $len_nt);
+            	$len_nt = length($nt_seq);
+            	my $file_ev = $locus_tag.".fasta";
+            	open(AA,">$html_dir/$aa_fasta_dir/$file_ev");
+            	print FILE_NT ">$locus_tag\n";
+            	print AA "\nNucleotide sequence:\n\n";
+            	print AA ">$locus_tag\n";
+            	for (my $i = 0; $i < $len_nt; $i += 60){
+                    $sequence_nt = substr($nt_seq,$i,60);
+                    print FILE_NT "$sequence_nt\n";
+                    print AA "$sequence_nt\n";
+            	}
+            	close(FILE_NT);
+            	my $seq_aa = $evidence->{protein_sequence};
+            	my $sequence_aa;
+            	my $len_aa = length($seq_aa);
+		    	print FILE_AA ">$locus_tag\n";
+		    	print AA "\nTranslated sequence:\n\n";
+		    	print AA ">$locus_tag\n";
+    	    	for (my $i = 0; $i < $len_aa; $i += 60){
+	        	    $sequence_aa = substr($seq_aa,$i, 60);
+	        	    print FILE_AA "$sequence_aa\n";
+			    	print AA "$sequence_aa\n";
+    	    	}
+    	    	my @intervals = @{$evidence->{intervals}};
+	    		my $interval = $intervals[0];
+	    		my %tags = %{$interval->{tags}};
+		    	$orf_count = $tags{orf_count};
+		    	my @sub_evidences = @{$evidence->{evidences}};
+		    	my %interpro_ids = ();
+		    	my %go_ids = ();
+		    	my $product;
+		    	my $hit_found = 0;
+		    	foreach my $dbc (@databases_blast)
+		    	{
+		    		my $index = "";
+				    for(my $i = 0; $i <= scalar(@databases_blast); ++$i)
+				    {
+                    	if($databases_blast[$i] ne "" and $dbc ne "")
+                    	{
+                    	    if($databases_blast[$i] eq $dbc)
+                    	    {
+                            	$index = $i;
+                            }
+                    	}	
+                    }
+		    	    $blast_dir = $blast_dirs[$index];
+	        	    $hash_ev{$dbc} = "<td><a href=\"../$blast_dir/$html_file\"> No hits \t</a> </td>\n";
+		    	}
+		    	foreach my $component (sort @comp_ev)
+		    	{
+		    		if ($component eq "blast")
+		    		{
+                    }
+                    elsif($component eq "interpro")
+                    {
+                    	$hash_ev{$component} = "<td><a href=\"../$interpro_dir/HTML/$html_file\"> No hits \t</a> </td>\n";
+						$hash_ev{go_terms} = "<td>No hits \t</td>\n";
+                    }
+                    elsif($component eq "orthology")
+                    {		    	
+                    	if(defined $eggnog_dir)
+                    	{
+			    			my $aux_html = $html_file;
+                     	    $aux_html =~ s/.html/.eggnog.html/g;
+			    			$hash_ev{orthology_eggnog} = "<td><a href=\"../$eggnog_dir/$aux_html\"> No hits </a> </td>\n";
+		     			}
+		     			if(defined $cog_dir)
+		     			{
+                            my $aux_html = $html_file;
+                            $aux_html =~ s/.html/.cog.html/g;
+                            $hash_ev{orthology_cog} = "<td><a href=\"../$cog_dir/$aux_html\"> No hits </a> </td>\n";
+                     	}
+		     			if(defined $kog_dir)
+		     			{
+                             my $aux_html = $html_file;
+                             $aux_html =~ s/.html/.kog.html/g;
+                             $hash_ev{orthology_kog} = "<td><a href=\"../$kog_dir/$aux_html\"> No hits </a> </td>\n";
+                     	}
+                    }
+                    elsif($component eq "pathways")
+                    {
+                    	$hash_ev{$component} = "<td><a href=\"../$pathways_dir/$html_file\"> No_mapped_pathways </a> </td>\n";
+                    }
+                    elsif($component eq "phobius")
+                    {
+                    	$hash_ev{$component} = "<td><a href=\"../$phobius_dir/$png_file\"> No hits \t</a> </td>\n";
+                    }
+                    elsif($component eq "rpsblast")
+                    {
+                    	$hash_ev{$component} = "<td><a href=\"../$rpsblast_dir/$txt_file\"> No hits \t</a> </td>\n";
+                    }
+                    elsif($component eq "signalP")
+                    {
+                    	$hash_ev{$component} = "<td><a href=\"../$signalp_dir/$png_file\"> No hits \t</a> </td>\n";
+                    }
+		    		elsif($component eq "psort")
+		    		{
+		    			$fasta_header_evidence =~ s/>//g;
+						$hash_ev{$component} = "<td> No hits </td>\n";
+		    		}
+                    else
+                    {
+                   		$hash_ev{$component} = "<td>No hits \t</td>\n"; 
+                    }
+		    	}
+		    	if($count_ev == 0)
+		    	{
+		    		#line_subev seria uma referencia aos componentes utilizados, representadas pelas colunas
+		    	    $line_subev .= "<td>CDS\t</td>\n";
+		    	}
+#		    	$subev_html = "<tr>\n";
+#	    		$subev_html .= "<td><a href=\"../$html_dir/$aa_fasta_dir/$file_ev\"> $locus_tag </a></td>\n";
+				foreach my $sub_evidence (@sub_evidences) 
+				{
+					my $component_name = $sub_evidence->{log}{name};
+					if(exists($comp_names{$component_name}))
+					{
+						if ($component_name eq "annotation_signalP.pl") 
+						{
+						    if($sub_evidence->{type} eq "intervals")
+						    {
+						    	my @intervals = @{$sub_evidence->{intervals}};
+						    	foreach my $interval (@intervals)
+						    	{
+							    	my $pep_sig = $intervals[0]->{tags}{pep_sig};
+                                    if(undef $pep_sig)
+                                    {
+                                    	$signalP_result = "No hits";
+                                    }
+                                    else
+                                    {
+                                    	if(!$pep_sig ne 'YES')
+                                    	{					
+                                            $signalP_result = "Potential signal peptide";
+                                    	}
+                                    	else
+                                    	{
+                                   	    $signalP_result = "No hits";
+                                    	}
+						    	    }
+						    	}
+				    	    }
+					   	    $hash_ev{signalP} = "<td><a href=\"../$signalp_dir/$png_file\"> $signalP_result </a> </td>\n";
+				       	}
+					}
+					elsif($component_name eq "annotation_tmhmm.pl") 
+					{
+                   		if($sub_evidence->{type} eq "intervals")
+                   		{
+					    	my @intervals = @{$sub_evidence->{intervals}};
+                       	   	foreach my $interval (@intervals)
+                       	   	{
+					    		my $number_helices = $intervals[0]->{tags}{predicted_TMHs};
+		                        if($number_helices == 0)
+		                        {
+						    		$tmhmm_result = "No hits";
+                                }
+		                        else
+		                        {	
+					    	    	if($number_helices == 1)
+					    	    	{
+										$tmhmm_result = $number_helices . " potential transmembrane helix";
+						    		}
+						    		else
+						    		{
+						    	   		$tmhmm_result = $number_helices . " potential transmembrane helices";
+						    		}
+					    	   	}
+					    	}
+			    	   	}
+				   		$hash_ev{tmhmm} = "<td><a href=\"../$tmhmm_dir/$png_file\"> $tmhmm_result </a> </td>\n";                    	
+					}
+					elsif ($component_name eq "annotation_phobius.pl") 
+					{		
+						if($sub_evidence->{type} eq "intervals")
+						{
+							my @intervals = @{$sub_evidence->{intervals}};
+							foreach my $interval (@intervals)
+                            {
+			     	   			my $classification = $interval->{tags}{classification};
+                             	my $number_helices = $interval->{tags}{predicted_TMHs};
+			     	   			if($number_helices ne "")
+			     	   			{
+                             	   	$phobius_result = "No hits";
+                             	}
+                             	if($number_helices eq "")
+                             	{
+                             	   	if($classification eq "")
+                             	   	{
+                                    	$phobius_result = "No hits";
+                             	   	}
+                             	}
+                             	if($number_helices eq "")
+                             	{
+                             		if($classification ne "SIGNAL")
+                             		{
+                                    	$phobius_result = "No hits";
+                                    }
+                             	}
+                                if($number_helices eq "")
+                                {
+                             	   	if($classification eq "SIGNAL")
+                             	   	{
+                                    	$phobius_result = "Potential signal peptide";
+                             	   	}
+                             	}
+			     	   			if($number_helices ne "")
+			     	   			{
+                             	   	if($classification ne "SIGNAL")
+                             	   	{
+                                    	if($number_helices == 1)
+                                    	{
+                                   	   		$phobius_result = $number_helices . " potential transmembrane helix";
+                                    	}
+                                    	else
+                                    	{
+                                           	$phobius_result = $number_helices . " potential transmembrane helices";
+                                    	}
+                                   	}
+                            	}
+			    	   			if($number_helices ne "")
+			    	   			{
+                            		if($classification eq "SIGNAL")
+                            	   	{
+                                    	if($number_helices == 1)
+                                    	{
+                                     	   	$phobius_result = $number_helices . "potential transmembrane helix" . " Potential signal peptide";
+                                     	}
+                                     	else
+                                     	{
+                                           	$phobius_result = $number_helices . "potential transmembrane helices" . " Potential signal peptide";
+                                     	}	
+                                    }
+                            	}
+		    				}
+		      	   		}
+			   			$hash_ev{phobius} = "<td><a href=\"../$phobius_dir/$png_file\"> $phobius_result </a> </td>\n";		    	
+		     		}
+		     		elsif ($component_name eq "annotation_dgpi.pl") 
+		     		{
+						if($sub_evidence->{type} eq "intervals")
+						{
+							my @intervals = @{$sub_evidence->{intervals}};
+							foreach my $interval (@intervals)
+							{
+				    	   		my $cleavage_site = $intervals[0]->{tags}{cleavage_site};
+                            	if($cleavage_site eq "")
+                            	{
+				    	   			$dgpi_result = "No hits";
+				    	   		}
+				    	   		else
+				    	   		{
+				   	   				$dgpi_result = "Potential anchor cleavage site";
+				    	   		}
+				    		}
+						}
+						$hash_ev{dgpi} = "<td> <a href=\"../$dgpi_dir/$html_file\"> $dgpi_result </a> </td>\n";
+			    	}
+		     		elsif ($component_name eq "annotation_predgpi.pl") 
+		     		{
+						if($sub_evidence->{type} eq "intervals")
+						{
+							my @intervals = @{$sub_evidence->{intervals}};
+							foreach my $interval (@intervals)
+							{
+				   				if(defined  $intervals[0]->{tags}{result})
+				   				{
+				    				$predgpi_result = "No hits";	
+			   	   				}
+				   				else
+				   				{
+				   					$predgpi_result = "Potential anchor cleavage site";
+				   				}
+			    			}
+			   			}
+			   			$hash_ev{predgpi} = "<td> <a href=\"../$predgpi_dir/$html_file\"> $predgpi_result </a> </td>\n";
+		    		}
+		     		elsif ($component_name eq "annotation_bigpi.pl") 
+		     		{
+					    if($sub_evidence->{type} eq "intervals")
+					    {
+					    	my @intervals = @{$sub_evidence->{intervals}};
+                           	foreach my $interval (@intervals)
+                            {
+						   		if(defined  $intervals[0]->{tags}{result})
+						   		{
+                                   	$bigpi_result = "No hits";
+                                }
+                                else
+                                {
+                                   	$bigpi_result = "Potential anchor cleavage site";
+                                }
+					    	}
+					    }
+					    $hash_ev{bigpi} = "<td> <a href=\"../$bigpi_dir/$html_file\"> $bigpi_result </a> </td>\n";
+			    	}
+		     		elsif ($component_name eq "annotation_rpsblast.pl") 
+		     		{
+		    	    	if($sub_evidence->{type} eq "similarity")
+		    	    	{
+			    			my @alignments = @{$sub_evidence->{alignments}};
+                           	my $subject_id = $sub_evidence->{alignments}[0]{subject_id};
+                           	$subject_id =~ m/^\S+\|(\w+)\|(\d+) (\S+),/;
+                           	my $type_db = $1;
+			    			my $accession = $3;
+                            my $db_xref = $1.':'.$3;
+                            my $region_name = $subject_id;
+                            $region_name =~ m/\d\d,\s*([^.\[]*)[.\[]/;
+                            while ( $region_name =~ m/\d\d,\s*([^.\[]*)/ ) 
+                            {
+                               $region_name = $1;
+                            }
+                           	$rpsblast_result = $region_name;
+			    		}
+			    		$hash_ev{rpsblast} = "<td> <a href=\"../$rpsblast_dir/$txt_file\"> $rpsblast_result </a> </td>\n";			
+		     		}
+		     		elsif ($component_name eq "annotation_hmmer.pl") 
+		     		{
+		    	   		if($sub_evidence->{type} eq "similarity")
+		    	   		{
+			   				my @alignments = @{$sub_evidence->{alignments}};
+                            my $subject_id = $sub_evidence->{alignments}[0]{subject_id};
+                            $subject_id =~ m/^\S+\|(\w+)\|(\d+) (\S+),/;
+                            my $type_db = $1;
+                            my $accession = $3;
+                            my $db_xref = $1.':'.$3;
+                            my $region_name = $subject_id;
+                            $region_name =~ m/\d\d,\s*([^.\[]*)[.\[]/;
+                            while ( $region_name =~ m/\d\d,\s*([^.\[]*)/ ) 
+                            {
+                               $region_name = $1;
+                            }
+                            $hmmer_result = $region_name;			
+		    	   		}
+			    		$hash_ev{hmmer} = "<td> <a href=\"../$hmmer_dir/$txt_file\"> $hmmer_result </a> </td>\n";
+		    		}
+		    		elsif ($component_name eq "annotation_interpro.pl") 
+		    		{
+		    			if($sub_evidence->{type} eq "intervals")
+		    			{ 
+			    			my @intervals = @{$sub_evidence->{intervals}};
+                            foreach my $interval (@intervals)
+                            {
+                            	my %tags = %{$interval->{tags}};
+                            	my $interpro_id = $interval->{tags}{interpro_id};
+                            	if ($interpro_id ne "NULL" )
+                            	{
+                                     $interpro_ids{$interpro_id} = $interpro_id;
+                            	}
+                            	my $GO_id_line = $tags{evidence_process} ."," . $tags{evidence_function} . ","  . $tags{evidence_component};
+                            	while ($GO_id_line =~ m/\(GO:(\d+)\)/gi)
+                            	{			
+                                    my $GO_id =  $1;
+                                    $go_ids{$GO_id} = $GO_id;
+                                    $GO_id_line = $';
+                            	}
+                            }	
+		    			}
+		     			my @sorted_interpro_ids = sort(keys(%interpro_ids));
+						my $interpro_result = "Results";
+						if(scalar(@sorted_interpro_ids)>0)
+						{ 
+					    	    $interpro_result = join("\n", @sorted_interpro_ids);
+						}		        
+						$hash_ev{interpro} = "<td> <a href=\"../$interpro_dir/HTML/$html_file\"> $interpro_result </a> </td>\n";
+						my @sorted_go_ids = sort(keys(%go_ids));
+						my $aux = "";		
+						if(scalar(@sorted_go_ids) > 0)
+						{	
+						    foreach my $go (sort @sorted_go_ids)
+						    {
+						    	$aux .= "<a href=http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$go> GO:$go </a>\n";
+						    }			
+						    $hash_ev{go_terms} = "<td> $aux </td>";
+						}
+						else
+						{
+						    $hash_ev{go_terms} = "<td> No hits  </td>";
+						}
+		    		}
+		     		elsif ($component_name eq "annotation_orthology.pl") 
+		     		{
+						my $file_extension;
+		    			my $interval = @{$sub_evidence->{intervals}}[0];
+                    	my $database_code = '';
+                    	if ($sub_evidence->{log}->{arguments} =~ /database_code\s*=\s*kog/i) 
+                    	{
+                            $database_code = "KOG:";
+			    			$file_extension = "kog";
+                    	}
+                    	elsif ($sub_evidence->{log}->{arguments} =~ /database_code\s*=\s*eggnog/i) 
+                    	{
+                            $database_code = "eggNOG:";
+			    			$file_extension = "eggnog";
+                   		}
+						elsif($sub_evidence->{log}->{arguments} =~ /database_code\s*=\s*cog/i) 
+						{
+			    			$database_code = "COG:";
+                            $file_extension = "cog";
+						}
+                    	my $result = '';
+                    	my @ids             = split(':;:', $interval->{tags}->{'orthologous_group'});
+                    	my @descriptions    = split(':;:', $interval->{tags}->{'orthologous_group_description'});
+                    	my @classifications = split(':;:', $interval->{tags}->{'orthologous_group_classification'});
+                    	for (my  $index = 0; $index < scalar(@ids); $index++) 
+                    	{				
+			     			$result .= "$ids[$index]\n";                            
+                    	}
+						if($file_extension eq "eggnog")
+						{
+			    			my $aux_html = $html_file;
+                            $aux_html =~ s/.html/.eggnog.html/g;
+			    			$hash_ev{orthology_eggnog} ="<td> <a href=\"../$eggnog_dir/$aux_html\"> $result </a> </td>\n";
+						}
+						elsif($file_extension eq "cog")
+						{
+			    			my $aux_html = $html_file;
+                            $aux_html =~ s/.html/.cog.html/g;
+                            $hash_ev{orthology_cog} ="<td> <a href=\"../$cog_dir/$aux_html\"> $result </a> </td>\n";
+						}
+						elsif($file_extension eq "kog")
+						{
+                            my $aux_html = $html_file;
+                            $aux_html =~ s/.html/.kog.html/g;
+                            $hash_ev{orthology_kog} ="<td> <a href=\"../$kog_dir/$aux_html\"> $result </a> </td>\n";
+                        }
+		    		}
+		    		elsif($component_name eq "annotation_pathways.pl") 
+		    		{
+		    			if ($sub_evidence->{type} eq 'intervals') 
+		    			{
+			    			my $result = '';
+                            my $interval = @{$sub_evidence->{intervals}}[0];
+                            my @descriptions = split(':;:',$interval->{tags}->{'orthologous_group_description'});			
+						    my @classifications = split(':;:', $interval->{tags}->{'metabolic_pathway_classification'});			
+						    my @ids          = split(':;:',$interval->{tags}->{'orthologous_group_id'});
+						    my $dir = "$report_pathways_dir/pathway_figures";
+						    opendir(DIR,"$dir");
+						    my $filestring = `ls $dir`;
+						    my @phdfilenames = split(/\n/,$filestring);
+						    my $str = "";
+						    for (my  $index = 0; $index < scalar(@ids); $index++) 
+						    {				
+								foreach my $aux (@phdfilenames)
+								{
+								    my $aux2 = $ids[$index];
+								    if($aux =~ m/$aux2/ and $aux =~ m/.html/)
+								    {
+										my $name = $aux;
+										$name =~ s/.html//g;
+										$str .= "<a href=\"../$report_pathways_dir/pathway_figures/$aux\"> $name </a>\n";
+								    }
+								}				
+                            }			    							    
+			    			close DIR;
+			    			if($str ne "")
+			    			{
+								$hash_ev{pathways} = "<td> $str \t</td>\n";			    	
+			    			}
+                    	}					   		     
+		    		}
+		    		elsif ($component_name eq "annotation_blast.pl") 
+		    		{
+						my $args = $sub_evidence->{log}{arguments};
+						my @aux = split("\n", $args);
+						my $db;
+						for my $a (@aux)
+						{
+						     if($a =~ /database_code=/)
+						     {
+								$db = $a;
+						        $db =~ s/database_code=//gc;
+			     			 }
+						}
+						my $index = "";
+						for(my $i = 0; $i <= scalar(@databases_blast); ++$i)
+						{
+						    if($databases_blast[$i] ne "" and $db ne "")
+						    {
+						    	if($databases_blast[$i] eq $db)
+						    	{
+							    	$index = $i;
+						    	}
+						    }
+						}
+						if($index ne ""){
+			    			$blast_dir = $blast_dirs[$index];
+		    				if ($db eq "INSD")
+		    				{
+                    	    	my @alignments = @{$sub_evidence->{alignments}};
+    	               	    	my $subject_id = $sub_evidence->{alignments}[0]{subject_id};
+        	           	    	(undef, $product) = get_code_number_product ($subject_id);
+            	       	    	$blast_result = $product;						
+			    			}	
+			    			else
+			    			{
+								$blast_result = "Results";
+			    			}
+			    			$hash_ev{$db} = "<td> <a href=\"../$blast_dir/$html_file\"> $blast_result </a> </td>\n";                   	
+						}
+					}
+					elsif ($component_name eq "annotation_tcdb.pl") 
+					{
+						my $interval = @{$sub_evidence->{intervals}}[0];
+						my $value = $interval->{tags}->{'hit_name'};
+						$hash_ev{tcdb} = "<td> <a href=\"../$tcdb_dir/$html_file\"> $value </a> </td>\n";	
+					}
+					elsif($component_name eq "annotation_psort.pl")
+					{
+						my $arg = $sub_evidence->{log}->{arguments};
+						if($arg =~ /plant/ or $arg =~ /fungi/ or $arg =~ /animal/)
+						{			
+							$hash_ev{psort} = "<td> <a href=\"../wolf_dir/$html_file\"> Result </a> </td>\n";
+						}
+						else
+						{
+						$hash_ev{psort} = "<td> <a href=\"../psort_dir/$txt_file\"> Result </a> </td>\n";
+						}
+					}
+				}
+    		}
+    		if($count_ev == 0)
+    		{
+    			foreach my $keys (sort keys %hash_ev)
+    			{
+				    if($keys eq "blast")
+				    {
+#				    	$line_subev .= "<td>BLAST	</td>\n";
+				    }
+				    if($keys eq "rpsblast")
+				    {
+						$line_subev .= "<td>RPS-BLAST       </td>\n";
+				    }
+				    elsif($keys eq "go_terms")
+				    {
+                        $line_subev .= "<td>GO terms       </td>\n";
+                    }
+				    elsif($keys eq "interpro")
+				    {
+                        $line_subev .= "<td>InterPro       </td>\n";
+                    }
+				    elsif($keys eq "orthology_eggnog")
+				    {
+                        $line_subev .= "<td>Orthology eggNOG </td>\n";
+                    }   
+				    elsif($keys eq "orthology_cog")
+				    {
+                        $line_subev .= "<td>Orthology COG </td>\n";
+                    }                 
+				    elsif($keys eq "orthology_kog")
+				    {
+                        $line_subev .= "<td>Orthology KOG </td>\n";
+                    }
+				    elsif($keys eq "pathways")
+				    {
+                        $line_subev .= "<td>Pathways       </td>\n";
+                    }
+				    elsif($keys eq "phobius")
+				    {
+                        $line_subev .= "<td>Phobius       </td>\n";
+                    }
+				    elsif($keys eq "tmhmm")
+				    {
+                        $line_subev .= "<td>TMHMM       </td>\n";
+                    }
+				    elsif($keys eq "signalP")
+				    {
+                        $line_subev .= "<td>SignalP       </td>\n";
+                    }
+				    elsif($keys eq "predgpi")
+				    {
+                        $line_subev .= "<td>PredGPI       </td>\n";
+                    }
+				    elsif($keys eq "bigpi")
+			    	{
+            	        $line_subev .= "<td>big-PI       </td>\n";
+                    }
+				    elsif($keys eq "dgpi")
+				    {
+                        $line_subev .= "<td>DGPI       </td>\n";
+                    }
+				    elsif($keys eq "tcdb")
+				    {
+                        $line_subev .= "<td>TCDB       </td>\n";
+                    }
+				    elsif($keys eq "psort")
+				    {
+						$line_subev .= "<td>PSORT       </td>\n";
+				    }
+				    else
+				    {
+						$line_subev .= "<td>BLASTx$keys       </td>\n";
+				    }
+				}
+				$count_ev++;
+    		}
+    		else
+    		{
+    			my $tag0 = $evidence->{tag};
+			    my $tag;
+			    if($tag0 eq "tcdb")
+			    {
+					$tag = "TCDB";
+		  	    }
+			    elsif($tag0 eq "rRNA_prediction")
+			    {
+					$tag = "RNAmmer";
+			    }
+			    elsif($tag0 eq "transterm")
+			    {
+	                $tag = "TransTermHP";
+	            }
+			    elsif($tag0 eq "HTG")
+			    {
+	                $tag = "Alien_hunter";
+	            }
+			    elsif($tag0 eq "RNA_scan")
+			    {
+	                $tag = "Infernal";
+	            }
+			    elsif($tag0 eq "RBS")
+			    {
+	                $tag = "RBS finder";
+	            }
+			    elsif($tag0 eq "skews")
+			    {
+	                $tag = "Skews";
+	            }
+			    elsif($tag0 eq "tRNAscan")
+			    {
+	                $tag = "tRNAscan-SE";
+	            }
+			    else
+			    {
+					$tag = $tag0;
+			    }
+			    my $component = $evidence->{log}{name};
+			    if ($component eq "annotation_alienhunter.pl")
+			    {
+#				if($hash_dna{alienhunter} == 1){
+				    my $interval = @{$evidence->{intervals}}[0];			
+				    my $aux = $interval->{tags}{seq_name}." ; ".$interval->{tags}{note};		
+				    my $file = $alienhunter_output_file."_".$header;
+#				    $resultDNA .= "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
+				    $hash_dna{alienhunter} = "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
+#				}
+			    }
+			    elsif($component eq "annotation_skews.pl")
+			    {
+			   		my $filestring = `ls $skews_dir`;		   
+		   			my @phdfilenames = split(/\n/,$filestring);
+					my $seq_name = $sequence_object->sequence_name(); 		    
+			   		foreach my $file (@phdfilenames)
+			   		{
+					    if($file =~ m/$seq_name/ and $file =~ m/.png/)
+					    {
+#					   	$resultDNA .= "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
+						$hash_dna{skews} = "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
+				   	    }
+				   	}	
+			    }
+			    elsif($component eq "annotation_infernal.pl")
+			    {
+#				if($hash_dna{infernal} == 1){
+				    my $interval = @{$evidence->{intervals}}[0];	        
+		                    my $name = $interval->{tags}{target_type}.":".$interval->{tags}{target_name};
+				    my $file = $infernal_output_file."_".$header;
+#				    $resultDNA .= "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
+				    $hash_dna{infernal} = "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
+				    
+#				}
+			    }
+			    elsif($component eq "annotation_rbsfinder.pl")
+			    {
+#				if($hash_dna{rbsfinder} == 1){
+				    my $interval = @{$evidence->{intervals}}[0];
+		                    my $file = $header.".txt";
+#				    $resultDNA .= "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
+				    $hash_dna{rbsfinder} = "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
+#				}
+			    }
+			    elsif($component eq "annotation_rnammer.pl")
+			    {	
+#				if($hash_dna{rnammer} == 1){
+				    my $interval = @{$evidence->{intervals}}[0];
+		                    my $name = "Molecule type:".$interval->{tags}{molecule_type};
+				    my $file = $header."_rnammer.gff";
+#				    $resultDNA .= "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
+				    $hash_dna{rnammer} = "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
+#				}
+			    }
+			    elsif($component eq "annotation_transterm.pl")
+			    {
+#				if($hash_dna{transterm} == 1){
+		        	    my $interval = @{$evidence->{intervals}}[0];
+		                    my $name = "Transterm";
+		                    my $file = $header.".txt";
+				    $hash_dna{transterm} = "<td> <a href=\"../$transterm_dir/$file\"> $tag</a></td>\n";
+#				    $hash_dna{transterm} = 2;
+#				}
+	            }
+			    elsif($component eq "annotation_trf.pl")
+			    {
+#				if($hash_dna{trf} == 1){
+				    my $name = $sequence_object->{sequence_name};		    
+				    my $file = $trf_dir."/".$name."_trf.txt";
+#				    $resultDNA .= "<td> <a href=\"../$file\"> TRF </a></td>\n";
+				    $hash_dna{trf} = "<td> <a href=\"../$file\"> TRF </a></td>\n";
+#				}	
+			    }
+			    elsif($component eq "annotation_trna.pl")
+			    {
+#	               if($hash_dna{trna} == 1){
+                    my $name = $sequence_object->{sequence_name};
+                    my $file = $trna_dir."/".$name."_trna.txt";
+#	                  $resultDNA .= "<td> <a href=\"../$file\"> $tag</a></td>\n";
+				    $hash_dna{trna} = "<td> <a href=\"../$file\"> $tag</a></td>\n";
+#		                }
+	            }
+			    elsif($component eq "annotation_mreps.pl")
+			    {
+#		                if($hash_dna{mreps} == 1){
+                    my $name = $sequence_object->{sequence_name};
+                    my $file = $mreps_dir."/".$name."_mreps.txt";
+#		                    $resultDNA .= "<td> <a href=\"../$file\"> mreps</a></td>\n";
+				    $hash_dna{mreps} = "<td> <a href=\"../$file\"> mreps</a></td>\n";
+#		                }
+	            }
+			    elsif($component eq "annotation_string.pl")
+			    {
+#		                if($hash_dna{string} == 1){
+                    my $name = $sequence_object->{sequence_name};
+                    my $file = $string_dir."/".$name."_string.txt";
+#		                    $resultDNA .= "<td> <a href=\"../$file\"> String </a></td>\n";
+				    $hash_dna{string} = "<td> <a href=\"../$file\"> String </a></td>\n";
+#		                }
+	            }
+			    $count_dna++;
+    		}
+=pod
+	    if($resultDNA ne ""){
+		$evDna_html .= "<tr>\n";
+        	$evDna_html .= $resultDNA;
+        	$evDna_html .= "</tr>\n";
+        	$dna_html .= $evDna_html;
+	    } 
+=cut
+
+#				    foreach my $key (sort keys %hash_ev){
+#		            	$subev_html .= $hash_ev{$key};
+#		    	    }
+#		    	    $subev_html .= "</tr>\n";
+#		    	    $ev_html .= $subev_html;
+    	}
+    	
+    }
+    foreach my $key (sort keys %hash_dna)
+    {
+    	#inserir essa parte no banco de dados
+    	$hash_dna{$key};
+    }
+    close(FILE_AA);
+    close(FILE_NT);
+    
+    if((defined $FT_submission_dir) or (defined $FT_artemis_dir) or (defined $GFF_dir))
+    {
+        if($sequence_object->{sequence_source} eq "transcriptome")
+        {
+#    	    $ann_rep .= "<b> Without ORF selection:\n";
+        }
+		if(defined $FT_submission_dir)
+		{
+	#           $ann_rep .= "<a href=\"../$FT_submission_dir/$name.gb\"> Feature Table</a>";
+	#    	   $ann_rep .= "\t\t \n";
+		   ++$count;
+		}
+        if(defined $FT_artemis_dir)
+        {
+    	    my $aux = $name."_all_results.tab";
+	    	if($count == 1)
+	    	{
+#				$ann_rep .= ",\n";
+	    	}
+#	    	$ann_rep .= "<a href=\"../$FT_artemis_dir/$aux\"> Extended Feature Table</a>";
+	    	++$count;
+#    	    $ann_rep .= "\t\t \n";
+  		}
+		if(defined $GFF_dir)
+		{
+		    if($count == 2)
+		    {
+#				$ann_rep .= ",\n";
+		    }
+	    
+#    	    $ann_rep .= "<a href=\"../$GFF_dir/$name.gff3\"> GFF </a>";
+		}
+#    	$ann_rep .= "</b>\n";
+    }
+    if((defined $FT_submission_selected_dir) or (defined $FT_artemis_selected_dir) or (defined $GFF_selected_dir))
+    { 
+#		$ann_rep .= "</font>\n";
+#	    	$ann_rep .= "</li>\n";
+#	    	$ann_rep .= "<li type=\"square\">\n";
+#	    	$ann_rep .= "<font size=\"2\" color=\"#000000\">\n";
+#	    	$ann_rep .= "<b> With ORF selection:\n";
+		if(defined $FT_submission_selected_dir)
+		{
+#	    	    $ann_rep .= "<a href=\"../$FT_submission_selected_dir/$name.gb\"> Feature Table </a>";
+#	    	    $ann_rep .= "\t\t \n";
+    	}
+		if (defined $FT_artemis_selected_dir)
+		{
+	    	    my $aux = $name."_annot_orfs.tab";
+#	    	    $ann_rep .= "<a href=\"../$FT_artemis_selected_dir/$aux\"> extended Feature Table </a>";
+#	    	    $ann_rep .= "\t\t \n";
+		}
+		if(defined $GFF_selected_dir)
+		{
+#	    	    $ann_rep .= "<a href=\"../$GFF_selected_dir/$name.gff\"> GFF </a>";
+		}
+#    	$ann_rep .= "</b>\n";
+    }
+    my $aux_str = "<a href=$ann_file>$name</a>\n";
+    $count = $count + 1;
+    push @seq_links, $aux_str;
+    $count_seq++;
+}
+if($count_seq <= 100){
+    system("rm $html_dir/$index_file");
+    system("mv $html_dir/$output_seqs $html_dir/$index_file");	
 }
 
 
-
-
-
-
 #my $help;
-my $nameProject = "html_dir";
+my $nameProject = $html_dir;
 my $filepath =  `pwd`;
 chomp $filepath;
 $filepath .= "/".$nameProject;
@@ -3222,4 +4188,32 @@ sub writeFile {
 	open( my $FILEHANDLER, ">", $filepath ) or die "Error opening file";
 	print $FILEHANDLER $content;
 	close($FILEHANDLER);
+}
+
+sub get_code_number_product {
+    my $subject_id = shift;
+    my $code_number;
+    my $product;
+
+    if($subject_id =~ m/\S+\|(\S+)\|(.*)/){
+        $code_number = $1;
+	$product = $2;
+    }
+    elsif($subject_id =~ m/(\S+)_(\S+) (.*)/){
+        $code_number = $2;
+	$product = $3;
+    }
+    elsif($subject_id =~ m/(\S+)/){
+	$code_number = $1;
+	
+ 	if($code_number =~ m/(\S+)\_\[(\S+)\_\[/){
+	    $code_number = $1;
+	    $product = "similar to " . $code_number;
+	}
+    }
+ 
+    $product =~ s/^ //g;
+    $product =~ s/ $//g;
+    
+    return ($code_number, $product);
 }
