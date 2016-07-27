@@ -20,7 +20,9 @@ Acesse o site:
 http://127.0.0.1:3000
 
 
-TODO: 
+TODO:
+-
+- 	Não esta rodando! 
 -	Pegar dados das sequencias, gerar
 -	Gerar tabela SEQUENCES(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, header VARCHAR(10000), bases VARCHAR(10000), name VARCHAR(2000));
 -	Gerar tabela CONCLUSIONS(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idSequence INT, locusTag VARCHAR(10000), FOREIGN KEY idSequence REFERENCES SEQUENCES(id));
