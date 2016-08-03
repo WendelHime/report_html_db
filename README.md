@@ -22,8 +22,7 @@ http://127.0.0.1:3000
 
 TODO:
 -
--	Realizar alterações no código com TOOD
--	Realizar teste das inserções
+-	Remodelar tabela INTERVALS
 -	Realizar manutenção nas paginas html
 	
 DONE:

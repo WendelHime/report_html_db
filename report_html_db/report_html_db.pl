@@ -429,8 +429,8 @@ CREATE TABLE RELATIONS_TEXTS_IMAGES(
 
 CREATE TABLE SEQUENCES(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	header VARCHAR(10000), 
-	bases VARCHAR(10000), 
+	header VARCHAR(1000), 
+	bases VARCHAR(100000), 
 	name VARCHAR(2000)
 );
 
@@ -438,7 +438,7 @@ CREATE TABLE CONCLUSIONS(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
 	idSequence INTEGER, 
 	locusTag VARCHAR(10000), 
-	FOREIGN KEY idSequence REFERENCES SEQUENCES(id)
+	FOREIGN KEY(idSequence) REFERENCES SEQUENCES(id)
 );
 
 CREATE TABLE EVIDENCES(
@@ -449,9 +449,9 @@ CREATE TABLE EVIDENCES(
 	number INTEGER, 
 	start INTEGER, 
 	end INTEGER, 
-	proteinSequence VARCHAR(10000), 
-	FOREIGN KEY idConclusion REFERENCES CONCLUSIONS(id), 
-	FOREIGN KEY idEvidence REFERENCES EVIDENCES(id)
+	proteinSequence VARCHAR(100000), 
+	FOREIGN KEY(idConclusion) REFERENCES CONCLUSIONS(id), 
+	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
 );
 
 CREATE TABLE ALIGNMENTS(
@@ -461,41 +461,41 @@ CREATE TABLE ALIGNMENTS(
 	typeDB VARCHAR(200), 
 	accession VARCHAR(200), 
 	alignment VARCHAR(200), 
-	FOREIGN KEY idEvidence REFERENCES EVIDENCES(id)
+	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
 );
 
 CREATE TABLE INTERVALS(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
 	idEvidence INTEGER, 
 	value VARCHAR(2000), 
-	FOREIGN KEY idEvidence REFERENCES EVIDENCES(id)
+	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
 );
 
 CREATE TABLE TAGS(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	idInterval INT, 
+	idInterval INTEGER, 
 	orfCount VARCHAR(2000), 
 	evidenceProcess VARCHAR(2000), 
 	evidenceFunction VARCHAR(2000), 
 	evidenceComponent VARCHAR(2000), 
-	FOREIGN KEY idInterval REFERENCES INTERVALS(id)
+	FOREIGN KEY(idInterval) REFERENCES INTERVALS(id)
 );
 
 CREATE TABLE TYPES(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
 	idEvidence INTEGER, 
 	value VARCHAR(2000), 
-	FOREIGN KEY idEvidence REFERENCES EVIDENCES(id)
+	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
 );
 
 CREATE TABLE RESULTS(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	idEvidence INT, 
-	idInterval INT, 
+	idEvidence INTEGER, 
+	idInterval INTEGER, 
 	value VARCHAR(2000), 
 	tag VARCHAR(2000),  
-	FOREIGN KEY idEvidence REFERENCES EVIDENCES(id), 
-	FOREIGN KEY idInterval REFERENCES INTERVALS(id)
+	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id), 
+	FOREIGN KEY(idInterval) REFERENCES INTERVALS(id)
 );
 
 CREATE TABLE COMPONENTS(
@@ -503,7 +503,7 @@ CREATE TABLE COMPONENTS(
 	tag VARCHAR(2000), 
 	name VARCHAR(2000),
 	filepath VARCHAR(2000)
-); -- tag pode ser um comp_ev ou comp_dna
+);
 
 CREATE TABLE BLAST(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
@@ -1413,7 +1413,7 @@ while($sequence_object->read())
     my $bases = $sequence_object->current_sequence();
     my $name = $sequence_object->sequence_name();
     
-    $scriptSQL .= "INSERT INTO SEQUENCES(header, bases, name) VALUES ('$header', '$bases', '$name');";
+    $scriptSQL .= "\nINSERT INTO SEQUENCES(header, bases, name) VALUES ('$header', '$bases', '$name');";
     
     #TODO - criar controller annotations, ann_file passa a ser a URL para as anotações
     my $ann_file = "annotations/".$name;
@@ -1433,7 +1433,6 @@ while($sequence_object->read())
     $header =~ s/>//g;
     $header =~ m/(\S+)_(\d+)/;
     $prefix_name = $1;
-    my $orf_count;
     #aqui começaria a geração da pagina relacionada a cada anotação
     #pulando isso, passamos para geração dos arquivos, volta a duvida sobre a necessidade desses arquivos
     my $file_aa = $name."_CDS_AA.fasta";
@@ -1542,14 +1541,18 @@ while($sequence_object->read())
     		$locus_tag = "NOLOCUSTAG_$locus";
     	}
     	
-    	$scriptSQL .= "\nINSERT INTO CONCLUSIONS(idSequence, locusTag) VALUES (
-    		(SELECT id 
+    	$scriptSQL .= "\nINSERT INTO CONCLUSIONS(idSequence, locusTag) VALUES 
+    	(
+    		(
+    			SELECT id 
     			FROM SEQUENCES 
     			WHERE 
-    				header = '".$sequence_object->fasta_header()."' && 
-    				name = '".$sequence_object->sequence_name()."' && 
-    				bases = '".$sequence_object->current_sequence()."'),
-    		$locus_tag);";
+    				header = '".$sequence_object->fasta_header()."' AND 
+    				name = '".$sequence_object->sequence_name()."' AND 
+    				bases = '".$sequence_object->current_sequence()."'
+    		),
+    		'$locus_tag'
+    	);";
     	
     	foreach my $ev(@evidences)
     	{
@@ -1601,64 +1604,107 @@ while($sequence_object->read())
 	        	    $sequence_aa = substr($seq_aa,$i, 60);
 	        	    print FILE_AA "$sequence_aa\n";
 			    	print AA "$sequence_aa\n";
-    	    	}
-    	    	
-    	    	$scriptSQL .= "\nINSERT INTO EVIDENCES(idConclusion, name, number, start, end, proteinSequence, idEvidence) VALUES
-	    	    	((SELECT id 
+    	    	}    	    	
+    	    	$scriptSQL .= "\nINSERT INTO EVIDENCES(idConclusion, name, number, start, end, proteinSequence) VALUES
+				(
+					(
+		    	    	SELECT id 
 	    	    		FROM CONCLUSIONS 
 	    	    		WHERE 
-	    	    			idSequence = (SELECT id 
-			    			FROM SEQUENCES 
-			    			WHERE 
-			    				header = '".$sequence_object->fasta_header()."' && 
-			    				name = '".$sequence_object->sequence_name()."' && 
-			    				bases = '".$sequence_object->current_sequence()."') &&
-			    			locusTag = '$locus_tag'), 
+	    	    			idSequence = 
+	    	    			(
+    	    					SELECT id 
+					    		FROM SEQUENCES 
+					    		WHERE 
+					    			header = '".$sequence_object->fasta_header()."' AND 
+					    			name = '".$sequence_object->sequence_name()."' AND 
+					    			bases = '".$sequence_object->current_sequence()."'
+					    	) AND 
+			    			locusTag = '$locus_tag'
+				    ), 
 	    	    	'".$evidence->{log}{name}."', 
 	    	    	$number, 
 	    	    	$start, 
 	    	    	$end, 
-	    	    	'$seq_aa',
-	    	    	null
-    	    	);";
+	    	    	'$seq_aa'
+				);";
     	    	
     	    	my @intervals = @{$evidence->{intervals}};
     	    	#cada evidencia tem seu intervalo, cada intervalo selecionado como padrão pode ser o primeiro
 	    		my $interval = $intervals[0];
 	    		$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-		    		((SELECT id 
+	    		(
+	    			(
+		    			SELECT id 
 		    			FROM EVIDENCES
 		    			WHERE 
-		    				name = '".$evidence->{log}{name}."' && 
-		    				number = $number && 
-		    				start = $start && 
-		    				end = $end && 
-		    				proteinSequence = '$seq_aa'),
-		    		'$interval'
-	    		);";
+		    				name = '".$evidence->{log}{name}."' AND 
+		    				number = $number AND 
+		    				start = $start AND 
+		    				end = $end AND 
+		    				proteinSequence = '$seq_aa'
+		    		),
+	    			'$interval'
+    			);";
 	    		my %tags = %{$interval->{tags}};
 	    		
-	    		$scriptSQL .= "\nINSERT INTO TAGS(idInterval, orfCount, evidenceProcess, evidenceFunction, evidenceComponent) VALUES 
-	    			((SELECT id 
+	    		$scriptSQL .= "\nINSERT INTO TAGS(idInterval) VALUES 
+    			(
+	    			(
+	    				SELECT id 
 	    				FROM INTERVALS
 	    				WHERE 
-	    					idEvidence = (SELECT id 
-		    			FROM EVIDENCES
-		    			WHERE 
-		    				name = '".$evidence->{log}{name}."' && 
-		    				number = $number && 
-		    				start = $start && 
-		    				end = $end && 
-		    				proteinSequence = '$seq_aa') && 
-	    					value = '$interval'),
-	    			".$tags{orf_count}.",
-	    			".$tags{evidence_process}.", 
-	    			".$tags{evidence_function}.", 
-	    			".$tags{evidence_component}."
-	    		);";
-	    		
-		    	$orf_count = $tags{orf_count};
-		    	
+	    					idEvidence = 
+	    					(
+	    						SELECT id 
+				    			FROM EVIDENCES
+				    			WHERE 
+				    				name = '".$evidence->{log}{name}."' AND 
+				    				number = $number AND 
+				    				start = $start AND 
+				    				end = $end AND 
+				    				proteinSequence = '$seq_aa'
+				    		) AND 
+			    			value = '$interval'
+	    			)
+    			);";
+    			
+    			foreach my $key(keys %$interval)
+    			{
+    				$scriptSQL .= "\n--instervalssvalue	$key	-	".$interval->{$key}."\n";
+    			}
+    			
+    			foreach my $key(keys %tags)
+    			{
+    				$scriptSQL .= "\n--tagsvalue	$key	-	".$tags{$key}."\n";
+    			}
+    			
+    			
+#    			$scriptSQL .= "\nINSERT INTO TAGS(idInterval, orfCount, evidenceProcess, evidenceFunction, evidenceComponent) VALUES 
+#    			(
+#	    			(
+#	    				SELECT id 
+#	    				FROM INTERVALS
+#	    				WHERE 
+#	    					idEvidence = 
+#	    					(
+#	    						SELECT id 
+#				    			FROM EVIDENCES
+#				    			WHERE 
+#				    				name = '".$evidence->{log}{name}."' AND 
+#				    				number = $number AND 
+#				    				start = $start AND 
+#				    				end = $end AND 
+#				    				proteinSequence = '$seq_aa'
+#				    		) AND 
+#			    			value = '$interval'
+#	    			),
+#	    			'".$tags{orf_count}."',
+#	    			'".$tags{evidence_process}."', 
+#	    			'".$tags{evidence_function}."', 
+#	    			'".$tags{evidence_component}."'
+#    			);";
+	    				    	
 		    	my @sub_evidences = @{$evidence->{evidences}};
 		    	my %interpro_ids = ();
 		    	my %go_ids = ();
@@ -1750,57 +1796,69 @@ while($sequence_object->read())
 				{
 					my $component_name = $sub_evidence->{log}{name};
 					$scriptSQL .= "\nINSERT INTO EVIDENCES(idEvidence, name, proteinSequence) VALUES
+		    	    (
 		    	    	(
-		    	    		(SELECT id 
+		    	    		SELECT id 
 		    	    		FROM EVIDENCES 
 		    	    		WHERE 
-		    	    			idConclusion = (SELECT id 
-			    	    		FROM CONCLUSIONS 
-			    	    		WHERE 
-			    	    			idSequence = (SELECT id 
-						    			FROM SEQUENCES 
-						    			WHERE 
-						    				header = '".$sequence_object->fasta_header()."' && 
-						    				name = '".$sequence_object->sequence_name()."' && 
-						    				bases = '".$sequence_object->current_sequence()."'
-						    			) &&
+		    	    			idConclusion = 
+		    	    			(
+		    	    				SELECT id 
+				    	    		FROM CONCLUSIONS 
+				    	    		WHERE 
+				    	    			idSequence = 
+				    	    			(
+				    	    				SELECT id 
+							    			FROM SEQUENCES 
+							    			WHERE 
+							    				header = '".$sequence_object->fasta_header()."' AND 
+							    				name = '".$sequence_object->sequence_name()."' AND 
+							    				bases = '".$sequence_object->current_sequence()."'
+						    			) AND 
 					    				locusTag = '$locus_tag'
-					    			) &&
-				    			name = '".$evidence->{log}{name}."' &&
-				    			number = $number &&
-				    			start = $start &&
-				    			end = $end
-					    	),
-					    	'$seq_aa',
-					    	$component_name
+					    		) AND 
+			    				name = '".$evidence->{log}{name}."' AND 
+			    				number = $number AND 
+			    				start = $start AND 
+			    				end = $end
+						),
+					    '$component_name',
+					    '$seq_aa'
 	    	    	);".
 	    	    	"\nINSERT INTO TYPES(idEvidence, value) VALUES 
 	    	    	(
-	    	    		(SELECT id
-	    	    		FROM EVIDENCES
-	    	    		WHERE
-	    	    			idEvidence = (SELECT id 
-						    	    		FROM EVIDENCES 
+	    	    		(
+		    	    		SELECT id
+		    	    		FROM EVIDENCES
+		    	    		WHERE
+		    	    			idEvidence = 
+		    	    			(
+		    	    				SELECT id 
+				    	    		FROM EVIDENCES 
+				    	    		WHERE 
+				    	    			idConclusion = 
+				    	    			(
+					    	    			SELECT id 
+						    	    		FROM CONCLUSIONS 
 						    	    		WHERE 
-						    	    			idConclusion = (SELECT id 
-							    	    		FROM CONCLUSIONS 
-							    	    		WHERE 
-							    	    			idSequence = (SELECT id 
-										    			FROM SEQUENCES 
-										    			WHERE 
-										    				header = '".$sequence_object->fasta_header()."' && 
-										    				name = '".$sequence_object->sequence_name()."' && 
-										    				bases = '".$sequence_object->current_sequence()."'
-										    			) &&
-									    				locusTag = '$locus_tag'
-									    			) &&
-								    			name = '".$evidence->{log}{name}."' &&
-								    			number = $number &&
-								    			start = $start &&
-								    			end = $end
-									    	) && 
-	    	    			name = '$component_name' && 
-	    	    			proteinSequence = '$seq_aa'
+						    	    			idSequence = 
+						    	    			(
+						    	    				SELECT id 
+									    			FROM SEQUENCES 
+									    			WHERE 
+									    				header = '".$sequence_object->fasta_header()."' AND 
+									    				name = '".$sequence_object->sequence_name()."' AND 
+									    				bases = '".$sequence_object->current_sequence()."'
+									    		) AND 
+							    				locusTag = '$locus_tag'
+						    			) AND
+						    			name = '".$evidence->{log}{name}."' AND 
+						    			number = $number AND 
+						    			start = $start AND 
+						    			end = $end
+								) AND 
+		    	    			name = '$component_name' AND 
+		    	    			proteinSequence = '$seq_aa'
 	    	    		), 
 	    	    		'".$sub_evidence->{type}."'
 	    	    	);";
@@ -1833,67 +1891,84 @@ while($sequence_object->read())
 						    	    }
 									#alterar insert into TAGS para insert into RESULTS
 						    	    $scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-							    		((SELECT id
+							    		(
+							    			(
+								    			SELECT id
+							    	    		FROM EVIDENCES
+							    	    		WHERE
+							    	    			idEvidence = 
+							    	    			(
+							    	    				SELECT id 
+									    	    		FROM EVIDENCES 
+									    	    		WHERE 
+									    	    			idConclusion = 
+									    	    			(
+										    	    			SELECT id 
+											    	    		FROM CONCLUSIONS 
+											    	    		WHERE 
+											    	    			idSequence = 
+											    	    			(
+											    	    				SELECT id 
+														    			FROM SEQUENCES 
+														    			WHERE 
+														    				header = '".$sequence_object->fasta_header()."' AND 
+														    				name = '".$sequence_object->sequence_name()."' AND 
+														    				bases = '".$sequence_object->current_sequence()."'
+													    			) AND 
+												    				locusTag = '$locus_tag'
+											    			) AND 
+											    			name = '".$evidence->{log}{name}."' AND
+											    			number = $number AND 
+											    			start = $start AND 
+											    			end = $end
+												 	)
+											),
+					    					'$interval'
+						    			);".
+						    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
+					    			(
+					    				(
+						    				SELECT id
 						    	    		FROM EVIDENCES
 						    	    		WHERE
-						    	    			idEvidence = (SELECT id 
-											    	    		FROM EVIDENCES 
-											    	    		WHERE 
-											    	    			idConclusion = (SELECT id 
-												    	    		FROM CONCLUSIONS 
-												    	    		WHERE 
-												    	    			idSequence = (SELECT id 
-															    			FROM SEQUENCES 
-															    			WHERE 
-															    				header = '".$sequence_object->fasta_header()."' && 
-															    				name = '".$sequence_object->sequence_name()."' && 
-															    				bases = '".$sequence_object->current_sequence()."'
-															    			) &&
-														    				locusTag = '$locus_tag'
-														    			) &&
-													    			name = '".$evidence->{log}{name}."' &&
-													    			number = $number &&
-													    			start = $start &&
-													    			end = $end
-										 ),
-							    		'$interval'
-						    		);".
-						    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$signalP_result',
-									    			'signalP'
-								    			);";
+						    	    			idEvidence = 
+						    	    			(
+						    	    				SELECT id 
+								    	    		FROM EVIDENCES 
+								    	    		WHERE 
+								    	    			idConclusion = 
+								    	    			(
+									    	    			SELECT id 
+										    	    		FROM CONCLUSIONS 
+										    	    		WHERE 
+										    	    			idSequence = 
+									    	    				(
+										    	    				SELECT id 
+													    			FROM SEQUENCES 
+													    			WHERE 
+													    				header = '".$sequence_object->fasta_header()."' AND 
+													    				name = '".$sequence_object->sequence_name()."' AND 
+													    				bases = '".$sequence_object->current_sequence()."'
+												    			) AND 
+											    				locusTag = '$locus_tag'
+										    			) AND 
+										    			name = '".$evidence->{log}{name}."' AND 
+										    			number = $number AND 
+										    			start = $start AND 
+										    			end = $end
+										    	) AND 
+						    	    			name = '$component_name' AND 
+						    	    			proteinSequence = '$seq_aa'
+					    	    		),	
+					    				(
+					    					SELECT id 
+					    					FROM INTERVALS
+					    					WHERE 
+						    					value = '$interval'
+						    			),
+						    			'$signalP_result',
+						    			'signalP'
+					    			);";
 						    	}
 				    	    }
 					   	    $hash_ev{signalP} = "<td><a href=\"../$signalp_dir/$png_file\"> $signalP_result </a> </td>\n";
@@ -1923,67 +1998,84 @@ while($sequence_object->read())
 						    		}
 					    	   	}
 					    	   	$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-							    		((SELECT id
-						    	    		FROM EVIDENCES
-						    	    		WHERE
-						    	    			idEvidence = (SELECT id 
-											    	    		FROM EVIDENCES 
-											    	    		WHERE 
-											    	    			idConclusion = (SELECT id 
-												    	    		FROM CONCLUSIONS 
-												    	    		WHERE 
-												    	    			idSequence = (SELECT id 
-															    			FROM SEQUENCES 
-															    			WHERE 
-															    				header = '".$sequence_object->fasta_header()."' && 
-															    				name = '".$sequence_object->sequence_name()."' && 
-															    				bases = '".$sequence_object->current_sequence()."'
-															    			) &&
-														    				locusTag = '$locus_tag'
-														    			) &&
-													    			name = '".$evidence->{log}{name}."' &&
-													    			number = $number &&
-													    			start = $start &&
-													    			end = $end
-										 ),
-							    		'$interval'
-						    		);".
-						    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$tmhmm_result',
-									    			'tmhmm'
-								    			);";
+					    		(
+					    			(
+						    			SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+										 	)
+									),
+			    					'$interval'
+				    			);".
+					    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
+				    			(
+				    				(
+					    				SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(	
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+									    					) AND 
+								    						locusTag = '$locus_tag'
+							    					) AND 
+								    			name = '".$evidence->{log}{name}."' AND 
+								    			number = $number AND 
+								    			start = $start AND 
+								    			end = $end
+								    		) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
+				    	    		),	
+				    				(
+				    					SELECT id 
+				    					FROM INTERVALS
+				    					WHERE 
+					    					value = '$interval'
+					    			),
+					    			'$tmhmm_result',
+					    			'tmhmm'
+				    			);";
 					    	}
 			    	   	}
 				   		$hash_ev{tmhmm} = "<td><a href=\"../$tmhmm_dir/$png_file\"> $tmhmm_result </a> </td>\n";                    	
@@ -2039,67 +2131,84 @@ while($sequence_object->read())
                              	   	}
                              	}
                              	$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-							    		((SELECT id
-						    	    		FROM EVIDENCES
-						    	    		WHERE
-						    	    			idEvidence = (SELECT id 
-											    	    		FROM EVIDENCES 
-											    	    		WHERE 
-											    	    			idConclusion = (SELECT id 
-												    	    		FROM CONCLUSIONS 
-												    	    		WHERE 
-												    	    			idSequence = (SELECT id 
-															    			FROM SEQUENCES 
-															    			WHERE 
-															    				header = '".$sequence_object->fasta_header()."' && 
-															    				name = '".$sequence_object->sequence_name()."' && 
-															    				bases = '".$sequence_object->current_sequence()."'
-															    			) &&
-														    				locusTag = '$locus_tag'
-														    			) &&
-													    			name = '".$evidence->{log}{name}."' &&
-													    			number = $number &&
-													    			start = $start &&
-													    			end = $end
-										 ),
-							    		'$interval'
-						    		);".
-						    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$phobius_result',
-									    			'phobius'
-								    			);";
+					    		(
+					    			(
+						    			SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+										 	)
+									),
+			    					'$interval'
+				    			);".
+					    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
+				    			(
+				    				(
+					    				SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+												    		) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND
+									    			start = $start AND
+									    			end = $end
+										    	) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
+				    	    		),	
+				    				(
+				    					SELECT id 
+				    					FROM INTERVALS
+				    					WHERE 
+					    					value = '$interval'
+					    			),
+					    			'$phobius_result',
+					    			'phobius'
+				    			);";
 		    				}
 		      	   		}
 			   			$hash_ev{phobius} = "<td><a href=\"../$phobius_dir/$png_file\"> $phobius_result </a> </td>\n";		    	
@@ -2121,67 +2230,84 @@ while($sequence_object->read())
 				   	   				$dgpi_result = "Potential anchor cleavage site";
 				    	   		}
 				    	   		$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-							    		((SELECT id
-						    	    		FROM EVIDENCES
-						    	    		WHERE
-						    	    			idEvidence = (SELECT id 
-											    	    		FROM EVIDENCES 
-											    	    		WHERE 
-											    	    			idConclusion = (SELECT id 
-												    	    		FROM CONCLUSIONS 
-												    	    		WHERE 
-												    	    			idSequence = (SELECT id 
-															    			FROM SEQUENCES 
-															    			WHERE 
-															    				header = '".$sequence_object->fasta_header()."' && 
-															    				name = '".$sequence_object->sequence_name()."' && 
-															    				bases = '".$sequence_object->current_sequence()."'
-															    			) &&
-														    				locusTag = '$locus_tag'
-														    			) &&
-													    			name = '".$evidence->{log}{name}."' &&
-													    			number = $number &&
-													    			start = $start &&
-													    			end = $end
-										 ),
-							    		'$interval'
-						    		);".
-						    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$dgpi_result',
-									    			'dgpi'
-								    			);";
+					    		(
+					    			(
+						    			SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+										 	)
+									),
+			    					'$interval'
+				    			);".
+					    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
+				    			(
+				    				(
+					    				SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+								    	) AND 
+				    	    			name = '$component_name' AND 
+				    	    			proteinSequence = '$seq_aa'
+				    	    		),	
+				    				(
+				    					SELECT id 
+				    					FROM INTERVALS 
+				    					WHERE 
+					    					value = '$interval'
+					    			),
+					    			'$dgpi_result',
+					    			'dgpi'
+				    			);";
 				    		}
 						}
 						$hash_ev{dgpi} = "<td> <a href=\"../$dgpi_dir/$html_file\"> $dgpi_result </a> </td>\n";
@@ -2202,67 +2328,84 @@ while($sequence_object->read())
 				   					$predgpi_result = "Potential anchor cleavage site";
 				   				}
 				   				$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-							    		((SELECT id
-						    	    		FROM EVIDENCES
-						    	    		WHERE
-						    	    			idEvidence = (SELECT id 
-											    	    		FROM EVIDENCES 
-											    	    		WHERE 
-											    	    			idConclusion = (SELECT id 
-												    	    		FROM CONCLUSIONS 
-												    	    		WHERE 
-												    	    			idSequence = (SELECT id 
-															    			FROM SEQUENCES 
-															    			WHERE 
-															    				header = '".$sequence_object->fasta_header()."' && 
-															    				name = '".$sequence_object->sequence_name()."' && 
-															    				bases = '".$sequence_object->current_sequence()."'
-															    			) &&
-														    				locusTag = '$locus_tag'
-														    			) &&
-													    			name = '".$evidence->{log}{name}."' &&
-													    			number = $number &&
-													    			start = $start &&
-													    			end = $end
-										 ),
-							    		'$interval'
-						    		);".
-						    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$predgpi_result',
-									    			'predgpi'
-								    			);";
+					    		(
+					    			(
+						    			SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+										 	)
+									),
+			    					'$interval'
+				    			);".
+					    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
+				    			(
+				    				(
+					    				SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+									    	) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
+				    	    		),	
+				    				(
+				    					SELECT id 
+				    					FROM INTERVALS
+				    					WHERE 
+					    					value = '$interval'
+					    			),
+					    			'$predgpi_result',
+					    			'predgpi'
+				    			);";
 			    			}
 			   			}
 			   			$hash_ev{predgpi} = "<td> <a href=\"../$predgpi_dir/$html_file\"> $predgpi_result </a> </td>\n";
@@ -2283,67 +2426,84 @@ while($sequence_object->read())
                                    	$bigpi_result = "Potential anchor cleavage site";
                                 }
                                 $scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-							    		((SELECT id
-						    	    		FROM EVIDENCES
-						    	    		WHERE
-						    	    			idEvidence = (SELECT id 
-											    	    		FROM EVIDENCES 
-											    	    		WHERE 
-											    	    			idConclusion = (SELECT id 
-												    	    		FROM CONCLUSIONS 
-												    	    		WHERE 
-												    	    			idSequence = (SELECT id 
-															    			FROM SEQUENCES 
-															    			WHERE 
-															    				header = '".$sequence_object->fasta_header()."' && 
-															    				name = '".$sequence_object->sequence_name()."' && 
-															    				bases = '".$sequence_object->current_sequence()."'
-															    			) &&
-														    				locusTag = '$locus_tag'
-														    			) &&
-													$predgpi_result    			name = '".$evidence->{log}{name}."' &&
-													    			number = $number &&
-													    			start = $start &&
-													    			end = $end
-										 ),
-							    		'$interval'
-						    		);".
-						    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$bigpi_result',
-									    			'bigpi'
-								    			);";
+					    		(
+					    			(
+						    			SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+										 	)
+									),
+			    					'$interval'
+				    			);".
+					    		"\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
+				    			(
+				    				(
+					    				SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+							    	    				SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+												    		) AND
+											    			locusTag = '$locus_tag'
+											    	) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+								    		) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
+				    	    		),	
+				    				(
+				    					SELECT id 
+				    					FROM INTERVALS 
+				    					WHERE 
+					    					value = '$interval'
+					    			),
+					    			'$bigpi_result',
+					    			'bigpi'
+				    			);";
 					    	}
 					    }
 					    $hash_ev{bigpi} = "<td> <a href=\"../$bigpi_dir/$html_file\"> $bigpi_result </a> </td>\n";
@@ -2369,31 +2529,38 @@ while($sequence_object->read())
                             {
                             	$scriptSQL .= "\nINSERT INTO ALIGNMENTS(idEvidence, subjectId, typeDB, accession, alignment) VALUES 
                             	(
-                            		(SELECT id
-				    	    		FROM EVIDENCES
-				    	    		WHERE
-				    	    			idEvidence = (SELECT id 
-									    	    		FROM EVIDENCES 
+                            		(
+	                            		SELECT id 
+					    	    		FROM EVIDENCES 
+					    	    		WHERE 
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
 									    	    		WHERE 
-									    	    			idConclusion = (SELECT id 
-										    	    		FROM CONCLUSIONS 
-										    	    		WHERE 
-										    	    			idSequence = (SELECT id 
-													    			FROM SEQUENCES 
-													    			WHERE 
-													    				header = '".$sequence_object->fasta_header()."' && 
-													    				name = '".$sequence_object->sequence_name()."' && 
-													    				bases = '".$sequence_object->current_sequence()."'
-													    			) &&
-												    				locusTag = '$locus_tag'
-												    			) &&
-											    			name = '".$evidence->{log}{name}."' &&
-											    			number = $number &&
-											    			start = $start &&
-											    			end = $end
-												    	) && 
-				    	    			name = '$component_name' && 
-				    	    			proteinSequence = '$seq_aa'
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+									    	) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
 				    	    		),
 				    	    		'$subject_id',
 				    	    		'$type_db',
@@ -2403,36 +2570,43 @@ while($sequence_object->read())
                             }
                            	$rpsblast_result = $region_name;
                            	$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		), 
-									    			'$rpsblast_result',
-									    			'rpsblast'
-								    			);";
+			    			(
+			    				(
+				    				SELECT id
+				    	    		FROM EVIDENCES
+				    	    		WHERE
+				    	    			idEvidence = 
+				    	    			(
+				    	    				SELECT id 
+						    	    		FROM EVIDENCES 
+						    	    		WHERE 
+						    	    			idConclusion = 
+						    	    			(
+							    	    			SELECT id 
+								    	    		FROM CONCLUSIONS 
+								    	    		WHERE 
+								    	    			idSequence = 
+								    	    			(
+								    	    				SELECT id 
+											    			FROM SEQUENCES 
+											    			WHERE 
+											    				header = '".$sequence_object->fasta_header()."' AND 
+											    				name = '".$sequence_object->sequence_name()."' AND 
+											    				bases = '".$sequence_object->current_sequence()."'
+											    		) AND 
+										    			locusTag = '$locus_tag'
+									    		) AND 
+								    			name = '".$evidence->{log}{name}."' AND 
+								    			number = $number AND 
+								    			start = $start AND 
+								    			end = $end
+									    ) AND 
+				    	    			name = '$component_name' AND 
+				    	    			proteinSequence = '$seq_aa'
+			    	    		), 
+				    			'$rpsblast_result',
+				    			'rpsblast'
+			    			);";
 			    		}
 			    		$hash_ev{rpsblast} = "<td> <a href=\"../$rpsblast_dir/$txt_file\"> $rpsblast_result </a> </td>\n";			
 		     		}
@@ -2456,31 +2630,38 @@ while($sequence_object->read())
                             {
                             	$scriptSQL .= "\nINSERT INTO ALIGNMENTS(idEvidence, subjectId, typeDB, accession, alignment) VALUES 
                             	(
-                            		(SELECT id
-				    	    		FROM EVIDENCES
-				    	    		WHERE
-				    	    			idEvidence = (SELECT id 
-									    	    		FROM EVIDENCES 
+                            		(
+	                            		SELECT id 
+					    	    		FROM EVIDENCES 
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
 									    	    		WHERE 
-									    	    			idConclusion = (SELECT id 
-										    	    		FROM CONCLUSIONS 
-										    	    		WHERE 
-										    	    			idSequence = (SELECT id 
-													    			FROM SEQUENCES 
-													    			WHERE 
-													    				header = '".$sequence_object->fasta_header()."' && 
-													    				name = '".$sequence_object->sequence_name()."' && 
-													    				bases = '".$sequence_object->current_sequence()."'
-													    			) &&
-												    				locusTag = '$locus_tag'
-												    			) &&
-											    			name = '".$evidence->{log}{name}."' &&
-											    			number = $number &&
-											    			start = $start &&
-											    			end = $end
-												    	) && 
-				    	    			name = '$component_name' && 
-				    	    			proteinSequence = '$seq_aa'
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+									    	) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
 				    	    		),
 				    	    		'$subject_id',
 				    	    		'$type_db',
@@ -2490,36 +2671,43 @@ while($sequence_object->read())
                             }
                             $hmmer_result = $region_name;
                             $scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
-							    			(
-							    				(SELECT id
-							    	    		FROM EVIDENCES
-							    	    		WHERE
-							    	    			idEvidence = (SELECT id 
-												    	    		FROM EVIDENCES 
-												    	    		WHERE 
-												    	    			idConclusion = (SELECT id 
-													    	    		FROM CONCLUSIONS 
-													    	    		WHERE 
-													    	    			idSequence = (SELECT id 
-																    			FROM SEQUENCES 
-																    			WHERE 
-																    				header = '".$sequence_object->fasta_header()."' && 
-																    				name = '".$sequence_object->sequence_name()."' && 
-																    				bases = '".$sequence_object->current_sequence()."'
-																    			) &&
-															    				locusTag = '$locus_tag'
-															    			) &&
-														    			name = '".$evidence->{log}{name}."' &&
-														    			number = $number &&
-														    			start = $start &&
-														    			end = $end
-															    	) && 
-							    	    			name = '$component_name' && 
-							    	    			proteinSequence = '$seq_aa'
-							    	    		), 
-								    			'$hmmer_result',
-								    			'hmmer'
-							    			);";			
+			    			(
+			    				(
+				    				SELECT id
+				    	    		FROM EVIDENCES
+				    	    		WHERE
+				    	    			idEvidence = 
+				    	    			(
+				    	    				SELECT id 
+						    	    		FROM EVIDENCES 
+						    	    		WHERE 
+						    	    			idConclusion = 
+						    	    			(
+							    	    			SELECT id 
+								    	    		FROM CONCLUSIONS 
+								    	    		WHERE 
+								    	    			idSequence = 
+								    	    			(
+								    	    				SELECT id 
+											    			FROM SEQUENCES 
+											    			WHERE 
+											    				header = '".$sequence_object->fasta_header()."' AND 
+											    				name = '".$sequence_object->sequence_name()."' AND 
+											    				bases = '".$sequence_object->current_sequence()."'
+										    			) AND
+									    				locusTag = '$locus_tag'
+								    			) AND
+								    			name = '".$evidence->{log}{name}."' AND 
+								    			number = $number AND 
+								    			start = $start AND 
+								    			end = $end
+								    	) AND 
+				    	    			name = '$component_name' AND 
+				    	    			proteinSequence = '$seq_aa'
+			    	    		), 
+				    			'$hmmer_result',
+				    			'hmmer'
+			    			);";			
 		    	   		}
 			    		$hash_ev{hmmer} = "<td> <a href=\"../$hmmer_dir/$txt_file\"> $hmmer_result </a> </td>\n";
 		    		}
@@ -2531,50 +2719,63 @@ while($sequence_object->read())
                             foreach my $interval (@intervals)
                             {
                             	$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-							    		((SELECT id
-						    	    		FROM EVIDENCES
-						    	    		WHERE
-						    	    			idEvidence = (SELECT id 
-											    	    		FROM EVIDENCES 
-											    	    		WHERE 
-											    	    			idConclusion = (SELECT id 
-												    	    		FROM CONCLUSIONS 
-												    	    		WHERE 
-												    	    			idSequence = (SELECT id 
-															    			FROM SEQUENCES 
-															    			WHERE 
-															    				header = '".$sequence_object->fasta_header()."' && 
-															    				name = '".$sequence_object->sequence_name()."' && 
-															    				bases = '".$sequence_object->current_sequence()."'
-															    			) &&
-														    				locusTag = '$locus_tag'
-														    			) &&
-													    			name = '".$evidence->{log}{name}."' &&
-													    			number = $number &&
-													    			start = $start &&
-													    			end = $end
-										 ),
-							    		'$interval'
-						    		);";
+					    		(
+					    			(
+						    			SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+										 	)
+									),
+			    					'$interval'
+				    			);";
                             	my %tags = %{$interval->{tags}};
                             	$scriptSQL .= "\nINSERT INTO TAGS(idInterval, evidenceProcess, evidenceFunction, evidenceComponent) VALUES 
 					    		(
-					    			(SELECT id 
+					    			(
+					    				SELECT id 
 					    				FROM INTERVALS
 					    				WHERE 
-					    					idEvidence = (SELECT id 
+					    					idEvidence = 
+					    					(
+					    						SELECT id 
 								    			FROM EVIDENCES
 								    			WHERE 
-								    				name = '".$evidence->{log}{name}."' && 
-								    				number = $number && 
-								    				start = $start && 
-								    				end = $end && 
-								    				proteinSequence = '$seq_aa') && 
-					    					value = '$interval'
+								    				name = '".$evidence->{log}{name}."' AND 
+								    				number = $number AND 
+								    				start = $start AND 
+								    				end = $end AND 
+								    				proteinSequence = '$seq_aa'
+								    		) AND 
+				    						value = '$interval'
 					    			),
-					    			".$tags{evidence_process}.", 
-					    			".$tags{evidence_function}.", 
-					    			".$tags{evidence_component}."
+					    			'".$tags{evidence_process}."', 
+					    			'".$tags{evidence_function}."', 
+					    			'".$tags{evidence_component}."'
 					    		);";
                             	my $interpro_id = $interval->{tags}{interpro_id};
                             	if ($interpro_id ne "NULL" )
@@ -2597,41 +2798,49 @@ while($sequence_object->read())
 				    	    $interpro_result = join("\n", @sorted_interpro_ids);
 						}		        
 						$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$interpro_result',
-									    			'interpro'
-								    			);";
+		    			(
+		    				(
+			    				SELECT id 
+			    	    		FROM EVIDENCES 
+			    	    		WHERE 
+			    	    			idEvidence = 
+			    	    			(
+			    	    				SELECT id 
+					    	    		FROM EVIDENCES 
+					    	    		WHERE 
+					    	    			idConclusion = 
+					    	    			(
+						    	    			SELECT id 
+							    	    		FROM CONCLUSIONS 
+							    	    		WHERE 
+							    	    			idSequence = 
+							    	    			(
+							    	    				SELECT id 
+										    			FROM SEQUENCES 
+										    			WHERE 
+										    				header = '".$sequence_object->fasta_header()."' AND 
+										    				name = '".$sequence_object->sequence_name()."' AND 
+										    				bases = '".$sequence_object->current_sequence()."'
+									    			) AND
+								    				locusTag = '$locus_tag'
+							    			) AND 
+							    			name = '".$evidence->{log}{name}."' AND 
+							    			number = $number AND 
+							    			start = $start AND 
+							    			end = $end
+							    	) AND 
+			    	    			name = '$component_name' AND 
+			    	    			proteinSequence = '$seq_aa'
+		    	    		),	
+		    				(
+		    					SELECT id 
+		    					FROM INTERVALS
+		    					WHERE 
+			    					value = '$interval'
+			    			),
+			    			'$interpro_result',
+			    			'interpro'
+		    			);";
 						$hash_ev{interpro} = "<td> <a href=\"../$interpro_dir/HTML/$html_file\"> $interpro_result </a> </td>\n";
 						my @sorted_go_ids = sort(keys(%go_ids));
 						my $aux = "";		
@@ -2640,41 +2849,49 @@ while($sequence_object->read())
 						    foreach my $go (sort @sorted_go_ids)
 						    {
 						    	$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, idInterval, result, tag) VALUES 
-								    			(
-								    				(SELECT id
-								    	    		FROM EVIDENCES
-								    	    		WHERE
-								    	    			idEvidence = (SELECT id 
-													    	    		FROM EVIDENCES 
-													    	    		WHERE 
-													    	    			idConclusion = (SELECT id 
-														    	    		FROM CONCLUSIONS 
-														    	    		WHERE 
-														    	    			idSequence = (SELECT id 
-																	    			FROM SEQUENCES 
-																	    			WHERE 
-																	    				header = '".$sequence_object->fasta_header()."' && 
-																	    				name = '".$sequence_object->sequence_name()."' && 
-																	    				bases = '".$sequence_object->current_sequence()."'
-																	    			) &&
-																    				locusTag = '$locus_tag'
-																    			) &&
-															    			name = '".$evidence->{log}{name}."' &&
-															    			number = $number &&
-															    			start = $start &&
-															    			end = $end
-																    	) && 
-								    	    			name = '$component_name' && 
-								    	    			proteinSequence = '$seq_aa'
-								    	    		),	
-								    				(SELECT id 
-								    					FROM INTERVALS
-								    					WHERE 
-									    					value = '$interval'
-									    			),
-									    			'$go',
-									    			'go'
-								    			);";
+				    			(
+				    				(
+					    				SELECT id 
+					    	    		FROM EVIDENCES 
+					    	    		WHERE 
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+							    	    				SELECT id 
+									    	    		FROM CONCLUSIONS 
+									    	    		WHERE 
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND 
+										    				locusTag = '$locus_tag'
+									    			) AND 
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+									    	) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
+				    	    		),	
+				    				(
+				    					SELECT id 
+				    					FROM INTERVALS
+				    					WHERE 
+					    					value = '$interval'
+					    			),
+					    			'$go',
+					    			'go'
+				    			);";
 						    	$aux .= "<a href=http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:$go> GO:$go </a>\n";
 						    }			
 						    $hash_ev{go_terms} = "<td> $aux </td>";
@@ -2720,36 +2937,43 @@ while($sequence_object->read())
                             $hash_ev{orthology_kog} ="<td> <a href=\"../$kog_dir/$aux_html\"> $result </a> </td>\n";
                         }
                         $scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
-							    			(
-							    				(SELECT id
-							    	    		FROM EVIDENCES
-							    	    		WHERE
-							    	    			idEvidence = (SELECT id 
-												    	    		FROM EVIDENCES 
-												    	    		WHERE 
-												    	    			idConclusion = (SELECT id 
-													    	    		FROM CONCLUSIONS 
-													    	    		WHERE 
-													    	    			idSequence = (SELECT id 
-																    			FROM SEQUENCES 
-																    			WHERE 
-																    				header = '".$sequence_object->fasta_header()."' && 
-																    				name = '".$sequence_object->sequence_name()."' && 
-																    				bases = '".$sequence_object->current_sequence()."'
-																    			) &&
-															    				locusTag = '$locus_tag'
-															    			) &&
-														    			name = '".$evidence->{log}{name}."' &&
-														    			number = $number &&
-														    			start = $start &&
-														    			end = $end
-															    	) && 
-							    	    			name = '$component_name' && 
-							    	    			proteinSequence = '$seq_aa'
-							    	    		), 
-								    			'$result',
-								    			'orthology-$aux_html'
-							    			);";
+		    			(
+		    				(
+			    				SELECT id
+			    	    		FROM EVIDENCES
+			    	    		WHERE
+			    	    			idEvidence = 
+			    	    			(
+			    	    				SELECT id 
+					    	    		FROM EVIDENCES 
+					    	    		WHERE 
+					    	    			idConclusion = 
+					    	    			(
+						    	    			SELECT id 
+							    	    		FROM CONCLUSIONS 
+							    	    		WHERE 
+							    	    			idSequence = 
+							    	    			(
+							    	    				SELECT id 
+										    			FROM SEQUENCES 
+										    			WHERE 
+										    				header = '".$sequence_object->fasta_header()."' AND 
+										    				name = '".$sequence_object->sequence_name()."' AND 
+										    				bases = '".$sequence_object->current_sequence()."'
+									    			) AND
+								    				locusTag = '$locus_tag'
+							    			) AND 
+							    			name = '".$evidence->{log}{name}."' AND 
+							    			number = $number AND 
+							    			start = $start AND 
+							    			end = $end
+							    	) AND 
+			    	    			name = '$component_name' AND 
+			    	    			proteinSequence = '$seq_aa'
+		    	    		), 
+			    			'$result',
+			    			'orthology-$aux_html'
+		    			);";
 		    		}
 		    		elsif($component_name eq "annotation_pathways.pl") 
 		    		{
@@ -2776,36 +3000,43 @@ while($sequence_object->read())
 										$name =~ s/.html//g;
 										$str .= "<a href=\"../$report_pathways_dir/pathway_figures/$aux\"> $name </a>\n";
 										$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
-							    			(
-							    				(SELECT id
+						    			(
+						    				(
+							    				SELECT id
 							    	    		FROM EVIDENCES
 							    	    		WHERE
-							    	    			idEvidence = (SELECT id 
-												    	    		FROM EVIDENCES 
-												    	    		WHERE 
-												    	    			idConclusion = (SELECT id 
-													    	    		FROM CONCLUSIONS 
-													    	    		WHERE 
-													    	    			idSequence = (SELECT id 
-																    			FROM SEQUENCES 
-																    			WHERE 
-																    				header = '".$sequence_object->fasta_header()."' && 
-																    				name = '".$sequence_object->sequence_name()."' && 
-																    				bases = '".$sequence_object->current_sequence()."'
-																    			) &&
-															    				locusTag = '$locus_tag'
-															    			) &&
-														    			name = '".$evidence->{log}{name}."' &&
-														    			number = $number &&
-														    			start = $start &&
-														    			end = $end
-															    	) && 
-							    	    			name = '$component_name' && 
+							    	    			idEvidence = 
+							    	    			(
+							    	    				SELECT id 
+									    	    		FROM EVIDENCES 
+									    	    		WHERE 
+									    	    			idConclusion = 
+									    	    			(
+										    	    			SELECT id 
+											    	    		FROM CONCLUSIONS 
+											    	    		WHERE 
+											    	    			idSequence = 
+											    	    			(
+											    	    				SELECT id 
+														    			FROM SEQUENCES 
+														    			WHERE 
+														    				header = '".$sequence_object->fasta_header()."' AND 
+														    				name = '".$sequence_object->sequence_name()."' AND 
+														    				bases = '".$sequence_object->current_sequence()."'
+													    			) AND
+												    				locusTag = '$locus_tag'
+											    			) AND
+											    			name = '".$evidence->{log}{name}."' AND 
+											    			number = $number AND 
+											    			start = $start AND 
+											    			end = $end
+											    	) AND 
+							    	    			name = '$component_name' AND 
 							    	    			proteinSequence = '$seq_aa'
-							    	    		), 
-								    			'$name',
-								    			'pathways-$report_pathways_dir/pathway_figures/$aux'
-							    			);";
+						    	    		), 
+							    			'$name',
+							    			'pathways-$report_pathways_dir/pathway_figures/$aux'
+						    			);";
 								    }
 								}				
                             }			    							    
@@ -2850,31 +3081,38 @@ while($sequence_object->read())
 	                            {
 	                            	$scriptSQL .= "\nINSERT INTO ALIGNMENTS(idEvidence, subjectId, alignment) VALUES 
 	                            	(
-	                            		(SELECT id
-					    	    		FROM EVIDENCES
-					    	    		WHERE
-					    	    			idEvidence = (SELECT id 
-										    	    		FROM EVIDENCES 
+	                            		(
+		                            		SELECT id
+						    	    		FROM EVIDENCES
+						    	    		WHERE
+						    	    			idEvidence = 
+						    	    			(
+						    	    				SELECT id 
+								    	    		FROM EVIDENCES 
+								    	    		WHERE 
+								    	    			idConclusion = 
+								    	    			(
+								    	    				SELECT id 
+										    	    		FROM CONCLUSIONS 
 										    	    		WHERE 
-										    	    			idConclusion = (SELECT id 
-											    	    		FROM CONCLUSIONS 
-											    	    		WHERE 
-											    	    			idSequence = (SELECT id 
-														    			FROM SEQUENCES 
-														    			WHERE 
-														    				header = '".$sequence_object->fasta_header()."' && 
-														    				name = '".$sequence_object->sequence_name()."' && 
-														    				bases = '".$sequence_object->current_sequence()."'
-														    			) &&
-													    				locusTag = '$locus_tag'
-													    			) &&
-												    			name = '".$evidence->{log}{name}."' &&
-												    			number = $number &&
-												    			start = $start &&
-												    			end = $end
-													    	) && 
-					    	    			name = '$component_name' && 
-					    	    			proteinSequence = '$seq_aa'
+										    	    			idSequence = 
+										    	    			(
+										    	    				SELECT id 
+													    			FROM SEQUENCES 
+													    			WHERE 
+													    				header = '".$sequence_object->fasta_header()."' AND 
+													    				name = '".$sequence_object->sequence_name()."' AND 
+													    				bases = '".$sequence_object->current_sequence()."'
+											    				) AND 
+											    				locusTag = '$locus_tag'
+										    			) AND 
+										    			name = '".$evidence->{log}{name}."' AND 
+										    			number = $number AND 
+										    			start = $start AND 
+										    			end = $end
+										    	) AND 
+						    	    			name = '$component_name' AND 
+						    	    			proteinSequence = '$seq_aa'
 					    	    		),
 					    	    		'$subject_id',
 					    	    		'$alignment'
@@ -2883,31 +3121,38 @@ while($sequence_object->read())
         	           	    	(undef, $product) = get_code_number_product ($subject_id);
         	           	    	$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
 				    			(
-				    				(SELECT id
-				    	    		FROM EVIDENCES
-				    	    		WHERE
-				    	    			idEvidence = (SELECT id 
-									    	    		FROM EVIDENCES 
+				    				(
+					    				SELECT id
+					    	    		FROM EVIDENCES
+					    	    		WHERE
+					    	    			idEvidence = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM EVIDENCES 
+							    	    		WHERE 
+							    	    			idConclusion = 
+							    	    			(
+								    	    			SELECT id 
+									    	    		FROM CONCLUSIONS 
 									    	    		WHERE 
-									    	    			idConclusion = (SELECT id 
-										    	    		FROM CONCLUSIONS 
-										    	    		WHERE 
-										    	    			idSequence = (SELECT id 
-													    			FROM SEQUENCES 
-													    			WHERE 
-													    				header = '".$sequence_object->fasta_header()."' && 
-													    				name = '".$sequence_object->sequence_name()."' && 
-													    				bases = '".$sequence_object->current_sequence()."'
-													    			) &&
-												    				locusTag = '$locus_tag'
-												    			) &&
-											    			name = '".$evidence->{log}{name}."' &&
-											    			number = $number &&
-											    			start = $start &&
-											    			end = $end
-												    	) && 
-				    	    			name = '$component_name' && 
-				    	    			proteinSequence = '$seq_aa'
+									    	    			idSequence = 
+									    	    			(
+									    	    				SELECT id 
+												    			FROM SEQUENCES 
+												    			WHERE 
+												    				header = '".$sequence_object->fasta_header()."' AND 
+												    				name = '".$sequence_object->sequence_name()."' AND 
+												    				bases = '".$sequence_object->current_sequence()."'
+											    			) AND
+										    				locusTag = '$locus_tag'
+									    			) AND
+									    			name = '".$evidence->{log}{name}."' AND 
+									    			number = $number AND 
+									    			start = $start AND 
+									    			end = $end
+									    	) AND 
+					    	    			name = '$component_name' AND 
+					    	    			proteinSequence = '$seq_aa'
 				    	    		), 
 					    			'$product',
 					    			'blast'
@@ -2927,31 +3172,38 @@ while($sequence_object->read())
 						my $value = $interval->{tags}->{'hit_name'};
 						$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
 		    			(
-		    				(SELECT id
-		    	    		FROM EVIDENCES
-		    	    		WHERE
-		    	    			idEvidence = (SELECT id 
-							    	    		FROM EVIDENCES 
+		    				(
+			    				SELECT id
+			    	    		FROM EVIDENCES
+			    	    		WHERE
+			    	    			idEvidence = 
+			    	    			(
+			    	    				SELECT id 
+					    	    		FROM EVIDENCES 
+					    	    		WHERE 
+					    	    			idConclusion = 
+					    	    			(
+					    	    				SELECT id 
+							    	    		FROM CONCLUSIONS 
 							    	    		WHERE 
-							    	    			idConclusion = (SELECT id 
-								    	    		FROM CONCLUSIONS 
-								    	    		WHERE 
-								    	    			idSequence = (SELECT id 
-											    			FROM SEQUENCES 
-											    			WHERE 
-											    				header = '".$sequence_object->fasta_header()."' && 
-											    				name = '".$sequence_object->sequence_name()."' && 
-											    				bases = '".$sequence_object->current_sequence()."'
-											    			) &&
-										    				locusTag = '$locus_tag'
-										    			) &&
-									    			name = '".$evidence->{log}{name}."' &&
-									    			number = $number &&
-									    			start = $start &&
-									    			end = $end
-										    	) && 
-		    	    			name = '$component_name' && 
-		    	    			proteinSequence = '$seq_aa'
+							    	    			idSequence = 
+							    	    			(
+							    	    				SELECT id 
+										    			FROM SEQUENCES 
+										    			WHERE 
+										    				header = '".$sequence_object->fasta_header()."' AND 
+										    				name = '".$sequence_object->sequence_name()."' AND 
+										    				bases = '".$sequence_object->current_sequence()."'
+									    			) AND 
+								    				locusTag = '$locus_tag'
+							    			) AND 
+							    			name = '".$evidence->{log}{name}."' AND 
+							    			number = $number AND 
+							    			start = $start AND 
+							    			end = $end
+							    	) AND 
+			    	    			name = '$component_name' AND 
+			    	    			proteinSequence = '$seq_aa'
 		    	    		), 
 			    			'$value',
 			    			'tcdb'
@@ -2966,31 +3218,38 @@ while($sequence_object->read())
 							$hash_ev{psort} = "<td> <a href=\"../wolf_dir/$html_file\"> Result </a> </td>\n";
 							$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
 			    			(
-			    				(SELECT id
-			    	    		FROM EVIDENCES
-			    	    		WHERE
-			    	    			idEvidence = (SELECT id 
-								    	    		FROM EVIDENCES 
+			    				(
+				    				SELECT id 
+				    	    		FROM EVIDENCES 
+				    	    		WHERE
+				    	    			idEvidence = 
+				    	    			(
+				    	    				SELECT id 
+						    	    		FROM EVIDENCES 
+						    	    		WHERE 
+						    	    			idConclusion = 
+						    	    			(
+							    	    			SELECT id 
+								    	    		FROM CONCLUSIONS 
 								    	    		WHERE 
-								    	    			idConclusion = (SELECT id 
-									    	    		FROM CONCLUSIONS 
-									    	    		WHERE 
-									    	    			idSequence = (SELECT id 
-												    			FROM SEQUENCES 
-												    			WHERE 
-												    				header = '".$sequence_object->fasta_header()."' && 
-												    				name = '".$sequence_object->sequence_name()."' && 
-												    				bases = '".$sequence_object->current_sequence()."'
-												    			) &&
-											    				locusTag = '$locus_tag'
-											    			) &&
-										    			name = '".$evidence->{log}{name}."' &&
-										    			number = $number &&
-										    			start = $start &&
-										    			end = $end
-											    	) && 
-			    	    			name = '$component_name' && 
-			    	    			proteinSequence = '$seq_aa'
+								    	    			idSequence = 
+								    	    			(
+								    	    				SELECT id 
+											    			FROM SEQUENCES 
+											    			WHERE 
+											    				header = '".$sequence_object->fasta_header()."' AND 
+											    				name = '".$sequence_object->sequence_name()."' AND 
+											    				bases = '".$sequence_object->current_sequence()."'
+										    			) AND 
+									    				locusTag = '$locus_tag'
+								    			) AND 
+								    			name = '".$evidence->{log}{name}."' AND 
+								    			number = $number AND 
+								    			start = $start AND 
+								    			end = $end
+									    	) AND 
+				    	    			name = '$component_name' AND 
+				    	    			proteinSequence = '$seq_aa'
 			    	    		), 
 				    			'wolf_dir/$html_file',
 				    			'psort'
@@ -3001,31 +3260,38 @@ while($sequence_object->read())
 							$hash_ev{psort} = "<td> <a href=\"../psort_dir/$txt_file\"> Result </a> </td>\n";
 							$scriptSQL .= "\nINSERT INTO RESULTS(idEvidence, result, tag) VALUES 
 			    			(
-			    				(SELECT id
-			    	    		FROM EVIDENCES
-			    	    		WHERE
-			    	    			idEvidence = (SELECT id 
-								    	    		FROM EVIDENCES 
+			    				(
+				    				SELECT id
+				    	    		FROM EVIDENCES
+				    	    		WHERE
+				    	    			idEvidence = 
+				    	    			(
+				    	    				SELECT id 
+						    	    		FROM EVIDENCES 
+						    	    		WHERE 
+						    	    			idConclusion = 
+						    	    			(
+							    	    			SELECT id 
+								    	    		FROM CONCLUSIONS 
 								    	    		WHERE 
-								    	    			idConclusion = (SELECT id 
-									    	    		FROM CONCLUSIONS 
-									    	    		WHERE 
-									    	    			idSequence = (SELECT id 
-												    			FROM SEQUENCES 
-												    			WHERE 
-												    				header = '".$sequence_object->fasta_header()."' && 
-												    				name = '".$sequence_object->sequence_name()."' && 
-												    				bases = '".$sequence_object->current_sequence()."'
-												    			) &&
-											    				locusTag = '$locus_tag'
-											    			) &&
-										    			name = '".$evidence->{log}{name}."' &&
-										    			number = $number &&
-										    			start = $start &&
-										    			end = $end
-											    	) && 
-			    	    			name = '$component_name' && 
-			    	    			proteinSequence = '$seq_aa'
+								    	    			idSequence = 
+								    	    			(
+								    	    				SELECT id 
+											    			FROM SEQUENCES 
+											    			WHERE 
+											    				header = '".$sequence_object->fasta_header()."' AND 
+											    				name = '".$sequence_object->sequence_name()."' AND 
+											    				bases = '".$sequence_object->current_sequence()."'
+										    			) AND
+									    				locusTag = '$locus_tag'
+								    			) AND
+								    			name = '".$evidence->{log}{name}."' AND
+								    			number = $number AND
+								    			start = $start AND
+								    			end = $end
+								    	) AND 
+				    	    			name = '$component_name' AND 
+				    	    			proteinSequence = '$seq_aa'
 			    	    		), 
 				    			'psort_dir/$html_file',
 				    			'psort'
@@ -3145,6 +3411,7 @@ while($sequence_object->read())
 	                $tag = "tRNAscan-SE";
 	            }
 			    my $component = $evidence->{log}{name};
+			    $scriptSQL .= "\n--evidencetag \= ".$evidence->{tag};
 			    ###
 			    #
 			    #	TODO - copiar arquivos para html_dir/root/
@@ -5182,6 +5449,8 @@ HEADER
 MENU
 	}
 );
+
+writeFile("log-report-html-db.log", $scriptSQL);
 
 print "Creating html views\n";
 foreach my $directory ( keys %contentHTML ) {
