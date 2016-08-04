@@ -464,23 +464,6 @@ CREATE TABLE ALIGNMENTS(
 	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
 );
 
-CREATE TABLE INTERVALS(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	idEvidence INTEGER, 
-	value VARCHAR(2000), 
-	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
-);
-
-CREATE TABLE TAGS(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	idInterval INTEGER, 
-	orfCount VARCHAR(2000), 
-	evidenceProcess VARCHAR(2000), 
-	evidenceFunction VARCHAR(2000), 
-	evidenceComponent VARCHAR(2000), 
-	FOREIGN KEY(idInterval) REFERENCES INTERVALS(id)
-);
-
 CREATE TABLE TYPES(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
 	idEvidence INTEGER, 
@@ -1405,7 +1388,7 @@ my @seq_links;
 #contador de sequencias
 my $seq_count = 0;
 while($sequence_object->read())
-{
+{	
     ++$seq_count;
     $count_ev = 0;
     my @conclusions = @{$sequence_object->get_conclusions()};
@@ -1669,15 +1652,88 @@ while($sequence_object->read())
 	    			)
     			);";
     			
-    			foreach my $key(keys %$interval)
+    			my $createTableIntervals = "CREATE TABLE IF NOT EXISTS INTERVALS(\n".
+    			"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
+    			"	idEvidence INTEGER \n";
+    			
+    			my $createTableHash = "";
+    			
+    			my $insertIntervals = "INSERT INTO INTERVALS(idEvidence";
+    			
+    			foreach my $key(sort (keys %$interval))
     			{
-    				$scriptSQL .= "\n--instervalssvalue	$key	-	".$interval->{$key}."\n";
+    				if(!($interval->{$key} =~ /^HASH/))
+    				{
+    					$insertIntervals .= ", `$key`";
+    				}
     			}
     			
-    			foreach my $key(keys %tags)
+    			$insertIntervals .= ") VALUES (\n".
+    						"(
+	    						SELECT id 
+				    			FROM EVIDENCES 
+				    			WHERE 
+				    				name = '".$evidence->{log}{name}."' AND 
+				    				number = $number AND 
+				    				start = $start AND 
+				    				end = $end AND 
+				    				proteinSequence = '$seq_aa'
+				    		)\n";
+    			
+    			
+    			foreach my $key(sort (keys %$interval))
     			{
-    				$scriptSQL .= "\n--tagsvalue	$key	-	".$tags{$key}."\n";
+    				if(!($interval->{$key} =~ /^HASH/))
+    				{
+    					$createTableIntervals .= ",    `$key`	VARCHAR(30000)\n";
+    					$insertIntervals .= ", '".$interval->{$key}."'\n ";
+    				}
+    				else
+    				{
+    					$createTableHash .= "CREATE TABLE IF NOT EXISTS  ". (uc $key). " (\n" .
+    					"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
+    					"	idIntervals INTEGER \n";
+    					foreach my $key2 (sort (keys %{$interval->{$key}}))
+    					{
+    						$createTableHash .= ",	`$key2` VARCHAR(30000)\n";
+    						$scriptSQL .= "--intervalsvalue-$key2 ".$interval->{$key}{$key2}."\n";
+    					}
+    					$createTableHash .= ",    FOREIGN KEY(idIntervals) REFERENCES INTERVALS(id) \n);\n";
+    				}
+
+    				$scriptSQL .= "--intervalsvalue ".$interval->{$key}."\n";
     			}
+    			$insertIntervals .= ");\n";
+				$createTableIntervals .= ",    FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id) \n);\n";
+				
+				$scriptSQL .= "$createTableIntervals\n$createTableHash\n$insertIntervals";
+				
+				
+				
+    			
+#CREATE TABLE INTERVALS(
+#	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+#	idEvidence INTEGER, 
+#	value VARCHAR(2000), 
+#	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
+#);
+#
+#CREATE TABLE TAGS(
+#	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+#	idInterval INTEGER, 
+#	orfCount VARCHAR(2000), 
+#	evidenceProcess VARCHAR(2000), 
+#	evidenceFunction VARCHAR(2000), 
+#	evidenceComponent VARCHAR(2000), 
+#	FOREIGN KEY(idInterval) REFERENCES INTERVALS(id)
+#);
+    			
+#    			
+#    			
+#    			foreach my $key(keys %tags)
+#    			{
+#    				$scriptSQL .= "\n--tagsvalue	$key	-	".$tags{$key}."\n";
+#    			}
     			
     			
 #    			$scriptSQL .= "\nINSERT INTO TAGS(idInterval, orfCount, evidenceProcess, evidenceFunction, evidenceComponent) VALUES 
