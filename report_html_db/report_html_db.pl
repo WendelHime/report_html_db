@@ -1615,49 +1615,49 @@ while($sequence_object->read())
     	    	my @intervals = @{$evidence->{intervals}};
     	    	#cada evidencia tem seu intervalo, cada intervalo selecionado como padrão pode ser o primeiro
 	    		my $interval = $intervals[0];
-	    		$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
-	    		(
-	    			(
-		    			SELECT id 
-		    			FROM EVIDENCES
-		    			WHERE 
-		    				name = '".$evidence->{log}{name}."' AND 
-		    				number = $number AND 
-		    				start = $start AND 
-		    				end = $end AND 
-		    				proteinSequence = '$seq_aa'
-		    		),
-	    			'$interval'
-    			);";
+#	    		$scriptSQL .= "\nINSERT INTO INTERVALS(idEvidence, value) VALUES 
+#	    		(
+#	    			(
+#		    			SELECT id 
+#		    			FROM EVIDENCES
+#		    			WHERE 
+#		    				name = '".$evidence->{log}{name}."' AND 
+#		    				number = $number AND 
+#		    				start = $start AND 
+#		    				end = $end AND 
+#		    				proteinSequence = '$seq_aa'
+#		    		),
+#	    			'$interval'
+#    			);";
 	    		my %tags = %{$interval->{tags}};
 	    		
-	    		$scriptSQL .= "\nINSERT INTO TAGS(idInterval) VALUES 
-    			(
-	    			(
-	    				SELECT id 
-	    				FROM INTERVALS
-	    				WHERE 
-	    					idEvidence = 
-	    					(
-	    						SELECT id 
-				    			FROM EVIDENCES
-				    			WHERE 
-				    				name = '".$evidence->{log}{name}."' AND 
-				    				number = $number AND 
-				    				start = $start AND 
-				    				end = $end AND 
-				    				proteinSequence = '$seq_aa'
-				    		) AND 
-			    			value = '$interval'
-	    			)
-    			);";
+#	    		$scriptSQL .= "\nINSERT INTO TAGS(idInterval) VALUES 
+#    			(
+#	    			(
+#	    				SELECT id 
+#	    				FROM INTERVALS
+#	    				WHERE 
+#	    					idEvidence = 
+#	    					(
+#	    						SELECT id 
+#				    			FROM EVIDENCES
+#				    			WHERE 
+#				    				name = '".$evidence->{log}{name}."' AND 
+#				    				number = $number AND 
+#				    				start = $start AND 
+#				    				end = $end AND 
+#				    				proteinSequence = '$seq_aa'
+#				    		) AND 
+#	    			)
+#    			);";
     			
     			my $createTableIntervals = "CREATE TABLE IF NOT EXISTS INTERVALS(\n".
     			"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
     			"	idEvidence INTEGER \n";
     			
     			my $createTableHash = "";
-    			
+    			my $insertTable = "";
+    			my @insertTables = ();
     			my $insertIntervals = "INSERT INTO INTERVALS(idEvidence";
     			
     			foreach my $key(sort (keys %$interval))
@@ -1665,6 +1665,39 @@ while($sequence_object->read())
     				if(!($interval->{$key} =~ /^HASH/))
     				{
     					$insertIntervals .= ", `$key`";
+    				}
+    				else
+    				{
+    					$insertTable .= "INSERT INTO ". (uc $key). "(idInterval";
+    					my $counterColumns = 0;
+    					foreach my $key2 (sort (keys %{$interval->{$key}}))
+    					{
+    						$insertTable .= ", `$key2`";
+    						$counterColumns++;
+    					}
+    					$insertTable .= ") VALUES (\n
+    					(
+		    				SELECT id 
+		    				FROM INTERVALS
+		    				WHERE 
+		    					idEvidence = 
+		    					(
+		    						SELECT id 
+					    			FROM EVIDENCES
+					    			WHERE 
+					    				name = '".$evidence->{log}{name}."' AND 
+					    				number = $number AND 
+					    				start = $start AND 
+					    				end = $end AND 
+					    				proteinSequence = '$seq_aa'
+					    		)
+	    				), ";
+	    				for(my $i = 0; $i < $counterColumns; $i++)
+	    				{
+	    					$insertTable .= ", $i";
+	    				}
+	    				$insertTable .= ");\n";
+	    				push(@insertTables, $insertTable); 
     				}
     			}
     			
@@ -1680,7 +1713,7 @@ while($sequence_object->read())
 				    				proteinSequence = '$seq_aa'
 				    		)\n";
     			
-    			
+    			my $counterTables = 0;
     			foreach my $key(sort (keys %$interval))
     			{
     				if(!($interval->{$key} =~ /^HASH/))
@@ -1690,24 +1723,34 @@ while($sequence_object->read())
     				}
     				else
     				{
-    					$createTableHash .= "CREATE TABLE IF NOT EXISTS  ". (uc $key). " (\n" .
+    					$createTableHash .= "CREATE TABLE IF NOT EXISTS ". (uc $key). " (\n" .
     					"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
-    					"	idIntervals INTEGER \n";
+    					"	idInterval INTEGER \n";
+    					my $counterColumns = 0;
     					foreach my $key2 (sort (keys %{$interval->{$key}}))
     					{
+    						if($insertTables[$counterTables] =~ /$counterColumns/g)
+    						{
+    							$insertTables[$counterTables] = s/$counterColumns/$interval->{$key}{$key2}/g;
+    						}
     						$createTableHash .= ",	`$key2` VARCHAR(30000)\n";
-    						$scriptSQL .= "--intervalsvalue-$key2 ".$interval->{$key}{$key2}."\n";
+    						$counterColumns++;
+    						$scriptSQL .= "\n--intervalsvalue-$key2 ".$interval->{$key}{$key2}."\n";
     					}
-    					$createTableHash .= ",    FOREIGN KEY(idIntervals) REFERENCES INTERVALS(id) \n);\n";
+    					$createTableHash .= ",    FOREIGN KEY(idInterval) REFERENCES INTERVALS(id) \n);\n";
+    					$counterTables++;
     				}
 
-    				$scriptSQL .= "--intervalsvalue ".$interval->{$key}."\n";
+    				$scriptSQL .= "\n--intervalsvalue ".$interval->{$key}."\n";
     			}
     			$insertIntervals .= ");\n";
 				$createTableIntervals .= ",    FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id) \n);\n";
 				
-				$scriptSQL .= "$createTableIntervals\n$createTableHash\n$insertIntervals";
-				
+				$scriptSQL .= "$createTableIntervals\n$createTableHash\n$insertIntervals\n";
+				foreach my $insert (@insertTables)
+				{
+					$scriptSQL .= "$insert\n"; 					
+				}
 				
 				
     			
