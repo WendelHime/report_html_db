@@ -22,7 +22,7 @@ http://127.0.0.1:3000
 
 TODO:
 -
--	Remodelar tabela INTERVALS
+-	Gerar inserções para as sub evidencias
 -	Realizar manutenção nas paginas html
 	
 DONE:
