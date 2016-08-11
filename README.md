@@ -22,6 +22,7 @@ http://127.0.0.1:3000
 
 TODO:
 -
+-	Realizar alterações baseadas no evidences log
 -	Gerar inserções para as sub evidencias
 -	Realizar manutenção nas paginas html
 	

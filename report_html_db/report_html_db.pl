@@ -454,16 +454,6 @@ CREATE TABLE EVIDENCES(
 	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
 );
 
-CREATE TABLE ALIGNMENTS(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	idEvidence INTEGER, 
-	subjectId VARCHAR(200), 
-	typeDB VARCHAR(200), 
-	accession VARCHAR(200), 
-	alignment VARCHAR(200), 
-	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
-);
-
 CREATE TABLE TYPES(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
 	idEvidence INTEGER, 
@@ -1530,269 +1520,266 @@ while($sequence_object->read())
     	foreach my $ev(@evidences)
     	{
     		my $evidence = $hash{$ev};
-    		
-    		my $fasta_header_evidence = $sequence_object->fasta_header_evidence($evidence);
-    		$fasta_header_evidence =~ s/>//g;
-    		my $html_file = $fasta_header_evidence.".html";
-		    my $txt_file = $fasta_header_evidence.".txt";
-		    my $png_file = $fasta_header_evidence.".png";
-    		my $component_name = $evidence->{log}{name};
-    		
-    		if($evidence->{tag} eq "CDS")
-    		{
-    			my $number = $evidence->{number};
-    			my $start;
-    			my $end;
-    			if($evidence->{start} < $evidence->{end})
-    			{
-    				$start = $evidence->{start};
-    				$end = $evidence->{end}; 
-    			}
-    			else
-    			{
-    				$start = $evidence->{end};
-                    $end = $evidence->{start};
-    			}
-    			my $len_nt = ($end - $start)+1;
-            	my $sequence_nt;
-            	my $nt_seq = substr($bases, $start-1, $len_nt);
-            	$len_nt = length($nt_seq);
-            	my $file_ev = $locus_tag.".fasta";
-            	open(AA,">", "$html_dir/root/$aa_fasta_dir/$file_ev");
-            	print FILE_NT ">$locus_tag\n";
-            	print AA "\nNucleotide sequence:\n\n";
-            	print AA ">$locus_tag\n";
-            	for (my $i = 0; $i < $len_nt; $i += 60){
-                    $sequence_nt = substr($nt_seq,$i,60);
-                    print FILE_NT "$sequence_nt\n";
-                    print AA "$sequence_nt\n";
-            	}
-            	my $seq_aa = $evidence->{protein_sequence};
-            	my $sequence_aa;
-            	my $len_aa = length($seq_aa);
-		    	print FILE_AA ">$locus_tag\n";
-		    	print AA "\nTranslated sequence:\n\n";
-		    	print AA ">$locus_tag\n";
-    	    	for (my $i = 0; $i < $len_aa; $i += 60){
-	        	    $sequence_aa = substr($seq_aa,$i, 60);
-	        	    print FILE_AA "$sequence_aa\n";
-			    	print AA "$sequence_aa\n";
-    	    	}    	    	
-    	    	$scriptSQL .= "\nINSERT INTO EVIDENCES(idConclusion, name, number, start, end, proteinSequence) VALUES
-				(
-					(
-		    	    	SELECT id 
-	    	    		FROM CONCLUSIONS 
-	    	    		WHERE 
-	    	    			idSequence = 
-	    	    			(
-    	    					SELECT id 
-					    		FROM SEQUENCES 
-					    		WHERE 
-					    			header = '".$sequence_object->fasta_header()."' AND 
-					    			name = '".$sequence_object->sequence_name()."' AND 
-					    			bases = '".$sequence_object->current_sequence()."'
-					    	) AND 
-			    			locusTag = '$locus_tag'
-				    ), 
-	    	    	'".$evidence->{log}{name}."', 
-	    	    	$number, 
-	    	    	$start, 
-	    	    	$end, 
-	    	    	'$seq_aa'
-				);";
-    	    	
-    	    	my @intervals = @{$evidence->{intervals}};
-    	    	#cada evidencia tem seu intervalo, cada intervalo selecionado como padrão pode ser o primeiro
-	    		my $interval = $intervals[0];
-	    		my %tags = %{$interval->{tags}};
-    			
-    			###
-    			#
-    			#	a partir daqui começa criação das tabelas, e inserção de dados dos intervalos e seus campos
-    			#	TODO - finalizar geração de intervalos
-    			#
-    			###
-    			my $generatedIntervals = generate_intervals($interval, $evidence, $number, $start, $end, $seq_aa);
-				
-				$scriptSQL .= "\n$generatedIntervals\n";
-				
-#    			foreach my $key(keys %tags)
+    		$scriptSQL .= generate_evidences_recursive($evidence, $bases, $locus_tag);
+#    		my $fasta_header_evidence = $sequence_object->fasta_header_evidence($evidence);
+#    		$fasta_header_evidence =~ s/>//g;
+#    		my $html_file = $fasta_header_evidence.".html";
+#		    my $txt_file = $fasta_header_evidence.".txt";
+#		    my $png_file = $fasta_header_evidence.".png";
+#    		my $component_name = $evidence->{log}{name};
+#    		
+#    		if($evidence->{tag} eq "CDS")
+#    		{
+#    			my $number = $evidence->{number};
+#    			my $start;
+#    			my $end;
+#    			if($evidence->{start} < $evidence->{end})
 #    			{
-#    				$scriptSQL .= "\n--tagsvalue	$key	-	".$tags{$key}."\n";
+#    				$start = $evidence->{start};
+#    				$end = $evidence->{end}; 
 #    			}
-    			    			    				    	
-		    	my @sub_evidences = @{$evidence->{evidences}};
-		    	my %interpro_ids = ();
-		    	my %go_ids = ();
-		    	my $product;
-		    	my $hit_found = 0;
-		    					
-		    	foreach my $dbc (@databases_blast)
-		    	{
-		    		my $index = "";
-				    for(my $i = 0; $i < scalar(@databases_blast); ++$i)
-				    {
-                    	if($databases_blast[$i] ne "" and $dbc ne "")
-                    	{
-                    	    if($databases_blast[$i] eq $dbc)
-                    	    {
-                            	$index = $i;
-							}
-                    	}
-                    }
-		    	    $blast_dir = $blast_dirs[$index];
-	        	    $hash_ev{$dbc} = "<td><a href=\"../$blast_dir/$html_file\"> No hits \t</a> </td>\n";
-		    	}		    	
-		    	
-		    	foreach my $component (sort @comp_ev)
-		    	{
-		    		if ($component eq "blast")
-		    		{
-                    }
-                    elsif($component eq "interpro")
-                    {
-                    	$hash_ev{$component} = "<td><a href=\"../$interpro_dir/HTML/$html_file\"> No hits \t</a> </td>\n";
-						$hash_ev{go_terms} = "<td>No hits \t</td>\n";
-                    }
-                    elsif($component eq "orthology")
-                    {		    	
-                    	if(defined $eggnog_dir)
-                    	{
-			    			my $aux_html = $html_file;
-                     	    $aux_html =~ s/.html/.eggnog.html/g;
-			    			$hash_ev{orthology_eggnog} = "<td><a href=\"../$eggnog_dir/$aux_html\"> No hits </a> </td>\n";
-		     			}
-		     			if(defined $cog_dir)
-		     			{
-                            my $aux_html = $html_file;
-                            $aux_html =~ s/.html/.cog.html/g;
-                            $hash_ev{orthology_cog} = "<td><a href=\"../$cog_dir/$aux_html\"> No hits </a> </td>\n";
-                     	}
-		     			if(defined $kog_dir)
-		     			{
-                             my $aux_html = $html_file;
-                             $aux_html =~ s/.html/.kog.html/g;
-                             $hash_ev{orthology_kog} = "<td><a href=\"../$kog_dir/$aux_html\"> No hits </a> </td>\n";
-                     	}
-                    }
-                    elsif($component eq "pathways")
-                    {
-                    	$hash_ev{$component} = "<td><a href=\"../$pathways_dir/$html_file\"> No_mapped_pathways </a> </td>\n";
-                    }
-                    elsif($component eq "phobius")
-                    {
-                    	$hash_ev{$component} = "<td><a href=\"../$phobius_dir/$png_file\"> No hits \t</a> </td>\n";
-                    }
-                    elsif($component eq "rpsblast")
-                    {
-                    	$hash_ev{$component} = "<td><a href=\"../$rpsblast_dir/$txt_file\"> No hits \t</a> </td>\n";
-                    }
-                    elsif($component eq "signalP")
-                    {
-                    	$hash_ev{$component} = "<td><a href=\"../$signalp_dir/$png_file\"> No hits \t</a> </td>\n";
-                    }
-		    		elsif($component eq "psort")
-		    		{
-		    			$fasta_header_evidence =~ s/>//g;
-						$hash_ev{$component} = "<td> No hits </td>\n";
-		    		}
-                    else
-                    {
-                   		$hash_ev{$component} = "<td>No hits \t</td>\n"; 
-                    }
-		    	}
-		    	if($count_ev == 0)
-		    	{
-		    		#line_subev seria uma referencia aos componentes utilizados, representadas pelas colunas
-		    	    $line_subev .= "<td>CDS\t</td>\n";
-		    	}
+#    			else
+#    			{
+#    				$start = $evidence->{end};
+#                    $end = $evidence->{start};
+#    			}
+#    			my $len_nt = ($end - $start)+1;
+#            	my $sequence_nt;
+#            	my $nt_seq = substr($bases, $start-1, $len_nt);
+#            	$len_nt = length($nt_seq);
+#            	my $file_ev = $locus_tag.".fasta";
+#            	open(AA,">", "$html_dir/root/$aa_fasta_dir/$file_ev");
+#            	print FILE_NT ">$locus_tag\n";
+#            	print AA "\nNucleotide sequence:\n\n";
+#            	print AA ">$locus_tag\n";
+#            	for (my $i = 0; $i < $len_nt; $i += 60){
+#                    $sequence_nt = substr($nt_seq,$i,60);
+#                    print FILE_NT "$sequence_nt\n";
+#                    print AA "$sequence_nt\n";
+#            	}
+#            	my $seq_aa = $evidence->{protein_sequence};
+#            	my $sequence_aa;
+#            	my $len_aa = length($seq_aa);
+#		    	print FILE_AA ">$locus_tag\n";
+#		    	print AA "\nTranslated sequence:\n\n";
+#		    	print AA ">$locus_tag\n";
+#    	    	for (my $i = 0; $i < $len_aa; $i += 60){
+#	        	    $sequence_aa = substr($seq_aa,$i, 60);
+#	        	    print FILE_AA "$sequence_aa\n";
+#			    	print AA "$sequence_aa\n";
+#    	    	}    	    	
+#    	    	$scriptSQL .= "\nINSERT INTO EVIDENCES(idConclusion, name, number, start, end, proteinSequence) VALUES
+#				(
+#					(
+#		    	    	SELECT id 
+#	    	    		FROM CONCLUSIONS 
+#	    	    		WHERE 
+#	    	    			idSequence = 
+#	    	    			(
+#    	    					SELECT id 
+#					    		FROM SEQUENCES 
+#					    		WHERE 
+#					    			header = '".$sequence_object->fasta_header()."' AND 
+#					    			name = '".$sequence_object->sequence_name()."' AND 
+#					    			bases = '".$sequence_object->current_sequence()."'
+#					    	) AND 
+#			    			locusTag = '$locus_tag'
+#				    ), 
+#	    	    	'".$evidence->{log}{name}."', 
+#	    	    	$number, 
+#	    	    	$start, 
+#	    	    	$end, 
+#	    	    	'$seq_aa'
+#				);";
+#    	    	
+#    	    	my @intervals = @{$evidence->{intervals}};
+#    	    	#cada evidencia tem seu intervalo, cada intervalo selecionado como padrão pode ser o primeiro
+#	    		my $interval = $intervals[0];
+#	    		my %tags = %{$interval->{tags}};
+#    			
+#    			###
+#    			#
+#    			#	a partir daqui começa criação das tabelas, e inserção de dados dos intervalos e seus campos
+#    			#	TODO - finalizar geração de intervalos
+#    			#
+#    			###
+#    			my $generatedIntervals = generate_intervals($interval, $evidence, $number, $start, $end, $seq_aa);
+#				
+#				$scriptSQL .= "\n$generatedIntervals\n";
+#				
+##    			foreach my $key(keys %tags)
+##    			{
+##    				$scriptSQL .= "\n--tagsvalue	$key	-	".$tags{$key}."\n";
+##    			}
+#    			    			    				    	
+#		    	my @sub_evidences = @{$evidence->{evidences}};
+#		    	my %interpro_ids = ();
+#		    	my %go_ids = ();
+#		    	my $product;
+#		    	my $hit_found = 0;
+#		    					
+#		    	foreach my $dbc (@databases_blast)
+#		    	{
+#		    		my $index = "";
+#				    for(my $i = 0; $i < scalar(@databases_blast); ++$i)
+#				    {
+#                    	if($databases_blast[$i] ne "" and $dbc ne "")
+#                    	{
+#                    	    if($databases_blast[$i] eq $dbc)
+#                    	    {
+#                            	$index = $i;
+#							}
+#                    	}
+#                    }
+#		    	    $blast_dir = $blast_dirs[$index];
+#	        	    $hash_ev{$dbc} = "<td><a href=\"../$blast_dir/$html_file\"> No hits \t</a> </td>\n";
+#		    	}		    	
+#		    	
+#		    	foreach my $component (sort @comp_ev)
+#		    	{
+#		    		if ($component eq "blast")
+#		    		{
+#                    }
+#                    elsif($component eq "interpro")
+#                    {
+#                    	$hash_ev{$component} = "<td><a href=\"../$interpro_dir/HTML/$html_file\"> No hits \t</a> </td>\n";
+#						$hash_ev{go_terms} = "<td>No hits \t</td>\n";
+#                    }
+#                    elsif($component eq "orthology")
+#                    {		    	
+#                    	if(defined $eggnog_dir)
+#                    	{
+#			    			my $aux_html = $html_file;
+#                     	    $aux_html =~ s/.html/.eggnog.html/g;
+#			    			$hash_ev{orthology_eggnog} = "<td><a href=\"../$eggnog_dir/$aux_html\"> No hits </a> </td>\n";
+#		     			}
+#		     			if(defined $cog_dir)
+#		     			{
+#                            my $aux_html = $html_file;
+#                            $aux_html =~ s/.html/.cog.html/g;
+#                            $hash_ev{orthology_cog} = "<td><a href=\"../$cog_dir/$aux_html\"> No hits </a> </td>\n";
+#                     	}
+#		     			if(defined $kog_dir)
+#		     			{
+#                             my $aux_html = $html_file;
+#                             $aux_html =~ s/.html/.kog.html/g;
+#                             $hash_ev{orthology_kog} = "<td><a href=\"../$kog_dir/$aux_html\"> No hits </a> </td>\n";
+#                     	}
+#                    }
+#                    elsif($component eq "pathways")
+#                    {
+#                    	$hash_ev{$component} = "<td><a href=\"../$pathways_dir/$html_file\"> No_mapped_pathways </a> </td>\n";
+#                    }
+#                    elsif($component eq "phobius")
+#                    {
+#                    	$hash_ev{$component} = "<td><a href=\"../$phobius_dir/$png_file\"> No hits \t</a> </td>\n";
+#                    }
+#                    elsif($component eq "rpsblast")
+#                    {
+#                    	$hash_ev{$component} = "<td><a href=\"../$rpsblast_dir/$txt_file\"> No hits \t</a> </td>\n";
+#                    }
+#                    elsif($component eq "signalP")
+#                    {
+#                    	$hash_ev{$component} = "<td><a href=\"../$signalp_dir/$png_file\"> No hits \t</a> </td>\n";
+#                    }
+#		    		elsif($component eq "psort")
+#		    		{
+#		    			$fasta_header_evidence =~ s/>//g;
+#						$hash_ev{$component} = "<td> No hits </td>\n";
+#		    		}
+#                    else
+#                    {
+#                   		$hash_ev{$component} = "<td>No hits \t</td>\n"; 
+#                    }
+#		    	}
+#		    	if($count_ev == 0)
+#		    	{
+#		    		#line_subev seria uma referencia aos componentes utilizados, representadas pelas colunas
+#		    	    $line_subev .= "<td>CDS\t</td>\n";
+#		    	}
+#mark
 #		    	$subev_html = "<tr>\n";
 #	    		$subev_html .= "<td><a href=\"../$html_dir/$aa_fasta_dir/$file_ev\"> $locus_tag </a></td>\n";
-				foreach my $sub_evidence (@sub_evidences) 
-				{
-					my $component_name = $sub_evidence->{log}{name};
-					$scriptSQL .= "\nINSERT INTO EVIDENCES(idEvidence, name, proteinSequence) VALUES
-		    	    (
-		    	    	(
-		    	    		SELECT id 
-		    	    		FROM EVIDENCES 
-		    	    		WHERE 
-		    	    			idConclusion = 
-		    	    			(
-		    	    				SELECT id 
-				    	    		FROM CONCLUSIONS 
-				    	    		WHERE 
-				    	    			idSequence = 
-				    	    			(
-				    	    				SELECT id 
-							    			FROM SEQUENCES 
-							    			WHERE 
-							    				header = '".$sequence_object->fasta_header()."' AND 
-							    				name = '".$sequence_object->sequence_name()."' AND 
-							    				bases = '".$sequence_object->current_sequence()."'
-						    			) AND 
-					    				locusTag = '$locus_tag'
-					    		) AND 
-			    				name = '".$evidence->{log}{name}."' AND 
-			    				number = $number AND 
-			    				start = $start AND 
-			    				end = $end
-						),
-					    '$component_name',
-					    '$seq_aa'
-	    	    	);".
-	    	    	"\nINSERT INTO TYPES(idEvidence, value) VALUES 
-	    	    	(
-	    	    		(
-		    	    		SELECT id
-		    	    		FROM EVIDENCES
-		    	    		WHERE
-		    	    			idEvidence = 
-		    	    			(
-		    	    				SELECT id 
-				    	    		FROM EVIDENCES 
-				    	    		WHERE 
-				    	    			idConclusion = 
-				    	    			(
-					    	    			SELECT id 
-						    	    		FROM CONCLUSIONS 
-						    	    		WHERE 
-						    	    			idSequence = 
-						    	    			(
-						    	    				SELECT id 
-									    			FROM SEQUENCES 
-									    			WHERE 
-									    				header = '".$sequence_object->fasta_header()."' AND 
-									    				name = '".$sequence_object->sequence_name()."' AND 
-									    				bases = '".$sequence_object->current_sequence()."'
-									    		) AND 
-							    				locusTag = '$locus_tag'
-						    			) AND
-						    			name = '".$evidence->{log}{name}."' AND 
-						    			number = $number AND 
-						    			start = $start AND 
-						    			end = $end
-								) AND 
-		    	    			name = '$component_name' AND 
-		    	    			proteinSequence = '$seq_aa'
-	    	    		), 
-	    	    		'".$sub_evidence->{type}."'
-	    	    	);";
-	    	    	###
-	    	    	#
-	    	    	#	TODO - utilizar método de geração de intervalos aqui para as subevidencias
-	    	    	#
-	    	    	###
-#	    	    	my @intervalsSub = @{$sub_evidence->{intervals}};
-#	    	    	foreach my $subevidence(keys(%$sub_evidence))
-#	    	    	{
-#	    	    		$scriptSQL .= "\n--subevidence	 key: $subevidence	value: ".$sub_evidence->{$subevidence}."\n";
-#	    	    	}
-	    	    	foreach my $key(keys %$sub_evidence)
-	    			{
-	    				$scriptSQL .= "\n--subevidence	key:	$key	value:	".$sub_evidence->{$key}."\n";
-	    			}
+#				foreach my $sub_evidence (@sub_evidences) 
+#				{
+#					my $component_name = $sub_evidence->{log}{name};
+#					$scriptSQL .= "\nINSERT INTO EVIDENCES(idEvidence, name, proteinSequence) VALUES
+#		    	    (
+#		    	    	(
+#		    	    		SELECT id 
+#		    	    		FROM EVIDENCES 
+#		    	    		WHERE 
+#		    	    			idConclusion = 
+#		    	    			(
+#		    	    				SELECT id 
+#				    	    		FROM CONCLUSIONS 
+#				    	    		WHERE 
+#				    	    			idSequence = 
+#				    	    			(
+#				    	    				SELECT id 
+#							    			FROM SEQUENCES 
+#							    			WHERE 
+#							    				header = '".$sequence_object->fasta_header()."' AND 
+#							    				name = '".$sequence_object->sequence_name()."' AND 
+#							    				bases = '".$sequence_object->current_sequence()."'
+#						    			) AND 
+#					    				locusTag = '$locus_tag'
+#					    		) AND 
+#			    				name = '".$evidence->{log}{name}."' AND 
+#			    				number = $number AND 
+#			    				start = $start AND 
+#			    				end = $end
+#						),
+#					    '$component_name',
+#					    '$seq_aa'
+#	    	    	);".
+#	    	    	"\nINSERT INTO TYPES(idEvidence, value) VALUES 
+#	    	    	(
+#	    	    		(
+#		    	    		SELECT id
+#		    	    		FROM EVIDENCES
+#		    	    		WHERE
+#		    	    			idEvidence = 
+#		    	    			(
+#		    	    				SELECT id 
+#				    	    		FROM EVIDENCES 
+#				    	    		WHERE 
+#				    	    			idConclusion = 
+#				    	    			(
+#					    	    			SELECT id 
+#						    	    		FROM CONCLUSIONS 
+#						    	    		WHERE 
+#						    	    			idSequence = 
+#						    	    			(
+#						    	    				SELECT id 
+#									    			FROM SEQUENCES 
+#									    			WHERE 
+#									    				header = '".$sequence_object->fasta_header()."' AND 
+#									    				name = '".$sequence_object->sequence_name()."' AND 
+#									    				bases = '".$sequence_object->current_sequence()."'
+#									    		) AND 
+#							    				locusTag = '$locus_tag'
+#						    			) AND
+#						    			name = '".$evidence->{log}{name}."' AND 
+#						    			number = $number AND 
+#						    			start = $start AND 
+#						    			end = $end
+#								) AND 
+#		    	    			name = '$component_name' AND 
+#		    	    			proteinSequence = '$seq_aa'
+#	    	    		), 
+#	    	    		'".$sub_evidence->{type}."'
+#	    	    	);";
+#	    	    	###
+#	    	    	#
+#	    	    	#	TODO - utilizar método de geração de intervalos aqui para as subevidencias
+#	    	    	#	TODO - Gerar método recursivo para evidencias que retorna string contendo querys para criação e inserção dos elementos
+#	    	    	#
+#	    	    	###
+#	    	    	foreach my $key(keys %$sub_evidence)
+#	    			{
+#	    				$scriptSQL .= "\n--subevidence	key:	$key	value:	".$sub_evidence->{$key}."\n";
+#	    			}
 #		    		my $intervalSub = $intervalsSub[0];
 #	    	    	$scriptSQL .= generate_intervals($intervalSub, $sub_evidence, '', '', '', $seq_aa);
 	    	    	
@@ -3235,242 +3222,243 @@ while($sequence_object->read())
 #			    			);";
 #						}
 #					}
-				}
-    		}
-    		if($count_ev == 0)
-    		{
-    			foreach my $keys (sort keys %hash_ev)
-    			{
-				    if($keys eq "blast")
-				    {
-#				    	$line_subev .= "<td>BLAST	</td>\n";
-				    }
-				    if($keys eq "rpsblast")
-				    {
-						$line_subev .= "<td>RPS-BLAST       </td>\n";
-				    }
-				    elsif($keys eq "go_terms")
-				    {
-                        $line_subev .= "<td>GO terms       </td>\n";
-                    }
-				    elsif($keys eq "interpro")
-				    {
-                        $line_subev .= "<td>InterPro       </td>\n";
-                    }
-				    elsif($keys eq "orthology_eggnog")
-				    {
-                        $line_subev .= "<td>Orthology eggNOG </td>\n";
-                    }   
-				    elsif($keys eq "orthology_cog")
-				    {
-                        $line_subev .= "<td>Orthology COG </td>\n";
-                    }                 
-				    elsif($keys eq "orthology_kog")
-				    {
-                        $line_subev .= "<td>Orthology KOG </td>\n";
-                    }
-				    elsif($keys eq "pathways")
-				    {
-                        $line_subev .= "<td>Pathways       </td>\n";
-                    }
-				    elsif($keys eq "phobius")
-				    {
-                        $line_subev .= "<td>Phobius       </td>\n";
-                    }
-				    elsif($keys eq "tmhmm")
-				    {
-                        $line_subev .= "<td>TMHMM       </td>\n";
-                    }
-				    elsif($keys eq "signalP")
-				    {
-                        $line_subev .= "<td>SignalP       </td>\n";
-                    }
-				    elsif($keys eq "predgpi")
-				    {
-                        $line_subev .= "<td>PredGPI       </td>\n";
-                    }
-				    elsif($keys eq "bigpi")
-			    	{
-            	        $line_subev .= "<td>big-PI       </td>\n";
-                    }
-				    elsif($keys eq "dgpi")
-				    {
-                        $line_subev .= "<td>DGPI       </td>\n";
-                    }
-				    elsif($keys eq "tcdb")
-				    {
-                        $line_subev .= "<td>TCDB       </td>\n";
-                    }
-				    elsif($keys eq "psort")
-				    {
-						$line_subev .= "<td>PSORT       </td>\n";
-				    }
-				    else
-				    {
-						$line_subev .= "<td>BLASTx$keys       </td>\n";
-				    }
-				}
-				$count_ev++;
-    		}
-    		else
-    		{
-    			my $tag = $evidence->{tag};
-			    if($tag eq "tcdb")
-			    {
-					$tag = "TCDB";
-		  	    }
-			    elsif($tag eq "rRNA_prediction")
-			    {
-					$tag = "RNAmmer";
-			    }
-			    elsif($tag eq "transterm")
-			    {
-	                $tag = "TransTermHP";
-	            }
-			    elsif($tag eq "HTG")
-			    {
-	                $tag = "Alien_hunter";
-	            }
-			    elsif($tag eq "RNA_scan")
-			    {
-	                $tag = "Infernal";
-	            }
-			    elsif($tag eq "RBS")
-			    {
-	                $tag = "RBS finder";
-	            }
-			    elsif($tag eq "skews")
-			    {
-	                $tag = "Skews";
-	            }
-			    elsif($tag eq "tRNAscan")
-			    {
-	                $tag = "tRNAscan-SE";
-	            }
-			    my $component = $evidence->{log}{name};
-#			    $scriptSQL .= "\n--evidencetag = ".$evidence->{tag};
-			    ###
-			    #
-			    #	TODO - copiar arquivos para html_dir/root/
-			    #	TODO - adaptar caminho para links
-			    #
-			    ###
-			    if ($component eq "annotation_alienhunter.pl")
-			    {
-#					if($hash_dna{alienhunter} == 1){
-				    my $interval = @{$evidence->{intervals}}[0];			
-				    my $aux = $interval->{tags}{seq_name}." ; ".$interval->{tags}{note};		
-				    my $file = $alienhunter_output_file."_".$header;
-#				    $resultDNA .= "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
-				    $hash_dna{alienhunter} = "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
-#					}
-			    }
-			    elsif($component eq "annotation_skews.pl")
-			    {
-			   		my $filestring = `ls $skews_dir`;		   
-		   			my @phdfilenames = split(/\n/,$filestring);
-					my $seq_name = $sequence_object->sequence_name(); 		    
-			   		foreach my $file (@phdfilenames)
-			   		{
-					    if($file =~ m/$seq_name/ and $file =~ m/.png/)
-					    {
-#						   	$resultDNA .= "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
-							$hash_dna{skews} = "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
-				   	    }
-				   	}	
-			    }
-			    elsif($component eq "annotation_infernal.pl")
-			    {
-#				if($hash_dna{infernal} == 1){
-				    my $interval = @{$evidence->{intervals}}[0];	        
-                    my $name = $interval->{tags}{target_type}.":".$interval->{tags}{target_name};
-				    my $file = $infernal_output_file."_".$header;
-#				    $resultDNA .= "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
-				    $hash_dna{infernal} = "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
-				    
+#mark
 #				}
-			    }
-			    elsif($component eq "annotation_rbsfinder.pl")
-			    {
-#				if($hash_dna{rbsfinder} == 1){
-				    my $interval = @{$evidence->{intervals}}[0];
-                    my $file = $header.".txt";
-#				    $resultDNA .= "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
-				    $hash_dna{rbsfinder} = "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
+#    		}
+#    		if($count_ev == 0)
+#    		{
+#    			foreach my $keys (sort keys %hash_ev)
+#    			{
+#				    if($keys eq "blast")
+#				    {
+##				    	$line_subev .= "<td>BLAST	</td>\n";
+#				    }
+#				    if($keys eq "rpsblast")
+#				    {
+#						$line_subev .= "<td>RPS-BLAST       </td>\n";
+#				    }
+#				    elsif($keys eq "go_terms")
+#				    {
+#                        $line_subev .= "<td>GO terms       </td>\n";
+#                    }
+#				    elsif($keys eq "interpro")
+#				    {
+#                        $line_subev .= "<td>InterPro       </td>\n";
+#                    }
+#				    elsif($keys eq "orthology_eggnog")
+#				    {
+#                        $line_subev .= "<td>Orthology eggNOG </td>\n";
+#                    }   
+#				    elsif($keys eq "orthology_cog")
+#				    {
+#                        $line_subev .= "<td>Orthology COG </td>\n";
+#                    }                 
+#				    elsif($keys eq "orthology_kog")
+#				    {
+#                        $line_subev .= "<td>Orthology KOG </td>\n";
+#                    }
+#				    elsif($keys eq "pathways")
+#				    {
+#                        $line_subev .= "<td>Pathways       </td>\n";
+#                    }
+#				    elsif($keys eq "phobius")
+#				    {
+#                        $line_subev .= "<td>Phobius       </td>\n";
+#                    }
+#				    elsif($keys eq "tmhmm")
+#				    {
+#                        $line_subev .= "<td>TMHMM       </td>\n";
+#                    }
+#				    elsif($keys eq "signalP")
+#				    {
+#                        $line_subev .= "<td>SignalP       </td>\n";
+#                    }
+#				    elsif($keys eq "predgpi")
+#				    {
+#                        $line_subev .= "<td>PredGPI       </td>\n";
+#                    }
+#				    elsif($keys eq "bigpi")
+#			    	{
+#            	        $line_subev .= "<td>big-PI       </td>\n";
+#                    }
+#				    elsif($keys eq "dgpi")
+#				    {
+#                        $line_subev .= "<td>DGPI       </td>\n";
+#                    }
+#				    elsif($keys eq "tcdb")
+#				    {
+#                        $line_subev .= "<td>TCDB       </td>\n";
+#                    }
+#				    elsif($keys eq "psort")
+#				    {
+#						$line_subev .= "<td>PSORT       </td>\n";
+#				    }
+#				    else
+#				    {
+#						$line_subev .= "<td>BLASTx$keys       </td>\n";
+#				    }
 #				}
-			    }
-			    elsif($component eq "annotation_rnammer.pl")
-			    {	
-#				if($hash_dna{rnammer} == 1){
-				    my $interval = @{$evidence->{intervals}}[0];
-                    my $name = "Molecule type:".$interval->{tags}{molecule_type};
-				    my $file = $header."_rnammer.gff";
-#				    $resultDNA .= "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
-				    $hash_dna{rnammer} = "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
-#				}
-			    }
-			    elsif($component eq "annotation_transterm.pl")
-			    {
-#				if($hash_dna{transterm} == 1){
-	        	    my $interval = @{$evidence->{intervals}}[0];
-                    my $name = "Transterm";
-                    my $file = $header.".txt";
-				    $hash_dna{transterm} = "<td> <a href=\"../$transterm_dir/$file\"> $tag</a></td>\n";
-#				    $hash_dna{transterm} = 2;
-#				}
-	            }
-			    elsif($component eq "annotation_trf.pl")
-			    {
-#				if($hash_dna{trf} == 1){
-				    my $name = $sequence_object->{sequence_name};		    
-				    my $file = $trf_dir."/".$name."_trf.txt";
-#				    $resultDNA .= "<td> <a href=\"../$file\"> TRF </a></td>\n";
-				    $hash_dna{trf} = "<td> <a href=\"../$file\"> TRF </a></td>\n";
-#				}	
-			    }
-			    elsif($component eq "annotation_trna.pl")
-			    {
-#	                if($hash_dna{trna} == 1){
-                    my $name = $sequence_object->{sequence_name};
-                    my $file = $trna_dir."/".$name."_trna.txt";
-#                   $resultDNA .= "<td> <a href=\"../$file\"> $tag</a></td>\n";
-				    $hash_dna{trna} = "<td> <a href=\"../$file\"> $tag</a></td>\n";
-#		                }
-	            }
-			    elsif($component eq "annotation_mreps.pl")
-			    {
-#		                if($hash_dna{mreps} == 1){
-                    my $name = $sequence_object->{sequence_name};
-                    my $file = $mreps_dir."/".$name."_mreps.txt";
-#		                    $resultDNA .= "<td> <a href=\"../$file\"> mreps</a></td>\n";
-				    $hash_dna{mreps} = "<td> <a href=\"../$file\"> mreps</a></td>\n";
-#		                }
-	            }
-			    elsif($component eq "annotation_string.pl")
-			    {
-#		                if($hash_dna{string} == 1){
-                    my $name = $sequence_object->{sequence_name};
-                    my $file = $string_dir."/".$name."_string.txt";
-#		                    $resultDNA .= "<td> <a href=\"../$file\"> String </a></td>\n";
-				    $hash_dna{string} = "<td> <a href=\"../$file\"> String </a></td>\n";
-#		                }
-	            }
-			    $count_dna++;
-    		}
-=pod
-	    if($resultDNA ne ""){
-		$evDna_html .= "<tr>\n";
-        	$evDna_html .= $resultDNA;
-        	$evDna_html .= "</tr>\n";
-        	$dna_html .= $evDna_html;
-	    } 
-=cut
-
-#				    foreach my $key (sort keys %hash_ev){
-#		            	$subev_html .= $hash_ev{$key};
-#		    	    }
-#		    	    $subev_html .= "</tr>\n";
-#		    	    $ev_html .= $subev_html;
+#				$count_ev++;
+#    		}
+#    		else
+#    		{
+#    			my $tag = $evidence->{tag};
+#			    if($tag eq "tcdb")
+#			    {
+#					$tag = "TCDB";
+#		  	    }
+#			    elsif($tag eq "rRNA_prediction")
+#			    {
+#					$tag = "RNAmmer";
+#			    }
+#			    elsif($tag eq "transterm")
+#			    {
+#	                $tag = "TransTermHP";
+#	            }
+#			    elsif($tag eq "HTG")
+#			    {
+#	                $tag = "Alien_hunter";
+#	            }
+#			    elsif($tag eq "RNA_scan")
+#			    {
+#	                $tag = "Infernal";
+#	            }
+#			    elsif($tag eq "RBS")
+#			    {
+#	                $tag = "RBS finder";
+#	            }
+#			    elsif($tag eq "skews")
+#			    {
+#	                $tag = "Skews";
+#	            }
+#			    elsif($tag eq "tRNAscan")
+#			    {
+#	                $tag = "tRNAscan-SE";
+#	            }
+#			    my $component = $evidence->{log}{name};
+##			    $scriptSQL .= "\n--evidencetag = ".$evidence->{tag};
+#			    ###
+#			    #
+#			    #	TODO - copiar arquivos para html_dir/root/
+#			    #	TODO - adaptar caminho para links
+#			    #
+#			    ###
+#			    if ($component eq "annotation_alienhunter.pl")
+#			    {
+##					if($hash_dna{alienhunter} == 1){
+#				    my $interval = @{$evidence->{intervals}}[0];			
+#				    my $aux = $interval->{tags}{seq_name}." ; ".$interval->{tags}{note};		
+#				    my $file = $alienhunter_output_file."_".$header;
+##				    $resultDNA .= "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
+#				    $hash_dna{alienhunter} = "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
+##					}
+#			    }
+#			    elsif($component eq "annotation_skews.pl")
+#			    {
+#			   		my $filestring = `ls $skews_dir`;		   
+#		   			my @phdfilenames = split(/\n/,$filestring);
+#					my $seq_name = $sequence_object->sequence_name(); 		    
+#			   		foreach my $file (@phdfilenames)
+#			   		{
+#					    if($file =~ m/$seq_name/ and $file =~ m/.png/)
+#					    {
+##						   	$resultDNA .= "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
+#							$hash_dna{skews} = "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
+#				   	    }
+#				   	}	
+#			    }
+#			    elsif($component eq "annotation_infernal.pl")
+#			    {
+##				if($hash_dna{infernal} == 1){
+#				    my $interval = @{$evidence->{intervals}}[0];	        
+#                    my $name = $interval->{tags}{target_type}.":".$interval->{tags}{target_name};
+#				    my $file = $infernal_output_file."_".$header;
+##				    $resultDNA .= "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
+#				    $hash_dna{infernal} = "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
+#				    
+##				}
+#			    }
+#			    elsif($component eq "annotation_rbsfinder.pl")
+#			    {
+##				if($hash_dna{rbsfinder} == 1){
+#				    my $interval = @{$evidence->{intervals}}[0];
+#                    my $file = $header.".txt";
+##				    $resultDNA .= "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
+#				    $hash_dna{rbsfinder} = "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
+##				}
+#			    }
+#			    elsif($component eq "annotation_rnammer.pl")
+#			    {	
+##				if($hash_dna{rnammer} == 1){
+#				    my $interval = @{$evidence->{intervals}}[0];
+#                    my $name = "Molecule type:".$interval->{tags}{molecule_type};
+#				    my $file = $header."_rnammer.gff";
+##				    $resultDNA .= "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
+#				    $hash_dna{rnammer} = "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
+##				}
+#			    }
+#			    elsif($component eq "annotation_transterm.pl")
+#			    {
+##				if($hash_dna{transterm} == 1){
+#	        	    my $interval = @{$evidence->{intervals}}[0];
+#                    my $name = "Transterm";
+#                    my $file = $header.".txt";
+#				    $hash_dna{transterm} = "<td> <a href=\"../$transterm_dir/$file\"> $tag</a></td>\n";
+##				    $hash_dna{transterm} = 2;
+##				}
+#	            }
+#			    elsif($component eq "annotation_trf.pl")
+#			    {
+##				if($hash_dna{trf} == 1){
+#				    my $name = $sequence_object->{sequence_name};		    
+#				    my $file = $trf_dir."/".$name."_trf.txt";
+##				    $resultDNA .= "<td> <a href=\"../$file\"> TRF </a></td>\n";
+#				    $hash_dna{trf} = "<td> <a href=\"../$file\"> TRF </a></td>\n";
+##				}	
+#			    }
+#			    elsif($component eq "annotation_trna.pl")
+#			    {
+##	                if($hash_dna{trna} == 1){
+#                    my $name = $sequence_object->{sequence_name};
+#                    my $file = $trna_dir."/".$name."_trna.txt";
+##                   $resultDNA .= "<td> <a href=\"../$file\"> $tag</a></td>\n";
+#				    $hash_dna{trna} = "<td> <a href=\"../$file\"> $tag</a></td>\n";
+##		                }
+#	            }
+#			    elsif($component eq "annotation_mreps.pl")
+#			    {
+##		                if($hash_dna{mreps} == 1){
+#                    my $name = $sequence_object->{sequence_name};
+#                    my $file = $mreps_dir."/".$name."_mreps.txt";
+##		                    $resultDNA .= "<td> <a href=\"../$file\"> mreps</a></td>\n";
+#				    $hash_dna{mreps} = "<td> <a href=\"../$file\"> mreps</a></td>\n";
+##		                }
+#	            }
+#			    elsif($component eq "annotation_string.pl")
+#			    {
+##		                if($hash_dna{string} == 1){
+#                    my $name = $sequence_object->{sequence_name};
+#                    my $file = $string_dir."/".$name."_string.txt";
+##		                    $resultDNA .= "<td> <a href=\"../$file\"> String </a></td>\n";
+#				    $hash_dna{string} = "<td> <a href=\"../$file\"> String </a></td>\n";
+##		                }
+#	            }
+#			    $count_dna++;
+#    		}
+#=pod
+#	    if($resultDNA ne ""){
+#		$evDna_html .= "<tr>\n";
+#        	$evDna_html .= $resultDNA;
+#        	$evDna_html .= "</tr>\n";
+#        	$dna_html .= $evDna_html;
+#	    } 
+#=cut
+#
+##				    foreach my $key (sort keys %hash_ev){
+##		            	$subev_html .= $hash_ev{$key};
+##		    	    }
+##		    	    $subev_html .= "</tr>\n";
+##		    	    $ev_html .= $subev_html;
     	}
     	
     }
@@ -5467,6 +5455,159 @@ sub writeFile
 	close($FILEHANDLER);
 }
 
+sub generate_alignments
+{
+	my(%alignment, $evidence, $number, $start, $end, $seq_aa) = @_;
+	my $sql = "";
+	my $createTableAlignments = "CREATE TABLE IF NOT EXISTS ALIGNMENTS(\n".
+						"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
+						"	idEvidence INTEGER\n";
+	my $createTableHash = "";
+	my $insertTable = "";
+	my @insertTables = ();
+	my $insertAlignments = "INSERT INTO ALIGNMENTS(idEvidence";
+	
+	foreach my $key(sort (keys %alignment))
+	{
+#		if(ref($key) ne "HASH" && $key && !($key =~ /^HASH/))
+#		{
+#			$sql .= "\n--keysAlignmentTest key:\t$key\n";
+#		}
+		if($key && ref($key) ne "HASH" && ref($alignment{$key}) ne "HASH" && !($key =~ /^HASH/))
+		{
+			$insertAlignments .= ", $key";
+		}
+		elsif($key && $alignment{$key} && ref($key) eq "HASH" && !($key =~ /^HASH/))
+		{
+			$insertTable .= "INSERT INTO ". (uc $key). "_ALIGNMENTS(idAlignment";
+			my $counterColumns = 0;
+			foreach my $key2 (sort (keys %{$alignment{$key}}))
+			{
+				if(ref($key2) ne "HASH" && !($key =~ /^HASH/))
+				{
+					$insertTable .= ", `$key2`";
+					$counterColumns++;
+				}
+			}
+			$insertTable .= ") VALUES (\n
+			(
+				SELECT id 
+				FROM ALIGNMENTS
+				WHERE 
+					idEvidence = 
+					(
+						SELECT id 
+						FROM EVIDENCES
+						WHERE 
+							name = '".$evidence->{log}{name}."' AND 
+							number = '$number' AND 
+							start = '$start' AND 
+							end = '$end' AND 
+							proteinSequence = '$seq_aa'
+					)
+			) ";
+			for(my $i = 0; $i < $counterColumns; $i++)
+			{
+				$insertTable .= ", value-".$i;
+			}
+			$insertTable .= ");\n";
+			push(@insertTables, $insertTable); 
+		}
+	}
+	
+#	$insertAlignments .= ") VALUES (\n".
+#				"(
+#					SELECT id 
+#					FROM EVIDENCES 
+#					WHERE 
+#						name = '".$evidence->{log}{name}."' AND 
+#						number = '$number' AND 
+#						start = '$start' AND 
+#						end = '$end' AND 
+#						proteinSequence = '$seq_aa'
+#				)\n";
+	
+	$insertAlignments .= ") VALUES (\n".
+				"(
+					SELECT id 
+					FROM EVIDENCES 
+					WHERE  
+						number = '0' AND 
+						start = '0' AND 
+						end = '0' AND 
+						proteinSequence = ''
+				)\n";
+	
+	my $counterTables = 0;
+	foreach my $key(sort (keys %alignment))
+	{
+		###
+		#
+		#	TODO	-	Corrigir criação e inserção de dados dos alinhamentos, não esta pegando o valor das chaves
+		#
+		###
+		
+		if($key && ref($key) ne "HASH" && ref($alignment{$key}) ne "HASH" && !($key =~ /^HASH/))
+		{
+			$createTableAlignments .= ", $key	VARCHAR(30000)\n";
+#			my $value = "";
+#			if($alignment{$key} =~ /^ARRAY/)
+#			{
+#				$value = $alignment{$key}[0];
+#			}
+#			else
+#			{
+#				if(!undef $alignment{$key} || $alignment{$key})
+#				{
+#					$value = $alignment{$key};
+#				}
+#			}
+			$insertAlignments .= ", '".$alignment{$key}."'\n ";
+		}
+		elsif($key && $alignment{$key} && ref($key) eq "HASH" && !($key =~ /^HASH/))
+		{
+			$createTableHash .= "CREATE TABLE IF NOT EXISTS ". (uc $key). "_ALIGNMENTS (\n" .
+			"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
+			"	idAlignment INTEGER \n";
+			my $counterColumns = 0;
+			foreach my $key2 (sort (keys %{$alignment{$key}}))
+			{
+				if(ref($key2) ne "HASH" && !($key =~ /^HASH/))
+				{
+					if($insertTables[$counterTables] =~ /value-$counterColumns/gm)
+					{
+						$insertTables[$counterTables] =~ s/value-$counterColumns/'$alignment{$key}{$key2}'/g;
+					}
+					$createTableHash .= ",	`$key2` VARCHAR(30000)\n";
+					$counterColumns++;
+				}
+			}
+			$createTableHash .= ", FOREIGN KEY(idAlignment) REFERENCES ALIGNMENTS(id) \n);\n";
+			$counterTables++;
+		}
+	}
+	$insertAlignments .= ");\n";
+	$createTableAlignments .= ",    FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id) \n);\n";
+	$sql .= "$createTableAlignments\n$createTableHash\n$insertAlignments\n";
+	foreach my $insert (@insertTables)
+	{
+		$sql .= "$insert\n"; 					
+	}
+	return $sql;
+}
+
+
+###
+#
+#	Method used to generate querys of intervals, creation and insertion of data
+#	@param $interval 	=> reference of the object interval
+#	@param $evidence 	=> reference of the objecet evidence
+#	@param $start		=> begin of interval
+#	@param $end			=> end of interval
+#	@param $seq_aa		=> sequence
+#
+#
+###
 sub generate_intervals
 {
 	my($interval, $evidence, $number, $start, $end, $seq_aa) = @_;
@@ -5481,83 +5622,83 @@ sub generate_intervals
     			
 	foreach my $key(sort (keys %$interval))
 	{
-    				if(!($interval->{$key} =~ /^HASH/))
-    				{
-    					$insertIntervals .= ", `$key`";
-    				}
-    				else
-    				{
-    					$insertTable .= "INSERT INTO ". (uc $key). "(idInterval";
-    					my $counterColumns = 0;
-    					foreach my $key2 (sort (keys %{$interval->{$key}}))
-    					{
-    						$insertTable .= ", `$key2`";
-    						$counterColumns++;
-    					}
-    					$insertTable .= ") VALUES (\n
-    					(
-		    				SELECT id 
-		    				FROM INTERVALS
-		    				WHERE 
-		    					idEvidence = 
-		    					(
-		    						SELECT id 
-					    			FROM EVIDENCES
-					    			WHERE 
-					    				name = '".$evidence->{log}{name}."' AND 
-					    				number = $number AND 
-					    				start = $start AND 
-					    				end = $end AND 
-					    				proteinSequence = '$seq_aa'
-					    		)
-	    				) ";
-	    				for(my $i = 0; $i < $counterColumns; $i++)
-	    				{
-	    					$insertTable .= ", value-".$i;
-	    				}
-	    				$insertTable .= ");\n";
-	    				push(@insertTables, $insertTable); 
-    				}
-    			}
-    			
-    			$insertIntervals .= ") VALUES (\n".
-    						"(
-	    						SELECT id 
-				    			FROM EVIDENCES 
-				    			WHERE 
-				    				name = '".$evidence->{log}{name}."' AND 
-				    				number = $number AND 
-				    				start = $start AND 
-				    				end = $end AND 
-				    				proteinSequence = '$seq_aa'
-				    		)\n";
-    			
-    			my $counterTables = 0;
-    			foreach my $key(sort (keys %$interval))
-    			{
-    				if(!($interval->{$key} =~ /^HASH/))
-    				{
-    					$createTableIntervals .= ",    `$key`	VARCHAR(30000)\n";
-    					$insertIntervals .= ", '".$interval->{$key}."'\n ";
-    				}
-    				else
-    				{
-    					$createTableHash .= "CREATE TABLE IF NOT EXISTS ". (uc $key). " (\n" .
-    					"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
-    					"	idInterval INTEGER \n";
-    					my $counterColumns = 0;
-    					foreach my $key2 (sort (keys %{$interval->{$key}}))
-    					{
-    						if($insertTables[$counterTables] =~ /value-$counterColumns/gm)
-    						{
-    							$insertTables[$counterTables] =~ s/value-$counterColumns/'$interval->{$key}{$key2}'/g;
-    						}
-    						$createTableHash .= ",	`$key2` VARCHAR(30000)\n";
-    						$counterColumns++;
-    					}
-    					$createTableHash .= ",    FOREIGN KEY(idInterval) REFERENCES INTERVALS(id) \n);\n";
-    					$counterTables++;
-    				}
+		if(!($interval->{$key} =~ /^HASH/))
+		{
+			$insertIntervals .= ", `$key`";
+		}
+		else
+		{
+			$insertTable .= "INSERT INTO ". (uc $key). "_INTERVALS(idInterval";
+			my $counterColumns = 0;
+			foreach my $key2 (sort (keys %{$interval->{$key}}))
+			{
+				$insertTable .= ", `$key2`";
+				$counterColumns++;
+			}
+			$insertTable .= ") VALUES (\n
+			(
+				SELECT id 
+				FROM INTERVALS
+				WHERE 
+					idEvidence = 
+					(
+						SELECT id 
+						FROM EVIDENCES
+						WHERE 
+							name = '".$evidence->{log}{name}."' AND 
+							number = '$number' AND 
+							start = '$start' AND 
+							end = '$end' AND 
+							proteinSequence = '$seq_aa'
+					)
+			) ";
+			for(my $i = 0; $i < $counterColumns; $i++)
+			{
+				$insertTable .= ", value-".$i;
+			}
+			$insertTable .= ");\n";
+			push(@insertTables, $insertTable); 
+		}
+	}
+			
+	$insertIntervals .= ") VALUES (\n".
+				"(
+					SELECT id 
+					FROM EVIDENCES 
+					WHERE 
+						name = '".$evidence->{log}{name}."' AND 
+						number = '$number' AND 
+						start = '$start' AND 
+						end = '$end' AND 
+						proteinSequence = '$seq_aa'
+				)\n";
+	
+	my $counterTables = 0;
+	foreach my $key(sort (keys %$interval))
+	{
+		if(!($interval->{$key} =~ /^HASH/))
+		{
+			$createTableIntervals .= ",`$key`	VARCHAR(30000)\n";
+			$insertIntervals .= ", '".$interval->{$key}."'\n ";
+		}
+		else
+		{
+			$createTableHash .= "CREATE TABLE IF NOT EXISTS ". (uc $key). "_INTERVALS (\n" .
+			"	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n".
+			"	idInterval INTEGER \n";
+			my $counterColumns = 0;
+			foreach my $key2 (sort (keys %{$interval->{$key}}))
+			{
+				if($insertTables[$counterTables] =~ /value-$counterColumns/gm)
+				{
+					$insertTables[$counterTables] =~ s/value-$counterColumns/'$interval->{$key}{$key2}'/g;
+				}
+				$createTableHash .= ",	`$key2` VARCHAR(30000)\n";
+				$counterColumns++;
+			}
+			$createTableHash .= ",FOREIGN KEY(idInterval) REFERENCES INTERVALS(id) \n);\n";
+			$counterTables++;
+		}
 	}
 	$insertIntervals .= ");\n";
 	$createTableIntervals .= ",    FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id) \n);\n";
@@ -5566,6 +5707,778 @@ sub generate_intervals
 	{
 		$sql .= "$insert\n"; 					
 	}
+	return $sql;
+}
+
+###
+#
+#	Method used to generate evidences query recursive
+#	@param $evidence	=>	reference evidence object 
+#	@param $bases		=>	quantity bases
+#	@param $locus_tag	=>	locus tag
+#
+###
+sub generate_evidences_recursive
+{
+	my($evidence, $bases, $locus_tag) = @_;
+	my $sql = "";
+	my $fasta_header_evidence = $sequence_object->fasta_header_evidence($evidence);
+	$fasta_header_evidence =~ s/>//g;
+	my $html_file = $fasta_header_evidence.".html";
+	my $txt_file = $fasta_header_evidence.".txt";
+	my $png_file = $fasta_header_evidence.".png";
+	my $component_name = $evidence->{log}{name};
+	my $number = $evidence->{number};
+	my $start = 0;
+	my $end = 0;
+	my $seq_aa = "";
+	if($evidence->{tag})
+	{	
+		if($evidence->{tag} eq "CDS")
+		{
+			$number = $evidence->{number};
+			if($evidence->{start} < $evidence->{end})
+			{
+				$start = $evidence->{start};
+				$end = $evidence->{end}; 
+			}
+			else
+			{
+				$start = $evidence->{end};
+				$end = $evidence->{start};
+			}
+			my $len_nt = ($end - $start)+1;
+			my $sequence_nt;
+			my $nt_seq = substr($bases, $start-1, $len_nt);
+			$len_nt = length($nt_seq);
+			my $file_ev = $locus_tag.".fasta";
+			open(AA,">", "$html_dir/root/$aa_fasta_dir/$file_ev");
+			print FILE_NT ">$locus_tag\n";
+			print AA "\nNucleotide sequence:\n\n";
+			print AA ">$locus_tag\n";
+			for (my $i = 0; $i < $len_nt; $i += 60)
+			{
+				$sequence_nt = substr($nt_seq,$i,60);
+				print FILE_NT "$sequence_nt\n";
+				print AA "$sequence_nt\n";
+			}
+			$seq_aa = $evidence->{protein_sequence};
+			my $sequence_aa;
+			my $len_aa = length($seq_aa);
+			print FILE_AA ">$locus_tag\n";
+			print AA "\nTranslated sequence:\n\n";
+			print AA ">$locus_tag\n";
+			for (my $i = 0; $i < $len_aa; $i += 60)
+			{
+				$sequence_aa = substr($seq_aa,$i, 60);
+				print FILE_AA "$sequence_aa\n";
+				print AA "$sequence_aa\n";
+			}
+			$sql .= "\nINSERT INTO EVIDENCES(idEvidence, idConclusion, name, number, start, end, proteinSequence) VALUES
+					(
+						(
+							SELECT 
+								(CASE WHEN COUNT(id) > 0 THEN id ELSE NULL END) 
+							FROM EVIDENCES 
+							WHERE 
+								idConclusion = 
+								(
+									SELECT id 
+									FROM CONCLUSIONS 
+									WHERE 
+										idSequence = 
+										(
+											SELECT id 
+												FROM SEQUENCES 
+												WHERE 
+													header = '".$sequence_object->fasta_header()."' AND 
+													name = '".$sequence_object->sequence_name()."' AND 
+													bases = '".$sequence_object->current_sequence()."'
+											) AND 
+											locusTag = '$locus_tag'
+									) AND 
+									name = '".$evidence->{log}{name}."' AND 
+									number = $number AND 
+									start = $start AND 
+									end = $end
+						),
+						(
+						SELECT id 
+						FROM CONCLUSIONS 
+						WHERE 
+							idSequence = 
+							(
+								SELECT id 
+									FROM SEQUENCES 
+									WHERE 
+										header = '".$sequence_object->fasta_header()."' AND 
+										name = '".$sequence_object->sequence_name()."' AND 
+										bases = '".$sequence_object->current_sequence()."'
+								) AND 
+								locusTag = '$locus_tag'
+						), 
+						'".$evidence->{log}{name}."', 
+						$number, 
+						$start, 
+						$end, 
+						'$seq_aa'
+					);".
+					"\nINSERT INTO TYPES(idEvidence, value) VALUES 
+					(
+						(
+							SELECT id
+							FROM EVIDENCES
+							WHERE
+								idEvidence = 
+								(
+									SELECT id 
+									FROM EVIDENCES 
+									WHERE 
+										idConclusion = 
+										(
+											SELECT id 
+											FROM CONCLUSIONS 
+											WHERE 
+												idSequence = 
+												(
+													SELECT id 
+														FROM SEQUENCES 
+														WHERE 
+															header = '".$sequence_object->fasta_header()."' AND 
+															name = '".$sequence_object->sequence_name()."' AND 
+															bases = '".$sequence_object->current_sequence()."'
+													) AND 
+													locusTag = '$locus_tag'
+											) AND
+											name = '".$evidence->{log}{name}."' AND 
+											number = $number AND 
+											start = $start AND 
+											end = $end
+										) AND 
+								proteinSequence = '$seq_aa'
+						), 
+						'".$evidence->{type}."'
+					);";
+#			foreach my $key(sort keys %$evidence)
+#			{
+#				$sql .= "\n--evidence	$key	-	".$evidence->{$key}."\n";
+#				if(!undef($evidence->{$key}))
+#				{
+#					$sql .= "\n--evidence	$key	-	".$evidence->{$key}."\n";
+#				}
+#			}
+				
+#			foreach my $key(sort keys %$evidence)
+#			{
+#				if(!(undef ($evidence->{$key})))
+#				{
+#					$sql .= "\n--evidenceArray $key		key:	$key -	value:	".$evidence->{$key};
+#					if($evidence->{$key} =~ /^ARRAY/)
+#					{
+						#					my @alignmentsFelaDaPota = $evidence->{$key2};
+#						my %alignment = ();
+	#					while(my($key3, $value) = each %{$evidence->{$key2}[0]})
+	#					{
+	#						$alignment{$key3} = $value;
+	#					}
+#						foreach my $value (sort keys %{$evidence->{$key}[0]})
+#						{
+		#					$sub_evidence->{alignments}[0]{subject_id}
+#							if($key =~ /alignments/g)
+#							{
+#								$alignment{$value} = $evidence->{$key}[0]{$value};
+#							}
+#							$sql .= "\n--$key key:\t$value\t-\tvalue:\t".$alignment{$value};
+#						}
+#						$sql .= "\n".generate_alignments(%alignment, $evidence, $number, $start, $end, $seq_aa)."\n";
+#					}
+#				}
+#			}
+			
+#			if(!(undef %{$evidence->{alignments}[0]}))
+#			{
+##				my @alignments = @{$evidence->{alignments}};
+#				my %alignment = %{$evidence->{alignments}[0]};
+#				foreach my $key (sort keys %{$evidence->{alignments}[0]})
+#				{
+#					$sql .= "\n--evidenceArray key:\t$key\tvalue:\t".$evidence->{alignments}[0]{$key};
+#				}
+##				$sql .= "\n--testAlignment ".$evidence->{alignments}[0]{subject_sequence}."\n";
+##				foreach my $alignment(@alignments)
+##				{
+#					$sql .= "\n".generate_alignments(%alignment, $evidence, $number, $start, $end, $seq_aa)."\n";
+##				}
+#			}
+
+#			if(!(undef @{$evidence->{alignments}}))
+#			{
+#				foreach my $alignment(sort @{$evidence->{alignments}})
+#				{
+#					$sql .= "\n--evidenceLog		key:	key	-	value:	".$alignment."\n";
+#				}
+#			}
+			
+			
+			
+#			if(!(undef $evidence->{alignments}) && $evidence->{type} eq "similarity")
+#			{
+#				my @alignments = $evidence->{alignments};
+#				$sql .= "\n--alignmentDefined	".scalar @alignments."\n";
+#				if(scalar @alignments)
+#				{
+#					my $subject_id = $evidence->{alignments}[0]{subject_id};
+#					$subject_id =~ m/^\S+\|(\w+)\|(\d+) (\S+),/;
+#					my $type_db = $1;
+#					my $accession = $3;
+#					my $db_xref = $1.':'.$3;
+#					
+#					foreach my $alignment(@alignments)
+#					{
+#						
+#						$sql .= "\nINSERT INTO ALIGNMENTS(idEvidence, subjectId, typeDB, accession, alignment) VALUES 
+#		                            	(
+#		                            		(
+#			                            		SELECT id 
+#							    	    		FROM EVIDENCES 
+#							    	    		WHERE 
+#							    	    			idEvidence = 
+#							    	    			(
+#							    	    				SELECT id 
+#									    	    		FROM EVIDENCES 
+#									    	    		WHERE 
+#									    	    			idConclusion = 
+#									    	    			(
+#										    	    			SELECT id 
+#											    	    		FROM CONCLUSIONS 
+#											    	    		WHERE 
+#											    	    			idSequence = 
+#											    	    			(
+#											    	    				SELECT id 
+#														    			FROM SEQUENCES 
+#														    			WHERE 
+#														    				header = '".$sequence_object->fasta_header()."' AND 
+#														    				name = '".$sequence_object->sequence_name()."' AND 
+#														    				bases = '".$sequence_object->current_sequence()."'
+#													    			) AND 
+#												    				locusTag = '$locus_tag'
+#											    			) AND 
+#											    			name = '".$evidence->{log}{name}."' AND 
+#											    			number = '".$evidence->{number}."' AND 
+#											    			start = '".$evidence->{start}."' AND 
+#											    			end = '".$evidence->{end}."'
+#											    	)
+#						    	    		),
+#						    	    		'$subject_id',
+#						    	    		'$type_db',
+#						    	    		'$accession',
+#						    	    		'$alignment'
+#		                            	);";
+#					}
+#				}
+#			}
+					
+			if($evidence->{type} eq "intervals")
+			{
+				my @intervals = @{$evidence->{intervals}};
+				#cada evidencia tem seu intervalo, cada intervalo selecionado como padrão pode ser o primeiro
+				my $interval = $intervals[0];
+				foreach my $key (sort keys %$interval)
+				{
+					$sql .= "\n--intervals\tkey:\t$key\tvalue:\t".$interval->{$key}."\n";
+				}
+				###
+				#
+				#	a partir daqui começa criação das tabelas, e inserção de dados dos intervalos e seus campos
+				#	TODO - finalizar geração de intervalos
+				#
+				###
+				my $generatedIntervals = generate_intervals($interval, $evidence, $number, $start, $end, $seq_aa);
+					
+				$sql .= "\n$generatedIntervals\n";
+			}
+			my %interpro_ids = ();
+			my %go_ids = ();
+			my $product;
+			my $hit_found = 0;
+#			if(!(undef @{$evidence->{evidences}}))
+#			{
+			if(scalar(@{$evidence->{evidences}}))
+			{
+				my @sub_evidences = @{$evidence->{evidences}};
+				
+				foreach my $sub_evidence (@sub_evidences)
+				{
+					$sql .= "\n--sub_evidence\n"; 
+					my $result = generate_evidences_recursive($sub_evidence, $bases, $locus_tag);
+					$sql .= "\n$result\n";
+				}
+			}
+#			}
+			
+		#			foreach my $component (sort @comp_ev)
+		#			{
+		#				if ($component eq "blast")
+		#				{
+		#}
+		#elsif($component eq "interpro")
+		#{
+		#	$hash_ev{$component} = "<td><a href=\"../$interpro_dir/HTML/$html_file\"> No hits \t</a> </td>\n";
+		#						$hash_ev{go_terms} = "<td>No hits \t</td>\n";
+		#}
+		#elsif($component eq "orthology")
+		#{			
+		#	if(defined $eggnog_dir)
+		#	{
+		#						my $aux_html = $html_file;
+		# 	$aux_html =~ s/.html/.eggnog.html/g;
+		#						$hash_ev{orthology_eggnog} = "<td><a href=\"../$eggnog_dir/$aux_html\"> No hits </a> </td>\n";
+		#		 			}
+		#		 			if(defined $cog_dir)
+		#		 			{
+		#my $aux_html = $html_file;
+		#$aux_html =~ s/.html/.cog.html/g;
+		#$hash_ev{orthology_cog} = "<td><a href=\"../$cog_dir/$aux_html\"> No hits </a> </td>\n";
+		# 	}
+		#		 			if(defined $kog_dir)
+		#		 			{
+		# my $aux_html = $html_file;
+		# $aux_html =~ s/.html/.kog.html/g;
+		# $hash_ev{orthology_kog} = "<td><a href=\"../$kog_dir/$aux_html\"> No hits </a> </td>\n";
+		# 	}
+		#}
+		#elsif($component eq "pathways")
+		#{
+		#	$hash_ev{$component} = "<td><a href=\"../$pathways_dir/$html_file\"> No_mapped_pathways </a> </td>\n";
+		#}
+		#elsif($component eq "phobius")
+		#{
+		#	$hash_ev{$component} = "<td><a href=\"../$phobius_dir/$png_file\"> No hits \t</a> </td>\n";
+		#}
+		#elsif($component eq "rpsblast")
+		#{
+		#	$hash_ev{$component} = "<td><a href=\"../$rpsblast_dir/$txt_file\"> No hits \t</a> </td>\n";
+		#}
+		#elsif($component eq "signalP")
+		#{
+		#	$hash_ev{$component} = "<td><a href=\"../$signalp_dir/$png_file\"> No hits \t</a> </td>\n";
+		#}
+		#				elsif($component eq "psort")
+		#				{
+		#					$fasta_header_evidence =~ s/>//g;
+		#						$hash_ev{$component} = "<td> No hits </td>\n";
+		#				}
+		#else
+		#{
+		# 		$hash_ev{$component} = "<td>No hits \t</td>\n"; 
+		#}
+		#			}
+		#			if($count_ev == 0)
+		#			{
+		#				#line_subev seria uma referencia aos componentes utilizados, representadas pelas colunas
+		#			$line_subev .= "<td>CDS\t</td>\n";
+		#			}
+		#			$subev_html = "<tr>\n";
+		#			$subev_html .= "<td><a href=\"../$html_dir/$aa_fasta_dir/$file_ev\"> $locus_tag </a></td>\n";
+		}
+	}
+	else
+	{
+		$sql .= "\nINSERT INTO EVIDENCES(idEvidence, idConclusion, name, number, start, end, proteinSequence) VALUES
+					(
+						(
+							SELECT 
+								(CASE WHEN COUNT(id) > 0 THEN id ELSE NULL END) 
+							FROM EVIDENCES 
+							WHERE 
+								idConclusion = 
+								(
+									SELECT id 
+									FROM CONCLUSIONS 
+									WHERE 
+										idSequence = 
+										(
+											SELECT id 
+												FROM SEQUENCES 
+												WHERE 
+													header = '".$sequence_object->fasta_header()."' AND 
+													name = '".$sequence_object->sequence_name()."' AND 
+													bases = '".$sequence_object->current_sequence()."'
+											) AND 
+											locusTag = '$locus_tag'
+									) AND 
+									name = '".$evidence->{log}{name}."' 
+						),
+						(
+						SELECT id 
+						FROM CONCLUSIONS 
+						WHERE 
+							idSequence = 
+							(
+								SELECT id 
+									FROM SEQUENCES 
+									WHERE 
+										header = '".$sequence_object->fasta_header()."' AND 
+										name = '".$sequence_object->sequence_name()."' AND 
+										bases = '".$sequence_object->current_sequence()."'
+								) AND 
+								locusTag = '$locus_tag'
+						), 
+						'".$evidence->{log}{name}."', 
+						'".$evidence->{number}."', 
+						'".$evidence->{start}."', 
+						'".$evidence->{end}."', 
+						''
+					);".
+					"\nINSERT INTO TYPES(idEvidence, value) VALUES 
+					(
+						(
+							SELECT id
+							FROM EVIDENCES
+							WHERE
+								idEvidence = 
+								(
+									SELECT id 
+									FROM EVIDENCES 
+									WHERE 
+										idConclusion = 
+										(
+											SELECT id 
+											FROM CONCLUSIONS 
+											WHERE 
+												idSequence = 
+												(
+													SELECT id 
+														FROM SEQUENCES 
+														WHERE 
+															header = '".$sequence_object->fasta_header()."' AND 
+															name = '".$sequence_object->sequence_name()."' AND 
+															bases = '".$sequence_object->current_sequence()."'
+												) AND 
+												locusTag = '$locus_tag'
+										) AND
+										name = '".$evidence->{log}{name}."' 
+								) AND  
+								number = '".$evidence->{number}."' AND
+								start = '".$evidence->{start}."' AND
+								end = '".$evidence->{end}."'
+						), 
+						'".$evidence->{type}."'
+					);";
+		if($evidence->{type} eq "intervals")
+		{
+			my @intervals = @{$evidence->{intervals}};
+			#cada evidencia tem seu intervalo, cada intervalo selecionado como padrão pode ser o primeiro
+			my $interval = $intervals[0];
+			foreach my $key (sort keys %$interval)
+			{
+				$sql .= "\n--intervals\tkey:\t$key\tvalue:\t".$interval->{$key}."\n";
+			}
+			###
+			#
+			#	a partir daqui começa criação das tabelas, e inserção de dados dos intervalos e seus campos
+			#	TODO - finalizar geração de intervalos
+			#
+			###
+			my $generatedIntervals = generate_intervals($interval, $evidence, $number, $start, $end, $seq_aa);
+				
+			$sql .= "\n$generatedIntervals\n";
+		}
+		
+		if($evidence->{type} eq "similarity")
+		{
+			my @alignments = @{$evidence->{alignments}};
+			my %alignment = ();
+			foreach my $key(sort keys %{$evidence->{alignments}[0]})
+			{
+				if($key && ref($key) ne "HASH" && !($key =~ /^\s/))
+				{
+					$alignment{$key} = $evidence->{alignments}[0]{$key};
+#					$sql .= "\n--keyTest\t$key";
+	#				$sql .= "\n--keyTest $key\tvalue:\t\n$alignment{$key}";
+				}
+			}
+			if(undef $number)
+			{
+				$number = 0;
+				$start = 0;
+				$end = 0;
+				$seq_aa = 0;
+			}
+#			my $generatedAlignments = generate_alignments(%alignment, $evidence, $number, $start, $end, $seq_aa);
+#			$sql .= "\n".$generatedAlignments."\n";
+		}
+
+#		if(!(undef @{$evidence->{intervals}}))
+#		{
+#			my @intervals = @{$evidence->{intervals}};
+#			#cada evidencia tem seu intervalo, cada intervalo selecionado como padrão pode ser o primeiro
+#			my $interval = $intervals[0];
+##			my %tags = %{$interval->{tags}};
+#			
+#			###
+#			#
+#			#	a partir daqui começa criação das tabelas, e inserção de dados dos intervalos e seus campos
+#			#	TODO - finalizar geração de intervalos
+#			#
+#			###
+#			my $generatedIntervals = generate_intervals($interval, $evidence, 0, 0, 0, '');
+#				
+#			$sql .= "\n$generatedIntervals\n";
+#		}
+	}
+	
+#	foreach my $key(sort keys %$evidence)
+#	{
+#		$sql .= "\n--evidence	$key	-	".$evidence->{$key}."\n";
+##		if(!undef($evidence->{$key}))
+##		{
+##			$sql .= "\n--evidence	$key	-	".$evidence->{$key}."\n";
+##		}
+#	}
+	if($count_ev == 0)
+	{
+#			foreach my $keys (sort keys %hash_ev)
+#			{
+#				if($keys eq "blast")
+#				{
+##					$line_subev .= "<td>BLAST	</td>\n";
+#				}
+#				if($keys eq "rpsblast")
+#				{
+#						$line_subev .= "<td>RPS-BLAST </td>\n";
+#				}
+#				elsif($keys eq "go_terms")
+#				{
+#$line_subev .= "<td>GO terms </td>\n";
+#}
+#				elsif($keys eq "interpro")
+#				{
+#$line_subev .= "<td>InterPro </td>\n";
+#}
+#				elsif($keys eq "orthology_eggnog")
+#				{
+#$line_subev .= "<td>Orthology eggNOG </td>\n";
+#} 
+#				elsif($keys eq "orthology_cog")
+#				{
+#$line_subev .= "<td>Orthology COG </td>\n";
+#} 
+#				elsif($keys eq "orthology_kog")
+#				{
+#$line_subev .= "<td>Orthology KOG </td>\n";
+#}
+#				elsif($keys eq "pathways")
+#				{
+#$line_subev .= "<td>Pathways </td>\n";
+#}
+#				elsif($keys eq "phobius")
+#				{
+#$line_subev .= "<td>Phobius </td>\n";
+#}
+#				elsif($keys eq "tmhmm")
+#				{
+#$line_subev .= "<td>TMHMM </td>\n";
+#}
+#				elsif($keys eq "signalP")
+#				{
+#$line_subev .= "<td>SignalP </td>\n";
+#}
+#				elsif($keys eq "predgpi")
+#				{
+#$line_subev .= "<td>PredGPI </td>\n";
+#}
+#				elsif($keys eq "bigpi")
+#				{
+#	$line_subev .= "<td>big-PI </td>\n";
+#}
+#				elsif($keys eq "dgpi")
+#				{
+#$line_subev .= "<td>DGPI </td>\n";
+#}
+#				elsif($keys eq "tcdb")
+#				{
+#$line_subev .= "<td>TCDB </td>\n";
+#}
+#				elsif($keys eq "psort")
+#				{
+#						$line_subev .= "<td>PSORT </td>\n";
+#				}
+#				else
+#				{
+#						$line_subev .= "<td>BLASTx$keys </td>\n";
+#				}
+#				}
+		$count_ev++;
+	}
+	else
+	{
+		my $tag = $evidence->{tag};
+		unless($tag)
+		{
+			$tag = "";
+		}
+		if($tag eq "tcdb")
+		{
+			$tag = "TCDB";
+		}
+		elsif($tag eq "rRNA_prediction")
+		{
+			$tag = "RNAmmer";
+		}
+		elsif($tag eq "transterm")
+		{
+			$tag = "TransTermHP";
+		}
+		elsif($tag eq "HTG")
+		{
+			$tag = "Alien_hunter";
+		}
+		elsif($tag eq "RNA_scan")
+		{
+			$tag = "Infernal";
+		}
+		elsif($tag eq "RBS")
+		{
+			$tag = "RBS finder";
+		}
+		elsif($tag eq "skews")
+		{
+			$tag = "Skews";
+		}
+		elsif($tag eq "tRNAscan")
+		{
+			$tag = "tRNAscan-SE";
+		}
+		#se valor $evidence->{log}{name} for indefinido, então não deveria seguir
+#		if(!(undef $evidence->{log}{name}))
+#		{
+#			my $component = $evidence->{log}{name};
+##			$scriptSQL .= "\n--evidencetag = ".$evidence->{tag};
+#			###
+#			#
+#			#	TODO - copiar arquivos para html_dir/root/
+#			#	TODO - adaptar caminho para links
+#			#
+#			###
+#			if ($component eq "annotation_alienhunter.pl")
+#			{
+#	#					if($hash_dna{alienhunter} == 1){
+#				my $interval = @{$evidence->{intervals}}[0];			
+#				my $aux = $interval->{tags}{seq_name}." ; ".$interval->{tags}{note};		
+#				my $file = $alienhunter_output_file."_".$header;
+#	#				$resultDNA .= "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
+#				$hash_dna{alienhunter} = "<td><a href=\"../$alienhunter_dir/$file\"> $tag </a></td>\n";
+#	#					}
+#			}
+#			elsif($component eq "annotation_skews.pl")
+#			{
+#		 		my $filestring = `ls $skews_dir`;		 
+#	 			my @phdfilenames = split(/\n/,$filestring);
+#				my $seq_name = $sequence_object->sequence_name(); 		
+#		 		foreach my $file (@phdfilenames)
+#		 		{
+#					if($file =~ m/$seq_name/ and $file =~ m/.png/)
+#					{
+#						 	#$resultDNA .= "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
+#							$hash_dna{skews} = "<td><a href=\"../$skews_dir/$file\"> graphics $tag</a></td>\n";
+#				 	}
+#			 	}	
+#			}
+#			elsif($component eq "annotation_infernal.pl")
+#			{
+#				#if($hash_dna{infernal} == 1){
+#				my $interval = @{$evidence->{intervals}}[0];	
+#				my $name = $interval->{tags}{target_type}.":".$interval->{tags}{target_name};
+#				my $file = $infernal_output_file."_".$header;
+#				#$resultDNA .= "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
+#				$hash_dna{infernal} = "<td><a href=\"../$infernal_dir/$file\"> $tag</a></td>\n";
+#				
+#				#}
+#			}
+#			elsif($component eq "annotation_rbsfinder.pl")
+#			{
+#				#if($hash_dna{rbsfinder} == 1){
+#				my $interval = @{$evidence->{intervals}}[0];
+#				my $file = $header.".txt";
+#				#$resultDNA .= "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
+#				$hash_dna{rbsfinder} = "<td><a href=\"../$rbs_dir/$file\"> $tag</a></td>\n";
+#				#}
+#			}
+#			elsif($component eq "annotation_rnammer.pl")
+#			{	
+#				#if($hash_dna{rnammer} == 1){
+#				my $interval = @{$evidence->{intervals}}[0];
+#				my $name = "Molecule type:".$interval->{tags}{molecule_type};
+#				my $file = $header."_rnammer.gff";
+#				#$resultDNA .= "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
+#				$hash_dna{rnammer} = "<td> <a href=\"../$rnammer_dir/$file\"> $tag</a></td>\n";
+#				#}
+#			}
+#			elsif($component eq "annotation_transterm.pl")
+#			{
+#				#if($hash_dna{transterm} == 1){
+#				my $interval = @{$evidence->{intervals}}[0];
+#				my $name = "Transterm";
+#				my $file = $header.".txt";
+#				$hash_dna{transterm} = "<td> <a href=\"../$transterm_dir/$file\"> $tag</a></td>\n";
+#				#$hash_dna{transterm} = 2;
+#				#}
+#			}
+#			elsif($component eq "annotation_trf.pl")
+#			{
+#	#				if($hash_dna{trf} == 1){
+#				my $name = $sequence_object->{sequence_name};		
+#				my $file = $trf_dir."/".$name."_trf.txt";
+#	#				$resultDNA .= "<td> <a href=\"../$file\"> TRF </a></td>\n";
+#				$hash_dna{trf} = "<td> <a href=\"../$file\"> TRF </a></td>\n";
+#	#				}	
+#			}
+#			elsif($component eq "annotation_trna.pl")
+#			{
+#	#	if($hash_dna{trna} == 1){
+#				my $name = $sequence_object->{sequence_name};
+#				my $file = $trna_dir."/".$name."_trna.txt";
+#	# $resultDNA .= "<td> <a href=\"../$file\"> $tag</a></td>\n";
+#				$hash_dna{trna} = "<td> <a href=\"../$file\"> $tag</a></td>\n";
+#	#		}
+#			}
+#			elsif($component eq "annotation_mreps.pl")
+#			{
+#	#		if($hash_dna{mreps} == 1){
+#				my $name = $sequence_object->{sequence_name};
+#				my $file = $mreps_dir."/".$name."_mreps.txt";
+#	#		$resultDNA .= "<td> <a href=\"../$file\"> mreps</a></td>\n";
+#				$hash_dna{mreps} = "<td> <a href=\"../$file\"> mreps</a></td>\n";
+#	#		}
+#			}
+#			elsif($component eq "annotation_string.pl")
+#			{
+#	#		if($hash_dna{string} == 1){
+#				my $name = $sequence_object->{sequence_name};
+#				my $file = $string_dir."/".$name."_string.txt";
+#	#		$resultDNA .= "<td> <a href=\"../$file\"> String </a></td>\n";
+#				$hash_dna{string} = "<td> <a href=\"../$file\"> String </a></td>\n";
+#	#		}
+#			}
+#		}
+#		
+#		$count_dna++;
+	}
+=pod
+	    if($resultDNA ne ""){
+		$evDna_html .= "<tr>\n";
+        	$evDna_html .= $resultDNA;
+        	$evDna_html .= "</tr>\n";
+        	$dna_html .= $evDna_html;
+	    } 
+=cut
+
+#				    foreach my $key (sort keys %hash_ev){
+#		            	$subev_html .= $hash_ev{$key};
+#		    	    }
+#		    	    $subev_html .= "</tr>\n";
+#		    	    $ev_html .= $subev_html;
+
 	return $sql;
 }
 
