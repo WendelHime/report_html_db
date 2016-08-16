@@ -24,7 +24,7 @@ TODO:
 -
 -	Realizar alterações baseadas no evidences log
 -	Estudar banco de dados chado e entender a organização das evidências/conclusões
--	
+-	Retirar seção Global Analyses caso não exista o uso de nenhum componente de report antes de criar o site
 	
 DONE:
 -
