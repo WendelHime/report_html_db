@@ -1350,6 +1350,10 @@ my @seq_links;
 #contador de sequencias
 my $seq_count = 0;
 my @components_name = ();
+my $dbName = "";
+my $dbHost = "";
+my $dbUser = "";
+my $dbPassword = "";
 while($sequence_object->read())
 {	
     ++$seq_count;
@@ -1358,6 +1362,11 @@ while($sequence_object->read())
     $header = $sequence_object->fasta_header();
     my $bases = $sequence_object->current_sequence();
     my $name = $sequence_object->sequence_name();
+    
+    $dbName = $sequence_object->{dbname};
+    $dbHost = $sequence_object->{host};
+    $dbUser = $sequence_object->{user};
+    $dbPassword = $sequence_object->{password};    
     
     $scriptSQL .= "\nINSERT INTO SEQUENCES(header, bases, name) VALUES ('$header', '$bases', '$name');";
     
@@ -1374,14 +1383,56 @@ while($sequence_object->read())
 		print FASTAOUT "$line\n";
     }
     close(FASTAOUT);
+    my @programs = ();
     
-	my @programs = map { $_->toString()} @{$sequence_object->get_logs()};
-    foreach my $program1 (@programs)
+    if(@{$sequence_object->get_logs})
     {
-#    	$scriptSQL .= "\n--testLog\t$program\n";
+    	foreach my $log(@{$sequence_object->get_logs()})
+    	{
+    		push @programs, $log->{program};
+#    		foreach my $key(sort keys %$log)
+#    		{
+#    			$scriptSQL .= "\n--logs\t$key\t".$log->{$key}."\n";
+#    		}
+    	}
+    }
+    
+    
+#    if(!(undef @{$sequence_object->{database}}))
+#    {
+#    	@programs = @{$sequence_object->{database}};
+#    	foreach my $program (@programs)
+#    	{
+#    		foreach my $key (sort keys %$program)
+#			foreach my $key (sort keys %{$sequence_object->{database}})
+#			foreach my $conclusion(@{$sequence_object->{conclusions}})
+#    		{
+#    			foreach my $key (sort keys %$conclusion)
+#    			{
+##    				push @programs, $sequence_object->get_program($conclusion->{log_number});
+#    				$scriptSQL .= "\n--logs\t$key\t".$conclusion->{$key}."\n";
+#    			}
+#    		}
+#    	}
+#    }
+#    else
+#    {
+#    	@programs = split(";", $component_name_list);
+#    }
+    
+	foreach my $program1 (@programs)
+	{
+	#    	$scriptSQL .= "\n--testLog\t$program\n";
 		my $component = $program1;
-#		$scriptSQL .= "\n--testLog\t$component\n";
+	#		$scriptSQL .= "\n--testLog\t$component\n";
 		push @components_name, $component =~ /<program name=\"(annotation_\w+\.pl)\"/gim;
+	}
+    
+    
+    
+    foreach my $key(sort keys %$sequence_object)
+    {
+    	$scriptSQL .= "\n--sequenceObject\t$key\t".$sequence_object->{$key}."\n";
     }
     
     
@@ -1609,7 +1660,7 @@ print "Creating database file\n";
 #create models project
 print "Creating models\n";
 `$nameProject/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$nameProject"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON"`;
-`$nameProject/script/"$lowCaseName"_create.pl model Chado DBIC::Schema "$nameProject"::Chado create=static "dbi:Pg:dbname=chadodb" "chadouser"`;
+`$nameProject/script/"$lowCaseName"_create.pl model Chado DBIC::Schema "$nameProject"::Chado create=static "dbi:Pg:dbname=$dbName;host=$dbHost" "$dbUser" "$dbPassword"`;
 
 my $hadGlobal = 0;
 my $hadSearchDatabase = 0;
@@ -1672,44 +1723,44 @@ foreach my $controller (@controllers) {
 		$lowCaseController = lc $lowCaseController;
 	}
 
-	my $controllerContent = "\n\t\tsub index :Path :Args(0) {\n".
-			"\t\t\tmy ( \$self, \$c ) = \@_;\n".
-			"\t\t\t\$c->stash->{titlePage} = '$controller';\n".
-			"\t\t\t\$c->stash(currentPage => '$lowCaseController');\n".
-			"\t\t\t\$c->stash(texts => [\$c->model('Basic::Text')->search({\n".
-				"\t\t\t\t-or => [".
-					"\t\t\t\t\ttag => {'like', 'header%'},\n".
-					"\t\t\t\t\ttag => 'menu',\n".
-					"\t\t\t\t\ttag => 'footer',\n".
-					"\t\t\t\t\ttag => {'like', '$lowCaseController%'}\n".
-				"\t\t\t\t]\n".
-			"\t\t\t})]);\n".
-#			"\t\t\t\$c->stash(testFeatures => [\$c->model('Chado::Feature')->all]);\n".
-			"\t\t\t\$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');\n";
+	my $controllerContent = "\nsub index :Path :Args(0) {\n".
+			"\tmy ( \$self, \$c ) = \@_;\n".
+			"\t\$c->stash->{titlePage} = '$controller';\n".
+			"\t\$c->stash(currentPage => '$lowCaseController');\n".
+			"\t\$c->stash(texts => [\$c->model('Basic::Text')->search({\n".
+				"\t\t-or => [".
+					"\t\t\ttag => {'like', 'header%'},\n".
+					"\t\t\ttag => 'menu',\n".
+					"\t\t\ttag => 'footer',\n".
+					"\t\t\ttag => {'like', '$lowCaseController%'}\n".
+				"\t\t]\n".
+			"\t})]);\n".
+#			"\t\$c->stash(testFeatures => [\$c->model('Chado::Feature')->all]);\n".
+			"\t\$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');\n";
 
 	if($controller eq "SearchDatabase" || $controller eq "GlobalAnalyses")
 	{
-		$controllerContent .= "\t\t\t\$c->stash(components => [\$c->model('Basic::Component')->all]);";
+		$controllerContent .= "\t\$c->stash(components => [\$c->model('Basic::Component')->all]);\n";
 	}
 	if($hadGlobal)
 	{
-		$controllerContent .= "\t\t\t\$c->stash->{hadGlobal} = 1;";
+		$controllerContent .= "\t\$c->stash->{hadGlobal} = 1;\n";
 	}
 	else
 	{
-		$controllerContent .= "\t\t\t\$c->stash->{hadGlobal} = 0;";
+		$controllerContent .= "\t\$c->stash->{hadGlobal} = 0;\n";
 	}
 	if($hadSearchDatabase)
 	{
-		$controllerContent .= "\t\t\t\$c->stash->{hadSearchDatabase} = 1;";
+		$controllerContent .= "\t\$c->stash->{hadSearchDatabase} = 1;\n";
 	}
 	else
 	{
-		$controllerContent .= "\t\t\t\$c->stash->{hadSearchDatabase} = 0;";
+		$controllerContent .= "\t\$c->stash->{hadSearchDatabase} = 0;\n";
 	}
 	
 	
-	$controllerContent .= "\n\t\t}\n";
+	$controllerContent .= "\n}\n";
 	
 
 	open( my $fileHandler,
