@@ -1376,10 +1376,10 @@ while($sequence_object->read())
     close(FASTAOUT);
     
 	my @programs = map { $_->toString()} @{$sequence_object->get_logs()};
-    foreach my $program (@programs)
+    foreach my $program1 (@programs)
     {
 #    	$scriptSQL .= "\n--testLog\t$program\n";
-		my $component = $program;
+		my $component = $program1;
 #		$scriptSQL .= "\n--testLog\t$component\n";
 		push @components_name, $component =~ /<program name=\"(annotation_\w+\.pl)\"/gim;
     }
@@ -1678,19 +1678,31 @@ print "Creating models\n";
 `$nameProject/script/"$lowCaseName"_create.pl model Model DBIC::Schema "$nameProject"::Schema create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON"`;
 
 my $hadGlobal = 0;
+my $hadSearchDatabase = 0;
 foreach my $component (sort @components_name)
 {
 	if($component =~ /^report_\w+/gi)
 	{
 		$hadGlobal = 1;
 	}
+	if($component =~ /^annotation_/gi)
+	{
+		$hadSearchDatabase = 1;
+	}
 }
 
 #create controllers project
 my @controllers = (
-	"Home",      "Blast", "SearchDatabase", "GlobalAnalyses",
-	"Downloads", "Help",  "About"
+	"Home", "Blast", "Downloads", "Help", "About"
 );
+if($hadGlobal)
+{
+	push @controllers, "GlobalAnalyses";
+}
+if($hadSearchDatabase)
+{
+	push @controllers, "SearchDatabase";
+}
 
 foreach my $controller (@controllers) {
 	print "Creating controller $controller\n";
@@ -1726,46 +1738,43 @@ foreach my $controller (@controllers) {
 		$lowCaseController = lc $lowCaseController;
 	}
 
-	my $controllerContent = "\n";
+	my $controllerContent = "\n\t\tsub index :Path :Args(0) {\n".
+			"\t\t\tmy ( \$self, \$c ) = \@_;\n".
+			"\t\t\t\$c->stash->{titlePage} = '$controller';\n".
+			"\t\t\t\$c->stash(currentPage => '$lowCaseController');\n".
+			"\t\t\t\$c->stash(texts => [\$c->model('Model::Text')->search({\n".
+				"\t\t\t\t-or => [".
+					"\t\t\t\t\ttag => {'like', 'header%'},\n".
+					"\t\t\t\t\ttag => 'menu',\n".
+					"\t\t\t\t\ttag => 'footer',\n".
+					"\t\t\t\t\ttag => {'like', '$lowCaseController%'}\n".
+				"\t\t\t\t]".
+			"\t\t\t})]);".
+			"\t\t\t\$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');\n";
 
 	if($controller eq "SearchDatabase" || $controller eq "GlobalAnalyses")
 	{
-		$controllerContent .= "
-		sub index :Path :Args(0) {
-		    my ( \$self, \$c ) = \@_;
-		    \$c->stash->{titlePage} = '$controller';
-		    \$c->stash(currentPage => '$lowCaseController');
-		    \$c->stash(texts => [\$c->model('Model::Text')->search({
-		        -or => [
-		            tag => {'like', 'header%'},
-		            tag => 'menu',
-		            tag => 'footer',
-		            tag => {'like', '$lowCaseController%'}
-		        ]
-		    })]);
-		    \$c->stash(components => [\$c->model('Model::Component')->all]);
-		    \$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');
-		}\n";
+		$controllerContent .= "\t\t\t\$c->stash(components => [\$c->model('Model::Component')->all]);";
+	}
+	if($hadGlobal)
+	{
+		$controllerContent .= "\t\t\t\$c->stash->{hadGlobal} = 1;";
 	}
 	else
 	{
-		$controllerContent .= "
-		sub index :Path :Args(0) {
-		    my ( \$self, \$c ) = \@_;
-		    \$c->stash->{titlePage} = '$controller';
-		    \$c->stash(currentPage => '$lowCaseController');
-		    \$c->stash(texts => [\$c->model('Model::Text')->search({
-		        -or => [
-		            tag => {'like', 'header%'},
-		            tag => 'menu',
-		            tag => 'footer',
-		            tag => {'like', '$lowCaseController%'}
-		        ]
-		    })]);
-		    \$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');
-		}\n";
+		$controllerContent .= "\t\t\t\$c->stash->{hadGlobal} = 0;";
 	}
-
+	if($hadSearchDatabase)
+	{
+		$controllerContent .= "\t\t\t\$c->stash->{hadSearchDatabase} = 1;";
+	}
+	else
+	{
+		$controllerContent .= "\t\t\t\$c->stash->{hadSearchDatabase} = 0;";
+	}
+	
+	
+	$controllerContent .= "\n\t\t}\n";
 	
 
 	open( my $fileHandler,
@@ -3584,14 +3593,18 @@ HEADER
                                 [% IF text.value == currentPage %]
                                     <li><a class="menu-top-active" href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
                                 [% ELSE %]
-                                    <li><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
+                                	[% IF hadSearchDatabase && text.value.match("search database") %]
+			                        	<li><a  href="[% c.uri_for('/searchdatabase') %]">Search database</a></li>
+			                        [% ELSIF hadGlobal && text.value.match("global analyses") %]
+			                        	<li><a	href="[% c.uri_for('/globalanalyses') %]">Global analyses</a></li>
+			                        [% ELSIF !text.value.match("global analyses") && !text.value.match("search database")%]
+			                        	<li><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
+			                        [% END %]
                                 [% END %]
                             [% END %]
                         [% END %]
                         <!--<li><a  class="menu-top-active" href="[% c.uri_for('/home') %]">Home</a></li>
-                        <li><a	href="[% c.uri_for('/blast') %]">BLAST</a></li>
-                        <li><a  href="[% c.uri_for('/searchdatabase') %]">Search database</a></li>
-                        <li><a	href="[% c.uri_for('/globalanalyses') %]">Global analyses</a></li>
+                       	<li><a	href="[% c.uri_for('/blast') %]">BLAST</a></li>
                         <li><a	href="[% c.uri_for('/downloads') %]">Downloads</a></li>
                         <li><a	href="[% c.uri_for('/help') %]">Help</a></li>
                         <li><a	href="[% c.uri_for('/about') %]">About</a></li>-->
@@ -3606,6 +3619,15 @@ HEADER
 MENU
 	}
 );
+
+unless($hadGlobal)
+{
+	delete $contentHTML{"global-analyses"};
+}
+unless($hadSearchDatabase)
+{
+	delete $contentHTML{"search-database"};
+}
 
 writeFile("log-report-html-db.log", $scriptSQL);
 
