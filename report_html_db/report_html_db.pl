@@ -427,51 +427,11 @@ CREATE TABLE RELATIONS_TEXTS_IMAGES(
 	FOREIGN KEY(idText) REFERENCES TEXTS(id)
 );
 
-CREATE TABLE SEQUENCES(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	header VARCHAR(1000), 
-	bases VARCHAR(100000), 
-	name VARCHAR(2000)
-);
-
-CREATE TABLE CONCLUSIONS(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	idSequence INTEGER, 
-	locusTag VARCHAR(10000), 
-	FOREIGN KEY(idSequence) REFERENCES SEQUENCES(id)
-);
-
---CREATE TABLE EVIDENCES(
---	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
---	idConclusion INTEGER, 
---	idEvidence INTEGER, 
---	name VARCHAR(2000), 
---	number INTEGER, 
---	start INTEGER, 
---	end INTEGER, 
---	proteinSequence VARCHAR(100000), 
---	FOREIGN KEY(idConclusion) REFERENCES CONCLUSIONS(id), 
---	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
---);
-
-CREATE TABLE TYPES(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	idEvidence INTEGER, 
-	value VARCHAR(2000), 
-	FOREIGN KEY(idEvidence) REFERENCES EVIDENCES(id)
-);
-
 CREATE TABLE COMPONENTS(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  
 	name VARCHAR(2000),
 	component VARCHAR(2000),
 	filepath VARCHAR(2000)
-);
-
-CREATE TABLE BLAST(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	database VARCHAR(2000), 
-	directory VARCHAR(2000)
 );
 
 INSERT INTO TEXTS(tag, value, details) VALUES
@@ -1326,13 +1286,13 @@ my $locus = 0;
 
 
 
-my @databases_blast = split(";", $databases_code);
-my @blast_dirs = split(";", $databases_dir);
-
-for(my $i = 0; $i < scalar @databases_blast; $i++)
-{
-	$scriptSQL .= "\nINSERT INTO BLAST(database, directory) VALUES ('".$databases_blast[$i]."', '".$blast_dirs[$i]."');";
-}
+#my @databases_blast = split(";", $databases_code);
+#my @blast_dirs = split(";", $databases_dir);
+#
+#for(my $i = 0; $i < scalar @databases_blast; $i++)
+#{
+#	$scriptSQL .= "\nINSERT INTO BLAST(database, directory) VALUES ('".$databases_blast[$i]."', '".$blast_dirs[$i]."');";
+#}
 
 #
 # Read ALL Sequence Objects and sort by name for nice display
@@ -1350,6 +1310,7 @@ my @seq_links;
 #contador de sequencias
 my $seq_count = 0;
 my @components_name = ();
+my @filepathsComponents = ();
 my $dbName = "";
 my $dbHost = "";
 my $dbUser = "";
@@ -1368,7 +1329,6 @@ while($sequence_object->read())
     $dbUser = $sequence_object->{user};
     $dbPassword = $sequence_object->{password};    
     
-    $scriptSQL .= "\nINSERT INTO SEQUENCES(header, bases, name) VALUES ('$header', '$bases', '$name');";
     
     #TODO - criar controller annotations, ann_file passa a ser a URL para as anotações
     my $ann_file = "annotations/".$name;
@@ -1389,54 +1349,28 @@ while($sequence_object->read())
     {
     	foreach my $log(@{$sequence_object->get_logs()})
     	{
-    		push @programs, $log->{program};
+    		my $component = $log->{program};
+			if($component =~ /<program name=\"annotation_\w+\.pl\"/gim)
+			{
+				push @components_name, $component =~ /<program name=\"(annotation_\w+\.pl)\"/gim;
+			}
+			else
+			{
+				push @components_name, $component;
+			}
 #    		foreach my $key(sort keys %$log)
 #    		{
 #    			$scriptSQL .= "\n--logs\t$key\t".$log->{$key}."\n";
 #    		}
     	}
-    }
+    }    
     
     
-#    if(!(undef @{$sequence_object->{database}}))
+#    foreach my $key(sort keys %$sequence_object)
 #    {
-#    	@programs = @{$sequence_object->{database}};
-#    	foreach my $program (@programs)
-#    	{
-#    		foreach my $key (sort keys %$program)
-#			foreach my $key (sort keys %{$sequence_object->{database}})
-#			foreach my $conclusion(@{$sequence_object->{conclusions}})
-#    		{
-#    			foreach my $key (sort keys %$conclusion)
-#    			{
-##    				push @programs, $sequence_object->get_program($conclusion->{log_number});
-#    				$scriptSQL .= "\n--logs\t$key\t".$conclusion->{$key}."\n";
-#    			}
-#    		}
-#    	}
-#    }
-#    else
-#    {
-#    	@programs = split(";", $component_name_list);
+#    	$scriptSQL .= "\n--sequenceObject\t$key\t".$sequence_object->{$key}."\n";
 #    }
     
-	foreach my $program1 (@programs)
-	{
-	#    	$scriptSQL .= "\n--testLog\t$program\n";
-		my $component = $program1;
-	#		$scriptSQL .= "\n--testLog\t$component\n";
-		push @components_name, $component =~ /<program name=\"(annotation_\w+\.pl)\"/gim;
-	}
-    
-    
-    
-    foreach my $key(sort keys %$sequence_object)
-    {
-    	$scriptSQL .= "\n--sequenceObject\t$key\t".$sequence_object->{$key}."\n";
-    }
-    
-    
-    #TODO - utilizar esse tratamento de header no controller annotations
     $header =~ s/>//g;
     $header =~ m/(\S+)_(\d+)/;
     $prefix_name = $1;
@@ -1520,52 +1454,50 @@ while($sequence_object->read())
 			my	$file	=	$string_dir."/".$name."_string.txt";
 			$filepath	=	"$file";
 		}
+		
+		unless($filepath)
+		{
+			foreach my $log(@{$sequence_object->get_logs()})
+	    	{
+	    		if($log->{program} eq $component)
+	    		{
+	    			my $directory = "";
+	    			my $file = "";
+	    			if($log->{arguments} =~ /^\w*output_dir=(\w+)"*/gm)
+	    			{
+	    				$directory = $1;
+	    			}
+	    			if($log->{arguments} =~ /^\w*output_file=(\w+.+)"*/gm)
+	    			{
+	    				$file = $1;
+	    			}
+	    			if($directory || $file)
+	    			{
+	    				unless($directory)
+		    			{
+		    				my $dirName = $file;
+		    				$dirName  =~ s/.txt//g;
+		    				$directory = $dirName."_dir";
+		    			}
+		    			elsif(!$file)
+		    			{
+		    				my $fileName = $directory;
+		    				$fileName  =~ s/_dir//g;
+		    				$file = $fileName.".txt";
+		    			}
+		    			if($directory && $file)
+		    			{
+		    				$filepath = "$directory/$file";
+		    			}
+	    			}
+	    		}
+	    	}
+		}
+		
+		push @filepathsComponents, $filepath;
 		$scriptSQL .= "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('$component_name', '$component', '$filepath');\n";
-	} 
-    #começa analise das conclusões aqui
-    foreach my $conclusion (@conclusions)
-    {
-    	$sequence_object->get_evidence_for_conclusion();
-    	my %hash = %{$sequence_object->{array_evidence}};
-    	#evidencias para serem passadas para o banco de dados
-    	my @evidences = @{$conclusion->{evidence_number}};
-    	my $locus_tag = "";
-		if($conclusion->{locus_tag})
-    	{
-    		$locus_tag = $conclusion->{locus_tag};
-    	}
-    	else
-    	{
-    		$locus++;
-    		$locus_tag = "NOLOCUSTAG_$locus";
-    	}
-    	
-    	$scriptSQL .= "\nINSERT INTO CONCLUSIONS(idSequence, locusTag) VALUES 
-    	(
-    		(
-    			SELECT id 
-    			FROM SEQUENCES 
-    			WHERE 
-    				header = '".$sequence_object->fasta_header()."' AND 
-    				name = '".$sequence_object->sequence_name()."' AND 
-    				bases = '".$sequence_object->current_sequence()."'
-    		),
-    		'$locus_tag'
-    	);";
-    	
-#    	foreach my $ev(@evidences)
-#    	{
-#    		my $evidence = $hash{$ev};
-#    		$scriptSQL .= generate_evidences_recursive($evidence, $bases, $locus_tag);
-#    	}
-    	
-    }
-    
-#    foreach my $key (sort keys %hash_dna)
-#    {
-#    	#inserir essa parte no banco de dados
-#    	$hash_dna{$key};
-#    }
+	}
+	
     close(FILE_AA);
     close(FILE_NT);
     
@@ -1774,6 +1706,19 @@ s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*/$
 		"$nameProject/lib/$nameProject/Controller/" . $controller . ".pm",
 		$data );
 }
+
+
+foreach my $filepathComponent (@filepathsComponents)
+{
+	if($filepathComponent)
+	{
+		if($filepathComponent =~ /(\w+)\/\w+/g)
+		{
+			`ln -s ../../$1/ $nameProject/root/$1`;
+		}
+	}
+}
+
 
 #Descompacta assets
 print "Copy files assets\n";

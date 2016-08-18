@@ -24,16 +24,5 @@ TODO:
 -
 -	Realizar alterações baseadas no evidences log
 -	Estudar banco de dados chado e entender a organização das evidências/conclusões
+-	Testar uso de links simbolicos dos arquivos
 	
-DONE:
--
--	Gerar tabela COMPONENTS(id INT PRIMARY KEY AUTOINCREMENT NOT NULL, tag VARCHAR(2000), name VARCHAR(2000), filepath VARCHAR(2000)); -- tag pode ser um comp_ev ou comp_dna
--	Gerar tabela BLAST(id INT PRIMARY KEY AUTOINCREMENT NOT NULL, database VARCHAR(2000), directory VARCHAR(2000));
--	Gerar tabela SEQUENCES(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, header VARCHAR(10000), bases VARCHAR(10000), name VARCHAR(2000));
--	Gerar tabela CONCLUSIONS(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idSequence INT, locusTag VARCHAR(10000), FOREIGN KEY idSequence REFERENCES SEQUENCES(id));
--	Gerar tabela EVIDENCES(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idConclusion INT, idEvidence INT, name VARCHAR(2000), number INT, start INT, end INT, proteinSequence VARCHAR(10000), FOREIGN KEY idConclusion REFERENCES CONCLUSIONS(id), FOREIGN KEY idEvidence REFERENCES EVIDENCES(id));
--	Gerar tabela INTERVALS(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idEvidence INT, value VARCHAR(2000), FOREIGN KEY idEvidence REFERENCES EVIDENCES(id));
--	Gerar tabela TAGS(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idInterval INT, orfCount VARCHAR(2000), evidenceProcess VARCHAR(2000), evidenceFunction VARCHAR(2000), evidenceComponent VARCHAR(2000), FOREIGN KEY idInterval REFERENCES INTERVALS(id));
--	Gerar tabela TYPES(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idEvidence INT, value VARCHAR(2000), FOREIGN KEY idEvidence REFERENCES EVIDENCES(id));
--	Gerar tabela RESULTS(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idEvidence INT, idInterval INT, value VARCHAR(2000), tag VARCHAR(2000), FOREIGN KEY idEvidence REFERENCES EVIDENCES(id), FOREIGN KEY idInterval REFERENCES INTERVALS(id));
--	Gerar tabela ALIGNMENTS(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, idEvidence INT, subjectId VARCHAR(200), typeDB VARCHAR(200), accession VARCHAR(200), alignment VARCHAR(2000), FOREIGN KEY idEvidence REFERENCES EVIDENCES(id));
