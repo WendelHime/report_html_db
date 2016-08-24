@@ -10,6 +10,8 @@ use warnings;
 use Getopt::Long;
 use Data::Dumper;
 use DB_File;
+use utf8;
+use open qw(:utf8);
 
 #
 # ==> BEGIN OF AUTO GENERATED CODE (do not edit!!!)
@@ -1569,7 +1571,7 @@ print "Creating view\n";
 my $fileHandler;
 open( $fileHandler, "<", "$nameProject/lib/$nameProject/View/TT.pm" );
 my $contentToBeChanged =
-"__PACKAGE__->config(\n     TEMPLATE_EXTENSION  => '.tt',\n     TIMER   =>  0,\n    WRAPPER     =>  '$lowCaseName/_layout.tt',\n);";
+"__PACKAGE__->config(\n\tTEMPLATE_EXTENSION\t=>\t'.tt',\n\tTIMER\t=>\t0,\n\tWRAPPER\t=>\t'$lowCaseName/_layout.tt',\n\tENCODING\t=>\t'utf-8',\n);";
 my $data = do { local $/; <$fileHandler> };
 $data =~ s/__\w+->config\(([\w\s=>''"".,\/]*)\s\);/$contentToBeChanged/igm;
 close($fileHandler);
@@ -1591,14 +1593,14 @@ print "Creating database file\n";
 
 #create models project
 print "Creating models\n";
-`$nameProject/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$nameProject"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON"`;
+`$nameProject/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$nameProject"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON;PRAGMA encoding='UTF-8'"`;
 `$nameProject/script/"$lowCaseName"_create.pl model Chado DBIC::Schema "$nameProject"::Chado create=static "dbi:Pg:dbname=$dbName;host=$dbHost" "$dbUser" "$dbPassword"`;
 
 my $hadGlobal = 0;
 my $hadSearchDatabase = 0;
 foreach my $component (sort @components_name)
 {
-	if($component =~ /^report_\w+/gi)
+	if($component =~ /^report_go_mapping.pl/gi || $component =~ /^report_orthology.pl/gi || $component =~ /^report_pathways.pl/gi || $component =~ /^report_kegg_organism.pl/gi)
 	{
 		$hadGlobal = 1;
 	}
@@ -1657,16 +1659,28 @@ foreach my $controller (@controllers) {
 
 	my $controllerContent = "\nsub index :Path :Args(0) {\n".
 			"\tmy ( \$self, \$c ) = \@_;\n".
-			"\t\$c->stash->{titlePage} = '$controller';\n".
-			"\t\$c->stash(currentPage => '$lowCaseController');\n".
-			"\t\$c->stash(texts => [\$c->model('Basic::Text')->search({\n".
-				"\t\t-or => [".
+			"\tuse utf8;\n".
+			"\tuse Encode qw( decode encode );\n".
+			"\tmy \@texts = \$c->model('Basic::Text')->search({\n".
+				"\t\t-or => [\n".
 					"\t\t\ttag => {'like', 'header%'},\n".
 					"\t\t\ttag => 'menu',\n".
 					"\t\t\ttag => 'footer',\n".
 					"\t\t\ttag => {'like', '$lowCaseController%'}\n".
 				"\t\t]\n".
-			"\t})]);\n".
+			"\t});\n".
+			"\tforeach my \$text (\@texts) {\n".
+			"\t\tforeach my \$key (keys \%\$text) {\n".
+			"\t\t\tif(\$text->{\$key} != 1) {\n".
+			"\t\t\t\tmy \$string = decode( 'utf-8', \$text->{\$key}{value});\n".
+			"\t\t\t\t\$string = encode('iso-8859-1', \$string);\n".
+			"\t\t\t\t\$text->{\$key}{value} = \$string;\n".
+			"\t\t\t}\n".
+			"\t\t}\n".
+			"\t}\n".
+			"\t\$c->stash->{titlePage} = '$controller';\n".
+			"\t\$c->stash(currentPage => '$lowCaseController');\n".
+			"\t\$c->stash(texts => [\@texts]);\n".
 #			"\t\$c->stash(testFeatures => [\$c->model('Chado::Feature')->all]);\n".
 			"\t\$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');\n";
 
@@ -1731,6 +1745,7 @@ print "Copy files assets\n";
 my %contentHTML = (
 	"about" => {
 		"_content.tt" => <<CONTENTABOUT
+<!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -1783,6 +1798,7 @@ my %contentHTML = (
 CONTENTABOUT
 		,
 		"index.tt" => <<CONTENTABOUTINDEX
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">		
         [% INCLUDE '$lowCaseName/about/_content.tt' %]
@@ -1792,6 +1808,7 @@ CONTENTABOUTINDEX
 	},
 	"blast" => {
 		"_forms.tt" => <<CONTENTBLAST
+<!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <form action="http://puma.icb.usp.br/blast/blast.cgi" method="POST" name="MainBlastForm" enctype="multipart/form-data">
@@ -2074,6 +2091,7 @@ CONTENTABOUTINDEX
 CONTENTBLAST
 		,
 		"index.tt" => <<CONTENTINDEXBLAST
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">	
         [% INCLUDE '$lowCaseName/blast/_forms.tt' %]
@@ -2083,6 +2101,7 @@ CONTENTINDEXBLAST
 	},
 	"downloads" => {
 		"_content.tt" => <<CONTENTDOWNLOADS
+<!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -2144,6 +2163,7 @@ CONTENTINDEXBLAST
 CONTENTDOWNLOADS
 		,
 		"index.tt" => <<CONTENTINDEXDOWNLOADS
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">		
         [% INCLUDE '$lowCaseName/downloads/_content.tt' %]
@@ -2153,6 +2173,7 @@ CONTENTINDEXDOWNLOADS
 	},
 	"global-analyses" => {
 		"_content.tt" => <<CONTENTGLOBALANALYSES
+<!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -2297,6 +2318,7 @@ CONTENTINDEXDOWNLOADS
 CONTENTGLOBALANALYSES
 		,
 		"index.tt" => <<CONTENTGLOBALANALYSESINDEX
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
         [% INCLUDE '$lowCaseName/global-analyses/_content.tt' %]
@@ -2307,6 +2329,7 @@ CONTENTGLOBALANALYSESINDEX
 	"help" => {
 		"_content.tt",
 		<<CONTENTHELP
+<!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
@@ -2417,6 +2440,7 @@ CONTENTGLOBALANALYSESINDEX
 </div>
 CONTENTHELP
 		, "index.tt" => <<CONTENTINDEXHELP
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">		
         [% INCLUDE '$lowCaseName/help/_content.tt' %]
@@ -2426,6 +2450,7 @@ CONTENTINDEXHELP
 	},
 	"home" => {
 		"_panelInformation.tt" => <<CONTENTHOME
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">	
         <div class="row">
@@ -2454,6 +2479,7 @@ CONTENTINDEXHELP
 CONTENTHOME
 		,
 		"index.tt" => <<CONTENTINDEXHOME
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
         [% INCLUDE '$lowCaseName/home/_panelInformation.tt' %]
@@ -2463,6 +2489,7 @@ CONTENTINDEXHOME
 	},
 	"search-database" => {
 		"_forms.tt" => <<CONTENTSEARCHDATABASE
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
         <div class="row">
@@ -3392,6 +3419,7 @@ CONTENTINDEXHOME
 CONTENTSEARCHDATABASE
 		,
 		"index.tt" => <<CONTENTINDEXSEARCHDATABASE
+<!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
         [% INCLUDE '$lowCaseName/search-database/_forms.tt' %]
@@ -3449,6 +3477,7 @@ CONTENTINDEXSEARCHDATABASE
 FOOTER
 		,
 		"_head.tt" => <<HEAD
+<!DOCTYPE html>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta name="description" content="" />
@@ -3474,6 +3503,7 @@ FOOTER
 HEAD
 		,
 		"_header.tt" => <<HEADER
+<!DOCTYPE html>
 <header>
     <div class="container">
         <div class="row">
@@ -3496,6 +3526,7 @@ HEAD
 HEADER
 		,
 		"_menu.tt" => <<MENU
+<!DOCTYPE html>
 <div class="navbar navbar-inverse set-radius-zero">
     <div class="container">
         <div class="navbar-header">
@@ -3635,7 +3666,8 @@ exit;
 sub writeFile 
 {
 	my ( $filepath, $content ) = @_;
-	open( my $FILEHANDLER, ">", $filepath ) or die "Error opening file";
+	open( my $FILEHANDLER, ">:encoding(UTF-8)", $filepath ) or die "Error opening file";
+#	binmode($FILEHANDLER, ":utf8");
 	print $FILEHANDLER $content;
 	close($FILEHANDLER);
 }
