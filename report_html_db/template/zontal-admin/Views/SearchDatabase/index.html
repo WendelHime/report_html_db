@@ -1,0 +1,28 @@
+<div class="content-wrapper">
+    <div class="container">
+		import _forms from Views/SearchDatabase
+	</div>
+</div>
+<script>
+	$("#parentCollapseOne").click(function()
+	{
+		$("#parentCollapseOne").removeClass("panel-default");
+		$("#parentCollapseTwo").removeClass("panel-primary");
+		$("#parentCollapseThree").removeClass("panel-primary");
+		$("#parentCollapseOne").addClass("panel-primary");
+	});
+	$("#parentCollapseTwo").click(function()
+	{
+		$("#parentCollapseTwo").removeClass("panel-default");
+		$("#parentCollapseOne").removeClass("panel-primary");
+		$("#parentCollapseThree").removeClass("panel-primary");
+		$("#parentCollapseTwo").addClass("panel-primary");
+	});
+	$("#parentCollapseThree").click(function()
+	{
+		$("#parentCollapseThree").removeClass("panel-default");
+		$("#parentCollapseTwo").removeClass("panel-primary");
+		$("#parentCollapseOne").removeClass("panel-primary");
+		$("#parentCollapseThree").addClass("panel-primary");
+	});
+</script>

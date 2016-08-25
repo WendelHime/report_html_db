@@ -23,4 +23,6 @@ http://127.0.0.1:3000
 TODO:
 -
 -	Estudar banco de dados chado e entender a organização das evidências/conclusões
--	Criar arquivo base de textos que serão definidos, esta sendo utilizado o arquivo example.html
+-	Criar arquivo base de textos que serão definidos, esta sendo utilizado o arquivo example.html - criado
+-	Fazer leitura do arquivo example.html, pegar as tags marcadas com div class e id, e pegar o conteúdo delas
+-	 

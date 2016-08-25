@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<!--[if IE]>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+			<![endif]-->
+		<title>Teste template componente</title>
+		<!-- BOOTSTRAP CORE STYLE  -->
+		<link href="assets/css/bootstrap.css" rel="stylesheet" />
+		<!-- FONT AWESOME ICONS  -->
+		<link href="assets/css/font-awesome.css" rel="stylesheet" />
+		<!-- CUSTOM STYLE  -->
+		<link href="assets/css/style.css" rel="stylesheet" />
+		 <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<div class="row">
+				    <div class="col-md-12">
+				        <strong>Email: </strong>wendelhime@gmail.com
+				        &nbsp;&nbsp;
+				        <strong>Support: </strong>+55(13) 991929997
+				    </div>
+
+				</div>
+			</div>
+		</header>
+		<div class="navbar navbar-inverse set-radius-zero">
+			<div class="container">
+				<div class="navbar-header">
+				    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				    </button>
+				    <a class="navbar-brand" href="index.html">
+
+				        <img src="assets/img/logo.png" />
+				    </a>
+
+				</div>
+			</div>
+		</div>
+		<!-- LOGO HEADER END-->
+		<section class="menu-section">
+			<div class="container">
+				<div class="row">
+				    <div class="col-md-12">
+				        <div class="navbar-collapse collapse ">
+				            <ul id="menu-top" class="nav navbar-nav navbar-right">
+				                <li><a  href="home.html">Home</a></li>
+				                <li><a	href="blast.html">BLAST</a></li>
+				                <li><a  href="searchDatabase.html">Search database</a></li>
+				                <li><a	href="globalAnalyses.html">Global analyses</a></li>
+				                <li><a	class="menu-top-active" href="downloads.html">Downloads</a></li>
+				                <li><a	href="help.html">Help</a></li>
+				                <li><a	href="about.html">About</a></li>
+				            </ul>
+				        </div>
+				    </div>
+
+				</div>
+			</div>
+		</section>
+		<!-- MENU SECTION END-->
+		<div class="content-wrapper">
+			<div class="container">	
+				<div class="row">
+		        	<div class="col-md-12">
+		        		<div class="panel-group" id="accordion">
+		        			
+		        			<div class="panel panel-default">
+			                    <div class="panel-heading">
+			                        <h4 class="panel-title">
+			                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">Genes</a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseOne" class="panel-collapse collapse">
+			                        <div class="panel-body">
+			                        	<div class="notice-board">
+			                        		<ul>
+					                    		<li><a href="/cgi-bin/getPMN.cgi?t=ag">All genes</a> (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)</li>
+					                    		<li><a href="/cgi-bin/getPMN.cgi?t=pcg">Protein-coding genes only</a></li>
+					                    		<li><a href="/cgi-bin/getPMN.cgi?t=pro">All protein sequences</a></li>
+					                    		<li><a href="/cgi-bin/getPMN.cgi?t=rrg">Ribosomal RNA genes only</a></li>
+					                    		<li><a href="/cgi-bin/getPMN.cgi?t=trg">Transfer RNA genes only</a></li>
+					                    		<li><a href="/cgi-bin/getPMN.cgi?t=oncg">Other non-coding RNA genes only</a></li>
+					                    	</ul>
+			                        	</div>
+			                        </div>
+		                        </div>
+	                        </div>
+		        			
+		        			<div class="panel panel-default">
+			                    <div class="panel-heading">
+			                        <h4 class="panel-title">
+			                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">Other sequences</a>
+			                        </h4>
+			                    </div>
+			                    <div id="collapseTwo" class="panel-collapse collapse">
+			                        <div class="panel-body">
+			                        	<div class="notice-board">
+					                    	<ul>
+											  <li><a href="/cgi-bin/getPMN.cgi?t=ac">Get all contigs</a></li>
+											  <li><a href="/cgi-bin/getPMN.cgi?t=ig">All intergenic regions</a> (sequences that are not a protein-coding, ribosomal RNA, transfer RNA, or non-coding RNA gene)</li>
+											  <li><a href="/cgi-bin/getPMN.cgi?t=ah">All regions identified as possible lateral transfer</a> (predicted by AlienHunter)</li>
+											  <li><a href="/cgi-bin/getPMN.cgi?t=tt">All transcriptional terminators</a> (predicted by TransTermHP)</li>
+											  <li><a href="/cgi-bin/getPMN.cgi?t=rbs">All ribosomal binding sites</a> (predicted by RBSfinder)</li>
+											</ul>
+										</div>
+			                        </div>
+		                        </div>
+	                        </div>
+		        			
+		        		</div>
+		        	</div>
+		        </div>
+		        
+			</div>
+		</div>
+		<footer>
+			<div class="container">
+				<div class="row">
+				    <div class="col-md-12">
+				        &copy; 2015 YourCompany | By : <a href="#">Wendel Hime</a>
+				    </div>
+
+				</div>
+			</div>
+		</footer>
+		<!-- FOOTER SECTION END-->
+		<!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+		<!-- CORE JQUERY SCRIPTS -->
+		<script src="assets/js/jquery-1.11.1.js"></script>
+		<!-- BOOTSTRAP SCRIPTS  -->
+		<script src="assets/js/bootstrap.js"></script>
+	</body>
+</html>
