@@ -8,9 +8,17 @@ if($ARGV[0])
 	open(my $FILEHANDLER, "<", $htmlFile); 
 	my $content = do { local $/; <$FILEHANDLER> };
 	my $sql = "";
-	while($content =~ /class="(\w+)" id="([\w\-]*)">([\w\d\s\@\.\(\)\-\+\,\;\:\=\'\<\>\~ã\/\#&]*)<\/\w*>/g)
+	while($content =~ /class="(\w+)" id="([\w\-]*)">([\w\d\s\@\.\(\)\-\+\,\;\:\=\'\<\>\~ã\/\#&|]*)<\/\w*>/g)
 	{
-		my $tempTag = $1."_".$2;
+		my $tempTag = "";
+		if($2)
+		{
+			$tempTag = $1."-".$2;
+		}
+		else
+		{
+			$tempTag = $1;
+		}
 		my $tempContent = $3;
 		$tempContent =~ s/<\/div>|<\/li>|<\/ul>|<\/h4>|<\/p>|<\/a>|<\/span>|<\/teste>$//g;
 		$sql .= <<SQL;

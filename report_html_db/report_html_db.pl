@@ -78,6 +78,7 @@ report_go_dir = go_report_dir
 report_csv_dir =
 csv_file =
 go_file
+homepage_text_file=
 CONF
 
 unless(@ARGV) {
@@ -169,6 +170,7 @@ my $missingArgument=0;
 my $conf;
 my $databases_code;
 my $databases_dir;
+my $html_file;
 
 #
 #read configuration file
@@ -392,7 +394,10 @@ if (defined($config->{"report_csv_dir"})){
 if (defined($config->{"csv_file"})){
    $csv_file = $config->{"csv_file"};
 }
-
+if (defined($config->{"homepage_text_file"}))
+{
+	$html_file = $config->{"homepage_text_file"};
+}
 
 
 #
@@ -437,10 +442,6 @@ CREATE TABLE COMPONENTS(
 );
 
 INSERT INTO TEXTS(tag, value, details) VALUES
-        ("header-email", "Email:", ""),
-        ("header-email-value", "wendelhime\@gmail.com", ""),
-        ("header-support", "Support:", ""),
-        ("header-support-value", "+55 (13) 99192-9997", ""),
         ("menu", "home", "/home"),
         ("menu", "blast", "/blast"),
         ("menu", "search database", "/searchdatabase"),
@@ -448,9 +449,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("menu", "downloads", "/downloads"),
         ("menu", "help", "/help"),
         ("menu", "about", "/about"),
-        ("footer", "&copy; 2016 YourCompany | By : Wendel Hime", "/#"),
-        ("home", "Information", ""),
-        ("home-value", "The <i>Photorhabdus luminescens</i> MN7 genome database (<b>PhotoBase</b>) is an integrated resource of genome sequencing and annotation data of the entomopathogenic enterobacterium <i>Photorhabdus luminescens</i> MN7. In addition to sequencing data, <b>PhotoBase</b> provides an organized catalog of functionally annotated predicted protein-coding and RNA genes, in addition to several DNA-based analysis results. The <b>PhotoBase</b> is maintained by the Coccidia Molecular Biology Research Group and the Nematode Molecular Biology Lab at the Institute of Biomedical Sciences, University of São Paulo, Brazil.", ""),
         ("blast-form-title", "Choose program to use and database to search:", ""),
         ("blast-program-title", "Program:", "http://puma.icb.usp.br/blast/docs/blast_program.html"),
         ("blast-program-option", "blastn", ""),
@@ -1044,10 +1042,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("downloads-other-sequences-links", "All regions identified as possible lateral transfer (predicted by AlienHunter)", "/cgi-bin/getPMN.cgi?t=ah"),
         ("downloads-other-sequences-links", "All transcriptional terminators (predicted by TransTermHP)", "/cgi-bin/getPMN.cgi?t=tt"),
         ("downloads-other-sequences-links", "All ribosomal binding sites (predicted by RBSfinder)", "/cgi-bin/getPMN.cgi?t=rbs"),
-        ("help-questions-feedback", "Questions and feedback", ""),
-        ("help-questions-feedback-1-paragraphe", "If you have any question or would like to communicate any error, please contact us:", ""),
-        ("help-questions-feedback-2-list-1", "Carlos E. Winter - <a href='mailto:cewinter\@usp.br'>cewinter\@usp.br</a>", ""),
-        ("help-questions-feedback-2-list-2", "Arthur Gruber - <a href='mailto:argruber\@usp.br'>argruber\@usp.br</a>", ""),
         ("help-table-contents", "Table of contents", ""),
         ("help-table-contents-1", "1. Introduction", "help_1"),                                                                                                                                
         ("help-table-contents-2", "2. BLAST", "help_2"),                                                                                                                                       
@@ -1170,38 +1164,52 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("help_5-10-list-5", "All ribosomal binding sites", ""),
         ("help_6-0-paragraph", "Linking to GBrowse is still not implemented, therefore some links will currently not work.", ""),
         ("help_6-1-paragraph", "Some files still not present for download.", ""),
-        ("help_6-2-paragraph", "To be added...", ""),
-        ("about-table-content-1", "Project", "about_1"),
-        ("about-table-content-2", "Project members", "about_2"),
-        ("about-table-content-3", "Photorhabdus", "about_3"),
-        ("about-table-content-4", "Funding and citing", "about_4"),
-        ("about_1-0-paragraph", "Entomopathogenic nematodes (EPNs) live in symbiosis with specific enterobacteria. EPNs have been used for decades to control agricultural pests in the United States and Europe. Bacteria of the genus <i>Photorhabdus</i> are symbionts of EPNs of the genus <i>Heterorhabditis</i>. Recently, <i>Heterorhabditis bacteriophora</i> and its symbiont, <i>Photorhabdus luminescens laumondii</i>, were considered models for the study of host-pathogen interactions. The genome of <i>P. luminescens laumondii</i> TT01 was completely sequenced a few years ago, and it was discovered that six percent of its genes encode enzymes involved in production of secondary metabolites.", ""),
-        ("about_1-1-paragraph", "One of the aims of our laboratory is the study of molecular aspects of Brazilian EPN isolates and their bacterial symbionts. Strains of two species of <i>Heterorhabditis</i> (<i>H. baujardi</i> and <i>H. indica</i>), obtained from the Amazon region, were molecularly characterized by us. The bacteria of <i>H. baujardi</i> (strain LPP7) were grown in isolation. Phylogenetic analysis of the 16 S rRNA sequence of this isolate (called MN7) shows that it can be part of the same clade as <i>P. asymbiotica</i>, a species isolated from wounds in humans in Australia and the United States. Recent data from our laboratory showed that MN7 secretes secondary metabolites of biotechnological interest, plus a protease similar to that found in other species of the genus.", ""),
-        ("about_1-2-paragraph", "The aim of this project is the construction of a genome scaffold of <i>Photorhabdus luminescens</i> MN7 through next generation sequencing. This project aims to better understand the biology and evolution of bacteria of the genus <i>Photorhabdus</i> and make an inventory, as complete as possible, of the genes involved in the production of secondary metabolites and toxins that mediate symbiotic relationships with the nematode, the insect, and other species of nematodes. This project will be integrated with other projects of the laboratory studying entomopathogenic nematodes and their bacteria and will generate important data for researchers working on these bacteria in other countries.", ""),
-        ("about_2-0-title", "Project coordinators", ""),
-        ("about_2-1-list-1", "<a href='mailto:cewinter\@usp.br'>Carlos E. Winter</a>, Ph.D. - Associate Professor, University of São Paulo", ""),
-        ("about_2-1-list-2", "<a href='mailto:argruber\@usp.br'>Arthur Gruber</a>, D.V.M., Ph.D. - Associate Professor, University of São Paulo", ""),
-        ("about_2-2-title", "Collaborator", ""),
-        ("about_2-3-list-1", "<a href='mailto:alan\@ime.usp.br'>Alan M. Durham</a>, Ph.D., Assistant Professor, University of São Paulo", ""),
-        ("about_2-4-title", "Members", ""),
-        ("about_2-5-list-1", "João Marcelo P. Alves, Ph.D.", ""),
-        ("about_2-5-list-2", "Liliane Santana, MSc student", ""),
-        ("about_2-5-list-3", "Maira Rodrigues C. Neves, MSc student", ""),
-        ("about_2-5-list-4", "Carolina Rossi, MSc student", ""),
-        ("about_2-5-list-5", "Rodrigo Hashimoto, undergraduate student", ""),
-        ("about_3-0-title", "<i>Photorhabdus</i> biology", ""),
-        ("about_3-1-paragraph", "Enterobacteria of the genus <i>Photorhabdus</i> are symbiotic partners of entomopathogenic nematodes belonging to the genus <i>Heterorhabditis</i>. Both members of this unusual symbiosis are able to efficiently kill any soil dwelling arthropod and are used for agronomic insect pest control. The bacteria serve two purposes after the infective juvenile of <i>Heterorhabditis</i> sp. invades the insect hemolymph; turning off the insect immune response and serving as food for the nematode partner development. The insect killing is attained by a series of mechanisms that go from the secretion of hydrolytic enzymes and very sophisticated protein toxins to the production of secondary metabolites. Both insect killing and nematode symbiosis are dependent on the bacterial colonization through the production of fimbria and adhesin molecules that mediate the production of a biofilm inside their hosts. ", ""),
-        ("about_3-2-title", "The genomes", ""),
-        ("about_3-3-paragraph", "<i>P. luminescens luminescens</i> MN7 is the first Neotropical entomopathogenic bacterium to have had its genome sequenced and annotated. Its nematode is <i>H. baujardi</i> strain LPP7, previously isolated from the soil of the Amazon forest in Monte Negro (RO), Brazil.", ""),
-        ("about_3-4-paragraph", "The genomes of two <i>Photorhabdus</i> have been completely sequenced and annotated: <a href='http://www.ncbi.nlm.nih.gov/genome/1123'><i>P. luminescens laumondii</i> strain TTO1</a> and <a href='http://www.ncbi.nlm.nih.gov/genome/1768'><i>P. asymbiotica</i> strain ATCC43949</a>. Their genomes are roughly 5 to 5.6 Mb long and contain approximately 4,400 to 4,700 ORFs. <i>Steinernema</i>, another genus of entomopathogenic nematode, also contains an enterobacterial partner belonging to the genus <i>Xenorhabdus</i>. The genomes of <a href='http://www.ncbi.nlm.nih.gov/genome/1227'><i>X. nematophila</i> ATCC19061</a> and <a href='http://www.ncbi.nlm.nih.gov/genome/1226'><i>X. bovienii</i> SS-2004</a> have also been sequenced. ", ""),
-        ("about_4-0-title", "Funding", ""),
-        ("about_4-1-paragraph", "<b>PhotoBase</b> has been developed with support from <a href='http://www.fapesp.br/en/'>FAPESP</a> (São Paulo Research Foundation, grants <b>#2010/51973-0</b> and <b>#2012/20945-7</b>) and <a href='http://www.cnpq.br/english/cnpq/index.htm'>CNPq</a> (National Council for Scientific and Technological Development).", ""),
-        ("about_4-2-paragraph", "The opinions, hypotheses, and conclusions or recommendations present in this website are the sole responsibility of its authors and do not necessarily reflect the views of FAPESP.", ""),
-        ("about_4-3-title", "Reference", ""),
-        ("about_4-4-paragraph", "If you use this database, please cite this page as follows:", ""),
-        ("about_4-5-list-1", "Winter, C.E. &amp; Gruber, A. (2013) The <i>Photorhabdus luminescens</i> MN7 genome database, version 1.0: http://www.coccidia.icb.usp.br/PMN.", "");
+        ("help_6-2-paragraph", "To be added...", "");
         
 SQL
+
+#		 ("footer", "&copy; 2016 YourCompany | By : Wendel Hime", "/#"),
+#        ("header-email", "Email:", ""),
+#        ("header-email-value", "wendelhime\@gmail.com", ""),
+#        ("header-support", "Support:", ""),
+#        ("header-support-value", "+55 (13) 99192-9997", ""),
+#        ("home", "Information", ""),
+#        ("home-value", "The <i>Photorhabdus luminescens</i> MN7 genome database (<b>PhotoBase</b>) is an integrated resource of genome sequencing and annotation data of the entomopathogenic enterobacterium <i>Photorhabdus luminescens</i> MN7. In addition to sequencing data, <b>PhotoBase</b> provides an organized catalog of functionally annotated predicted protein-coding and RNA genes, in addition to several DNA-based analysis results. The <b>PhotoBase</b> is maintained by the Coccidia Molecular Biology Research Group and the Nematode Molecular Biology Lab at the Institute of Biomedical Sciences, University of São Paulo, Brazil.", ""),
+#		 ("help-questions-feedback", "Questions and feedback", ""),
+#        ("help-questions-feedback-1-paragraphe", "If you have any question or would like to communicate any error, please contact us:", ""),
+#        ("help-questions-feedback-2-list-1", "Carlos E. Winter - <a href='mailto:cewinter\@usp.br'>cewinter\@usp.br</a>", ""),
+#        ("help-questions-feedback-2-list-2", "Arthur Gruber - <a href='mailto:argruber\@usp.br'>argruber\@usp.br</a>", ""),
+#		 ("about-table-content-1", "Project", "about_1"),
+#        ("about-table-content-2", "Project members", "about_2"),
+#        ("about-table-content-3", "Photorhabdus", "about_3"),
+#        ("about-table-content-4", "Funding and citing", "about_4"),
+#        ("about_1-0-paragraph", "Entomopathogenic nematodes (EPNs) live in symbiosis with specific enterobacteria. EPNs have been used for decades to control agricultural pests in the United States and Europe. Bacteria of the genus <i>Photorhabdus</i> are symbionts of EPNs of the genus <i>Heterorhabditis</i>. Recently, <i>Heterorhabditis bacteriophora</i> and its symbiont, <i>Photorhabdus luminescens laumondii</i>, were considered models for the study of host-pathogen interactions. The genome of <i>P. luminescens laumondii</i> TT01 was completely sequenced a few years ago, and it was discovered that six percent of its genes encode enzymes involved in production of secondary metabolites.", ""),
+#        ("about_1-1-paragraph", "One of the aims of our laboratory is the study of molecular aspects of Brazilian EPN isolates and their bacterial symbionts. Strains of two species of <i>Heterorhabditis</i> (<i>H. baujardi</i> and <i>H. indica</i>), obtained from the Amazon region, were molecularly characterized by us. The bacteria of <i>H. baujardi</i> (strain LPP7) were grown in isolation. Phylogenetic analysis of the 16 S rRNA sequence of this isolate (called MN7) shows that it can be part of the same clade as <i>P. asymbiotica</i>, a species isolated from wounds in humans in Australia and the United States. Recent data from our laboratory showed that MN7 secretes secondary metabolites of biotechnological interest, plus a protease similar to that found in other species of the genus.", ""),
+#        ("about_1-2-paragraph", "The aim of this project is the construction of a genome scaffold of <i>Photorhabdus luminescens</i> MN7 through next generation sequencing. This project aims to better understand the biology and evolution of bacteria of the genus <i>Photorhabdus</i> and make an inventory, as complete as possible, of the genes involved in the production of secondary metabolites and toxins that mediate symbiotic relationships with the nematode, the insect, and other species of nematodes. This project will be integrated with other projects of the laboratory studying entomopathogenic nematodes and their bacteria and will generate important data for researchers working on these bacteria in other countries.", ""),
+#        ("about_2-0-title", "Project coordinators", ""),
+#        ("about_2-1-list-1", "<a href='mailto:cewinter\@usp.br'>Carlos E. Winter</a>, Ph.D. - Associate Professor, University of São Paulo", ""),
+#        ("about_2-1-list-2", "<a href='mailto:argruber\@usp.br'>Arthur Gruber</a>, D.V.M., Ph.D. - Associate Professor, University of São Paulo", ""),
+#        ("about_2-2-title", "Collaborator", ""),
+#        ("about_2-3-list-1", "<a href='mailto:alan\@ime.usp.br'>Alan M. Durham</a>, Ph.D., Assistant Professor, University of São Paulo", ""),
+#        ("about_2-4-title", "Members", ""),
+#        ("about_2-5-list-1", "João Marcelo P. Alves, Ph.D.", ""),
+#        ("about_2-5-list-2", "Liliane Santana, MSc student", ""),
+#        ("about_2-5-list-3", "Maira Rodrigues C. Neves, MSc student", ""),
+#        ("about_2-5-list-4", "Carolina Rossi, MSc student", ""),
+#        ("about_2-5-list-5", "Rodrigo Hashimoto, undergraduate student", ""),
+#        ("about_3-0-title", "<i>Photorhabdus</i> biology", ""),
+#        ("about_3-1-paragraph", "Enterobacteria of the genus <i>Photorhabdus</i> are symbiotic partners of entomopathogenic nematodes belonging to the genus <i>Heterorhabditis</i>. Both members of this unusual symbiosis are able to efficiently kill any soil dwelling arthropod and are used for agronomic insect pest control. The bacteria serve two purposes after the infective juvenile of <i>Heterorhabditis</i> sp. invades the insect hemolymph; turning off the insect immune response and serving as food for the nematode partner development. The insect killing is attained by a series of mechanisms that go from the secretion of hydrolytic enzymes and very sophisticated protein toxins to the production of secondary metabolites. Both insect killing and nematode symbiosis are dependent on the bacterial colonization through the production of fimbria and adhesin molecules that mediate the production of a biofilm inside their hosts. ", ""),
+#        ("about_3-2-title", "The genomes", ""),
+#        ("about_3-3-paragraph", "<i>P. luminescens luminescens</i> MN7 is the first Neotropical entomopathogenic bacterium to have had its genome sequenced and annotated. Its nematode is <i>H. baujardi</i> strain LPP7, previously isolated from the soil of the Amazon forest in Monte Negro (RO), Brazil.", ""),
+#        ("about_3-4-paragraph", "The genomes of two <i>Photorhabdus</i> have been completely sequenced and annotated: <a href='http://www.ncbi.nlm.nih.gov/genome/1123'><i>P. luminescens laumondii</i> strain TTO1</a> and <a href='http://www.ncbi.nlm.nih.gov/genome/1768'><i>P. asymbiotica</i> strain ATCC43949</a>. Their genomes are roughly 5 to 5.6 Mb long and contain approximately 4,400 to 4,700 ORFs. <i>Steinernema</i>, another genus of entomopathogenic nematode, also contains an enterobacterial partner belonging to the genus <i>Xenorhabdus</i>. The genomes of <a href='http://www.ncbi.nlm.nih.gov/genome/1227'><i>X. nematophila</i> ATCC19061</a> and <a href='http://www.ncbi.nlm.nih.gov/genome/1226'><i>X. bovienii</i> SS-2004</a> have also been sequenced. ", ""),
+#        ("about_4-0-title", "Funding", ""),
+#        ("about_4-1-paragraph", "<b>PhotoBase</b> has been developed with support from <a href='http://www.fapesp.br/en/'>FAPESP</a> (São Paulo Research Foundation, grants <b>#2010/51973-0</b> and <b>#2012/20945-7</b>) and <a href='http://www.cnpq.br/english/cnpq/index.htm'>CNPq</a> (National Council for Scientific and Technological Development).", ""),
+#        ("about_4-2-paragraph", "The opinions, hypotheses, and conclusions or recommendations present in this website are the sole responsibility of its authors and do not necessarily reflect the views of FAPESP.", ""),
+#        ("about_4-3-title", "Reference", ""),
+#        ("about_4-4-paragraph", "If you use this database, please cite this page as follows:", ""),
+#        ("about_4-5-list-1", "Winter, C.E. &amp; Gruber, A. (2013) The <i>Photorhabdus luminescens</i> MN7 genome database, version 1.0: http://www.coccidia.icb.usp.br/PMN.", "")
+$scriptSQL .= readHTML($html_file);
+
 
 
 #apaga diretorios antigos com fastas
@@ -3670,6 +3678,39 @@ sub writeFile
 #	binmode($FILEHANDLER, ":utf8");
 	print $FILEHANDLER $content;
 	close($FILEHANDLER);
+}
+
+
+###
+#	Method used to read HTML file with the texts to be used on site
+#	@param $htmlFile path of the HTML file to be read
+#	return returns the data in sql format to be used on SQLite db
+#
+sub readHTML
+{
+	my ($htmlFile) = @_;
+	open(my $FILEHANDLER, "<", $htmlFile); 
+	my $content = do { local $/; <$FILEHANDLER> };
+	my $sql = "";
+	while($content =~ /class="(\w+)" id="([\w\-]*)">([\w\d\s\@\.\(\)\-\+\,\;\:\=\'\<\>\~ã\/\#&|]*)<\/\w*>/g)
+	{
+		my $tempTag = "";
+		if($2)
+		{
+			$tempTag = $1."-".$2;
+		}
+		else
+		{
+			$tempTag = $1;
+		}
+		my $tempContent = $3;
+		$tempContent =~ s/<\/div>|<\/li>|<\/ul>|<\/h4>|<\/p>|<\/a>|<\/span>|<\/teste>$//g;
+		$sql .= <<SQL;
+			INSERT INTO TEXTS(tag, value) VALUES ("$tempTag", "$tempContent");
+SQL
+		
+	}
+	return $sql;
 }
 
 sub get_code_number_product {
