@@ -171,6 +171,7 @@ my $conf;
 my $databases_code;
 my $databases_dir;
 my $html_file;
+my $banner;
 
 #
 #read configuration file
@@ -398,7 +399,10 @@ if (defined($config->{"homepage_text_file"}))
 {
 	$html_file = $config->{"homepage_text_file"};
 }
-
+if (defined($config->{"homepage_banner_image"}))
+{
+	$banner = $config->{"homepage_banner_image"};
+}
 
 #
 # ==> END OF AUTO GENERATED CODE 
@@ -1755,6 +1759,11 @@ print "Copy files assets\n";
 `tar -zxf assets.tar.gz`;
 `cp -r assets $nameProject/root/`;
 `rm -Rf assets`;
+
+if($banner)
+{
+	`cp $banner $nameProject/root/assets/img/logo.png`;
+}
 
 #Conteúdo HTML da pasta root, primeira chave refere-se ao nome do diretório
 #O valor do vetor possuí o primeiro valor como nome do arquivo, e os demais como conteúdo do arquivo
