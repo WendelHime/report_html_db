@@ -1208,7 +1208,15 @@ SQL
 #        ("about_4-3-title", "Reference", ""),
 #        ("about_4-4-paragraph", "If you use this database, please cite this page as follows:", ""),
 #        ("about_4-5-list-1", "Winter, C.E. &amp; Gruber, A. (2013) The <i>Photorhabdus luminescens</i> MN7 genome database, version 1.0: http://www.coccidia.icb.usp.br/PMN.", "")
-$scriptSQL .= readHTML($html_file);
+
+
+###
+#
+#	Realiza a leitura do arquivo example.html
+#	Pega o conteúdo e concatena a query no script SQL
+#
+###
+$scriptSQL .= readJSON($html_file);
 
 
 
@@ -1635,13 +1643,13 @@ foreach my $controller (@controllers) {
 	print "Creating controller $controller\n";
 	`$nameProject/script/"$lowCaseName"_create.pl controller $controller`;
 
-#se nome do controller possuir letra maiuscula no meio da string, adicionar - e passar para low case
-
-#    s/"*sub index :Path :Args\(0\) {([\s\w()$,=@_;\->{}""#"\[\]'':%\/.]+)*//igm;
-
-#métodos possuem mesmos nomes, passar nome do controller para low case, abrir arquivo controller, pegar conteúdo
-#usar expressão regular para pegar conteúdo do método index, criar variavel com conteúdo substituído, substituír conteudo
-#s/$oldContent/$newContent/igm;
+	#se nome do controller possuir letra maiuscula no meio da string, adicionar - e passar para low case
+	
+	#    s/"*sub index :Path :Args\(0\) {([\s\w()$,=@_;\->{}""#"\[\]'':%\/.]+)*//igm;
+	
+	#métodos possuem mesmos nomes, passar nome do controller para low case, abrir arquivo controller, pegar conteúdo
+	#usar expressão regular para pegar conteúdo do método index, criar variavel com conteúdo substituído, substituír conteudo
+	#s/$oldContent/$newContent/igm;
 
 	my $lowCaseController = $controller;
 	if ( $lowCaseController =~ /([A-Z]+[a-z]+)([A-Z]+[a-z]+)/gm ) {
@@ -1764,26 +1772,25 @@ my %contentHTML = (
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                [% id = text.details %]
-                                <a data-toggle="collapse" data-parent="#accordion" href="#[% id %]" class="collapsed">[% text.value %]</a>
+                                <a data-toggle="collapse" data-parent="#accordion" href="#about_[% counter %]" class="collapsed">[% text.value %]</a>
                             </h4>
                         </div>
-                        <div id="[% id %]" class="panel-collapse collapse">
+                        <div id="about_[% counter %]" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <div class="notice-board">
                                     [% counterTexts = 0 %]
                                     [% FOREACH content IN texts %]
-                                        [% IF content.tag.search(id _"-"_ counterTexts) %]
-                                            [% IF content.tag == id _"-"_ counterTexts _"-title" %]
+                                        [% IF content.tag.search("about_" _ counter _"-"_ counterTexts) %]
+                                            [% IF content.tag == "about_" _ counter _"-"_ counterTexts _"-title" %]
                                                 <h1 id="[% content.details %]" class="page-head-line">[% content.value %]</h1>
                                             [% END %]
-                                            [% IF content.tag == id _"-"_ counterTexts _"-paragraph" %]
+                                            [% IF content.tag == "about_" _ counter _"-"_ counterTexts _"-paragraph" %]
                                                 <p>[% content.value %]</p>
                                             [% END %]
-                                            [% IF content.tag.search(id _"-"_ counterTexts _"-list-") %]
+                                            [% IF content.tag.search("about_" _ counter _"-"_ counterTexts _"-list-") %]
                                                 <ul>
                                                     [% FOREACH item IN texts %]
-                                                        [% IF item.tag.search(id _"-"_ counterTexts _"-list-") %]
+                                                        [% IF item.tag.search("about_" _ counter _"-"_ counterTexts _"-list-") %]
                                                             <li>[% item.value %]</li>
                                                         [% END %]
                                                     [% END %]
@@ -3518,12 +3525,10 @@ HEAD
             <div class="col-md-12">
                 [% FOREACH text IN texts %]
                     [% IF text.tag.search('header') %]
-                        [% IF !(text.tag.search('value')) %]
-                            <strong>[% text.value %]</strong>
-                        [% ELSE %]
-                            [% text.value %]
-                            &nbsp;&nbsp;
-                        [% END %]
+                        
+                        [% text.value %]
+                        &nbsp;&nbsp;
+                        
                     [% END %]
                 [% END %]
             </div>
@@ -3683,32 +3688,22 @@ sub writeFile
 
 ###
 #	Method used to read HTML file with the texts to be used on site
-#	@param $htmlFile path of the HTML file to be read
-#	return returns the data in sql format to be used on SQLite db
+#	@param $file => path of the JSON file to be read
+#	return data in SQL
 #
-sub readHTML
+sub readJSON
 {
-	my ($htmlFile) = @_;
-	open(my $FILEHANDLER, "<", $htmlFile); 
+	my ($file) = @_;
+	open(my $FILEHANDLER, "<", $file); 
 	my $content = do { local $/; <$FILEHANDLER> };
 	my $sql = "";
-	while($content =~ /class="(\w+)" id="([\w\-]*)">([\w\d\s\@\.\(\)\-\+\,\;\:\=\'\<\>\~ã\/\#&|]*)<\/\w*>/g)
+	while($content =~ /^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:+(),'=&ããõáéíóúàâêẽ;#|]*)"/gm)
 	{
-		my $tempTag = "";
-		if($2)
-		{
-			$tempTag = $1."-".$2;
-		}
-		else
-		{
-			$tempTag = $1;
-		}
-		my $tempContent = $3;
-		$tempContent =~ s/<\/div>|<\/li>|<\/ul>|<\/h4>|<\/p>|<\/a>|<\/span>|<\/teste>$//g;
+		my $tag = $1;
+		my $value = $2;
 		$sql .= <<SQL;
-			INSERT INTO TEXTS(tag, value) VALUES ("$tempTag", "$tempContent");
+			INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
 SQL
-		
 	}
 	return $sql;
 }

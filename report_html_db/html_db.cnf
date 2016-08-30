@@ -56,7 +56,7 @@ report_eggnog_dir= eggnog_report
 eggnog_dir=eggnog_dir
 blast_dir_list=blastp_dir
 database_code_list=INSD
-homepage_text_file = example.html
+homepage_text_file = example.json
 homepage_banner_image = 
 
 #===================================================================================
