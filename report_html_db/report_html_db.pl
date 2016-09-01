@@ -27,9 +27,6 @@ my $print_conf =  <<'CONF';
 ==organism_name
 ==fasta_file
 html_dir = html_dir
-component_name_list=
-FT_artemis_dir=
-FT_submission_dir=
 FT_artemis_selected_dir=
 FT_submission_selected_dir=
 GFF_dir=
@@ -78,7 +75,9 @@ report_go_dir = go_report_dir
 report_csv_dir =
 csv_file =
 go_file
+TCDB_file=
 homepage_text_file=
+homepage_banner_image=
 CONF
 
 unless(@ARGV) {
@@ -104,44 +103,41 @@ my $fasta_file;
 #####
 
 my $html_dir = "";
-my $component_name_list="";
-my $FT_artemis_dir="";
-my $FT_submission_dir="";
-my $FT_artemis_selected_dir="";
-my $FT_submission_selected_dir="";
-my $GFF_dir="";
-my $GFF_selected_dir="";
+#my $FT_artemis_selected_dir="";
+#my $FT_submission_selected_dir="";
+#my $GFF_dir="";
+#my $GFF_selected_dir="";
 my $aa_fasta_dir="";
 my $nt_fasta_dir="";
 #my $xml_dir="xml_dir";
 my $fasta_dir="";
-my $blast_dir="";
-my $rpsblast_dir="";
-my $hmmer_dir="";
-my $signalp_dir="";
-my $tmhmm_dir="";
-my $phobius_dir="";
-my $dgpi_dir="";
-my $predgpi_dir = "";
-my $bigpi_dir = "";
-my $interpro_dir="";
+#my $blast_dir="";
+#my $rpsblast_dir="";
+#my $hmmer_dir="";
+#my $signalp_dir="";
+#my $tmhmm_dir="";
+#my $phobius_dir="";
+#my $dgpi_dir="";
+#my $predgpi_dir = "";
+#my $bigpi_dir = "";
+#my $interpro_dir="";
 #my $orthology_dir="";
-my $eggnog_dir;
-my $cog_dir;
-my $kog_dir;
-my $orthology_extension="";
-my $pathways_dir="";
+#my $eggnog_dir;
+#my $cog_dir;
+#my $kog_dir;
+#my $orthology_extension="";
+#my $pathways_dir="";
 my $aa_orf_file="";
 my $nt_orf_file="";
-my $background_image_file="";
-my $index_file="";
-my $export_subgroup="yes";
-my $overwrite_output="yes";
-my $report_pathways_dir;
+#my $background_image_file="";
+#my $index_file="";
+#my $export_subgroup="yes";
+#my $overwrite_output="yes";
+#my $report_pathways_dir;
 #my $report_orthology_dir;
-my $report_eggnog_dir;
-my $report_cog_dir;
-my $report_kog_dir;
+#my $report_eggnog_dir;
+#my $report_cog_dir;
+#my $report_kog_dir;
 #componentes jota
 my $alienhunter_output_file = "";
 my $alienhunter_dir = "";
@@ -161,7 +157,7 @@ my $mreps_dir = "";
 my $report_go_dir;
 my $go_file;
 my $report_csv_dir;
-my $csv_file;
+#my $csv_file;
 #local variables
 my @arguments;
 my $config;
@@ -172,6 +168,7 @@ my $databases_code;
 my $databases_dir;
 my $html_file;
 my $banner;
+my $tcdb_file = "";
 
 #
 #read configuration file
@@ -199,50 +196,11 @@ if ($missingArgument) {
 #
 #set optional arguments that were declared in configuration file
 #
-if (defined($config->{"component_name_list"})){
-   $component_name_list = $config->{"component_name_list"};
-}
-if (defined($config->{"FT_artemis_dir"})){
-   $FT_artemis_dir = $config->{"FT_artemis_dir"};
-}
-else{
-   $FT_artemis_dir = undef;
-}
-if (defined($config->{"FT_submission_dir"})){
-   $FT_submission_dir = $config->{"FT_submission_dir"};
-}
-else{
-   $FT_submission_dir = undef;
-}
-if (defined($config->{"FT_artemis_selected_dir"})){
-   $FT_artemis_selected_dir = $config->{"FT_artemis_selected_dir"};
-}
-else{
-   $FT_artemis_selected_dir = undef;
-}
 if (defined($config->{"html_dir"})){
    $html_dir = $config->{"html_dir"};
 }
 else{
    $html_dir= "html_dir";
-}
-if (defined($config->{"FT_submission_selected_dir"})){
-   $FT_submission_selected_dir = $config->{"FT_submission_selected_dir"};
-}
-else{
-    $FT_submission_selected_dir = undef;
-}
-if (defined($config->{"GFF_dir"})){
-   $GFF_dir = $config->{"GFF_dir"};
-}
-else{
-   $GFF_dir = undef;
-}
-if (defined($config->{"GFF_selected_dir"})){
-   $GFF_selected_dir = $config->{"GFF_selected_dir"};
-}
-else{
-   $GFF_selected_dir = undef;
 }
 if (defined($config->{"aa_fasta_dir"})){
    $aa_fasta_dir = $config->{"aa_fasta_dir"};
@@ -258,77 +216,11 @@ if (defined($config->{"blast_dir"})){
    $blast_dir = $config->{"blast_dir"};
 }
 =cut
-if (defined($config->{"rpsblast_dir"})){
-   $rpsblast_dir = $config->{"rpsblast_dir"};
-}
-if (defined($config->{"hmmer_dir"})){
-   $hmmer_dir = $config->{"hmmer_dir"};
-}
-if (defined($config->{"signalp_dir"})){
-   $signalp_dir = $config->{"signalp_dir"};
-}
-if (defined($config->{"tmhmm_dir"})){
-   $tmhmm_dir = $config->{"tmhmm_dir"};
-}
-if (defined($config->{"phobius_dir"})){
-   $phobius_dir = $config->{"phobius_dir"};
-}
-if (defined($config->{"dgpi_dir"})){
-   $dgpi_dir = $config->{"dgpi_dir"};
-}
-if (defined($config->{"predgpi_dir"})){
-   $predgpi_dir = $config->{"predgpi_dir"};
-}
-if (defined($config->{"bigpi_dir"})){
-   $bigpi_dir = $config->{"bigpi_dir"};
-}
-if (defined($config->{"interpro_dir"})){
-   $interpro_dir = $config->{"interpro_dir"};
-}
-if (defined($config->{"eggnog_dir"})){
-   $eggnog_dir = $config->{"eggnog_dir"};
-}
-if (defined($config->{"cog_dir"})){
-   $cog_dir = $config->{"cog_dir"};
-}
-if (defined($config->{"kog_dir"})){
-   $kog_dir = $config->{"kog_dir"};
-}
-if (defined($config->{"report_eggnog_dir"})){
-   $report_eggnog_dir = $config->{"report_eggnog_dir"};
-}
-if (defined($config->{"report_cog_dir"})){
-   $report_cog_dir = $config->{"report_cog_dir"};
-}
-if (defined($config->{"report_kog_dir"})){
-   $report_kog_dir = $config->{"report_kog_dir"};
-}
-if (defined($config->{"pathways_dir"})){
-   $pathways_dir = $config->{"pathways_dir"};
-}
-if (defined($config->{"report_pathways_dir"})){
-   $report_pathways_dir = $config->{"report_pathways_dir"};
-}
 if (defined($config->{"aa_orf_file"})){
    $aa_orf_file = $config->{"aa_orf_file"};
 }
 if (defined($config->{"nt_orf_file"})){
    $nt_orf_file = $config->{"nt_orf_file"};
-}
-if (defined($config->{"background_image_file"})){
-   $background_image_file = $config->{"background_image_file"};
-}
-if (defined($config->{"index_file"})){
-   $index_file = $config->{"index_file"};
-}
-else{
-   $index_file = "index.html";
-}
-if (defined($config->{"export_subgroup"})){
-   $export_subgroup = $config->{"export_subgroup"};
-}
-if (defined($config->{"overwrite_output"})){
-   $overwrite_output = $config->{"overwrite_output"};
 }
 #componentes do Jota
 if (defined($config->{"alienhunter_output_file"})){
@@ -392,9 +284,6 @@ if (defined($config->{"blast_dir_list"})){
 if (defined($config->{"report_csv_dir"})){
    $report_csv_dir = $config->{"report_csv_dir"};
 }
-if (defined($config->{"csv_file"})){
-   $csv_file = $config->{"csv_file"};
-}
 if (defined($config->{"homepage_text_file"}))
 {
 	$html_file = $config->{"homepage_text_file"};
@@ -403,11 +292,16 @@ if (defined($config->{"homepage_banner_image"}))
 {
 	$banner = $config->{"homepage_banner_image"};
 }
+if (defined($config->{"TCDB_file"}))
+{
+	$tcdb_file = $config->{"TCDB_file"};
+}
 
 #
 # ==> END OF AUTO GENERATED CODE 
 #
 
+open(my $LOG, ">", "report_html_db.log");
 
 ###
 #
@@ -591,43 +485,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-search-by-transporter-family", "Or by transporter family(e.g. 3.A.17):", ""),
         ("search-database-analyses-protein-code-search-by-transporter-subclass", "Or by transporter subclass:", ""),
         ("search-database-analyses-protein-code-search-by-transporter-class", "Or by transporter class:", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.A α-Type Channels", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.B β-Barrel Porins", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.C Pore-Forming Toxins (Proteins and Peptides)", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.D Non-Ribosomally Synthesized Channels", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.E Holins", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.F Vesicle Fusion Pores", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.G Viral Fusion Pores", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.H Paracellular Channels", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.I Membrane-bounded Channels", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.J Virion Egress Pyramidal Apertures", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "2.A Porters (uniporters, symporters, antiporters)", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "2.B Nonribosomally synthesized porters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "2.C Ion-gradient-driven energizers", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "3.A P-P-bond-hydrolysis-driven transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "3.B Decarboxylation-driven transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "3.C Methyltransfer-driven transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "3.D Oxidoreduction-driven transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "3.E Light absorption-driven transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "4.A Phosphotransfer-driven Group Translocators", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "4.B Nicotinamide ribonucleoside uptake transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "4.C Acyl CoA ligase-coupled transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "4.D Polysaccharide Synthase/Exporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "5.A Transmembrane Electron Carriers", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "5.B Transmembrane 1-electron transfer carriers", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "8.A Auxiliary transport proteins", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "8.B Ribosomally synthesized protein/peptide toxins/agonists that target channels and carriers", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "8.C Non-ribosomally synthesized toxins that target channels and carriers", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "9.A Recognized transporters of unknown biochemical mechanism", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "9.B Putative transport proteins", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "9.C Functionally characterized transporters lacking identified sequences", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class-option", "1 Channels/Pores", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class-option", "2 Electrochemical Potential-driven Transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class-option", "3 Primary Active Transporters", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class-option", "4 Group Translocators", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class-option", "5 Transmembrane Electron Carriers", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class-option", "8 Accessory Factors Involved in Transport", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class-option", "9 Incompletely Characterized Transport Systems", ""),
         ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
         ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains:", ""),
         ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-or-less", " or less", "value='orLess'"),
@@ -1221,16 +1078,26 @@ SQL
 #
 ###
 $scriptSQL .= readJSON($html_file);
+print $LOG "\n$html_file read!\n";
 
 
+###
+#
+#	Realiza leitura do arquivo de TCDBs
+#
+###
+$scriptSQL .= readTCDBFile($tcdb_file);
+print $LOG "\n$tcdb_file read!\n";
 
 #apaga diretorios antigos com fastas
+print $LOG "\nDeleting old fasta directories\n";
 if(-d "$html_dir/root/$fasta_dir" && -d "$html_dir/root/$aa_fasta_dir" && -d "$html_dir/root/$nt_fasta_dir")
 {
-    !system("rm -r $html_dir/$fasta_dir $html_dir/$aa_fasta_dir $html_dir/$nt_fasta_dir")
+    !system("rm -r $html_dir/root/$fasta_dir $html_dir/root/$aa_fasta_dir $html_dir/root/$nt_fasta_dir")
 	or die "Could not removed directories\n";
 }
 
+print $LOG "\nSeparating sequences od multifasta and create directory\n";
 #separa sequencias do multifasta e cria diretorio
 if(not -d $html_dir)
 {
@@ -1245,6 +1112,7 @@ if(not -d "$html_dir/root/$fasta_dir")
 
 $/ = ">";
 
+print $LOG "Separating ORFs em AA of multifasta AA";
 #separa ORFs em aa do multifasta aa
 if(not -d "$html_dir/root/$aa_fasta_dir")
 {
@@ -1257,6 +1125,7 @@ if($aa_orf_file ne "")
     open(FILE_AA,"$aa_orf_file") or die "Could not open file $aa_orf_file\n";
 }
 
+print $LOG "Separating ORFs NT of multifasta NT";
 #separa ORFs nt do multifasta nt
 if(not -d "$html_dir/root/$nt_fasta_dir")
 {
@@ -1271,50 +1140,13 @@ if(not -d "$html_dir/root/$nt_fasta_dir")
 
 $/ = ">";
 
-
-my $name;
-my $seq;
-#termina funcao para separar sequencias nt das ORFs
-
-my $output_seqs;
-my $count = 0;
-my $count_ev = 0;
-my $count_dna;
-
 #prefix_name for sequence
 my $prefix_name;
-my $sequence;
-
-#my %ip_id;
-my $tmhmm_result = "";
-my $signalP_result = "";
-my $phobius_result = "";
-my $dgpi_result = "";
-my $predgpi_result = "";
-my $bigpi_result = "";
-my $blast_result = "";
-my $rpsblast_result = "";
-my $hmmer_result = "";
-my $interpro_result = "";
-#my $ortholgy_result = "";
-#my $GO_result = "";
 my $header;
-my $locus_tag;
-my $locus = 0;
 
 #my @components_name = split (';',$component_name_list);
 #push @components_name,"go_terms";
 #my %comp_names = map {$_ => 1} @components_name;
-
-
-
-#my @databases_blast = split(";", $databases_code);
-#my @blast_dirs = split(";", $databases_dir);
-#
-#for(my $i = 0; $i < scalar @databases_blast; $i++)
-#{
-#	$scriptSQL .= "\nINSERT INTO BLAST(database, directory) VALUES ('".$databases_blast[$i]."', '".$blast_dirs[$i]."');";
-#}
 
 #
 # Read ALL Sequence Objects and sort by name for nice display
@@ -1337,10 +1169,11 @@ my $dbName = "";
 my $dbHost = "";
 my $dbUser = "";
 my $dbPassword = "";
+
+print $LOG "\nReading sequences\n";
 while($sequence_object->read())
 {	
     ++$seq_count;
-    $count_ev = 0;
     my @conclusions = @{$sequence_object->get_conclusions()};
     $header = $sequence_object->fasta_header();
     my $bases = $sequence_object->current_sequence();
@@ -1352,7 +1185,6 @@ while($sequence_object->read())
     $dbPassword = $sequence_object->{password};    
     
     
-    #TODO - criar controller annotations, ann_file passa a ser a URL para as anotações
     my $ann_file = "annotations/".$name;
     # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
     #pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
@@ -1567,8 +1399,8 @@ my $databaseFilepath = $filepath . "/database.db";
 #path catalyst file
 my $pathCatalyst = `which catalyst.pl`;
 unless ($pathCatalyst) {
-	print
-"Catalyst not found, please install dependences:\ncpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema DBIx::Class::Schema::Loader MooseX::NonMoose";
+	print $LOG
+"\nCatalyst not found, please install dependences:\ncpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema DBIx::Class::Schema::Loader MooseX::NonMoose\n";
 	exit;
 }
 chomp $pathCatalyst;
@@ -1577,7 +1409,7 @@ chomp $pathCatalyst;
 chmod( "0755", $pathCatalyst );
 
 #create project
-print "Creating project...\n";
+print $LOG "\nCreating project...\n";
 `$pathCatalyst $nameProject`;
 my $lowCaseName = $nameProject;
 $lowCaseName = lc $lowCaseName;
@@ -1586,7 +1418,7 @@ $lowCaseName = lc $lowCaseName;
 #chmod("111", "$nameProject/script/".$lowCaseName."_server.pl");
 #chmod("111", "$nameProject/script/".$lowCaseName."_create.pl");
 #create view
-print "Creating view\n";
+print $LOG "\nCreating view\n";
 `./$nameProject/script/"$lowCaseName"_create.pl view TT TT`;
 my $fileHandler;
 open( $fileHandler, "<", "$nameProject/lib/$nameProject/View/TT.pm" );
@@ -1595,7 +1427,7 @@ my $contentToBeChanged =
 my $data = do { local $/; <$fileHandler> };
 $data =~ s/__\w+->config\(([\w\s=>''"".,\/]*)\s\);/$contentToBeChanged/igm;
 close($fileHandler);
-print "Editing view";
+print $LOG "\nEditing view\n";
 writeFile( "$nameProject/lib/$nameProject/View/TT.pm", $data );
 
 #if database file exists, delete
@@ -1604,15 +1436,15 @@ if ( -e $databaseFilepath ) {
 }
 
 #create the file sql to be used
-print "Creating SQL file\n";
+print $LOG "\nCreating SQL file\tscript.sql\n";
 writeFile( "script.sql", $scriptSQL );
 
 #create file database
-print "Creating database file\n";
+print $LOG "\nCreating database file\t$databaseFilepath\n";
 `sqlite3 $databaseFilepath < script.sql`;
 
 #create models project
-print "Creating models\n";
+print $LOG "\nCreating models\n";
 `$nameProject/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$nameProject"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON;PRAGMA encoding='UTF-8'"`;
 `$nameProject/script/"$lowCaseName"_create.pl model Chado DBIC::Schema "$nameProject"::Chado create=static "dbi:Pg:dbname=$dbName;host=$dbHost" "$dbUser" "$dbPassword"`;
 
@@ -1631,6 +1463,7 @@ foreach my $component (sort @components_name)
 }
 
 #create controllers project
+print $LOG "\nCreating controllers...\n";
 my @controllers = (
 	"Home", "Blast", "Downloads", "Help", "About"
 );
@@ -1644,7 +1477,7 @@ if($hadSearchDatabase)
 }
 
 foreach my $controller (@controllers) {
-	print "Creating controller $controller\n";
+	print $LOG "\nCreating controller $controller\n";
 	`$nameProject/script/"$lowCaseName"_create.pl controller $controller`;
 
 	#se nome do controller possuir letra maiuscula no meio da string, adicionar - e passar para low case
@@ -1755,7 +1588,7 @@ foreach my $filepathComponent (@filepathsComponents)
 
 
 #Descompacta assets
-print "Copy files assets\n";
+print $LOG "Copying files assets\n";
 `tar -zxf assets.tar.gz`;
 `cp -r assets $nameProject/root/`;
 `rm -Rf assets`;
@@ -3613,9 +3446,9 @@ unless($hadSearchDatabase)
 	delete $contentHTML{"search-database"};
 }
 
-writeFile("log-report-html-db.log", $scriptSQL);
+#writeFile("log-report-html-db.log", $scriptSQL);
 
-print "Creating html views\n";
+print $LOG "\nCreating html views\n";
 foreach my $directory ( keys %contentHTML ) {
 	if ( !( -e "$nameProject/root/$lowCaseName/$directory" ) ) {
 		`mkdir -p "$nameProject/root/$lowCaseName/$directory"`;
@@ -3627,7 +3460,7 @@ foreach my $directory ( keys %contentHTML ) {
 }
 
 #Create file wrapper
-print "Creating wrapper\n";
+print $LOG "\nCreating wrapper\n";
 my $wrapper = <<WRAPPER;
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -3664,7 +3497,7 @@ sub index :Path :Args(0) {
 
 =head2 default
 ";
-print "Editing root file\n";
+print $LOG "\nEditing root file\n";
 open( $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm" );
 $data = do { local $/; <$fileHandler> };
 $data =~ 
@@ -3674,10 +3507,11 @@ writeFile( "$nameProject/lib/$nameProject/Controller/Root.pm", $data );
 
 #inicialize server project
 #`./$nameProject/script/"$lowCaseName"_server.pl -r`;
-print "Done\nTurn on the server with this command:\n./$nameProject/script/"
+print $LOG "Done\nTurn on the server with this command:\n./$nameProject/script/"
   . $lowCaseName
   . "_server.pl -r\n"
   . "http://localhost:3000\n";
+close($LOG);
 exit;
 
 ###
@@ -3714,6 +3548,31 @@ sub readJSON
 			INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
 SQL
 	}
+	close($FILEHANDLER);
+	return $sql;
+}
+
+sub readTCDBFile
+{
+	my($tcdb_file) = @_;
+	open(my $FILEHANDLER, "<", $tcdb_file);
+	my $sql = "";
+	while(my $line = <$FILEHANDLER>)
+	{
+		if($line =~ /^(\d\t[\w\/\s\-]*)[^\n]\v/gm)
+		{
+			$sql .=  <<SQL;
+			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "$1");
+SQL
+		}
+		elsif($line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/)
+		{
+			$sql .= <<SQL;
+			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "$1");
+SQL
+		}
+	}
+	close($FILEHANDLER);
 	return $sql;
 }
 

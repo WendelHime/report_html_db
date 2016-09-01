@@ -1,12 +1,19 @@
 {
+	"_commentHeader1": "Content of the header",
 	"header-email": "<strong>Email:</strong> example@example.com",
 	"header-support": "<strong>Support:</strong> +11 (11) 11111-1111",
+	"_commentHeader2": "End header",
+	"_commentHome1": "Content of the home page",
 	"home-title": "Information title",
 	"home-value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales quis enim nec vehicula. Nunc cursus sem sem. Maecenas vitae euismod leo. Sed tristique, nisl et mollis laoreet, eros orci tincidunt neque, vulputate convallis quam velit in mauris. Nulla ut dapibus nisl. Ut placerat, arcu et convallis ultrices, metus metus tempus tortor, vel aliquam sem neque sed quam. Mauris vel accumsan ante.",
+	"_commentHome2": "End home",
+	"_commentHelp1": "Content of the help page",
 	"help-questions-feedback": "Questions and feedback",
 	"help-questions-feedback-1-paragraphe": "If you have any question or would like to communicate any error, please contact us: ",
 	"help-questions-feedback-2-list-1": "Carlos E. Winter - <a href='mailto:cewinter@usp.br'>cewinter@usp.br</a>",
 	"help-questions-feedback-2-list-2": "Arthur Gruber - <a href='mailto:argruber@usp.br'>argruber@usp.br</a>",
+	"_commentHelp2": "End Help",
+	"_commentAbout1": "Content of the about page",
 	"about-table-content-1": "Project",
 	"about_1-0-paragraph": "Entomopathogenic nematodes (EPNs) live in symbiosis with specific enterobacteria. EPNs have been used for decades to control agricultural pests in the United States and Europe. Bacteria of the genus <i>Photorhabdus</i> are symbionts of EPNs of the genus <i>Heterorhabditis</i>. Recently, <i>Heterorhabditis bacteriophora</i> and its symbiont, <i>Photorhabdus luminescens laumondii</i>, were considered models for the study of host-pathogen interactions. The genome of <i>P. luminescens laumondii</i> TT01 was completely sequenced a few years ago, and it was discovered that six percent of its genes encode enzymes involved in production of secondary metabolites.",
 	"about_1-1-paragraph": "One of the aims of our laboratory is the study of molecular aspects of Brazilian EPN isolates and their bacterial symbionts. Strains of two species of <i>Heterorhabditis</i> (<i>H. baujardi</i> and <i>H. indica</i>), obtained from the Amazon region, were molecularly characterized by us. The bacteria of <i>H. baujardi</i> (strain LPP7) were grown in isolation. Phylogenetic analysis of the 16 S rRNA sequence of this isolate (called MN7) shows that it can be part of the same clade as <i>P. asymbiotica</i>, a species isolated from wounds in humans in Australia and the United States. Recent data from our laboratory showed that MN7 secretes secondary metabolites of biotechnological interest, plus a protease similar to that found in other species of the genus.",
@@ -39,5 +46,8 @@
 	"about_4-3-title": "Reference",
 	"about_4-4-paragraph": "If you use this database, please cite this page as follows:",
 	"about_4-5-list-1": "Winter, C.E. &amp; Gruber, A. (2013) The <i>Photorhabdus luminescens</i> MN7 genome database, version 1.0: http://www.coccidia.icb.usp.br/PMN.",
-	"footer": "&copy; 2016 YourCompany | By : Name"
+	"_commentAbout2": "End about page",
+	"_commentFooter1": "Content of the footer",
+	"footer": "&copy; 2016 YourCompany | By : Name",
+	"_commentFooter2": "End footer"
 }
