@@ -1,4 +1,9 @@
 {
+	"_comment" : "This is a example of the texts that will be used on site,
+					the first value inside of pair of quotes is the tag name to be referenced,
+					after the first value, comes colon(:) to separate the tag name of value,
+					the second value inside of pair of quotes is the value to be used,
+					and in the end use comma to separate the pair of tag and value",
 	"_commentHeader1": "Content of the header",
 	"header-email": "<strong>Email:</strong> example@example.com",
 	"header-support": "<strong>Support:</strong> +11 (11) 11111-1111",
