@@ -24,3 +24,4 @@ TODO:
 -
 -	Estudar banco de dados chado e entender a organização das evidências/conclusões
 -	Criar controllers para realizar pesquisas do Search database
+-	Planejar como vai funcionar as views do resultados da pesquisa do search database

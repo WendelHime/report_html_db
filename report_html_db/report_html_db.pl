@@ -340,13 +340,13 @@ CREATE TABLE COMPONENTS(
 );
 
 INSERT INTO TEXTS(tag, value, details) VALUES
-        ("menu", "home", "/home"),
-        ("menu", "blast", "/blast"),
-        ("menu", "search database", "/searchdatabase"),
-        ("menu", "global analyses", "/globalanalyses"),
-        ("menu", "downloads", "/downloads"),
-        ("menu", "help", "/help"),
-        ("menu", "about", "/about"),
+        ("menu", "home", "/"),
+        ("menu", "blast", "/Blast"),
+        ("menu", "search database", "/SearchDatabase"),
+        ("menu", "global analyses", "/GlobalAnalyses"),
+        ("menu", "downloads", "/Downloads"),
+        ("menu", "help", "/Help"),
+        ("menu", "about", "/About"),
         ("blast-form-title", "Choose program to use and database to search:", ""),
         ("blast-program-title", "Program:", "http://puma.icb.usp.br/blast/docs/blast_program.html"),
         ("blast-program-option", "blastn", ""),
@@ -1464,116 +1464,319 @@ foreach my $component (sort @components_name)
 
 #create controllers project
 print $LOG "\nCreating controllers...\n";
-my @controllers = (
-	"Home", "Blast", "Downloads", "Help", "About"
-);
+
+my $rootContent = <<ROOT;
+package html_dir::Controller::Root;
+use Moose;
+use namespace::autoclean;
+
+BEGIN { extends 'Catalyst::Controller' }
+
+#
+# Sets the actions in this controller to be registered with no prefix
+# so they function identically to actions created in MyApp.pm
+#
+__PACKAGE__->config(namespace => '');
+
+=encoding utf-8
+
+=head1 NAME
+
+html_dir::Controller::Root - Root Controller for html_dir
+
+=head1 DESCRIPTION
+
+Root where will have the main pages
+
+=head1 METHODS
+
+=cut
+ROOT
+
+#my @controllers = (
+#	"Home", "Blast", "Downloads", "Help", "About"
+#);
 if($hadGlobal)
 {
-	push @controllers, "GlobalAnalyses";
+	$rootContent .= <<ROOT;
+
+=head2 globalAnalyses
+
+Global analyses page
+
+=cut
+
+sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
+	my ( \$self, \$c ) = \@_;
+	my \@texts = \$c->model('Basic::Text')->search({
+		-or => [
+			tag => {'like', 'header%'},
+			tag => 'menu',
+			tag => 'footer',
+			tag => {'like', 'global-analyses%'}
+		]
+	});
+	\@texts = encodingCorrection (\@texts);
+	\$c->stash->{titlePage} = 'Global Analyses';
+	\$c->stash(currentPage => 'global-analyses');
+	\$c->stash(texts => [\@texts]);
+	\$c->stash(template => 'html_dir/global-analyses/index.tt');
+	\$c->stash(components => [\$c->model('Basic::Component')->all]);
+	\$c->stash->{hadGlobal} = 1;
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+	
+
+}
+
+ROOT
+#	push @controllers, "GlobalAnalyses";
 }
 if($hadSearchDatabase)
 {
-	push @controllers, "SearchDatabase";
+	$rootContent .= <<ROOT;
+	
+=head2 searchDatabase
+
+Search database page (/SearchDatabase)
+
+=cut
+sub searchDatabase :Path("SearchDatabase") :Args(0) {
+	my ( \$self, \$c ) = \@_;
+	my \@texts = \$c->model('Basic::Text')->search({
+		-or => [
+			tag => {'like', 'header%'},
+			tag => 'menu',
+			tag => 'footer',
+			tag => {'like', 'search-database%'}
+		]
+	});
+	\@texts = encodingCorrection (\@texts);
+	\$c->stash->{titlePage} = 'Search Database';
+	\$c->stash(currentPage => 'search-database');
+	\$c->stash(texts => [\@texts]);
+	\$c->stash(template => 'html_dir/search-database/index.tt');
+	\$c->stash(components => [\$c->model('Basic::Component')->all]);
+	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = 1;
+
 }
 
-foreach my $controller (@controllers) {
-	print $LOG "\nCreating controller $controller\n";
-	`$nameProject/script/"$lowCaseName"_create.pl controller $controller`;
+ROOT
+#	push @controllers, "SearchDatabase";
+}
 
-	#se nome do controller possuir letra maiuscula no meio da string, adicionar - e passar para low case
-	
-	#    s/"*sub index :Path :Args\(0\) {([\s\w()$,=@_;\->{}""#"\[\]'':%\/.]+)*//igm;
-	
-	#métodos possuem mesmos nomes, passar nome do controller para low case, abrir arquivo controller, pegar conteúdo
-	#usar expressão regular para pegar conteúdo do método index, criar variavel com conteúdo substituído, substituír conteudo
-	#s/$oldContent/$newContent/igm;
+$rootContent .= <<ROOT;
 
-	my $lowCaseController = $controller;
-	if ( $lowCaseController =~ /([A-Z]+[a-z]+)([A-Z]+[a-z]+)/gm ) {
-		my @words = ();
-		push @words, $1;
-		push @words, $2;
-		my $counterWords = 0;
-		$lowCaseController = "";
-		foreach my $word (@words) {
-			$word = lc $word;
-			if ( $counterWords < ( scalar @words ) - 1 ) {
-				$lowCaseController .= $word . "-";
+=head2 about
+
+About page (/About)
+
+=cut
+
+sub about :Path("About") :Args(0) {
+	my ( \$self, \$c ) = \@_;
+	my \@texts = \$c->model('Basic::Text')->search({
+		-or => [
+			tag => {'like', 'header%'},
+			tag => 'menu',
+			tag => 'footer',
+			tag => {'like', 'about%'}
+		]
+	});
+	\@texts = encodingCorrection (\@texts);
+	\$c->stash->{titlePage} = 'About';
+	\$c->stash(currentPage => 'about');
+	\$c->stash(texts => [\@texts]);
+	\$c->stash(template => 'html_dir/about/index.tt');
+	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+
+}
+
+=head2 blast
+
+The blast page (/Blast)
+
+=cut
+sub blast :Path("Blast") :Args(0) {
+	my ( \$self, \$c ) = \@_;
+	my \@texts = \$c->model('Basic::Text')->search({
+		-or => [
+			tag => {'like', 'header%'},
+			tag => 'menu',
+			tag => 'footer',
+			tag => {'like', 'blast%'}
+		]
+	});
+	\@texts = encodingCorrection (\@texts);
+	\$c->stash->{titlePage} = 'Blast';
+	\$c->stash(currentPage => 'blast');
+	\$c->stash(texts => [\@texts]);
+	\$c->stash(template => 'html_dir/blast/index.tt');
+	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+
+}
+
+=head2 downloads
+
+The download page (/Downloads)
+
+=cut
+sub downloads :Path("Downloads") :Args(0) {
+	my ( \$self, \$c ) = \@_;
+	my \@texts = \$c->model('Basic::Text')->search({
+		-or => [
+			tag => {'like', 'header%'},
+			tag => 'menu',
+			tag => 'footer',
+			tag => {'like', 'downloads%'}
+		]
+	});
+	\@texts = encodingCorrection (\@texts);
+	\$c->stash->{titlePage} = 'Downloads';
+	\$c->stash(currentPage => 'downloads');
+	\$c->stash(texts => [\@texts]);
+	\$c->stash(template => 'html_dir/downloads/index.tt');
+	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+
+}
+
+=head2 encodingCorrection
+
+Method used to correct encoding strings come from SQLite
+
+=cut
+sub encodingCorrection {
+	my (\@texts) = \@_;
+
+	use utf8;
+	use Encode qw( decode encode );
+	foreach my \$text (\@texts) {
+		foreach my \$key ( keys %\$text ) {
+			if ( \$text->{\$key} != 1 ) {
+				my \$string = decode('utf-8', \$text->{\$key}{value});
+				\$string = encode('iso-8859-1', \$string);
+				\$text->{\$key}{value} = \$string;
 			}
-			else {
-				$lowCaseController .= $word;
-			}
-			$counterWords++;
 		}
 	}
-	else {
-		$lowCaseController = lc $lowCaseController;
-	}
-
-	my $controllerContent = "\nsub index :Path :Args(0) {\n".
-			"\tmy ( \$self, \$c ) = \@_;\n".
-			"\tuse utf8;\n".
-			"\tuse Encode qw( decode encode );\n".
-			"\tmy \@texts = \$c->model('Basic::Text')->search({\n".
-				"\t\t-or => [\n".
-					"\t\t\ttag => {'like', 'header%'},\n".
-					"\t\t\ttag => 'menu',\n".
-					"\t\t\ttag => 'footer',\n".
-					"\t\t\ttag => {'like', '$lowCaseController%'}\n".
-				"\t\t]\n".
-			"\t});\n".
-			"\tforeach my \$text (\@texts) {\n".
-			"\t\tforeach my \$key (keys \%\$text) {\n".
-			"\t\t\tif(\$text->{\$key} != 1) {\n".
-			"\t\t\t\tmy \$string = decode( 'utf-8', \$text->{\$key}{value});\n".
-			"\t\t\t\t\$string = encode('iso-8859-1', \$string);\n".
-			"\t\t\t\t\$text->{\$key}{value} = \$string;\n".
-			"\t\t\t}\n".
-			"\t\t}\n".
-			"\t}\n".
-			"\t\$c->stash->{titlePage} = '$controller';\n".
-			"\t\$c->stash(currentPage => '$lowCaseController');\n".
-			"\t\$c->stash(texts => [\@texts]);\n".
-#			"\t\$c->stash(testFeatures => [\$c->model('Chado::Feature')->all]);\n".
-			"\t\$c->stash(template => '$lowCaseName/$lowCaseController/index.tt');\n";
-
-	if($controller eq "SearchDatabase" || $controller eq "GlobalAnalyses")
-	{
-		$controllerContent .= "\t\$c->stash(components => [\$c->model('Basic::Component')->all]);\n";
-	}
-	if($hadGlobal)
-	{
-		$controllerContent .= "\t\$c->stash->{hadGlobal} = 1;\n";
-	}
-	else
-	{
-		$controllerContent .= "\t\$c->stash->{hadGlobal} = 0;\n";
-	}
-	if($hadSearchDatabase)
-	{
-		$controllerContent .= "\t\$c->stash->{hadSearchDatabase} = 1;\n";
-	}
-	else
-	{
-		$controllerContent .= "\t\$c->stash->{hadSearchDatabase} = 0;\n";
-	}
-	
-	
-	$controllerContent .= "\n}\n";
-	
-
-	open( my $fileHandler,
-		"<",
-		"$nameProject/lib/$nameProject/Controller/" . $controller . ".pm" );
-	$data = do { local $/; <$fileHandler> };
-	$data =~
-s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*/$controllerContent/igm;
-	close($fileHandler);
-	writeFile(
-		"$nameProject/lib/$nameProject/Controller/" . $controller . ".pm",
-		$data );
+    return \@texts;
 }
 
+=head2 help
+
+The help page (/Help)
+
+=cut
+sub help :Path("Help") :Args(0) {
+	my ( \$self, \$c ) = \@_;
+	my \@texts = \$c->model('Basic::Text')->search({
+		-or => [
+			tag => {'like', 'header%'},
+			tag => 'menu',
+			tag => 'footer',
+			tag => {'like', 'help%'}
+		]
+	});
+	\@texts = encodingCorrection (\@texts);
+	\$c->stash->{titlePage} = 'Help';
+	\$c->stash(currentPage => 'help');
+	\$c->stash(texts => [\@texts]);
+	\$c->stash(template => 'html_dir/help/index.tt');
+	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+
+}
+
+=head2 index
+
+The root page (/)
+
+=cut
+
+sub index :Path :Args(0) {
+	my ( \$self, \$c ) = \@_;
+	my \@texts = \$c->model('Basic::Text')->search({
+		-or => [
+			tag => {'like', 'header%'},
+			tag => 'menu',
+			tag => 'footer',
+			tag => {'like', 'home%'}
+		]
+	});
+	\@texts = encodingCorrection (\@texts);
+	\$c->stash->{titlePage} = 'Home';
+	\$c->stash(currentPage => 'home');
+	\$c->stash(texts => [\@texts]);
+	\$c->stash(template => 'html_dir/home/index.tt');
+	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+
+}
+
+ROOT
+
+
+
+$rootContent .= <<ROOT;
+
+=head2 default
+
+
+Standard 404 error page
+
+=cut
+
+sub default :Path {
+    my ( \$self, \$c ) = \@_;
+    \$c->response->body( 'Page not found' );
+    \$c->response->status(404);
+}
+
+=head2 end
+
+Attempt to render a view, if needed.
+
+=cut
+
+sub end : ActionClass('RenderView') {}
+
+=head1 AUTHOR
+
+Wendel Hime L. Castro,,,
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+__PACKAGE__->meta->make_immutable;
+
+1;
+
+ROOT
+
+if($rootContent =~ /\{\{valorGlobalSubstituir\}\}/g && $hadGlobal)
+{
+	$rootContent =~ s/\{\{valorGlobalSubstituir\}\}/1/g;
+}
+else
+{
+	$rootContent =~ s/\{\{valorGlobalSubstituir\}\}/0/g;
+}
+
+if($rootContent =~ /\{\{valorSearchSubtituir\}\}/g && $hadSearchDatabase)
+{
+	$rootContent =~ s/\{\{valorSearchSubtituir\}\}/1/g;
+}
+else
+{
+	$rootContent =~ s/\{\{valorSearchSubtituir\}\}/0/g;
+}
 
 foreach my $filepathComponent (@filepathsComponents)
 {
@@ -3283,32 +3486,32 @@ CONTENTSEARCHDATABASE
     </div>
 </div>
 <script>
-    $("#parentCollapseOne").click(function ()
+    \$("#parentCollapseOne").click(function ()
     {
-        $("#parentCollapseOne").removeClass("panel-default");
-        $("#parentCollapseTwo").removeClass("panel-primary");
-        $("#parentCollapseThree").removeClass("panel-primary");
-        $("#parentCollapseOne").addClass("panel-primary");
-        $("#parentCollapseTwo").addClass("panel-default");
-        $("#parentCollapseThree").addClass("panel-default");
+        \$("#parentCollapseOne").removeClass("panel-default");
+        \$("#parentCollapseTwo").removeClass("panel-primary");
+        \$("#parentCollapseThree").removeClass("panel-primary");
+        \$("#parentCollapseOne").addClass("panel-primary");
+        \$("#parentCollapseTwo").addClass("panel-default");
+        \$("#parentCollapseThree").addClass("panel-default");
     });
-    $("#parentCollapseTwo").click(function ()
+    \$("#parentCollapseTwo").click(function ()
     {
-        $("#parentCollapseTwo").removeClass("panel-default");
-        $("#parentCollapseOne").removeClass("panel-primary");
-        $("#parentCollapseThree").removeClass("panel-primary");
-        $("#parentCollapseTwo").addClass("panel-primary");
-        $("#parentCollapseOne").addClass("panel-default");
-        $("#parentCollapseThree").addClass("panel-default");
+        \$("#parentCollapseTwo").removeClass("panel-default");
+        \$("#parentCollapseOne").removeClass("panel-primary");
+        \$("#parentCollapseThree").removeClass("panel-primary");
+        \$("#parentCollapseTwo").addClass("panel-primary");
+        \$("#parentCollapseOne").addClass("panel-default");
+        \$("#parentCollapseThree").addClass("panel-default");
     });
-    $("#parentCollapseThree").click(function ()
+    \$("#parentCollapseThree").click(function ()
     {
-        $("#parentCollapseThree").removeClass("panel-default");
-        $("#parentCollapseTwo").removeClass("panel-primary");
-        $("#parentCollapseOne").removeClass("panel-primary");
-        $("#parentCollapseThree").addClass("panel-primary");
-        $("#parentCollapseOne").addClass("panel-default");
-        $("#parentCollapseTwo").addClass("panel-default");
+        \$("#parentCollapseThree").removeClass("panel-default");
+        \$("#parentCollapseTwo").removeClass("panel-primary");
+        \$("#parentCollapseOne").removeClass("panel-primary");
+        \$("#parentCollapseThree").addClass("panel-primary");
+        \$("#parentCollapseOne").addClass("panel-default");
+        \$("#parentCollapseTwo").addClass("panel-default");
     });
 </script>
 
@@ -3344,11 +3547,11 @@ FOOTER
     <![endif]-->
 <title>[% titlePage %]</title>
 <!-- BOOTSTRAP CORE STYLE  -->
-<link href="assets/css/bootstrap.css" rel="stylesheet" />
+<link href="/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONT AWESOME ICONS  -->
-<link href="assets/css/font-awesome.css" rel="stylesheet" />
+<link href="/assets/css/font-awesome.css" rel="stylesheet" />
 <!-- CUSTOM STYLE  -->
-<link href="assets/css/style.css" rel="stylesheet" />
+<link href="/assets/css/style.css" rel="stylesheet" />
  <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn''t work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -3390,9 +3593,9 @@ HEADER
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="[% c.uri_for('/') %]">
 
-                <img src="assets/img/logo.png" />
+                <img src="/assets/img/logo.png" />
             </a>
 
         </div>
@@ -3411,20 +3614,20 @@ HEADER
                                     <li><a class="menu-top-active" href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
                                 [% ELSE %]
                                 	[% IF hadSearchDatabase && text.value.match("search database") %]
-			                        	<li><a  href="[% c.uri_for('/searchdatabase') %]">Search database</a></li>
+			                        	<li><a  href="[% c.uri_for('/SearchDatabase') %]">Search database</a></li>
 			                        [% ELSIF hadGlobal && text.value.match("global analyses") %]
-			                        	<li><a	href="[% c.uri_for('/globalanalyses') %]">Global analyses</a></li>
+			                        	<li><a	href="[% c.uri_for('/GlobalAnalyses') %]">Global analyses</a></li>
 			                        [% ELSIF !text.value.match("global analyses") && !text.value.match("search database")%]
 			                        	<li><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
 			                        [% END %]
                                 [% END %]
                             [% END %]
                         [% END %]
-                        <!--<li><a  class="menu-top-active" href="[% c.uri_for('/home') %]">Home</a></li>
-                       	<li><a	href="[% c.uri_for('/blast') %]">BLAST</a></li>
-                        <li><a	href="[% c.uri_for('/downloads') %]">Downloads</a></li>
-                        <li><a	href="[% c.uri_for('/help') %]">Help</a></li>
-                        <li><a	href="[% c.uri_for('/about') %]">About</a></li>-->
+                        <!--<li><a  class="menu-top-active" href="[% c.uri_for('/') %]">Home</a></li>
+                       	<li><a	href="[% c.uri_for('/Blast') %]">BLAST</a></li>
+                        <li><a	href="[% c.uri_for('/Downloads') %]">Downloads</a></li>
+                        <li><a	href="[% c.uri_for('/Help') %]">Help</a></li>
+                        <li><a	href="[% c.uri_for('/About') %]">About</a></li>-->
                     </ul>
                 </div>
             </div>
@@ -3470,9 +3673,9 @@ my $wrapper = <<WRAPPER;
     </head>
     <body>
         <!-- CORE JQUERY SCRIPTS -->
-        <script src="assets/js/jquery-1.11.1.js"></script>
+        <script src="/assets/js/jquery-1.11.1.js"></script>
         <!-- BOOTSTRAP SCRIPTS  -->
-        <script src="assets/js/bootstrap.js"></script>
+        <script src="/assets/js/bootstrap.js"></script>
         [% INCLUDE '$lowCaseName/shared/_header.tt' %]
         <!--import _header from Views/Shared-->
         [% INCLUDE '$lowCaseName/shared/_menu.tt' %]
@@ -3486,24 +3689,24 @@ my $wrapper = <<WRAPPER;
 WRAPPER
 writeFile( "$nameProject/root/$lowCaseName/_layout.tt", $wrapper );
 
-my $changeRootFile = "
-sub index :Path :Args(0) {
-    my ( \$self, \$c ) = \@_;
-
-    # Hello World
-    #\$c->response->body( \$c->welcome_message );
-    \$c->res->redirect('/home');
-}
-
-=head2 default
-";
+#my $changeRootFile = "
+#sub index :Path :Args(0) {
+#    my ( \$self, \$c ) = \@_;
+#
+#    # Hello World
+#    #\$c->response->body( \$c->welcome_message );
+#    \$c->res->redirect('/home');
+#}
+#
+#=head2 default
+#";
 print $LOG "\nEditing root file\n";
 open( $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm" );
-$data = do { local $/; <$fileHandler> };
-$data =~ 
-s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*\s*=head2 default*/$changeRootFile/igm;
+#$data = do { local $/; <$fileHandler> };
+#$data =~ 
+#s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*\s*=head2 default*/$changeRootFile/igm;
 close($fileHandler);
-writeFile( "$nameProject/lib/$nameProject/Controller/Root.pm", $data );
+writeFile( "$nameProject/lib/$nameProject/Controller/Root.pm", $rootContent );
 
 #inicialize server project
 #`./$nameProject/script/"$lowCaseName"_server.pl -r`;
