@@ -12,6 +12,7 @@ use Data::Dumper;
 use DB_File;
 use utf8;
 use open qw(:utf8);
+use experimental 'smartmatch';
 
 #
 # ==> BEGIN OF AUTO GENERATED CODE (do not edit!!!)
@@ -169,6 +170,7 @@ my $databases_dir;
 my $html_file;
 my $banner;
 my $tcdb_file = "";
+my $ko_file;
 
 #
 #read configuration file
@@ -295,6 +297,10 @@ if (defined($config->{"homepage_banner_image"}))
 if (defined($config->{"TCDB_file"}))
 {
 	$tcdb_file = $config->{"TCDB_file"};
+}
+if(defined($config->{"ko_file"}))
+{
+	$ko_file = $config->{"ko_file"};
 }
 
 #
@@ -499,225 +505,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
         ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
         ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", ""),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "1,2-Diphenyl substitution family", "07112"),                                                                         
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210"),                                                                          
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Acridone alkaloid biosynthesis", "01058"),                                                                           
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Adherens junction", "04520"),                                                                                        
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "African trypanosomiasis", "05143"),                                                                                  
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Alcoholism", "05034"),                                                                                               
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Allograft rejection", "05330"),                                                                                      
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "alpha-Linolenic acid metabolism", "00592"),                                                                          
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Aminoacyl-tRNA biosynthesis", "00970"),                                                                              
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Aminoglycosides", "07021"),                                                                                          
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Amoebiasis", "05146"),                                                                                               
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Amyotrophic lateral sclerosis (ALS)", "05014"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Anthocyanin biosynthesis", "00942"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Anticonvulsants", "07033"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Antidiabetics", "07051"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Antifungal agents", "07026"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Anti-HIV agents", "07053"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Antineoplastics - agents from natural products", "07042"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Antineoplastics - antimetabolic agents", "07041"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Antineoplastics - protein kinases inhibitors", "07045"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Antirheumatics - DMARDs and biological agents", "07050"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Antiulcer drugs", "07038"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Anxiolytics", "07030"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Arachidonic acid metabolism", "00590"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Arrhythmogenic right ventricular cardiomyopathy (ARVC)", "05412"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Asthma", "05310"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Autoimmune thyroid disease", "05320"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Bacterial chemotaxis", "02030"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Bacterial secretion system", "03070"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Basal transcription factors", "03022"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "B cell receptor signaling pathway", "04662"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Benzodiazepine family", "07117"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Benzoxazinoid biosynthesis", "00402"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "beta-Alanine metabolism", "00410"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Betalain biosynthesis", "00965"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of 12-, 14- and 16-membered macrolides", "00522"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of alkaloids derived from ornithine, lysine and nicotinic acid", "01064"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of alkaloids derived from terpenoid and polyketide", "01066"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of phenylpropanoids", "01061"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of plant secondary metabolites", "01060"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of siderophore group nonribosomal peptides", "01053"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of type II polyketide backbone", "01056"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biosynthesis of unsaturated fatty acids", "01040"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Biotin metabolism", "00780"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Bladder cancer", "05219"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Butanoate metabolism", "00650"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Butyrophenone family", "07116"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "C5-Branched dibasic acid metabolism", "00660"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Calcium channel blocking drugs", "07036"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Caprolactam degradation", "00930"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Carbon fixation in photosynthetic organisms", "00710"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cardiac muscle contraction", "04260"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Catecholamine transferase inhibitors", "07216"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cell cycle - Caulobacter", "04112"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cell cycle - yeast", "04111"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cephalosporins - parenteral agents", "07012"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Chemical carcinogenesis", "05204"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Chloroalkane and chloroalkene degradation", "00625"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cholinergic and anticholinergic drugs", "07220"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Chronic myeloid leukemia", "05220"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Circadian rhythm - fly", "04711"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Circadian rhythm - plant", "04712"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Clavulanic acid biosynthesis", "00331"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Collecting duct acid secretion", "04966"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Complement and coagulation cascades", "04610"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cyanoamino acid metabolism", "00460"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cysteine and methionine metabolism", "00270"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Cytosolic DNA-sensing pathway", "04623"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "D-Arginine and D-ornithine metabolism", "00472"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Degradation of aromatic compounds", "01220"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Dilated cardiomyopathy", "05414"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Diterpenoid biosynthesis", "00904"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Dopamine receptor agonists/antagonists", "07213"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Dorso-ventral axis formation", "04320"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Drug metabolism - other enzymes", "00983"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Eicosanoid receptor agonists/antagonists", "07228"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Endocrine and other factor-regulated calcium reabsorption", "04961"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Endometrial cancer", "05213"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Epstein-Barr virus infection", "05169"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Ether lipid metabolism", "00565"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Fanconi anemia pathway", "03460"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Fatty acid biosynthesis", "00061"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Fatty acid metabolism", "00071"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Fc gamma R-mediated phagocytosis", "04666"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Flavone and flavonol biosynthesis", "00944"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Fluorobenzoate degradation", "00364"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Folate biosynthesis", "00790"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Furan family", "07113"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "GABAergic synapse", "04727"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Gap junction", "04540"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Geraniol degradation", "00281"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glucocorticoid and meneralocorticoid receptor agonists/antagonists", "07225"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glutamatergic synapse", "04724"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glycerolipid metabolism", "00561"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glycine, serine and threonine metabolism", "00260"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glycosaminoglycan biosynthesis - chondroitin sulfate / dermatan sulfate", "00532"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glycosaminoglycan biosynthesis - keratan sulfate", "00533"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glycosphingolipid biosynthesis - ganglio series", "00604"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glycosphingolipid biosynthesis - lacto and neolacto series", "00601"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Glyoxylate and dicarboxylate metabolism", "00630"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Graft-versus-host disease", "05332"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Hematopoietic cell lineage", "04640"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Hepatitis C", "05160"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "HIF-1 signaling pathway", "04066"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Hippo signaling pathway", "04390"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Histamine H2/H3 receptor agonists/antagonists", "07227"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "HIV protease inhibitors", "07218"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Homologous recombination", "03440"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Huntington", "05016"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Hypnotics", "07032"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Indole alkaloid biosynthesis", "00901"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Inositol phosphate metabolism", "00562"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Insulin secretion", "04911"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Intestinal immune network for IgA production", "04672"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Isoflavonoid biosynthesis", "00943"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Jak-STAT signaling pathway", "04630"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Leishmaniasis", "05140"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Limonene and pinene degradation", "00903"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Lipoic acid metabolism", "00785"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Local analgesics", "07015"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Long-term potentiation", "04720"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Lysine degradation", "00310"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Macrolides and ketolides", "07020"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "MAPK signaling pathway - fly", "04013"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "MAPK signaling pathway - yeast", "04011"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Measles", "05162"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Melanogenesis", "04916"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Metabolic pathways", "01100"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Methane metabolism", "00680"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Mineral absorption", "04978"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Monoterpenoid biosynthesis", "00902"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "mRNA surveillance pathway", "03015"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Mucin type O-Glycan biosynthesis", "00512"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Naphthalene family", "07114"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Neuroactive ligand-receptor interaction", "04080"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Neurotrophin signaling pathway", "04722"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "N-Glycan biosynthesis", "00510"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Nicotine addiction", "05033"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Nitrogen metabolism", "00910"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "N-Metyl-D-aspartic acid receptor antagonists", "07235"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Non-homologous end-joining", "03450"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Non-small cell lung cancer", "05223"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Novobiocin biosynthesis", "00401"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Olfactory transduction", "04740"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Oocyte meiosis", "04114"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Opioid receptor agonists/antagonists", "07224"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Osteoporosis drugs", "07047"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Other types of O-glycan biosynthesis", "00514"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Oxidative phosphorylation", "00190"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Pancreatic cancer", "05212"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Pantothenate and CoA biosynthesis", "00770"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Pathogenic Escherichia coli infection", "05130"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Penicillin and cephalosporin biosynthesis", "00311"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Pentose and glucuronate interconversions", "00040"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Peptidoglycan biosynthesis", "00550"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Peroxisome proliferator-activated receptor (PPAR) agonists", "07222"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Phagosome", "04145"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Phenylalanine metabolism", "00360"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Phenylpropanoid biosynthesis", "00940"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Phosphonate and phosphinate metabolism", "00440"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Photosynthesis - antenna proteins", "00196"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Phototransduction - fly", "04745"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "PI3K-Akt signaling pathway", "04151"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Plant-pathogen interaction", "04626"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Polyketide sugar unit biosynthesis", "00523"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Potassium channel blocking and opening drugs", "07232"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Primary bile acid biosynthesis", "00120"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Prion diseases", "05020"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Progesterone-mediated oocyte maturation", "04914"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Prostaglandins", "07035"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Proteasome", "03050"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Protein export", "03060"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Proximal tubule bicarbonate reclamation", "04964"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Puromycin biosynthesis", "00231"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Pyruvate metabolism", "00620"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Quinolones", "07014"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Regulation of autophagy", "04140"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Renin-angiotensin system inhibitors", "07217"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Retinoic acid receptor (RAR) and retinoid X receptor (RXR) agonists/antagonists", "07223"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Retrograde endocannabinoid signaling", "04723"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Riboflavin metabolism", "00740"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Ribosome", "03010"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "RIG-I-like receptor signaling pathway", "04622"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "RNA polymerase", "03020"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Salivary secretion", "04970"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Secondary bile acid biosynthesis", "00121"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Serotonergic synapse", "04726"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Sesquiterpenoid and triterpenoid biosynthesis", "00909"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Small cell lung cancer", "05222"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Sodium channel blocking drugs", "07231"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Spliceosome", "03040"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Starch and sucrose metabolism", "00500"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Steroid degradation", "00984"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Stilbenoid, diarylheptanoid and gingerol biosynthesis", "00945"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Styrene degradation", "00643"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Sulfonamide derivatives - hypoglycemic agents", "07018"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Sulfonamide family", "07115"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Sulfur relay system", "04122"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Synthesis and degradation of ketone bodies", "00072"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Taste transduction", "04742"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "T cell receptor signaling pathway", "04660"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Tetracycline biosynthesis", "00253"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "TGF-beta signaling pathway", "04350"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Thyroid cancer", "05216"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Toll-like receptor signaling pathway", "04620"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Toxoplasmosis", "05145"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Tropane, piperidine and pyridine alkaloid biosynthesis", "00960"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Tuberculosis", "05152"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Type I diabetes mellitus", "04940"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Type I polyketide structures", "01052"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Ubiquinone and other terpenoid-quinone biosynthesis", "00130"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Valine, leucine and isoleucine biosynthesis", "00290"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Various types of N-glycan biosynthesis", "00513"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Vasopressin-regulated water reabsorption", "04962"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Vibrio cholerae infection", "05110"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Viral carcinogenesis", "05203"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Vitamin B6 metabolism", "00750"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Wnt signaling pathway", "04310"),
-        ("search-database-analyses-protein-code-by-kegg-pathway-options", "Zeatin biosynthesis", "00908"),
         ("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
         ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", ""),
         ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
@@ -1029,48 +816,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         
 SQL
 
-#		 ("footer", "&copy; 2016 YourCompany | By : Wendel Hime", "/#"),
-#        ("header-email", "Email:", ""),
-#        ("header-email-value", "wendelhime\@gmail.com", ""),
-#        ("header-support", "Support:", ""),
-#        ("header-support-value", "+55 (13) 99192-9997", ""),
-#        ("home", "Information", ""),
-#        ("home-value", "The <i>Photorhabdus luminescens</i> MN7 genome database (<b>PhotoBase</b>) is an integrated resource of genome sequencing and annotation data of the entomopathogenic enterobacterium <i>Photorhabdus luminescens</i> MN7. In addition to sequencing data, <b>PhotoBase</b> provides an organized catalog of functionally annotated predicted protein-coding and RNA genes, in addition to several DNA-based analysis results. The <b>PhotoBase</b> is maintained by the Coccidia Molecular Biology Research Group and the Nematode Molecular Biology Lab at the Institute of Biomedical Sciences, University of São Paulo, Brazil.", ""),
-#		 ("help-questions-feedback", "Questions and feedback", ""),
-#        ("help-questions-feedback-1-paragraphe", "If you have any question or would like to communicate any error, please contact us:", ""),
-#        ("help-questions-feedback-2-list-1", "Carlos E. Winter - <a href='mailto:cewinter\@usp.br'>cewinter\@usp.br</a>", ""),
-#        ("help-questions-feedback-2-list-2", "Arthur Gruber - <a href='mailto:argruber\@usp.br'>argruber\@usp.br</a>", ""),
-#		 ("about-table-content-1", "Project", "about_1"),
-#        ("about-table-content-2", "Project members", "about_2"),
-#        ("about-table-content-3", "Photorhabdus", "about_3"),
-#        ("about-table-content-4", "Funding and citing", "about_4"),
-#        ("about_1-0-paragraph", "Entomopathogenic nematodes (EPNs) live in symbiosis with specific enterobacteria. EPNs have been used for decades to control agricultural pests in the United States and Europe. Bacteria of the genus <i>Photorhabdus</i> are symbionts of EPNs of the genus <i>Heterorhabditis</i>. Recently, <i>Heterorhabditis bacteriophora</i> and its symbiont, <i>Photorhabdus luminescens laumondii</i>, were considered models for the study of host-pathogen interactions. The genome of <i>P. luminescens laumondii</i> TT01 was completely sequenced a few years ago, and it was discovered that six percent of its genes encode enzymes involved in production of secondary metabolites.", ""),
-#        ("about_1-1-paragraph", "One of the aims of our laboratory is the study of molecular aspects of Brazilian EPN isolates and their bacterial symbionts. Strains of two species of <i>Heterorhabditis</i> (<i>H. baujardi</i> and <i>H. indica</i>), obtained from the Amazon region, were molecularly characterized by us. The bacteria of <i>H. baujardi</i> (strain LPP7) were grown in isolation. Phylogenetic analysis of the 16 S rRNA sequence of this isolate (called MN7) shows that it can be part of the same clade as <i>P. asymbiotica</i>, a species isolated from wounds in humans in Australia and the United States. Recent data from our laboratory showed that MN7 secretes secondary metabolites of biotechnological interest, plus a protease similar to that found in other species of the genus.", ""),
-#        ("about_1-2-paragraph", "The aim of this project is the construction of a genome scaffold of <i>Photorhabdus luminescens</i> MN7 through next generation sequencing. This project aims to better understand the biology and evolution of bacteria of the genus <i>Photorhabdus</i> and make an inventory, as complete as possible, of the genes involved in the production of secondary metabolites and toxins that mediate symbiotic relationships with the nematode, the insect, and other species of nematodes. This project will be integrated with other projects of the laboratory studying entomopathogenic nematodes and their bacteria and will generate important data for researchers working on these bacteria in other countries.", ""),
-#        ("about_2-0-title", "Project coordinators", ""),
-#        ("about_2-1-list-1", "<a href='mailto:cewinter\@usp.br'>Carlos E. Winter</a>, Ph.D. - Associate Professor, University of São Paulo", ""),
-#        ("about_2-1-list-2", "<a href='mailto:argruber\@usp.br'>Arthur Gruber</a>, D.V.M., Ph.D. - Associate Professor, University of São Paulo", ""),
-#        ("about_2-2-title", "Collaborator", ""),
-#        ("about_2-3-list-1", "<a href='mailto:alan\@ime.usp.br'>Alan M. Durham</a>, Ph.D., Assistant Professor, University of São Paulo", ""),
-#        ("about_2-4-title", "Members", ""),
-#        ("about_2-5-list-1", "João Marcelo P. Alves, Ph.D.", ""),
-#        ("about_2-5-list-2", "Liliane Santana, MSc student", ""),
-#        ("about_2-5-list-3", "Maira Rodrigues C. Neves, MSc student", ""),
-#        ("about_2-5-list-4", "Carolina Rossi, MSc student", ""),
-#        ("about_2-5-list-5", "Rodrigo Hashimoto, undergraduate student", ""),
-#        ("about_3-0-title", "<i>Photorhabdus</i> biology", ""),
-#        ("about_3-1-paragraph", "Enterobacteria of the genus <i>Photorhabdus</i> are symbiotic partners of entomopathogenic nematodes belonging to the genus <i>Heterorhabditis</i>. Both members of this unusual symbiosis are able to efficiently kill any soil dwelling arthropod and are used for agronomic insect pest control. The bacteria serve two purposes after the infective juvenile of <i>Heterorhabditis</i> sp. invades the insect hemolymph; turning off the insect immune response and serving as food for the nematode partner development. The insect killing is attained by a series of mechanisms that go from the secretion of hydrolytic enzymes and very sophisticated protein toxins to the production of secondary metabolites. Both insect killing and nematode symbiosis are dependent on the bacterial colonization through the production of fimbria and adhesin molecules that mediate the production of a biofilm inside their hosts. ", ""),
-#        ("about_3-2-title", "The genomes", ""),
-#        ("about_3-3-paragraph", "<i>P. luminescens luminescens</i> MN7 is the first Neotropical entomopathogenic bacterium to have had its genome sequenced and annotated. Its nematode is <i>H. baujardi</i> strain LPP7, previously isolated from the soil of the Amazon forest in Monte Negro (RO), Brazil.", ""),
-#        ("about_3-4-paragraph", "The genomes of two <i>Photorhabdus</i> have been completely sequenced and annotated: <a href='http://www.ncbi.nlm.nih.gov/genome/1123'><i>P. luminescens laumondii</i> strain TTO1</a> and <a href='http://www.ncbi.nlm.nih.gov/genome/1768'><i>P. asymbiotica</i> strain ATCC43949</a>. Their genomes are roughly 5 to 5.6 Mb long and contain approximately 4,400 to 4,700 ORFs. <i>Steinernema</i>, another genus of entomopathogenic nematode, also contains an enterobacterial partner belonging to the genus <i>Xenorhabdus</i>. The genomes of <a href='http://www.ncbi.nlm.nih.gov/genome/1227'><i>X. nematophila</i> ATCC19061</a> and <a href='http://www.ncbi.nlm.nih.gov/genome/1226'><i>X. bovienii</i> SS-2004</a> have also been sequenced. ", ""),
-#        ("about_4-0-title", "Funding", ""),
-#        ("about_4-1-paragraph", "<b>PhotoBase</b> has been developed with support from <a href='http://www.fapesp.br/en/'>FAPESP</a> (São Paulo Research Foundation, grants <b>#2010/51973-0</b> and <b>#2012/20945-7</b>) and <a href='http://www.cnpq.br/english/cnpq/index.htm'>CNPq</a> (National Council for Scientific and Technological Development).", ""),
-#        ("about_4-2-paragraph", "The opinions, hypotheses, and conclusions or recommendations present in this website are the sole responsibility of its authors and do not necessarily reflect the views of FAPESP.", ""),
-#        ("about_4-3-title", "Reference", ""),
-#        ("about_4-4-paragraph", "If you use this database, please cite this page as follows:", ""),
-#        ("about_4-5-list-1", "Winter, C.E. &amp; Gruber, A. (2013) The <i>Photorhabdus luminescens</i> MN7 genome database, version 1.0: http://www.coccidia.icb.usp.br/PMN.", "")
-
-
 ###
 #
 #	Realiza a leitura do arquivo example.html
@@ -1080,6 +825,33 @@ SQL
 $scriptSQL .= readJSON($html_file);
 print $LOG "\n$html_file read!\n";
 
+
+###
+#
+#	Pegando todos os pathways do arquivo KO
+#
+###
+open(my $KOFILE, "<", $ko_file) or warn "WARNING: Could not open KO file $ko_file: $!\n";
+my $content = do { local $/; <$KOFILE> };
+my @idKEGG = ();
+my %workAroundSort = ();
+while ($content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm) 
+{
+	if(!($1 ~~ @idKEGG) && $1 ne "")
+	{
+		$workAroundSort{$2} = $1;
+		push @idKEGG, $1;
+	}
+}
+
+foreach my $key(sort keys %workAroundSort)
+{
+	my $value = $workAroundSort{$key};
+	$scriptSQL .= <<SQL;
+			INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
+SQL
+}
+close($KOFILE);
 
 ###
 #

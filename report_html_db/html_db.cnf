@@ -48,6 +48,7 @@ eggnog_dir=eggnog_dir
 blast_dir_list=blastp_dir
 database_code_list=INSD
 TCDB_file=/usr/local/genome/databases/TCDB/TCDB_ID_list
+ko_file= /usr/local/genome/databases/kegg/ko/ko
 homepage_text_file = example.json
 homepage_banner_image = template/zontal-admin/assets/img/logo.png
 
