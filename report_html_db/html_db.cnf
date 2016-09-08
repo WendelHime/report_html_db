@@ -15,7 +15,8 @@ xml_file = bacteria.xml
 PHASE= Report HTML
 program = report_html_db.pl
 #===================================================================================
-organism_name = Bacteria do curso
+organism_name=Bacteria do curso
+uniquename=Bacteria
 fasta_dir = seq
 aa_fasta_dir = orfs_aa
 nt_fasta_dir = orfs_nt

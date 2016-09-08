@@ -26,6 +26,7 @@ my $print_conf =  <<'CONF';
 # * lines starting with == indicate mandatory parameters, and must be changed to parameter=value
 # * parameters containing predefined values indicate component defaults
 ==organism_name
+==uniquename
 ==fasta_file
 html_dir = html_dir
 FT_artemis_selected_dir=
@@ -77,7 +78,7 @@ report_csv_dir =
 csv_file =
 go_file
 TCDB_file=
-homepage_text_file=
+==homepage_text_file
 homepage_banner_image=
 CONF
 
@@ -171,6 +172,7 @@ my $html_file;
 my $banner;
 my $tcdb_file = "";
 my $ko_file;
+my $uniquename;
 
 #
 #read configuration file
@@ -184,7 +186,7 @@ $config=$module->config;
 #
 #check if any mandatory argument is missing
 #
-if (!exists($config->{"organism_name"})){
+if (!exists($config->{"organism_name"}) || !exists($config->{"uniquename"})){
     $missingArgument = 1;
     print "Missing mandatory configuration argument:organism_name\n";
 }
@@ -301,6 +303,10 @@ if (defined($config->{"TCDB_file"}))
 if(defined($config->{"ko_file"}))
 {
 	$ko_file = $config->{"ko_file"};
+}
+if(defined($config->{"uniquename"}))
+{
+	$uniquename = $config->{"uniquename"};
 }
 
 #
@@ -475,46 +481,21 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
-        ("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology"),
-        ("search-database-analyses-protein-code-tab", "Transporter classification", "#transporterClassification"),
-        ("search-database-analyses-protein-code-tab", "Phobius", "#phobius"),
-        ("search-database-analyses-protein-code-tab", "BLAST", "#blast"),
         ("search-database-analyses-protein-code-tab", "RPSBLAST", "#rpsBlast"),
         ("search-database-analyses-protein-code-tab", "KEGG", "#kegg"),
         ("search-database-analyses-protein-code-tab", "Orthology analysis (eggNOG)", "#orthologyAnalysis"),
         ("search-database-analyses-protein-code-tab", "Interpro", "#interpro"),
-        ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
+        
+        
         ("search-database-analyses-protein-code-search-by-sequence", "Search by sequence identifier of match:", ""),
         ("search-database-analyses-protein-code-search-by-description", "Or by description of match:", ""),
-        ("search-database-analyses-protein-code-not-containing-classification-tcdb", " not containing TCDB classification", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-identifier", "Search by transporter identifier(e.g. 1.A.3.1.1):", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-family", "Or by transporter family(e.g. 3.A.17):", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-subclass", "Or by transporter subclass:", ""),
-        ("search-database-analyses-protein-code-search-by-transporter-class", "Or by transporter class:", ""),
-        ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
-        ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains:", ""),
-        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-or-less", " or less", "value='orLess'"),
-        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-or-more", " or more", "value='orMore'"),
-        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-exactly", " exactly", "value='exact' checked"),
-        ("search-database-analyses-protein-code-signal-peptide", "With signal peptide?", ""),
-        ("search-database-analyses-protein-code-signal-peptide-option", "yes", "value='sigPyes'"),
-        ("search-database-analyses-protein-code-signal-peptide-option", "no", "value='sigPno'"),
-        ("search-database-analyses-protein-code-signal-peptide-option", "do not care", "value='sigPwhatever' checked=''"),
-        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", ""),
+        
         ("search-database-analyses-protein-code-not-containing-classification-rpsblast", " not containing RPSBLAST matches", ""),
-        ("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
-        ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
-        ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", ""),
-        ("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
-        ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", ""),
-        ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
-        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", ""),
+        
         ("search-database-dna-based-analyses-title", "DNA-based analyses", ""),
         ("search-database-dna-based-analyses-tab", "Contigs", "#contigs"),
-        ("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
         ("search-database-dna-based-analyses-tab", "Tandem repeats", "#tandemRepeats"),
         ("search-database-dna-based-analyses-tab", "Other non-coding RNAs", "#otherNonCodingRNAs"),
-        ("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
         ("search-database-dna-based-analyses-tab", "Transcriptional terminators", "#transcriptionalTerminators"),
         ("search-database-dna-based-analyses-tab", "Horizontal gene transfers", "#horizontalGeneTransfers"),
         ("search-database-dna-based-analyses-only-contig-title", "Get only contig: ", ""),
@@ -539,131 +520,17 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-only-contig", "contig_2.5", ""),
         ("search-database-dna-based-analyses-from-base", " from base ", ""),
         ("search-database-dna-based-analyses-to", " to ", ""),
-        ("search-database-dna-based-analyses-reverse-complement", " reverse complement?", ""),
-        ("search-database-dna-based-analyses-list-rnas", " List all tRNAs", ""),
-        ("search-database-dna-based-analyses-get-by-amino-acid", "Or get tRNAs by amino acid: ", ""),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Alanine (A)", "Ala"),                                                                                                
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Arginine (R)", "Arg"),                                                                                               
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Asparagine (N)", "Asp"),                                                                                             
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Aspartic acid (D)", "Ala"),                                                                                          
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Cysteine (C)", "Cys"),                                                                                               
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamic acid (E)", "Glu"),                                                                                          
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamine (Q)", "Gln"),                                                                                              
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glycine (G)", "Gly"),                                                                                                
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Histidine (H)", "His"),                                                                                              
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Isoleucine (I)", "Ile"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Leucine (L)", "Leu"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Lysine (K)", "Lys"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Methionine (M)", "Met"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Phenylalanine (F)", "Phe"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Proline (P)", "Pro"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Serine (S)", "Ser"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Threonine (T)", "Thr"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tryptophan (W)", "Trp"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tyrosine (Y)", "Tyr"),
-        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Valine (V)", "Val");
+        ("search-database-dna-based-analyses-reverse-complement", " reverse complement?", "");
 
-INSERT INTO TEXTS(tag, value, details) VALUES 
-        ("search-database-dna-based-analyses-get-by-codon", "Or get tRNAs by codon: ", ""),
-        ("search-database-dna-based-analyses-get-by-codon-options", "AAA", "AAA"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "AAC", "AAC"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "AAG", "AAG"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "AAT", "AAT"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "ACA", "ACA"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "ACC", "ACC"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "ACG", "ACG"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "ACT", "ACT"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "AGA", "AGA"),                                                                                                             
-        ("search-database-dna-based-analyses-get-by-codon-options", "AGC", "AGC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "AGG", "AGG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "AGT", "AGT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "ATA", "ATA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "ATC", "ATC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "ATG", "ATG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "ATT", "ATT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CAA", "CAA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CAC", "CAC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CAG", "CAG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CAT", "CAT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CCA", "CCA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CCC", "CCC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CCG", "CCG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CCT", "CCT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CGA", "CGA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CGC", "CGC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CGG", "CGG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CGT", "CGT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CTA", "CTA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CTC", "CTC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CTG", "CTG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "CTT", "CTT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GAA", "GAA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GAC", "GAC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GAG", "GAG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GAT", "GAT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GCA", "GCA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GCC", "GCC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GCG", "GCG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GCT", "GCT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GGA", "GGA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GGC", "GGC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GGG", "GGG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GGT", "GGT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GTA", "GTA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GTC", "GTC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GTG", "GTG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "GTT", "GTT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TAC", "TAC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TAT", "TAT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TCA", "TCA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TCC", "TCC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TCG", "TCG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TCT", "TCT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TGC", "TGC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TGG", "TGG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TGT", "TGT"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TTA", "TTA"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TTC", "TTC"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TTG", "TTG"),
-        ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT"),
-        ("search-database-dna-based-analyses-tandem-repeats", "Get all tandem repeats that: ", ""),
+INSERT INTO TEXTS(tag, value, details) VALUES
+		("search-database-dna-based-analyses-tandem-repeats", "Get all tandem repeats that: ", ""),
         ("search-database-dna-based-analyses-contain-sequence-repetition-unit", "Contain the sequence in the repetition unit:", ""),
         ("search-database-dna-based-analyses-repetition-unit-bases", "Has repetition units of bases: ", ""),
         ("search-database-dna-based-analyses-occours-between", "Occurs between ", ""),
         ("search-database-dna-based-analyses-occours-between-and", "and", ""),
         ("search-database-dna-based-analyses-occours-between-and-times", "times", ""),
         ("search-database-dna-based-analyses-tandem-repeats-note", "NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the 'Help' section for further instructions.", ""),
-        ("search-database-dna-based-analyses-search-ncrna-by-target-identifier", "Search ncRNA by target identifier: ", ""),
-        ("search-database-dna-based-analyses-or-by-evalue-match", "Or by E-value of match: ", ""),
-        ("search-database-dna-based-analyses-or-by-target-name", "Or by target name: ", ""),
-        ("search-database-dna-based-analyses-or-by-target-class", "Or by target class: ", ""),
-        ("search-database-dna-based-analyses-or-by-target-class-options", "antisense_RNA", "antisense_RNA"),                                                                                   
-        ("search-database-dna-based-analyses-or-by-target-class-options", "hammerhead_ribozyme", "hammerhead_ribozyme"),                                                                       
-        ("search-database-dna-based-analyses-or-by-target-class-options", "miRNA", "miRNA"),                                                                                                   
-        ("search-database-dna-based-analyses-or-by-target-class-options", "other", "other"),                                                                                                   
-        ("search-database-dna-based-analyses-or-by-target-class-options", "ribozyme", "ribozyme"),                                                                                             
-        ("search-database-dna-based-analyses-or-by-target-class-options", "RNase_MRP_RNA", "RNase_MRP_RNA"),                                                                                   
-        ("search-database-dna-based-analyses-or-by-target-class-options", "RNase_P_RNA", "RNase_P_RNA"),                                                                                       
-        ("search-database-dna-based-analyses-or-by-target-class-options", "snoRNA", "snoRNA"),                                                                                                 
-        ("search-database-dna-based-analyses-or-by-target-class-options", "snRNA", "snRNA"),                                                                                                   
-        ("search-database-dna-based-analyses-or-by-target-class-options", "SRP_RNA", "SRP_RNA"),
-        ("search-database-dna-based-analyses-or-by-target-class-options", "telomerase_RNA", "telomerase_RNA"),
-        ("search-database-dna-based-analyses-or-by-target-class-options", "vault_RNA", "vault_RNA"),
-        ("search-database-dna-based-analyses-or-by-target-type", "Or by target type: ", ""),
-        ("search-database-dna-based-analyses-or-by-target-description", "Or by target description: ", ""),
-        ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
-        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
-        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " upstream", "value='neg' checked"),
-        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " downstream", "value='pos'"),
-        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
-        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", ""),
-        ("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
-        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
-        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
-        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", ""),
-        ("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
-        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
-        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", ""),
+        
         ("search-database-dna-based-analyses-footer", "Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose ""Search"" button has been pressed will be searched.", ""),
         ("global-analyses-go-terms-mapping", "GO terms mapping", ""),
         ("global-analyses-expansible-tree", "Expansible tree", "data/GO_mapping.xml"),
@@ -825,40 +692,30 @@ SQL
 $scriptSQL .= readJSON($html_file);
 print $LOG "\n$html_file read!\n";
 
-
-###
-#
-#	Pegando todos os pathways do arquivo KO
-#
-###
-open(my $KOFILE, "<", $ko_file) or warn "WARNING: Could not open KO file $ko_file: $!\n";
-my $content = do { local $/; <$KOFILE> };
-my @idKEGG = ();
-my %workAroundSort = ();
-while ($content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm) 
-{
-	if(!($1 ~~ @idKEGG) && $1 ne "")
-	{
-		$workAroundSort{$2} = $1;
-		push @idKEGG, $1;
-	}
-}
-
-foreach my $key(sort keys %workAroundSort)
-{
-	my $value = $workAroundSort{$key};
-	$scriptSQL .= <<SQL;
-			INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
-SQL
-}
-close($KOFILE);
-
 ###
 #
 #	Realiza leitura do arquivo de TCDBs
 #
 ###
-$scriptSQL .= readTCDBFile($tcdb_file);
+if($tcdb_file)
+{
+	$scriptSQL .= readTCDBFile($tcdb_file);
+	$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES
+		("search-database-analyses-protein-code-tab", "Transporter classification", "#transporterClassification"),
+        ("search-database-analyses-protein-code-not-containing-classification-tcdb", " not containing TCDB classification", ""),
+        ("search-database-analyses-protein-code-search-by-transporter-identifier", "Search by transporter identifier(e.g. 1.A.3.1.1):", ""),
+        ("search-database-analyses-protein-code-search-by-transporter-family", "Or by transporter family(e.g. 3.A.17):", ""),
+        ("search-database-analyses-protein-code-search-by-transporter-subclass", "Or by transporter subclass:", ""),
+        ("search-database-analyses-protein-code-search-by-transporter-class", "Or by transporter class:", ""),
+        ("search-database-dna-based-analyses-search-ncrna-by-target-identifier", "Search ncRNA by target identifier: ", ""),
+        ("search-database-dna-based-analyses-or-by-evalue-match", "Or by E-value of match: ", ""),
+        ("search-database-dna-based-analyses-or-by-target-name", "Or by target name: ", ""),
+        ("search-database-dna-based-analyses-or-by-target-class", "Or by target class: ", ""),
+        ("search-database-dna-based-analyses-or-by-target-type", "Or by target type: ", ""),
+        ("search-database-dna-based-analyses-or-by-target-description", "Or by target description: ", "");
+SQL
+}
 print $LOG "\n$tcdb_file read!\n";
 
 #apaga diretorios antigos com fastas
@@ -1022,6 +879,120 @@ while($sequence_object->read())
 			#ou podemos pegar o valor do arquivo e inserir no banco de dados
 			my $file = $alienhunter_output_file."_".$header;
 			$filepath = "$alienhunter_dir/$file";
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES 
+		("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
+        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
+        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
+SQL
+		}
+		elsif($component_name	eq	"blast")
+		{
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES 
+		("search-database-analyses-protein-code-tab", "BLAST", "#blast"),
+        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
+SQL
+		}
+		elsif($component_name	eq	"infernal")
+		{
+			my	$file	=	$infernal_output_file."_".$header;
+			$filepath = "$infernal_dir/$file";
+		}
+		elsif($component_name eq "interpro")
+		{
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES 
+		("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology"),
+        ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
+        ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
+        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", "");
+SQL
+		}
+		elsif($component_name	eq	"mreps")
+		{
+			my	$name	=	$sequence_object->{sequence_name};
+			my	$file	=	$mreps_dir."/".$name."_mreps.txt";
+			$filepath	=	"$file";
+		}
+		elsif($component_name eq "orthology")
+		{
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES
+		("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
+        ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
+SQL
+		}
+		elsif($component_name eq "pathways")
+		{
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES
+		("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
+        ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
+        ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", "");
+SQL
+			###
+			#
+			#	Pegando todos os pathways do arquivo KO
+			#
+			###
+			open(my $KOFILE, "<", $ko_file) or warn "WARNING: Could not open KO file $ko_file: $!\n";
+			my $content = do { local $/; <$KOFILE> };
+			my @idKEGG = ();
+			my %workAroundSort = ();
+			while ($content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm) 
+			{
+				if(!($1 ~~ @idKEGG) && $1 ne "")
+				{
+					$workAroundSort{$2} = $1;
+					push @idKEGG, $1;
+				}
+			}
+			
+			foreach my $key(sort keys %workAroundSort)
+			{
+				my $value = $workAroundSort{$key};
+				$scriptSQL .= <<SQL;
+						INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
+SQL
+			}
+			close($KOFILE);
+		}
+		elsif($component_name eq "phobius")
+		{
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES 
+		("search-database-analyses-protein-code-tab", "Phobius", "#phobius"),
+        ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
+        ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains:", ""),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-or-less", " or less", "value='orLess'"),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-or-more", " or more", "value='orMore'"),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-exactly", " exactly", "value='exact' checked"),
+        ("search-database-analyses-protein-code-signal-peptide", "With signal peptide?", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option", "yes", "value='sigPyes'"),
+        ("search-database-analyses-protein-code-signal-peptide-option", "no", "value='sigPno'"),
+        ("search-database-analyses-protein-code-signal-peptide-option", "do not care", "value='sigPwhatever' checked=''");
+SQL
+		}
+		elsif($component_name	eq	"rbsfinder")
+		{
+			my	$file	=	$header.".txt";
+			$filepath = "$rbs_dir/$file";
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES 
+		("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
+        ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
+        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
+        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " upstream", "value='neg' checked"),
+        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " downstream", "value='pos'"),
+        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
+        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
+SQL
+		}
+		elsif($component_name	eq	"rnammer")
+		{
+			my	$file	=	$header."_rnammer.gff";
+			$filepath	=	"$rnammer_dir/$file";
 		}
 		elsif($component_name eq "skews")
 		{
@@ -1038,25 +1009,23 @@ while($sequence_object->read())
 			}
 			$filepath = $aux;
 		}
-		elsif($component_name	eq	"infernal")
+		elsif($component_name	eq	"string")
 		{
-			my	$file	=	$infernal_output_file."_".$header;
-			$filepath = "$infernal_dir/$file";
-		}
-		elsif($component_name	eq	"rbsfinder")
-		{
-			my	$file	=	$header.".txt";
-			$filepath = "$rbs_dir/$file";
-		}
-		elsif($component_name	eq	"rnammer")
-		{
-			my	$file	=	$header."_rnammer.gff";
-			$filepath	=	"$rnammer_dir/$file";
+			my	$name	=	$sequence_object->{sequence_name};
+			my	$file	=	$string_dir."/".$name."_string.txt";
+			$filepath	=	"$file";
 		}
 		elsif($component_name	eq	"transterm")
 		{
 			my	$file	=	$header.".txt";
 			$filepath	=	"$transterm_dir/$file";
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES 
+		("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
+        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
+        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
+        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
+SQL
 		}
 		elsif($component_name	eq	"trf")
 		{
@@ -1067,18 +1036,94 @@ while($sequence_object->read())
 		{
 			my	$file	=	$trna_dir."/".$name."_trna.txt";
 			$filepath	=	"$file";
-		}
-		elsif($component_name	eq	"mreps")
-		{
-			my	$name	=	$sequence_object->{sequence_name};
-			my	$file	=	$mreps_dir."/".$name."_mreps.txt";
-			$filepath	=	"$file";
-		}
-		elsif($component_name	eq	"string")
-		{
-			my	$name	=	$sequence_object->{sequence_name};
-			my	$file	=	$string_dir."/".$name."_string.txt";
-			$filepath	=	"$file";
+			$scriptSQL .= <<SQL;
+	INSERT INTO TEXTS(tag, value, details) VALUES 
+		("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
+        ("search-database-dna-based-analyses-list-rnas", " List all tRNAs", ""),
+        ("search-database-dna-based-analyses-get-by-amino-acid", "Or get tRNAs by amino acid: ", ""),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Alanine (A)", "Ala"),                                                                                                
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Arginine (R)", "Arg"),                                                                                               
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Asparagine (N)", "Asp"),                                                                                             
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Aspartic acid (D)", "Ala"),                                                                                          
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Cysteine (C)", "Cys"),                                                                                               
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamic acid (E)", "Glu"),                                                                                          
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamine (Q)", "Gln"),                                                                                              
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glycine (G)", "Gly"),                                                                                                
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Histidine (H)", "His"),                                                                                              
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Isoleucine (I)", "Ile"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Leucine (L)", "Leu"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Lysine (K)", "Lys"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Methionine (M)", "Met"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Phenylalanine (F)", "Phe"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Proline (P)", "Pro"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Serine (S)", "Ser"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Threonine (T)", "Thr"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tryptophan (W)", "Trp"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tyrosine (Y)", "Tyr"),
+        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Valine (V)", "Val"),
+        ("search-database-dna-based-analyses-get-by-codon", "Or get tRNAs by codon: ", ""),
+        ("search-database-dna-based-analyses-get-by-codon-options", "AAA", "AAA"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "AAC", "AAC"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "AAG", "AAG"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "AAT", "AAT"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "ACA", "ACA"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "ACC", "ACC"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "ACG", "ACG"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "ACT", "ACT"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "AGA", "AGA"),                                                                                                             
+        ("search-database-dna-based-analyses-get-by-codon-options", "AGC", "AGC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "AGG", "AGG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "AGT", "AGT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "ATA", "ATA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "ATC", "ATC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "ATG", "ATG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "ATT", "ATT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CAA", "CAA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CAC", "CAC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CAG", "CAG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CAT", "CAT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CCA", "CCA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CCC", "CCC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CCG", "CCG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CCT", "CCT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CGA", "CGA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CGC", "CGC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CGG", "CGG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CGT", "CGT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CTA", "CTA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CTC", "CTC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CTG", "CTG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "CTT", "CTT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GAA", "GAA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GAC", "GAC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GAG", "GAG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GAT", "GAT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GCA", "GCA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GCC", "GCC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GCG", "GCG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GCT", "GCT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GGA", "GGA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GGC", "GGC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GGG", "GGG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GGT", "GGT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GTA", "GTA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GTC", "GTC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GTG", "GTG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "GTT", "GTT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TAC", "TAC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TAT", "TAT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TCA", "TCA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TCC", "TCC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TCG", "TCG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TCT", "TCT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TGC", "TGC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TGG", "TGG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TGT", "TGT"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TTA", "TTA"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TTC", "TTC"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TTG", "TTG"),
+        ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT");
+SQL
 		}
 		
 		unless($filepath)
@@ -1262,7 +1307,8 @@ Root where will have the main pages
 
 =head1 METHODS
 
-=cut
+=cut 
+my \$feature_id;
 ROOT
 
 #my @controllers = (
@@ -1280,18 +1326,20 @@ Global analyses page
 
 sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
 	my ( \$self, \$c ) = \@_;
-	my \@texts = \$c->model('Basic::Text')->search({
+	\$c->stash->{titlePage} = 'Global Analyses';
+	\$c->stash(currentPage => 'global-analyses');
+	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
 		-or => [
 			tag => {'like', 'header%'},
 			tag => 'menu',
 			tag => 'footer',
 			tag => {'like', 'global-analyses%'}
 		]
-	});
-	\@texts = encodingCorrection (\@texts);
-	\$c->stash->{titlePage} = 'Global Analyses';
-	\$c->stash(currentPage => 'global-analyses');
-	\$c->stash(texts => [\@texts]);
+	}))]);
+	if(!defined \$feature_id)
+	{
+		\$feature_id = get_feature_id(\$c);
+	}
 	\$c->stash(template => 'html_dir/global-analyses/index.tt');
 	\$c->stash(components => [\$c->model('Basic::Component')->all]);
 	\$c->stash->{hadGlobal} = 1;
@@ -1314,18 +1362,35 @@ Search database page (/SearchDatabase)
 =cut
 sub searchDatabase :Path("SearchDatabase") :Args(0) {
 	my ( \$self, \$c ) = \@_;
-	my \@texts = \$c->model('Basic::Text')->search({
-		-or => [
-			tag => {'like', 'header%'},
-			tag => 'menu',
-			tag => 'footer',
-			tag => {'like', 'search-database%'}
-		]
-	});
-	\@texts = encodingCorrection (\@texts);
 	\$c->stash->{titlePage} = 'Search Database';
 	\$c->stash(currentPage => 'search-database');
-	\$c->stash(texts => [\@texts]);
+	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
+				-or => [
+					tag => {'like', 'header%'},
+					tag => 'menu',
+					tag => 'footer',
+					tag => {'like', 'search-database%'}
+				]
+	}))]);
+	if(!defined \$feature_id)
+	{
+		\$feature_id = get_feature_id(\$c);
+	}
+	\$c->stash(
+		targetClass => [
+			\$c->model('Chado::Featureprop')->search(
+				{
+					type_id => 81525,
+					feature_id => \$feature_id
+				},
+				{
+					columns => [qw/value/],
+					group_by => [qw/value/],
+					order_by => { -asc => [qw/value/]}
+				}
+			)
+		]
+	);
 	\$c->stash(template => 'html_dir/search-database/index.tt');
 	\$c->stash(components => [\$c->model('Basic::Component')->all]);
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
@@ -1347,18 +1412,20 @@ About page (/About)
 
 sub about :Path("About") :Args(0) {
 	my ( \$self, \$c ) = \@_;
-	my \@texts = \$c->model('Basic::Text')->search({
+	\$c->stash->{titlePage} = 'About';
+	\$c->stash(currentPage => 'about');
+	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
 		-or => [
 			tag => {'like', 'header%'},
 			tag => 'menu',
 			tag => 'footer',
 			tag => {'like', 'about%'}
 		]
-	});
-	\@texts = encodingCorrection (\@texts);
-	\$c->stash->{titlePage} = 'About';
-	\$c->stash(currentPage => 'about');
-	\$c->stash(texts => [\@texts]);
+	}))]);
+	if(!defined \$feature_id)
+	{
+		\$feature_id = get_feature_id(\$c);
+	}
 	\$c->stash(template => 'html_dir/about/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
@@ -1372,18 +1439,20 @@ The blast page (/Blast)
 =cut
 sub blast :Path("Blast") :Args(0) {
 	my ( \$self, \$c ) = \@_;
-	my \@texts = \$c->model('Basic::Text')->search({
+	\$c->stash->{titlePage} = 'Blast';
+	\$c->stash(currentPage => 'blast');
+	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
 		-or => [
 			tag => {'like', 'header%'},
 			tag => 'menu',
 			tag => 'footer',
 			tag => {'like', 'blast%'}
 		]
-	});
-	\@texts = encodingCorrection (\@texts);
-	\$c->stash->{titlePage} = 'Blast';
-	\$c->stash(currentPage => 'blast');
-	\$c->stash(texts => [\@texts]);
+	}))]);
+	if(undef \$feature_id)
+	{
+		\$feature_id = get_feature_id(\$c);
+	}
 	\$c->stash(template => 'html_dir/blast/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
@@ -1397,18 +1466,20 @@ The download page (/Downloads)
 =cut
 sub downloads :Path("Downloads") :Args(0) {
 	my ( \$self, \$c ) = \@_;
-	my \@texts = \$c->model('Basic::Text')->search({
+	\$c->stash->{titlePage} = 'Downloads';
+	\$c->stash(currentPage => 'downloads');
+	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
 		-or => [
 			tag => {'like', 'header%'},
 			tag => 'menu',
 			tag => 'footer',
 			tag => {'like', 'downloads%'}
 		]
-	});
-	\@texts = encodingCorrection (\@texts);
-	\$c->stash->{titlePage} = 'Downloads';
-	\$c->stash(currentPage => 'downloads');
-	\$c->stash(texts => [\@texts]);
+	}))]);
+	if(!defined \$feature_id)
+	{
+		\$feature_id = get_feature_id(\$c);
+	}
 	\$c->stash(template => 'html_dir/downloads/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
@@ -1437,6 +1508,26 @@ sub encodingCorrection {
     return \@texts;
 }
 
+
+=head2
+
+Method used to get feature id
+
+=cut
+sub get_feature_id {
+	my (\$c) = \@_;
+	return \$c->model('Chado::Feature')->search(
+		{
+			uniquename => qw/$uniquename/
+		},
+		{
+			columns => qw/feature_id/,
+			rows => 1
+		}
+	)->single->get_column(qw/feature_id/);
+}
+
+
 =head2 help
 
 The help page (/Help)
@@ -1444,18 +1535,21 @@ The help page (/Help)
 =cut
 sub help :Path("Help") :Args(0) {
 	my ( \$self, \$c ) = \@_;
-	my \@texts = \$c->model('Basic::Text')->search({
+	\$c->stash->{titlePage} = 'Help';
+	\$c->stash(currentPage => 'help');
+	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
 		-or => [
 			tag => {'like', 'header%'},
 			tag => 'menu',
 			tag => 'footer',
 			tag => {'like', 'help%'}
 		]
-	});
-	\@texts = encodingCorrection (\@texts);
-	\$c->stash->{titlePage} = 'Help';
-	\$c->stash(currentPage => 'help');
-	\$c->stash(texts => [\@texts]);
+	}))]);
+	if(!defined \$feature_id)
+	{
+		\$feature_id = get_feature_id(\$c);
+	}
+	\$c->stash(teste => \$feature_id);
 	\$c->stash(template => 'html_dir/help/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
@@ -1470,18 +1564,20 @@ The root page (/)
 
 sub index :Path :Args(0) {
 	my ( \$self, \$c ) = \@_;
-	my \@texts = \$c->model('Basic::Text')->search({
+	\$c->stash->{titlePage} = 'Home';
+	\$c->stash(currentPage => 'home');
+	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
 		-or => [
 			tag => {'like', 'header%'},
 			tag => 'menu',
 			tag => 'footer',
 			tag => {'like', 'home%'}
 		]
-	});
-	\@texts = encodingCorrection (\@texts);
-	\$c->stash->{titlePage} = 'Home';
-	\$c->stash(currentPage => 'home');
-	\$c->stash(texts => [\@texts]);
+	}))]);
+	if(!defined \$feature_id)
+	{
+		\$feature_id = get_feature_id(\$c);
+	}
 	\$c->stash(template => 'html_dir/home/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
@@ -2412,7 +2508,7 @@ CONTENTINDEXHOME
                         		[% IF component.component.match('annotation_infernal.pl') %]
                         			[% infernal = 1 %]
                         		[% END %]
-                        		[% IF component.component.match('annotation_rbs.pl') %]
+                        		[% IF component.component.match('annotation_rbsfinder.pl') %]
                         			[% rbs = 1 %]
                         		[% END %]
                         		[% IF component.component.match('annotation_transterm.pl') %]
@@ -3035,7 +3131,6 @@ CONTENTINDEXHOME
 		                                                        [% END %]
 		                                                    </div>
 		                                                    <div class="form-group">
-		                                                        <label>Or by target name: </label>
 		                                                        [% FOREACH text IN texts %]
 		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-name' %]
 		                                                                <label>[% text.value %]</label>
@@ -3043,21 +3138,21 @@ CONTENTINDEXHOME
 		                                                        [% END %]
 		                                                        <input class="form-control" type="text" name="ncRNAtargetName">
 		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <select class="form-control"  name="ncRNAtargetClass">
-		                                                            <option value=""></option>
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class-options' %]
-		                                                                    <option value="[% text.details %]">[% text.value %]</option>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </select>
-		                                                    </div>
+		                                                    [% IF targetClass.size > 0 %]
+			                                                    <div class="form-group">
+			                                                        [% FOREACH text IN texts %]
+			                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class' %]
+			                                                                <label>[% text.value %]</label>
+			                                                            [% END %]
+			                                                        [% END %]
+			                                                        <select class="form-control"  name="ncRNAtargetClass">
+			                                                            <option value=""></option>
+			                                                            [% FOREACH text IN targetClass %]
+		                                                                    <option value="[% text.value %]">[% text.value %]</option>
+			                                                            [% END %]
+			                                                        </select>
+			                                                    </div>
+			                                                [% END %]
 		                                                    <div class="form-group">
 		                                                        [% FOREACH text IN texts %]
 		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-type' %]
