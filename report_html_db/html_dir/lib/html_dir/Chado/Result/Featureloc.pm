@@ -323,6 +323,15 @@ __PACKAGE__->belongs_to(
   },
 );
 
+__PACKAGE__->has_many(
+	"featureloc_featureprop",
+	"html_dir::Chado::Result::Featureprop",
+	{
+		"foreign.feature_id" => "self.srcfeature_id",
+	},
+	{ cascade_copy => 0, cascade_delete => 0 },
+);
+
 
 # Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7OCy6WhbWIUfTI8sZRPU7Q

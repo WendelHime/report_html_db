@@ -26,57 +26,65 @@ sub searchGeneIdentifier : Path("/SearchDatabase/GeneIdentifier") :
   CaptureArgs(1) {
 	my ( $self, $c, $geneId ) = @_;
 
-#SELECT DISTINCT feature.feature_id, ps.value
-#FROM feature
-#JOIN feature_relationship fr ON (feature.feature_id = fr.object_id)
-#JOIN featureloc l ON (l.feature_id = feature.feature_id)
-#JOIN featureprop ps ON (fr.subject_id = ps.feature_id AND l.srcfeature_id = ps.feature_id)
-#JOIN cvterm cv ON (fr.type_id = cv.cvterm_id AND ps.type_id = cv.cvterm_id)
-#WHERE (cv.name = 'based_on' OR cv.name='locus_tag' OR cv.name='pipeline_id') AND (ps.value = 'Arsenical' OR ps.value LIKE '%Arsenical%') ORDER BY ps.value;
+#select distinct f.feature_id, ps.value 
+#from feature f 
+#join feature_relationship r on (f.feature_id = r.object_id) 
+#join cvterm cr on (r.type_id = cr.cvterm_id) 
+#join featureprop ps on (r.subject_id = ps.feature_id) 
+#join cvterm cs on (ps.type_id = cs.cvterm_id) 
+#join featureloc l on (l.feature_id = f.feature_id) 
+#join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+#join cvterm cp on (pl.type_id = cp.cvterm_id) 
+#where cr.name = 'based_on' and cs.name = 'locus_tag' and cp.name = 'pipeline_id' and 
+#pl.value='4249';
 	$c->stash(
 		searchResult => [
 			$c->model('Chado::Feature')->search(
 				{
-					-and => [
-						-or => [
-							'cvterm.name' => 'based_on',
-							'cvterm.name' => 'locus_tag',
-							'cvterm.name' => 'pipeline_id'
-						],
-						-or => [
-							'featureprops.value' => '2782',
-							'featureprops.value' => { 'like', '\%$geneId\%' }
-						]
-					]
+					'type.name' => 'locus_tag',
+					'type_2.name' => 'based_on',
+					'type_3.name' => 'pipeline_id',
+					'featureloc_featureprop.value' => '4249',
+					'feature_relationship_props_subject_feature.value' => { 'like', "\%$geneId\%" }
 				},
 				{
 					join => [
-						'feature_relationship_objects',
-						'featureloc_features',
-						'featureprops',
-						'feature_cvterms' => {
-							'feature_cvterms' => {
-								'cvterm' => 'feature_relationships',
-								'cvterm' => 'featureprops'
+						'feature_relationship_objects' => {
+							'feature_relationship_objects' => {
+								'type' => {
+									'feature_relationships_subject'
+								},
+								'feature_relationship_props_subject_feature' =>
+								{
+									'type'
+								}
 							}
 						},
+						'featureloc_features' => { 
+							'featureloc_features' => {
+								'featureloc_featureprop' => {'type'}
+							}
+						}
 
 					],
-					columns => [
-						qw/ feature_id  featureprops.value /,
-						{
-							'featureprops.feature_id' =>
-							  'featureloc_features.srcfeature_id'
-						}
+#					+columns => 'me.feature_id feature_relationship_props_subject_feature.value',
+					select => [
+						qw/ me.feature_id feature_relationship_props_subject_feature.value /
 					],
-					order_by => { -asc => [qw/featureprops.value/] },
-					distinct => 1
+					as => [
+						qw/ feature_id name /
+					],
+					order_by => { -asc => [qw/ feature_relationship_props_subject_feature.value /] },
+					distinct => 1 
 				}
 			)
 		]
 	);
-	$c->response->body(
-		'Matched html_dir::Controller::SearchDatabase in SearchDatabase.');
+
+#	$c->stash(searchResult => [ $c->model('Chado::Feature')->getGeneIdentifier() ]);
+	$c->stash(template => 'html_dir/search-database/result.tt');
+#	$c->response->body(
+#		'Matched html_dir::Controller::SearchDatabase in SearchDatabase.');
 }
 
 =head2 descriptionToHash
@@ -121,7 +129,7 @@ sub searchGeneDescription : Path("/SearchDatabase/GeneDescription") :
 #JOIN featureloc l ON (l.feature_id = feature.feature_id)
 #JOIN featureprop ps ON (r.subject_id = ps.feature_id AND ps.feature_id = feature.feature_id AND l.srcfeature_id = ps.feature_id)
 #JOIN cvterm cv ON (r.type_id = cv.cvterm_id AND ps.type_id = cv.cvterm_id)
-#WHERE (cv.name = 'based_on' OR cv.name = 'tag' OR cv.name='locus_tag' OR cv.name='description' OR cv.name = 'pipeline_id') AND
+#WHERE (cv.name = 'based_on' AND cv.name = 'tag' AND cv.name='locus_tag' AND cv.name='description' AND cv.name = 'pipeline_id') AND
 #(ps.value = 'CDS' OR ps.value = 'VARIAVEL')
 
 	$c->stash(

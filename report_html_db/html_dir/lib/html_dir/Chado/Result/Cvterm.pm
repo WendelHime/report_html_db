@@ -989,6 +989,13 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+  "feature_relationships_subject",
+  "html_dir::Chado::Result::FeatureRelationship",
+  { "foreign.subject_id" => "self.cvterm_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 featuremapprops
 
 Type: has_many

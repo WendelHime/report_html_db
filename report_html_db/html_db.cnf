@@ -16,7 +16,7 @@ PHASE= Report HTML
 program = report_html_db.pl
 #===================================================================================
 organism_name=Bacteria do curso
-uniquename=Bacteria
+uniquename=Bacteria_upload
 fasta_dir = seq
 aa_fasta_dir = orfs_aa
 nt_fasta_dir = orfs_nt

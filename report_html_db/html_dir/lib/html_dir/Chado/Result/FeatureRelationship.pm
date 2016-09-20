@@ -189,6 +189,15 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+	"feature_relationship_props_subject_feature",
+	"html_dir::Chado::Result::Featureprop",
+	{
+		"foreign.feature_id" => "self.subject_id",
+	},
+	{ cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 object
 
 Type: belongs_to

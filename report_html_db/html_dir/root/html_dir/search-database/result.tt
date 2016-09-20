@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<div class="content-wrapper">
+    <div class="container">
+    	[% FOREACH result IN searchResult %]
+			<br />
+			[% result.feature_id %] = [% result.name %]
+			<br />
+    	[% END %]
+    </div>
+</div>

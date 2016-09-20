@@ -795,7 +795,6 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "CASCADE", on_update => "NO ACTION" },
 );
 
-
 # Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:T22q+Ib0wLo3rHLQq+RCUQ
 
