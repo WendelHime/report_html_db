@@ -26,65 +26,74 @@ sub searchGeneIdentifier : Path("/SearchDatabase/GeneIdentifier") :
   CaptureArgs(1) {
 	my ( $self, $c, $geneId ) = @_;
 
-#select distinct f.feature_id, ps.value 
-#from feature f 
-#join feature_relationship r on (f.feature_id = r.object_id) 
-#join cvterm cr on (r.type_id = cr.cvterm_id) 
-#join featureprop ps on (r.subject_id = ps.feature_id) 
-#join cvterm cs on (ps.type_id = cs.cvterm_id) 
-#join featureloc l on (l.feature_id = f.feature_id) 
-#join featureprop pl on (l.srcfeature_id = pl.feature_id) 
-#join cvterm cp on (pl.type_id = cp.cvterm_id) 
-#where cr.name = 'based_on' and cs.name = 'locus_tag' and cp.name = 'pipeline_id' and 
+#select distinct f.feature_id, ps.value
+#from feature f
+#join feature_relationship r on (f.feature_id = r.object_id)
+#join cvterm cr on (r.type_id = cr.cvterm_id)
+#join featureprop ps on (r.subject_id = ps.feature_id)
+#join cvterm cs on (ps.type_id = cs.cvterm_id)
+#join featureloc l on (l.feature_id = f.feature_id)
+#join featureprop pl on (l.srcfeature_id = pl.feature_id)
+#join cvterm cp on (pl.type_id = cp.cvterm_id)
+#where cr.name = 'based_on' and cs.name = 'locus_tag' and cp.name = 'pipeline_id' and
 #pl.value='4249';
 	$c->stash(
 		searchResult => [
 			$c->model('Chado::Feature')->search(
 				{
-					'type.name' => 'locus_tag',
-					'type_2.name' => 'based_on',
-					'type_3.name' => 'pipeline_id',
+					'type.name'                    => 'locus_tag',
+					'type_2.name'                  => 'based_on',
+					'type_3.name'                  => 'pipeline_id',
 					'featureloc_featureprop.value' => '4249',
-					'feature_relationship_props_subject_feature.value' => { 'like', "\%$geneId\%" }
+					'feature_relationship_props_subject_feature.value' =>
+					  { 'like', "\%$geneId\%" }
 				},
 				{
 					join => [
+#						join feature_relationship r on (f.feature_id = r.object_id)
 						'feature_relationship_objects' => {
+#							join cvterm cr on (r.type_id = cr.cvterm_id)
 							'feature_relationship_objects' => {
+#								join featureprop ps on (r.subject_id = ps.feature_id)
 								'type' => {
 									'feature_relationships_subject'
 								},
-								'feature_relationship_props_subject_feature' =>
-								{
+#								join featureprop ps on (r.subject_id = ps.feature_id)
+								'feature_relationship_props_subject_feature' => {
+#									join cvterm cs on (ps.type_id = cs.cvterm_id)
 									'type'
 								}
 							}
 						},
-						'featureloc_features' => { 
+#						join featureloc l on (l.feature_id = f.feature_id)
+						'featureloc_features' => {
+
+#							join featureprop pl on (l.srcfeature_id = pl.feature_id)
 							'featureloc_features' => {
+#							  	join cvterm cp on (pl.type_id = cp.cvterm_id)
 								'featureloc_featureprop' => {'type'}
 							}
 						}
-
 					],
-#					+columns => 'me.feature_id feature_relationship_props_subject_feature.value',
 					select => [
 						qw/ me.feature_id feature_relationship_props_subject_feature.value /
 					],
-					as => [
-						qw/ feature_id name /
-					],
-					order_by => { -asc => [qw/ feature_relationship_props_subject_feature.value /] },
-					distinct => 1 
+					as       => [qw/ feature_id name /],
+					order_by => {
+						-asc => [
+							qw/ feature_relationship_props_subject_feature.value /
+						]
+					},
+					distinct => 1
 				}
 			)
 		]
 	);
 
-#	$c->stash(searchResult => [ $c->model('Chado::Feature')->getGeneIdentifier() ]);
-	$c->stash(template => 'html_dir/search-database/result.tt');
-#	$c->response->body(
-#		'Matched html_dir::Controller::SearchDatabase in SearchDatabase.');
+	$c->stash( template => 'html_dir/search-database/result.tt' );
+
+	#	$c->response->body(
+	#		'Matched html_dir::Controller::SearchDatabase in SearchDatabase.');
 }
 
 =head2 descriptionToHash
@@ -94,12 +103,12 @@ Method used to return hash of values to be used in like search
 =cut 
 
 sub descriptionToHash {
-	my ( $self, $value, $regex, $key, $type, %like );
-	my @terms = split( $regex, $value );
+	my ( $self, $value, $key, $type, %object );
+	my @terms = $value =~ /(\S+)/g;
 	for ( my $i = 0 ; $i < scalar @terms ; $i++ ) {
-		$like{"$key"} = { $type, "%" . $terms[$i] . "%" };
+		$object{"$key"} = { $type, "%" . $terms[$i] . "%" };
 	}
-	return %like;
+	return %object;
 }
 
 =head2 searchGeneDescription
@@ -112,71 +121,110 @@ Receive by parameter gene description and descriptions to not be used
 sub searchGeneDescription : Path("/SearchDatabase/GeneDescription") :
   CaptureArgs(2) {
 	my ( $self, $c, $geneDescription, $noDescription ) = @_;
-	my %like = ( 'featureprops.value' => 'CDS' );
+	my %like = ();
+	my @arrayLikes = ();
 
 	if ($geneDescription) {
-		descriptionToHash( $geneDescription, '^\s+$', "featureprops.value",
+		%like =
+		  descriptionToHash( $geneDescription,
+			"feature_relationship_props_subject_feature_2.value",
 			"like", %like );
 	}
 	if ($noDescription) {
-		descriptionToHash( $noDescription, '^\s+$', "featureprops.value",
+		%like =
+		  descriptionToHash( $noDescription,
+			"feature_relationship_props_subject_feature_2.value",
 			"not like", %like );
 	}
+	push @arrayLikes, %like;
 
-#SELECT DISTINCT feature.feature_id, ps.value, ps.value
-#FROM feature
-#JOIN feature_relationship r ON (feature.feature_id = r.object_id)
-#JOIN featureloc l ON (l.feature_id = feature.feature_id)
-#JOIN featureprop ps ON (r.subject_id = ps.feature_id AND ps.feature_id = feature.feature_id AND l.srcfeature_id = ps.feature_id)
-#JOIN cvterm cv ON (r.type_id = cv.cvterm_id AND ps.type_id = cv.cvterm_id)
-#WHERE (cv.name = 'based_on' AND cv.name = 'tag' AND cv.name='locus_tag' AND cv.name='description' AND cv.name = 'pipeline_id') AND
-#(ps.value = 'CDS' OR ps.value = 'VARIAVEL')
+#select distinct f.feature_id, ps.value, pd.value
+#from feature f
+#join feature_relationship r on (f.feature_id = r.object_id)
+#join cvterm cr on (r.type_id = cr.cvterm_id)
+#join featureprop ps on (r.subject_id = ps.feature_id)
+#join cvterm cs on (ps.type_id = cs.cvterm_id)
+#
+#join featureprop pf on (f.feature_id = pf.feature_id)
+#join cvterm cf on (pf.type_id = cf.cvterm_id)
+#
+#join featureloc l on (l.feature_id = f.feature_id)
+#join featureprop pl on (l.srcfeature_id = pl.feature_id)
+#join cvterm cp on (pl.type_id = cp.cvterm_id)
+#join featureprop pd on (r.subject_id = pd.feature_id)
+#join cvterm cd on (pd.type_id = cd.cvterm_id)
+#where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and
+#pl.value='$pipeline' and
 
 	$c->stash(
 		searchResult => [
 			$c->model('Chado::Feature')->search(
 				{
-					-and => [
-						-or => [
-							'cvterm.name' => 'based_on',
-							'cvterm.name' => 'tag',
-							'cvterm.name' => 'locus_tag',
-							'cvterm.name' => 'description',
-							'cvterm.name' => 'pipeline_id',
-						],
-						-or => [%like]
-					]
+					'type.name'					=> 'locus_tag',
+					'type_2.name'				=> 'based_on',
+					'type_3.name'				=> 'tag',
+					'type_4.name'				=> 'pipeline_id',
+					'type_5.name'				=> 'description',
+					'featureprops_2.value'				=> 'CDS',
+					'featureloc_featureprop.value' => '4249',
+					-or => @arrayLikes
+					###		  ###
+					#			#
+					#	terms	#
+					#			#
+					###		  ###
 				},
 				{
 					join => [
-						'feature_relationship_objects',
-						'featureloc_features',
-						'featureprops',
-						'feature_cvterms' => {
-							'feature_cvterms' => {
-								'cvterm' => 'feature_relationships',
-								'cvterm' => 'featureprops'
+						'feature_relationship_objects' => {
+							'feature_relationship_objects' => {
+								'type' => {
+									'feature_relationships_subject'
+								},
+								'feature_relationship_props_subject_feature' => {
+									'type'
+								},
+								'feature_relationship_props_subject_feature' => {
+									'type'
+								}
 							}
 						},
-
-					],
-					columns => [
-						qw/ feature_id  featureprops.value /,
-						{
-							'featureprops.feature_id' =>
-							  'featureloc_features.srcfeature_id',
-							'featureprops.feature_id' =>
-							  'feature_relationship_objects.subject_id'
+						'featureprops' => {
+							'featureprops' => {'type'}
+						},
+						'featureloc_features' => {
+							'featureloc_features' => { 
+								'featureloc_featureprop' => 
+								{
+									'type'
+								} 
+							}
+						},
+						'feature_relationship_objects' => {
+							'feature_relationship_objects' => {
+								'feature_relationship_props_subject_feature' => {
+									'type'
+								}
+							}
 						}
 					],
-					order_by => { -asc => [qw/featureprops.value/] },
+					select => [
+						qw/ me.feature_id feature_relationship_props_subject_feature.value feature_relationship_props_subject_feature_2.value /
+					],
+					as       => [qw/ feature_id name uniquename/],
+					order_by => {
+						-asc => [
+							qw/ feature_relationship_props_subject_feature.value /
+						]
+					},
 					distinct => 1
 				}
 			)
 		]
 	);
-	$c->response->body(
-		'Matched html_dir::Controller::SearchDatabase in SearchDatabase.');
+	$c->stash( template => 'html_dir/search-database/result.tt' );
+
+	#		$c->stash( template => 'html_dir/search-database/result.tt' )
 }
 
 =head2 searchContig
@@ -184,6 +232,7 @@ sub searchGeneDescription : Path("/SearchDatabase/GeneDescription") :
 Method used to realize search by contigs, optional return a stretch or a reverse complement
 
 =cut
+
 sub searchContig : Path("/SearchDatabase/SearchContig") : CaptureArgs(4) {
 	my ( $self, $c, $contig, $start, $end, $reverseComplement ) = @_;
 	my $column = "";
@@ -199,25 +248,21 @@ sub searchContig : Path("/SearchDatabase/SearchContig") : CaptureArgs(4) {
 		},
 		{
 			select => $column,
-			as => ["residues"]
+			as     => ["residues"]
 		}
 	);
-	
-	if($reverseComplement)
-	{
-		for(my $i = 0; $i < scalar @searchResult; $i++)
-		{
-			$searchResult[$i] = formatSequence(reverseComplement($searchResult[$i]->{residues}));
+
+	if ($reverseComplement) {
+		for ( my $i = 0 ; $i < scalar @searchResult ; $i++ ) {
+			$searchResult[$i] =
+			  formatSequence(
+				reverseComplement( $searchResult[$i]->{residues} ) );
 		}
 	}
-	
-	$c->stash(
-		searchResult => [
-			@searchResult
-		]
-	);
+
+	$c->stash( searchResult => [@searchResult] );
 	$c->response->body(
-		'Matched html_dir::Controller::SearchDatabase in SearchDatabase.');
+		"Matched html_dir::Controller::SearchDatabase in SearchDatabase.");
 }
 
 sub reverseComplement {

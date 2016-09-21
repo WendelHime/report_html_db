@@ -3,7 +3,7 @@
     <div class="container">
     	[% FOREACH result IN searchResult %]
 			<br />
-			[% result.feature_id %] = [% result.name %]
+			[% result.feature_id %] = [% result.name %] && [% result.uniquename %] 
 			<br />
     	[% END %]
     </div>
