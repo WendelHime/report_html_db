@@ -478,6 +478,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-gene-ids-descriptions-gene-id", "Gene ID: ", ""),
         ("search-database-gene-ids-descriptions-gene-description", "Description: ", ""),
         ("search-database-gene-ids-descriptions-gene-excluding", "Excluding: ", ""),
+        ("search-database-gene-ids-descriptions-gene-individually", "Individually?", ""),
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
@@ -2574,6 +2575,15 @@ CONTENTINDEXHOME
 		                                                            [% END %]
 		                                                        [% END %]
 		                                                        <input class="form-control" type="text" name="noDesc">
+		                                                    </div>
+		                                                    <div class="form-group">
+		                                                    	[% FOREACH text IN texts %]
+		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-individually') %]
+		                                                            	<div class="checkbox">
+		                                                                	<label><input type="checkbox" name="individually">[% text.value %]</label>
+		                                                                </div>
+		                                                            [% END %]
+		                                                        [% END %]
 		                                                    </div>
 		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
 		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">

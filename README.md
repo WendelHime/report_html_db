@@ -27,18 +27,10 @@ TODO:
 -	Criar controllers para realizar pesquisas do Search database
 -	Planejar como vai funcionar as views do resultados da pesquisa do search database (ver exemplos do slide)
 -	Usar o controller SearchDatabase, basear searchPMNseq.cgi e outros do photorhabdus luminescens
--	Comparar desempenho:
+-	Finalizar pesquisa por descrição de gene
 
 
 Selecionar pelo gene ID
-
-SELECT DISTINCT feature.feature_id, ps.value 
-FROM feature 
-JOIN feature_relationship fr ON (feature.feature_id = fr.object_id) 
-JOIN featureloc l ON (l.feature_id = feature.feature_id)  
-JOIN featureprop ps ON (fr.subject_id = ps.feature_id AND l.srcfeature_id = ps.feature_id) 
-JOIN cvterm cv ON (fr.type_id = cv.cvterm_id AND ps.type_id = cv.cvterm_id AND ps.type_id = cv.cvterm_id) 
-WHERE (cv.name = 'based_on' OR cv.name='locus_tag' OR cv.name='pipeline_id') AND (ps.value = 'Arsenical' OR ps.value LIKE '%Arsenical%') ORDER BY ps.value;
 
 select distinct f.feature_id, ps.value 
 from feature f 
@@ -69,11 +61,3 @@ join featureprop pd on (r.subject_id = pd.feature_id)
 join cvterm cd on (pd.type_id = cd.cvterm_id) 
 where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and 
 pl.value='$pipeline' and 
-
-SELECT DISTINCT feature.feature_id, ps.value, ps.value 
-FROM feature 
-JOIN feature_relationship r ON (feature.feature_id = r.object_id)  
-JOIN featureloc l ON (l.feature_id = feature.feature_id) 
-JOIN featureprop ps ON (r.subject_id = ps.feature_id AND ps.feature_id = feature.feature_id AND l.srcfeature_id = ps.feature_id AND r.subject_id = ps.feature_id) 
-JOIN cvterm cv ON (r.type_id = cv.cvterm_id AND ps.type_id = cv.cvterm_id) 
-WHERE (cv.name = 'based_on' OR cv.name = 'tag' OR cv.name='locus_tag' OR cv.name='description' OR cv.name = 'pipeline_id') AND (ps.value = 'CDS' OR ps.value = 'VARIAVEL')

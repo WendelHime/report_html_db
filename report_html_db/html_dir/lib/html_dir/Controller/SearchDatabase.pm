@@ -22,9 +22,20 @@ Method used to search on database genes by id
 
 =cut
 
-sub searchGeneIdentifier : Path("/SearchDatabase/GeneIdentifier") :
-  CaptureArgs(1) {
-	my ( $self, $c, $geneId ) = @_;
+sub searchGeneIdentifier : Path("/SearchDatabase/GeneIdentifier") : Args(0) {
+	my ( $self, $c ) = @_;
+
+	$c->stash->{titlePage} = 'Gene identifier';
+	$c->stash(currentPage => 'search-database');
+	$c->stash(texts => [encodingCorrection ($c->model('Basic::Text')->search({
+				-or => [
+					tag => {'like', 'header%'},
+					tag => 'menu',
+					tag => 'footer',
+					tag => {'like', 'search-database%'}
+				]
+	}))]);
+
 
 #select distinct f.feature_id, ps.value
 #from feature f
@@ -37,6 +48,8 @@ sub searchGeneIdentifier : Path("/SearchDatabase/GeneIdentifier") :
 #join cvterm cp on (pl.type_id = cp.cvterm_id)
 #where cr.name = 'based_on' and cs.name = 'locus_tag' and cp.name = 'pipeline_id' and
 #pl.value='4249';
+
+	my $geneID = $c->req->param("geneID");
 	$c->stash(
 		searchResult => [
 			$c->model('Chado::Feature')->search(
@@ -46,31 +59,36 @@ sub searchGeneIdentifier : Path("/SearchDatabase/GeneIdentifier") :
 					'type_3.name'                  => 'pipeline_id',
 					'featureloc_featureprop.value' => '4249',
 					'feature_relationship_props_subject_feature.value' =>
-					  { 'like', "\%$geneId\%" }
+					  { 'like', '%'.$geneID.'%' }
 				},
 				{
 					join => [
-#						join feature_relationship r on (f.feature_id = r.object_id)
+
+			  #						join feature_relationship r on (f.feature_id = r.object_id)
 						'feature_relationship_objects' => {
-#							join cvterm cr on (r.type_id = cr.cvterm_id)
+
+							#							join cvterm cr on (r.type_id = cr.cvterm_id)
 							'feature_relationship_objects' => {
-#								join featureprop ps on (r.subject_id = ps.feature_id)
-								'type' => {
-									'feature_relationships_subject'
-								},
-#								join featureprop ps on (r.subject_id = ps.feature_id)
-								'feature_relationship_props_subject_feature' => {
-#									join cvterm cs on (ps.type_id = cs.cvterm_id)
+
+				  #								join featureprop ps on (r.subject_id = ps.feature_id)
+								'type' => {'feature_relationships_subject'},
+
+				  #								join featureprop ps on (r.subject_id = ps.feature_id)
+								'feature_relationship_props_subject_feature' =>
+								  {
+						 #									join cvterm cs on (ps.type_id = cs.cvterm_id)
 									'type'
-								}
+								  }
 							}
 						},
-#						join featureloc l on (l.feature_id = f.feature_id)
+
+					   #						join featureloc l on (l.feature_id = f.feature_id)
 						'featureloc_features' => {
 
-#							join featureprop pl on (l.srcfeature_id = pl.feature_id)
+				#							join featureprop pl on (l.srcfeature_id = pl.feature_id)
 							'featureloc_features' => {
-#							  	join cvterm cp on (pl.type_id = cp.cvterm_id)
+
+						#							  	join cvterm cp on (pl.type_id = cp.cvterm_id)
 								'featureloc_featureprop' => {'type'}
 							}
 						}
@@ -90,6 +108,9 @@ sub searchGeneIdentifier : Path("/SearchDatabase/GeneIdentifier") :
 		]
 	);
 
+	$c->stash->{hadGlobal} = 0;
+	$c->stash->{hadSearchDatabase} = 1;
+
 	$c->stash( template => 'html_dir/search-database/result.tt' );
 
 	#	$c->response->body(
@@ -102,14 +123,17 @@ Method used to return hash of values to be used in like search
 
 =cut 
 
-sub descriptionToHash {
-	my ( $self, $value, $key, $type, %object );
-	my @terms = $value =~ /(\S+)/g;
-	for ( my $i = 0 ; $i < scalar @terms ; $i++ ) {
-		$object{"$key"} = { $type, "%" . $terms[$i] . "%" };
-	}
-	return %object;
-}
+#sub descriptionToHash {
+#	my ( $self, $value, $key, $type, @object );
+#	my @terms = ();
+#	while ( $value =~ /(\S+)/g ) {
+#		push @terms, $1;
+#	}
+#	for ( my $i = 0 ; $i < scalar @terms ; $i++ ) {
+#		push @object, { "$type", "%" . $terms[$i] . "%" };
+#	}
+#	return @object;
+#}
 
 =head2 searchGeneDescription
 
@@ -119,24 +143,49 @@ Receive by parameter gene description and descriptions to not be used
 =cut
 
 sub searchGeneDescription : Path("/SearchDatabase/GeneDescription") :
-  CaptureArgs(2) {
-	my ( $self, $c, $geneDescription, $noDescription ) = @_;
-	my %like = ();
-	my @arrayLikes = ();
-
+  Args(0) {
+	my ( $self, $c ) = @_;
+	my $geneDescription = $c->req->param("geneDesc"); 
+	my $noDescription = $c->req->param("noDesc");
+	my $individually = $c->req->param("individually");
+	
+	$c->stash(texts => [encodingCorrection ($c->model('Basic::Text')->search({
+				-or => [
+					tag => {'like', 'header%'},
+					tag => 'menu',
+					tag => 'footer',
+					tag => {'like', 'search-database%'}
+				]
+	}))]);
+	
+	my @likes = ();
 	if ($geneDescription) {
-		%like =
-		  descriptionToHash( $geneDescription,
-			"feature_relationship_props_subject_feature_2.value",
-			"like", %like );
+		my @terms = ();
+		while ( $geneDescription =~ /(\S+)/g ) {
+			if ($individually) {
+				push @likes,
+				  '-or' =>
+				  [ "feature_relationship_props_subject_feature_2.value" =>
+					  { "like", "\%" . $1 . "\%" } ];
+			}
+			else {
+				push @likes,
+				  '-and' =>
+				  [ "feature_relationship_props_subject_feature_2.value" =>
+					  { "like", "\%" . $1 . "\%" } ];
+			}
+		}
 	}
 	if ($noDescription) {
-		%like =
-		  descriptionToHash( $noDescription,
-			"feature_relationship_props_subject_feature_2.value",
-			"not like", %like );
+		while ( $noDescription =~ /(\S+)/g ) {
+			push @likes,
+			  '-and' =>
+			  [ "feature_relationship_props_subject_feature_2.value" =>
+				  { "not like", "\%" . $1 . "\%" } ];
+		}
 	}
-	push @arrayLikes, %like;
+
+	$c->stash( likes => @likes );
 
 #select distinct f.feature_id, ps.value, pd.value
 #from feature f
@@ -160,51 +209,43 @@ sub searchGeneDescription : Path("/SearchDatabase/GeneDescription") :
 		searchResult => [
 			$c->model('Chado::Feature')->search(
 				{
-					'type.name'					=> 'locus_tag',
-					'type_2.name'				=> 'based_on',
-					'type_3.name'				=> 'tag',
-					'type_4.name'				=> 'pipeline_id',
-					'type_5.name'				=> 'description',
-					'featureprops_2.value'				=> 'CDS',
+					'type.name'                    => 'locus_tag',
+					'type_2.name'                  => 'based_on',
+					'type_3.name'                  => 'tag',
+					'type_4.name'                  => 'pipeline_id',
+					'type_5.name'                  => 'description',
+					'featureprops_2.value'         => 'CDS',
 					'featureloc_featureprop.value' => '4249',
-					-or => @arrayLikes
-					###		  ###
-					#			#
-					#	terms	#
-					#			#
-					###		  ###
+					@likes
+					  ###		  ###
+					  #			#
+					  #	terms	#
+					  #			#
+					  ###		  ###
 				},
 				{
 					join => [
 						'feature_relationship_objects' => {
 							'feature_relationship_objects' => {
-								'type' => {
-									'feature_relationships_subject'
-								},
-								'feature_relationship_props_subject_feature' => {
-									'type'
-								},
-								'feature_relationship_props_subject_feature' => {
-									'type'
-								}
+								'type' => {'feature_relationships_subject'},
+								'feature_relationship_props_subject_feature' =>
+								  {'type'},
+								'feature_relationship_props_subject_feature' =>
+								  {'type'}
 							}
 						},
 						'featureprops' => {
 							'featureprops' => {'type'}
 						},
 						'featureloc_features' => {
-							'featureloc_features' => { 
-								'featureloc_featureprop' => 
-								{
-									'type'
-								} 
+							'featureloc_features' => {
+								'featureloc_featureprop' => {'type'}
 							}
 						},
 						'feature_relationship_objects' => {
 							'feature_relationship_objects' => {
-								'feature_relationship_props_subject_feature' => {
-									'type'
-								}
+								'feature_relationship_props_subject_feature' =>
+								  {'type'}
 							}
 						}
 					],
@@ -222,9 +263,34 @@ sub searchGeneDescription : Path("/SearchDatabase/GeneDescription") :
 			)
 		]
 	);
+	$c->stash->{hadGlobal} = 0;
+	$c->stash->{hadSearchDatabase} = 1;
 	$c->stash( template => 'html_dir/search-database/result.tt' );
 
 	#		$c->stash( template => 'html_dir/search-database/result.tt' )
+}
+
+
+=head2 encodingCorrection
+
+Method used to correct encoding strings come from SQLite
+
+=cut
+sub encodingCorrection {
+	my (@texts) = @_;
+
+	use utf8;
+	use Encode qw( decode encode );
+	foreach my $text (@texts) {
+		foreach my $key ( keys %$text ) {
+			if ( $text->{$key} != 1 ) {
+				my $string = decode('utf-8', $text->{$key}{value});
+				$string = encode('iso-8859-1', $string);
+				$text->{$key}{value} = $string;
+			}
+		}
+	}
+    return @texts;
 }
 
 =head2 searchContig

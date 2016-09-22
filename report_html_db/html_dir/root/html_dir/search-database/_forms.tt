@@ -123,7 +123,7 @@
 	                                        <div class="tab-content">
 	                                            <div id="geneIdentifier" class="tab-pane fade active in">
 	                                                <h4></h4>
-	                                                <form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
+	                                                <form method="post" action="[% c.uri_for('/SearchDatabase/GeneIdentifier') %]" enctype="multipart/form-data">
 	                                                    <div class="form-group">
 	                                                        [% FOREACH text IN texts %]
 	                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
@@ -132,14 +132,14 @@
 	                                                        [% END %]
 	                                                        <input class="form-control" type="text" name="geneID">
 	                                                    </div>
-	                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+	                                                    <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
 	                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
 	                                                </form>
 	                                            </div>
 	                                            [% IF blast %]
 		                                            <div id="geneDescription" class="tab-pane fade">
 		                                                <h4></h4>
-		                                                <form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
+		                                                <form method="post" action="[% c.uri_for('/SearchDatabase/GeneDescription') %]" enctype="multipart/form-data">
 		                                                    <div class="form-group">
 		                                                        [% FOREACH text IN texts %]
 		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
@@ -156,7 +156,12 @@
 		                                                        [% END %]
 		                                                        <input class="form-control" type="text" name="noDesc">
 		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+		                                                    <div class="form-group">
+		                                                    	<div class="checkbox">
+		                                                    		<label><input type="checkbox" name="individually"> Individually?</label>
+		                                                    	</div>
+		                                                    </div>
+		                                                    <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
 		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
 		                                                </form>
 		                                            </div>
