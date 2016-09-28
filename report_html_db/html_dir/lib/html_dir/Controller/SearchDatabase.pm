@@ -61,7 +61,8 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 	my @likes = ();
 
 	if ( defined $geneDescription or defined $noDescription ) {
-		my @likesDescription = ();
+		my @likesDescription   = ();
+		my @likesNoDescription = ();
 		if ($geneDescription) {
 			my @terms = ();
 			while ( $geneDescription =~ /(\S+)/g ) {
@@ -72,17 +73,23 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 		}
 		if ($noDescription) {
 			while ( $noDescription =~ /(\S+)/g ) {
-				push @likes,
+				push @likesNoDescription,
 				  "feature_relationship_props_subject_feature_2.value" =>
 				  { "not like", "\%" . $1 . "\%" };
 			}
 		}
 
-		if ( defined $individually ) {
+		if (    defined $individually
+			and $individually
+			and scalar(@likesDescription) > 0 )
+		{
 			push @likes, '-and' => [@likesDescription];
 		}
 		else {
 			push @likes, '-or' => [@likesDescription];
+		}
+		if ( scalar(@likesNoDescription) > 0 ) {
+			push @likes, '-and' => [@likesNoDescription];
 		}
 	}
 
