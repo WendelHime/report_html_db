@@ -123,7 +123,7 @@
 	                                        <div class="tab-content">
 	                                            <div id="geneIdentifier" class="tab-pane fade active in">
 	                                                <h4></h4>
-	                                                <form method="post" action="[% c.uri_for('/SearchDatabase/GeneIdentifier') %]" enctype="multipart/form-data">
+	                                                <form method="post" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
 	                                                    <div class="form-group">
 	                                                        [% FOREACH text IN texts %]
 	                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
@@ -139,7 +139,7 @@
 	                                            [% IF blast %]
 		                                            <div id="geneDescription" class="tab-pane fade">
 		                                                <h4></h4>
-		                                                <form method="post" action="[% c.uri_for('/SearchDatabase/GeneDescription') %]" enctype="multipart/form-data">
+		                                                <form method="post" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
 		                                                    <div class="form-group">
 		                                                        [% FOREACH text IN texts %]
 		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
