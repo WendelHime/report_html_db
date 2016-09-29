@@ -48,8 +48,8 @@ __PACKAGE__->table("ann_region");
 __PACKAGE__->add_columns("cvterm_id", { data_type => "bigint", is_nullable => 1 });
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:fxpeMnXOjixWHu+tDR+PRg
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-29 15:09:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AvN9iPdGVEk25ziLDS6/eA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -183,7 +183,7 @@ sub get_feature_id {
 	my ($c) = @_;
 	return $c->model('Chado::Feature')->search(
 		{
-			uniquename => qw/Bacteria/
+			uniquename => qw/Bacteria_upload/
 		},
 		{
 			columns => qw/feature_id/,

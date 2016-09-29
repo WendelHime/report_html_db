@@ -189,15 +189,6 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_many(
-	"feature_relationship_props_subject_feature",
-	"html_dir::Chado::Result::Featureprop",
-	{
-		"foreign.feature_id" => "self.subject_id",
-	},
-	{ cascade_copy => 0, cascade_delete => 0 },
-);
-
 =head2 object
 
 Type: belongs_to
@@ -244,10 +235,20 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:JQL8BDaaHqADK0Xkk2Nx9Q
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-29 15:09:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3fKnU4WotTztry2pMI6d0w
 
+
+__PACKAGE__->has_many(
+	"feature_relationship_props_subject_feature",
+	"html_dir::Chado::Result::Featureprop",
+	{
+		"foreign.feature_id" => "self.subject_id",
+	},
+	{ cascade_copy => 0, cascade_delete => 0 },
+);
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
 __PACKAGE__->meta->make_immutable;
 1;

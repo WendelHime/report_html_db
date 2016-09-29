@@ -323,6 +323,11 @@ __PACKAGE__->belongs_to(
   },
 );
 
+
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-29 15:09:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3CpVddDOZs9UsRe1F7cfaA
+
+
 __PACKAGE__->has_many(
 	"featureloc_featureprop",
 	"html_dir::Chado::Result::Featureprop",
@@ -332,11 +337,7 @@ __PACKAGE__->has_many(
 	{ cascade_copy => 0, cascade_delete => 0 },
 );
 
-
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7OCy6WhbWIUfTI8sZRPU7Q
-
-
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
 __PACKAGE__->meta->make_immutable;
 1;

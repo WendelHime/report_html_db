@@ -120,8 +120,8 @@ __PACKAGE__->set_primary_key("sequencing_project_id");
 __PACKAGE__->add_unique_constraint("name_c1", ["name"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:FcfrqNA6uDupWgsPsUagdA
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-29 15:09:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AlyUXKxNk4itEloUTSHjyg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -1280,11 +1280,311 @@ foreach my $component (sort @components_name)
 	}
 }
 
+
+#####
+#
+#	Add relationship to models
+#
+#####
+
+addRelationship("$nameProject/lib/$nameProject/Chado/Result/Cvterm.pm", <<CONTENT);
+__PACKAGE__->has_many(
+  "feature_relationships_subject",
+  "$nameProject\::Chado::Result::FeatureRelationship",
+  { "foreign.subject_id" => "self.cvterm_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+\# You can replace this text with custom code or comments, and it will be preserved on regeneration
+CONTENT
+
+addRelationship("$nameProject/lib/$nameProject/Chado/Result/FeatureRelationship.pm", <<CONTENT);
+__PACKAGE__->has_many(
+	"feature_relationship_props_subject_feature",
+	"$nameProject\::Chado::Result::Featureprop",
+	{
+		"foreign.feature_id" => "self.subject_id",
+	},
+	{ cascade_copy => 0, cascade_delete => 0 },
+);
+
+\# You can replace this text with custom code or comments, and it will be preserved on regeneration
+CONTENT
+
+addRelationship("$nameProject/lib/$nameProject/Chado/Result/Featureloc.pm", <<CONTENT);
+__PACKAGE__->has_many(
+	"featureloc_featureprop",
+	"$nameProject\::Chado::Result::Featureprop",
+	{
+		"foreign.feature_id" => "self.srcfeature_id",
+	},
+	{ cascade_copy => 0, cascade_delete => 0 },
+);
+
+\# You can replace this text with custom code or comments, and it will be preserved on regeneration
+CONTENT
+
+#####
+#
+#	Add controllers
+#
+#####
+
+
 #create controllers project
 print $LOG "\nCreating controllers...\n";
+`$nameProject/script/"$lowCaseName"_create.pl controller SearchDatabase`;
+#my $searchDatabaseController = 
+my $temporaryPackage = $nameProject.'::Controller::SearchDatabase';
+writeFile("$nameProject/lib/$nameProject/Controller/SearchDatabase.pm", <<CONTENT);
+package $temporaryPackage;
+use Moose;
+use namespace::autoclean;
 
+BEGIN { extends 'Catalyst::Controller'; }
+
+=head1 NAME
+
+$temporaryPackage - Catalyst Controller
+
+=head1 DESCRIPTION
+
+Catalyst Controller.
+
+=head1 METHODS
+
+=cut
+
+=head2 searchGene
+
+Method used to search on database genes
+
+=cut
+
+sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
+	my ( \$self, \$c, \$geneID, \$geneDescription, \$noDescription, \$individually )
+	  = \@_;
+
+	if ( !\$geneID and defined \$c->req->param("geneID") ) {
+		\$geneID = \$c->req->param("geneID");
+	}
+	if ( !\$geneDescription and defined \$c->req->param("geneDesc") ) {
+		\$geneDescription = \$c->req->param("geneDesc");
+	}
+	if ( !\$noDescription and defined \$c->req->param("noDesc") ) {
+		\$noDescription = \$c->req->param("noDesc");
+	}
+	if ( !\$individually and defined \$c->req->param("individually") ) {
+		\$individually = \$c->req->param("individually");
+	}
+
+	\$c->stash->{titlePage} = 'Search gene';
+	\$c->stash( currentPage => 'search-database' );
+	\$c->stash(
+		texts => [
+			encodingCorrection(
+				\$c->model('Basic::Text')->search(
+					{
+						-or => [
+							tag => { 'like', 'header\%' },
+							tag => 'menu',
+							tag => 'footer',
+							tag => { 'like', 'search-database\%' }
+						]
+					}
+				)
+			)
+		]
+	);
+
+	my \@likes = ();
+
+	if ( defined \$geneDescription or defined \$noDescription ) {
+		my \@likesDescription   = ();
+		my \@likesNoDescription = ();
+		if (\$geneDescription) {
+			my \@terms = ();
+			while ( \$geneDescription =~ /(\\S+)/g ) {
+				push \@likesDescription,
+				  "feature_relationship_props_subject_feature_2.value" =>
+				  { "like", "\\\%" . \$1 . "\\\%" };
+			}
+		}
+		if (\$noDescription) {
+			while ( \$noDescription =~ /(\\S+)/g ) {
+				push \@likesNoDescription,
+				  "feature_relationship_props_subject_feature_2.value" =>
+				  { "not like", "\\\%" . \$1 . "\\\%" };
+			}
+		}
+
+		if (    defined \$individually
+			and \$individually
+			and scalar(\@likesDescription) > 0 )
+		{
+			push \@likes, '-and' => [\@likesDescription];
+		}
+		elsif ( scalar(\@likesDescription) > 0 ) {
+			push \@likes, '-or' => [\@likesDescription];
+		}
+		if ( scalar(\@likesNoDescription) > 0 ) {
+			push \@likes, '-and' => [\@likesNoDescription];
+		}
+	}
+
+	\$c->stash(
+		searchResult => [
+			\$c->model('Chado::Feature')->search(
+				{
+					'type.name'                    => 'locus_tag',
+					'type_2.name'                  => 'based_on',
+					'type_3.name'                  => 'pipeline_id',
+					'type_4.name'                  => 'description',
+					'featureloc_featureprop.value' => '4249',
+					'feature_relationship_props_subject_feature.value' =>
+					  { 'like', '\%' . \$geneID . '\%' },
+					\@likes
+				},
+				{
+					join => [
+						'feature_relationship_objects' => {
+							'feature_relationship_objects' => {
+								'type' => {'feature_relationships_subject'},
+								'feature_relationship_props_subject_feature' =>
+								  {'type'},
+								'feature_relationship_props_subject_feature' =>
+								  {'type'}
+							}
+						},
+						'featureloc_features' => {
+							'featureloc_features' => {
+								'featureloc_featureprop' => {'type'}
+							}
+						},
+						'feature_relationship_objects' => {
+							'feature_relationship_objects' => {
+								'feature_relationship_props_subject_feature' =>
+								  {'type'}
+							}
+						}
+					],
+					select => [
+						qw/ me.feature_id feature_relationship_props_subject_feature.value feature_relationship_props_subject_feature_2.value /
+					],
+					as       => [qw/ feature_id name uniquename/],
+					order_by => {
+						-asc => [
+							qw/ feature_relationship_props_subject_feature.value /
+						]
+					},
+					distinct => 1
+				}
+			)
+		]
+	);
+	\$c->stash->{hadGlobal}         = 0;
+	\$c->stash->{hadSearchDatabase} = 1;
+	\$c->stash( template => '$nameProject/search-database/result.tt' );
+}
+
+=head2 encodingCorrection
+
+Method used to correct encoding strings come from SQLite
+
+=cut
+
+sub encodingCorrection {
+	my (\@texts) = \@_;
+
+	use utf8;
+	use Encode qw( decode encode );
+	foreach my \$text (\@texts) {
+		foreach my \$key ( keys \%\$text ) {
+			if ( \$text->{\$key} != 1 ) {
+				my \$string = decode( 'utf-8', \$text->{\$key}{value} );
+				\$string = encode( 'iso-8859-1', \$string );
+				\$text->{\$key}{value} = \$string;
+			}
+		}
+	}
+	return \@texts;
+}
+
+=head2 searchContig
+
+Method used to realize search by contigs, optional return a stretch or a reverse complement
+
+=cut
+
+sub searchContig : Path("/SearchDatabase/SearchContig") : CaptureArgs(4) {
+	my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+	my \$column = "";
+	if ( \$start && \$end ) {
+		\$column = "SUBSTRING(residues, \$start, \$end)";
+	}
+	else {
+		\$column = "residues";
+	}
+	my \@searchResult = \$c->model('Chado::Feature')->search(
+		{
+			uniquename => \$contig
+		},
+		{
+			select => \$column,
+			as     => ["residues"]
+		}
+	);
+
+	if (\$reverseComplement) {
+		for ( my \$i = 0 ; \$i < scalar \@searchResult ; \$i++ ) {
+			\$searchResult[\$i] =
+			  formatSequence(
+				reverseComplement( \$searchResult[\$i]->{residues} ) );
+		}
+	}
+
+	\$c->stash( searchResult => [\@searchResult] );
+	\$c->response->body(
+		"Matched $nameProject\::Controller::SearchDatabase in SearchDatabase.");
+}
+
+sub reverseComplement {
+	my (\$sequence) = \@_;
+	my \$reverseComplement = reverse(\$sequence);
+	\$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+	return \$reverseComplement;
+}
+
+sub formatSequence {
+	my ( \$sequence, \$block ) = \@_;
+	\$block = \$block || 80 if (\$block);
+	\$sequence =~ s/.{\$block}/\$&\n/gs;
+	chomp \$sequence;
+	return \$sequence;
+}
+
+=encoding utf8
+
+=head1 AUTHOR
+
+Wendel Hime L. Castro,,,
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+__PACKAGE__->meta->make_immutable;
+
+1;
+
+CONTENT
+
+$temporaryPackage = $nameProject.'::Controller::Root';
 my $rootContent = <<ROOT;
-package html_dir::Controller::Root;
+package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
 
@@ -1300,7 +1600,7 @@ __PACKAGE__->config(namespace => '');
 
 =head1 NAME
 
-html_dir::Controller::Root - Root Controller for html_dir
+$temporaryPackage - Root Controller for $nameProject
 
 =head1 DESCRIPTION
 
@@ -1341,7 +1641,7 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => 'html_dir/global-analyses/index.tt');
+	\$c->stash(template => '$nameProject/global-analyses/index.tt');
 	\$c->stash(components => [\$c->model('Basic::Component')->all]);
 	\$c->stash->{hadGlobal} = 1;
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
@@ -1392,7 +1692,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 			)
 		]
 	);
-	\$c->stash(template => 'html_dir/search-database/index.tt');
+	\$c->stash(template => '$nameProject/search-database/index.tt');
 	\$c->stash(components => [\$c->model('Basic::Component')->all]);
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = 1;
@@ -1427,7 +1727,7 @@ sub about :Path("About") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => 'html_dir/about/index.tt');
+	\$c->stash(template => '$nameProject/about/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1454,7 +1754,7 @@ sub blast :Path("Blast") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => 'html_dir/blast/index.tt');
+	\$c->stash(template => '$nameProject/blast/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1481,7 +1781,7 @@ sub downloads :Path("Downloads") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => 'html_dir/downloads/index.tt');
+	\$c->stash(template => '$nameProject/downloads/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1551,7 +1851,7 @@ sub help :Path("Help") :Args(0) {
 		\$feature_id = get_feature_id(\$c);
 	}
 	\$c->stash(teste => \$feature_id);
-	\$c->stash(template => 'html_dir/help/index.tt');
+	\$c->stash(template => '$nameProject/help/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1579,7 +1879,7 @@ sub index :Path :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => 'html_dir/home/index.tt');
+	\$c->stash(template => '$nameProject/home/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -2543,7 +2843,7 @@ CONTENTINDEXHOME
 	                                        <div class="tab-content">
 	                                            <div id="geneIdentifier" class="tab-pane fade active in">
 	                                                <h4></h4>
-	                                                <form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
+	                                                <form method="post" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
 	                                                    <div class="form-group">
 	                                                        [% FOREACH text IN texts %]
 	                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
@@ -2552,14 +2852,14 @@ CONTENTINDEXHOME
 	                                                        [% END %]
 	                                                        <input class="form-control" type="text" name="geneID">
 	                                                    </div>
-	                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+	                                                    <input class="btn btn-primary btn-sm" type="submit" value="Search">  
 	                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
 	                                                </form>
 	                                            </div>
 	                                            [% IF blast %]
 		                                            <div id="geneDescription" class="tab-pane fade">
 		                                                <h4></h4>
-		                                                <form method="post" action="/cgi-bin/searchPMNseq.cgi" enctype="multipart/form-data">
+		                                                <form method="post" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
 		                                                    <div class="form-group">
 		                                                        [% FOREACH text IN texts %]
 		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
@@ -3393,6 +3693,27 @@ CONTENTSEARCHDATABASE
 </script>
 
 CONTENTINDEXSEARCHDATABASE
+	,
+	"result.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="content-wrapper">
+    <div class="container">
+    	[% FOREACH result IN searchResult %]
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
+					</div>
+				</div>
+				<div id="[% result.feature_id %]" class="panel-collapse collapse">
+					<div class="panel-body">
+					</div>
+				</div>
+			</div>
+    	[% END %]
+    </div>
+</div>
+CONTENT
 	},
 	shared => {
 		"_footer.tt" => <<FOOTER
@@ -3531,9 +3852,11 @@ unless($hadSearchDatabase)
 print $LOG "\nCreating html views\n";
 foreach my $directory ( keys %contentHTML ) {
 	if ( !( -e "$nameProject/root/$lowCaseName/$directory" ) ) {
+		print $LOG "\nCriando diretorio $directory\n";
 		`mkdir -p "$nameProject/root/$lowCaseName/$directory"`;
 	}
 	foreach my $file ( keys %{ $contentHTML{$directory} } ) {
+		print $LOG "\nCriando arquivo $file\n";
 		writeFile( "$nameProject/root/$lowCaseName/$directory/$file",
 			$contentHTML{$directory}{$file} );
 	}
@@ -3654,6 +3977,22 @@ SQL
 	}
 	close($FILEHANDLER);
 	return $sql;
+}
+
+###
+#	Method used to add relationship in model
+#	@param $filepathModel	=>	filepath of the model
+#	@param $content			=>	content to be used
+#
+sub addRelationship
+{
+	my($filepathModel, $content) = @_;
+	open(my $FILEHANDLER, "<", $filepathModel);
+	my $contentFile = do { local $/; <$FILEHANDLER> };
+	$contentFile =~ s/# You can replace this text with custom code or comments, and it will be preserved on regeneration/$content/g;
+	close($FILEHANDLER);
+	writeFile($filepathModel, $contentFile);
+	return 1;
 }
 
 sub get_code_number_product {

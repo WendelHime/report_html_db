@@ -989,13 +989,6 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
-__PACKAGE__->has_many(
-  "feature_relationships_subject",
-  "html_dir::Chado::Result::FeatureRelationship",
-  { "foreign.subject_id" => "self.cvterm_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
 =head2 featuremapprops
 
 Type: has_many
@@ -2077,10 +2070,18 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:zlBj8D7wEmzyx4YG9cA13w
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-29 15:09:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wAqc36r8i+dCUgrNkQFUpQ
 
+
+__PACKAGE__->has_many(
+  "feature_relationships_subject",
+  "html_dir::Chado::Result::FeatureRelationship",
+  { "foreign.subject_id" => "self.cvterm_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
 __PACKAGE__->meta->make_immutable;
 1;

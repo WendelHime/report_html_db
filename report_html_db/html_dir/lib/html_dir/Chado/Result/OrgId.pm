@@ -48,8 +48,8 @@ __PACKAGE__->table("org_id");
 __PACKAGE__->add_columns("organism_id", { data_type => "integer", is_nullable => 1 });
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-08 16:43:54
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:xWQJw0yULnP+3X8NEGDszQ
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-09-29 15:09:18
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:IJc9R4cV6sVzVZt2HBulxQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

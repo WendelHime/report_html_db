@@ -154,6 +154,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-gene-ids-descriptions-gene-id", "Gene ID: ", ""),
         ("search-database-gene-ids-descriptions-gene-description", "Description: ", ""),
         ("search-database-gene-ids-descriptions-gene-excluding", "Excluding: ", ""),
+        ("search-database-gene-ids-descriptions-gene-individually", "Individually?", ""),
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),

@@ -85,7 +85,7 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 		{
 			push @likes, '-and' => [@likesDescription];
 		}
-		else {
+		elsif ( scalar(@likesDescription) > 0 ) {
 			push @likes, '-or' => [@likesDescription];
 		}
 		if ( scalar(@likesNoDescription) > 0 ) {
@@ -219,7 +219,8 @@ sub reverseComplement {
 sub formatSequence {
 	my ( $sequence, $block ) = @_;
 	$block = $block || 80 if ($block);
-	$sequence =~ s/.{$block}/$&\n/gs;
+	$sequence =~ s/.{$block}/$&
+/gs;
 	chomp $sequence;
 	return $sequence;
 }
@@ -240,3 +241,4 @@ it under the same terms as Perl itself.
 __PACKAGE__->meta->make_immutable;
 
 1;
+
