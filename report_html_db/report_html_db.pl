@@ -21,7 +21,7 @@ use experimental 'smartmatch';
 #
 #
 #begin of module configuration
-my $print_conf =  <<'CONF';
+my $print_conf = <<'CONF';
 # Configuration parameters for component (see documentation for details)
 # * lines starting with == indicate mandatory parameters, and must be changed to parameter=value
 # * parameters containing predefined values indicate component defaults
@@ -82,9 +82,9 @@ TCDB_file=
 homepage_banner_image=
 CONF
 
-unless(@ARGV) {
-    print $print_conf;
-    exit;
+unless (@ARGV) {
+	print $print_conf;
+	exit;
 }
 
 use strict;
@@ -94,7 +94,8 @@ use EGeneUSP::Config;
 #get program version (assumnes CVS)
 #
 my $version = '$Revision$';
-$version =~ s/.*?: ([\d.]+) \$/$1/;#
+$version =~ s/.*?: ([\d.]+) \$/$1/;    #
+
 #mandatory fields
 #
 my $organism_name;
@@ -105,14 +106,16 @@ my $fasta_file;
 #####
 
 my $html_dir = "";
+
 #my $FT_artemis_selected_dir="";
 #my $FT_submission_selected_dir="";
 #my $GFF_dir="";
 #my $GFF_selected_dir="";
-my $aa_fasta_dir="";
-my $nt_fasta_dir="";
+#my $aa_fasta_dir="";
+#my $nt_fasta_dir="";
 #my $xml_dir="xml_dir";
-my $fasta_dir="";
+my $fasta_dir = "";
+
 #my $blast_dir="";
 #my $rpsblast_dir="";
 #my $hmmer_dir="";
@@ -129,8 +132,8 @@ my $fasta_dir="";
 #my $kog_dir;
 #my $orthology_extension="";
 #my $pathways_dir="";
-my $aa_orf_file="";
-my $nt_orf_file="";
+#my $aa_orf_file="";
+#my $nt_orf_file="";
 #my $background_image_file="";
 #my $index_file="";
 #my $export_subgroup="yes";
@@ -142,29 +145,32 @@ my $nt_orf_file="";
 #my $report_kog_dir;
 #componentes jota
 my $alienhunter_output_file = "";
-my $alienhunter_dir = "";
-my $infernal_output_file = "";
-my $infernal_dir = "";
+my $alienhunter_dir         = "";
+my $infernal_output_file    = "";
+my $infernal_dir            = "";
+
 #my $rbs_output_file = "";
-my $rbs_dir = "";
+my $rbs_dir     = "";
 my $rnammer_dir = "";
+
 #my $transterm_output_file = "";
 my $transterm_dir = "";
-my $tcdb_dir = "";
-my $skews_dir = "";
-my $trf_dir = "";
-my $trna_dir = "";
-my $string_dir = "";
-my $mreps_dir = "";
+my $tcdb_dir      = "";
+my $skews_dir     = "";
+my $trf_dir       = "";
+my $trna_dir      = "";
+my $string_dir    = "";
+my $mreps_dir     = "";
 my $report_go_dir;
 my $go_file;
 my $report_csv_dir;
+
 #my $csv_file;
 #local variables
 my @arguments;
 my $config;
 my $configFile;
-my $missingArgument=0;
+my $missingArgument = 0;
 my $conf;
 my $databases_code;
 my $databases_dir;
@@ -178,142 +184,143 @@ my $uniquename;
 #read configuration file
 #
 
-my $module=new EGeneUSP::Config($version);
+my $module = new EGeneUSP::Config($version);
 
 $module->initialize();
 
-$config=$module->config;
+$config = $module->config;
 #
 #check if any mandatory argument is missing
 #
-if (!exists($config->{"organism_name"}) || !exists($config->{"uniquename"})){
-    $missingArgument = 1;
-    print "Missing mandatory configuration argument:organism_name\n";
+if (   !exists( $config->{"organism_name"} )
+	|| !exists( $config->{"uniquename"} ) )
+{
+	$missingArgument = 1;
+	print "Missing mandatory configuration argument:organism_name\n";
 }
-else {$organism_name = $config->{"organism_name"}};
-if (!exists($config->{"fasta_file"})){
+else { $organism_name = $config->{"organism_name"} }
+if ( !exists( $config->{"fasta_file"} ) ) {
 }
-else {$fasta_file = $config->{"fasta_file"}};
+else { $fasta_file = $config->{"fasta_file"} }
 if ($missingArgument) {
-    die "\n\nCannot run $0, mandatory configuration argument missing (see above)\n"
+	die
+"\n\nCannot run $0, mandatory configuration argument missing (see above)\n";
 }
 #
 #set optional arguments that were declared in configuration file
 #
-if (defined($config->{"html_dir"})){
-   $html_dir = $config->{"html_dir"};
+if ( defined( $config->{"html_dir"} ) ) {
+	$html_dir = $config->{"html_dir"};
 }
-else{
-   $html_dir= "html_dir";
+else {
+	$html_dir = "html_dir";
 }
-if (defined($config->{"aa_fasta_dir"})){
-   $aa_fasta_dir = $config->{"aa_fasta_dir"};
+
+#if (defined($config->{"aa_fasta_dir"})){
+#   $aa_fasta_dir = $config->{"aa_fasta_dir"};
+#}
+#if (defined($config->{"nt_fasta_dir"})){
+#   $nt_fasta_dir = $config->{"nt_fasta_dir"};
+#}
+if ( defined( $config->{"fasta_dir"} ) ) {
+	$fasta_dir = $config->{"fasta_dir"};
 }
-if (defined($config->{"nt_fasta_dir"})){
-   $nt_fasta_dir = $config->{"nt_fasta_dir"};
-}
-if (defined($config->{"fasta_dir"})){
-   $fasta_dir = $config->{"fasta_dir"};
-}
+
 =pod
 if (defined($config->{"blast_dir"})){
    $blast_dir = $config->{"blast_dir"};
 }
 =cut
-if (defined($config->{"aa_orf_file"})){
-   $aa_orf_file = $config->{"aa_orf_file"};
-}
-if (defined($config->{"nt_orf_file"})){
-   $nt_orf_file = $config->{"nt_orf_file"};
-}
+
+#if (defined($config->{"aa_orf_file"})){
+#   $aa_orf_file = $config->{"aa_orf_file"};
+#}
+#if (defined($config->{"nt_orf_file"})){
+#   $nt_orf_file = $config->{"nt_orf_file"};
+#}
 #componentes do Jota
-if (defined($config->{"alienhunter_output_file"})){
-   $alienhunter_output_file = $config->{"alienhunter_output_file"};
+if ( defined( $config->{"alienhunter_output_file"} ) ) {
+	$alienhunter_output_file = $config->{"alienhunter_output_file"};
 }
-if (defined($config->{"alienhunter_dir"})){
-   $alienhunter_dir = $config->{"alienhunter_dir"};
+if ( defined( $config->{"alienhunter_dir"} ) ) {
+	$alienhunter_dir = $config->{"alienhunter_dir"};
 }
-if (defined($config->{"infernal_output_file"})){
-   $infernal_output_file = $config->{"infernal_output_file"};
+if ( defined( $config->{"infernal_output_file"} ) ) {
+	$infernal_output_file = $config->{"infernal_output_file"};
 }
-if (defined($config->{"infernal_dir"})){
-   $infernal_dir= $config->{"infernal_dir"};
+if ( defined( $config->{"infernal_dir"} ) ) {
+	$infernal_dir = $config->{"infernal_dir"};
 }
-if (defined($config->{"rbs_dir"})){
-   $rbs_dir= $config->{"rbs_dir"};
+if ( defined( $config->{"rbs_dir"} ) ) {
+	$rbs_dir = $config->{"rbs_dir"};
 }
-if (defined($config->{"rnammer_dir"})){
-   $rnammer_dir= $config->{"rnammer_dir"};
+if ( defined( $config->{"rnammer_dir"} ) ) {
+	$rnammer_dir = $config->{"rnammer_dir"};
 }
-if (defined($config->{"transterm_dir"})){
-   $transterm_dir= $config->{"transterm_dir"};
+if ( defined( $config->{"transterm_dir"} ) ) {
+	$transterm_dir = $config->{"transterm_dir"};
 }
-if (defined($config->{"tcdb_dir"})){
-   $tcdb_dir= $config->{"tcdb_dir"};
+if ( defined( $config->{"tcdb_dir"} ) ) {
+	$tcdb_dir = $config->{"tcdb_dir"};
 }
-if (defined($config->{"skews_dir"})){
-   $skews_dir = $config->{"skews_dir"};
+if ( defined( $config->{"skews_dir"} ) ) {
+	$skews_dir = $config->{"skews_dir"};
 }
-if (defined($config->{"trf_dir"})){
-   $trf_dir = $config->{"trf_dir"};
-}
-
-if (defined($config->{"trna_dir"})){
-   $trna_dir = $config->{"trna_dir"};
+if ( defined( $config->{"trf_dir"} ) ) {
+	$trf_dir = $config->{"trf_dir"};
 }
 
-if (defined($config->{"string_dir"})){
-   $string_dir = $config->{"string_dir"};
+if ( defined( $config->{"trna_dir"} ) ) {
+	$trna_dir = $config->{"trna_dir"};
 }
 
-if (defined($config->{"mreps_dir"})){
-   $mreps_dir = $config->{"mreps_dir"};
+if ( defined( $config->{"string_dir"} ) ) {
+	$string_dir = $config->{"string_dir"};
 }
 
-if (defined($config->{"report_go_dir"})){
-   $report_go_dir = $config->{"report_go_dir"};
+if ( defined( $config->{"mreps_dir"} ) ) {
+	$mreps_dir = $config->{"mreps_dir"};
 }
 
-if (defined($config->{"go_file"})){
-   $go_file = $config->{"go_file"};
+if ( defined( $config->{"report_go_dir"} ) ) {
+	$report_go_dir = $config->{"report_go_dir"};
 }
 
-if (defined($config->{"database_code_list"})){
-   $databases_code = $config->{"database_code_list"};
+if ( defined( $config->{"go_file"} ) ) {
+	$go_file = $config->{"go_file"};
 }
 
-if (defined($config->{"blast_dir_list"})){
-   $databases_dir = $config->{"blast_dir_list"};
+if ( defined( $config->{"database_code_list"} ) ) {
+	$databases_code = $config->{"database_code_list"};
 }
-if (defined($config->{"report_csv_dir"})){
-   $report_csv_dir = $config->{"report_csv_dir"};
+
+if ( defined( $config->{"blast_dir_list"} ) ) {
+	$databases_dir = $config->{"blast_dir_list"};
 }
-if (defined($config->{"homepage_text_file"}))
-{
+if ( defined( $config->{"report_csv_dir"} ) ) {
+	$report_csv_dir = $config->{"report_csv_dir"};
+}
+if ( defined( $config->{"homepage_text_file"} ) ) {
 	$html_file = $config->{"homepage_text_file"};
 }
-if (defined($config->{"homepage_banner_image"}))
-{
+if ( defined( $config->{"homepage_banner_image"} ) ) {
 	$banner = $config->{"homepage_banner_image"};
 }
-if (defined($config->{"TCDB_file"}))
-{
+if ( defined( $config->{"TCDB_file"} ) ) {
 	$tcdb_file = $config->{"TCDB_file"};
 }
-if(defined($config->{"ko_file"}))
-{
+if ( defined( $config->{"ko_file"} ) ) {
 	$ko_file = $config->{"ko_file"};
 }
-if(defined($config->{"uniquename"}))
-{
+if ( defined( $config->{"uniquename"} ) ) {
 	$uniquename = $config->{"uniquename"};
 }
 
 #
-# ==> END OF AUTO GENERATED CODE 
+# ==> END OF AUTO GENERATED CODE
 #
 
-open(my $LOG, ">", "report_html_db.log");
+open( my $LOG, ">", "report_html_db.log" );
 
 ###
 #
@@ -348,6 +355,12 @@ CREATE TABLE COMPONENTS(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  
 	name VARCHAR(2000),
 	component VARCHAR(2000),
+	filepath VARCHAR(2000)
+);
+
+CREATE TABLE SEQUENCES(
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	name VARCHAR(2000),
 	filepath VARCHAR(2000)
 );
 
@@ -500,25 +513,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-tab", "Transcriptional terminators", "#transcriptionalTerminators"),
         ("search-database-dna-based-analyses-tab", "Horizontal gene transfers", "#horizontalGeneTransfers"),
         ("search-database-dna-based-analyses-only-contig-title", "Get only contig: ", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00044", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00045", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00046", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00053", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00060", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00076", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00078", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00086", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00089", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00093", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_1.2", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_1.3", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_1.7", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.1", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.2", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.3", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.4", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.5", ""),
         ("search-database-dna-based-analyses-from-base", " from base ", ""),
         ("search-database-dna-based-analyses-to", " to ", ""),
         ("search-database-dna-based-analyses-reverse-complement", " reverse complement?", "");
@@ -684,6 +678,26 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         
 SQL
 
+#        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00044", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00045", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00046", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00053", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00060", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00076", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00078", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00086", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00089", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig00093", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_1.2", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_1.3", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_1.7", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_2.1", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_2.2", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_2.3", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_2.4", ""),
+#        ("search-database-dna-based-analyses-only-contig", "contig_2.5", ""),
+
 ###
 #
 #	Realiza a leitura do arquivo example.html
@@ -698,8 +712,7 @@ print $LOG "\n$html_file read!\n";
 #	Realiza leitura do arquivo de TCDBs
 #
 ###
-if($tcdb_file)
-{
+if ($tcdb_file) {
 	$scriptSQL .= readTCDBFile($tcdb_file);
 	$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES
@@ -721,47 +734,47 @@ print $LOG "\n$tcdb_file read!\n";
 
 #apaga diretorios antigos com fastas
 print $LOG "\nDeleting old fasta directories\n";
-if(-d "$html_dir/root/$fasta_dir" && -d "$html_dir/root/$aa_fasta_dir" && -d "$html_dir/root/$nt_fasta_dir")
-{
-    !system("rm -r $html_dir/root/$fasta_dir $html_dir/root/$aa_fasta_dir $html_dir/root/$nt_fasta_dir")
-	or die "Could not removed directories\n";
-}
+
+#if(-d "$html_dir/root/$fasta_dir" && -d "$html_dir/root/$aa_fasta_dir" && -d "$html_dir/root/$nt_fasta_dir")
+#{
+#    !system("rm -r $html_dir/root/$fasta_dir $html_dir/root/$aa_fasta_dir $html_dir/root/$nt_fasta_dir")
+#	or die "Could not removed directories\n";
+#}
 
 print $LOG "\nSeparating sequences od multifasta and create directory\n";
+
 #separa sequencias do multifasta e cria diretorio
-if(not -d $html_dir)
-{
-    !system("mkdir -p $html_dir")
-        or die "Could not created directory $html_dir\n";
+if ( not -d $html_dir ) {
+	!system("mkdir -p $html_dir")
+	  or die "Could not created directory $html_dir\n";
 }
-if(not -d "$html_dir/root/$fasta_dir")
-{
-    !system("mkdir -p $html_dir/root/$fasta_dir")
-        or die "Could not created directory $html_dir/root/$fasta_dir\n";
+if ( not -d "$html_dir/root/$fasta_dir" ) {
+	!system("mkdir -p $html_dir/root/$fasta_dir")
+	  or die "Could not created directory $html_dir/root/$fasta_dir\n";
 }
 
 $/ = ">";
 
-print $LOG "Separating ORFs em AA of multifasta AA";
-#separa ORFs em aa do multifasta aa
-if(not -d "$html_dir/root/$aa_fasta_dir")
-{
-    !system("mkdir -p $html_dir/root/$aa_fasta_dir")
-        or die "Could not created directory $html_dir/root/$aa_fasta_dir\n";
-}
-
-if($aa_orf_file ne "")
-{
-    open(FILE_AA,"$aa_orf_file") or die "Could not open file $aa_orf_file\n";
-}
-
-print $LOG "Separating ORFs NT of multifasta NT";
-#separa ORFs nt do multifasta nt
-if(not -d "$html_dir/root/$nt_fasta_dir")
-{
-    !system("mkdir -p $html_dir/root/$nt_fasta_dir")
-        or die "Could not created directory $html_dir/root/$nt_fasta_dir\n";
-}
+#print $LOG "Separating ORFs em AA of multifasta AA";
+##separa ORFs em aa do multifasta aa
+#if(not -d "$html_dir/root/$aa_fasta_dir")
+#{
+#    !system("mkdir -p $html_dir/root/$aa_fasta_dir")
+#        or die "Could not created directory $html_dir/root/$aa_fasta_dir\n";
+#}
+#
+#if($aa_orf_file ne "")
+#{
+#    open(FILE_AA,"$aa_orf_file") or die "Could not open file $aa_orf_file\n";
+#}
+#
+#print $LOG "Separating ORFs NT of multifasta NT";
+##separa ORFs nt do multifasta nt
+#if(not -d "$html_dir/root/$nt_fasta_dir")
+#{
+#    !system("mkdir -p $html_dir/root/$nt_fasta_dir")
+#        or die "Could not created directory $html_dir/root/$nt_fasta_dir\n";
+#}
 
 #if($nt_orf_file ne "")
 #{
@@ -783,102 +796,104 @@ my $header;
 #
 
 my @sequence_objects;
-my $index=0;
+my $index = 0;
 
-my $strlen=4;
+my $strlen    = 4;
 my $count_seq = 1;
 
-my $sequence_object  = new EGeneUSP::SequenceObject();
+my $sequence_object = new EGeneUSP::SequenceObject();
 my %hash_dna;
 my @seq_links;
+
 #contador de sequencias
-my $seq_count = 0;
-my @components_name = ();
+my $seq_count           = 0;
+my @components_name     = ();
 my @filepathsComponents = ();
-my $dbName = "";
-my $dbHost = "";
-my $dbUser = "";
-my $dbPassword = "";
+my $dbName              = "";
+my $dbHost              = "";
+my $dbUser              = "";
+my $dbPassword          = "";
 
 print $LOG "\nReading sequences\n";
-while($sequence_object->read())
-{	
-    ++$seq_count;
-    my @conclusions = @{$sequence_object->get_conclusions()};
-    $header = $sequence_object->fasta_header();
-    my $bases = $sequence_object->current_sequence();
-    my $name = $sequence_object->sequence_name();
-    
-    $dbName = $sequence_object->{dbname};
-    $dbHost = $sequence_object->{host};
-    $dbUser = $sequence_object->{user};
-    $dbPassword = $sequence_object->{password};    
-    
-    
-    my $ann_file = "annotations/".$name;
-    # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
-    #pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
-    open(FASTAOUT, ">$html_dir/root/$fasta_dir/$name.fasta") or die "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
-    my $length = length($bases);
-    print FASTAOUT ">$name\n";
-    for (my $i = 0; $i < $length; $i += 60)
-    {
-		my $line = substr($bases, $i, 60);
-		print FASTAOUT "$line\n";
-    }
-    close(FASTAOUT);
-    my @programs = ();
-    
-    if(@{$sequence_object->get_logs})
-    {
-    	foreach my $log(@{$sequence_object->get_logs()})
-    	{
-    		my $component = $log->{program};
-			if($component =~ /<program name=\"annotation_\w+\.pl\"/gim)
-			{
-				push @components_name, $component =~ /<program name=\"(annotation_\w+\.pl)\"/gim;
+while ( $sequence_object->read() ) {
+	++$seq_count;
+	my @conclusions = @{ $sequence_object->get_conclusions() };
+	$header = $sequence_object->fasta_header();
+	my $bases = $sequence_object->current_sequence();
+	my $name  = $sequence_object->sequence_name();
+
+	$dbName     = $sequence_object->{dbname};
+	$dbHost     = $sequence_object->{host};
+	$dbUser     = $sequence_object->{user};
+	$dbPassword = $sequence_object->{password};
+
+	print $LOG "\n$name\n$bases\n\n";
+
+	$scriptSQL .=
+"\nINSERT INTO SEQUENCES(name, filepath) VALUES ('$name', '$fasta_dir/$name.fasta');\n";
+
+#    my $ann_file = "annotations/".$name;
+# no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
+#pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
+	open( FASTAOUT, ">$html_dir/root/$fasta_dir/$name.fasta" )
+	  or die
+	  "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
+	my $length = length($bases);
+	print FASTAOUT ">$name\n";
+#	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
+#		my $line = substr( $bases, $i, 60 );
+#		print FASTAOUT "$line\n";
+#	}
+	print FASTAOUT $bases;
+	close(FASTAOUT);
+	my @programs = ();
+
+	if ( @{ $sequence_object->get_logs } ) {
+		foreach my $log ( @{ $sequence_object->get_logs() } ) {
+			my $component = $log->{program};
+			if ( $component =~ /<program name=\"annotation_\w+\.pl\"/gim ) {
+				push @components_name,
+				  $component =~ /<program name=\"(annotation_\w+\.pl)\"/gim;
 			}
-			else
-			{
+			else {
 				push @components_name, $component;
 			}
-#    		foreach my $key(sort keys %$log)
-#    		{
-#    			$scriptSQL .= "\n--logs\t$key\t".$log->{$key}."\n";
-#    		}
-    	}
-    }    
-    
-    
-#    foreach my $key(sort keys %$sequence_object)
-#    {
-#    	$scriptSQL .= "\n--sequenceObject\t$key\t".$sequence_object->{$key}."\n";
-#    }
-    
-    $header =~ s/>//g;
-    $header =~ m/(\S+)_(\d+)/;
-    $prefix_name = $1;
-    #aqui começaria a geração da pagina relacionada a cada anotação
-    #pulando isso, passamos para geração dos arquivos, volta a duvida sobre a necessidade desses arquivos
-    my $file_aa = $name."_CDS_AA.fasta";
-    my $file_nt = $name."_CDS_NT.fasta";
-    open(FILE_AA,">$html_dir/root/$aa_fasta_dir/$file_aa");
-    open(FILE_NT,">$html_dir/root/$nt_fasta_dir/$file_nt");
-    my $count;
-    my $line_subev;
-    foreach my $component (sort @components_name)
-	{
+
+			#    		foreach my $key(sort keys %$log)
+			#    		{
+			#    			$scriptSQL .= "\n--logs\t$key\t".$log->{$key}."\n";
+			#    		}
+		}
+	}
+
+ #    foreach my $key(sort keys %$sequence_object)
+ #    {
+ #    	$scriptSQL .= "\n--sequenceObject\t$key\t".$sequence_object->{$key}."\n";
+ #    }
+
+	$header =~ s/>//g;
+	$header =~ m/(\S+)_(\d+)/;
+	$prefix_name = $1;
+
+#aqui começaria a geração da pagina relacionada a cada anotação
+#pulando isso, passamos para geração dos arquivos, volta a duvida sobre a necessidade desses arquivos
+#    my $file_aa = $name."_CDS_AA.fasta";
+#    my $file_nt = $name."_CDS_NT.fasta";
+#    open(FILE_AA,">$html_dir/root/$aa_fasta_dir/$file_aa");
+	my $count;
+	my $line_subev;
+	foreach my $component ( sort @components_name ) {
 		my $component_name = $component;
-		my $filepath = "";
+		my $filepath       = "";
 		$component_name =~ s/annotation_//g;
 		$component_name =~ s/.pl//g;
-		
-		if($component_name eq "alienhunter")
-		{
-			#no report original ele utilizaria isso como a coluna da tabela só para passar o caminho do arquivo
-			#precisamos inserir no banco de dados a key e o valor = caminho do arquivo
-			#ou podemos pegar o valor do arquivo e inserir no banco de dados
-			my $file = $alienhunter_output_file."_".$header;
+
+		if ( $component_name eq "alienhunter" ) {
+
+#no report original ele utilizaria isso como a coluna da tabela só para passar o caminho do arquivo
+#precisamos inserir no banco de dados a key e o valor = caminho do arquivo
+#ou podemos pegar o valor do arquivo e inserir no banco de dados
+			my $file = $alienhunter_output_file . "_" . $header;
 			$filepath = "$alienhunter_dir/$file";
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES 
@@ -887,21 +902,18 @@ while($sequence_object->read())
         ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
 SQL
 		}
-		elsif($component_name	eq	"blast")
-		{
+		elsif ( $component_name eq "blast" ) {
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-analyses-protein-code-tab", "BLAST", "#blast"),
         ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
 SQL
 		}
-		elsif($component_name	eq	"infernal")
-		{
-			my	$file	=	$infernal_output_file."_".$header;
+		elsif ( $component_name eq "infernal" ) {
+			my $file = $infernal_output_file . "_" . $header;
 			$filepath = "$infernal_dir/$file";
 		}
-		elsif($component_name eq "interpro")
-		{
+		elsif ( $component_name eq "interpro" ) {
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology"),
@@ -910,22 +922,19 @@ SQL
         ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", "");
 SQL
 		}
-		elsif($component_name	eq	"mreps")
-		{
-			my	$name	=	$sequence_object->{sequence_name};
-			my	$file	=	$mreps_dir."/".$name."_mreps.txt";
-			$filepath	=	"$file";
+		elsif ( $component_name eq "mreps" ) {
+			my $name = $sequence_object->{sequence_name};
+			my $file = $mreps_dir . "/" . $name . "_mreps.txt";
+			$filepath = "$file";
 		}
-		elsif($component_name eq "orthology")
-		{
+		elsif ( $component_name eq "orthology" ) {
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES
 		("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
         ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
 SQL
 		}
-		elsif($component_name eq "pathways")
-		{
+		elsif ( $component_name eq "pathways" ) {
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES
 		("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
@@ -937,21 +946,19 @@ SQL
 			#	Pegando todos os pathways do arquivo KO
 			#
 			###
-			open(my $KOFILE, "<", $ko_file) or warn "WARNING: Could not open KO file $ko_file: $!\n";
-			my $content = do { local $/; <$KOFILE> };
-			my @idKEGG = ();
+			open( my $KOFILE, "<", $ko_file )
+			  or warn "WARNING: Could not open KO file $ko_file: $!\n";
+			my $content        = do { local $/; <$KOFILE> };
+			my @idKEGG         = ();
 			my %workAroundSort = ();
-			while ($content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm) 
-			{
-				if(!($1 ~~ @idKEGG) && $1 ne "")
-				{
+			while ( $content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm ) {
+				if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
 					$workAroundSort{$2} = $1;
 					push @idKEGG, $1;
 				}
 			}
-			
-			foreach my $key(sort keys %workAroundSort)
-			{
+
+			foreach my $key ( sort keys %workAroundSort ) {
 				my $value = $workAroundSort{$key};
 				$scriptSQL .= <<SQL;
 						INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
@@ -959,8 +966,7 @@ SQL
 			}
 			close($KOFILE);
 		}
-		elsif($component_name eq "phobius")
-		{
+		elsif ( $component_name eq "phobius" ) {
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-analyses-protein-code-tab", "Phobius", "#phobius"),
@@ -975,9 +981,8 @@ SQL
         ("search-database-analyses-protein-code-signal-peptide-option", "do not care", "value='sigPwhatever' checked=''");
 SQL
 		}
-		elsif($component_name	eq	"rbsfinder")
-		{
-			my	$file	=	$header.".txt";
+		elsif ( $component_name eq "rbsfinder" ) {
+			my $file = $header . ".txt";
 			$filepath = "$rbs_dir/$file";
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES 
@@ -990,36 +995,30 @@ SQL
         ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
 SQL
 		}
-		elsif($component_name	eq	"rnammer")
-		{
-			my	$file	=	$header."_rnammer.gff";
-			$filepath	=	"$rnammer_dir/$file";
+		elsif ( $component_name eq "rnammer" ) {
+			my $file = $header . "_rnammer.gff";
+			$filepath = "$rnammer_dir/$file";
 		}
-		elsif($component_name eq "skews")
-		{
-			my $filestring = `ls $skews_dir`;
-			my @phdfilenames = split(/\n/,$filestring);
-			my $seq_name = $sequence_object->sequence_name();
-			my $aux = "";
-			foreach my $file (@phdfilenames)
-			{
-				if($file =~ m/$seq_name/ and $file =~ m/.png/)
-				{
+		elsif ( $component_name eq "skews" ) {
+			my $filestring   = `ls $skews_dir`;
+			my @phdfilenames = split( /\n/, $filestring );
+			my $seq_name     = $sequence_object->sequence_name();
+			my $aux          = "";
+			foreach my $file (@phdfilenames) {
+				if ( $file =~ m/$seq_name/ and $file =~ m/.png/ ) {
 					$aux .= "$skews_dir/$file\n";
 				}
 			}
 			$filepath = $aux;
 		}
-		elsif($component_name	eq	"string")
-		{
-			my	$name	=	$sequence_object->{sequence_name};
-			my	$file	=	$string_dir."/".$name."_string.txt";
-			$filepath	=	"$file";
+		elsif ( $component_name eq "string" ) {
+			my $name = $sequence_object->{sequence_name};
+			my $file = $string_dir . "/" . $name . "_string.txt";
+			$filepath = "$file";
 		}
-		elsif($component_name	eq	"transterm")
-		{
-			my	$file	=	$header.".txt";
-			$filepath	=	"$transterm_dir/$file";
+		elsif ( $component_name eq "transterm" ) {
+			my $file = $header . ".txt";
+			$filepath = "$transterm_dir/$file";
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
@@ -1028,15 +1027,13 @@ SQL
         ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
 SQL
 		}
-		elsif($component_name	eq	"trf")
-		{
-			my	$file	=	$trf_dir."/".$name."_trf.txt";
-			$filepath	=	"$file";
+		elsif ( $component_name eq "trf" ) {
+			my $file = $trf_dir . "/" . $name . "_trf.txt";
+			$filepath = "$file";
 		}
-		elsif($component_name	eq	"trna")
-		{
-			my	$file	=	$trna_dir."/".$name."_trna.txt";
-			$filepath	=	"$file";
+		elsif ( $component_name eq "trna" ) {
+			my $file = $trna_dir . "/" . $name . "_trna.txt";
+			$filepath = "$file";
 			$scriptSQL .= <<SQL;
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
@@ -1126,62 +1123,51 @@ SQL
         ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT");
 SQL
 		}
-		
-		unless($filepath)
-		{
-			foreach my $log(@{$sequence_object->get_logs()})
-	    	{
-	    		if($log->{program} eq $component)
-	    		{
-	    			my $directory = "";
-	    			my $file = "";
-	    			if($log->{arguments} =~ /^\w*output_dir=(\w+)"*/gm)
-	    			{
-	    				$directory = $1;
-	    			}
-	    			if($log->{arguments} =~ /^\w*output_file=(\w+.+)"*/gm)
-	    			{
-	    				$file = $1;
-	    			}
-	    			if($directory || $file)
-	    			{
-	    				unless($directory)
-		    			{
-		    				my $dirName = $file;
-		    				$dirName  =~ s/.txt//g;
-		    				$directory = $dirName."_dir";
-		    			}
-		    			elsif(!$file)
-		    			{
-		    				my $fileName = $directory;
-		    				$fileName  =~ s/_dir//g;
-		    				$file = $fileName.".txt";
-		    			}
-		    			if($directory && $file)
-		    			{
-		    				$filepath = "$directory/$file";
-		    			}
-	    			}
-	    		}
-	    	}
-		}
-		
-		push @filepathsComponents, $filepath;
-		$scriptSQL .= "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('$component_name', '$component', '$filepath');\n";
-	}
-	
-    close(FILE_AA);
-    close(FILE_NT);
-    
-}
 
+		unless ($filepath) {
+			foreach my $log ( @{ $sequence_object->get_logs() } ) {
+				if ( $log->{program} eq $component ) {
+					my $directory = "";
+					my $file      = "";
+					if ( $log->{arguments} =~ /^\w*output_dir=(\w+)"*/gm ) {
+						$directory = $1;
+					}
+					if ( $log->{arguments} =~ /^\w*output_file=(\w+.+)"*/gm ) {
+						$file = $1;
+					}
+					if ( $directory || $file ) {
+						unless ($directory) {
+							my $dirName = $file;
+							$dirName =~ s/.txt//g;
+							$directory = $dirName . "_dir";
+						}
+						elsif ( !$file ) {
+							my $fileName = $directory;
+							$fileName =~ s/_dir//g;
+							$file = $fileName . ".txt";
+						}
+						if ( $directory && $file ) {
+							$filepath = "$directory/$file";
+						}
+					}
+				}
+			}
+		}
+
+		push @filepathsComponents, $filepath;
+		$scriptSQL .=
+"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('$component_name', '$component', '$filepath');\n";
+	}
+
+}
 
 #my $help;
 my $nameProject = $html_dir;
-my $filepath =  `pwd`;
+my $filepath    = `pwd`;
 chomp $filepath;
-$filepath .= "/".$nameProject;
+$filepath .= "/" . $nameProject;
 my $databaseFilepath = $filepath . "/database.db";
+
 #my $optret = GetOptions(
 #	"h|help"     => \$help,
 #	"name=s"     => \$nameProject,
@@ -1266,20 +1252,20 @@ print $LOG "\nCreating models\n";
 `$nameProject/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$nameProject"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON;PRAGMA encoding='UTF-8'"`;
 `$nameProject/script/"$lowCaseName"_create.pl model Chado DBIC::Schema "$nameProject"::Chado create=static "dbi:Pg:dbname=$dbName;host=$dbHost" "$dbUser" "$dbPassword"`;
 
-my $hadGlobal = 0;
+my $hadGlobal         = 0;
 my $hadSearchDatabase = 0;
-foreach my $component (sort @components_name)
-{
-	if($component =~ /^report_go_mapping.pl/gi || $component =~ /^report_orthology.pl/gi || $component =~ /^report_pathways.pl/gi || $component =~ /^report_kegg_organism.pl/gi)
+foreach my $component ( sort @components_name ) {
+	if (   $component =~ /^report_go_mapping.pl/gi
+		|| $component =~ /^report_orthology.pl/gi
+		|| $component =~ /^report_pathways.pl/gi
+		|| $component =~ /^report_kegg_organism.pl/gi )
 	{
 		$hadGlobal = 1;
 	}
-	if($component =~ /^annotation_/gi)
-	{
+	if ( $component =~ /^annotation_/gi ) {
 		$hadSearchDatabase = 1;
 	}
 }
-
 
 #####
 #
@@ -1287,7 +1273,8 @@ foreach my $component (sort @components_name)
 #
 #####
 
-addRelationship("$nameProject/lib/$nameProject/Chado/Result/Cvterm.pm", <<CONTENT);
+addRelationship( "$nameProject/lib/$nameProject/Chado/Result/Cvterm.pm",
+	<<CONTENT);
 __PACKAGE__->has_many(
   "feature_relationships_subject",
   "$nameProject\::Chado::Result::FeatureRelationship",
@@ -1298,7 +1285,9 @@ __PACKAGE__->has_many(
 \# You can replace this text with custom code or comments, and it will be preserved on regeneration
 CONTENT
 
-addRelationship("$nameProject/lib/$nameProject/Chado/Result/FeatureRelationship.pm", <<CONTENT);
+addRelationship(
+	"$nameProject/lib/$nameProject/Chado/Result/FeatureRelationship.pm",
+	<<CONTENT);
 __PACKAGE__->has_many(
 	"feature_relationship_props_subject_feature",
 	"$nameProject\::Chado::Result::Featureprop",
@@ -1311,7 +1300,8 @@ __PACKAGE__->has_many(
 \# You can replace this text with custom code or comments, and it will be preserved on regeneration
 CONTENT
 
-addRelationship("$nameProject/lib/$nameProject/Chado/Result/Featureloc.pm", <<CONTENT);
+addRelationship( "$nameProject/lib/$nameProject/Chado/Result/Featureloc.pm",
+	<<CONTENT);
 __PACKAGE__->has_many(
 	"featureloc_featureprop",
 	"$nameProject\::Chado::Result::Featureprop",
@@ -1330,13 +1320,14 @@ CONTENT
 #
 #####
 
-
 #create controllers project
 print $LOG "\nCreating controllers...\n";
 `$nameProject/script/"$lowCaseName"_create.pl controller SearchDatabase`;
-#my $searchDatabaseController = 
-my $temporaryPackage = $nameProject.'::Controller::SearchDatabase';
-writeFile("$nameProject/lib/$nameProject/Controller/SearchDatabase.pm", <<CONTENT);
+
+#my $searchDatabaseController =
+my $temporaryPackage = $nameProject . '::Controller::SearchDatabase';
+writeFile( "$nameProject/lib/$nameProject/Controller/SearchDatabase.pm",
+	<<CONTENT);
 package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
@@ -1482,9 +1473,9 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 			)
 		]
 	);
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
-	\$c->stash( template => '$nameProject/search-database/result.tt' );
+	\$c->stash->{hadGlobal}         = $hadGlobal;
+	\$c->stash->{hadSearchDatabase} = $hadSearchDatabase;
+	\$c->stash( template => '$lowCaseName/search-database/result.tt' );
 }
 
 =head2 encodingCorrection
@@ -1516,36 +1507,55 @@ Method used to realize search by contigs, optional return a stretch or a reverse
 
 =cut
 
-sub searchContig : Path("/SearchDatabase/SearchContig") : CaptureArgs(4) {
+sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-	my \$column = "";
-	if ( \$start && \$end ) {
-		\$column = "SUBSTRING(residues, \$start, \$end)";
-	}
-	else {
-		\$column = "residues";
-	}
-	my \@searchResult = \$c->model('Chado::Feature')->search(
-		{
-			uniquename => \$contig
-		},
-		{
-			select => \$column,
-			as     => ["residues"]
-		}
+	use File::Basename;
+	\$c->stash->{titlePage} = 'Search contig';
+	\$c->stash( currentPage => 'search-database' );
+	\$c->stash(
+		texts => [
+			encodingCorrection(
+				\$c->model('Basic::Text')->search(
+					{
+						-or => [
+							tag => { 'like', 'header%' },
+							tag => 'menu',
+							tag => 'footer',
+							tag => { 'like', 'search-database%' }
+						]
+					}
+				)
+			)
+		]
 	);
-
-	if (\$reverseComplement) {
-		for ( my \$i = 0 ; \$i < scalar \@searchResult ; \$i++ ) {
-			\$searchResult[\$i] =
-			  formatSequence(
-				reverseComplement( \$searchResult[\$i]->{residues} ) );
+	my \$data     = "";
+	my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
+	open( my \$FILEHANDLER,
+		"<",
+		dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
+	for my \$line (<\$FILEHANDLER>) {
+		if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
+			\$data .= \$line;
 		}
 	}
-
-	\$c->stash( searchResult => [\@searchResult] );
-	\$c->response->body(
-		"Matched $nameProject\::Controller::SearchDatabase in SearchDatabase.");
+	close(\$FILEHANDLER);
+	if ( defined \$start && defined \$end ) {
+		\$data = substr( \$data, \$start, ( \$end - \$start ) );
+	}
+	if ( defined \$reverseComplement ) {
+		\$data = formatSequence( reverseComplement(\$data) );
+	}
+	my \$result = "";
+	for ( my \$i = 0 ; \$i < length(\$data) ; \$i += 60 ) {
+		my \$line = substr( \$data, \$i, 60 );
+		\$result .= "\$line<br />";
+	}
+	\$c->stash->{type_search} = 1;
+	\$c->stash->{hadGlobal}         = $hadGlobal;
+	\$c->stash->{hadSearchDatabase} = $hadSearchDatabase;
+	\$c->stash->{sequence}    = \$sequence;
+	\$c->stash->{contig}      = \$result;
+	\$c->stash( template => 'html_dir/search-database/result.tt' );
 }
 
 sub reverseComplement {
@@ -1582,7 +1592,7 @@ __PACKAGE__->meta->make_immutable;
 
 CONTENT
 
-$temporaryPackage = $nameProject.'::Controller::Root';
+$temporaryPackage = $nameProject . '::Controller::Root';
 my $rootContent = <<ROOT;
 package $temporaryPackage;
 use Moose;
@@ -1615,8 +1625,7 @@ ROOT
 #my @controllers = (
 #	"Home", "Blast", "Downloads", "Help", "About"
 #);
-if($hadGlobal)
-{
+if ($hadGlobal) {
 	$rootContent .= <<ROOT;
 
 =head2 globalAnalyses
@@ -1641,7 +1650,7 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => '$nameProject/global-analyses/index.tt');
+	\$c->stash(template => '$lowCaseName/global-analyses/index.tt');
 	\$c->stash(components => [\$c->model('Basic::Component')->all]);
 	\$c->stash->{hadGlobal} = 1;
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
@@ -1650,10 +1659,10 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
 }
 
 ROOT
-#	push @controllers, "GlobalAnalyses";
+
+	#	push @controllers, "GlobalAnalyses";
 }
-if($hadSearchDatabase)
-{
+if ($hadSearchDatabase) {
 	$rootContent .= <<ROOT;
 	
 =head2 searchDatabase
@@ -1692,7 +1701,14 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 			)
 		]
 	);
-	\$c->stash(template => '$nameProject/search-database/index.tt');
+	
+	\$c->stash(
+		sequences => [
+			\$c->model('Basic::Sequence')->all
+		]
+	);
+	
+	\$c->stash(template => '$lowCaseName/search-database/index.tt');
 	\$c->stash(components => [\$c->model('Basic::Component')->all]);
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = 1;
@@ -1700,7 +1716,8 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 }
 
 ROOT
-#	push @controllers, "SearchDatabase";
+
+	#	push @controllers, "SearchDatabase";
 }
 
 $rootContent .= <<ROOT;
@@ -1727,7 +1744,7 @@ sub about :Path("About") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => '$nameProject/about/index.tt');
+	\$c->stash(template => '$lowCaseName/about/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1754,7 +1771,7 @@ sub blast :Path("Blast") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => '$nameProject/blast/index.tt');
+	\$c->stash(template => '$lowCaseName/blast/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1781,7 +1798,7 @@ sub downloads :Path("Downloads") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => '$nameProject/downloads/index.tt');
+	\$c->stash(template => '$lowCaseName/downloads/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1851,7 +1868,7 @@ sub help :Path("Help") :Args(0) {
 		\$feature_id = get_feature_id(\$c);
 	}
 	\$c->stash(teste => \$feature_id);
-	\$c->stash(template => '$nameProject/help/index.tt');
+	\$c->stash(template => '$lowCaseName/help/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -1879,15 +1896,13 @@ sub index :Path :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
-	\$c->stash(template => '$nameProject/home/index.tt');
+	\$c->stash(template => '$lowCaseName/home/index.tt');
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
 ROOT
-
-
 
 $rootContent .= <<ROOT;
 
@@ -1929,35 +1944,27 @@ __PACKAGE__->meta->make_immutable;
 
 ROOT
 
-if($rootContent =~ /\{\{valorGlobalSubstituir\}\}/g && $hadGlobal)
-{
+if ( $rootContent =~ /\{\{valorGlobalSubstituir\}\}/g && $hadGlobal ) {
 	$rootContent =~ s/\{\{valorGlobalSubstituir\}\}/1/g;
 }
-else
-{
+else {
 	$rootContent =~ s/\{\{valorGlobalSubstituir\}\}/0/g;
 }
 
-if($rootContent =~ /\{\{valorSearchSubtituir\}\}/g && $hadSearchDatabase)
-{
+if ( $rootContent =~ /\{\{valorSearchSubtituir\}\}/g && $hadSearchDatabase ) {
 	$rootContent =~ s/\{\{valorSearchSubtituir\}\}/1/g;
 }
-else
-{
+else {
 	$rootContent =~ s/\{\{valorSearchSubtituir\}\}/0/g;
 }
 
-foreach my $filepathComponent (@filepathsComponents)
-{
-	if($filepathComponent)
-	{
-		if($filepathComponent =~ /(\w+)\/\w+/g)
-		{
+foreach my $filepathComponent (@filepathsComponents) {
+	if ($filepathComponent) {
+		if ( $filepathComponent =~ /(\w+)\/\w+/g ) {
 			`ln -s ../../$1/ $nameProject/root/$1`;
 		}
 	}
 }
-
 
 #Descompacta assets
 print $LOG "Copying files assets\n";
@@ -1965,8 +1972,7 @@ print $LOG "Copying files assets\n";
 `cp -r assets $nameProject/root/`;
 `rm -Rf assets`;
 
-if($banner)
-{
+if ($banner) {
 	`cp $banner $nameProject/root/assets/img/logo.png`;
 }
 
@@ -3254,385 +3260,383 @@ CONTENTINDEXHOME
 	                                </div>
 	                                <div id="collapseThree" class="panel-collapse collapse">
 	                                    <div class="panel-body">
-	                                        <form method="post" action="/cgi-bin/searchPMNdna.cgi" enctype="multipart/form-data">
-	                                            <ul class="nav nav-pills">
-	                                                [% FOREACH text IN texts %]
-	                                                    [% IF text.tag.search('search-database-dna-based-analyses-tab') %]
-	                                                        <li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
-	                                                    [% END %]
-	                                                [% END %]
-	                                            </ul>
-	                                            <h4></h4>
-	                                            <div class="tab-content">
-	                                                <div id="contigs" class="tab-pane fade">
-	                                                    <div class="form-group">
-	                                                        [% FOREACH text IN texts %]
-	                                                            [% IF text.tag == 'search-database-dna-based-analyses-only-contig-title' %]
-	                                                                <label>[% text.value %]</label>
-	                                                            [% END %]
-	                                                        [% END %]
-	                                                        <select class="form-control"  name="contig">
-	                                                            <option value=""></option>
-	                                                            [% FOREACH text IN texts %]
-	                                                                [% IF text.tag == 'search-database-dna-based-analyses-only-contig' %]
-	                                                                    <option value="[% text.value %]">[% text.value %]</option>
-	                                                                [% END %]
-	                                                            [% END %]
-	                                                        </select>
-	                                                    </div>
-	                                                    <div class="form-group">
-	                                                        [% FOREACH text IN texts %]
-	                                                            [% IF text.tag == 'search-database-dna-based-analyses-from-base' %]
-	                                                                <label>[% text.value %]</label>
-	                                                            [% END %]
-	                                                        [% END %]
-	                                                        <input class="form-control" type="text" name="contigStart">
-	                                                    </div>
-	                                                    <div class="form-group">
-	                                                        [% FOREACH text IN texts %]
-	                                                            [% IF text.tag == 'search-database-dna-based-analyses-to' %]
-	                                                                <label>[% text.value %]</label>
-	                                                            [% END %]
-	                                                        [% END %]
-	                                                        <input class="form-control" type="text" name="contigEnd">
-	                                                    </div>
-	                                                    <div class="form-group">
-	                                                        <div class="checkbox">
-	                                                            [% FOREACH text IN texts %]
-	                                                                [% IF text.tag == 'search-database-dna-based-analyses-reverse-complement' %]
-	                                                                    <label><input type="checkbox" name="revCompContig">[% text.value %]</label>
-	                                                                [% END %]
-	                                                            [% END %]
-	                                                        </div>
-	                                                    </div>
-	                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-	                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-	                                                </div>
-	                                                [% IF trna %]
-		                                                <div id="trna" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag == 'search-database-dna-based-analyses-list-rnas' %]
-		                                                                    <label><input type="checkbox" name="tRNAall">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <select class="form-control" name="tRNAaa">
-		                                                            <option value=""></option>
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid-options' %]
-		                                                                    <option value="[% text.details %]">[% text.value %]</option>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </select>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-get-by-codon' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <select class="form-control" name="tRNAcd">
-		                                                            <option value=""></option>
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag == 'search-database-dna-based-analyses-get-by-codon-options' %]
-		                                                                    <option value="[% text.details %]">[% text.value %]</option>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </select>
-		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF trf OR mreps OR string %]
-		                                                <div id="tandemRepeats" class="tab-pane fade">
-		                                                    <div class="alert alert-info">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats' %]
-		                                                                [% text.value %]
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-contain-sequence-repetition-unit' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TRFrepSeq">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-repetition-unit-bases' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TRFrepSize">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="TRFsize" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-occours-between' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TRFrepNumMin">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-occours-between-and' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TRFrepNumMax">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-occours-between-and-times' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="alert alert-warning">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats-note' %]
-		                                                                [% text.value %]
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF infernal %]
-		                                                <div id="otherNonCodingRNAs" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="ncRNAtargetID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-evalue-match' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="ncRNAevalue">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="ncRNAevM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-name' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="ncRNAtargetName">
-		                                                    </div>
-		                                                    [% IF targetClass.size > 0 %]
-			                                                    <div class="form-group">
-			                                                        [% FOREACH text IN texts %]
-			                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class' %]
-			                                                                <label>[% text.value %]</label>
-			                                                            [% END %]
-			                                                        [% END %]
-			                                                        <select class="form-control"  name="ncRNAtargetClass">
-			                                                            <option value=""></option>
-			                                                            [% FOREACH text IN targetClass %]
-		                                                                    <option value="[% text.value %]">[% text.value %]</option>
-			                                                            [% END %]
-			                                                        </select>
-			                                                    </div>
-			                                                [% END %]
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-type' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="ncRNAtargetType">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-by-target-description' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="ncRNAtargetDesc">
-		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF rbs %]
-		                                                <div id="ribosomalBindingSites" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="RBSpattern">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift' %]
-		                                                                    <label><input type="checkbox" name="RBSshift">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-options' %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="RBSshiftM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-start' %]
-		                                                                    <label><input type="checkbox" name="RBSnewcodon">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF transterm %]
-		                                                <div id="transcriptionalTerminators" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TTconf">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="TTconfM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-hairpin-score' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TThp">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="TThpM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-tail-score' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TTtail">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="TTtailM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="alert alert-warning">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-hairpin-note' %]
-		                                                                [% text.value %]
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF alienhunter %]
-		                                                <div id="horizontalGeneTransfers" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="AHlen">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="AHlenM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-score' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="AHscore">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="AHscM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-threshold' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="AHthr">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="AHthrM" [% text.details %]>[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-		                                                </div>
-		                                            [% END %]
-	                                            </div>
-	                                        </form>
+											<ul class="nav nav-pills">
+												[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-dna-based-analyses-tab') %]
+														<li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
+													[% END %]
+												[% END %]
+											</ul>
+											<h4></h4>
+											<div class="tab-content">
+											<div id="contigs" class="tab-pane fade">
+												<form method="post" action="[% c.uri_for('/SearchDatabase/Contig') %]" enctype="multipart/form-data">
+													<div class="form-group">
+														[% FOREACH text IN texts %]
+															[% IF text.tag == 'search-database-dna-based-analyses-only-contig-title' %]
+																<label>[% text.value %]</label>
+															[% END %]
+														[% END %]
+														<select class="form-control"  name="contig">
+															<option value=""></option>
+															[% FOREACH sequence IN sequences %]
+																<option value="[% sequence.id %]">[% sequence.name %]</option>
+															[% END %]
+														</select>
+													</div>
+													<div class="form-group">
+														[% FOREACH text IN texts %]
+															[% IF text.tag == 'search-database-dna-based-analyses-from-base' %]
+																<label>[% text.value %]</label>
+															[% END %]
+														[% END %]
+														<input class="form-control" type="text" name="contigStart">
+													</div>
+													<div class="form-group">
+														[% FOREACH text IN texts %]
+															[% IF text.tag == 'search-database-dna-based-analyses-to' %]
+																<label>[% text.value %]</label>
+															[% END %]
+														[% END %]
+														<input class="form-control" type="text" name="contigEnd">
+													</div>
+													<div class="form-group">
+														<div class="checkbox">
+															[% FOREACH text IN texts %]
+																[% IF text.tag == 'search-database-dna-based-analyses-reverse-complement' %]
+																	<label><input type="checkbox" name="revCompContig">[% text.value %]</label>
+																[% END %]
+															[% END %]
+														</div>
+													</div>
+													<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+													<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+												</form>
+											</div>
+											[% IF trna %]
+											<div id="trna" class="tab-pane fade">
+												<div class="form-group">
+													<div class="checkbox">
+														[% FOREACH text IN texts %]
+														[% IF text.tag == 'search-database-dna-based-analyses-list-rnas' %]
+														<label><input type="checkbox" name="tRNAall">[% text.value %]</label>
+														[% END %]
+														[% END %]
+													</div>
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<select class="form-control" name="tRNAaa">
+														<option value=""></option>
+														[% FOREACH text IN texts %]
+														[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid-options' %]
+														<option value="[% text.details %]">[% text.value %]</option>
+														[% END %]
+														[% END %]
+													</select>
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-get-by-codon' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<select class="form-control" name="tRNAcd">
+														<option value=""></option>
+														[% FOREACH text IN texts %]
+														[% IF text.tag == 'search-database-dna-based-analyses-get-by-codon-options' %]
+														<option value="[% text.details %]">[% text.value %]</option>
+														[% END %]
+														[% END %]
+													</select>
+												</div>
+												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+											</div>
+											[% END %]
+											[% IF trf OR mreps OR string %]
+											<div id="tandemRepeats" class="tab-pane fade">
+												<div class="alert alert-info">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats' %]
+													[% text.value %]
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-contain-sequence-repetition-unit' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="TRFrepSeq">
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-repetition-unit-bases' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="TRFrepSize">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="TRFsize" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-occours-between' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="TRFrepNumMin">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-occours-between-and' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="TRFrepNumMax">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-occours-between-and-times' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="alert alert-warning">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats-note' %]
+													[% text.value %]
+													[% END %]
+													[% END %]
+												</div>
+												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+											</div>
+											[% END %]
+											[% IF infernal %]
+											<div id="otherNonCodingRNAs" class="tab-pane fade">
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="ncRNAtargetID">
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-by-evalue-match' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="ncRNAevalue">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="ncRNAevM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-name' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="ncRNAtargetName">
+												</div>
+												[% IF targetClass.size > 0 %]
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<select class="form-control"  name="ncRNAtargetClass">
+														<option value=""></option>
+														[% FOREACH text IN targetClass %]
+														<option value="[% text.value %]">[% text.value %]</option>
+														[% END %]
+													</select>
+												</div>
+												[% END %]
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-type' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="ncRNAtargetType">
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-description' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="ncRNAtargetDesc">
+												</div>
+												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+											</div>
+											[% END %]
+											[% IF rbs %]
+											<div id="ribosomalBindingSites" class="tab-pane fade">
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="RBSpattern">
+												</div>
+												<div class="form-group">
+													<div class="checkbox">
+														[% FOREACH text IN texts %]
+														[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift' %]
+														<label><input type="checkbox" name="RBSshift">[% text.value %]</label>
+														[% END %]
+														[% END %]
+													</div>
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-options' %]
+													<div class="radio">
+														<label><input type="radio" name="RBSshiftM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													<div class="checkbox">
+														[% FOREACH text IN texts %]
+														[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-start' %]
+														<label><input type="checkbox" name="RBSnewcodon">[% text.value %]</label>
+														[% END %]
+														[% END %]
+													</div>
+												</div>
+												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+											</div>
+											[% END %]
+											[% IF transterm %]
+											<div id="transcriptionalTerminators" class="tab-pane fade">
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="TTconf">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="TTconfM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-hairpin-score' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="TThp">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="TThpM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-tail-score' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="TTtail">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="TTtailM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="alert alert-warning">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-hairpin-note' %]
+													[% text.value %]
+													[% END %]
+													[% END %]
+												</div>
+												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+											</div>
+											[% END %]
+											[% IF alienhunter %]
+											<div id="horizontalGeneTransfers" class="tab-pane fade">
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="AHlen">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="AHlenM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-score' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="AHscore">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="AHscM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<div class="form-group">
+													[% FOREACH text IN texts %]
+													[% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-threshold' %]
+													<label>[% text.value %]</label>
+													[% END %]
+													[% END %]
+													<input class="form-control" type="text" name="AHthr">
+													[% FOREACH text IN texts %]
+													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+													<div class="radio">
+														<label><input type="radio" name="AHthrM" [% text.details %]>[% text.value %]</label>
+													</div>
+													[% END %]
+													[% END %]
+												</div>
+												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+											</div>
+											[% END %]
+											</div>
 	                                    </div>
 	                                    <div class="panel-footer">
 	                                        [% FOREACH text IN texts %]
@@ -3693,24 +3697,40 @@ CONTENTSEARCHDATABASE
 </script>
 
 CONTENTINDEXSEARCHDATABASE
-	,
-	"result.tt" => <<CONTENT
+		,
+		"result.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
-    	[% FOREACH result IN searchResult %]
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="panel-title">
-						<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
+    	[% SWITCH type_search %]
+    		[% CASE 0 %]
+		    	[% FOREACH result IN searchResult %]
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
+							</div>
+						</div>
+						<div id="[% result.feature_id %]" class="panel-collapse collapse">
+							<div class="panel-body">
+							</div>
+						</div>
+					</div>
+		    	[% END %]
+	    	[% CASE 1 %]
+	    		<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence([% sequence.name %])</a>
+						</div>
+					</div>
+					<div id="[% sequence.id %]" class="panel-collapse collapse">
+						<div class="panel-body">
+							[% contig %]
+						</div>
 					</div>
 				</div>
-				<div id="[% result.feature_id %]" class="panel-collapse collapse">
-					<div class="panel-body">
-					</div>
-				</div>
-			</div>
-    	[% END %]
+	    [% END %]
     </div>
 </div>
 CONTENT
@@ -3750,6 +3770,10 @@ FOOTER
 <link href="/assets/css/font-awesome.css" rel="stylesheet" />
 <!-- CUSTOM STYLE  -->
 <link href="/assets/css/style.css" rel="stylesheet" />
+<!-- PACE loader CSS -->
+<link href="/assets/css/pace-theme-fill-left.css" rel="stylesheet" />
+<!-- PACE loader js -->
+<script src="/assets/js/pace.min.js"></script>
  <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn''t work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -3838,12 +3862,10 @@ MENU
 	}
 );
 
-unless($hadGlobal)
-{
+unless ($hadGlobal) {
 	delete $contentHTML{"global-analyses"};
 }
-unless($hadSearchDatabase)
-{
+unless ($hadSearchDatabase) {
 	delete $contentHTML{"search-database"};
 }
 
@@ -3902,8 +3924,9 @@ writeFile( "$nameProject/root/$lowCaseName/_layout.tt", $wrapper );
 #";
 print $LOG "\nEditing root file\n";
 open( $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm" );
+
 #$data = do { local $/; <$fileHandler> };
-#$data =~ 
+#$data =~
 #s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*\s*=head2 default*/$changeRootFile/igm;
 close($fileHandler);
 writeFile( "$nameProject/lib/$nameProject/Controller/Root.pm", $rootContent );
@@ -3922,30 +3945,31 @@ exit;
 #   @param $filepath => path with the file to be write or edit
 #   @param $content => content to be insert
 #
-sub writeFile 
-{
+sub writeFile {
 	my ( $filepath, $content ) = @_;
-	open( my $FILEHANDLER, ">:encoding(UTF-8)", $filepath ) or die "Error opening file";
-#	binmode($FILEHANDLER, ":utf8");
+	open( my $FILEHANDLER, ">:encoding(UTF-8)", $filepath )
+	  or die "Error opening file";
+
+	#	binmode($FILEHANDLER, ":utf8");
 	print $FILEHANDLER $content;
 	close($FILEHANDLER);
 }
-
 
 ###
 #	Method used to read HTML file with the texts to be used on site
 #	@param $file => path of the JSON file to be read
 #	return data in SQL
 #
-sub readJSON
-{
+sub readJSON {
 	my ($file) = @_;
-	open(my $FILEHANDLER, "<", $file); 
+	open( my $FILEHANDLER, "<", $file );
 	my $content = do { local $/; <$FILEHANDLER> };
 	my $sql = "";
-	while($content =~ /^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:+(),'=&ããõáéíóúàâêẽ;#|]*)"/gm)
+	while ( $content =~
+/^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:+(),'=&ããõáéíóúàâêẽ;#|]*)"/gm
+	  )
 	{
-		my $tag = $1;
+		my $tag   = $1;
 		my $value = $2;
 		$sql .= <<SQL;
 			INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
@@ -3955,21 +3979,17 @@ SQL
 	return $sql;
 }
 
-sub readTCDBFile
-{
-	my($tcdb_file) = @_;
-	open(my $FILEHANDLER, "<", $tcdb_file);
+sub readTCDBFile {
+	my ($tcdb_file) = @_;
+	open( my $FILEHANDLER, "<", $tcdb_file );
 	my $sql = "";
-	while(my $line = <$FILEHANDLER>)
-	{
-		if($line =~ /^(\d\t[\w\/\s\-]*)[^\n]\v/gm)
-		{
-			$sql .=  <<SQL;
+	while ( my $line = <$FILEHANDLER> ) {
+		if ( $line =~ /^(\d\t[\w\/\s\-]*)[^\n]\v/gm ) {
+			$sql .= <<SQL;
 			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "$1");
 SQL
 		}
-		elsif($line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/)
-		{
+		elsif ( $line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/ ) {
 			$sql .= <<SQL;
 			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "$1");
 SQL
@@ -3984,41 +4004,41 @@ SQL
 #	@param $filepathModel	=>	filepath of the model
 #	@param $content			=>	content to be used
 #
-sub addRelationship
-{
-	my($filepathModel, $content) = @_;
-	open(my $FILEHANDLER, "<", $filepathModel);
+sub addRelationship {
+	my ( $filepathModel, $content ) = @_;
+	open( my $FILEHANDLER, "<", $filepathModel );
 	my $contentFile = do { local $/; <$FILEHANDLER> };
-	$contentFile =~ s/# You can replace this text with custom code or comments, and it will be preserved on regeneration/$content/g;
+	$contentFile =~
+s/# You can replace this text with custom code or comments, and it will be preserved on regeneration/$content/g;
 	close($FILEHANDLER);
-	writeFile($filepathModel, $contentFile);
+	writeFile( $filepathModel, $contentFile );
 	return 1;
 }
 
 sub get_code_number_product {
-    my $subject_id = shift;
-    my $code_number;
-    my $product;
+	my $subject_id = shift;
+	my $code_number;
+	my $product;
 
-    if($subject_id =~ m/\S+\|(\S+)\|(.*)/){
-        $code_number = $1;
-	$product = $2;
-    }
-    elsif($subject_id =~ m/(\S+)_(\S+) (.*)/){
-        $code_number = $2;
-	$product = $3;
-    }
-    elsif($subject_id =~ m/(\S+)/){
+	if ( $subject_id =~ m/\S+\|(\S+)\|(.*)/ ) {
 		$code_number = $1;
-		
-	 	if($code_number =~ m/(\S+)\_\[(\S+)\_\[/){
-		    $code_number = $1;
-		    $product = "similar to " . $code_number;
+		$product     = $2;
+	}
+	elsif ( $subject_id =~ m/(\S+)_(\S+) (.*)/ ) {
+		$code_number = $2;
+		$product     = $3;
+	}
+	elsif ( $subject_id =~ m/(\S+)/ ) {
+		$code_number = $1;
+
+		if ( $code_number =~ m/(\S+)\_\[(\S+)\_\[/ ) {
+			$code_number = $1;
+			$product     = "similar to " . $code_number;
 		}
-    }
- 
-    $product =~ s/^ //g;
-    $product =~ s/ $//g;
-    
-    return ($code_number, $product);
+	}
+
+	$product =~ s/^ //g;
+	$product =~ s/ $//g;
+
+	return ( $code_number, $product );
 }

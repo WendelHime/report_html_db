@@ -27,6 +27,12 @@ CREATE TABLE COMPONENTS(
 	filepath VARCHAR(2000)
 );
 
+CREATE TABLE SEQUENCES(
+	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	name VARCHAR(2000),
+	filepath VARCHAR(2000)
+);
+
 INSERT INTO TEXTS(tag, value, details) VALUES
         ("menu", "home", "/"),
         ("menu", "blast", "/Blast"),
@@ -176,25 +182,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-tab", "Transcriptional terminators", "#transcriptionalTerminators"),
         ("search-database-dna-based-analyses-tab", "Horizontal gene transfers", "#horizontalGeneTransfers"),
         ("search-database-dna-based-analyses-only-contig-title", "Get only contig: ", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00044", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00045", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00046", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00053", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00060", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00076", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00078", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00086", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00089", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig00093", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_1.2", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_1.3", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_1.7", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.1", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.2", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.3", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.4", ""),
-        ("search-database-dna-based-analyses-only-contig", "contig_2.5", ""),
         ("search-database-dna-based-analyses-from-base", " from base ", ""),
         ("search-database-dna-based-analyses-to", " to ", ""),
         ("search-database-dna-based-analyses-reverse-complement", " reverse complement?", "");
@@ -2128,6 +2115,8 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-or-by-target-class", "Or by target class: ", ""),
         ("search-database-dna-based-analyses-or-by-target-type", "Or by target type: ", ""),
         ("search-database-dna-based-analyses-or-by-target-description", "Or by target description: ", "");
+
+INSERT INTO SEQUENCES(name, filepath) VALUES ('Bacteria', 'seq/Bacteria.fasta');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
         ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),

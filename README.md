@@ -33,3 +33,8 @@ http://www.catalystframework.org/calendar/2009/19
 http://www.catalystframework.org/calendar/2006/9
 http://search.cpan.org/~jjnapiork/Catalyst-Action-REST-1.20/lib/Catalyst/Action/REST.pm
 http://search.cpan.org/~jjnapiork/Catalyst-Action-REST-1.20/lib/Catalyst/Controller/REST.pm
+
+
+-	Ler arquivo da sequencia completa e depois realizar pesquisa pelos contigs usando substring
+
+-	bigou.pl -c html_db.cnf -d "chadodb" -u "chadouser" -p "" -h "127.0.0.1"
