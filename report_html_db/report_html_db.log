@@ -30,27 +30,39 @@ Copying files assets
 
 Creating html views
 
-Criando diretorio home
-
-Criando arquivo index.tt
-
-Criando arquivo _panelInformation.tt
-
-Criando diretorio about
-
-Criando arquivo index.tt
+Criando diretorio downloads
 
 Criando arquivo _content.tt
 
-Criando diretorio shared
+Criando arquivo index.tt
 
-Criando arquivo _head.tt
+Criando diretorio home
+
+Criando arquivo _panelInformation.tt
+
+Criando arquivo index.tt
+
+Criando diretorio about
+
+Criando arquivo _content.tt
+
+Criando arquivo index.tt
+
+Criando diretorio shared
 
 Criando arquivo _menu.tt
 
 Criando arquivo _footer.tt
 
 Criando arquivo _header.tt
+
+Criando arquivo _head.tt
+
+Criando diretorio blast
+
+Criando arquivo index.tt
+
+Criando arquivo _forms.tt
 
 Criando diretorio help
 
@@ -60,23 +72,11 @@ Criando arquivo index.tt
 
 Criando diretorio search-database
 
-Criando arquivo index.tt
-
 Criando arquivo _forms.tt
+
+Criando arquivo index.tt
 
 Criando arquivo result.tt
-
-Criando diretorio blast
-
-Criando arquivo _forms.tt
-
-Criando arquivo index.tt
-
-Criando diretorio downloads
-
-Criando arquivo index.tt
-
-Criando arquivo _content.tt
 
 Creating wrapper
 

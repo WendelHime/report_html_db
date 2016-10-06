@@ -840,10 +840,11 @@ while ( $sequence_object->read() ) {
 	  "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
 	my $length = length($bases);
 	print FASTAOUT ">$name\n";
-#	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
-#		my $line = substr( $bases, $i, 60 );
-#		print FASTAOUT "$line\n";
-#	}
+
+	#	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
+	#		my $line = substr( $bases, $i, 60 );
+	#		print FASTAOUT "$line\n";
+	#	}
 	print FASTAOUT $bases;
 	close(FASTAOUT);
 	my @programs = ();
@@ -1356,17 +1357,17 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 	my ( \$self, \$c, \$geneID, \$geneDescription, \$noDescription, \$individually )
 	  = \@_;
 
-	if ( !\$geneID and defined \$c->req->param("geneID") ) {
-		\$geneID = \$c->req->param("geneID");
+	if ( !\$geneID and defined \$c->request->param("geneID") ) {
+		\$geneID = \$c->request->param("geneID");
 	}
-	if ( !\$geneDescription and defined \$c->req->param("geneDesc") ) {
-		\$geneDescription = \$c->req->param("geneDesc");
+	if ( !\$geneDescription and defined \$c->request->param("geneDesc") ) {
+		\$geneDescription = \$c->request->param("geneDesc");
 	}
-	if ( !\$noDescription and defined \$c->req->param("noDesc") ) {
-		\$noDescription = \$c->req->param("noDesc");
+	if ( !\$noDescription and defined \$c->request->param("noDesc") ) {
+		\$noDescription = \$c->request->param("noDesc");
 	}
-	if ( !\$individually and defined \$c->req->param("individually") ) {
-		\$individually = \$c->req->param("individually");
+	if ( !\$individually and defined \$c->request->param("individually") ) {
+		\$individually = \$c->request->param("individually");
 	}
 
 	\$c->stash->{titlePage} = 'Search gene';
@@ -1377,10 +1378,10 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 				\$c->model('Basic::Text')->search(
 					{
 						-or => [
-							tag => { 'like', 'header\%' },
+							tag => { 'like', 'header%' },
 							tag => 'menu',
 							tag => 'footer',
-							tag => { 'like', 'search-database\%' }
+							tag => { 'like', 'search-database%' }
 						]
 					}
 				)
@@ -1394,18 +1395,17 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 		my \@likesDescription   = ();
 		my \@likesNoDescription = ();
 		if (\$geneDescription) {
-			my \@terms = ();
 			while ( \$geneDescription =~ /(\\S+)/g ) {
 				push \@likesDescription,
 				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "like", "\\\%" . \$1 . "\\\%" };
+				  { "like", "\%" . \$1 . "\%" };
 			}
 		}
 		if (\$noDescription) {
 			while ( \$noDescription =~ /(\\S+)/g ) {
 				push \@likesNoDescription,
 				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "not like", "\\\%" . \$1 . "\\\%" };
+				  { "not like", "\%" . \$1 . "\%" };
 			}
 		}
 
@@ -1433,7 +1433,7 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 					'type_4.name'                  => 'description',
 					'featureloc_featureprop.value' => '4249',
 					'feature_relationship_props_subject_feature.value' =>
-					  { 'like', '\%' . \$geneID . '\%' },
+					  { 'like', '%' . \$geneID . '%' },
 					\@likes
 				},
 				{
@@ -1473,11 +1473,11 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 			)
 		]
 	);
-	\$c->stash->{hadGlobal}         = $hadGlobal;
-	\$c->stash->{hadSearchDatabase} = $hadSearchDatabase;
+	\$c->stash->{type_search}       = 0;
+	\$c->stash->{hadGlobal}         = 0;
+	\$c->stash->{hadSearchDatabase} = 1;
 	\$c->stash( template => '$lowCaseName/search-database/result.tt' );
 }
-
 =head2 encodingCorrection
 
 Method used to correct encoding strings come from SQLite
@@ -1509,6 +1509,20 @@ Method used to realize search by contigs, optional return a stretch or a reverse
 
 sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
+	if ( !\$start and defined \$c->request->param("contigStart") ) {
+		\$start = \$c->request->param("contigStart");
+	}
+	if ( !\$end and defined \$c->request->param("contigEnd") ) {
+		\$end = \$c->request->param("contigEnd");
+	}
+	if ( !\$reverseComplement
+		and defined \$c->request->param("revCompContig") )
+	{
+		\$reverseComplement = \$c->request->param("revCompContig");
+	}
 	use File::Basename;
 	\$c->stash->{titlePage} = 'Search contig';
 	\$c->stash( currentPage => 'search-database' );
@@ -1531,31 +1545,36 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	my \$data     = "";
 	my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
 	open( my \$FILEHANDLER,
-		"<",
-		dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
+		"<", dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
+
 	for my \$line (<\$FILEHANDLER>) {
 		if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
 			\$data .= \$line;
 		}
 	}
 	close(\$FILEHANDLER);
-	if ( defined \$start && defined \$end ) {
-		\$data = substr( \$data, \$start, ( \$end - \$start ) );
+	if ( \$start && \$end ) {
+		\$data = substr( \$data, \$start - 1, ( \$end - \$start ) );
+		\$c->stash->{start}     = \$start;
+		\$c->stash->{end}       = \$end;
+		\$c->stash->{hadLimits} = 1;
 	}
 	if ( defined \$reverseComplement ) {
 		\$data = formatSequence( reverseComplement(\$data) );
+		\$c->stash->{hadReverseComplement} = 1;
 	}
 	my \$result = "";
 	for ( my \$i = 0 ; \$i < length(\$data) ; \$i += 60 ) {
 		my \$line = substr( \$data, \$i, 60 );
 		\$result .= "\$line<br />";
 	}
-	\$c->stash->{type_search} = 1;
-	\$c->stash->{hadGlobal}         = $hadGlobal;
-	\$c->stash->{hadSearchDatabase} = $hadSearchDatabase;
-	\$c->stash->{sequence}    = \$sequence;
-	\$c->stash->{contig}      = \$result;
-	\$c->stash( template => 'html_dir/search-database/result.tt' );
+	\$c->stash->{type_search}       = 1;
+	\$c->stash->{hadGlobal}         = 0;
+	\$c->stash->{hadSearchDatabase} = 1;
+
+	\$c->stash->{sequence} = \$sequence;
+	\$c->stash->{contig}   = \$result;
+	\$c->stash( template => '$lowCaseName/search-database/result.tt' );
 }
 
 sub reverseComplement {
@@ -3721,7 +3740,15 @@ CONTENTINDEXSEARCHDATABASE
 	    		<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="panel-title">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence([% sequence.name %])</a>
+							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
+							[% IF hadLimits %]
+								from [% start %] to [% end %] of 
+							[% END %]
+							[% sequence.name %]
+							[% IF hadReverseComplement %]
+								, reverse complemented
+							[% END %]
+							)</a>
 						</div>
 					</div>
 					<div id="[% sequence.id %]" class="panel-collapse collapse">
@@ -3733,6 +3760,7 @@ CONTENTINDEXSEARCHDATABASE
 	    [% END %]
     </div>
 </div>
+
 CONTENT
 	},
 	shared => {
