@@ -111,8 +111,10 @@ my $html_dir = "";
 #my $FT_submission_selected_dir="";
 #my $GFF_dir="";
 #my $GFF_selected_dir="";
-#my $aa_fasta_dir="";
-#my $nt_fasta_dir="";
+my $aa_fasta_dir = "";
+
+my $nt_fasta_dir = "";
+
 #my $xml_dir="xml_dir";
 my $fasta_dir = "";
 
@@ -132,7 +134,8 @@ my $fasta_dir = "";
 #my $kog_dir;
 #my $orthology_extension="";
 #my $pathways_dir="";
-#my $aa_orf_file="";
+my $aa_orf_file = "";
+
 #my $nt_orf_file="";
 #my $background_image_file="";
 #my $index_file="";
@@ -216,12 +219,13 @@ else {
 	$html_dir = "html_dir";
 }
 
-#if (defined($config->{"aa_fasta_dir"})){
-#   $aa_fasta_dir = $config->{"aa_fasta_dir"};
-#}
-#if (defined($config->{"nt_fasta_dir"})){
-#   $nt_fasta_dir = $config->{"nt_fasta_dir"};
-#}
+if ( defined( $config->{"aa_fasta_dir"} ) ) {
+	$aa_fasta_dir = $config->{"aa_fasta_dir"};
+}
+
+if ( defined( $config->{"nt_fasta_dir"} ) ) {
+	$nt_fasta_dir = $config->{"nt_fasta_dir"};
+}
 if ( defined( $config->{"fasta_dir"} ) ) {
 	$fasta_dir = $config->{"fasta_dir"};
 }
@@ -232,9 +236,10 @@ if (defined($config->{"blast_dir"})){
 }
 =cut
 
-#if (defined($config->{"aa_orf_file"})){
-#   $aa_orf_file = $config->{"aa_orf_file"};
-#}
+if ( defined( $config->{"aa_orf_file"} ) ) {
+	$aa_orf_file = $config->{"aa_orf_file"};
+}
+
 #if (defined($config->{"nt_orf_file"})){
 #   $nt_orf_file = $config->{"nt_orf_file"};
 #}
@@ -757,24 +762,21 @@ $/ = ">";
 
 #print $LOG "Separating ORFs em AA of multifasta AA";
 ##separa ORFs em aa do multifasta aa
-#if(not -d "$html_dir/root/$aa_fasta_dir")
-#{
-#    !system("mkdir -p $html_dir/root/$aa_fasta_dir")
-#        or die "Could not created directory $html_dir/root/$aa_fasta_dir\n";
-#}
+if ( not -d "$html_dir/root/$aa_fasta_dir" ) {
+	!system("mkdir -p $html_dir/root/$aa_fasta_dir")
+	  or die "Could not created directory $html_dir/root/$aa_fasta_dir\n";
+}
 #
-#if($aa_orf_file ne "")
-#{
-#    open(FILE_AA,"$aa_orf_file") or die "Could not open file $aa_orf_file\n";
-#}
+if ( $aa_orf_file ne "" ) {
+	open( FILE_AA, "$aa_orf_file" ) or die "Could not open file $aa_orf_file\n";
+}
 #
 #print $LOG "Separating ORFs NT of multifasta NT";
 ##separa ORFs nt do multifasta nt
-#if(not -d "$html_dir/root/$nt_fasta_dir")
-#{
-#    !system("mkdir -p $html_dir/root/$nt_fasta_dir")
-#        or die "Could not created directory $html_dir/root/$nt_fasta_dir\n";
-#}
+if ( not -d "$html_dir/root/$nt_fasta_dir" ) {
+	!system("mkdir -p $html_dir/root/$nt_fasta_dir")
+	  or die "Could not created directory $html_dir/root/$nt_fasta_dir\n";
+}
 
 #if($nt_orf_file ne "")
 #{
@@ -813,12 +815,13 @@ my $dbName              = "";
 my $dbHost              = "";
 my $dbUser              = "";
 my $dbPassword          = "";
+my $locus               = 0;
 
 print $LOG "\nReading sequences\n";
 while ( $sequence_object->read() ) {
 	++$seq_count;
-	my @conclusions = @{ $sequence_object->get_conclusions() };
 	$header = $sequence_object->fasta_header();
+	my @conclusions = @{ $sequence_object->get_conclusions() };
 	my $bases = $sequence_object->current_sequence();
 	my $name  = $sequence_object->sequence_name();
 
@@ -827,26 +830,110 @@ while ( $sequence_object->read() ) {
 	$dbUser     = $sequence_object->{user};
 	$dbPassword = $sequence_object->{password};
 
-	print $LOG "\n$name\n$bases\n\n";
+#aqui começaria a geração da pagina relacionada a cada anotação
+#pulando isso, passamos para geração dos arquivos, volta a duvida sobre a necessidade desses arquivos
+	my $file_aa = $name . "_CDS_AA.fasta";
+	my $file_nt = $name . "_CDS_NT.fasta";
+	open( FILE_AA, ">$html_dir/root/$aa_fasta_dir/$file_aa" );
+	open( FILE_NT, ">$html_dir/root/$nt_fasta_dir/$file_nt" );
+
+#	print $LOG "\n$name\n$bases\n\n";
 
 	$scriptSQL .=
 "\nINSERT INTO SEQUENCES(name, filepath) VALUES ('$name', '$fasta_dir/$name.fasta');\n";
 
 #    my $ann_file = "annotations/".$name;
 # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
-#pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
+# pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
 	open( FASTAOUT, ">$html_dir/root/$fasta_dir/$name.fasta" )
 	  or die
 	  "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
 	my $length = length($bases);
 	print FASTAOUT ">$name\n";
-
-	#	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
-	#		my $line = substr( $bases, $i, 60 );
-	#		print FASTAOUT "$line\n";
-	#	}
 	print FASTAOUT $bases;
 	close(FASTAOUT);
+
+	foreach my $conclusion (@conclusions) {
+		$sequence_object->get_evidence_for_conclusion();
+		my %hash      = %{ $sequence_object->{array_evidence} };
+		my @evidences = @{ $conclusion->{evidence_number} };
+		foreach my $ev (@evidences) {
+			my $evidence = $hash{$ev};
+			my $ev_name  = $sequence_object->fasta_header_evidence($evidence);
+			$ev_name =~ s/>//;
+			my $fasta_header_evidence =
+			  $sequence_object->fasta_header_evidence($evidence);
+
+			$fasta_header_evidence =~ s/>//g;
+			$fasta_header_evidence =~ s/>//g;
+			$fasta_header_evidence =~ s/\|/_/g;
+			$fasta_header_evidence =~ s/__/_/g;
+
+			$fasta_header_evidence =~ s/>//g;
+
+			if ( $evidence->{tag} eq "CDS" ) {
+				
+				my $locus_tag;
+				
+				print $LOG "\nlocus_tag\t-\t".$conclusion->{locus_tag}."\n";
+				
+				#conclusão não esta retornando locus_tag 
+				if ( $conclusion->{locus_tag} ) {
+					$locus_tag = $conclusion->{locus_tag};
+				}
+				else {
+					$locus++;
+					$locus_tag = "NOLOCUSTAG_$locus";
+				}
+				
+				
+				my $number = $evidence->{number};
+				my $start;
+				my $end;
+
+				if ( $evidence->{start} < $evidence->{end} ) {
+					$start = $evidence->{start};
+					$end   = $evidence->{end};
+				}
+				else {
+					$start = $evidence->{end};
+					$end   = $evidence->{start};
+				}
+				my $len_nt = ( $end - $start ) + 1;
+				my $sequence_nt;
+				my $nt_seq = substr( $bases, $start - 1, $len_nt );
+				$len_nt = length($nt_seq);
+				my $file_ev = $locus_tag . ".fasta";
+				open( AA, ">$html_dir/root/$aa_fasta_dir/$file_ev" );
+				print FILE_NT ">$locus_tag\n";
+				print AA "\nNucleotide sequence:\n\n";
+				print AA ">$locus_tag\n";
+
+				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+					$sequence_nt = substr( $nt_seq, $i, 60 );
+					print FILE_NT "$sequence_nt\n";
+					print AA "$sequence_nt\n";
+				}
+
+				my $seq_aa = $evidence->{protein_sequence};
+				my $sequence_aa;
+				my $len_aa = length($seq_aa);
+				print FILE_AA ">$locus_tag\n";
+				print AA "\nTranslated sequence:\n\n";
+				print AA ">$locus_tag\n";
+				for ( my $i = 0 ; $i < $len_aa ; $i += 60 ) {
+					$sequence_aa = substr( $seq_aa, $i, 60 );
+					print FILE_AA "$sequence_aa\n";
+					print AA "$sequence_aa\n";
+				}
+			}
+		}
+	}
+	
+	close(AA);
+	close(FILE_AA);
+	close(FILE_NT);
+
 	my @programs = ();
 
 	if ( @{ $sequence_object->get_logs } ) {
@@ -876,11 +963,6 @@ while ( $sequence_object->read() ) {
 	$header =~ m/(\S+)_(\d+)/;
 	$prefix_name = $1;
 
-#aqui começaria a geração da pagina relacionada a cada anotação
-#pulando isso, passamos para geração dos arquivos, volta a duvida sobre a necessidade desses arquivos
-#    my $file_aa = $name."_CDS_AA.fasta";
-#    my $file_nt = $name."_CDS_NT.fasta";
-#    open(FILE_AA,">$html_dir/root/$aa_fasta_dir/$file_aa");
 	my $count;
 	my $line_subev;
 	foreach my $component ( sort @components_name ) {
