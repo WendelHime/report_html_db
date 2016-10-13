@@ -9,75 +9,75 @@ Separating sequences od multifasta and create directory
 
 Reading sequences
 
-locus_tag	-	
+locus_tag	-	Bact_44
 
-locus_tag	-	
+locus_tag	-	Bact_43
 
-locus_tag	-	
+locus_tag	-	Bact_42
 
-locus_tag	-	
+locus_tag	-	Bact_40
 
-locus_tag	-	
+locus_tag	-	Bact_36
 
-locus_tag	-	
+locus_tag	-	Bact_35
 
-locus_tag	-	
+locus_tag	-	Bact_34
 
-locus_tag	-	
+locus_tag	-	Bact_33
 
-locus_tag	-	
+locus_tag	-	Bact_32
 
-locus_tag	-	
+locus_tag	-	Bact_27
 
-locus_tag	-	
+locus_tag	-	Bact_26
 
-locus_tag	-	
+locus_tag	-	Bact_25
 
-locus_tag	-	
+locus_tag	-	Bact_24
 
-locus_tag	-	
+locus_tag	-	Bact_23
 
-locus_tag	-	
+locus_tag	-	Bact_22
 
-locus_tag	-	
+locus_tag	-	Bact_21
 
-locus_tag	-	
+locus_tag	-	Bact_20
 
-locus_tag	-	
+locus_tag	-	Bact_19
 
-locus_tag	-	
+locus_tag	-	Bact_18
 
-locus_tag	-	
+locus_tag	-	Bact_17
 
-locus_tag	-	
+locus_tag	-	Bact_16
 
-locus_tag	-	
+locus_tag	-	Bact_15
 
-locus_tag	-	
+locus_tag	-	Bact_14
 
-locus_tag	-	
+locus_tag	-	Bact_13
 
-locus_tag	-	
+locus_tag	-	Bact_12
 
-locus_tag	-	
+locus_tag	-	Bact_11
 
-locus_tag	-	
+locus_tag	-	Bact_10
 
-locus_tag	-	
+locus_tag	-	Bact_09
 
-locus_tag	-	
+locus_tag	-	Bact_08
 
-locus_tag	-	
+locus_tag	-	Bact_07
 
-locus_tag	-	
+locus_tag	-	Bact_06
 
-locus_tag	-	
+locus_tag	-	Bact_05
 
-locus_tag	-	
+locus_tag	-	Bact_04
 
-locus_tag	-	
+locus_tag	-	Bact_02
 
-locus_tag	-	
+locus_tag	-	Bact_01
 
 Creating project...
 
@@ -96,19 +96,19 @@ Copying files assets
 
 Creating html views
 
+Criando diretorio help
+
+Criando arquivo index.tt
+
+Criando arquivo _content.tt
+
 Criando diretorio search-database
+
+Criando arquivo _forms.tt
 
 Criando arquivo index.tt
 
 Criando arquivo result.tt
-
-Criando arquivo _forms.tt
-
-Criando diretorio help
-
-Criando arquivo _content.tt
-
-Criando arquivo index.tt
 
 Criando diretorio blast
 
@@ -122,12 +122,6 @@ Criando arquivo _panelInformation.tt
 
 Criando arquivo index.tt
 
-Criando diretorio downloads
-
-Criando arquivo _content.tt
-
-Criando arquivo index.tt
-
 Criando diretorio about
 
 Criando arquivo _content.tt
@@ -136,13 +130,19 @@ Criando arquivo index.tt
 
 Criando diretorio shared
 
-Criando arquivo _header.tt
+Criando arquivo _menu.tt
 
-Criando arquivo _head.tt
+Criando arquivo _header.tt
 
 Criando arquivo _footer.tt
 
-Criando arquivo _menu.tt
+Criando arquivo _head.tt
+
+Criando diretorio downloads
+
+Criando arquivo _content.tt
+
+Criando arquivo index.tt
 
 Creating wrapper
 

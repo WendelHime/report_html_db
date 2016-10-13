@@ -856,6 +856,8 @@ while ( $sequence_object->read() ) {
 	foreach my $conclusion (@conclusions) {
 		$sequence_object->get_evidence_for_conclusion();
 		my %hash      = %{ $sequence_object->{array_evidence} };
+#		my @evidences = $sequence_object->get_evidences_with_conclusions();
+#		my @evidences = $sequence_object->get_evidence_for_conclusion_from_database();
 		my @evidences = @{ $conclusion->{evidence_number} };
 		foreach my $ev (@evidences) {
 			my $evidence = $hash{$ev};
@@ -875,9 +877,6 @@ while ( $sequence_object->read() ) {
 				
 				my $locus_tag;
 				
-				print $LOG "\nlocus_tag\t-\t".$conclusion->{locus_tag}."\n";
-				
-				#conclusão não esta retornando locus_tag 
 				if ( $conclusion->{locus_tag} ) {
 					$locus_tag = $conclusion->{locus_tag};
 				}
