@@ -160,7 +160,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-gene-ids-descriptions-gene-id", "Gene ID: ", ""),
         ("search-database-gene-ids-descriptions-gene-description", "Description: ", ""),
         ("search-database-gene-ids-descriptions-gene-excluding", "Excluding: ", ""),
-        ("search-database-gene-ids-descriptions-gene-individually", "Individually?", ""),
+        ("search-database-gene-ids-descriptions-gene-match-all", "Match all terms", ""),
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
@@ -343,7 +343,8 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("help_5-10-list-5", "All ribosomal binding sites", ""),
         ("help_6-0-paragraph", "Linking to GBrowse is still not implemented, therefore some links will currently not work.", ""),
         ("help_6-1-paragraph", "Some files still not present for download.", ""),
-        ("help_6-2-paragraph", "To be added...", "");
+        ("help_6-2-paragraph", "To be added...", ""),
+        ("result-warning-contigs", "Stretch not exist", "");
         
 			INSERT INTO TEXTS(tag, value) VALUES ("_comment", "This is a example of the texts that will be used on site,
 					the first value inside of pair of quotes is the tag name to be referenced,

@@ -48,8 +48,8 @@ __PACKAGE__->table("text");
 __PACKAGE__->add_columns("count", { data_type => "bigint", is_nullable => 1 });
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-10-13 15:50:27
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:jYahli8+nR2ZoVjE2L/Bww
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-10-18 14:49:54
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yTYNfOlGU+3hDQdDXdsOCA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

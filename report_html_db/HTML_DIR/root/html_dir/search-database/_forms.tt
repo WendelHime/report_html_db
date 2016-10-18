@@ -158,7 +158,7 @@
 		                                                    </div>
 		                                                    <div class="form-group">
 		                                                    	[% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-individually') %]
+		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-match-all') %]
 		                                                            	<div class="checkbox">
 		                                                                	<label><input type="checkbox" name="individually">[% text.value %]</label>
 		                                                                </div>

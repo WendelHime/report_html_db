@@ -50,7 +50,7 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 							tag => { 'like', 'header%' },
 							tag => 'menu',
 							tag => 'footer',
-							tag => { 'like', 'search-database%' }
+							tag => { 'like', 'result%' }
 						]
 					}
 				)
@@ -82,13 +82,24 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 			and $individually
 			and scalar(@likesDescription) > 0 )
 		{
-			push @likes, '-and' => [@likesDescription];
+			if ( scalar(@likesNoDescription) > 0 ) {
+				push @likes,
+				  '-and' => [ @likesDescription, @likesNoDescription ];
+			}
+			else {
+				push @likes, '-and' => [@likesDescription];
+			}
 		}
 		elsif ( scalar(@likesDescription) > 0 ) {
+			if ( scalar(@likesNoDescription) > 0 ) {
+				push @likes, '-and' => [@likesNoDescription];
+			}
 			push @likes, '-or' => [@likesDescription];
 		}
-		if ( scalar(@likesNoDescription) > 0 ) {
-			push @likes, '-and' => [@likesNoDescription];
+		elsif ( scalar(@likesDescription) <= 0
+			and scalar(@likesNoDescription) > 0 )
+		{
+			push @likes, '-and' => [@likesDescription]; 
 		}
 	}
 
@@ -204,7 +215,7 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 							tag => { 'like', 'header%' },
 							tag => 'menu',
 							tag => 'footer',
-							tag => { 'like', 'search-database%' }
+							tag => { 'like', 'result%' }
 						]
 					}
 				)
@@ -223,7 +234,7 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	}
 	close($FILEHANDLER);
 	if ( $start && $end ) {
-		$data = substr( $data, $start - 1, ( $end - $start ) );
+		$data = substr( $data, $start , ( $end - $start ) );
 		$c->stash->{start}     = $start;
 		$c->stash->{end}       = $end;
 		$c->stash->{hadLimits} = 1;

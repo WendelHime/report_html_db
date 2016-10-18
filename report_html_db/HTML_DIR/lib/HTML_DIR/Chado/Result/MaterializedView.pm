@@ -138,8 +138,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->add_unique_constraint("materialized_view_name_key", ["name"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-10-13 15:50:27
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:4Pnpk/cI8d+4U0J98gAFQQ
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-10-18 14:49:54
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nP850wzTnEUsUbpLiAnAVg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

@@ -496,7 +496,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-gene-ids-descriptions-gene-id", "Gene ID: ", ""),
         ("search-database-gene-ids-descriptions-gene-description", "Description: ", ""),
         ("search-database-gene-ids-descriptions-gene-excluding", "Excluding: ", ""),
-        ("search-database-gene-ids-descriptions-gene-individually", "Individually?", ""),
+        ("search-database-gene-ids-descriptions-gene-match-all", "Match all terms", ""),
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
@@ -679,7 +679,8 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("help_5-10-list-5", "All ribosomal binding sites", ""),
         ("help_6-0-paragraph", "Linking to GBrowse is still not implemented, therefore some links will currently not work.", ""),
         ("help_6-1-paragraph", "Some files still not present for download.", ""),
-        ("help_6-2-paragraph", "To be added...", "");
+        ("help_6-2-paragraph", "To be added...", ""),
+        ("result-warning-contigs", "Stretch not exist", "");
         
 SQL
 
@@ -1462,7 +1463,7 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 							tag => { 'like', 'header%' },
 							tag => 'menu',
 							tag => 'footer',
-							tag => { 'like', 'search-database%' }
+							tag => { 'like', 'result%' }
 						]
 					}
 				)
@@ -1479,14 +1480,14 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 			while ( \$geneDescription =~ /(\\S+)/g ) {
 				push \@likesDescription,
 				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "like", "\%" . \$1 . "\%" };
+				  { "like", "%" . \$1 . "%" };
 			}
 		}
 		if (\$noDescription) {
 			while ( \$noDescription =~ /(\\S+)/g ) {
 				push \@likesNoDescription,
 				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "not like", "\%" . \$1 . "\%" };
+				  { "not like", "%" . \$1 . "%" };
 			}
 		}
 
@@ -1494,13 +1495,24 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 			and \$individually
 			and scalar(\@likesDescription) > 0 )
 		{
-			push \@likes, '-and' => [\@likesDescription];
+			if ( scalar(\@likesNoDescription) > 0 ) {
+				push \@likes,
+				  '-and' => [ \@likesDescription, \@likesNoDescription ];
+			}
+			else {
+				push \@likes, '-and' => [\@likesDescription];
+			}
 		}
 		elsif ( scalar(\@likesDescription) > 0 ) {
+			if ( scalar(\@likesNoDescription) > 0 ) {
+				push \@likes, '-and' => [\@likesNoDescription];
+			}
 			push \@likes, '-or' => [\@likesDescription];
 		}
-		if ( scalar(\@likesNoDescription) > 0 ) {
-			push \@likes, '-and' => [\@likesNoDescription];
+		elsif ( scalar(\@likesDescription) <= 0
+			and scalar(\@likesNoDescription) > 0 )
+		{
+			push \@likes, '-and' => [\@likesDescription]; 
 		}
 	}
 
@@ -1616,7 +1628,7 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 							tag => { 'like', 'header%' },
 							tag => 'menu',
 							tag => 'footer',
-							tag => { 'like', 'search-database%' }
+							tag => { 'like', 'result%' }
 						]
 					}
 				)
@@ -1635,7 +1647,7 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	}
 	close(\$FILEHANDLER);
 	if ( \$start && \$end ) {
-		\$data = substr( \$data, \$start - 1, ( \$end - \$start ) );
+		\$data = substr( \$data, \$start , ( \$end - \$start ) );
 		\$c->stash->{start}     = \$start;
 		\$c->stash->{end}       = \$end;
 		\$c->stash->{hadLimits} = 1;
@@ -2984,7 +2996,7 @@ CONTENTINDEXHOME
 		                                                    </div>
 		                                                    <div class="form-group">
 		                                                    	[% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-individually') %]
+		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-match-all') %]
 		                                                            	<div class="checkbox">
 		                                                                	<label><input type="checkbox" name="individually">[% text.value %]</label>
 		                                                                </div>
@@ -3818,26 +3830,38 @@ CONTENTINDEXSEARCHDATABASE
 					</div>
 		    	[% END %]
 	    	[% CASE 1 %]
-	    		<div class="panel panel-default">
-					<div class="panel-heading">
-						<div class="panel-title">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
-							[% IF hadLimits %]
-								from [% start %] to [% end %] of 
-							[% END %]
-							[% sequence.name %]
-							[% IF hadReverseComplement %]
-								, reverse complemented
-							[% END %]
-							)</a>
+	    		[% IF contig %]
+		    		<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="panel-title">
+								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
+								[% IF hadLimits %]
+									from [% start %] to [% end %] of 
+								[% END %]
+								[% sequence.name %]
+								[% IF hadReverseComplement %]
+									, reverse complemented
+								[% END %]
+								)</a>
+							</div>
+						</div>
+						<div id="[% sequence.id %]" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div class="sequence">
+									[% contig %]
+								</div>
+							</div>
 						</div>
 					</div>
-					<div id="[% sequence.id %]" class="panel-collapse collapse">
-						<div class="panel-body">
-							[% contig %]
-						</div>
+				[% ELSE %]
+					<div class="alert alert-danger">
+						[% FOREACH text IN texts %]
+							[% IF text.tag == 'result-warning-contigs' %]
+								[% text.value %]
+							[% END %]
+						[% END %]
 					</div>
-				</div>
+				[% END %]
 	    [% END %]
     </div>
 </div>

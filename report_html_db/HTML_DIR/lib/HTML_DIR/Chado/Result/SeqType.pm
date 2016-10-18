@@ -48,8 +48,8 @@ __PACKAGE__->table("seq_type");
 __PACKAGE__->add_columns("cvterm_id", { data_type => "integer", is_nullable => 1 });
 
 
-# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-10-13 15:50:27
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:DCAqw9JqSwA6Pk/aQ8OZmw
+# Created by DBIx::Class::Schema::Loader v0.07045 @ 2016-10-18 14:49:54
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:w/5CG3cEPbofZu4d613v1g
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
