@@ -248,7 +248,27 @@ __PACKAGE__->has_many(
 	{ cascade_copy => 0, cascade_delete => 0 },
 );
 
+__PACKAGE__->has_many(
+	"feature_relationship_featureloc_subject_feature",
+	"HTML_DIR::Chado::Result::Featureloc",
+	{
+		"foreign.feature_id" => "self.subject_id",
+	},
+	{ cascade_copy => 0, cascade_delete => 0 },
+);
+
+__PACKAGE__->has_many(
+	"feature_relationship_analysis_feature_feature_object",
+	"HTML_DIR::Chado::Result::Analysisfeature",
+	{
+		"foreign.feature_id" => "self.object_id",
+	},
+	{ cascade_copy => 0, cascade_delete => 0 },
+);
+
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+
 
 __PACKAGE__->meta->make_immutable;
 1;

@@ -99,7 +99,7 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 		elsif ( scalar(@likesDescription) <= 0
 			and scalar(@likesNoDescription) > 0 )
 		{
-			push @likes, '-and' => [@likesDescription]; 
+			push @likes, '-and' => [@likesDescription];
 		}
 	}
 
@@ -153,11 +153,13 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 			)
 		]
 	);
+
 	$c->stash->{type_search}       = 0;
 	$c->stash->{hadGlobal}         = 0;
 	$c->stash->{hadSearchDatabase} = 1;
 	$c->stash( template => 'html_dir/search-database/result.tt' );
 }
+
 =head2 encodingCorrection
 
 Method used to correct encoding strings come from SQLite
@@ -234,7 +236,7 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	}
 	close($FILEHANDLER);
 	if ( $start && $end ) {
-		$data = substr( $data, $start , ( $end - $start ) );
+		$data = substr( $data, $start, ( $end - $start ) );
 		$c->stash->{start}     = $start;
 		$c->stash->{end}       = $end;
 		$c->stash->{hadLimits} = 1;
@@ -257,12 +259,204 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	$c->stash( template => 'html_dir/search-database/result.tt' );
 }
 
+use base 'Catalyst::Controller::REST';
+BEGIN { extends 'Catalyst::Controller::REST'; }
+sub getGeneBasics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+=head2 getGeneBasics
+
+Method used to return basic data of genes from database: the beginning position from sequence, final position from the sequence, type, name
+
+=cut
+
+sub getGeneBasics_GET {
+	my ( $self, $c, $id ) = @_;
+	
+	#verify if the id exist and set
+	if ( !$id and defined $c->request->param("id") ) {
+		$id = $c->request->param("id");
+	}
+
+	#get data from db based on id
+	my $resultSet = $c->model('Chado::Feature')->search(
+		{
+			'type.name'                    => 'based_on',
+			'type_2.name'                  => 'locus_tag',
+			'type_3.name'                  => 'tag',
+			'type_4.name'                  => 'pipeline_id',
+			'featureloc_featureprop.value' => '4249',
+			'me.feature_id'                => "$id"
+		},
+		{
+			join => [
+				'feature_relationship_objects' => {
+					'feature_relationship_objects' => {
+						'type' => {'feature_relationships_subject'},
+						'feature_relationship_props_subject_feature' =>
+						  {'type'},
+						'feature_relationship_props_subject_feature' => {'type'}
+					}
+				},
+				'featureprops' => {
+					'featureprops' => {'type'}
+				},
+				'featureloc_features' => {
+					'featureloc_features' => {
+						'featureloc_featureprop' => {'type'},
+						'srcfeature'
+					}
+				}
+			],
+			select => [
+				qw/ featureloc_features_2.fstart featureloc_features_2.fend featureprops_2.value srcfeature.uniquename /
+			],
+			as       => [qw/ residues seqlen name uniquename /],
+			order_by => {
+				-asc => [qw/ feature_relationship_props_subject_feature.value /]
+			},
+			distinct => 1
+		}
+	);
+
+	#initializing list of results
+	my @list = ();
+
+	#based on results
+	#add in list hash where will had the data
+	while(my $feature = $resultSet->next) {
+		my %hash = ();
+		$hash{'fstart'} = $feature->residues;
+		$hash{'fend'} = $feature->seqlen;
+		$hash{'value'} = $feature->name;
+		$hash{'uniquename'} = $feature->uniquename;
+		push( @list, \%hash );
+	}
+	
+	#defining the type of return
+	$self->status_ok( $c, entity => @list );
+}
+
+=head2 getSubsequence
+
+Method used to get subsequence stretch of gene, returning the sequence, had to return in a json!
+
+=cut
+
+sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(4) {
+	my ( $self, $c, $contig, $start, $end, $type ) = @_;
+	if ( !$contig and defined $c->request->param("contig") ) {
+		$contig = $c->request->param("contig");
+	}
+	if ( !$start and defined $c->request->param("start") ) {
+		$start = $c->request->param("start");
+	}
+	if ( !$end and defined $c->request->param("end") ) {
+		$end = $c->request->param("end");
+	}
+	if ( !$type and defined $c->request->param("type") ) {
+		$type = $c->request->param("type");
+	}
+	my $for          = $end - $start + 1;
+	my @searchResult = $c->model('Chado::Feature')->search(
+		{
+			'uniquename' => "$contig"
+		},
+		{
+			select => [ { SUBSTRING => [ 'residues', "$start", "$for" ] } ],
+			as => ['residues']
+		}
+	);
+
+	$c->stash( template => 'html_dir/search-database/result.tt' );
+
+	#I need just one result, so in the end, return sequence
+	my $feature  = $searchResult[0];
+	my $sequence = $feature->{residues};
+	if (   $sequence !~ /TAA$/i
+		&& $sequence !~ /TAG$/i
+		&& $sequence !~ /TGA$/i
+		&& $type eq 'CDS' )
+	{
+		$sequence = reverseComplement($sequence);
+	}
+	return formatSequence($sequence);
+}
+
+=head2 ncRNA_desc  
+
+Method used to return nc rna description
+
+=cut
+
+sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) {
+	my ( $self, $c, $feature ) = @_;
+	if ( !$feature and defined $c->request->param("feature") ) {
+		$feature = $c->request->param("feature");
+	}
+
+	my @searchResult = $c->model('Chado::FeatureRelationship')->search(
+		{
+			'type.name'                    => 'interval',
+			'type_2.name'                  => 'pipeline_id',
+			'type_3.name'                  => 'target_description',
+			'featureloc_featureprop.value' => '4249',
+			'analysis.program'             => 'annotation_infernal.pl',
+			'me.object_id'                 => "$feature",
+		},
+		{
+			join => [
+				'type',
+				'feature_relationship_analysis_feature_feature_object' => {
+					'feature_relationship_analysis_feature_feature_object' =>
+					  {'analysis'}
+				},
+				'feature_relationship_featureloc_subject_feature' => {
+					'feature_relationship_featureloc_subject_feature' =>
+					  {'srcfeature'},
+					'feature_relationship_featureloc_subject_feature' =>
+					  { 'featureloc_featureprop' => {'type'} }
+				},
+				##Erro de duplicação nas propriedades
+				'feature_relationship_props_subject_feature' => {
+					'feature_relationship_props_subject_feature' => {'type'}
+				},
+			],
+			select => [
+				qw/me.object_id feature_relationship_props_subject_feature_2.value/
+			],
+			as       => [qw/ object_id value /],
+			order_by => {
+				-asc =>
+				  [qw/ feature_relationship_props_subject_feature_2.value /]
+			},
+			distinct => 1
+		}
+	);
+
+	$c->stash( template => 'html_dir/search-database/result.tt' );
+
+	return $searchResult[0];
+}
+
+=head2 reverseComplement
+
+Method used to return the reverse complement of a sequence
+
+=cut
+
 sub reverseComplement {
 	my ($sequence) = @_;
 	my $reverseComplement = reverse($sequence);
 	$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
 	return $reverseComplement;
 }
+
+=head formatSequence
+
+Method used to format sequence
+
+=cut
 
 sub formatSequence {
 	my ( $sequence, $block ) = @_;
