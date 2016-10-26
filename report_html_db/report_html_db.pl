@@ -364,7 +364,7 @@ CREATE TABLE COMPONENTS(
 );
 
 CREATE TABLE SEQUENCES(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	id INTEGER PRIMARY KEY NOT NULL,
 	name VARCHAR(2000),
 	filepath VARCHAR(2000)
 );
@@ -840,8 +840,8 @@ while ( $sequence_object->read() ) {
 
 #	print $LOG "\n$name\n$bases\n\n";
 
-	$scriptSQL .=
-"\nINSERT INTO SEQUENCES(name, filepath) VALUES ('$name', '$fasta_dir/$name.fasta');\n";
+	$scriptSQL .='+'
+"\nINSERT INTO SEQUENCES(id, name, filepath) VALUES (".$sequence_object->{sequence_id}.", '$name', '$fasta_dir/$name.fasta');\n";
 
 #    my $ann_file = "annotations/".$name;
 # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias

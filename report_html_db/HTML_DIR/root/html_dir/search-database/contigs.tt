@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<div class="panel panel-default" id="result">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
+			[% IF hadLimits %]
+				from [% start %] to [% end %] of 
+			[% END %]
+			[% sequence.name %]
+			[% IF hadReverseComplement %]
+				, reverse complemented
+			[% END %]
+			)</a>
+		</div>
+	</div>
+	<div id="[% sequence.id %]" class="panel-collapse collapse">
+		<div class="panel-body">
+			<div class="sequence">
+				[% contig %]
+			</div>
+		</div>
+	</div>
+</div>

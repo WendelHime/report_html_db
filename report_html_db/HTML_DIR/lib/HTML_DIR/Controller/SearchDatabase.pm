@@ -16,6 +16,11 @@ Catalyst Controller.
 
 =cut
 
+sub getHTMLResultContig : Path("getHTMLResultContig") : Args(0) {
+	my ( $self, $c ) = @_;
+
+}
+
 =head2 searchGene
 
 Method used to search on database genes
@@ -183,13 +188,19 @@ sub encodingCorrection {
 	return @texts;
 }
 
+use base 'Catalyst::Controller::REST';
+BEGIN { extends 'Catalyst::Controller::REST'; }
+
 =head2 searchContig
 
 Method used to realize search by contigs, optional return a stretch or a reverse complement
 
 =cut
 
-sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
+sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) :
+  ActionClass('REST') { }
+
+sub searchContig_GET {
 	my ( $self, $c, $contig, $start, $end, $reverseComplement ) = @_;
 	if ( !$contig and defined $c->request->param("contig") ) {
 		$contig = $c->request->param("contig");
@@ -205,27 +216,11 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	{
 		$reverseComplement = $c->request->param("revCompContig");
 	}
+
 	use File::Basename;
-	$c->stash->{titlePage} = 'Search contig';
-	$c->stash( currentPage => 'search-database' );
-	$c->stash(
-		texts => [
-			encodingCorrection(
-				$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'result%' }
-						]
-					}
-				)
-			)
-		]
-	);
 	my $data     = "";
 	my $sequence = $c->model('Basic::Sequence')->find($contig);
+
 	open( my $FILEHANDLER,
 		"<", dirname(__FILE__) . "/../../../root/" . $sequence->filepath );
 
@@ -235,6 +230,7 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 		}
 	}
 	close($FILEHANDLER);
+
 	if ( $start && $end ) {
 		$data = substr( $data, $start, ( $end - $start ) );
 		$c->stash->{start}     = $start;
@@ -250,29 +246,38 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 		my $line = substr( $data, $i, 60 );
 		$result .= "$line<br />";
 	}
-	$c->stash->{type_search}       = 1;
-	$c->stash->{hadGlobal}         = 0;
-	$c->stash->{hadSearchDatabase} = 1;
 
-	$c->stash->{sequence} = $sequence;
-	$c->stash->{contig}   = $result;
-	$c->stash( template => 'html_dir/search-database/result.tt' );
+	my @list = ();
+	my %hash = ();
+	$hash{'geneID'} = $sequence->id;
+	$hash{'gene'}   = $sequence->name;
+	$hash{'contig'} = $result;
+
+	open( $FILEHANDLER, "<",
+		dirname(__FILE__)
+		  . "/../../../root/html_dir/search-database/contigs.tt" );
+
+	my $content = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+
+	$hash{'html'} = $content;
+	push @list, \%hash;
+	$self->status_ok( $c, entity => @list );
+	return @list;
 }
 
-use base 'Catalyst::Controller::REST';
-BEGIN { extends 'Catalyst::Controller::REST'; }
 sub getGeneBasics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(1) :
   ActionClass('REST') { }
 
 =head2 getGeneBasics
-
 Method used to return basic data of genes from database: the beginning position from sequence, final position from the sequence, type, name
+return a list of hash containing the basic data
 
 =cut
 
 sub getGeneBasics_GET {
 	my ( $self, $c, $id ) = @_;
-	
+
 	#verify if the id exist and set
 	if ( !$id and defined $c->request->param("id") ) {
 		$id = $c->request->param("id");
@@ -324,17 +329,19 @@ sub getGeneBasics_GET {
 
 	#based on results
 	#add in list hash where will had the data
-	while(my $feature = $resultSet->next) {
+	while ( my $feature = $resultSet->next ) {
 		my %hash = ();
-		$hash{'fstart'} = $feature->residues;
-		$hash{'fend'} = $feature->seqlen;
-		$hash{'value'} = $feature->name;
+		$hash{'fstart'}     = $feature->residues;
+		$hash{'fend'}       = $feature->seqlen;
+		$hash{'value'}      = $feature->name;
 		$hash{'uniquename'} = $feature->uniquename;
 		push( @list, \%hash );
 	}
-	
+
 	#defining the type of return
 	$self->status_ok( $c, entity => @list );
+
+	return @list;
 }
 
 =head2 getSubsequence
@@ -389,13 +396,16 @@ Method used to return nc rna description
 
 =cut
 
-sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) {
+sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub ncRNA_desc_GET {
 	my ( $self, $c, $feature ) = @_;
 	if ( !$feature and defined $c->request->param("feature") ) {
 		$feature = $c->request->param("feature");
 	}
 
-	my @searchResult = $c->model('Chado::FeatureRelationship')->search(
+	my $resultSet = $c->model('Chado::FeatureRelationship')->search(
 		{
 			'type.name'                    => 'interval',
 			'type_2.name'                  => 'pipeline_id',
@@ -417,7 +427,6 @@ sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) {
 					'feature_relationship_featureloc_subject_feature' =>
 					  { 'featureloc_featureprop' => {'type'} }
 				},
-				##Erro de duplicação nas propriedades
 				'feature_relationship_props_subject_feature' => {
 					'feature_relationship_props_subject_feature' => {'type'}
 				},
@@ -433,10 +442,18 @@ sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) {
 			distinct => 1
 		}
 	);
+	my @list = ();
+	while ( my $result = $resultSet->next ) {
+		my %hash = ();
+		$hash{'object_id'} = $result->object_id;
+		$hash{'value'}     = $result->value;
+		push @list, \%hash;
+	}
+	$self->status_ok( $c, entity => @list );
 
-	$c->stash( template => 'html_dir/search-database/result.tt' );
+	#	$c->stash( template => 'html_dir/search-database/result.tt' );
 
-	return $searchResult[0];
+	return @list;
 }
 
 =head2 reverseComplement

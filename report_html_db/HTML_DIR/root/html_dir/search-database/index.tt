@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<input type="button" id="back" value="Back" class="btn btn-default btn-sm">
+    		</div>
+    	</div
         [% INCLUDE 'html_dir/search-database/_forms.tt' %]
     </div>
 </div>
+<!-- CONTENT-WRAPPER SECTION END-->
 <script>
     $("#parentCollapseOne").click(function ()
     {
@@ -31,6 +37,7 @@
         $("#parentCollapseThree").addClass("panel-primary");
         $("#parentCollapseOne").addClass("panel-default");
         $("#parentCollapseTwo").addClass("panel-default");
-    });
+    });    
 </script>
 
+<script src="/assets/js/action.js"></script>
