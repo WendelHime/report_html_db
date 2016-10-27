@@ -324,3 +324,11 @@ footer {
 .sequence {
 	font-family: monospace;
 }
+
+#back {
+	margin-bottom: 20px;
+}
+
+.errors {
+	margin-top: 20px;
+}

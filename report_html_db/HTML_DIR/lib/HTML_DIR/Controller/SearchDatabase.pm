@@ -16,10 +16,8 @@ Catalyst Controller.
 
 =cut
 
-sub getHTMLResultContig : Path("getHTMLResultContig") : Args(0) {
-	my ( $self, $c ) = @_;
-
-}
+use base 'Catalyst::Controller::REST';
+BEGIN { extends 'Catalyst::Controller::REST'; }
 
 =head2 searchGene
 
@@ -27,12 +25,18 @@ Method used to search on database genes
 
 =cut
 
-sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
+sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) :
+  ActionClass('REST') { }
+
+sub searchGene_GET {
 	my ( $self, $c, $geneID, $geneDescription, $noDescription, $individually )
 	  = @_;
 
 	if ( !$geneID and defined $c->request->param("geneID") ) {
 		$geneID = $c->request->param("geneID");
+	}
+	else {
+		$geneID = "";
 	}
 	if ( !$geneDescription and defined $c->request->param("geneDesc") ) {
 		$geneDescription = $c->request->param("geneDesc");
@@ -43,25 +47,6 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 	if ( !$individually and defined $c->request->param("individually") ) {
 		$individually = $c->request->param("individually");
 	}
-
-	$c->stash->{titlePage} = 'Search gene';
-	$c->stash( currentPage => 'search-database' );
-	$c->stash(
-		texts => [
-			encodingCorrection(
-				$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'result%' }
-						]
-					}
-				)
-			)
-		]
-	);
 
 	my @likes = ();
 
@@ -108,61 +93,79 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 		}
 	}
 
-	$c->stash(
-		searchResult => [
-			$c->model('Chado::Feature')->search(
-				{
-					'type.name'                    => 'locus_tag',
-					'type_2.name'                  => 'based_on',
-					'type_3.name'                  => 'pipeline_id',
-					'type_4.name'                  => 'description',
-					'featureloc_featureprop.value' => '4249',
-					'feature_relationship_props_subject_feature.value' =>
-					  { 'like', '%' . $geneID . '%' },
-					@likes
+	my $resultSet = $c->model('Chado::Feature')->search(
+		{
+			'type.name'                    => 'locus_tag',
+			'type_2.name'                  => 'based_on',
+			'type_3.name'                  => 'pipeline_id',
+			'type_4.name'                  => 'description',
+			'featureloc_featureprop.value' => '4249',
+			'feature_relationship_props_subject_feature.value' =>
+			  { 'like', '%' . $geneID . '%' },
+			@likes
+		},
+		{
+			join => [
+				'feature_relationship_objects' => {
+					'feature_relationship_objects' => {
+						'type' => {'feature_relationships_subject'},
+						'feature_relationship_props_subject_feature' =>
+						  {'type'},
+						'feature_relationship_props_subject_feature' => {'type'}
+					}
 				},
-				{
-					join => [
-						'feature_relationship_objects' => {
-							'feature_relationship_objects' => {
-								'type' => {'feature_relationships_subject'},
-								'feature_relationship_props_subject_feature' =>
-								  {'type'},
-								'feature_relationship_props_subject_feature' =>
-								  {'type'}
-							}
-						},
-						'featureloc_features' => {
-							'featureloc_features' => {
-								'featureloc_featureprop' => {'type'}
-							}
-						},
-						'feature_relationship_objects' => {
-							'feature_relationship_objects' => {
-								'feature_relationship_props_subject_feature' =>
-								  {'type'}
-							}
-						}
-					],
-					select => [
-						qw/ me.feature_id feature_relationship_props_subject_feature.value feature_relationship_props_subject_feature_2.value /
-					],
-					as       => [qw/ feature_id name uniquename/],
-					order_by => {
-						-asc => [
-							qw/ feature_relationship_props_subject_feature.value /
-						]
-					},
-					distinct => 1
+				'featureloc_features' => {
+					'featureloc_features' => {
+						'featureloc_featureprop' => {'type'}
+					}
+				},
+				'feature_relationship_objects' => {
+					'feature_relationship_objects' => {
+						'feature_relationship_props_subject_feature' => {'type'}
+					}
 				}
-			)
-		]
+			],
+			select => [
+				qw/ me.feature_id feature_relationship_props_subject_feature.value feature_relationship_props_subject_feature_2.value /
+			],
+			as       => [qw/ feature_id name uniquename/],
+			order_by => {
+				-asc => [qw/ feature_relationship_props_subject_feature.value /]
+			},
+			distinct => 1
+		}
 	);
 
-	$c->stash->{type_search}       = 0;
-	$c->stash->{hadGlobal}         = 0;
-	$c->stash->{hadSearchDatabase} = 1;
-	$c->stash( template => 'html_dir/search-database/result.tt' );
+	use File::Basename;
+
+	#initializing list of results
+	my @list = ();
+
+	#based on results
+	#add in list hash where will had the data
+	while ( my $feature = $resultSet->next ) {
+		my %hash = ();
+		$hash{'feature_id'} = $feature->feature_id;
+		$hash{'name'}       = $feature->name;
+		$hash{'uniquename'} = $feature->uniquename;
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/gene.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+
+		$hash{'html'} = $content;
+		push @list, \%hash;
+	}
+
+	#defining the type of return
+	$self->status_ok( $c, entity => \@list );
+
+	return \@list;
 }
 
 =head2 encodingCorrection
@@ -187,9 +190,6 @@ sub encodingCorrection {
 	}
 	return @texts;
 }
-
-use base 'Catalyst::Controller::REST';
-BEGIN { extends 'Catalyst::Controller::REST'; }
 
 =head2 searchContig
 

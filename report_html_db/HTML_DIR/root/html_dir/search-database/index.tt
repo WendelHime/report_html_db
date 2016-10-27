@@ -4,6 +4,7 @@
     	<div class="row">
     		<div class="col-md-12">
     			<input type="button" id="back" value="Back" class="btn btn-default btn-sm">
+    			<a class="collapsed result-panel-title" id="test" data-toggle="collapse" data-parent="#accordion">123</a>
     		</div>
     	</div
         [% INCLUDE 'html_dir/search-database/_forms.tt' %]

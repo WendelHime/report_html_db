@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div class="panel panel-default" id="result">
+<div class="panel panel-default result">
 	<div class="panel-heading">
 		<div class="panel-title">
 			<a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
