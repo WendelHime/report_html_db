@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#evidence-[% result.componentName %]">[% result.descriptionComponent %]</a>
+		</div>
+	</div>
+	<div id="evidence-[% result.componentName %]" class="panel-body collapse">
+	</div>
+</div>

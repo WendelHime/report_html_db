@@ -318,7 +318,8 @@ sub getGeneBasics_GET {
 			],
 			as       => [qw/ residues seqlen name uniquename /],
 			order_by => {
-				-asc => [qw/ feature_relationship_props_subject_feature.value /]
+				'-asc' =>
+				  [qw/ feature_relationship_props_subject_feature.value /]
 			},
 			distinct => 1
 		}
@@ -335,6 +336,18 @@ sub getGeneBasics_GET {
 		$hash{'fend'}       = $feature->seqlen;
 		$hash{'value'}      = $feature->name;
 		$hash{'uniquename'} = $feature->uniquename;
+
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/geneBasics.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+
+		$hash{'html'} = $content;
 		push( @list, \%hash );
 	}
 
@@ -350,44 +363,68 @@ Method used to get subsequence stretch of gene, returning the sequence, had to r
 
 =cut
 
-sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(4) {
+sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub getSubsequence_GET {
 	my ( $self, $c, $contig, $start, $end, $type ) = @_;
 	if ( !$contig and defined $c->request->param("contig") ) {
 		$contig = $c->request->param("contig");
 	}
-	if ( !$start and defined $c->request->param("start") ) {
-		$start = $c->request->param("start");
-	}
-	if ( !$end and defined $c->request->param("end") ) {
-		$end = $c->request->param("end");
-	}
-	if ( !$type and defined $c->request->param("type") ) {
-		$type = $c->request->param("type");
-	}
-	my $for          = $end - $start + 1;
-	my @searchResult = $c->model('Chado::Feature')->search(
-		{
-			'uniquename' => "$contig"
-		},
-		{
-			select => [ { SUBSTRING => [ 'residues', "$start", "$for" ] } ],
-			as => ['residues']
+
+	#	if ( !$start and defined $c->request->param("start") ) {
+	#		$start = $c->request->param("start");
+	#	}
+	#	if ( !$end and defined $c->request->param("end") ) {
+	#		$end = $c->request->param("end");
+	#	}
+	#	if ( !$type and defined $c->request->param("type") ) {
+	#		$type = $c->request->param("type");
+	#	}
+	#	my $for          = $end - ($start + 1);
+	#	my @searchResult = $c->model('Chado::Feature')->search(
+	#		{
+	#			'uniquename' => "$contig"
+	#		},
+	#		{
+	#			select => [ { SUBSTRING => [ 'residues', "$start", "$for" ] } ],
+	#			as => ['residues']
+	#		}
+	#	);
+	#
+	#	#I need just one result, so in the end, return sequence
+	#	my $feature  = $searchResult[0];
+	#	my $sequence = $feature->{residues};
+	#	if (   $sequence !~ /TAA$/i
+	#		&& $sequence !~ /TAG$/i
+	#		&& $sequence !~ /TGA$/i
+	#		&& $type eq 'CDS' )
+	#	{
+	#		$sequence = reverseComplement($sequence);
+	#	}
+
+	open( my $FILEHANDLER,
+		"<",
+		dirname(__FILE__) . "/../../../root/orfs_aa/" . $contig . ".fasta" );
+
+	my $content = "";
+
+	for my $line (<$FILEHANDLER>) {
+		if ( !( $line =~ /^>\w+\n$/g ) ) {
+			$line =~ s/\n/<br \/>/g;
+			$content .= $line;
 		}
-	);
-
-	$c->stash( template => 'html_dir/search-database/result.tt' );
-
-	#I need just one result, so in the end, return sequence
-	my $feature  = $searchResult[0];
-	my $sequence = $feature->{residues};
-	if (   $sequence !~ /TAA$/i
-		&& $sequence !~ /TAG$/i
-		&& $sequence !~ /TGA$/i
-		&& $type eq 'CDS' )
-	{
-		$sequence = reverseComplement($sequence);
 	}
-	return formatSequence($sequence);
+	close($FILEHANDLER);
+	open( $FILEHANDLER, "<",
+		dirname(__FILE__)
+		  . "/../../../root/html_dir/search-database/sequence.tt" );
+
+	my $html = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+	$self->status_ok( $c,
+		entity => { "sequence" => $content, "html" => $html } );
+
 }
 
 =head2 ncRNA_desc  
@@ -456,6 +493,201 @@ sub ncRNA_desc_GET {
 	return @list;
 }
 
+=head2
+
+Method used to return subevidences based on feature id
+
+=cut
+
+sub subEvidences : Path("/SearchDatabase/subEvidences") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub subEvidences_GET {
+	my ( $self, $c, $feature ) = @_;
+	if ( !$feature and defined $c->request->param("feature") ) {
+		$feature = $c->request->param("feature");
+	}
+
+	my $resultSet =
+	  $c->model('Chado::Subevidences')->search( {}, { bind => [$feature] } );
+
+	my %component_name = (
+		'annotation_interpro.pl' => 'Domain search - InterProScan',
+		'annotation_blast.pl'    => 'Similarity search - BLAST',
+		'annotation_rpsblast.pl' => 'Similarity search - RPSBLAST',
+		'annotation_phobius.pl' =>
+		  'Transmembrane domains and signal peptide search - Phobius',
+		'annotation_pathways.pl'  => 'Pathway classification - KEGG',
+		'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
+		'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
+		'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
+		'annotation_tmhmm.pl'     => 'TMHMM',
+	);
+
+	my @list = ();
+	while ( my $result = $resultSet->next ) {
+		my %hash = ();
+		$hash{subev_id}           = $result->subev_id;
+		$hash{subev_type}         = $result->subev_type;
+		$hash{subev_number}       = $result->subev_number;
+		$hash{subev_start}        = $result->subev_start;
+		$hash{subev_end}          = $result->subev_end;
+		$hash{subev_strand}       = $result->subev_strand;
+		$hash{is_obsolete}        = $result->is_obsolete;
+		$hash{program}            = $result->program;
+		$hash{descriptionProgram} = $component_name{ $hash{program} };
+		push @list, \%hash;
+	}
+	my %returnedHash = ();
+	$returnedHash{subevidences} = \@list;
+	open(
+		my $FILEHANDLER,
+		"<",
+		dirname(__FILE__)
+		  . "/../../../root/html_dir/search-database/subEvidences.tt"
+	);
+
+	my $content = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+	$returnedHash{subEvidencesHtml} = { "content" => $content };
+	open( $FILEHANDLER, "<",
+		dirname(__FILE__)
+		  . "/../../../root/html_dir/search-database/evidences.tt" );
+
+	$content = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+	$returnedHash{evidencesHtml} = { "content" => $content };
+	$self->status_ok( $c, entity => \%returnedHash );
+}
+
+sub getIntervalEvidenceProperties :
+  Path("/SearchDatabase/getIntervalEvidenceProperties") : CaptureArgs(2) :
+  ActionClass('REST') { }
+
+sub getIntervalEvidenceProperties_GET {
+	my ( $self, $c, $feature, $typeFeature ) = @_;
+	if ( !$feature and defined $c->request->param("feature") ) {
+		$feature = $c->request->param("feature");
+	}
+
+	my $resultSet = $c->model('Chado::IntervalEvidenceProperties')
+	  ->search( {}, { bind => [$feature] } );
+	my %hash = ();
+	while ( my $result = $resultSet->next ) {
+		if ( $result->key eq "anticodon" ) {
+			$hash{ $result->key } = $result->key_value;
+			$hash{codon} = reverseComplement( $result->key_value );
+		}
+		else {
+			$hash{ $result->key } = $result->key_value;
+		}
+	}
+	if ( exists $hash{intron} ) {
+		if ( $hash{intron} eq 'yes' ) {
+			$hash{coordinatesGene} = $hash{intron_start} - $hash{intron_end};
+			$hash{coordinatesGenome} =
+			  $hash{intron_start_seq} - $hash{intron_end_seq};
+			open(
+				my $FILEHANDLER,
+				"<",
+				dirname(__FILE__)
+				  . "/../../../root/html_dir/search-database/tRNABasicResultHasIntron.tt"
+			);
+
+			my $content = do { local $/; <$FILEHANDLER> };
+			close($FILEHANDLER);
+			$hash{htmlHasIntron} = $content;
+		}
+	}
+	if ( $typeFeature eq 'tRNAscan' ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/tRNABasicResult.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{htmlBasicResult} = $content;
+	}
+	elsif ( $typeFeature eq 'RNA_scan' ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/rnaScanBasicResult.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{htmlBasicResult} = $content;
+	}
+
+	$self->status_ok( $c, entity => \%hash );
+}
+
+sub getSimilarityEvidenceProperties :
+  Path("/SearchDatabase/getSimilarityEvidenceProperties") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub getSimilarityEvidenceProperties_GET {
+	my ( $self, $c, $feature ) = @_;
+	if ( !$feature and defined $c->request->param("feature") ) {
+		$feature = $c->request->param("feature");
+	}
+
+	my $resultSet = $c->model('Chado::SimilarityEvidenceProperties')
+	  ->search( {}, { bind => [$feature] } );
+	my %hash = ();
+	while ( my $result = $resultSet->next ) {
+		if ( $result->key eq "anticodon" ) {
+			$hash{ $result->key } = $result->key_value;
+			$hash{codon} = reverseComplement( $result->key_value );
+		}
+		else {
+			$hash{ $result->key } = $result->key_value;
+		}
+	}
+	$self->status_ok( $c, entity => \%hash );
+}
+
+=head2
+
+Method used to return components used
+
+=cut
+
+sub getComponents : Path("/SearchDatabase/getComponents") : Args(0) :
+  ActionClass('REST') { }
+
+sub getComponents_GET {
+	my ( $self, $c ) = @_;
+
+	my $resultSet = $c->model('Basic::Component')->search(
+		{},
+		{
+			order_by => {
+				-asc => [qw/ component /]
+			}
+		}
+	);
+
+	my @list = ();
+
+	while ( my $result = $resultSet->next ) {
+		my %hash = ();
+		$hash{id}        = $result->id;
+		$hash{name}      = $result->name;
+		$hash{component} = $result->component;
+		if ( $result->filepath ne "" ) {
+			$hash{filepath} = $result->filepath;
+		}
+		push @list, \%hash;
+	}
+	$self->status_ok( $c, entity => \@list );
+}
+
 =head2 reverseComplement
 
 Method used to return the reverse complement of a sequence
@@ -469,7 +701,7 @@ sub reverseComplement {
 	return $reverseComplement;
 }
 
-=head formatSequence
+=head2 formatSequence
 
 Method used to format sequence
 
