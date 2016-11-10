@@ -623,6 +623,20 @@ sub getIntervalEvidenceProperties_GET {
 		close($FILEHANDLER);
 		$hash{htmlBasicResult} = $content;
 	}
+	#components used
+	elsif($typeFeature eq 'annotation_interpro') {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/interproBasicResult.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{html} = $content;
+		$hash{id} = $feature;
+	}
 
 	$self->status_ok( $c, entity => \%hash );
 }
@@ -649,6 +663,18 @@ sub getSimilarityEvidenceProperties_GET {
 			$hash{ $result->key } = $result->key_value;
 		}
 	}
+	open(
+		my $FILEHANDLER,
+		"<",
+		dirname(__FILE__)
+		  . "/../../../root/html_dir/search-database/similarityBasicResult.tt"
+	);
+
+	my $content = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+	$hash{html} = $content;
+	
+	$hash{id} = $feature;
 	$self->status_ok( $c, entity => \%hash );
 }
 

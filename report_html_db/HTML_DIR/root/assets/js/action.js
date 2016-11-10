@@ -120,7 +120,8 @@ function dealDataResults(href, featureName, data) {
 		htmlContent = htmlContent.replace("[% result.fstart %]", data.fstart);
 		htmlContent = htmlContent.replace("[% result.fend %]", data.fend);
 		htmlContent = htmlContent.replace("[% result.length %]", (data.fend - data.fstart + 1));
-		var type = data.value;  
+		var type = data.value;
+		var name = data.uniquename;
 		var htmlSequence = "";
 		$.getJSON("GetSubsequence/"+featureName, "")
 		.done(
@@ -134,37 +135,85 @@ function dealDataResults(href, featureName, data) {
 					$.getJSON("subEvidences/"+href.replace("#", ""), "")
 					.done(
 						function(data) {
-							var evidence = {
-								id:0,
-								type:""
-							}
-							var component = {
-								name:"",
-								evidences: []
-							};
+							var components = new Object();
 							var componentsEvidences = new Array();
-							var counterComponentsEvidences = 0;
-							var evidences = new Array();
+							var counterComponentsEvidences = 0; 
 							for(i = 0; i < data.subevidences.length; i++) {
 								var componentName = data.subevidences[i].program.replace(".pl", "");
-								evidence.id = data.subevidences[i].subev_id
-								evidence.type = data.subevidences[i].subev_type;
-								evidences[i] = evidence;
 								
 								if($.inArray(componentName, componentsEvidences) == -1) {
-									component.name = componentName;
 									var htmlEvidence = data.evidencesHtml.content;
+									htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
 									htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
 									htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
 									htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", data.subevidences[i].descriptionProgram);
 									htmlContent += htmlEvidence;
-									componentsTypes[counterComponentsEvidences] = data.subevidences[i].subev_type;
 									componentsEvidences[counterComponentsEvidences] = componentName;
 									counterComponentsEvidences++;
 								}
+
+								if(typeof components[componentName] == 'undefined') {
+									components[componentName] = new Array();
+								} 
+								var arrayEvidences = components[componentName];
+								arrayEvidences[components[componentName].length] = { "id" : data.subevidences[i].subev_id, "type" : data.subevidences[i].subev_type };
+								components[componentName] = arrayEvidences;
 							}
+							
 							addPanelResult(href, htmlContent);
 							
+							for(var component in components) {
+								console.log(component);
+								$("#anchor-evidence-"+component).click(function() {
+									var componentTemp = this.id.replace("anchor-evidence-", "");
+									console.log(componentTemp);
+									if($("#evidence-"+componentTemp).is(":hidden")) {
+										for(i = 0; i < components[componentTemp].length; i++) {
+											var htmlSubevidence = data.subEvidencesHtml.content;
+											htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
+											htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
+											htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
+											if(components[componentTemp][i].type == "similarity") {
+												$.getJSON("/SearchDatabase/getSimilarityEvidenceProperties/"+components[componentTemp][i].id, "")
+												.done(function(data) {
+													var html = data.html;
+													html = html.replace("[% result.evalue %]", data.evalue);
+													html = html.replace("[% result.percent_id %]", data.percent_id);
+													html = html.replace("[% result.similarity %]", data.similarity);
+													html = html.replace("[% result.score %]", data.score);
+													html = html.replace("[% result.block_size %]", data.block_size);
+													addPanelResult("#subevidence-"+data.id, html);
+													console.log(data);
+												});
+											} else if(components[componentTemp][i].type == "intervals") {
+												$.getJSON("getIntervalEvidenceProperties/"+components[componentTemp][i].id+"/"+componentTemp, "")
+												.done(function(data) {
+													var html = data.html;
+													if(componentTemp == 'annotation_interpro') {
+														html = html.replace("[% result.interpro_id %]", data.interpro_id);
+														html = html.replace("[% result.interpro_id %]", data.interpro_id);
+														html = html.replace("[% result.description_interpro %]", data.description_interpro);
+														html = html.replace("[% result.DB_id %]", data.DB_id);
+														html = html.replace("[% result.DB_id %]", data.DB_id);
+														html = html.replace("[% result.DB_name %]", data.DB_name);
+														html = html.replace("[% result.description %]", data.description);
+														html = html.replace("[% result.evidence_process %]", data.evidence_process);
+														html = html.replace("[% result.evidence_function %]", data.evidence_function);
+														html = html.replace("[% result.evidence_component %]", data.evidence_component);
+														html = html.replace("[% result.score %]", data.score);
+													}
+													addPanelResult("#subevidence-"+data.id, html);
+													console.log(data);
+												});
+											}
+											addPanelResult("#evidence-"+componentTemp, htmlSubevidence);
+										}
+									} else {
+										$("#evidence-"+componentTemp).empty();
+									}
+									
+								});
+							}
 						}
 					);
 				}
@@ -185,19 +234,6 @@ function dealDataResults(href, featureName, data) {
 		 */
 		if(data.value == "CDS") {
 			
-			/**
-			 * criar arquivo para saídas de evidencia em paineis de forma padronizada, 
-			 * no ID do painel sera necessario definir nome do componente sem a extensão (pq tem '.')-id feature
-			 * saída padronizada então o método de consulta de subevidencias vai retornar 1 só html
-			 * para cada subevidencia
-			 * 		se !$("#"+id do painel do resultado).length > 0 
-			 * 			cria painel de evidencia $(id do painel do resultado) 
-			 * 		adiciona subevidencias no painel de evidencias (paineis de subevidencias)
-			 * 		on click em quada a das subevidencias ele faz consulta json get_similarity_evidence_properties
-			 * 		adiciona html dos paineis 
-			 * 
-			 * perguntar a professora sobre como pegar as propriedades dos intervalos
-			 */
 		} else if(data.value == "tRNAscan") {
 
 			$.getJSON("getIntervalEvidenceProperties/"+href.replace("#", "")+"/"+data.value, "")
@@ -285,6 +321,7 @@ function dealDataResults(href, featureName, data) {
 		$(href).addClass("collapse");
 		$(href + " .row").remove();
 		$(href + " .sequences").remove();
+		$(href + " .panel").remove();
 		$(href).hide();
 	}
 }
@@ -393,3 +430,4 @@ $(function() {
 		}
 	);
 });
+
