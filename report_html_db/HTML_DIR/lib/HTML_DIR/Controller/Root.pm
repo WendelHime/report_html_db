@@ -46,19 +46,10 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 	{
 		$feature_id = get_feature_id($c);
 	}
+	print STDERR $feature_id;
 	$c->stash(
 		targetClass => [
-			$c->model('Chado::Featureprop')->search(
-				{
-					type_id => 81525,
-					feature_id => $feature_id
-				},
-				{
-					columns => [qw/value/],
-					group_by => [qw/value/],
-					order_by => { -asc => [qw/value/]}
-				}
-			)
+			$c->model('DBI')->get_target_class(81525, $feature_id)
 		]
 	);
 	
@@ -188,15 +179,7 @@ Method used to get feature id
 =cut
 sub get_feature_id {
 	my ($c) = @_;
-	return $c->model('Chado::Feature')->search(
-		{
-			uniquename => qw/Bacteria_upload/
-		},
-		{
-			columns => qw/feature_id/,
-			rows => 1
-		}
-	)->single->get_column(qw/feature_id/);
+	return $c->model('DBI')->get_feature_id('Bacteria_upload');
 }
 
 

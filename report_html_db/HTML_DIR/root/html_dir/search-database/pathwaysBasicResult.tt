@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		Orthologous group:
+	</div>
+	<div class="col-md-9">
+		<a href="http://www.genome.jp/dbget-bin/www_bget?[% result.orthologous_group_id %]">[% result.orthologous_group_id %]</a> - [% result.orthologous_group_description %]
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Pathways:</th>
+					</tr>
+				</thead>
+				<tbody id="pathways-[% result.orthologous_group_id %]">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

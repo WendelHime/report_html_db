@@ -2,9 +2,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="panel-title">
-			<a id="anchor-evidence-[% result.componentName %]" data-toggle="collapse" data-parent="#accordion" href="#evidence-[% result.componentName %]">[% result.descriptionComponent %]</a>
+			<a id="anchor-evidence-[% result.componentName %]-[% result.id %]" data-toggle="collapse" data-parent="#accordion" href="#evidence-[% result.componentName %]-[% result.id %]">[% result.descriptionComponent %]</a>
 		</div>
 	</div>
-	<div id="evidence-[% result.componentName %]" class="panel-body collapse">
+	<div id="evidence-[% result.componentName %]-[% result.id %]" class="panel-body collapse">
 	</div>
 </div>

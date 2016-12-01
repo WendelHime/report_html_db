@@ -25,18 +25,16 @@ Method used to search on database genes
 
 =cut
 
-sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) :
+sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(5) :
   ActionClass('REST') { }
 
 sub searchGene_GET {
-	my ( $self, $c, $geneID, $geneDescription, $noDescription, $individually )
+	my ( $self, $c, $geneID, $geneDescription, $noDescription, $individually,
+		$featureId )
 	  = @_;
 
 	if ( !$geneID and defined $c->request->param("geneID") ) {
 		$geneID = $c->request->param("geneID");
-	}
-	else {
-		$geneID = "";
 	}
 	if ( !$geneDescription and defined $c->request->param("geneDesc") ) {
 		$geneDescription = $c->request->param("geneDesc");
@@ -47,125 +45,31 @@ sub searchGene_GET {
 	if ( !$individually and defined $c->request->param("individually") ) {
 		$individually = $c->request->param("individually");
 	}
-
-	my @likes = ();
-
-	if ( defined $geneDescription or defined $noDescription ) {
-		my @likesDescription   = ();
-		my @likesNoDescription = ();
-		if ($geneDescription) {
-			while ( $geneDescription =~ /(\S+)/g ) {
-				push @likesDescription,
-				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "like", "%" . $1 . "%" };
-			}
-		}
-		if ($noDescription) {
-			while ( $noDescription =~ /(\S+)/g ) {
-				push @likesNoDescription,
-				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "not like", "%" . $1 . "%" };
-			}
-		}
-
-		if (    defined $individually
-			and $individually
-			and scalar(@likesDescription) > 0 )
-		{
-			if ( scalar(@likesNoDescription) > 0 ) {
-				push @likes,
-				  '-and' => [ @likesDescription, @likesNoDescription ];
-			}
-			else {
-				push @likes, '-and' => [@likesDescription];
-			}
-		}
-		elsif ( scalar(@likesDescription) > 0 ) {
-			if ( scalar(@likesNoDescription) > 0 ) {
-				push @likes, '-and' => [@likesNoDescription];
-			}
-			push @likes, '-or' => [@likesDescription];
-		}
-		elsif ( scalar(@likesDescription) <= 0
-			and scalar(@likesNoDescription) > 0 )
-		{
-			push @likes, '-and' => [@likesDescription];
-		}
+	if ( !$featureId and defined $c->request->param("featureId") ) {
+		$featureId = $c->request->param("featureId");
 	}
-
-	my $resultSet = $c->model('Chado::Feature')->search(
-		{
-			'type.name'                    => 'locus_tag',
-			'type_2.name'                  => 'based_on',
-			'type_3.name'                  => 'pipeline_id',
-			'type_4.name'                  => 'description',
-			'featureloc_featureprop.value' => '4249',
-			'feature_relationship_props_subject_feature.value' =>
-			  { 'like', '%' . $geneID . '%' },
-			@likes
-		},
-		{
-			join => [
-				'feature_relationship_objects' => {
-					'feature_relationship_objects' => {
-						'type' => {'feature_relationships_subject'},
-						'feature_relationship_props_subject_feature' =>
-						  {'type'},
-						'feature_relationship_props_subject_feature' => {'type'}
-					}
-				},
-				'featureloc_features' => {
-					'featureloc_features' => {
-						'featureloc_featureprop' => {'type'}
-					}
-				},
-				'feature_relationship_objects' => {
-					'feature_relationship_objects' => {
-						'feature_relationship_props_subject_feature' => {'type'}
-					}
-				}
-			],
-			select => [
-				qw/ me.feature_id feature_relationship_props_subject_feature.value feature_relationship_props_subject_feature_2.value /
-			],
-			as       => [qw/ feature_id name uniquename/],
-			order_by => {
-				-asc => [qw/ feature_relationship_props_subject_feature.value /]
-			},
-			distinct => 1
-		}
-	);
 
 	use File::Basename;
+	open( my $FILEHANDLER,
+		"<",
+		dirname(__FILE__) . "/../../../root/html_dir/search-database/gene.tt" );
 
-	#initializing list of results
+	my $content = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+
 	my @list = ();
+	my %hash = ();
+	$hash{pipeline}        = 4249;
+	$hash{featureId}       = $featureId;
+	$hash{geneID}          = $geneID;
+	$hash{geneDescription} = $geneDescription;
+	$hash{noDescription}   = $noDescription;
+	$hash{individually}    = $individually;
 
-	#based on results
-	#add in list hash where will had the data
-	while ( my $feature = $resultSet->next ) {
-		my %hash = ();
-		$hash{'feature_id'} = $feature->feature_id;
-		$hash{'name'}       = $feature->name;
-		$hash{'uniquename'} = $feature->uniquename;
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/html_dir/search-database/gene.tt"
-		);
+	$self->status_ok( $c,
+		entity => $c->model('DBI')->searchGene( $content, \%hash ) );
 
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-
-		$hash{'html'} = $content;
-		push @list, \%hash;
-	}
-
-	#defining the type of return
-	$self->status_ok( $c, entity => \@list );
-
-	return \@list;
+	#	return \@list;
 }
 
 =head2 encodingCorrection
@@ -266,14 +170,14 @@ sub searchContig_GET {
 	return @list;
 }
 
-sub getGeneBasics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(1) :
-  ActionClass('REST') { }
-
 =head2 getGeneBasics
 Method used to return basic data of genes from database: the beginning position from sequence, final position from the sequence, type, name
 return a list of hash containing the basic data
 
 =cut
+
+sub getGeneBasics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(1) :
+  ActionClass('REST') { }
 
 sub getGeneBasics_GET {
 	my ( $self, $c, $id ) = @_;
@@ -283,78 +187,23 @@ sub getGeneBasics_GET {
 		$id = $c->request->param("id");
 	}
 
-	#get data from db based on id
-	my $resultSet = $c->model('Chado::Feature')->search(
-		{
-			'type.name'                    => 'based_on',
-			'type_2.name'                  => 'locus_tag',
-			'type_3.name'                  => 'tag',
-			'type_4.name'                  => 'pipeline_id',
-			'featureloc_featureprop.value' => '4249',
-			'me.feature_id'                => "$id"
-		},
-		{
-			join => [
-				'feature_relationship_objects' => {
-					'feature_relationship_objects' => {
-						'type' => {'feature_relationships_subject'},
-						'feature_relationship_props_subject_feature' =>
-						  {'type'},
-						'feature_relationship_props_subject_feature' => {'type'}
-					}
-				},
-				'featureprops' => {
-					'featureprops' => {'type'}
-				},
-				'featureloc_features' => {
-					'featureloc_features' => {
-						'featureloc_featureprop' => {'type'},
-						'srcfeature'
-					}
-				}
-			],
-			select => [
-				qw/ featureloc_features_2.fstart featureloc_features_2.fend featureprops_2.value srcfeature.uniquename /
-			],
-			as       => [qw/ residues seqlen name uniquename /],
-			order_by => {
-				'-asc' =>
-				  [qw/ feature_relationship_props_subject_feature.value /]
-			},
-			distinct => 1
-		}
+	open(
+		my $FILEHANDLER,
+		"<",
+		dirname(__FILE__)
+		  . "/../../../root/html_dir/search-database/geneBasics.tt"
 	);
 
-	#initializing list of results
-	my @list = ();
+	my $content = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER)
 
-	#based on results
-	#add in list hash where will had the data
-	while ( my $feature = $resultSet->next ) {
-		my %hash = ();
-		$hash{'fstart'}     = $feature->residues;
-		$hash{'fend'}       = $feature->seqlen;
-		$hash{'value'}      = $feature->name;
-		$hash{'uniquename'} = $feature->uniquename;
+	  ;
+	my %hash = ();
+	$hash{pipeline}   = 4249;
+	$hash{feature_id} = $id;
 
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/html_dir/search-database/geneBasics.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-
-		$hash{'html'} = $content;
-		push( @list, \%hash );
-	}
-
-	#defining the type of return
-	$self->status_ok( $c, entity => @list );
-
-	return @list;
+	$self->status_ok( $c,
+		entity => $c->model('DBI')->geneBasics( $content, \%hash ) );
 }
 
 =head2 getSubsequence
@@ -363,68 +212,74 @@ Method used to get subsequence stretch of gene, returning the sequence, had to r
 
 =cut
 
-sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(1) :
+sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(5) :
   ActionClass('REST') { }
 
 sub getSubsequence_GET {
-	my ( $self, $c, $contig, $start, $end, $type ) = @_;
+	my ( $self, $c, $type, $contig, $sequenceName, $start, $end ) = @_;
 	if ( !$contig and defined $c->request->param("contig") ) {
 		$contig = $c->request->param("contig");
 	}
-
-	#	if ( !$start and defined $c->request->param("start") ) {
-	#		$start = $c->request->param("start");
-	#	}
-	#	if ( !$end and defined $c->request->param("end") ) {
-	#		$end = $c->request->param("end");
-	#	}
-	#	if ( !$type and defined $c->request->param("type") ) {
-	#		$type = $c->request->param("type");
-	#	}
-	#	my $for          = $end - ($start + 1);
-	#	my @searchResult = $c->model('Chado::Feature')->search(
-	#		{
-	#			'uniquename' => "$contig"
-	#		},
-	#		{
-	#			select => [ { SUBSTRING => [ 'residues', "$start", "$for" ] } ],
-	#			as => ['residues']
-	#		}
-	#	);
-	#
-	#	#I need just one result, so in the end, return sequence
-	#	my $feature  = $searchResult[0];
-	#	my $sequence = $feature->{residues};
-	#	if (   $sequence !~ /TAA$/i
-	#		&& $sequence !~ /TAG$/i
-	#		&& $sequence !~ /TGA$/i
-	#		&& $type eq 'CDS' )
-	#	{
-	#		$sequence = reverseComplement($sequence);
-	#	}
-
-	open( my $FILEHANDLER,
-		"<",
-		dirname(__FILE__) . "/../../../root/orfs_aa/" . $contig . ".fasta" );
-
-	my $content = "";
-
-	for my $line (<$FILEHANDLER>) {
-		if ( !( $line =~ /^>\w+\n$/g ) ) {
-			$line =~ s/\n/<br \/>/g;
-			$content .= $line;
-		}
+	if ( !$type and defined $c->request->param("type") ) {
+		$type = $c->request->param("type");
 	}
-	close($FILEHANDLER);
-	open( $FILEHANDLER, "<",
+
+	use File::Basename;
+	open(
+		my $FILEHANDLER,
+		"<",
 		dirname(__FILE__)
-		  . "/../../../root/html_dir/search-database/sequence.tt" );
+		  . "/../../../root/html_dir/search-database/sequence.tt"
+	);
 
 	my $html = do { local $/; <$FILEHANDLER> };
+	my $content = "";
 	close($FILEHANDLER);
+
+	if ( $type ne "CDS" ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/seq/"
+			  . $sequenceName
+			  . ".fasta"
+		);
+		for my $line (<$FILEHANDLER>) {
+			if ( !( $line =~ /^>\w+\n$/g ) ) {
+				$content .= $line;
+			}
+		}
+
+		close($FILEHANDLER);
+
+		if ( $start && $end ) {
+			$content = substr( $content, $start, ( $end - ( $start + 1 ) ) );
+		}
+		my $result = "";
+		for ( my $i = 0 ; $i < length($content) ; $i += 60 ) {
+			my $line = substr( $content, $i, 60 );
+			$result .= "$line<br />";
+		}
+		$content = $result;
+	}
+	else {
+		open( $FILEHANDLER, "<",
+			    dirname(__FILE__)
+			  . "/../../../root/orfs_aa/"
+			  . $contig
+			  . ".fasta" );
+
+		for my $line (<$FILEHANDLER>) {
+			if ( !( $line =~ /^>\w+\n$/g ) ) {
+				$content .= $line;
+			}
+		}
+		close($FILEHANDLER);
+		$content =~ s/\n/<br \/>/g;
+	}
 	$self->status_ok( $c,
 		entity => { "sequence" => $content, "html" => $html } );
-
 }
 
 =head2 ncRNA_desc  
@@ -441,56 +296,8 @@ sub ncRNA_desc_GET {
 	if ( !$feature and defined $c->request->param("feature") ) {
 		$feature = $c->request->param("feature");
 	}
-
-	my $resultSet = $c->model('Chado::FeatureRelationship')->search(
-		{
-			'type.name'                    => 'interval',
-			'type_2.name'                  => 'pipeline_id',
-			'type_3.name'                  => 'target_description',
-			'featureloc_featureprop.value' => '4249',
-			'analysis.program'             => 'annotation_infernal.pl',
-			'me.object_id'                 => "$feature",
-		},
-		{
-			join => [
-				'type',
-				'feature_relationship_analysis_feature_feature_object' => {
-					'feature_relationship_analysis_feature_feature_object' =>
-					  {'analysis'}
-				},
-				'feature_relationship_featureloc_subject_feature' => {
-					'feature_relationship_featureloc_subject_feature' =>
-					  {'srcfeature'},
-					'feature_relationship_featureloc_subject_feature' =>
-					  { 'featureloc_featureprop' => {'type'} }
-				},
-				'feature_relationship_props_subject_feature' => {
-					'feature_relationship_props_subject_feature' => {'type'}
-				},
-			],
-			select => [
-				qw/me.object_id feature_relationship_props_subject_feature_2.value/
-			],
-			as       => [qw/ object_id value /],
-			order_by => {
-				-asc =>
-				  [qw/ feature_relationship_props_subject_feature_2.value /]
-			},
-			distinct => 1
-		}
-	);
-	my @list = ();
-	while ( my $result = $resultSet->next ) {
-		my %hash = ();
-		$hash{'object_id'} = $result->object_id;
-		$hash{'value'}     = $result->value;
-		push @list, \%hash;
-	}
-	$self->status_ok( $c, entity => @list );
-
-	#	$c->stash( template => 'html_dir/search-database/result.tt' );
-
-	return @list;
+	my $pipeline = 4249;
+	$self->status_ok( $c, entity => $c->model('DBI')->ncRNA_description( $feature, $pipeline ) );
 }
 
 =head2
@@ -507,39 +314,9 @@ sub subEvidences_GET {
 	if ( !$feature and defined $c->request->param("feature") ) {
 		$feature = $c->request->param("feature");
 	}
-
-	my $resultSet =
-	  $c->model('Chado::Subevidences')->search( {}, { bind => [$feature] } );
-
-	my %component_name = (
-		'annotation_interpro.pl' => 'Domain search - InterProScan',
-		'annotation_blast.pl'    => 'Similarity search - BLAST',
-		'annotation_rpsblast.pl' => 'Similarity search - RPSBLAST',
-		'annotation_phobius.pl' =>
-		  'Transmembrane domains and signal peptide search - Phobius',
-		'annotation_pathways.pl'  => 'Pathway classification - KEGG',
-		'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
-		'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
-		'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
-		'annotation_tmhmm.pl'     => 'TMHMM',
-	);
-
-	my @list = ();
-	while ( my $result = $resultSet->next ) {
-		my %hash = ();
-		$hash{subev_id}           = $result->subev_id;
-		$hash{subev_type}         = $result->subev_type;
-		$hash{subev_number}       = $result->subev_number;
-		$hash{subev_start}        = $result->subev_start;
-		$hash{subev_end}          = $result->subev_end;
-		$hash{subev_strand}       = $result->subev_strand;
-		$hash{is_obsolete}        = $result->is_obsolete;
-		$hash{program}            = $result->program;
-		$hash{descriptionProgram} = $component_name{ $hash{program} };
-		push @list, \%hash;
-	}
+	
 	my %returnedHash = ();
-	$returnedHash{subevidences} = \@list;
+	$returnedHash{subevidences} = $c->model('DBI')->subevidences( $feature);
 	open(
 		my $FILEHANDLER,
 		"<",
@@ -560,6 +337,12 @@ sub subEvidences_GET {
 	$self->status_ok( $c, entity => \%returnedHash );
 }
 
+=head2
+
+Method used to return properties of evidences that the type is interval and basic data of everything isn't CDS
+
+=cut
+
 sub getIntervalEvidenceProperties :
   Path("/SearchDatabase/getIntervalEvidenceProperties") : CaptureArgs(2) :
   ActionClass('REST') { }
@@ -570,18 +353,8 @@ sub getIntervalEvidenceProperties_GET {
 		$feature = $c->request->param("feature");
 	}
 
-	my $resultSet = $c->model('Chado::IntervalEvidenceProperties')
-	  ->search( {}, { bind => [$feature] } );
-	my %hash = ();
-	while ( my $result = $resultSet->next ) {
-		if ( $result->key eq "anticodon" ) {
-			$hash{ $result->key } = $result->key_value;
-			$hash{codon} = reverseComplement( $result->key_value );
-		}
-		else {
-			$hash{ $result->key } = $result->key_value;
-		}
-	}
+	my %hash           = ();
+	$hash{properties} = $c->model('DBI')->intervalEvidenceProperties($feature);
 	if ( exists $hash{intron} ) {
 		if ( $hash{intron} eq 'yes' ) {
 			$hash{coordinatesGene} = $hash{intron_start} - $hash{intron_end};
@@ -623,8 +396,21 @@ sub getIntervalEvidenceProperties_GET {
 		close($FILEHANDLER);
 		$hash{htmlBasicResult} = $content;
 	}
+	elsif ( $typeFeature eq 'rRNA_prediction' ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/rRNAPredictionBasicResult.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{htmlBasicResult} = $content;
+	}
+
 	#components used
-	elsif($typeFeature eq 'annotation_interpro') {
+	elsif ( $typeFeature eq 'annotation_interpro' ) {
 		open(
 			my $FILEHANDLER,
 			"<",
@@ -635,11 +421,143 @@ sub getIntervalEvidenceProperties_GET {
 		my $content = do { local $/; <$FILEHANDLER> };
 		close($FILEHANDLER);
 		$hash{html} = $content;
+		$hash{id}   = $feature;
+	}
+	elsif ( $typeFeature eq 'annotation_tmhmm' ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/tmhmmBasicResult.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{html} = $content;
+		$hash{id}   = $feature;
+	}
+	elsif ( $typeFeature eq 'annotation_tcdb' ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/tcdbBasicResult.tt"
+		);
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{html} = $content;
+		$hash{id}   = $feature;
+	}
+	elsif ( $typeFeature eq 'annotation_pathways' ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/pathwaysBasicResult.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+
+		my @pathways        = ();
+		my @ids             = ();
+		my @descriptions    = ();
+		my @classifications = ();
+		for ( my $i = 0 ; $i < scalar @{ $hash{properties} } ; $i++ ) {
+			while ( $hash{properties}[$i]->{metabolic_pathway_classification} =~
+				/([\w\s]+)/g )
+			{
+				push @classifications, $1;
+			}
+			while ( $hash{properties}[$i]->{metabolic_pathway_description} =~
+				/([\w\s]+)/g )
+			{
+				push @descriptions, $1;
+			}
+			while (
+				$hash{properties}[$i]->{metabolic_pathway_id} =~ /([\w\s]+)/g )
+			{
+				push @ids, $1;
+			}
+			for ( my $j = 0 ; $j < scalar @ids ; $j++ ) {
+				my %pathway = ();
+				$pathway{id}            = $ids[$j];
+				$pathway{description}   = $descriptions[$j];
+				$pathway{classfication} = $classifications[$j];
+				push @pathways, \%pathway;
+			}
+		}
+
+		$hash{pathways} = \@pathways;
+		$hash{html}     = $content;
+		open( $FILEHANDLER, "<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/pathways.tt" );
+		my $pathwaysHTML = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{htmlPathways} = $pathwaysHTML;
+		$hash{id}           = $feature;
+	}
+	elsif ( $typeFeature eq 'annotation_orthology' ) {
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/orthologyBasicResult.tt"
+		);
+
+		my $content = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		my @orthologous_groups = ();
+		my @groups             = ();
+		my @descriptions       = ();
+		my @classifications    = ();
+		for ( my $i = 0 ; $i < scalar @{ $hash{properties} } ; $i++ ) {
+			while ( $hash{properties}[$i]->{orthologous_group} =~
+				/([\w\s.\-(),]+)/g )
+			{
+				push @groups, $1;
+			}
+			while ( $hash{properties}[$i]->{orthologous_group_description} =~
+				/([\w\s.\-(),]+)/g )
+			{
+				push @descriptions, $1;
+			}
+			while ( $hash{properties}[$i]->{orthologous_group_classification} =~
+				/([\w\s.\-(),]+)/g )
+			{
+				push @classifications, $1;
+			}
+			for ( my $j = 0 ; $j < scalar @groups ; $j++ ) {
+				my %group = ();
+				$group{group}          = $groups[$j];
+				$group{description}    = $descriptions[$j];
+				$group{classification} = $classifications[$j];
+				push @orthologous_groups, \%group;
+			}
+		}
+		open( $FILEHANDLER, "<",
+			dirname(__FILE__)
+			  . "/../../../root/html_dir/search-database/orthologies.tt" );
+		my $orthologyHTML = do { local $/; <$FILEHANDLER> };
+		close($FILEHANDLER);
+		$hash{orthologous_groups} = \@orthologous_groups;
+		$hash{htmlOrthology}      = $orthologyHTML;
+		$hash{html}               = $content;
+		$hash{id}                 = $feature;
+	}
+	if ( !( exists $hash{id} ) ) {
 		$hash{id} = $feature;
 	}
 
 	$self->status_ok( $c, entity => \%hash );
 }
+
+=head2
+
+Method used to return properties of evidence typed like similarity
+
+=cut
 
 sub getSimilarityEvidenceProperties :
   Path("/SearchDatabase/getSimilarityEvidenceProperties") : CaptureArgs(1) :
@@ -650,19 +568,7 @@ sub getSimilarityEvidenceProperties_GET {
 	if ( !$feature and defined $c->request->param("feature") ) {
 		$feature = $c->request->param("feature");
 	}
-
-	my $resultSet = $c->model('Chado::SimilarityEvidenceProperties')
-	  ->search( {}, { bind => [$feature] } );
-	my %hash = ();
-	while ( my $result = $resultSet->next ) {
-		if ( $result->key eq "anticodon" ) {
-			$hash{ $result->key } = $result->key_value;
-			$hash{codon} = reverseComplement( $result->key_value );
-		}
-		else {
-			$hash{ $result->key } = $result->key_value;
-		}
-	}
+	
 	open(
 		my $FILEHANDLER,
 		"<",
@@ -672,10 +578,8 @@ sub getSimilarityEvidenceProperties_GET {
 
 	my $content = do { local $/; <$FILEHANDLER> };
 	close($FILEHANDLER);
-	$hash{html} = $content;
 	
-	$hash{id} = $feature;
-	$self->status_ok( $c, entity => \%hash );
+	$self->status_ok( $c, entity => $c->model('DBI')->similarityEvidenceProperties($feature, $content) );
 }
 
 =head2
@@ -740,6 +644,198 @@ sub formatSequence {
 /gs;
 	chomp $sequence;
 	return $sequence;
+}
+
+=head2 analysesCDS
+
+Method used to make search of analyses of protein-coding genes
+
+=cut
+
+sub analysesCDS : Path("/SearchDatabase/analysesCDS") : CaptureArgs(31) :
+  ActionClass('REST') { }
+
+sub analysesCDS_GET {
+	my ( $self, $c ) = @_;
+
+	my %hash = ();
+	my @list = ();
+
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = 4249;
+	foreach my $array ( $c->model('DBI')->analyses_CDS( \%hash ) ) {
+		foreach my $value (@$array) {
+			push @list, $value;
+		}
+	}
+	$self->status_ok( $c, entity => \@list );
+}
+
+=head2
+
+Method used to realize search of tRNA
+
+=cut
+
+sub trnaSearch : Path("/SearchDatabase/trnaSearch") : CaptureArgs(3) :
+  ActionClass('REST') { }
+
+sub trnaSearch_GET {
+	my ( $self, $c ) = @_;
+
+	my %hash = ();
+	my @list = ();
+
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = 4249;
+
+	@list = $c->model('DBI')->tRNA_search( \%hash );
+
+	$self->status_ok( $c, entity => \@list );
+}
+
+=head2
+
+Method used to get data of tandem repeats
+
+=cut
+
+sub tandemRepeatsSearch : Path("/SearchDatabase/tandemRepeatsSearch") :
+  CaptureArgs(5) : ActionClass('REST') { }
+
+sub tandemRepeatsSearch_GET {
+	my ( $self, $c ) = @_;
+
+	my %hash = ();
+	my @list = ();
+
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = 4249;
+
+	@list = $c->model('DBI')->trf_search( \%hash );
+
+	$self->status_ok( $c, entity => \@list );
+}
+
+=head2
+
+Method used to get data of non coding RNAs
+
+=cut
+
+sub ncRNASearch : Path("/SearchDatabase/ncRNASearch") : CaptureArgs(7) :
+  ActionClass('REST') { }
+
+sub ncRNASearch_GET {
+	my ( $self, $c ) = @_;
+
+	my %hash = ();
+	my @list = ();
+
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = 4249;
+
+	@list = $c->model('DBI')->ncRNA_search( \%hash );
+
+	$self->status_ok( $c, entity => \@list );
+}
+
+=head2
+
+Method used to get data of transcriptional terminators
+
+=cut
+
+sub transcriptionalTerminatorSearch :
+  Path("/SearchDatabase/transcriptionalTerminatorSearch") : CaptureArgs(6) :
+  ActionClass('REST') { }
+
+sub transcriptionalTerminatorSearch_GET {
+	my ( $self, $c ) = @_;
+
+	my %hash = ();
+	my @list = ();
+
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = 4249;
+
+	@list = $c->model('DBI')->transcriptional_terminator_search( \%hash );
+
+	$self->status_ok( $c, entity => \@list );
+}
+
+=head2
+
+Method used to get data of ribosomal binding sites
+
+=cut
+
+sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(4) :
+  ActionClass('REST') { }
+
+sub rbsSearch_GET {
+	my ( $self, $c ) = @_;
+
+	my %hash = ();
+	my @list = ();
+
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = 4249;
+
+	@list = $c->model('DBI')->rbs_search( \%hash );
+
+	$self->status_ok( $c, entity => \@list );
+}
+
+=head2
+
+Method used to get data of horizontal gene transfers
+
+=cut
+
+sub alienhunterSearch : Path("/SearchDatabase/alienhunterSearch") :
+  CaptureArgs(6) : ActionClass('REST') { }
+
+sub alienhunterSearch_GET {
+	my ( $self, $c ) = @_;
+
+	my %hash = ();
+	my @list = ();
+
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = 4249;
+
+	@list = $c->model('DBI')->alienhunter_search( \%hash );
+
+	$self->status_ok( $c, entity => \@list );
 }
 
 =encoding utf8

@@ -1,0 +1,3 @@
+<tr>
+	<td><a href="http://www.genome.jp/dbget-bin/www_bget?[% result.metabolic_pathway_id %]">[% result.metabolic_pathway_id %]</a> - [% result.metabolic_pathway_description %]</td>
+</tr>

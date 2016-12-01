@@ -1,0 +1,3 @@
+<tr>
+	<td><a href="http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=[% result.orthologous_group %]">[% result.orthologous_group %]</a> - [% result.orthologous_group_description %]</td>
+</tr>

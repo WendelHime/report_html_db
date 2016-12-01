@@ -26,20 +26,20 @@ __PACKAGE__->add_columns(
 	{ data_type => "varchar", is_nullable => 1 },
 );
 
-sub get_interval_evidence_properties {
-	my ( $self, $feature_id ) = @_;
-	my $storage = $self->storage;
-	return $storage->dbh_do(
-		sub {
-			my ( $self, $dbh ) = @_;
-			my $sth = $dbh->prepare(
-				"SELECT * FROM get_interval_evidence_properties(" . $feature_id . ")" );
-			$sth->execute();
-			my @rows = @{ $sth->fetchall_arrayref() };
-			return map { $_->[0] } @rows;
-		}
-	);
-}
+#sub get_interval_evidence_properties {
+#	my ( $self, $feature_id ) = @_;
+#	my $storage = $self->storage;
+#	return $storage->dbh_do(
+#		sub {
+#			my ( $self, $dbh ) = @_;
+#			my $sth = $dbh->prepare(
+#				"SELECT * FROM get_interval_evidence_properties(" . $feature_id . ")" );
+#			$sth->execute();
+#			my @rows = @{ $sth->fetchall_arrayref() };
+#			return map { $_->[0] } @rows;
+#		}
+#	);
+#}
 
 
 
