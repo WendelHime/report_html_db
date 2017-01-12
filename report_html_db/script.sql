@@ -5,19 +5,11 @@ CREATE TABLE TEXTS (
 	details VARCHAR(2000)
 );
 
-CREATE TABLE IMAGES (
+CREATE TABLE FILES (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	tag VARCHAR(200),
 	filepath VARCHAR(2000),
 	details VARCHAR(2000)
-);
-
-CREATE TABLE RELATIONS_TEXTS_IMAGES(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-	idImage INTEGER,
-	idText INTEGER,
-	FOREIGN KEY(idImage) REFERENCES IMAGES(id),
-	FOREIGN KEY(idText) REFERENCES TEXTS(id)
 );
 
 CREATE TABLE COMPONENTS(
@@ -28,7 +20,7 @@ CREATE TABLE COMPONENTS(
 );
 
 CREATE TABLE SEQUENCES(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+	id INTEGER PRIMARY KEY NOT NULL,
 	name VARCHAR(2000),
 	filepath VARCHAR(2000)
 );
@@ -49,9 +41,9 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-program-option", "tblastn", ""),
         ("blast-program-option", "tblastx", ""),
         ("blast-database-title", "Database:", ""),
-        ("blast-database-option", "P. luminescens MN7 contigs v. 1.0 (2013-08-01)", "PMN_genome_1"),
-        ("blast-database-option", "P. luminescens MN7 genes v. 1.0 (2013-08-01)", "PMN_genes_1"),
-        ("blast-database-option", "P. luminescens MN7 proteins v. 1.0 (2013-08-01)", "PMN_prot_1"),
+        ("blast-database-option", "All genes", "PMN_genome_1"),
+        ("blast-database-option", "Contigs", "PMN_genes_1"),
+        ("blast-database-option", "Protein code", "PMN_prot_1"),
         ("blast-format-title", "Enter sequence below in <a href='http://puma.icb.usp.br/blast/docs/fasta.html'>FASTA</a> format", ""),
         ("blast-sequence-file-title", "Or load it from disk ", ""),
         ("blast-subsequence-title", "Set subsequence ", ""),
@@ -209,18 +201,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)", "data/MN7_X_Pasym/html_page/classes.html"),
         ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)", "data/MN7_X_TT01/html_page/classes.html"),
         ("downloads-genes", "Genes", ""),
-        ("downloads-genes-links", "All genes (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)", "/cgi-bin/getPMN.cgi?t=ag"),
-        ("downloads-genes-links", "Protein-coding genes only", "/cgi-bin/getPMN.cgi?t=pcg"),
-        ("downloads-genes-links", "All protein sequences", "/cgi-bin/getPMN.cgi?t=pro"),
-        ("downloads-genes-links", "Ribosomal RNA genes only", "/cgi-bin/getPMN.cgi?t=rrg"),
-        ("downloads-genes-links", "Transfer RNA genes only", "/cgi-bin/getPMN.cgi?t=trg"),
-        ("downloads-genes-links", "Other non-coding RNA genes only", "/cgi-bin/getPMN.cgi?t=oncg"),
         ("downloads-other-sequences", "Other sequences", ""),
-        ("downloads-other-sequences-links", "Get all contigs", "/cgi-bin/getPMN.cgi?t=ac"),
-        ("downloads-other-sequences-links", "All intergenic regions (sequences that are not a protein-coding, ribosomal RNA, transfer RNA, or non-coding RNA gene)", "/cgi-bin/getPMN.cgi?t=ig"),
-        ("downloads-other-sequences-links", "All regions identified as possible lateral transfer (predicted by AlienHunter)", "/cgi-bin/getPMN.cgi?t=ah"),
-        ("downloads-other-sequences-links", "All transcriptional terminators (predicted by TransTermHP)", "/cgi-bin/getPMN.cgi?t=tt"),
-        ("downloads-other-sequences-links", "All ribosomal binding sites (predicted by RBSfinder)", "/cgi-bin/getPMN.cgi?t=rbs"),
         ("help-table-contents", "Table of contents", ""),
         ("help-table-contents-1", "1. Introduction", "help_1"),                                                                                                                                
         ("help-table-contents-2", "2. BLAST", "help_2"),                                                                                                                                       
@@ -402,6 +383,22 @@ INSERT INTO TEXTS(tag, value, details) VALUES
 			INSERT INTO TEXTS(tag, value) VALUES ("_commentFooter1", "Content of the footer");
 			INSERT INTO TEXTS(tag, value) VALUES ("footer", "&copy; 2016 YourCompany | By : Name");
 			INSERT INTO TEXTS(tag, value) VALUES ("_commentFooter2", "End footer");
+			INSERT INTO TEXTS(tag, value) VALUES ("_COMMENT-HOW-TO-ADD-FILE-DOWNLOADS", "All file download, starts in the key with 'files-' after that, comes the tag and like value the filepath. 
+	The links should be represented with the difference on the value anchor");
+			INSERT INTO TEXTS(tag, value) VALUES ("downloads-genes-links-1", "<a href='/DownloadFile?type=ag'>All genes (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)</a>");
+			INSERT INTO FILES(tag, filepath) VALUES ("ag", "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/orfs_nt/Bacteria_upload_CDS_NT.fasta");
+			INSERT INTO TEXTS(tag, value) VALUES ("downloads-genes-links-2", "<a href='/DownloadFile?type=pro'>Protein-coding genes only</a>");
+			INSERT INTO FILES(tag, filepath) VALUES ("pro", "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/orfs_aa/Bacteria_upload_CDS_AA.fasta");
+			INSERT INTO TEXTS(tag, value) VALUES ("downloads-genes-links-3", "<a href='/DownloadFile?type=rrg'>Ribosomal RNA genes only</a>");
+			INSERT INTO FILES(tag, filepath) VALUES ("rrg", "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/rnammer_dir/Bacteria_rnammer.fasta");
+			INSERT INTO TEXTS(tag, value) VALUES ("downloads-genes-links-4", "<a href='/DownloadFile?type=trg'>Transfer RNA genes only</a>");
+			INSERT INTO FILES(tag, filepath) VALUES ("trg", "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/trna_dir/Bacteria_trna.txt");
+			INSERT INTO TEXTS(tag, value) VALUES ("downloads-genes-links-5", "<a href='/DownloadFile?type=oncg'>Other non-coding RNA genes only table</a>");
+			INSERT INTO FILES(tag, filepath) VALUES ("oncg", "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/infernal_dir/infernal.txt_Bacteria");
+			INSERT INTO TEXTS(tag, value) VALUES ("downloads-other-sequences-links-1", "<a href='/DownloadFile?type=ac'>Get all contigs</a>");
+			INSERT INTO FILES(tag, filepath) VALUES ("ac", "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/seq/Bacteria_upload.fasta");
+			INSERT INTO TEXTS(tag, value) VALUES ("downloads-other-sequences-links-2", "<a href='/DownloadFile?type=tt'>All transcriptional terminators (predicted by TransTermHP)</a>");
+			INSERT INTO FILES(tag, filepath) VALUES ("tt", "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/transterm_dir/Bacteria.txt");
 			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "1	Channels/Pore");
 			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "1.A	&#945;-Type Channels
 ");
@@ -2117,7 +2114,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-or-by-target-type", "Or by target type: ", ""),
         ("search-database-dna-based-analyses-or-by-target-description", "Or by target description: ", "");
 
-INSERT INTO SEQUENCES(name, filepath) VALUES ('Bacteria_upload', 'seq/Bacteria_upload.fasta');
+INSERT INTO SEQUENCES(id, name, filepath) VALUES (4426568, 'Bacteria_upload', 'seq/Bacteria_upload.fasta');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
         ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
@@ -2128,9 +2125,9 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('alienhunter', 'annotat
 		("search-database-analyses-protein-code-tab", "BLAST", "#blast"),
         ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('blast', 'annotation_blast.pl', 'blastp"_dir/blastp.txt"');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('blast', 'annotation_blast.pl', '');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('glimmer3', 'annotation_glimmer3.pl', 'glimmer3_dir/glimmer3.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('glimmer3', 'annotation_glimmer3.pl', '');
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('infernal', 'annotation_infernal.pl', 'infernal_dir/infernal.txt_Bacteria_upload');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
@@ -2139,12 +2136,12 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('infernal', 'annotation
         ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
         ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", "");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('interpro', 'annotation_interpro.pl', 'interpro_dir/interpro.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('interpro', 'annotation_interpro.pl', '');
 	INSERT INTO TEXTS(tag, value, details) VALUES
 		("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
         ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('orthology', 'annotation_orthology.pl', 'eggnog_dir/eggnog.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('orthology', 'annotation_orthology.pl', '');
 	INSERT INTO TEXTS(tag, value, details) VALUES
 		("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
         ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
@@ -2529,7 +2526,7 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('orthology', 'annotatio
 						INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 						INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'annotation_pathways.pl', 'kegg_dir/kegg.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'annotation_pathways.pl', '');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-analyses-protein-code-tab", "Phobius", "#phobius"),
         ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
@@ -2542,7 +2539,7 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'annotation
         ("search-database-analyses-protein-code-signal-peptide-option", "no", "value='sigPno'"),
         ("search-database-analyses-protein-code-signal-peptide-option", "do not care", "value='sigPwhatever' checked=''");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('phobius', 'annotation_phobius.pl', 'phobius_dir/phobius.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('phobius', 'annotation_phobius.pl', '');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
         ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
@@ -2556,13 +2553,13 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('rbsfinder', 'annotatio
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('rnammer', 'annotation_rnammer.pl', 'rnammer_dir/Bacteria_upload_rnammer.gff');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('rpsblast', 'annotation_rpsblast.pl', 'rpsblast_dir/rpsblast.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('rpsblast', 'annotation_rpsblast.pl', '');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('signalP', 'annotation_signalP.pl', 'signalp_dir/signalp.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('signalP', 'annotation_signalP.pl', '');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('tcdb', 'annotation_tcdb.pl', 'tcdb_dir/tcdb.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('tcdb', 'annotation_tcdb.pl', '');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('tmhmm', 'annotation_tmhmm.pl', 'tmhmm_dir/tmhmm.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('tmhmm', 'annotation_tmhmm.pl', '');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
         ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),

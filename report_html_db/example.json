@@ -54,5 +54,21 @@
 	"_commentAbout2": "End about page",
 	"_commentFooter1": "Content of the footer",
 	"footer": "&copy; 2016 YourCompany | By : Name",
-	"_commentFooter2": "End footer"
+	"_commentFooter2": "End footer",
+	"_COMMENT-HOW-TO-ADD-FILE-DOWNLOADS" : "All file download, starts in the key with 'files-' after that, comes the tag and like value the filepath. 
+	The links should be represented with the difference on the value anchor",
+	"downloads-genes-links-1" : "<a href='/DownloadFile?type=ag'>All genes (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)</a>",
+	"files-ag" : "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/orfs_nt/Bacteria_upload_CDS_NT.fasta",
+	"downloads-genes-links-2" : "<a href='/DownloadFile?type=pro'>Protein-coding genes only</a>",
+	"files-pro" : "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/orfs_aa/Bacteria_upload_CDS_AA.fasta",
+	"downloads-genes-links-3" : "<a href='/DownloadFile?type=rrg'>Ribosomal RNA genes only</a>",
+	"files-rrg" : "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/rnammer_dir/Bacteria_rnammer.fasta",
+	"downloads-genes-links-4" : "<a href='/DownloadFile?type=trg'>Transfer RNA genes only</a>",
+	"files-trg" : "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/trna_dir/Bacteria_trna.txt",
+	"downloads-genes-links-5" : "<a href='/DownloadFile?type=oncg'>Other non-coding RNA genes only table</a>",
+	"files-oncg" : "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/infernal_dir/infernal.txt_Bacteria",
+	"downloads-other-sequences-links-1" : "<a href='/DownloadFile?type=ac'>Get all contigs</a>",
+	"files-ac" : "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/seq/Bacteria_upload.fasta",
+	"downloads-other-sequences-links-2" : "<a href='/DownloadFile?type=tt'>All transcriptional terminators (predicted by TransTermHP)</a>",
+	"files-tt" : "/home/wendelhlc/git/report_html_db/report_html_db/TESTE/root/transterm_dir/Bacteria.txt"
 }

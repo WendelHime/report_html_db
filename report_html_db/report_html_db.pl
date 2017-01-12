@@ -111,7 +111,9 @@ my $html_dir = "";
 #my $FT_submission_selected_dir="";
 #my $GFF_dir="";
 #my $GFF_selected_dir="";
-my $aa_fasta_dir = "";
+my $type_target_class_id = 0;
+my $pipeline             = 0;
+my $aa_fasta_dir         = "";
 
 my $nt_fasta_dir = "";
 
@@ -243,6 +245,13 @@ if ( defined( $config->{"aa_orf_file"} ) ) {
 #if (defined($config->{"nt_orf_file"})){
 #   $nt_orf_file = $config->{"nt_orf_file"};
 #}
+if ( defined( $config->{"type_target_class_id"} ) ) {
+	$type_target_class_id = $config->{"type_target_class_id"};
+}
+if ( defined( $config->{"pipeline"} ) ) {
+	$pipeline = $config->{"pipeline"};
+}
+
 #componentes do Jota
 if ( defined( $config->{"alienhunter_output_file"} ) ) {
 	$alienhunter_output_file = $config->{"alienhunter_output_file"};
@@ -341,19 +350,11 @@ CREATE TABLE TEXTS (
 	details VARCHAR(2000)
 );
 
-CREATE TABLE IMAGES (
+CREATE TABLE FILES (
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
 	tag VARCHAR(200),
 	filepath VARCHAR(2000),
 	details VARCHAR(2000)
-);
-
-CREATE TABLE RELATIONS_TEXTS_IMAGES(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-	idImage INTEGER,
-	idText INTEGER,
-	FOREIGN KEY(idImage) REFERENCES IMAGES(id),
-	FOREIGN KEY(idText) REFERENCES TEXTS(id)
 );
 
 CREATE TABLE COMPONENTS(
@@ -385,9 +386,9 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-program-option", "tblastn", ""),
         ("blast-program-option", "tblastx", ""),
         ("blast-database-title", "Database:", ""),
-        ("blast-database-option", "P. luminescens MN7 contigs v. 1.0 (2013-08-01)", "PMN_genome_1"),
-        ("blast-database-option", "P. luminescens MN7 genes v. 1.0 (2013-08-01)", "PMN_genes_1"),
-        ("blast-database-option", "P. luminescens MN7 proteins v. 1.0 (2013-08-01)", "PMN_prot_1"),
+        ("blast-database-option", "All genes", "PMN_genome_1"),
+        ("blast-database-option", "Contigs", "PMN_genes_1"),
+        ("blast-database-option", "Protein code", "PMN_prot_1"),
         ("blast-format-title", "Enter sequence below in <a href='http://puma.icb.usp.br/blast/docs/fasta.html'>FASTA</a> format", ""),
         ("blast-sequence-file-title", "Or load it from disk ", ""),
         ("blast-subsequence-title", "Set subsequence ", ""),
@@ -545,18 +546,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)", "data/MN7_X_Pasym/html_page/classes.html"),
         ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)", "data/MN7_X_TT01/html_page/classes.html"),
         ("downloads-genes", "Genes", ""),
-        ("downloads-genes-links", "All genes (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)", "/cgi-bin/getPMN.cgi?t=ag"),
-        ("downloads-genes-links", "Protein-coding genes only", "/cgi-bin/getPMN.cgi?t=pcg"),
-        ("downloads-genes-links", "All protein sequences", "/cgi-bin/getPMN.cgi?t=pro"),
-        ("downloads-genes-links", "Ribosomal RNA genes only", "/cgi-bin/getPMN.cgi?t=rrg"),
-        ("downloads-genes-links", "Transfer RNA genes only", "/cgi-bin/getPMN.cgi?t=trg"),
-        ("downloads-genes-links", "Other non-coding RNA genes only", "/cgi-bin/getPMN.cgi?t=oncg"),
         ("downloads-other-sequences", "Other sequences", ""),
-        ("downloads-other-sequences-links", "Get all contigs", "/cgi-bin/getPMN.cgi?t=ac"),
-        ("downloads-other-sequences-links", "All intergenic regions (sequences that are not a protein-coding, ribosomal RNA, transfer RNA, or non-coding RNA gene)", "/cgi-bin/getPMN.cgi?t=ig"),
-        ("downloads-other-sequences-links", "All regions identified as possible lateral transfer (predicted by AlienHunter)", "/cgi-bin/getPMN.cgi?t=ah"),
-        ("downloads-other-sequences-links", "All transcriptional terminators (predicted by TransTermHP)", "/cgi-bin/getPMN.cgi?t=tt"),
-        ("downloads-other-sequences-links", "All ribosomal binding sites (predicted by RBSfinder)", "/cgi-bin/getPMN.cgi?t=rbs"),
         ("help-table-contents", "Table of contents", ""),
         ("help-table-contents-1", "1. Introduction", "help_1"),                                                                                                                                
         ("help-table-contents-2", "2. BLAST", "help_2"),                                                                                                                                       
@@ -823,8 +813,8 @@ while ( $sequence_object->read() ) {
 	++$seq_count;
 	$header = $sequence_object->fasta_header();
 	my @conclusions = @{ $sequence_object->get_conclusions() };
-	my $bases = $sequence_object->current_sequence();
-	my $name  = $sequence_object->sequence_name();
+	my $bases       = $sequence_object->current_sequence();
+	my $name        = $sequence_object->sequence_name();
 
 	$dbName     = $sequence_object->{dbname};
 	$dbHost     = $sequence_object->{host};
@@ -838,10 +828,14 @@ while ( $sequence_object->read() ) {
 	open( FILE_AA, ">$html_dir/root/$aa_fasta_dir/$file_aa" );
 	open( FILE_NT, ">$html_dir/root/$nt_fasta_dir/$file_nt" );
 
-#	print $LOG "\n$name\n$bases\n\n";
-
-	$scriptSQL .='+'
-"\nINSERT INTO SEQUENCES(id, name, filepath) VALUES (".$sequence_object->{sequence_id}.", '$name', '$fasta_dir/$name.fasta');\n";
+	#	print $LOG "\n$name\n$bases\n\n";
+	$scriptSQL .=
+	    "\nINSERT INTO SEQUENCES(id, name, filepath) VALUES ("
+	  . $sequence_object->{sequence_id} . ", '"
+	  . $name . "', '"
+	  . $fasta_dir . "/"
+	  . $name
+	  . ".fasta');\n";
 
 #    my $ann_file = "annotations/".$name;
 # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
@@ -856,7 +850,8 @@ while ( $sequence_object->read() ) {
 
 	foreach my $conclusion (@conclusions) {
 		$sequence_object->get_evidence_for_conclusion();
-		my %hash      = %{ $sequence_object->{array_evidence} };
+		my %hash = %{ $sequence_object->{array_evidence} };
+
 #		my @evidences = $sequence_object->get_evidences_with_conclusions();
 #		my @evidences = $sequence_object->get_evidence_for_conclusion_from_database();
 		my @evidences = @{ $conclusion->{evidence_number} };
@@ -873,11 +868,13 @@ while ( $sequence_object->read() ) {
 			$fasta_header_evidence =~ s/__/_/g;
 
 			$fasta_header_evidence =~ s/>//g;
+			
+			print $LOG "\nTag: ".$evidence->{tag}."\n";
 
 			if ( $evidence->{tag} eq "CDS" ) {
-				
+
 				my $locus_tag;
-				
+
 				if ( $conclusion->{locus_tag} ) {
 					$locus_tag = $conclusion->{locus_tag};
 				}
@@ -886,7 +883,16 @@ while ( $sequence_object->read() ) {
 					$locus_tag = "NOLOCUSTAG_$locus";
 				}
 				
+				print $LOG "\nLocus tag: ".$locus_tag."\n";
 				
+				#####
+				#
+				#
+				#	Sequência da evidência: verificar o campo strand (tag intervals) e calcular o reverso complementar da sequência caso a fita seja negativa (verificar se a strand é ‘-1’ ou ‘-’)
+				#
+				#
+				#####
+
 				my $number = $evidence->{number};
 				my $start;
 				my $end;
@@ -899,6 +905,9 @@ while ( $sequence_object->read() ) {
 					$start = $evidence->{end};
 					$end   = $evidence->{start};
 				}
+				
+				print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
+				
 				my $len_nt = ( $end - $start ) + 1;
 				my $sequence_nt;
 				my $nt_seq = substr( $bases, $start - 1, $len_nt );
@@ -908,6 +917,10 @@ while ( $sequence_object->read() ) {
 				print FILE_NT ">$locus_tag\n";
 				print AA "\nNucleotide sequence:\n\n";
 				print AA ">$locus_tag\n";
+				
+				if($evidence->{strand} eq '-1') {
+					reverseComplement($nt_seq);
+				}
 
 				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
 					$sequence_nt = substr( $nt_seq, $i, 60 );
@@ -929,19 +942,17 @@ while ( $sequence_object->read() ) {
 			}
 		}
 	}
-	
+
 	close(AA);
 	close(FILE_AA);
 	close(FILE_NT);
 
-	my @programs = ();
-
-	if ( @{ $sequence_object->get_logs } ) {
+	if ( @{ $sequence_object->get_logs() } ) {
 		foreach my $log ( @{ $sequence_object->get_logs() } ) {
-			my $component = $log->{program};
-			if ( $component =~ /<program name=\"annotation_\w+\.pl\"/gim ) {
-				push @components_name,
-				  $component =~ /<program name=\"(annotation_\w+\.pl)\"/gim;
+			my $component = $log->{programversion};
+			print $LOG "Component: " . $log->{programversion} . "\n";
+			if ( $component =~ /<program name=\"([\w\-\_]*\.pl)\"/gim ) {
+				push @components_name, $1;
 			}
 			else {
 				push @components_name, $component;
@@ -1293,7 +1304,8 @@ unless ($pathCatalyst) {
 chomp $pathCatalyst;
 
 #give permission to execute catalyst.pl
-chmod( "0755", $pathCatalyst );
+#chmod( "755", $pathCatalyst );
+`chmod 755 $pathCatalyst`;
 
 #create project
 print $LOG "\nCreating project...\n";
@@ -1333,7 +1345,8 @@ print $LOG "\nCreating database file\t$databaseFilepath\n";
 #create models project
 print $LOG "\nCreating models\n";
 `$nameProject/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$nameProject"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON;PRAGMA encoding='UTF-8'"`;
-`$nameProject/script/"$lowCaseName"_create.pl model Chado DBIC::Schema "$nameProject"::Chado create=static "dbi:Pg:dbname=$dbName;host=$dbHost" "$dbUser" "$dbPassword"`;
+
+#`$nameProject/script/"$lowCaseName"_create.pl model Chado DBIC::Schema "$nameProject"::Chado create=static "dbi:Pg:dbname=$dbName;host=$dbHost" "$dbUser" "$dbPassword"`;
 
 my $hadGlobal         = 0;
 my $hadSearchDatabase = 0;
@@ -1355,47 +1368,1504 @@ foreach my $component ( sort @components_name ) {
 #	Add relationship to models
 #
 #####
+my $packageDBI = $nameProject . "::Model::DBI";
+my $DBI        = <<DBI;
+package $packageDBI;
 
-addRelationship( "$nameProject/lib/$nameProject/Chado/Result/Cvterm.pm",
-	<<CONTENT);
-__PACKAGE__->has_many(
-  "feature_relationships_subject",
-  "$nameProject\::Chado::Result::FeatureRelationship",
-  { "foreign.subject_id" => "self.cvterm_id" },
-  { cascade_copy => 0, cascade_delete => 0 },
+use strict;
+use warnings;
+use parent 'Catalyst::Model::DBI';
+
+__PACKAGE__->config(
+	dsn      => "dbi:Pg:dbname=$dbName;host=$dbHost",
+	user     => "$dbUser",
+	password => "$dbPassword",
+	options  => {},
 );
 
-\# You can replace this text with custom code or comments, and it will be preserved on regeneration
-CONTENT
+=head2
 
-addRelationship(
-	"$nameProject/lib/$nameProject/Chado/Result/FeatureRelationship.pm",
-	<<CONTENT);
-__PACKAGE__->has_many(
-	"feature_relationship_props_subject_feature",
-	"$nameProject\::Chado::Result::Featureprop",
+Method used to realize search based on parameters received by form of analyses of protein-coding genes
+
+=cut
+
+sub analyses_CDS {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+	###
+	# Query precisa começar encontrado todos os CDS primeiro como base,
+	# inicializar conector,
+	# adicionar na parte do gene também o conector
+	###
+	my \$query =
+	    "(select distinct f.feature_id "
+	  . "from feature f "
+	  . "join feature_relationship r on (f.feature_id = r.object_id) "
+	  . "join cvterm cr on (r.type_id = cr.cvterm_id) "
+	  . "join featureprop ps on (r.subject_id = ps.feature_id) "
+	  . "join cvterm cs on (ps.type_id = cs.cvterm_id) "
+	  . "join featureprop pf on (f.feature_id = pf.feature_id) "
+	  . "join cvterm cf on (pf.type_id = cf.cvterm_id) "
+	  . "join featureloc l on (l.feature_id = f.feature_id) "
+	  . "join featureprop pl on (l.srcfeature_id = pl.feature_id) "
+	  . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
+	  . "join featureprop pd on (r.subject_id = pd.feature_id) "
+	  . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
+	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value='4249')";
+	my \$connector = "1";
+
+	my \$query_gene     = "";
+	my \$query_GO       = "";
+	my \$query_TCDB     = "";
+	my \$query_Phobius  = "";
+	my \$query_sigP     = "";
+	my \$query_blast    = "";
+	my \$query_RPS      = "";
+	my \$query_KEGG     = "";
+	my \$query_ORTH     = "";
+	my \$query_interpro = "";
+
+	if (   ( exists \$hash->{geneDesc} && \$hash->{geneDesc} )
+		|| ( exists \$hash->{noDesc} && \$hash->{noDesc} ) )
 	{
-		"foreign.feature_id" => "self.subject_id",
-	},
-	{ cascade_copy => 0, cascade_delete => 0 },
-);
+		my \$and = "";
+		\$query_gene =
+		    "(SELECT DISTINCT f.feature_id "
+		  . "FROM feature f JOIN feature_relationship r ON (f.feature_id = r.object_id) "
+		  . "JOIN cvterm cr ON (r.type_id = cr.cvterm_id) "
+		  . "JOIN featureloc l ON (l.feature_id = f.feature_id) "
+		  . "JOIN featureprop pl ON (l.srcfeature_id = pl.feature_id) "
+		  . "JOIN cvterm cp ON (pl.type_id = cp.cvterm_id) "
+		  . "JOIN featureprop pd ON (r.subject_id = pd.feature_id) "
+		  . "JOIN cvterm cd ON (pd.type_id = cd.cvterm_id) "
+		  . "WHERE cr.name = 'based_on' AND cd.name = 'description' AND cp.name = 'pipeline_id' AND pl.value='"
+		  . \$hash->{pipeline}
+		  . "' AND ";
 
-\# You can replace this text with custom code or comments, and it will be preserved on regeneration
-CONTENT
+		\$connector = " INTERSECT " if \$connector;
 
-addRelationship( "$nameProject/lib/$nameProject/Chado/Result/Featureloc.pm",
-	<<CONTENT);
-__PACKAGE__->has_many(
-	"featureloc_featureprop",
-	"$nameProject\::Chado::Result::Featureprop",
+		if ( exists \$hash->{geneDesc} && \$hash->{geneDesc} ) {
+			\$query_gene .=
+			  generate_clause( \$hash->{geneDesc}, "", "", "pd.value" );
+			\$and = " AND ";
+		}
+		if ( exists \$hash->{noDesc} && \$hash->{noDesc} ) {
+			\$query_gene .=
+			  generate_clause( \$hash->{noDesc}, "NOT", \$and, "pd.value" );
+		}
+		\$query_gene .= ")";
+		\$query_gene = \$connector . \$query_gene;
+		\$connector  = "1";
+	}
+	if (   ( exists \$hash->{noGO} && \$hash->{noGO} )
+		|| ( exists \$hash->{goID}   && \$hash->{noGO} )
+		|| ( exists \$hash->{goDesc} && \$hash->{noGO} ) )
 	{
-		"foreign.feature_id" => "self.srcfeature_id",
-	},
-	{ cascade_copy => 0, cascade_delete => 0 },
-);
+		\$query_GO =
+		    "(SELECT DISTINCT r.object_id "
+		  . "FROM feature_relationship r "
+		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
+		  . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+		  . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
+		  . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
+		  . "WHERE c.name ='pipeline_id' AND p.value = '"
+		  . \$hash->{pipeline} . "' ";
 
-\# You can replace this text with custom code or comments, and it will be preserved on regeneration
-CONTENT
+		\$connector = " INTERSECT " if \$connector;
+
+		if ( exists \$hash->{noGO} && \$hash->{noGO} ) {
+			\$connector = " EXCEPT " if \$connector;
+			\$query_GO .= "AND cpd.name LIKE 'evidence_%' ";
+		}
+		elsif ( exists \$hash->{goID} && \$hash->{goID} ) {
+			\$query_GO .=
+			  "AND cpd.name LIKE 'evidence_%' AND pd.value LIKE '%"
+			  . \$hash->{'goID'} . "%')";
+		}
+		elsif ( exists \$hash->{goDesc} && \$hash->{goDesc} ) {
+			\$query_GO .=
+			  "and cpd.name like 'evidence_%' and "
+			  . generate_clause( \$hash->{'goDesc'}, "", "", "pd.value" ) . " )";
+		}
+		\$query_GO  = \$connector . \$query_GO . ")";
+		\$connector = "1";
+	}
+	if (   ( exists \$hash->{'noTC'} && \$hash->{'noTC'} )
+		|| ( exists \$hash->{'tcdbID'}       && \$hash->{'tcdbID'} )
+		|| ( exists \$hash->{'tcdbFam'}      && \$hash->{'tcdbFam'} )
+		|| ( exists \$hash->{'tcdbSubclass'} && \$hash->{'tcdbSubclass'} )
+		|| ( exists \$hash->{'tcdbClass'}    && \$hash->{'tcdbClass'} )
+		|| ( exists \$hash->{'tcdbDesc'}     && \$hash->{'tcdbDesc'} ) )
+	{
+		\$query_TCDB =
+		    "(SELECT DISTINCT r.object_id "
+		  . "FROM feature_relationship r "
+		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
+		  . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+		  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+		  . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
+		  . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
+		  . "WHERE c.name ='pipeline_id' AND p.value = '"
+		  . \$hash->{pipeline} . "' ";
+
+		\$connector = " INTERSECT " if \$connector;
+
+		if ( \$hash->{'noTC'} ) {
+			\$connector = " EXCEPT " if \$connector;
+			\$query_TCDB .= " AND cpd.name = 'TCDB_ID'";
+		}
+		elsif ( \$hash->{'tcdbID'} ) {
+			\$query_TCDB .= "AND cpd.name = 'TCDB_ID' AND pd.value = '"
+			  . \$hash->{'tcdbID'} . "'";
+		}
+		elsif ( \$hash->{'tcdbFam'} ) {
+			\$query_TCDB .=
+			  "AND cpd.name = 'TCDB_family' AND pd.value LIKE '"
+			  . \$hash->{'tcdbFam'} . "%'";
+		}
+		elsif ( \$hash->{'tcdbSubclass'} ) {
+			\$query_TCDB .=
+			  "AND cpd.name = 'TCDB_subclass' AND pd.value = '"
+			  . \$hash->{'tcdbSubclass'} . "'";
+		}
+		elsif ( \$hash->{'tcdbClass'} ) {
+			\$query_TCDB .=
+			  "AND cpd.name = 'TCDB_class' AND pd.value = '"
+			  . \$hash->{'tcdbClass'} . "'";
+		}
+		elsif ( \$hash->{'tcdbDesc'} ) {
+			\$query_TCDB .=
+			  "and cpd.name = 'hit_description' and "
+			  . generate_clause( \$hash->{'tcdbDesc'}, "", "", "pd.value" );
+		}
+		\$query_TCDB = \$connector . \$query_TCDB . ")";
+		\$connector  = "1";
+	}
+	if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
+		|| ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} )
+		|| ( exists \$hash->{'sigP'}  && \$hash->{'sigP'} ) )
+	{
+		my \$select = "(SELECT DISTINCT r.object_id ";
+		my \$join =
+			    "FROM feature f "
+			  . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
+			  . "JOIN feature fo ON (r.object_id = fo.feature_id) "
+			  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+			  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+			  . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
+			  . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
+			  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
+		my \$conditional =
+"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value='"
+			  . \$hash->{pipeline} . "'";
+
+		\$connector = " INTERSECT " if \$connector;
+		if ( \$hash->{noPhobius} ) {
+			\$connector = " EXCEPT " if \$connector;
+			\$query_Phobius =
+				  \$connector . \$select . \$join . \$conditional . ")";
+		}
+		elsif ( \$hash->{'TMdom'} ) {
+			\$join .=
+"JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+				  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+				  . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
+				  . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
+				  . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
+				\$conditional .=
+" AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
+
+			if ( \$hash->{'tmQuant'} eq "exact" ) {
+				\$conditional .= "= \$hash->{'TMdom'} ";
+			}
+			elsif ( \$hash->{'tmQuant'} eq "orLess" ) {
+				\$conditional .= "<= \$hash->{'TMdom'} ";
+			}
+			elsif ( \$hash->{'tmQuant'} eq "orMore" ) {
+				\$conditional .= ">= \$hash->{'TMdom'} ";
+			}
+			\$query_Phobius =
+			  \$connector . \$select . \$join . \$conditional . ")";
+			\$connector = "1";
+		}
+		else {
+			\$query_Phobius = "";
+		}
+		if ( \$hash->{'sigP'} ne "sigPwhatever" ) {
+			if ( \$hash->{'sigP'} ne "sigPwhatever"
+				&& !\$hash->{'noPhobius'} )
+			{
+				my \$sigPconn = "";
+				if ( \$hash->{'sigP'} eq "sigPyes" ) {
+					\$sigPconn = " INTERSECT " if \$connector;
+				}
+				elsif ( \$hash->{'sigP'} eq "sigPno" ) {
+					\$sigPconn = " EXCEPT " if \$connector;
+				}
+
+				\$query_sigP .=
+				  " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
+                        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+                        JOIN feature fo ON (r.object_id = fo.feature_id)
+                        JOIN featureloc l ON (r.object_id = l.feature_id)
+                        JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
+                        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+                        JOIN analysis a ON (a.analysis_id = af.analysis_id)
+                        JOIN cvterm c ON (p.type_id = c.cvterm_id)
+                        JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
+                        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
+                        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
+                        JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
+                        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
+                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = '"
+				  . \$hash->{pipeline}
+				  . "' AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
+			}
+			\$connector = "1";
+		}
+	}
+	if (   ( exists \$hash->{'noBlast'} && \$hash->{'noBlast'} )
+		|| ( exists \$hash->{'blastID'}   && \$hash->{'blastID'} )
+		|| ( exists \$hash->{'blastDesc'} && \$hash->{'blastDesc'} ) )
+	{
+		\$query_blast = "(SELECT DISTINCT r.object_id " . " FROM feature f
+                JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+                JOIN feature fo ON (r.object_id = fo.feature_id)
+                JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+                JOIN analysis a ON (a.analysis_id = af.analysis_id)
+                JOIN featureloc l ON (r.object_id = l.feature_id)
+                JOIN featureprop p ON (p.feature_id = srcfeature_id)
+                JOIN cvterm c ON (p.type_id = c.cvterm_id)
+                JOIN feature_relationship ra ON (ra.object_id = f.feature_id)
+                JOIN cvterm cra ON (ra.type_id = cra.cvterm_id)
+                JOIN featureprop pfo ON (ra.subject_id = pfo.feature_id)
+                JOIN cvterm cpfo ON (cpfo.cvterm_id = pfo.type_id)
+                JOIN featureprop pr ON (r.object_id = pr.feature_id)
+                JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id) ";
+		my \$conditional =
+"WHERE a.program = 'annotation_blast.pl' AND c.name ='pipeline_id' AND p.value = '"
+		  . \$hash->{pipeline}
+		  . "' AND cra.name = 'alignment' AND cpfo.name = 'subject_id'";
+		\$connector = " INTERSECT " if \$connector;
+		if ( \$hash->{'noBlast'} ) {
+			\$connector = " EXCEPT " if \$connector;
+		}
+		elsif ( \$hash->{'blastID'} ) {
+			\$conditional .=
+			  " AND pfo.value LIKE '%" . \$hash->{'blastID'} . "%'";
+		}
+		elsif ( \$hash->{'blastDesc'} ) {
+			\$conditional .= " AND "
+			  . generate_clause( \$hash->{'blastDesc'}, "", "", "pfo.value" );
+		}
+		\$query_blast = \$connector . \$query_blast . \$conditional . ")";
+		\$connector   = "1";
+	}
+	if (   ( exists \$hash->{'noRps'} && \$hash->{'noRps'} )
+		|| ( exists \$hash->{'rpsID'}   && \$hash->{'rpsID'} )
+		|| ( exists \$hash->{'rpsDesc'} && \$hash->{'rpsDesc'} ) )
+	{
+		\$query_RPS =
+		    "(select distinct r.object_id "
+		  . " from feature f "
+		  . "join feature_relationship r on (r.subject_id = f.feature_id) "
+		  . "join feature fo on (r.object_id = fo.feature_id) "
+		  . "join analysisfeature af on (f.feature_id = af.feature_id) "
+		  . "join analysis a on (a.analysis_id = af.analysis_id) "
+		  . "join featureloc l on (r.object_id = l.feature_id) "
+		  . "join featureprop p on (p.feature_id = srcfeature_id) "
+		  . "join cvterm c on (p.type_id = c.cvterm_id) "
+		  . "join feature_relationship ra on (ra.object_id = f.feature_id) "
+		  . "join cvterm cra on (ra.type_id = cra.cvterm_id) "
+		  . "join featureprop pfo on (ra.subject_id = pfo.feature_id) "
+		  . "join cvterm cpfo on (cpfo.cvterm_id = pfo.type_id) "
+		  . "join featureprop pr on (r.object_id = pr.feature_id) "
+		  . "join cvterm cpr on (pr.type_id = cpr.cvterm_id) ";
+		my \$conditional =
+"where a.program = 'annotation_rpsblast.pl' and c.name ='pipeline_id' and p.value = '"
+		  . \$hash->{pipeline}
+		  . "' and cra.name = 'alignment' and cpfo.name = 'subject_id' ";
+		\$connector = " INTERSECT " if \$connector;
+
+		if ( \$hash->{'noRps'} ) {
+			\$connector = " EXCEPT " if \$connector;
+		}
+		elsif ( \$hash->{'rpsID'} ) {
+			\$conditional .= " and pfo.value like '%" . \$hash->{'rpsID'} . "%'";
+		}
+		elsif ( \$hash->{'rpsDesc'} ) {
+			\$conditional .= " and "
+			  . generate_clause( \$hash->{'rpsDesc'}, "", "", "pfo.value" );
+		}
+		\$query_RPS = \$connector . \$query_RPS . \$conditional . ")";
+		\$connector = 1;
+	}
+	if (   \$hash->{'noKEGG'}
+		|| \$hash->{'koID'}
+		|| \$hash->{'keggPath'}
+		|| \$hash->{'keggDesc'} )
+	{
+		\$query_KEGG =
+		    "(select distinct r.object_id "
+		  . "from feature_relationship r "
+		  . "join featureloc l on (r.object_id = l.feature_id)"
+		  . "join featureprop p on (p.feature_id = l.srcfeature_id)"
+		  . "join cvterm c on (p.type_id = c.cvterm_id)"
+		  . "join feature_relationship pr on (r.subject_id = pr.object_id)"
+		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id)"
+		  . "join featureprop pd on (pr.subject_id = pd.feature_id)"
+		  . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
+		my \$conditional = " where c.name ='pipeline_id' and p.value = '"
+		  . \$hash->{pipeline} . "' ";
+		\$connector = " intersect " if \$connector;
+		if ( \$hash->{'noKEGG'} ) {
+			\$connector = " except " if \$connector;
+			\$conditional .= " and cpd.name = 'orthologous_group_id'";
+		}
+		elsif ( \$hash->{'koID'} ) {
+			\$conditional .=
+			  " and cpd.name = 'orthologous_group_id' and pd.value = '"
+			  . \$hash->{'koID'} . "'";
+		}
+		elsif ( \$hash->{'keggPath'} ) {
+			\$conditional .=
+			  " and cpd.name = 'metabolic_pathway_id' and pd.value like '%"
+			  . \$hash->{'keggPath'} . "%'";
+		}
+		elsif ( \$hash->{'keggDesc'} ) {
+			\$query_KEGG .=
+			    " join analysisfeature af on (r.subject_id = af.feature_id)"
+			  . "join analysis a on (a.analysis_id = af.analysis_id) ";
+			\$conditional .=
+" and a.program = 'annotation_pathways.pl' and cpd.name = 'orthologous_group_description' and "
+			  . generate_clause( \$hash->{'keggDesc'}, "", "", "pd.value" );
+		}
+		\$query_KEGG = \$connector . \$query_KEGG . \$conditional . ")";
+		\$connector  = "1";
+	}
+	if (   ( exists \$hash->{'noOrth'} && \$hash->{'noOrth'} )
+		|| ( exists \$hash->{'orthID'}   && \$hash->{'orthID'} )
+		|| ( exists \$hash->{'orthDesc'} && \$hash->{'orthDesc'} ) )
+	{
+		\$query_ORTH =
+		    "(select distinct r.object_id"
+		  . " from feature_relationship r "
+		  . "join featureloc l on (r.object_id = l.feature_id) "
+		  . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+		  . "join cvterm c on (p.type_id = c.cvterm_id) "
+		  . "join feature_relationship pr on (r.subject_id = pr.object_id) "
+		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
+		  . "join featureprop pd on (pr.subject_id = pd.feature_id) "
+		  . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
+		my \$conditional = "where c.name ='pipeline_id' and p.value = '"
+		  . \$hash->{pipeline} . "' ";
+		\$connector = " intersect " if \$connector;
+		if ( \$hash->{'noOrth'} ) {
+			\$connector = " except " if \$connector;
+			\$conditional .= " and cpd.name = 'orthologous_group' ";
+		}
+		elsif ( \$hash->{'orthID'} ) {
+			\$conditional =
+			  "and cpd.name = 'orthologous_group' and pd.value like '%"
+			  . \$hash->{'orthID'} . "%'";
+		}
+		elsif ( \$hash->{'orthDesc'} ) {
+			\$query_ORTH .=
+			    " join analysisfeature af on (r.subject_id = af.feature_id) "
+			  . " join analysis a on (a.analysis_id = af.analysis_id) ";
+			\$conditional .=
+" and a.program = 'annotation_orthology.pl' and cpd.name = 'orthologous_group_description' and "
+			  . generate_clause( \$hash->{'orthDesc'}, "", "", "pd.value" );
+		}
+		\$query_ORTH = \$connector . \$query_ORTH . \$conditional . ")";
+		\$connector  = "1";
+	}
+	if (   ( exists \$hash->{'noIP'} && \$hash->{'noIP'} )
+		|| ( exists \$hash->{'interproID'}   && \$hash->{'interproID'} )
+		|| ( exists \$hash->{'interproDesc'} && \$hash->{'interproDesc'} ) )
+	{
+		\$query_interpro =
+		    "(select distinct r.object_id "
+		  . " from feature f "
+		  . "join feature_relationship r on (r.subject_id = f.feature_id) "
+		  . "join featureloc l on (r.object_id = l.feature_id) "
+		  . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+		  . "join cvterm c on (p.type_id = c.cvterm_id) "
+		  . "join feature_relationship pr on (r.subject_id = pr.object_id) "
+		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
+		  . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) ";
+		my \$conditional = "where c.name ='pipeline_id' and p.value = '"
+		  . \$hash->{pipeline} . "' ";
+		\$connector = " intersect " if \$connector;
+		if ( \$hash->{'noIP'} ) {
+			\$connector = " except " if \$connector;
+			\$conditional .= "and cpr.name like 'interpro_id'";
+		}
+		elsif ( \$hash->{'interproID'} ) {
+			\$conditional .=
+			  "and cpr.name like 'interpro_id' and ppr.value = '"
+			  . \$hash->{'interproID'} . "'";
+		}
+		elsif ( \$hash->{'interproDesc'} ) {
+			\$conditional .=
+			  "and cpr.name like 'description%' and ppr.value like '%"
+			  . \$hash->{'interproDesc'} . "%'";
+		}
+		\$query_interpro = \$connector . \$query_interpro . \$conditional . ")";
+		\$connector      = 1;
+	}
+
+	\$query =
+	    \$query
+	  . \$query_gene
+	  . \$query_GO
+	  . \$query_TCDB
+	  . \$query_Phobius
+	  . \$query_sigP
+	  . \$query_blast
+	  . \$query_RPS
+	  . \$query_KEGG
+	  . \$query_ORTH
+	  . \$query_interpro;
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	return \@rows;
+}
+
+=head2
+
+Method used to generate clause for any query
+
+=cut
+
+sub generate_clause {
+	my \$terms = shift;
+	my \$not   = shift || "";
+	my \$and   = shift || "";
+	my \$field = shift;
+
+	my \@terms  = split( /\\s+/, \$terms );
+	my \$clause = " \$and (";
+	my \$i      = 0;
+	foreach my \$term (\@terms) {
+		my \$com = "";
+		\$com = " or " if \$i > 0;
+		\$clause .= "\$com \$field \$not like '%\$term%'";
+		\$i++;
+	}
+	\$clause .= ")";
+	return \$clause;
+}
+
+=head2
+
+Method used to return tRNA data from database
+
+=cut
+
+sub tRNA_search {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query =
+	    "select r.object_id, fp.value, pt.value, pa.value "
+	  . "from feature_relationship r "
+	  . "join cvterm c on (r.type_id = c.cvterm_id) "
+	  . "join featureloc l on (r.subject_id = l.feature_id) "
+	  . "join analysisfeature af on (af.feature_id = r.object_id) "
+	  . "join analysis a on (a.analysis_id = af.analysis_id) "
+	  . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+	  . "join cvterm cp on (p.type_id = cp.cvterm_id) "
+	  . "join featureprop pt on (r.subject_id = pt.feature_id) "
+	  . "join cvterm cpt on (pt.type_id = cpt.cvterm_id) "
+	  . "join featureprop pa on (r.subject_id = pa.feature_id) "
+	  . "join cvterm cpa on (pa.type_id = cpa.cvterm_id) "
+	  . "join featureprop fp on (r.subject_id = fp.feature_id) "
+	  . "join cvterm cfp on (fp.type_id = cfp.cvterm_id) "
+	  . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value='"
+	  . \$hash->{pipeline}
+	  . "' and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
+
+	my \$anticodon = "";
+
+	if ( \$hash->{'tRNAaa'} ne "" ) {
+		\$query .= "and pt.value = '" . \$hash->{'tRNAaa'} . "'";
+	}
+	elsif ( \$hash->{'tRNAcd'} ne "" ) {
+		\$anticodon = reverseComplement( \$hash->{'tRNAcd'} );
+		\$query .= "and pa.value = '\$anticodon'";
+	}
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{id}         = \$rows[\$i][0];
+		\$hash{sequence}   = \$rows[\$i][1];
+		\$hash{amino_acid} = \$rows[\$i][2];
+		\$hash{codon}      = \$rows[\$i][3];
+		push \@list, \\%hash;
+	}
+
+	return \@list;
+}
+
+=head2
+
+Method used to return tandem repeats data from database
+
+=cut
+
+sub trf_search {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$connector = "";
+	my \$select =
+	  "select fl.uniquename, l.fstart, l.fend, pp.value, pc.value, pur.value ";
+	my \$join = "from feature_relationship r
+                 join featureloc l on (r.subject_id = l.feature_id)
+                 join feature fl on (fl.feature_id = l.srcfeature_id)
+                 join featureprop pp on (r.subject_id = pp.feature_id)
+                 join cvterm cp on (pp.type_id = cp.cvterm_id)
+                 join featureprop pc on (r.subject_id = pc.feature_id)
+                 join cvterm cc on (pc.type_id = cc.cvterm_id)
+                 join featureprop pur on (pur.feature_id = r.subject_id)
+                 join cvterm cpur on (pur.type_id = cpur.cvterm_id)
+                 join analysisfeature af on (r.object_id = af.feature_id)
+                 join analysis a on (af.analysis_id = a.analysis_id)
+                 join featureprop ps on (ps.feature_id = l.srcfeature_id)
+                 join cvterm cps on (ps.type_id = cps.cvterm_id) ";
+	my \$query =
+"where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value='"
+	  . \$hash->{pipeline} . "' ";
+
+	if ( \$hash->{'TRFrepSeq'} !~ /^\\s*\$/ ) {
+		\$hash->{'TRFrepSeq'} =~ s/\\s+//g;
+		\$query .= "and pur.value ilike '%\$hash->{'TRFrepSeq'}\%' ";
+		\$connector = ",";
+	}
+
+	if ( \$hash->{'TRFrepSize'} !~ /^\\s*\$/ ) {
+		\$hash->{'TRFrepSize'} =~ s/\\s+//g;
+
+		if ( \$hash->{'TRFsize'} eq "exactTRF" ) {
+			\$query .= "and pp.value = '\$hash->{'TRFrepSize'}' ";
+			\$connector = ",";
+		}
+		elsif ( \$hash->{'TRFsize'} eq "orLessTRF" ) {
+			\$query .= "and my_to_decimal(pp.value) <= '\$hash->{'TRFrepSize'}' ";
+			\$connector = ",";
+		}
+		elsif ( \$hash->{'TRFsize'} eq "orMoreTRF" ) {
+			\$query .= "and my_to_decimal(pp.value) >= '\$hash->{'TRFrepSize'}' ";
+			\$connector = ",";
+		}
+	}
+
+	if (   \$hash->{'TRFrepNumMin'} !~ /^\\s*\$/
+		|| \$hash->{'TRFrepNumMax'} !~ /^\\s*\$/ )
+	{
+		my \$min = 0;
+		my \$max = 0;
+
+		\$hash->{'TRFrepNumMin'} =~ s/\\s+//g;
+		if ( \$hash->{'TRFrepNumMin'} ) {
+			\$min++;
+		}
+
+		\$hash->{'TRFrepNumMax'} =~ s/\\s+//g;
+		if ( \$hash->{'TRFrepNumMax'} ) {
+			\$max++;
+		}
+
+		if ( \$min && \$max ) {
+			if ( \$hash->{'TRFrepNumMin'} == \$hash->{'TRFrepNumMax'} ) {
+				\$query .=
+				  "and my_to_decimal(pc.value) = \$hash->{'TRFrepNumMax'} ";
+			}
+			elsif ( \$hash->{'TRFrepNumMin'} < \$hash->{'TRFrepNumMax'} ) {
+				\$query .=
+"and my_to_decimal(pc.value) >= \$hash->{'TRFrepNumMin'} and my_to_decimal(pc.value) <= \$hash->{'TRFrepNumMax'} ";
+			}
+		}
+		elsif (\$min) {
+			\$query .= "and my_to_decimal(pc.value) >= \$hash->{'TRFrepNumMin'} ";
+		}
+		elsif (\$max) {
+			\$query .= "and my_to_decimal(pc.value) <= \$hash->{'TRFrepNumMax'} ";
+		}
+	}
+
+	\$query = \$select . \$join . \$query;
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{contig}      = \$rows[\$i][0];
+		\$hash{start}       = \$rows[\$i][1];
+		\$hash{end}         = \$rows[\$i][2];
+		\$hash{'length'}    = \$rows[\$i][3];
+		\$hash{copy_number} = \$rows[\$i][4];
+		\$hash{sequence}    = \$rows[\$i][5];
+		push \@list, \\%hash;
+	}
+
+	return \@list;
+}
+
+=head2
+
+Method used to return non coding RNAs data from database
+
+=cut
+
+sub ncRNA_search {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$last_column = "";
+	my \$select =
+	  "select distinct r.object_id, fl.uniquename, l.fstart, l.fend, pp.value";
+	my \$join = " from feature_relationship r 
+                join featureloc lc on (r.subject_id = lc.feature_id)
+                join feature fl on (fl.feature_id = lc.srcfeature_id)
+                join cvterm c on (r.type_id = c.cvterm_id)
+                join featureloc l on (r.subject_id = l.feature_id)
+                join analysisfeature af on (af.feature_id = r.object_id)
+                join analysis a on (a.analysis_id = af.analysis_id)
+                join featureprop p on (p.feature_id = l.srcfeature_id) 
+                join cvterm cp on (p.type_id = cp.cvterm_id) 
+                join featureprop pp on (pp.feature_id = r.subject_id) 
+                join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+	my \$query =
+"where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value='"
+	  . \$hash->{pipeline}
+	  . "' and cpp.name='target_description' ";
+
+	if ( \$hash->{'ncRNAtargetID'} !~ /^\\s*\$/ ) {
+		\$hash->{'ncRNAtargetID'} =~ s/\\s+//g;
+		\$select .= ", ppc.value";
+		\$last_column = "Target_ID";
+		\$join .=
+"join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
+		\$query .=
+		  "and cppc.name = 'target_identifier' and ppc.value = '"
+		  . \$hash->{'ncRNAtargetID'} . "' ";
+	}
+
+	elsif ( \$hash->{'ncRNAevalue'} !~ /^\\s*\$/ ) {
+		\$hash->{'ncRNAevalue'} =~ s/\\s+//g;
+		\$select .= ", ppe.value";
+		\$last_column = "E-value";
+		\$join .=
+"join featureprop ppe on (ppe.feature_id = r.subject_id) join cvterm cppe on (ppe.type_id = cppe.cvterm_id) ";
+		if ( \$hash->{'ncRNAevM'} eq "exactEv" ) {
+			\$query .=
+			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = "
+			  . \$hash->{'ncRNAevalue'};
+		}
+		elsif ( \$hash->{'ncRNAevM'} eq "orLessEv" ) {
+			\$query .=
+			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= "
+			  . \$hash->{'ncRNAevalue'};
+		}
+		elsif ( \$hash->{'ncRNAevM'} eq "orMoreEv" ) {
+			\$query .=
+			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= '"
+			  . \$hash->{'ncRNAevalue'} . "' ";
+		}
+	}
+	elsif ( \$hash->{'ncRNAtargetName'} !~ /^\\s*\$/ ) {
+		\$hash->{'ncRNAtargetName'} =~ s/^\\s+//;
+		\$hash->{'ncRNAtargetName'} =~ s/\\s+\$//;
+		\$select .= ", ppn.value";
+		\$last_column = "Target_name";
+		\$join .=
+"join featureprop ppn on (ppn.feature_id = r.subject_id) join cvterm cppn on (ppn.type_id = cppn.cvterm_id) ";
+		\$query .=
+		  "and cppn.name = 'target_name' and ppn.value ilike '%"
+		  . \$hash->{'ncRNAtargetName'} . "%' ";
+	}
+
+	elsif ( \$hash->{'ncRNAtargetClass'} !~ /^\\s*\$/ ) {
+		\$select .= ", ppc.value";
+		\$last_column = "Target_class";
+		\$join .=
+"join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
+		\$query .=
+		  "and cppc.name = 'target_class' and ppc.value = '"
+		  . \$hash->{'ncRNAtargetClass'} . "'";
+	}
+
+	elsif ( \$hash->{'ncRNAtargetType'} !~ /^\\s*\$/ ) {
+		\$hash->{'ncRNAtargetType'} =~ s/^\\s+//;
+		\$hash->{'ncRNAtargetType'} =~ s/\\s+\$//;
+		\$select .= ", ppt.value";
+		\$last_column = "Target_type";
+		\$join .=
+"join featureprop ppt on (ppt.feature_id = r.subject_id) join cvterm cppt on (ppt.type_id = cppt.cvterm_id) ";
+		\$query .=
+		  "and cppt.name = 'target_type' and ppt.value ilike '%"
+		  . \$hash->{'ncRNAtargetType'} . "%' ";
+	}
+	elsif ( \$hash->{'ncRNAtargetDesc'} !~ /^\\s*\$/ ) {
+		\$hash->{'ncRNAtargetDesc'} =~ s/^\\s+//;
+		\$hash->{'ncRNAtargetDesc'} =~ s/\\s+\$//;
+		\$query .= "and pp.value ilike '%" . \$hash->{'ncRNAtargetDesc'} . "%' ";
+	}
+
+	\$query = \$select . \$join . \$query;
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{id}          = \$rows[\$i][0];
+		\$hash{contig}      = \$rows[\$i][1];
+		\$hash{end}         = \$rows[\$i][2];
+		\$hash{start}       = \$rows[\$i][3];
+		\$hash{description} = \$rows[\$i][4];
+		if ( \$last_column ne "" ) {
+			\$hash{\$last_column} = \$rows[\$i][5];
+		}
+		push \@list, \\%hash;
+	}
+
+	return \@list;
+}
+
+=head2
+
+Method used to return transcriptional terminator data from database
+
+=cut
+
+sub transcriptional_terminator_search {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh    = \$self->dbh;
+	my \$select = "select fl.uniquename, l.fstart, l.fend, pp.value";
+	my \$join   = " from feature_relationship r
+                 join featureloc lc on (r.subject_id = lc.feature_id)
+                 join feature fl on (fl.feature_id = lc.srcfeature_id)
+                 join cvterm c on (r.type_id = c.cvterm_id)
+                 join featureloc l on (r.subject_id = l.feature_id)
+                 join analysisfeature af on (af.feature_id = r.object_id)
+                 join analysis a on (a.analysis_id = af.analysis_id)
+                 join featureprop p on (p.feature_id = l.srcfeature_id)
+                 join cvterm cp on (p.type_id = cp.cvterm_id)
+                 join featureprop pp on (pp.feature_id = r.subject_id)
+                 join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+	my \$query =
+"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value='"
+	  . \$hash->{pipeline} . "' ";
+
+	my \$search_field;
+	my \$field;
+	my \$modifier;
+
+	if ( \$hash->{'TTconf'} !~ /^\\s*\$/ ) {
+		\$search_field = \$hash->{'TTconf'};
+		\$modifier     = \$hash->{'TTconfM'};
+		\$field        = "confidence";
+	}
+	elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ ) {
+		\$search_field = \$hash->{'TThp'};
+		\$modifier     = \$hash->{'TThpM'};
+		\$field        = "hairpin";
+	}
+	elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ ) {
+		\$search_field = \$hash->{'TTtail'};
+		\$modifier     = \$hash->{'TTtailM'};
+		\$field        = "tail";
+	}
+
+	\$search_field =~ s/\\s+//g;
+
+	if ( \$modifier eq "exact" ) {
+		\$query .=
+"and cpp.name = '\$field' and my_to_decimal(pp.value) = \$search_field ";
+	}
+	elsif ( \$modifier eq "orLess" ) {
+		\$query .=
+"and cpp.name = '\$field' and my_to_decimal(pp.value) <= \$search_field ";
+	}
+	elsif ( \$modifier eq "orMore" ) {
+		\$query .=
+"and cpp.name = '\$field' and my_to_decimal(pp.value) >= \$search_field ";
+	}
+
+	\$query = \$select . \$join . \$query;
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{contig} = \$rows[\$i][0];
+		\$hash{start}  = \$rows[\$i][1];
+		\$hash{end}    = \$rows[\$i][2];
+		if ( \$hash->{'TTconf'} !~ /^\\s*\$/ ) {
+			\$hash{confidence} = \$rows[\$i][3];
+		}
+		elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ ) {
+			\$hash{hairpin_score} = \$rows[\$i][3];
+		}
+		elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ ) {
+			\$hash{tail_score} = \$rows[\$i][3];
+		}
+
+		push \@list, \\%hash;
+	}
+
+	return \@list;
+}
+
+=head2
+
+Method used to return ribosomal binding sites data from database
+
+=cut
+
+sub rbs_search {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$last_column = "";
+	my \$select      = "select fl.uniquename, l.fstart, l.fend, pp.value";
+	my \$join        = " from feature_relationship r
+                join featureloc lc on (r.subject_id = lc.feature_id) 
+                join feature fl on (fl.feature_id = lc.srcfeature_id) 
+                join cvterm c on (r.type_id = c.cvterm_id)
+                join featureloc l on (r.subject_id = l.feature_id)
+                join analysisfeature af on (af.feature_id = r.object_id)
+                join analysis a on (a.analysis_id = af.analysis_id)
+                join featureprop p on (p.feature_id = l.srcfeature_id)
+                join cvterm cp on (p.type_id = cp.cvterm_id)
+                join featureprop pp on (pp.feature_id = r.subject_id)
+                join cvterm cpp on (pp.type_id = cpp.cvterm_id)";
+	my \$query =
+"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value='"
+	  . \$hash->{pipeline} . "' ";
+
+	my \$newcodon = 0;
+
+	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
+		\$hash->{'RBSpattern'} =~ s/\\s*//g;
+		\$query .=
+		  "and cpp.name='RBS_pattern' and pp.value like '%"
+		  . \$hash->{'RBSpattern'} . "'";
+	}
+	elsif ( \$hash->{'RBSshift'} ) {
+		if ( \$hash->{'RBSshiftM'} eq "both" ) {
+			\$query .= "and cpp.name='position_shift' and pp.value != '0'";
+		}
+		elsif ( \$hash->{'RBSshiftM'} eq "neg" ) {
+			\$query .=
+			  "and cpp.name='position_shift' and my_to_decimal(pp.value) < '0'";
+		}
+		elsif ( \$hash->{'RBSshiftM'} eq "pos" ) {
+			\$query .=
+			  "and cpp.name='position_shift' and my_to_decimal(pp.value) > '0'";
+		}
+	}
+	elsif ( \$hash->{'RBSnewcodon'} ) {
+		\$select .= ", pp2.value";
+		\$last_column = "new_start";
+		\$join .=
+"join featureprop pp2 on (pp2.feature_id = r.subject_id) join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id)";
+		\$query .=
+"and cpp.name='old_start_codon' and cpp2.name='new_start_codon' and (pp.value <> pp2.value)";
+		\$newcodon++;
+	}
+
+	\$query = \$select . \$join . \$query;
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{contig} = \$rows[\$i][0];
+		\$hash{start}  = \$rows[\$i][2];
+		\$hash{end}    = \$rows[\$i][1];
+
+		if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
+			\$hash{site_pattern} = \$rows[\$i][3];
+		}
+		elsif ( exists \$rows[\$i][4] ) {
+			\$hash{old_start} = \$rows[\$i][3];
+			\$hash{new_start} = \$rows[\$i][4];
+		}
+		else {
+			\$hash{position_shift} = \$rows[\$i][3];
+		}
+
+		push \@list, \\%hash;
+	}
+
+	return \@list;
+}
+
+=head2
+
+Method used to return horizontal transferences data from database
+
+=cut
+
+sub alienhunter_search {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$select =
+	  "select r.object_id, fl.uniquename, l.fstart, l.fend, pp.value";
+	my \$join = " from feature_relationship r
+                join featureloc lc on (r.subject_id = lc.feature_id) 
+                join feature fl on (fl.feature_id = lc.srcfeature_id) 
+                join cvterm c on (r.type_id = c.cvterm_id)
+                join featureloc l on (r.subject_id = l.feature_id)
+                join analysisfeature af on (af.feature_id = r.object_id)
+                join analysis a on (a.analysis_id = af.analysis_id)
+                join featureprop p on (p.feature_id = l.srcfeature_id)
+                join cvterm cp on (p.type_id = cp.cvterm_id)
+                join featureprop pp on (pp.feature_id = r.subject_id)
+                join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+	my \$query =
+"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value='"
+	  . \$hash->{pipeline} . "' ";
+
+	my \$search_field;
+	my \$field;
+	my \$modifier;
+
+	if ( \$hash->{'AHlen'} !~ /^\\s*\$/ ) {
+		\$search_field = \$hash->{'AHlen'};
+		\$modifier     = \$hash->{'AHlenM'};
+		\$field        = "length";
+	}
+	elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ ) {
+		\$search_field = \$hash->{'AHscore'};
+		\$modifier     = \$hash->{'AHscM'};
+		\$field        = "score";
+	}
+	elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ ) {
+		\$search_field = \$hash->{'AHthr'};
+		\$modifier     = \$hash->{'AHthrM'};
+		\$field        = "threshold";
+	}
+
+	\$search_field =~ s/\\s+//g;
+
+	if ( \$modifier eq "exact" ) {
+		\$query .=
+"and cpp.name = '\$field' and my_to_decimal(pp.value) = \$search_field ";
+	}
+	elsif ( \$modifier eq "orLess" ) {
+		\$query .=
+"and cpp.name = '\$field' and my_to_decimal(pp.value) <= \$search_field ";
+	}
+	elsif ( \$modifier eq "orMore" ) {
+		\$query .=
+"and cpp.name = '\$field' and my_to_decimal(pp.value) >= \$search_field ";
+	}
+
+	\$query = \$select . \$join . \$query;
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{id}     = \$rows[\$i][0];
+		\$hash{contig} = \$rows[\$i][1];
+		\$hash{start}  = \$rows[\$i][2];
+		\$hash{end}    = \$rows[\$i][3];
+		if ( \$hash->{'AHlen'} !~ /^\\s*\$/ ) {
+			\$hash{'length'} = \$rows[\$i][4];
+		}
+		elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ ) {
+			\$hash{score} = \$rows[\$i][4];
+		}
+		elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ ) {
+			\$hash{threshold} = \$rows[\$i][4];
+		}
+
+		push \@list, \\%hash;
+	}
+
+	return \@list;
+}
+
+=head2
+
+Method used to return the reverse complement
+
+=cut
+
+sub reverseComplement {
+	my (\$sequence) = \@_;
+	my \$reverseComplement = reverse(\$sequence);
+	\$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+	return \$reverseComplement;
+}
+
+sub searchGene {
+	my ( \$self, \$html, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query =
+"SELECT me.feature_id, feature_relationship_props_subject_feature.value, feature_relationship_props_subject_feature_2.value "
+	  . "FROM feature me "
+	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
+	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
+	  . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
+	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
+	  . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
+	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
+	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureloc_featureprop.type_id "
+	  . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
+	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
+	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id ";
+	my \$where =
+"WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND featureloc_featureprop.value = '"
+	  . \$hash->{pipeline} . "' ";
+
+	my \$connector = "";
+	if ( exists \$hash->{featureId} && \$hash->{featureId} ) {
+		if ( index( \$hash->{featureId}, " " ) != -1 ) {
+			\$where .= " AND (";
+			while ( \$hash->{featureId} =~ /(\\d+)+/g ) {
+				\$connector = " OR " if \$connector;
+				\$where .= \$connector . "me.feature_id = '\$1'";
+				\$connector = "1";
+			}
+			\$where .= ")";
+		}
+		else {
+
+			\$where .= " AND me.feature_id = '" . \$hash->{featureId} . "'";
+			\$connector = "1";
+		}
+	}
+
+	if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
+		or ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
+	{
+		\$connector = " AND " if \$connector;
+		\$where .= \$connector;
+		my \@likesDescription   = ();
+		my \@likesNoDescription = ();
+		if ( \$hash->{geneDescription} ) {
+			while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
+				push \@likesDescription,
+				  generate_clause( "\$1", "", "",
+					"feature_relationship_props_subject_feature_2.value" );
+			}
+		}
+		if ( \$hash->{noDescription} ) {
+			while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
+				push \@likesNoDescription,
+				  generate_clause( "\$1", "NOT", "",
+					"feature_relationship_props_subject_feature_2.value" );
+			}
+		}
+
+		if (    exists \$hash->{individually}
+			and \$hash->{individually}
+			and scalar(\@likesDescription) > 0 )
+		{
+			if ( scalar(\@likesNoDescription) > 0 ) {
+				foreach my \$like (\@likesDescription) {
+					\$where .= " AND " . \$like;
+				}
+				foreach my \$notLike (\@likesNoDescription) {
+					\$where .= " AND " . \$notLike;
+				}
+			}
+			else {
+				foreach my \$like (\@likesDescription) {
+					\$where .= " AND " . \$like;
+				}
+			}
+		}
+		elsif ( scalar(\@likesDescription) > 0 ) {
+			my \$and = "";
+			if ( scalar(\@likesNoDescription) > 0 ) {
+				foreach my \$notLike (\@likesNoDescription) {
+					\$where .= " AND " . \$notLike;
+				}
+				\$and = "1";
+			}
+			if (\$and) {
+				\$and = " AND ";
+			}
+			else {
+				\$and = " OR ";
+			}
+			\$where .= " AND (";
+			my \$counter = 0;
+			foreach my \$like (\@likesDescription) {
+				if ( \$counter == 0 ) {
+					\$where .= \$like;
+					\$counter++;
+				}
+				else {
+					\$where .= \$and . \$like;
+				}
+			}
+			\$where .= " ) ";
+		}
+		elsif ( scalar(\@likesDescription) <= 0
+			and scalar(\@likesNoDescription) > 0 )
+		{
+			foreach my \$like (\@likesNoDescription) {
+				\$where .= " AND " . \$like;
+			}
+		}
+	}
+
+	if ( exists \$hash->{geneID} && \$hash->{geneID} ) {
+		\$where .=
+		  " AND feature_relationship_props_subject_feature.value LIKE '%"
+		  . \$hash->{geneID} . "%'";
+	}
+
+	\$query .= \$where
+	  . " ORDER BY feature_relationship_props_subject_feature.value ASC ";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{feature_id} = \$rows[\$i][0];
+		\$hash{name}       = \$rows[\$i][1];
+		\$hash{uniquename} = \$rows[\$i][2];
+		\$hash{html}       = \$html;
+
+		push \@list, \\%hash;
+	}
+
+	return \\\@list;
+}
+
+sub geneBasics {
+	my ( \$self, \$html, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query =
+"SELECT featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
+	  . "FROM feature me "
+	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
+	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
+	  . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
+	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
+	  . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
+	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id "
+	  . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
+	  . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
+	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
+	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
+	  . "WHERE ( ( featureloc_featureprop.value = '"
+	  . \$hash->{pipeline}
+	  . "' AND me.feature_id = '"
+	  . \$hash->{feature_id}
+	  . "' AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
+	  . "GROUP BY featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
+	  . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{'fstart'}     = \$rows[\$i][0];
+		\$hash{'fend'}       = \$rows[\$i][1];
+		\$hash{'value'}      = \$rows[\$i][2];
+		\$hash{'uniquename'} = \$rows[\$i][3];
+		\$hash{'feature_id'} = \$rows[\$i][4];
+		\$hash{'html'}       = \$html;
+
+		push \@list, \\%hash;
+	}
+
+	return \\\@list;
+}
+
+sub ncRNA_description {
+	my ( \$self, \$feature_id, \$pipeline ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query =
+	  "SELECT me.object_id, feature_relationship_props_subject_feature_2.value "
+	  . "FROM feature_relationship me  "
+	  . "JOIN cvterm type ON type.cvterm_id = me.type_id "
+	  . "LEFT JOIN analysisfeature feature_relationship_analysis_feature_feature_object_2 ON feature_relationship_analysis_feature_feature_object_2.feature_id = me.object_id "
+	  . "LEFT JOIN analysis analysis ON analysis.analysis_id = feature_relationship_analysis_feature_feature_object_2.analysis_id "
+	  . "LEFT JOIN featureloc feature_relationship_featureloc_subject_feature_2 ON feature_relationship_featureloc_subject_feature_2.feature_id = me.subject_id "
+	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = feature_relationship_featureloc_subject_feature_2.srcfeature_id "
+	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = featureloc_featureprop.type_id "
+	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = me.subject_id "
+	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
+	  . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = '"
+	  . \$pipeline
+	  . "' AND me.object_id = '"
+	  . \$feature_id
+	  . "' AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
+	  . "GROUP BY me.object_id, feature_relationship_props_subject_feature_2.value "
+	  . "ORDER BY feature_relationship_props_subject_feature_2.value ASC";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \%hash = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		\$hash{'object_id'} = \$rows[\$i][0];
+		\$hash{'value'}     = \$rows[\$i][1];
+	}
+
+	return \\%hash;
+}
+
+sub subevidences {
+	my ( \$self, \$feature_id ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query = "SELECT * FROM get_subevidences('" . \$feature_id . "')";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \%component_name = (
+		'annotation_interpro.pl' => 'Domain search - InterProScan',
+		'annotation_blast.pl'    => 'Similarity search - BLAST',
+		'annotation_rpsblast.pl' => 'Similarity search - RPSBLAST',
+		'annotation_phobius.pl' =>
+		  'Transmembrane domains and signal peptide search - Phobius',
+		'annotation_pathways.pl'  => 'Pathway classification - KEGG',
+		'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
+		'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
+		'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
+		'annotation_tmhmm.pl'     => 'TMHMM',
+	);
+
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{subev_id}           = \$rows[\$i][0];
+		\$hash{subev_type}         = \$rows[\$i][1];
+		\$hash{subev_number}       = \$rows[\$i][2];
+		\$hash{subev_start}        = \$rows[\$i][3];
+		\$hash{subev_end}          = \$rows[\$i][4];
+		\$hash{subev_strand}       = \$rows[\$i][5];
+		\$hash{is_obsolete}        = \$rows[\$i][6];
+		\$hash{program}            = \$rows[\$i][7];
+		\$hash{descriptionProgram} = \$component_name{ \$hash{program} };
+
+		push \@list, \\%hash;
+	}
+
+	return \\\@list;
+}
+
+sub intervalEvidenceProperties {
+	my ( \$self, \$feature_id ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query = "SELECT * FROM get_interval_evidence_properties(\$feature_id)";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \@list = ();
+
+	my \@listProperties = ();
+	my \%property       = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{key}       = \$rows[\$i][0];
+		\$hash{key_value} = \$rows[\$i][1];
+
+		push \@list, \\%hash;
+	}
+
+	for ( my \$i = 0 ; \$i < scalar \@list ; \$i++ ) {
+		my \$hash = \$list[\$i];
+		if ( !exists \$property{ \$hash->{key} } ) {
+			if ( \$hash->{key} eq "anticodon" ) {
+				\$property{ \$hash->{key} } = \$hash->{key_value};
+				\$property{codon} = reverseComplement( \$hash->{key_value} );
+			}
+			else {
+				\$property{ \$hash->{key} } = \$hash->{key_value};
+			}
+		}
+		else {
+			my \%tempHash = ();
+			foreach my \$key ( keys \%property ) {
+				if ( defined \$key && \$key ) {
+					\$tempHash{\$key} = \$property{\$key};
+				}
+			}
+			push \@listProperties, \\%tempHash;
+			\%property = ();
+			if ( \$hash->{key} eq "anticodon" ) {
+				\$property{ \$hash->{key} } = \$hash->{key_value};
+				\$property{codon} = reverseComplement( \$hash->{key_value} );
+			}
+			else {
+				\$property{ \$hash->{key} } = \$hash->{key_value};
+			}
+		}
+		if ( scalar \@listProperties == 0 ) {
+			push \@listProperties, \\%property;
+		}
+	}
+
+	return \\\@listProperties;
+}
+
+sub similarityEvidenceProperties {
+	my ( \$self, \$feature_id, \$html ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query = "SELECT * FROM get_similarity_evidence_properties(\$feature_id)";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{key}       = \$rows[\$i][0];
+		\$hash{key_value} = \$rows[\$i][1];
+		push \@list, \\%hash;
+	}
+	my \%hash = ();
+	for ( my \$i = 0 ; \$i < scalar \@list ; \$i++ ) {
+		my \$result = \$list[\$i];
+		if ( \$result->{key} eq "anticodon" ) {
+			\$hash{ \$result->{key} } = \$result->{key_value};
+			\$hash{codon} = reverseComplement( \$result->{key_value} );
+		}
+		else {
+			\$hash{ \$result->{key} } = \$result->{key_value};
+		}
+	}
+	\$hash{html} = \$html;
+	\$hash{id}   = \$feature_id;
+
+	return \\%hash;
+
+}
+
+sub get_feature_id {
+	my ( \$self, \$uniquename ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query =
+	  "SELECT feature_id FROM feature WHERE uniquename = '\$uniquename' LIMIT 1";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	return \$rows[0][0];
+}
+
+sub get_target_class {
+	my ( \$self, \$type_id, \$feature_id ) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query =
+	    "SELECT value FROM featureprop WHERE type_id = "
+	  . \$type_id
+	  . " AND feature_id = "
+	  . \$feature_id
+	  . " ORDER BY value ASC";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute();
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \@list = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		my \%hash = ();
+		\$hash{value} = \$rows[\$i][0];
+		push \@list, \\%hash;
+	}
+
+	return \@list;
+}
+
+=head1 NAME
+
+HTML_DIR::Model::DBI - DBI Model Class
+
+=head1 SYNOPSIS
+
+See L<HTML_DIR>
+
+=head1 DESCRIPTION
+
+DBI Model Class.
+
+=head1 AUTHOR
+
+Wendel Hime L. Castro,,,
+
+=head1 LICENSE
+
+This library is free software, you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+1;
+
+DBI
+
+writeFile( "$nameProject/lib/$nameProject/Model/DBI.pm", $DBI );
 
 #####
 #
@@ -1429,14 +2899,21 @@ Catalyst Controller.
 
 =cut
 
+use base 'Catalyst::Controller::REST';
+BEGIN { extends 'Catalyst::Controller::REST'; }
+
 =head2 searchGene
 
 Method used to search on database genes
 
 =cut
 
-sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
-	my ( \$self, \$c, \$geneID, \$geneDescription, \$noDescription, \$individually )
+sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(5) :
+  ActionClass('REST') { }
+
+sub searchGene_GET {
+	my ( \$self, \$c, \$geneID, \$geneDescription, \$noDescription, \$individually,
+		\$featureId )
 	  = \@_;
 
 	if ( !\$geneID and defined \$c->request->param("geneID") ) {
@@ -1451,126 +2928,31 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(4) {
 	if ( !\$individually and defined \$c->request->param("individually") ) {
 		\$individually = \$c->request->param("individually");
 	}
-
-	\$c->stash->{titlePage} = 'Search gene';
-	\$c->stash( currentPage => 'search-database' );
-	\$c->stash(
-		texts => [
-			encodingCorrection(
-				\$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'result%' }
-						]
-					}
-				)
-			)
-		]
-	);
-
-	my \@likes = ();
-
-	if ( defined \$geneDescription or defined \$noDescription ) {
-		my \@likesDescription   = ();
-		my \@likesNoDescription = ();
-		if (\$geneDescription) {
-			while ( \$geneDescription =~ /(\\S+)/g ) {
-				push \@likesDescription,
-				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "like", "%" . \$1 . "%" };
-			}
-		}
-		if (\$noDescription) {
-			while ( \$noDescription =~ /(\\S+)/g ) {
-				push \@likesNoDescription,
-				  "feature_relationship_props_subject_feature_2.value" =>
-				  { "not like", "%" . \$1 . "%" };
-			}
-		}
-
-		if (    defined \$individually
-			and \$individually
-			and scalar(\@likesDescription) > 0 )
-		{
-			if ( scalar(\@likesNoDescription) > 0 ) {
-				push \@likes,
-				  '-and' => [ \@likesDescription, \@likesNoDescription ];
-			}
-			else {
-				push \@likes, '-and' => [\@likesDescription];
-			}
-		}
-		elsif ( scalar(\@likesDescription) > 0 ) {
-			if ( scalar(\@likesNoDescription) > 0 ) {
-				push \@likes, '-and' => [\@likesNoDescription];
-			}
-			push \@likes, '-or' => [\@likesDescription];
-		}
-		elsif ( scalar(\@likesDescription) <= 0
-			and scalar(\@likesNoDescription) > 0 )
-		{
-			push \@likes, '-and' => [\@likesDescription]; 
-		}
+	if ( !\$featureId and defined \$c->request->param("featureId") ) {
+		\$featureId = \$c->request->param("featureId");
 	}
 
-	\$c->stash(
-		searchResult => [
-			\$c->model('Chado::Feature')->search(
-				{
-					'type.name'                    => 'locus_tag',
-					'type_2.name'                  => 'based_on',
-					'type_3.name'                  => 'pipeline_id',
-					'type_4.name'                  => 'description',
-					'featureloc_featureprop.value' => '4249',
-					'feature_relationship_props_subject_feature.value' =>
-					  { 'like', '%' . \$geneID . '%' },
-					\@likes
-				},
-				{
-					join => [
-						'feature_relationship_objects' => {
-							'feature_relationship_objects' => {
-								'type' => {'feature_relationships_subject'},
-								'feature_relationship_props_subject_feature' =>
-								  {'type'},
-								'feature_relationship_props_subject_feature' =>
-								  {'type'}
-							}
-						},
-						'featureloc_features' => {
-							'featureloc_features' => {
-								'featureloc_featureprop' => {'type'}
-							}
-						},
-						'feature_relationship_objects' => {
-							'feature_relationship_objects' => {
-								'feature_relationship_props_subject_feature' =>
-								  {'type'}
-							}
-						}
-					],
-					select => [
-						qw/ me.feature_id feature_relationship_props_subject_feature.value feature_relationship_props_subject_feature_2.value /
-					],
-					as       => [qw/ feature_id name uniquename/],
-					order_by => {
-						-asc => [
-							qw/ feature_relationship_props_subject_feature.value /
-						]
-					},
-					distinct => 1
-				}
-			)
-		]
-	);
-	\$c->stash->{type_search}       = 0;
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
-	\$c->stash( template => '$lowCaseName/search-database/result.tt' );
+	use File::Basename;
+	open( my \$FILEHANDLER,
+		"<",
+		dirname(__FILE__) . "/../../../root/$lowCaseName/search-database/gene.tt" );
+
+	my \$content = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER);
+
+	my \@list = ();
+	my \%hash = ();
+	\$hash{pipeline}        = $pipeline;
+	\$hash{featureId}       = \$featureId;
+	\$hash{geneID}          = \$geneID;
+	\$hash{geneDescription} = \$geneDescription;
+	\$hash{noDescription}   = \$noDescription;
+	\$hash{individually}    = \$individually;
+
+	\$self->status_ok( \$c,
+		entity => \$c->model('DBI')->searchGene( \$content, \\%hash ) );
 }
+
 =head2 encodingCorrection
 
 Method used to correct encoding strings come from SQLite
@@ -1600,7 +2982,10 @@ Method used to realize search by contigs, optional return a stretch or a reverse
 
 =cut
 
-sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
+sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) :
+  ActionClass('REST') { }
+
+sub searchContig_GET {
 	my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
 	if ( !\$contig and defined \$c->request->param("contig") ) {
 		\$contig = \$c->request->param("contig");
@@ -1616,27 +3001,11 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 	{
 		\$reverseComplement = \$c->request->param("revCompContig");
 	}
+
 	use File::Basename;
-	\$c->stash->{titlePage} = 'Search contig';
-	\$c->stash( currentPage => 'search-database' );
-	\$c->stash(
-		texts => [
-			encodingCorrection(
-				\$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'result%' }
-						]
-					}
-				)
-			)
-		]
-	);
 	my \$data     = "";
 	my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
+
 	open( my \$FILEHANDLER,
 		"<", dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
 
@@ -1646,8 +3015,9 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 		}
 	}
 	close(\$FILEHANDLER);
+
 	if ( \$start && \$end ) {
-		\$data = substr( \$data, \$start , ( \$end - \$start ) );
+		\$data = substr( \$data, \$start, ( \$end - \$start ) );
 		\$c->stash->{start}     = \$start;
 		\$c->stash->{end}       = \$end;
 		\$c->stash->{hadLimits} = 1;
@@ -1661,14 +3031,478 @@ sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) {
 		my \$line = substr( \$data, \$i, 60 );
 		\$result .= "\$line<br />";
 	}
-	\$c->stash->{type_search}       = 1;
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
 
-	\$c->stash->{sequence} = \$sequence;
-	\$c->stash->{contig}   = \$result;
-	\$c->stash( template => '$lowCaseName/search-database/result.tt' );
+	my \@list = ();
+	my \%hash = ();
+	\$hash{'geneID'} = \$sequence->id;
+	\$hash{'gene'}   = \$sequence->name;
+	\$hash{'contig'} = \$result;
+
+	open( \$FILEHANDLER, "<",
+		dirname(__FILE__)
+		  . "/../../../root/$lowCaseName/search-database/contigs.tt" );
+
+	my \$content = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER);
+
+	\$hash{'html'} = \$content;
+	push \@list, \\%hash;
+	\$self->status_ok( \$c, entity => \@list );
 }
+
+=head2 getGeneBasics
+Method used to return basic data of genes from database: the beginning position from sequence, final position from the sequence, type, name
+return a list of hash containing the basic data
+
+=cut
+
+sub getGeneBasics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub getGeneBasics_GET {
+	my ( \$self, \$c, \$id ) = \@_;
+
+	#verify if the id exist and set
+	if ( !\$id and defined \$c->request->param("id") ) {
+		\$id = \$c->request->param("id");
+	}
+
+	open(
+		my \$FILEHANDLER,
+		"<",
+		dirname(__FILE__)
+		  . "/../../../root/$lowCaseName/search-database/geneBasics.tt"
+	);
+
+	my \$content = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER)
+
+	  ;
+	my \%hash = ();
+	\$hash{pipeline}   = $pipeline;
+	\$hash{feature_id} = \$id;
+
+	\$self->status_ok( \$c,
+		entity => \$c->model('DBI')->geneBasics( \$content, \\%hash ) );
+}
+
+=head2 getSubsequence
+
+Method used to get subsequence stretch of gene, returning the sequence, had to return in a json!
+
+=cut
+
+sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(5) :
+  ActionClass('REST') { }
+
+sub getSubsequence_GET {
+	my ( \$self, \$c, \$type, \$contig, \$sequenceName, \$start, \$end ) = \@_;
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
+	if ( !\$type and defined \$c->request->param("type") ) {
+		\$type = \$c->request->param("type");
+	}
+
+	use File::Basename;
+	open(
+		my \$FILEHANDLER,
+		"<",
+		dirname(__FILE__)
+		  . "/../../../root/$lowCaseName/search-database/sequence.tt"
+	);
+
+	my \$html = do { local \$/; <\$FILEHANDLER> };
+	my \$content = "";
+	close(\$FILEHANDLER);
+
+	if ( \$type ne "CDS" ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/seq/"
+			  . \$sequenceName
+			  . ".fasta"
+		);
+		for my \$line (<\$FILEHANDLER>) {
+			if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
+				\$content .= \$line;
+			}
+		}
+
+		close(\$FILEHANDLER);
+
+		if ( \$start && \$end ) {
+			\$content = substr( \$content, \$start, ( \$end - ( \$start + 1 ) ) );
+		}
+		my \$result = "";
+		for ( my \$i = 0 ; \$i < length(\$content) ; \$i += 60 ) {
+			my \$line = substr( \$content, \$i, 60 );
+			\$result .= "\$line<br />";
+		}
+		\$content = \$result;
+	}
+	else {
+		open( \$FILEHANDLER, "<",
+			    dirname(__FILE__)
+			  . "/../../../root/orfs_aa/"
+			  . \$contig
+			  . ".fasta" );
+
+		for my \$line (<\$FILEHANDLER>) {
+			if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
+				\$content .= \$line;
+			}
+		}
+		close(\$FILEHANDLER);
+		\$content =~ s/\\n/<br \\/>/g;
+	}
+	\$self->status_ok( \$c,
+		entity => { "sequence" => \$content, "html" => \$html } );
+}
+
+=head2 ncRNA_desc  
+
+Method used to return nc rna description
+
+=cut
+
+sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub ncRNA_desc_GET {
+	my ( \$self, \$c, \$feature ) = \@_;
+	if ( !\$feature and defined \$c->request->param("feature") ) {
+		\$feature = \$c->request->param("feature");
+	}
+	my \$pipeline = $pipeline;
+	\$self->status_ok( \$c, entity => \$c->model('DBI')->ncRNA_description( \$feature, \$pipeline ) );
+}
+
+=head2
+
+Method used to return subevidences based on feature id
+
+=cut
+
+sub subEvidences : Path("/SearchDatabase/subEvidences") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub subEvidences_GET {
+	my ( \$self, \$c, \$feature ) = \@_;
+	if ( !\$feature and defined \$c->request->param("feature") ) {
+		\$feature = \$c->request->param("feature");
+	}
+	
+	my \%returnedHash = ();
+	\$returnedHash{subevidences} = \$c->model('DBI')->subevidences( \$feature);
+	open(
+		my \$FILEHANDLER,
+		"<",
+		dirname(__FILE__)
+		  . "/../../../root/$lowCaseName/search-database/subEvidences.tt"
+	);
+
+	my \$content = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER);
+	\$returnedHash{subEvidencesHtml} = { "content" => \$content };
+	open( \$FILEHANDLER, "<",
+		dirname(__FILE__)
+		  . "/../../../root/$lowCaseName/search-database/evidences.tt" );
+
+	\$content = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER);
+	\$returnedHash{evidencesHtml} = { "content" => \$content };
+	\$self->status_ok( \$c, entity => \\%returnedHash );
+}
+
+=head2
+
+Method used to return properties of evidences that the type is interval and basic data of everything isn't CDS
+
+=cut
+
+sub getIntervalEvidenceProperties :
+  Path("/SearchDatabase/getIntervalEvidenceProperties") : CaptureArgs(2) :
+  ActionClass('REST') { }
+
+sub getIntervalEvidenceProperties_GET {
+	my ( \$self, \$c, \$feature, \$typeFeature ) = \@_;
+	if ( !\$feature and defined \$c->request->param("feature") ) {
+		\$feature = \$c->request->param("feature");
+	}
+
+	my \%hash           = ();
+	\$hash{properties} = \$c->model('DBI')->intervalEvidenceProperties(\$feature);
+	if ( exists \$hash{intron} ) {
+		if ( \$hash{intron} eq 'yes' ) {
+			\$hash{coordinatesGene} = \$hash{intron_start} - \$hash{intron_end};
+			\$hash{coordinatesGenome} =
+			  \$hash{intron_start_seq} - \$hash{intron_end_seq};
+			open(
+				my \$FILEHANDLER,
+				"<",
+				dirname(__FILE__)
+				  . "/../../../root/$lowCaseName/search-database/tRNABasicResultHasIntron.tt"
+			);
+
+			my \$content = do { local \$/; <\$FILEHANDLER> };
+			close(\$FILEHANDLER);
+			\$hash{htmlHasIntron} = \$content;
+		}
+	}
+	if ( \$typeFeature eq 'tRNAscan' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/tRNABasicResult.tt"
+		);
+
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{htmlBasicResult} = \$content;
+	}
+	elsif ( \$typeFeature eq 'RNA_scan' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/rnaScanBasicResult.tt"
+		);
+
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{htmlBasicResult} = \$content;
+	}
+	elsif ( \$typeFeature eq 'rRNA_prediction' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/rRNAPredictionBasicResult.tt"
+		);
+
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{htmlBasicResult} = \$content;
+	}
+
+	#components used
+	elsif ( \$typeFeature eq 'annotation_interpro' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/interproBasicResult.tt"
+		);
+
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{html} = \$content;
+		\$hash{id}   = \$feature;
+	}
+	elsif ( \$typeFeature eq 'annotation_tmhmm' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/tmhmmBasicResult.tt"
+		);
+
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{html} = \$content;
+		\$hash{id}   = \$feature;
+	}
+	elsif ( \$typeFeature eq 'annotation_tcdb' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/tcdbBasicResult.tt"
+		);
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{html} = \$content;
+		\$hash{id}   = \$feature;
+	}
+	elsif ( \$typeFeature eq 'annotation_pathways' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/pathwaysBasicResult.tt"
+		);
+
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+
+		my \@pathways        = ();
+		my \@ids             = ();
+		my \@descriptions    = ();
+		my \@classifications = ();
+		for ( my \$i = 0 ; \$i < scalar \@{ \$hash{properties} } ; \$i++ ) {
+			while ( \$hash{properties}[\$i]->{metabolic_pathway_classification} =~
+				/([\\w\\s]+)/g )
+			{
+				push \@classifications, \$1;
+			}
+			while ( \$hash{properties}[\$i]->{metabolic_pathway_description} =~
+				/([\\w\\s]+)/g )
+			{
+				push \@descriptions, \$1;
+			}
+			while (
+				\$hash{properties}[\$i]->{metabolic_pathway_id} =~ /([\\w\\s]+)/g )
+			{
+				push \@ids, \$1;
+			}
+			for ( my \$j = 0 ; \$j < scalar \@ids ; \$j++ ) {
+				my \%pathway = ();
+				\$pathway{id}            = \$ids[\$j];
+				\$pathway{description}   = \$descriptions[\$j];
+				\$pathway{classfication} = \$classifications[\$j];
+				push \@pathways, \\%pathway;
+			}
+		}
+
+		\$hash{pathways} = \\\@pathways;
+		\$hash{html}     = \$content;
+		open( \$FILEHANDLER, "<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/pathways.tt" );
+		my \$pathwaysHTML = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{htmlPathways} = \$pathwaysHTML;
+		\$hash{id}           = \$feature;
+	}
+	elsif ( \$typeFeature eq 'annotation_orthology' ) {
+		open(
+			my \$FILEHANDLER,
+			"<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/orthologyBasicResult.tt"
+		);
+
+		my \$content = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		my \@orthologous_groups = ();
+		my \@groups             = ();
+		my \@descriptions       = ();
+		my \@classifications    = ();
+		for ( my \$i = 0 ; \$i < scalar \@{ \$hash{properties} } ; \$i++ ) {
+			while ( \$hash{properties}[\$i]->{orthologous_group} =~
+				/([\\w\\s.\\-(),]+)/g )
+			{
+				push \@groups, \$1;
+			}
+			while ( \$hash{properties}[\$i]->{orthologous_group_description} =~
+				/([\\w\\s.\\-(),]+)/g )
+			{
+				push \@descriptions, \$1;
+			}
+			while ( \$hash{properties}[\$i]->{orthologous_group_classification} =~
+				/([\\w\\s.\\-(),]+)/g )
+			{
+				push \@classifications, \$1;
+			}
+			for ( my \$j = 0 ; \$j < scalar \@groups ; \$j++ ) {
+				my %group = ();
+				\$group{group}          = \$groups[\$j];
+				\$group{description}    = \$descriptions[\$j];
+				\$group{classification} = \$classifications[\$j];
+				push \@orthologous_groups, \\%group;
+			}
+		}
+		open( \$FILEHANDLER, "<",
+			dirname(__FILE__)
+			  . "/../../../root/$lowCaseName/search-database/orthologies.tt" );
+		my \$orthologyHTML = do { local \$/; <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		\$hash{orthologous_groups} = \\\@orthologous_groups;
+		\$hash{htmlOrthology}      = \$orthologyHTML;
+		\$hash{html}               = \$content;
+		\$hash{id}                 = \$feature;
+	}
+	if ( !( exists \$hash{id} ) ) {
+		\$hash{id} = \$feature;
+	}
+
+	\$self->status_ok( \$c, entity => \\%hash );
+}
+
+=head2
+
+Method used to return properties of evidence typed like similarity
+
+=cut
+
+sub getSimilarityEvidenceProperties :
+  Path("/SearchDatabase/getSimilarityEvidenceProperties") : CaptureArgs(1) :
+  ActionClass('REST') { }
+
+sub getSimilarityEvidenceProperties_GET {
+	my ( \$self, \$c, \$feature ) = \@_;
+	if ( !\$feature and defined \$c->request->param("feature") ) {
+		\$feature = \$c->request->param("feature");
+	}
+	
+	open(
+		my \$FILEHANDLER,
+		"<",
+		dirname(__FILE__)
+		  . "/../../../root/$lowCaseName/search-database/similarityBasicResult.tt"
+	);
+
+	my \$content = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER);
+	
+	\$self->status_ok( \$c, entity => \$c->model('DBI')->similarityEvidenceProperties(\$feature, \$content) );
+}
+
+=head2
+
+Method used to return components used
+
+=cut
+
+sub getComponents : Path("/SearchDatabase/getComponents") : Args(0) :
+  ActionClass('REST') { }
+
+sub getComponents_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \$resultSet = \$c->model('Basic::Component')->search(
+		{},
+		{
+			order_by => {
+				-asc => [qw/ component /]
+			}
+		}
+	);
+
+	my \@list = ();
+
+	while ( my \$result = \$resultSet->next ) {
+		my \%hash = ();
+		\$hash{id}        = \$result->id;
+		\$hash{name}      = \$result->name;
+		\$hash{component} = \$result->component;
+		if ( \$result->filepath ne "" ) {
+			\$hash{filepath} = \$result->filepath;
+		}
+		push \@list, \\%hash;
+	}
+	\$self->status_ok( \$c, entity => \\\@list );
+}
+
+=head2 reverseComplement
+
+Method used to return the reverse complement of a sequence
+
+=cut
 
 sub reverseComplement {
 	my (\$sequence) = \@_;
@@ -1677,12 +3511,211 @@ sub reverseComplement {
 	return \$reverseComplement;
 }
 
+=head2 formatSequence
+
+Method used to format sequence
+
+=cut
+
 sub formatSequence {
 	my ( \$sequence, \$block ) = \@_;
 	\$block = \$block || 80 if (\$block);
-	\$sequence =~ s/.{\$block}/\$&\n/gs;
+	\$sequence =~ s/.{\$block}/\$&
+/gs;
 	chomp \$sequence;
 	return \$sequence;
+}
+
+=head2 analysesCDS
+
+Method used to make search of analyses of protein-coding genes
+
+=cut
+
+sub analysesCDS : Path("/SearchDatabase/analysesCDS") : CaptureArgs(31) :
+  ActionClass('REST') { }
+
+sub analysesCDS_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \%hash = ();
+	my \@list = ();
+
+	foreach my \$key ( keys %{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = $pipeline;
+	foreach my \$array ( \$c->model('DBI')->analyses_CDS( \\%hash ) ) {
+		foreach my \$value (\@\$array) {
+			push \@list, \$value;
+		}
+	}
+	\$self->status_ok( \$c, entity => \\\@list );
+}
+
+=head2
+
+Method used to realize search of tRNA
+
+=cut
+
+sub trnaSearch : Path("/SearchDatabase/trnaSearch") : CaptureArgs(3) :
+  ActionClass('REST') { }
+
+sub trnaSearch_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \%hash = ();
+	my \@list = ();
+
+	foreach my \$key ( keys %{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = $pipeline;
+
+	\@list = \$c->model('DBI')->tRNA_search( \\%hash );
+
+	\$self->status_ok( \$c, entity => \\\@list );
+}
+
+=head2
+
+Method used to get data of tandem repeats
+
+=cut
+
+sub tandemRepeatsSearch : Path("/SearchDatabase/tandemRepeatsSearch") :
+  CaptureArgs(5) : ActionClass('REST') { }
+
+sub tandemRepeatsSearch_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \%hash = ();
+	my \@list = ();
+
+	foreach my \$key ( keys %{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = $pipeline;
+
+	\@list = \$c->model('DBI')->trf_search( \\%hash );
+
+	\$self->status_ok( \$c, entity => \\\@list );
+}
+
+=head2
+
+Method used to get data of non coding RNAs
+
+=cut
+
+sub ncRNASearch : Path("/SearchDatabase/ncRNASearch") : CaptureArgs(7) :
+  ActionClass('REST') { }
+
+sub ncRNASearch_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \%hash = ();
+	my \@list = ();
+
+	foreach my \$key ( keys \%{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = $pipeline;
+
+	\@list = \$c->model('DBI')->ncRNA_search( \\%hash );
+
+	\$self->status_ok( \$c, entity => \\\@list );
+}
+
+=head2
+
+Method used to get data of transcriptional terminators
+
+=cut
+
+sub transcriptionalTerminatorSearch :
+  Path("/SearchDatabase/transcriptionalTerminatorSearch") : CaptureArgs(6) :
+  ActionClass('REST') { }
+
+sub transcriptionalTerminatorSearch_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \%hash = ();
+	my \@list = ();
+
+	foreach my \$key ( keys \%{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = $pipeline;
+
+	\@list = \$c->model('DBI')->transcriptional_terminator_search( \\%hash );
+
+	\$self->status_ok( \$c, entity => \\\@list );
+}
+
+=head2
+
+Method used to get data of ribosomal binding sites
+
+=cut
+
+sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(4) :
+  ActionClass('REST') { }
+
+sub rbsSearch_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \%hash = ();
+	my \@list = ();
+
+	foreach my \$key ( keys \%{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = $pipeline;
+
+	\@list = \$c->model('DBI')->rbs_search( \\%hash );
+
+	\$self->status_ok( \$c, entity => \\\@list );
+}
+
+=head2
+
+Method used to get data of horizontal gene transfers
+
+=cut
+
+sub alienhunterSearch : Path("/SearchDatabase/alienhunterSearch") :
+  CaptureArgs(6) : ActionClass('REST') { }
+
+sub alienhunterSearch_GET {
+	my ( \$self, \$c ) = \@_;
+
+	my \%hash = ();
+	my \@list = ();
+
+	foreach my \$key ( keys \%{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = $pipeline;
+
+	\@list = \$c->model('DBI')->alienhunter_search( \\%hash );
+
+	\$self->status_ok( \$c, entity => \\\@list );
 }
 
 =encoding utf8
@@ -1798,19 +3831,10 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 	{
 		\$feature_id = get_feature_id(\$c);
 	}
+	print STDERR \$feature_id;
 	\$c->stash(
 		targetClass => [
-			\$c->model('Chado::Featureprop')->search(
-				{
-					type_id => 81525,
-					feature_id => \$feature_id
-				},
-				{
-					columns => [qw/value/],
-					group_by => [qw/value/],
-					order_by => { -asc => [qw/value/]}
-				}
-			)
+			\$c->model('DBI')->get_target_class($type_target_class_id, \$feature_id)
 		]
 	);
 	
@@ -1946,15 +3970,7 @@ Method used to get feature id
 =cut
 sub get_feature_id {
 	my (\$c) = \@_;
-	return \$c->model('Chado::Feature')->search(
-		{
-			uniquename => qw/$uniquename/
-		},
-		{
-			columns => qw/feature_id/,
-			rows => 1
-		}
-	)->single->get_column(qw/feature_id/);
+	return \$c->model('DBI')->get_feature_id('Bacteria_upload');
 }
 
 
@@ -2012,6 +4028,45 @@ sub index :Path :Args(0) {
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
+}
+
+sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
+	my ( \$self, \$c, \$type ) = \@_;
+	if(!\$type and defined \$c->request->param("type")) {
+		\$type = \$c->request->param("type");
+	}
+	my \$filepath = (\$c->model('Basic::File')->search(
+		{
+			tag => "\$type"
+		},
+		{
+			columns => qw/filepath/,
+			rows    => 1
+		}
+	)->single->get_column(qw/filepath/));
+
+	open( my \$FILEHANDLER, "<", \$filepath );
+	binmode \$FILEHANDLER;
+	my \$file;
+
+	local \$/ = \\10240;
+	while(<\$FILEHANDLER>) {
+		\$file .= \$_;
+	}
+	\$c->response->body(\$file);
+	\$c->response->headers->content_type('application/x-download');
+	close \$FILEHANDLER;
+
+	#####
+	#
+	#
+	# Recebe por parametro o tipo de download desejado
+	# Faz consulta no banco de dados SQLite pesquisando pelo arquivo
+	# Recebe string da coluna dos resultados
+	# Abre arquivo e coloca no status ou coloca no body do response
+	#
+	#
+	#####
 }
 
 ROOT
@@ -2468,8 +4523,8 @@ CONTENTINDEXBLAST
                         <div class="notice-board">
                             <ul>
                                 [% FOREACH text IN texts %]
-                                    [% IF text.tag == 'downloads-genes-links' %]
-                                        <li><a href="[% text.details %]">[% text.value %]</a></li>
+                                    [% IF text.tag.search('downloads-genes-links-') %]
+                                        <li>[% text.value %]</li>
                                     [% END %]
                                 [% END %]
                             </ul>
@@ -2493,8 +4548,8 @@ CONTENTINDEXBLAST
                         <div class="notice-board">
                             <ul>
                                 [% FOREACH text IN texts %]
-                                    [% IF text.tag == 'downloads-other-sequences-links' %]
-                                        <li><a href="[% text.details %]">[% text.value %]</a></li>
+                                    [% IF text.tag.search('downloads-other-sequences-links-') %]
+                                        <li>[% text.value %]</li>
                                     [% END %]
                                 [% END %]
                             </ul>
@@ -2837,935 +4892,944 @@ CONTENTINDEXHOME
 	"search-database" => {
 		"_forms.tt" => <<CONTENTSEARCHDATABASE
 <!DOCTYPE html>
-<div class="content-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        [% FOREACH text IN texts %]
-                            [% IF text.tag.search('search-database-form-title') %]
-                                [% text.value %]
-                            [% END %]
-                        [% END %]
-                    </div>
-                    <div class="panel-body">
-                        <div class="panel-group" id="accordion">
-                        	[% 
-                        		section_protein_coding = 0 
-                        		section_dna_based = 0
-                        		blast = 0
-                        		interpro = 0 
-                        		tcdb = 0
-                        		phobius = 0
-                        		rpsblast = 0
-                        		pathways = 0
-                        		orthology = 0
-                        		trna = 0
-                        		trf = 0
-                        		mreps = 0
-                        		string = 0
-                        		infernal = 0
-                        		rbs = 0
-                        		transterm = 0
-                        		alienhunter = 0
-                        	%]
-                        	
-                        	[% FOREACH component IN components %]
-                        		[% IF component.component.match('annotation_glimmer3.pl') OR  
-                        			component.component.match('annotation_glimmerm.pl') OR 
-                        			component.component.match('annotation_augustus.pl') OR 
-                        			component.component.match('annotation_myop.pl') OR 
-                        			component.component.match('annotation_glimmerhmm.pl') OR 
-                        			component.component.match('annotation_phat.pl') OR 
-                        			component.component.match('annotation_snap.pl') OR 
-                        			component.component.match('annotation_orf.pl') %]
-                        			[% section_protein_coding = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_trna.pl') OR 
-                        			component.component.match('annotation_mreps.pl') OR 
-                        			component.component.match('annotation_string.pl') OR 
-                        			component.component.match('annotation_infernal.pl') OR 
-                        			component.component.match('annotation_rbs.pl') OR 
-                        			component.component.match('annotation_transterm.pl') OR 
-                        			component.component.match('annotation_alienhunter.pl') %]
-                        			[% section_dna_based = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_blast.pl') %]
-                        			[% blast = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_interpro.pl') %]
-                        			[% interpro = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_tcdb.pl') %]
-                        			[% tcdb = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_phobius.pl') %]
-                        			[% phobius = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_rpsblast.pl') %]
-                        			[% rpsblast = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_pathways.pl') %]
-                        			[% pathways = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_orthology.pl') %]
-                        			[% orthology = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_trna.pl') %]
-                        			[% trna = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_trf.pl') %]
-                        			[% trf = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_mreps.pl') %]
-                        			[% mreps = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_string.pl') %]
-                        			[% string = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_infernal.pl') %]
-                        			[% infernal = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_rbsfinder.pl') %]
-                        			[% rbs = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_transterm.pl') %]
-                        			[% transterm = 1 %]
-                        		[% END %]
-                        		[% IF component.component.match('annotation_alienhunter.pl') %]
-                        			[% alienhunter = 1 %]
-                        		[% END %]
-                            [% END %]
-                            [% IF section_protein_coding %]
-	                            <div id="parentCollapseOne" class="panel panel-default">
-	                                <div class="panel-heading">
-	                                    <h4 class="panel-title">
-	                                        [% FOREACH text IN texts %]
-	                                            [% IF text.tag.search('search-database-gene-ids-descriptions-title') %]
-	                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
-	                                            [% END %]
-	                                        [% END %]
-	                                    </h4>
-	                                </div>
-	                                <div id="collapseOne" class="panel-collapse collapse">
-	                                    <div class="panel-body">
-	
-	                                        <ul class="nav nav-pills">
-	                                            [% FOREACH text IN texts %]
-	                                                [% IF text.tag.search('search-database-gene-ids-descriptions-tab') %]
-	                                                    <li [% text.details %]>[% text.value %]</li>
-	                                                [% END %]
-	                                            [% END %]
-	                                        </ul>
-	                                        <div class="tab-content">
-	                                            <div id="geneIdentifier" class="tab-pane fade active in">
-	                                                <h4></h4>
-	                                                <form method="post" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
-	                                                    <div class="form-group">
-	                                                        [% FOREACH text IN texts %]
-	                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
-	                                                                <label>[% text.value %]</label>
-	                                                            [% END %]
-	                                                        [% END %]
-	                                                        <input class="form-control" type="text" name="geneID">
-	                                                    </div>
-	                                                    <input class="btn btn-primary btn-sm" type="submit" value="Search">  
-	                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-	                                                </form>
-	                                            </div>
-	                                            [% IF blast %]
-		                                            <div id="geneDescription" class="tab-pane fade">
-		                                                <h4></h4>
-		                                                <form method="post" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="geneDesc">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-excluding') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="noDesc">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                    	[% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-gene-ids-descriptions-gene-match-all') %]
-		                                                            	<div class="checkbox">
-		                                                                	<label><input type="checkbox" name="individually">[% text.value %]</label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-		                                                    <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-		                                                </form>
-		                                            </div>
-		                                        [% END %]
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        
-	                            <div id="parentCollapseTwo" class="panel panel-default">
-	                                <div class="panel-heading">
-	                                    <h4 class="panel-title">
-	                                        [% FOREACH text IN texts %]
-	                                            [% IF text.tag.search('search-database-analyses-protein-code-title') %]
-	                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">[% text.value %]</a>
-	                                            [% END %]
-	                                        [% END %]
-	                                    </h4>
-	                                </div>
-	                                <div id="collapseTwo" class="panel-collapse collapse">
-	                                    <div class="panel-body">
-	                                        <form method="post" action="/cgi-bin/searchPMNann.cgi" enctype="multipart/form-data">
-	                                        	[% IF blast %]
-		                                            <div class="form-group">
-		                                                [% FOREACH text IN texts %]
-		                                                    [% IF text.tag.search('search-database-analyses-protein-code-limit') %]
-		                                                        <label>[% text.value %]</label>
-		                                                    [% END %]
-		                                                [% END %]
-		                                                <input class="form-control" type="text" name="geneDesc">
-		                                            </div>
-		                                            <div class="form-group">
-		                                                [% FOREACH text IN texts %]
-		                                                    [% IF text.tag.search('search-database-analyses-protein-code-excluding') %]
-		                                                        <label>[% text.value %]</label>
-		                                                    [% END %]
-		                                                [% END %]
-		                                                <input class="form-control" type="text" name="noDesc">
-		                                            </div>
-		                                        [% END %]
-	                                            <ul class="nav nav-pills">
-	                                                [% FOREACH text IN texts %]
-	                                                    [% IF text.tag.search('search-database-analyses-protein-code-tab') %]
-	                                                        <li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
-	                                                    [% END %]
-	                                                [% END %]
-	                                            </ul>
-	                                            <h4></h4>
-	                                            <div class="tab-content">
-	                                            	[% IF interpro %]
-		                                                <div id="geneOntology" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag == 'search-database-analyses-protein-code-not-containing-classification' %]
-		                                                                    <label><input type="checkbox" name="noGO">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="goID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="goDesc">
-		                                                    </div>
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF tcdb %]
-		                                                <div id="transporterClassification" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-tcdb') %]
-		                                                                    <label><input type="checkbox" name="noGO">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-identifier') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="tcdbID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-family') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="tcdbFam">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-analyses-protein-code-search-by-transporter-subclass' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <select class="form-control" name="tcdbSubclass">
-		                                                            <option value=""></option>
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-subclass-option') %]
-		                                                                    <option value='[% text.value %]'>[% text.value %]</option>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </select>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-analyses-protein-code-search-by-transporter-class' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <select class="form-control" name="tcdbClass">
-		                                                            <option value=""></option>
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-class') %]
-		                                                                    <option value="[% text.value %]">[% text.value %]</option>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </select>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
-		                                                                    <label>[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        <input class="form-control" type="text" name="tcdbDesc">
-		                                                    </div>
-		                                                </div>
-	                                                [% END %]
-	                                                [% IF phobius %]
-		                                                <div id="phobius" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-phobius') %]
-		                                                                    <label><input type="checkbox" name="noPhobius">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-analyses-protein-code-number-transmembrane-domain' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="TMdom">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="tmQuant" [% text.details %]> [% text.value %] </label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-analyses-protein-code-signal-peptide' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-signal-peptide-option') %]
-		                                                                <div class="radio">
-		                                                                    <label><input type="radio" name="sigP" [% text.details %]> [% text.value %] </label>
-		                                                                </div>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                    </div>
-		                                                </div>
-													[% END %]
-	                                                [% IF blast %]
-		                                                <div id="blast" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-blast') %]
-		                                                                    <label><input type="checkbox" name="noBlast">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="blastID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="blastDesc">
-		                                                    </div>
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF rpsblast %]
-		                                                <div id="rpsBlast" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-rpsblast') %]
-		                                                                    <label><input type="checkbox" name="noRps">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="rpsID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="rpsDesc">
-		                                                    </div>
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF pathways %]
-		                                                <div id="kegg" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-kegg') %]
-		                                                                    <label><input type="checkbox" name="noKEGG">[% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-by-orthology-identifier-kegg') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="koID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag == 'search-database-analyses-protein-code-by-kegg-pathway' %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <select class="form-control" name="keggPath">
-		                                                            <option value=""></option>
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-by-kegg-pathway-options') %]
-		                                                                    <option value="[% text.details %]">[% text.value %]</option>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </select>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="keggDesc">
-		                                                    </div>
-		                                                </div>
-		                                            [% END %]
-		                                            [% IF orthology %]
-		                                                <div id="orthologyAnalysis" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-eggNOG') %]
-		                                                                    <label><input type="checkbox" name="noOrth"> [% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-eggNOG') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="orthID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="orthDesc">
-		                                                    </div>
-		                                                </div>
-		                                            [% END %]
-	                                                [% IF interpro %]
-		                                                <div id="interpro" class="tab-pane fade">
-		                                                    <div class="form-group">
-		                                                        <div class="checkbox">
-		                                                            [% FOREACH text IN texts %]
-		                                                                [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-interpro') %]
-		                                                                    <label><input type="checkbox" name="noIP"> [% text.value %]</label>
-		                                                                [% END %]
-		                                                            [% END %]
-		                                                        </div>
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-interpro') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="interproID">
-		                                                    </div>
-		                                                    <div class="form-group">
-		                                                        [% FOREACH text IN texts %]
-		                                                            [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
-		                                                                <label>[% text.value %]</label>
-		                                                            [% END %]
-		                                                        [% END %]
-		                                                        <input class="form-control" type="text" name="interproDesc">
-		                                                    </div>
-		                                                </div>
-		                                            [% END %]
-	                                            </div>
-	                                            <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-	                                            <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-	                                        </form>
-	                                    </div>
-	                                </div>
-	                            </div>
-                            [% END %]
-                            [% IF section_dna_based %]
-	                            <div id="parentCollapseThree" class="panel panel-default">
-	                                <div class="panel-heading">
-	                                    <h4 class="panel-title">
-	                                        [% FOREACH text IN texts %]
-	                                            [% IF text.tag.search('search-database-dna-based-analyses-title') %]
-	                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
-	                                            [% END %]
-	                                        [% END %]
-	                                    </h4>
-	                                </div>
-	                                <div id="collapseThree" class="panel-collapse collapse">
-	                                    <div class="panel-body">
-											<ul class="nav nav-pills">
-												[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-dna-based-analyses-tab') %]
-														<li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
-													[% END %]
-												[% END %]
-											</ul>
-											<h4></h4>
-											<div class="tab-content">
-											<div id="contigs" class="tab-pane fade">
-												<form method="post" action="[% c.uri_for('/SearchDatabase/Contig') %]" enctype="multipart/form-data">
-													<div class="form-group">
-														[% FOREACH text IN texts %]
-															[% IF text.tag == 'search-database-dna-based-analyses-only-contig-title' %]
-																<label>[% text.value %]</label>
-															[% END %]
-														[% END %]
-														<select class="form-control"  name="contig">
-															<option value=""></option>
-															[% FOREACH sequence IN sequences %]
-																<option value="[% sequence.id %]">[% sequence.name %]</option>
-															[% END %]
-														</select>
-													</div>
-													<div class="form-group">
-														[% FOREACH text IN texts %]
-															[% IF text.tag == 'search-database-dna-based-analyses-from-base' %]
-																<label>[% text.value %]</label>
-															[% END %]
-														[% END %]
-														<input class="form-control" type="text" name="contigStart">
-													</div>
-													<div class="form-group">
-														[% FOREACH text IN texts %]
-															[% IF text.tag == 'search-database-dna-based-analyses-to' %]
-																<label>[% text.value %]</label>
-															[% END %]
-														[% END %]
-														<input class="form-control" type="text" name="contigEnd">
-													</div>
-													<div class="form-group">
-														<div class="checkbox">
-															[% FOREACH text IN texts %]
-																[% IF text.tag == 'search-database-dna-based-analyses-reverse-complement' %]
-																	<label><input type="checkbox" name="revCompContig">[% text.value %]</label>
-																[% END %]
-															[% END %]
-														</div>
-													</div>
-													<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-													<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-												</form>
-											</div>
-											[% IF trna %]
-											<div id="trna" class="tab-pane fade">
-												<div class="form-group">
-													<div class="checkbox">
-														[% FOREACH text IN texts %]
-														[% IF text.tag == 'search-database-dna-based-analyses-list-rnas' %]
-														<label><input type="checkbox" name="tRNAall">[% text.value %]</label>
-														[% END %]
-														[% END %]
-													</div>
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<select class="form-control" name="tRNAaa">
-														<option value=""></option>
-														[% FOREACH text IN texts %]
-														[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid-options' %]
-														<option value="[% text.details %]">[% text.value %]</option>
-														[% END %]
-														[% END %]
-													</select>
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-get-by-codon' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<select class="form-control" name="tRNAcd">
-														<option value=""></option>
-														[% FOREACH text IN texts %]
-														[% IF text.tag == 'search-database-dna-based-analyses-get-by-codon-options' %]
-														<option value="[% text.details %]">[% text.value %]</option>
-														[% END %]
-														[% END %]
-													</select>
-												</div>
-												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-											</div>
-											[% END %]
-											[% IF trf OR mreps OR string %]
-											<div id="tandemRepeats" class="tab-pane fade">
-												<div class="alert alert-info">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats' %]
-													[% text.value %]
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-contain-sequence-repetition-unit' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="TRFrepSeq">
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-repetition-unit-bases' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="TRFrepSize">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="TRFsize" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-occours-between' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="TRFrepNumMin">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-occours-between-and' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="TRFrepNumMax">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-occours-between-and-times' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="alert alert-warning">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats-note' %]
-													[% text.value %]
-													[% END %]
-													[% END %]
-												</div>
-												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-											</div>
-											[% END %]
-											[% IF infernal %]
-											<div id="otherNonCodingRNAs" class="tab-pane fade">
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="ncRNAtargetID">
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-by-evalue-match' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="ncRNAevalue">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="ncRNAevM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-name' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="ncRNAtargetName">
-												</div>
-												[% IF targetClass.size > 0 %]
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<select class="form-control"  name="ncRNAtargetClass">
-														<option value=""></option>
-														[% FOREACH text IN targetClass %]
-														<option value="[% text.value %]">[% text.value %]</option>
-														[% END %]
-													</select>
-												</div>
-												[% END %]
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-type' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="ncRNAtargetType">
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-description' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="ncRNAtargetDesc">
-												</div>
-												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-											</div>
-											[% END %]
-											[% IF rbs %]
-											<div id="ribosomalBindingSites" class="tab-pane fade">
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="RBSpattern">
-												</div>
-												<div class="form-group">
-													<div class="checkbox">
-														[% FOREACH text IN texts %]
-														[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift' %]
-														<label><input type="checkbox" name="RBSshift">[% text.value %]</label>
-														[% END %]
-														[% END %]
-													</div>
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-options' %]
-													<div class="radio">
-														<label><input type="radio" name="RBSshiftM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													<div class="checkbox">
-														[% FOREACH text IN texts %]
-														[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-start' %]
-														<label><input type="checkbox" name="RBSnewcodon">[% text.value %]</label>
-														[% END %]
-														[% END %]
-													</div>
-												</div>
-												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-											</div>
-											[% END %]
-											[% IF transterm %]
-											<div id="transcriptionalTerminators" class="tab-pane fade">
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="TTconf">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="TTconfM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-hairpin-score' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="TThp">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="TThpM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-tail-score' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="TTtail">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="TTtailM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="alert alert-warning">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-hairpin-note' %]
-													[% text.value %]
-													[% END %]
-													[% END %]
-												</div>
-												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-											</div>
-											[% END %]
-											[% IF alienhunter %]
-											<div id="horizontalGeneTransfers" class="tab-pane fade">
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="AHlen">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="AHlenM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-score' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="AHscore">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="AHscM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<div class="form-group">
-													[% FOREACH text IN texts %]
-													[% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-threshold' %]
-													<label>[% text.value %]</label>
-													[% END %]
-													[% END %]
-													<input class="form-control" type="text" name="AHthr">
-													[% FOREACH text IN texts %]
-													[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
-													<div class="radio">
-														<label><input type="radio" name="AHthrM" [% text.details %]>[% text.value %]</label>
-													</div>
-													[% END %]
-													[% END %]
-												</div>
-												<input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-												<input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
-											</div>
-											[% END %]
-											</div>
-	                                    </div>
-	                                    <div class="panel-footer">
-	                                        [% FOREACH text IN texts %]
-	                                            [% IF text.tag == 'search-database-dna-based-analyses-footer' %]
-	                                                [% text.value %]
-	                                            [% END %]
-	                                        [% END %]
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        [% END %]
-                        </div>
-                    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default" id="searchPanel">
+            <div class="panel-heading">
+                [% FOREACH text IN texts %]
+                    [% IF text.tag.search('search-database-form-title') %]
+                        [% text.value %]
+                    [% END %]
+                [% END %]
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                	[% 
+                		section_protein_coding = 0 
+                		section_dna_based = 0
+                		blast = 0
+                		interpro = 0 
+                		tcdb = 0
+                		phobius = 0
+                		rpsblast = 0
+                		pathways = 0
+                		orthology = 0
+                		trna = 0
+                		trf = 0
+                		mreps = 0
+                		string = 0
+                		infernal = 0
+                		rbs = 0
+                		transterm = 0
+                		alienhunter = 0
+                	%]
+                	
+                	[% FOREACH component IN components %]
+                		[% IF component.component.match('annotation_glimmer3.pl') OR  
+                			component.component.match('annotation_glimmerm.pl') OR 
+                			component.component.match('annotation_augustus.pl') OR 
+                			component.component.match('annotation_myop.pl') OR 
+                			component.component.match('annotation_glimmerhmm.pl') OR 
+                			component.component.match('annotation_phat.pl') OR 
+                			component.component.match('annotation_snap.pl') OR 
+                			component.component.match('annotation_orf.pl') %]
+                			[% section_protein_coding = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_trna.pl') OR 
+                			component.component.match('annotation_mreps.pl') OR 
+                			component.component.match('annotation_string.pl') OR 
+                			component.component.match('annotation_infernal.pl') OR 
+                			component.component.match('annotation_rbs.pl') OR 
+                			component.component.match('annotation_transterm.pl') OR 
+                			component.component.match('annotation_alienhunter.pl') %]
+                			[% section_dna_based = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_blast.pl') %]
+                			[% blast = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_interpro.pl') %]
+                			[% interpro = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_tcdb.pl') %]
+                			[% tcdb = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_phobius.pl') %]
+                			[% phobius = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_rpsblast.pl') %]
+                			[% rpsblast = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_pathways.pl') %]
+                			[% pathways = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_orthology.pl') %]
+                			[% orthology = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_trna.pl') %]
+                			[% trna = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_trf.pl') %]
+                			[% trf = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_mreps.pl') %]
+                			[% mreps = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_string.pl') %]
+                			[% string = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_infernal.pl') %]
+                			[% infernal = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_rbsfinder.pl') %]
+                			[% rbs = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_transterm.pl') %]
+                			[% transterm = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_alienhunter.pl') %]
+                			[% alienhunter = 1 %]
+                		[% END %]
+                    [% END %]
+                    [% IF section_protein_coding %]
+                     <div id="parentCollapseOne" class="panel panel-default">
+                         <div class="panel-heading">
+                             <h4 class="panel-title">
+                                 [% FOREACH text IN texts %]
+                                     [% IF text.tag.search('search-database-gene-ids-descriptions-title') %]
+                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+                                     [% END %]
+                                 [% END %]
+                             </h4>
+                         </div>
+                         <div id="collapseOne" class="panel-collapse collapse">
+                             <div class="panel-body">
+
+                                 <ul class="nav nav-pills">
+                                     [% FOREACH text IN texts %]
+                                         [% IF text.tag.search('search-database-gene-ids-descriptions-tab') %]
+                                             <li [% text.details %]>[% text.value %]</li>
+                                         [% END %]
+                                     [% END %]
+                                 </ul>
+                                 <div class="tab-content">
+                                     <div id="geneIdentifier" class="tab-pane fade active in">
+                                         <h4></h4>
+                                         <form id="formGeneIdentifier" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
+                                             <div class="form-group">
+                                                 [% FOREACH text IN texts %]
+                                                     [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
+                                                         <label>[% text.value %]</label>
+                                                     [% END %]
+                                                 [% END %]
+                                                 <input class="form-control" type="text" name="geneID">
+                                             </div>
+                                             <input class="btn btn-primary btn-sm" type="submit" value="Search">  
+                                             <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                         </form>
+                                     </div>
+                                     [% IF blast %]
+                                      <div id="geneDescription" class="tab-pane fade">
+                                          <h4></h4>
+                                          <form id="formGeneDescription" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="geneDesc">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-gene-ids-descriptions-gene-excluding') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="noDesc">
+                                              </div>
+                                              <div class="form-group">
+                                              	[% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-gene-ids-descriptions-gene-match-all') %]
+                                                      	<div class="checkbox">
+                                                          	<label><input type="checkbox" name="individually">[% text.value %]</label>
+                                                          </div>
+                                                      [% END %]
+                                                  [% END %]
+                                              </div>
+                                              <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                              <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                          </form>
+                                      </div>
+                                  [% END %]
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 
+                     <div id="parentCollapseTwo" class="panel panel-default">
+                         <div class="panel-heading">
+                             <h4 class="panel-title">
+                                 [% FOREACH text IN texts %]
+                                     [% IF text.tag.search('search-database-analyses-protein-code-title') %]
+                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">[% text.value %]</a>
+                                     [% END %]
+                                 [% END %]
+                             </h4>
+                         </div>
+                         <div id="collapseTwo" class="panel-collapse collapse">
+                             <div class="panel-body">
+                                 <form id="formAnalysesProteinCodingGenes" action="[% c.uri_for('/SearchDatabase/analysesCDS') %]" enctype="multipart/form-data">
+                                 	[% IF blast %]
+                                      <div class="form-group">
+                                          [% FOREACH text IN texts %]
+                                              [% IF text.tag.search('search-database-analyses-protein-code-limit') %]
+                                                  <label>[% text.value %]</label>
+                                              [% END %]
+                                          [% END %]
+                                          <input class="form-control" type="text" name="geneDesc">
+                                      </div>
+                                      <div class="form-group">
+                                          [% FOREACH text IN texts %]
+                                              [% IF text.tag.search('search-database-analyses-protein-code-excluding') %]
+                                                  <label>[% text.value %]</label>
+                                              [% END %]
+                                          [% END %]
+                                          <input class="form-control" type="text" name="noDesc">
+                                      </div>
+                                  [% END %]
+                                     <ul class="nav nav-pills">
+                                         [% FOREACH text IN texts %]
+                                             [% IF text.tag.search('search-database-analyses-protein-code-tab') %]
+                                                 <li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
+                                             [% END %]
+                                         [% END %]
+                                     </ul>
+                                     <h4></h4>
+                                     <div class="tab-content">
+                                     	[% IF interpro %]
+                                          <div id="geneOntology" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag == 'search-database-analyses-protein-code-not-containing-classification' %]
+                                                              <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="goID">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="goDesc">
+                                              </div>
+                                          </div>
+                                      [% END %]
+                                      [% IF tcdb %]
+                                          <div id="transporterClassification" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-tcdb') %]
+                                                              <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-identifier') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="tcdbID">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-family') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="tcdbFam">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag == 'search-database-analyses-protein-code-search-by-transporter-subclass' %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <select class="form-control" name="tcdbSubclass">
+                                                      <option value=""></option>
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-subclass-option') %]
+                                                              <option value='[% text.value %]'>[% text.value %]</option>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </select>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag == 'search-database-analyses-protein-code-search-by-transporter-class' %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <select class="form-control" name="tcdbClass">
+                                                      <option value=""></option>
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-search-by-transporter-class') %]
+                                                              <option value="[% text.value %]">[% text.value %]</option>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </select>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                              <label>[% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  <input class="form-control" type="text" name="tcdbDesc">
+                                              </div>
+                                          </div>
+                                         [% END %]
+                                         [% IF phobius %]
+                                          <div id="phobius" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-not-containing-phobius') %]
+                                                              <label><input type="checkbox" name="noPhobius">[% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag == 'search-database-analyses-protein-code-number-transmembrane-domain' %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="TMdom">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                          <div class="radio">
+                                                              <label><input type="radio" name="tmQuant" [% text.details %]> [% text.value %] </label>
+                                                          </div>
+                                                      [% END %]
+                                                  [% END %]
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag == 'search-database-analyses-protein-code-signal-peptide' %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-signal-peptide-option') %]
+                                                          <div class="radio">
+                                                              <label><input type="radio" name="sigP" [% text.details %]> [% text.value %] </label>
+                                                          </div>
+                                                      [% END %]
+                                                  [% END %]
+                                              </div>
+                                          </div>
+					[% END %]
+                                         [% IF blast %]
+                                          <div id="blast" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-blast') %]
+                                                              <label><input type="checkbox" name="noBlast">[% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="blastID">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="blastDesc">
+                                              </div>
+                                          </div>
+                                      [% END %]
+                                      [% IF rpsblast %]
+                                          <div id="rpsBlast" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-rpsblast') %]
+                                                              <label><input type="checkbox" name="noRps">[% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="rpsID">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="rpsDesc">
+                                              </div>
+                                          </div>
+                                      [% END %]
+                                      [% IF pathways %]
+                                          <div id="kegg" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-kegg') %]
+                                                              <label><input type="checkbox" name="noKEGG">[% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-by-orthology-identifier-kegg') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="koID">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag == 'search-database-analyses-protein-code-by-kegg-pathway' %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <select class="form-control" name="keggPath">
+                                                      <option value=""></option>
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-by-kegg-pathway-options') %]
+                                                              <option value="[% text.details %]">[% text.value %]</option>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </select>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="keggDesc">
+                                              </div>
+                                          </div>
+                                      [% END %]
+                                      [% IF orthology %]
+                                          <div id="orthologyAnalysis" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-eggNOG') %]
+                                                              <label><input type="checkbox" name="noOrth"> [% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-eggNOG') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="orthID">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="orthDesc">
+                                              </div>
+                                          </div>
+                                      [% END %]
+                                         [% IF interpro %]
+                                          <div id="interpro" class="tab-pane fade">
+                                              <div class="form-group">
+                                                  <div class="checkbox">
+                                                      [% FOREACH text IN texts %]
+                                                          [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-interpro') %]
+                                                              <label><input type="checkbox" name="noIP"> [% text.value %]</label>
+                                                          [% END %]
+                                                      [% END %]
+                                                  </div>
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-interpro') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="interproID">
+                                              </div>
+                                              <div class="form-group">
+                                                  [% FOREACH text IN texts %]
+                                                      [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
+                                                          <label>[% text.value %]</label>
+                                                      [% END %]
+                                                  [% END %]
+                                                  <input class="form-control" type="text" name="interproDesc">
+                                              </div>
+                                          </div>
+                                      [% END %]
+                                     </div>
+                                     <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
+                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="clearForm(this.form);">
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                    [% END %]
+                    [% IF section_dna_based %]
+                     <div id="parentCollapseThree" class="panel panel-default">
+                         <div class="panel-heading">
+                             <h4 class="panel-title">
+                                 [% FOREACH text IN texts %]
+                                     [% IF text.tag.search('search-database-dna-based-analyses-title') %]
+                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
+                                     [% END %]
+                                 [% END %]
+                             </h4>
+                         </div>
+                         <div id="collapseThree" class="panel-collapse collapse">
+                             <div class="panel-body">
+			<ul class="nav nav-pills">
+				[% FOREACH text IN texts %]
+					[% IF text.tag.search('search-database-dna-based-analyses-tab') %]
+						<li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
+					[% END %]
+				[% END %]
+			</ul>
+			<h4></h4>
+			<div class="tab-content">
+			<div id="contigs" class="tab-pane fade">
+				<form id="formSearchContig" action="[% c.uri_for('/SearchDatabase/Contig') %]" enctype="multipart/form-data">
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+							[% IF text.tag == 'search-database-dna-based-analyses-only-contig-title' %]
+								<label>[% text.value %]</label>
+							[% END %]
+						[% END %]
+						<select class="form-control"  name="contig" required="required">
+							<option value=""></option>
+							[% FOREACH sequence IN sequences %]
+								<option value="[% sequence.id %]">[% sequence.name %]</option>
+							[% END %]
+						</select>
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+							[% IF text.tag == 'search-database-dna-based-analyses-from-base' %]
+								<label>[% text.value %]</label>
+							[% END %]
+						[% END %]
+						<input class="form-control" type="number" name="contigStart">
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+							[% IF text.tag == 'search-database-dna-based-analyses-to' %]
+								<label>[% text.value %]</label>
+							[% END %]
+						[% END %]
+						<input class="form-control" type="number" name="contigEnd">
+					</div>
+					<div class="form-group">
+						<div class="checkbox">
+							[% FOREACH text IN texts %]
+								[% IF text.tag == 'search-database-dna-based-analyses-reverse-complement' %]
+									<label><input type="checkbox" name="revCompContig">[% text.value %]</label>
+								[% END %]
+							[% END %]
+						</div>
+					</div>
+					<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
+					<input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="clearForm(this.form);">
+				</form>
+			</div>
+			[% IF trna %]
+			
+				<div id="trna" class="tab-pane fade">
+					<form id="trna-form" action="[% c.uri_for('/SearchDatabase/trnaSearch') %]">
+						<div class="form-group">
+							<div class="checkbox">
+								[% FOREACH text IN texts %]
+								[% IF text.tag == 'search-database-dna-based-analyses-list-rnas' %]
+								<label><input type="checkbox" name="tRNAall">[% text.value %]</label>
+								[% END %]
+								[% END %]
+							</div>
+						</div>
+						<div class="form-group">
+							[% FOREACH text IN texts %]
+							[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid' %]
+							<label>[% text.value %]</label>
+							[% END %]
+							[% END %]
+							<select class="form-control" name="tRNAaa">
+								<option value=""></option>
+								[% FOREACH text IN texts %]
+								[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid-options' %]
+								<option value="[% text.details %]">[% text.value %]</option>
+								[% END %]
+								[% END %]
+							</select>
+						</div>
+						<div class="form-group">
+							[% FOREACH text IN texts %]
+							[% IF text.tag == 'search-database-dna-based-analyses-get-by-codon' %]
+							<label>[% text.value %]</label>
+							[% END %]
+							[% END %]
+							<select class="form-control" name="tRNAcd">
+								<option value=""></option>
+								[% FOREACH text IN texts %]
+								[% IF text.tag == 'search-database-dna-based-analyses-get-by-codon-options' %]
+								<option value="[% text.details %]">[% text.value %]</option>
+								[% END %]
+								[% END %]
+							</select>
+						</div>
+						<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+						<input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="clearForm(this.form);">
+					</form>
+				</div>
+			
+			[% END %]
+			[% IF trf OR mreps OR string %]
+			<div id="tandemRepeats" class="tab-pane fade">
+				<form id="tandemRepeats-form" action="[% c.uri_for('/SearchDatabase/tandemRepeatsSearch') %]">
+					<div class="alert alert-info">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats' %]
+						[% text.value %]
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-contain-sequence-repetition-unit' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="TRFrepSeq">
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-repetition-unit-bases' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="TRFrepSize">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="TRFsize" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-occours-between' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="TRFrepNumMin">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-occours-between-and' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="TRFrepNumMax">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-occours-between-and-times' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="alert alert-warning">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats-note' %]
+						[% text.value %]
+						[% END %]
+						[% END %]
+					</div>
+					<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="clearForm(this.form);">
+				</form>
+			</div>
+			[% END %]
+			[% IF infernal %]
+			<div id="otherNonCodingRNAs" class="tab-pane fade">
+				<form id="otherNonCodingRNAs-form" action="[% c.uri_for('/SearchDatabase/ncRNASearch') %]">
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="ncRNAtargetID">
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-by-evalue-match' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="ncRNAevalue">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="ncRNAevM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-name' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="ncRNAtargetName">
+					</div>
+					[% IF targetClass.size > 0 %]
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-class' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<select class="form-control"  name="ncRNAtargetClass">
+							<option value=""></option>
+							[% FOREACH text IN targetClass %]
+							<option value="[% text.value %]">[% text.value %]</option>
+							[% END %]
+						</select>
+					</div>
+					[% END %]
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-type' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="ncRNAtargetType">
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-by-target-description' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="ncRNAtargetDesc">
+					</div>
+					<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="clearForm(this.form);">
+				</form>
+			</div>
+			[% END %]
+			[% IF rbs %]
+			<div id="ribosomalBindingSites" class="tab-pane fade">
+				<form id="ribosomalBindingSites-form" action="[% c.uri_for('/SearchDatabase/rbsSearch') %]">
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="RBSpattern">
+					</div>
+					<div class="form-group">
+						<div class="checkbox">
+							[% FOREACH text IN texts %]
+							[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift' %]
+							<label><input type="checkbox" name="RBSshift">[% text.value %]</label>
+							[% END %]
+							[% END %]
+						</div>
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-options' %]
+						<div class="radio">
+							<label><input type="radio" name="RBSshiftM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						<div class="checkbox">
+							[% FOREACH text IN texts %]
+							[% IF text.tag == 'search-database-dna-based-analyses-or-search-all-ribosomal-binding-start' %]
+							<label><input type="checkbox" name="RBSnewcodon">[% text.value %]</label>
+							[% END %]
+							[% END %]
+						</div>
+					</div>
+					<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="clearForm(this.form);">
+				</form>
+			</div>
+			[% END %]
+			[% IF transterm %]
+			<div id="transcriptionalTerminators" class="tab-pane fade">
+				<form id="transcriptionalTerminators-form" action="[% c.uri_for('/SearchDatabase/transcriptionalTerminatorSearch') %]">
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="TTconf">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="TTconfM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-hairpin-score' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="TThp">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="TThpM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-tail-score' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="TTtail">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="TTtailM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="alert alert-warning">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-hairpin-note' %]
+						[% text.value %]
+						[% END %]
+						[% END %]
+					</div>
+					<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="clearForm(this.form);">
+				</form>
+			</div>
+			[% END %]
+			[% IF alienhunter %]
+			<div id="horizontalGeneTransfers" class="tab-pane fade">
+				<form id="horizontalGeneTransfers-form" action="[% c.uri_for('/SearchDatabase/alienhunterSearch') %]">
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="AHlen">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="AHlenM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-score' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="AHscore">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="AHscM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-or-get-regions-threshold' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<input class="form-control" type="text" name="AHthr">
+						[% FOREACH text IN texts %]
+						[% IF text.tag.search('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+						<div class="radio">
+							<label><input type="radio" name="AHthrM" [% text.details %]>[% text.value %]</label>
+						</div>
+						[% END %]
+						[% END %]
+					</div>
+					<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
+					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="clearForm(this.form);">
+				</form>
+			</div>
+			[% END %]
+			</div>
+                             </div>
+                             <div class="panel-footer">
+                                 [% FOREACH text IN texts %]
+                                     [% IF text.tag == 'search-database-dna-based-analyses-footer' %]
+                                         [% text.value %]
+                                     [% END %]
+                                 [% END %]
+                             </div>
+                         </div>
+                     </div>
+                 [% END %]
                 </div>
             </div>
         </div>
-        
     </div>
 </div>
 <!-- CONTENT-WRAPPER SECTION END-->
@@ -3775,6 +5839,11 @@ CONTENTSEARCHDATABASE
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<input type="button" id="back" value="Back" class="btn btn-default btn-sm">
+    		</div>
+    	</div
         [% INCLUDE '$lowCaseName/search-database/_forms.tt' %]
     </div>
 </div>
@@ -3808,7 +5877,593 @@ CONTENTSEARCHDATABASE
     });
 </script>
 
+<script src="/assets/js/action.js"></script>
+
 CONTENTINDEXSEARCHDATABASE
+		,
+		"contigs.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="panel panel-default result">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
+			[% IF hadLimits %]
+				from [% start %] to [% end %] of 
+			[% END %]
+			[% sequence.name %]
+			[% IF hadReverseComplement %]
+				, reverse complemented
+			[% END %]
+			)</a>
+		</div>
+	</div>
+	<div id="[% sequence.id %]" class="panel-collapse collapse">
+		<div class="panel-body">
+			<div class="sequence">
+				[% contig %]
+			</div>
+		</div>
+	</div>
+</div>
+CONTENT
+		,
+		"evidences.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a id="anchor-evidence-[% result.componentName %]-[% result.id %]" data-toggle="collapse" data-parent="#accordion" href="#evidence-[% result.componentName %]-[% result.id %]">[% result.descriptionComponent %]</a>
+		</div>
+	</div>
+	<div id="evidence-[% result.componentName %]-[% result.id %]" class="panel-body collapse">
+	</div>
+</div>
+CONTENT
+		,
+		"gene.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="panel panel-default result">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a id="result-panel-title-[% result.feature_id %]" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
+		</div>
+	</div>
+	<div id="[% result.feature_id %]" class="panel-body collapse">
+	</div>
+</div>
+CONTENT
+		,
+		"geneBasics.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Gene type:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.type %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Located in:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.uniquename %] (from position [% result.fstart %] to [% result.fend %])</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Gene length:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.length %]</p>
+	</div>
+</div>
+CONTENT
+		,
+		"interproBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+		</div>
+	</div>
+	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+		<div class="row">
+			<div class="col-md-3">
+				<p>InterPro identifier:</p>
+			</div>
+			<div class="col-md-9">
+				<p><a href="http://www.ebi.ac.uk/interpro/entry/[% result.interpro_id %]">[% result.interpro_id %]</a></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>InterPro description:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.description_interpro %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Database identifier and database:</p>
+			</div>
+			<div class="col-md-9">
+				<p><a href="http://www.ebi.ac.uk/interpro/search?q=[% result.DB_id %]">[% result.DB_id %]</a> ([% result.DB_name %])</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Database match description:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.description %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>GO process:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.evidence_process %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>GO function:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.evidence_function %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>GO component:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.evidence_component %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Match score:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.score %]</p>
+			</div>
+		</div>
+	</div>
+</div>
+CONTENT
+		,
+		"orthologies.tt" => <<CONTENT
+<tr>
+	<td><a href="http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=[% result.orthologous_group %]">[% result.orthologous_group %]</a> - [% result.orthologous_group_description %]</td>
+</tr>
+CONTENT
+		,
+		"orthologyBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		Match identifier:
+	</div>
+	<div class="col-md-9">
+		[% result.orthologous_hit %]
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Orthologous group:</th>
+					</tr>
+				</thead>
+				<tbody id="orthology-[% result.id %]">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+CONTENT
+		,
+		"pathways.tt" => <<CONTENT
+<tr>
+	<td><a href="http://www.genome.jp/dbget-bin/www_bget?[% result.metabolic_pathway_id %]">[% result.metabolic_pathway_id %]</a> - [% result.metabolic_pathway_description %]</td>
+</tr>
+CONTENT
+		,
+		"pathwaysBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		Orthologous group:
+	</div>
+	<div class="col-md-9">
+		<a href="http://www.genome.jp/dbget-bin/www_bget?[% result.orthologous_group_id %]">[% result.orthologous_group_id %]</a> - [% result.orthologous_group_description %]
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Pathways:</th>
+					</tr>
+				</thead>
+				<tbody id="pathways-[% result.orthologous_group_id %]">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+CONTENT
+		,
+		"properties.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		[% result.key %]
+	</div>
+	<div class="col-md-9">
+		[% result.value %]
+	</div>
+</div>
+CONTENT
+		,
+		"rnaPredictionBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Molecule type:</p>
+	</div
+	<div class="col-md-9">
+		<p>[% result.molecule_type %]</p>
+	</div
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Prediction score:</p>
+	</div
+	<div class="col-md-9">
+		<p>[% result.score %]</p>
+	</div
+</div>
+CONTENT
+		,
+		"rnaScanBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Product description:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_description %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Prediction score:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.score %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>E-value of match:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.evalue %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Identifier of match:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_identifier %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Target name:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_name %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Target type:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_type %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Bias:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.bias %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Truncated:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.truncated %]</p>
+	</div>
+</div>
+CONTENT
+		,
+		"rRNAPredictionBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Molecule type:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.molecule_type %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Prediction score:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.score %]</p>
+	</div>
+</div>
+CONTENT
+		,
+		"sequence.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="panel panel-default sequences">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#sequence-[% result.feature_id %]">Sequence</a>
+		</div>
+	</div>
+	<div id="sequence-[% result.feature_id %]" class="panel-body collapse sequence">
+		[% result.sequence %]
+	</div>
+</div>
+CONTENT
+		,
+		"similarityBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>E-value of match</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.evalue %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Percent identity</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.percent_id %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Percent similarity</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.similarity %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Alignment score</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.score %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Alignment length</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.block_size %]</p>
+	</div>
+</div>
+CONTENT
+		,
+		"subEvidences.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#subevidence-[% result.feature_id %]">[% result.feature_id %]</a>
+		</div>
+	</div>
+	<div id="subevidence-[% result.feature_id %]" class="panel-body collapse">
+	</div>
+</div>
+CONTENT
+		,
+		"tcdbBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Transporter classification:</p>
+	</div>
+	<div class="col-md-9">
+		<p><a href="http://tcdb.org/search/result.php?tc=[% result.TCDB_ID %]">[% result.hit_description %]</a></p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Class:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.TCDB_class %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Subclass:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.TCDB_subclass %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Family:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.TCDB_family %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Match identifier:</p>
+	</div>
+	<div class="col-md-9">
+		<p><a href="http://www.uniprot.org/uniprot/[% result.hit_name %]">[% result.hit_name %]</a></p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>E-value of match:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.evalue %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Percent identity:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.percent_id %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Percent similarity:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.similarity %]</p>
+	</div>
+</div>
+CONTENT
+		,
+		"tmhmmBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		Predicted TMHs
+	</div>
+	<div class="col-md-9">
+		[% result.predicted_TMHs %]
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		Direction
+	</div>
+	<div class="col-md-9">
+		[% result.direction %]
+	</div>
+</div>
+CONTENT
+		,
+		"tRNABasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Gene name:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.type %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Amino acid:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.aminoacid %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Anticodon:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.anticodon %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Codon:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.codon %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Prediction score:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.score %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Is pseudogene:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.pseudogene %]</p>
+	</div>
+</div>
+CONTENT
+		,
+		"tRNABasicResultHasIntron.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Intron predicted:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.intron %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Coordinates (gene):</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.coordinatesGene %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Coordinates (genome):</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.coordinatesGenome %]</p>
+	</div>
+</div>
+CONTENT
 		,
 		"result.tt" => <<CONTENT
 <!DOCTYPE html>
@@ -4044,24 +6699,7 @@ my $wrapper = <<WRAPPER;
 WRAPPER
 writeFile( "$nameProject/root/$lowCaseName/_layout.tt", $wrapper );
 
-#my $changeRootFile = "
-#sub index :Path :Args(0) {
-#    my ( \$self, \$c ) = \@_;
-#
-#    # Hello World
-#    #\$c->response->body( \$c->welcome_message );
-#    \$c->res->redirect('/home');
-#}
-#
-#=head2 default
-#";
 print $LOG "\nEditing root file\n";
-open( $fileHandler, "<", "$nameProject/lib/$nameProject/Controller/Root.pm" );
-
-#$data = do { local $/; <$fileHandler> };
-#$data =~
-#s/"*sub index :Path :Args\(0\) \{([\s\w()\$,=\@_;\->\{\}\"\[\]\'\:%\/.#]+)\}"*\s*=head2 default*/$changeRootFile/igm;
-close($fileHandler);
 writeFile( "$nameProject/lib/$nameProject/Controller/Root.pm", $rootContent );
 
 #inicialize server project
@@ -4099,18 +6737,32 @@ sub readJSON {
 	my $content = do { local $/; <$FILEHANDLER> };
 	my $sql = "";
 	while ( $content =~
-/^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:+(),'=&ããõáéíóúàâêẽ;#|]*)"/gm
+/^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:;?+(),'=&ããàâáéêíóõú#|]*)"/gm
 	  )
 	{
 		my $tag   = $1;
 		my $value = $2;
-		$sql .= <<SQL;
+		if($tag =~ /^files-/) {
+			$tag =~ s/files-//g;
+			$sql .= <<SQL;
+			INSERT INTO FILES(tag, filepath) VALUES ("$tag", "$value");
+SQL
+			
+		} else {
+			$sql .= <<SQL;
 			INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
 SQL
+		}
 	}
 	close($FILEHANDLER);
 	return $sql;
 }
+
+=head2
+Method used to get content of TCDB file
+@param tcdb_file => filepath
+return sql to be used
+=cut
 
 sub readTCDBFile {
 	my ($tcdb_file) = @_;
@@ -4132,21 +6784,11 @@ SQL
 	return $sql;
 }
 
-###
-#	Method used to add relationship in model
-#	@param $filepathModel	=>	filepath of the model
-#	@param $content			=>	content to be used
-#
-sub addRelationship {
-	my ( $filepathModel, $content ) = @_;
-	open( my $FILEHANDLER, "<", $filepathModel );
-	my $contentFile = do { local $/; <$FILEHANDLER> };
-	$contentFile =~
-s/# You can replace this text with custom code or comments, and it will be preserved on regeneration/$content/g;
-	close($FILEHANDLER);
-	writeFile( $filepathModel, $contentFile );
-	return 1;
-}
+=head2
+Method used to get code number of the product
+@param subject_id
+return list with code number and product
+=cut
 
 sub get_code_number_product {
 	my $subject_id = shift;
@@ -4174,4 +6816,11 @@ sub get_code_number_product {
 	$product =~ s/ $//g;
 
 	return ( $code_number, $product );
+}
+
+sub reverseComplement {
+	my ($sequence) = \@_;
+	my $reverseComplement = reverse($sequence);
+	$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+	return $reverseComplement;
 }

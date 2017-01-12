@@ -15,9 +15,11 @@ xml_file = bacteria.xml
 PHASE= Report HTML
 program = report_html_db.pl
 #===================================================================================
-html_dir=HTML_DIR
+html_dir=TESTE3
 organism_name=Bacteria do curso
 uniquename=Bacteria_upload
+type_target_class_id=81525
+pipeline=4249
 fasta_dir = seq
 aa_fasta_dir = orfs_aa
 nt_fasta_dir = orfs_nt
@@ -52,6 +54,6 @@ database_code_list=INSD
 TCDB_file=/usr/local/genome/databases/TCDB/TCDB_ID_list
 ko_file= /usr/local/genome/databases/kegg/ko/ko
 homepage_text_file = example.json
-homepage_banner_image = template/zontal-admin/assets/img/logo.png
+homepage_banner_image = /home/wendelhlc/Downloads/rsz_platypus256x256.png
 
 #===================================================================================

@@ -22,7 +22,20 @@ http://127.0.0.1:3000
 
 TODO:
 -
--	Remover mapeamento do banco de dados, ja que tudo que sera utilizado, sera feito pelo DBI
+-	Renomear DBI para Reporitory
+
+-	Criar modelos
+-	Testar implementação do BaseResponse.pm -> done
+
+-	Repositório retornar modelo
+-	Separar SearchDatabase que atualmente é o serviço
+-	Aceitar parametro para o caminho do services para ser implementado nos clients
+
+-	Padronizar retorno do serviço para usar o BaseResponse -> done
+-	Criar clients -> done
+
+
+-	Recriar SearchDatabase para entrar em contato com o client para fazer requisições
 -	Atualizar report_html_db.pl
 -	Criar pagina de erro geral
 -	bigou.pl -c html_db.cnf -d "chadodb" -u "chadouser" -p "" -h "127.0.0.1"

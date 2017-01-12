@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<div class="content-wrapper">
+    <div class="container">		
+        [% INCLUDE 'teste/help/_content.tt' %]
+    </div>
+</div>
