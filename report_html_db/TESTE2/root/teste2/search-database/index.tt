@@ -38,6 +38,7 @@
         $("#parentCollapseTwo").addClass("panel-default");
     });
 </script>
-<script src="/assets/js/clients.js"></script>
+<script src="/assets/js/services-client.js"></script>
+<script src="/assets/js/site-client.js"></script>
 <script src="/assets/js/action.js"></script>
 

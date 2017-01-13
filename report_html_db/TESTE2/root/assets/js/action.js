@@ -472,7 +472,7 @@ $(function() {
 function contentGeneData(data) {
 	for(var i = 0; i < data.length; i++) {
 		var feature = data[i];
-		var htmlContent = feature.html;
+		var htmlContent = getHTMLContent("teste2/search-database/gene.tt").responseJSON.response;
 		htmlContent = htmlContent.replace(/(\[\% result.feature_id \%\])+/gim, feature.feature_id);
 		htmlContent = htmlContent.replace(/(\[\% result.name \%\])/gim, feature.name);
 		htmlContent = htmlContent.replace(/(\[\% result.uniquename \%\])/gim, feature.uniquename);
@@ -502,7 +502,7 @@ function contentGeneData(data) {
 function dealDataResults(href, featureName, data) {
 	if($(href).is(":hidden")) {
 		data = data[0];
-		var htmlContent = data.html;
+		var htmlContent = getHTMLContent("teste2/search-database/geneBasics.tt").responseJSON.response;
 		htmlContent = htmlContent.replace("[% result.type %]", data.value);
 		htmlContent = htmlContent.replace("[% result.uniquename %]", data.uniquename);
 		htmlContent = htmlContent.replace("[% result.fstart %]", data.fstart);
@@ -510,9 +510,8 @@ function dealDataResults(href, featureName, data) {
 		htmlContent = htmlContent.replace("[% result.length %]", (data.fend - data.fstart + 1));
 		var type = data.value;
 		var name = data.uniquename;
-		var htmlSequence = "";
 		var subsequence = getSubsequence(type, featureName, name, data.fstart, data.fend).responseJSON.response;
-		htmlSequence += subsequence.html;
+		var htmlSequence = getHTMLContent("teste2/search-database/sequence.tt").responseJSON.response;
 		htmlSequence = htmlSequence.replace("[% result.feature_id %]", href.replace("#", ""));
 		htmlSequence = htmlSequence.replace("[% result.feature_id %]", href.replace("#", ""));
 		htmlSequence = htmlSequence.replace("[% result.sequence %]", subsequence.sequence);
@@ -527,7 +526,7 @@ function dealDataResults(href, featureName, data) {
 				var componentName = data.subevidences[i].program.replace(".pl", "");
 				
 				if($.inArray(componentName, componentsEvidences) == -1) {
-					var htmlEvidence = data.evidencesHtml.content;
+					var htmlEvidence = getHTMLContent("teste2/search-database/evidences.tt").responseJSON.response;
 					htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
 					htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
 					htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
@@ -560,7 +559,7 @@ function dealDataResults(href, featureName, data) {
 						for(i = 0; i < components[componentTemp].length; i++) {
 							if(componentTemp != "annotation_phobius" && componentTemp != "annotation_tmhmm" && componentTemp != 'annotation_orthology' && componentTemp != 'annotation_pathways' 
 								&& componentTemp != 'annotation_interpro') {
-								var htmlSubevidence = data.subEvidencesHtml.content;
+								var htmlSubevidence = getHTMLContent("teste2/search-database/subEvidences.tt").responseJSON.response;
 								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
 								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
 								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
@@ -568,7 +567,7 @@ function dealDataResults(href, featureName, data) {
 							}
 							if(components[componentTemp][i].type == "similarity") {
 								var response = getSimilarityEvidenceProperties(components[componentTemp][i].id, componentTemp).responseJSON.response;
-								var html = response.html;
+								var html = getHTMLContent("teste2/search-database/similarityBasicResult.tt").responseJSON.response;
 								html = html.replace("[% result.evalue %]", response.evalue);
 								html = html.replace("[% result.percent_id %]", response.percent_id);
                                 html = html.replace("[% result.similarity %]", response.similarity);
@@ -578,7 +577,6 @@ function dealDataResults(href, featureName, data) {
                                 console.log(response);
 							} else if(components[componentTemp][i].type == "intervals") {
 								var responseIntervals = getIntervalEvidenceProperties(components[componentTemp][i].id, componentTemp).responseJSON.response;
-								var html = responseIntervals.html;
 								var listHTMLs = new Array();
 								var counterHTMLs = 0;
 								var idTable = "";
@@ -599,8 +597,8 @@ function dealDataResults(href, featureName, data) {
 								}
 
 								if(componentTemp == 'annotation_interpro') {
-									for(var j = 0; j < data.properties.length; j++) {
-										html = responseIntervals.html;
+									for(var j = 0; j < responseIntervals.properties.length; j++) {
+										html = getHTMLContent("teste2/search-database/interproBasicResult.tt").responseJSON.response;
 										html = html.replace("[% result.componentName %]", componentTemp);
 										html = html.replace("[% result.componentName %]", componentTemp);
 										html = html.replace("[% result.feature_id %]", href.replace("#", ""));
@@ -650,7 +648,7 @@ function dealDataResults(href, featureName, data) {
 									}
 								} else if(componentTemp == 'annotation_tcdb') {
 									for(var j = 0; j < responseIntervals.properties.length; j++) {
-										html = responseIntervals.html;
+										html = getHTMLContent("teste2/search-database/tcdbBasicResult.tt").responseJSON.response;
 										html = html.replace("[% result.TCDB_ID %]", responseIntervals.properties[j].TCDB_ID);
 										html = html.replace("[% result.TCDB_ID %]", responseIntervals.properties[j].TCDB_ID);
 										html = html.replace("[% result.hit_description %]", responseIntervals.properties[j].hit_description);
@@ -668,14 +666,14 @@ function dealDataResults(href, featureName, data) {
 									idTable = "#subevidence-"+responseIntervals.id;
 								} else if(componentTemp == 'annotation_pathways') {
 									for(var j = 0; j < responseIntervals.properties.length; j++) {
-										html = responseIntervals.html;
+										html = getHTMLContent("teste2/search-database/pathwaysBasicResult.tt").responseJSON.response;
 										html = html.replace("[% result.orthologous_group_id %]", responseIntervals.properties[j].orthologous_group_id);
 										html = html.replace("[% result.orthologous_group_id %]", responseIntervals.properties[j].orthologous_group_id);
 										html = html.replace("[% result.orthologous_group_id %]", responseIntervals.properties[j].orthologous_group_id);
 										html = html.replace("[% result.orthologous_group_description %]", responseIntervals.properties[j].orthologous_group_description);
 										addPanelResult("#evidence-"+componentTemp+"-"+href.replace("#", ""), html);
 										for(var pathway in responseIntervals.pathways) {
-											var htmlPathway = responseIntervals.htmlPathways;
+											var htmlPathway = getHTMLContent("teste2/search-database/pathways.tt").responseJSON.response;
 											htmlPathway = htmlPathway.replace("[% result.metabolic_pathway_id %]", responseIntervals.pathways[pathway].id);
 											htmlPathway = htmlPathway.replace("[% result.metabolic_pathway_id %]", responseIntervals.pathways[pathway].id);
 											htmlPathway = htmlPathway.replace("[% result.metabolic_pathway_description %]", responseIntervals.pathways[pathway].description);
@@ -686,11 +684,12 @@ function dealDataResults(href, featureName, data) {
 									}
 								} else if(componentTemp == 'annotation_orthology') {
 									for(var j = 0; j < responseIntervals.properties.length; j++) {
+									    html = getHTMLContent("teste2/search-database/orthologyBasicResult.tt").responseJSON.response;
 										html = html.replace("[% result.orthologous_hit %]", responseIntervals.properties[j].orthologous_hit);
 										html = html.replace("[% result.id %]", responseIntervals.id);
 										addPanelResult("#evidence-"+componentTemp+"-"+href.replace("#", ""), html);
 										for(var orthology in responseIntervals.orthologous_groups) {
-											var htmlOrthology = responseIntervals.htmlOrthology;
+											var htmlOrthology = getHTMLContent("teste2/search-database/orthologies.tt").responseJSON.response;
 											htmlOrthology = htmlOrthology.replace("[% result.orthologous_group %]", responseIntervals.orthologous_groups[orthology].group);
 											htmlOrthology = htmlOrthology.replace("[% result.orthologous_group %]", responseIntervals.orthologous_groups[orthology].group);
 											htmlOrthology = htmlOrthology.replace("[% result.orthologous_group_description %]", responseIntervals.orthologous_groups[orthology].description);
@@ -767,7 +766,7 @@ function dealDataResults(href, featureName, data) {
 		
 		if(data.value == "tRNAscan") {
 		    var data = getIntervalEvidenceProperties(href.replace("#", ""), data.value).responseJSON.response;
-			var htmlBasic = data.htmlBasicResult;
+			var htmlBasic = getHTMLContent("teste2/search-database/tRNABasicResult.tt").responseJSON.response;
 			htmlBasic = htmlBasic.replace("[% result.type %]", data.properties[0].type);
 			htmlBasic = htmlBasic.replace("[% result.aminoacid %]", data.properties[0].aminoacid);
 			htmlBasic = htmlBasic.replace("[% result.anticodon %]", data.properties[0].anticodon);
@@ -777,7 +776,7 @@ function dealDataResults(href, featureName, data) {
 			htmlContent += htmlBasic;
 			if(data.properties[0].hasOwnProperty("intron")) {
 				if(data.properties[0].intron == "yes") {
-					htmlBasic = data.properties[0].htmlHasIntron;
+					htmlBasic = getHTMLContent("teste2/search-database/tRNABasicResultHasIntron.tt").responseJSON.response;
 					htmlBasic = htmlBasic.replace("[% result.intron %]", data.properties[0].intron);
 					htmlBasic = htmlBasic.replace("[% result.coordinatesGene %]", data.properties[0].coordinatesGene);
 					htmlBasic = htmlBasic.replace("[% result.coordinatesGenome %]", data.properties[0].coordinatesGenome);
@@ -790,7 +789,7 @@ function dealDataResults(href, featureName, data) {
 			
 		} else if(data.value == "RNA_scan") {
 		    var data = getIntervalEvidenceProperties(href.replace("#", ""), data.value).responseJSON.response;
-			htmlBasic = data.htmlBasicResult;
+			htmlBasic = getHTMLContent("teste2/search-database/rnaScanBasicResult.tt").responseJSON.response;
 			htmlBasic = htmlBasic.replace("[% result.target_description %]", data.properties[0].target_description);
 			htmlBasic = htmlBasic.replace("[% result.score %]", data.properties[0].score);
 			htmlBasic = htmlBasic.replace("[% result.evalue %]", data.properties[0].evalue);
@@ -804,7 +803,7 @@ function dealDataResults(href, featureName, data) {
 			addPanelResult(href, htmlContent);
 		} else if(data.value == "rRNA_prediction") {
 		    var data = getIntervalEvidenceProperties(href.replace("#", ""), data.value).responseJSON.response;
-			var htmlBasic = data.htmlBasicResult;
+			var htmlBasic = getHTMLContent("teste2/search-database/rRNAPredictionBasicResult.tt").responseJSON.response;
 			htmlBasic = htmlBasic.replace("[% result.molecule_type %]", data.properties[0].molecule_type);
 			htmlBasic = htmlBasic.replace("[% result.score %]", data.properties[0].score);
 			htmlContent += htmlBasic;
@@ -845,7 +844,7 @@ $(function() {
 				.done(
 					function(data) {
 					    data = data.response;
-						var htmlContent = data.html;
+						var htmlContent = getHTMLContent("teste2/search-database/contigs.tt").responseJSON.response;
 						htmlContent = htmlContent.replace(/(\[\% sequence.id \%\])+/gim, data.geneID);
 						htmlContent = htmlContent.replace(/(\[\% start \%\])+/gim, $("input[name=contigStart]").val())
 						htmlContent = htmlContent.replace(/(\[\% end \%\])/gim, $("input[name=contigEnd]").val())

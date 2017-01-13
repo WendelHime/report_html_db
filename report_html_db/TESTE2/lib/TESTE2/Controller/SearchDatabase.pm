@@ -49,14 +49,6 @@ sub searchGene_GET {
 		$featureId = $c->request->param("featureId");
 	}
 
-	use File::Basename;
-	open( my $FILEHANDLER,
-		"<",
-		dirname(__FILE__) . "/../../../root/teste2/search-database/gene.tt" );
-
-	my $content = do { local $/; <$FILEHANDLER> };
-	close($FILEHANDLER);
-
 	my @list = ();
 	my %hash = ();
 	$hash{pipeline}        = 4249;
@@ -66,8 +58,21 @@ sub searchGene_GET {
 	$hash{noDescription}   = $noDescription;
 	$hash{individually}    = $individually;
 
-	standardStatusOk( $self, $c,
-		$c->model('DBI')->searchGene( $content, \%hash ) );
+	my @resultList = @{ $c->model('DBI')->searchGene( \%hash ) };
+
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		push @list,
+		  {
+			"feature_id" => $resultList[$i]->getFeatureID,
+			"name"       => $resultList[$i]->getName,
+			"uniquename" => $resultList[$i]->getUniquename,
+			"value"      => $resultList[$i]->getValue,
+			"fstart"     => $resultList[$i]->getStart,
+			"fend"       => $resultList[$i]->getEnd
+		  };
+	}
+
+	standardStatusOk( $self, $c, \@list );
 }
 
 =head2 encodingCorrection
@@ -155,14 +160,6 @@ sub searchContig_GET {
 	$hash{'gene'}   = $sequence->name;
 	$hash{'contig'} = $result;
 
-	open( $FILEHANDLER, "<",
-		dirname(__FILE__)
-		  . "/../../../root/teste2/search-database/contigs.tt" );
-
-	my $content = do { local $/; <$FILEHANDLER> };
-	close($FILEHANDLER);
-
-	$hash{'html'} = $content;
 	push @list, \%hash;
 	standardStatusOk( $self, $c, @list );
 }
@@ -183,24 +180,25 @@ sub getGeneBasics_GET {
 	if ( !$id and defined $c->request->param("id") ) {
 		$id = $c->request->param("id");
 	}
-
-	open(
-		my $FILEHANDLER,
-		"<",
-		dirname(__FILE__)
-		  . "/../../../root/teste2/search-database/geneBasics.tt"
-	);
-
-	my $content = do { local $/; <$FILEHANDLER> };
-	close($FILEHANDLER)
-
-	  ;
 	my %hash = ();
 	$hash{pipeline}   = 4249;
 	$hash{feature_id} = $id;
 
-	standardStatusOk( $self, $c,
-		$c->model('DBI')->geneBasics( $content, \%hash ) );
+	my @resultList = @{ $c->model('DBI')->geneBasics( \%hash ) };
+	my @list       = ();
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		push @list,
+		  {
+			"feature_id" => $resultList[$i]->getFeatureID,
+			"name"       => $resultList[$i]->getName,
+			"uniquename" => $resultList[$i]->getUniquename,
+			"value"      => $resultList[$i]->getValue,
+			"fstart"     => $resultList[$i]->getStart,
+			"fend"       => $resultList[$i]->getEnd
+		  };
+	}
+
+	standardStatusOk( $self, $c, \@list );
 }
 
 =head2 getSubsequence
@@ -221,16 +219,7 @@ sub getSubsequence_GET {
 		$type = $c->request->param("type");
 	}
 
-	use File::Basename;
-	open(
-		my $FILEHANDLER,
-		"<",
-		dirname(__FILE__) . "/../../../root/teste2/search-database/sequence.tt"
-	);
-
-	my $html = do { local $/; <$FILEHANDLER> };
 	my $content = "";
-	close($FILEHANDLER);
 
 	if ( $type ne "CDS" ) {
 		open(
@@ -260,11 +249,11 @@ sub getSubsequence_GET {
 		$content = $result;
 	}
 	else {
-		open( $FILEHANDLER, "<",
-			    dirname(__FILE__)
-			  . "/../../../root/orfs_aa/"
-			  . $contig
-			  . ".fasta" );
+		open(
+			my $FILEHANDLER,
+			"<",
+			dirname(__FILE__) . "/../../../root/orfs_aa/" . $contig . ".fasta"
+		);
 
 		for my $line (<$FILEHANDLER>) {
 			if ( !( $line =~ /^>\w+\n$/g ) ) {
@@ -274,7 +263,7 @@ sub getSubsequence_GET {
 		close($FILEHANDLER);
 		$content =~ s/\n/<br \/>/g;
 	}
-	standardStatusOk( $self, $c, { "sequence" => $content, "html" => $html } );
+	standardStatusOk( $self, $c, { "sequence" => $content } );
 }
 
 =head2 ncRNA_desc  
@@ -314,23 +303,6 @@ sub subEvidences_GET {
 
 	my %returnedHash = ();
 	$returnedHash{subevidences} = $c->model('DBI')->subevidences($feature);
-	open(
-		my $FILEHANDLER,
-		"<",
-		dirname(__FILE__)
-		  . "/../../../root/teste2/search-database/subEvidences.tt"
-	);
-
-	my $content = do { local $/; <$FILEHANDLER> };
-	close($FILEHANDLER);
-	$returnedHash{subEvidencesHtml} = { "content" => $content };
-	open( $FILEHANDLER, "<",
-		dirname(__FILE__)
-		  . "/../../../root/teste2/search-database/evidences.tt" );
-
-	$content = do { local $/; <$FILEHANDLER> };
-	close($FILEHANDLER);
-	$returnedHash{evidencesHtml} = { "content" => $content };
 	standardStatusOk( $self, $c, \%returnedHash );
 }
 
@@ -357,105 +329,9 @@ sub getIntervalEvidenceProperties_GET {
 			$hash{coordinatesGene} = $hash{intron_start} - $hash{intron_end};
 			$hash{coordinatesGenome} =
 			  $hash{intron_start_seq} - $hash{intron_end_seq};
-			open(
-				my $FILEHANDLER,
-				"<",
-				dirname(__FILE__)
-				  . "/../../../root/teste2/search-database/tRNABasicResultHasIntron.tt"
-			);
-
-			my $content = do { local $/; <$FILEHANDLER> };
-			close($FILEHANDLER);
-			$hash{htmlHasIntron} = $content;
 		}
 	}
-	if ( $typeFeature eq 'tRNAscan' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/tRNABasicResult.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-		$hash{htmlBasicResult} = $content;
-	}
-	elsif ( $typeFeature eq 'RNA_scan' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/rnaScanBasicResult.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-		$hash{htmlBasicResult} = $content;
-	}
-	elsif ( $typeFeature eq 'rRNA_prediction' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/rRNAPredictionBasicResult.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-		$hash{htmlBasicResult} = $content;
-	}
-
-	#components used
-	elsif ( $typeFeature eq 'annotation_interpro' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/interproBasicResult.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-		$hash{html} = $content;
-		$hash{id}   = $feature;
-	}
-	elsif ( $typeFeature eq 'annotation_tmhmm' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/tmhmmBasicResult.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-		$hash{html} = $content;
-		$hash{id}   = $feature;
-	}
-	elsif ( $typeFeature eq 'annotation_tcdb' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/tcdbBasicResult.tt"
-		);
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-		$hash{html} = $content;
-		$hash{id}   = $feature;
-	}
-	elsif ( $typeFeature eq 'annotation_pathways' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/pathwaysBasicResult.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-
+	if ( $typeFeature eq 'annotation_pathways' ) {
 		my @pathways        = ();
 		my @ids             = ();
 		my @descriptions    = ();
@@ -486,25 +362,9 @@ sub getIntervalEvidenceProperties_GET {
 		}
 
 		$hash{pathways} = \@pathways;
-		$hash{html}     = $content;
-		open( $FILEHANDLER, "<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/pathways.tt" );
-		my $pathwaysHTML = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
-		$hash{htmlPathways} = $pathwaysHTML;
-		$hash{id}           = $feature;
+		$hash{id}       = $feature;
 	}
 	elsif ( $typeFeature eq 'annotation_orthology' ) {
-		open(
-			my $FILEHANDLER,
-			"<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/orthologyBasicResult.tt"
-		);
-
-		my $content = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
 		my @orthologous_groups = ();
 		my @groups             = ();
 		my @descriptions       = ();
@@ -533,14 +393,7 @@ sub getIntervalEvidenceProperties_GET {
 				push @orthologous_groups, \%group;
 			}
 		}
-		open( $FILEHANDLER, "<",
-			dirname(__FILE__)
-			  . "/../../../root/teste2/search-database/orthologies.tt" );
-		my $orthologyHTML = do { local $/; <$FILEHANDLER> };
-		close($FILEHANDLER);
 		$hash{orthologous_groups} = \@orthologous_groups;
-		$hash{htmlOrthology}      = $orthologyHTML;
-		$hash{html}               = $content;
 		$hash{id}                 = $feature;
 	}
 	if ( !( exists $hash{id} ) ) {
@@ -566,18 +419,8 @@ sub getSimilarityEvidenceProperties_GET {
 		$feature = $c->request->param("feature");
 	}
 
-	open(
-		my $FILEHANDLER,
-		"<",
-		dirname(__FILE__)
-		  . "/../../../root/teste2/search-database/similarityBasicResult.tt"
-	);
-
-	my $content = do { local $/; <$FILEHANDLER> };
-	close($FILEHANDLER);
-
 	standardStatusOk( $self, $c,
-		$c->model('DBI')->similarityEvidenceProperties( $feature, $content ) );
+		$c->model('DBI')->similarityEvidenceProperties($feature) );
 }
 
 =head2
@@ -836,19 +679,17 @@ sub alienhunterSearch_GET {
 	standardStatusOk( $self, $c, \@list );
 }
 
+=head2
+
+Method used to get feature by position
+
+=cut
+
 sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
   CaptureArgs(2) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
 	my ( $self, $c, $start, $end ) = @_;
-
-	use File::Basename;
-	open( my $FILEHANDLER,
-		"<",
-		dirname(__FILE__) . "/../../../root/teste2/search-database/gene.tt" );
-
-	my $content = do { local $/; <$FILEHANDLER> };
-	close($FILEHANDLER);
 
 	my %hash = ();
 	$hash{pipeline} = 4249;
@@ -860,9 +701,14 @@ sub geneByPosition_GET {
 	$hash{pipeline}  = 4249;
 	$hash{featureId} = $featureId;
 
-	standardStatusOk( $self, $c,
-		$c->model('DBI')->searchGene( $content, \%hash ) );
+	standardStatusOk( $self, $c, $c->model('DBI')->searchGene( \%hash ) );
 }
+
+=head2
+
+Method used to make a default return of every ok request using BaseResponse model
+
+=cut
 
 sub standardStatusOk {
 	my ( $self, $c, $response ) = @_;

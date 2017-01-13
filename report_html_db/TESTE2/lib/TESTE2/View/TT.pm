@@ -6,9 +6,10 @@ extends 'Catalyst::View::TT';
 
 __PACKAGE__->config(
 	TEMPLATE_EXTENSION	=>	'.tt',
-	TIMER	=>	0,
-	WRAPPER	=>	'teste2/_layout.tt',
-	ENCODING	=>	'utf-8',
+	TIMER				=>	0,
+	WRAPPER				=>	'teste2/_layout.tt',
+	ENCODING			=>	'utf-8',
+	render_die 			=> 1
 );
 
 =head1 NAME

@@ -703,7 +703,7 @@ sub ncRNA_search {
 
 	elsif ( $hash->{'ncRNAevalue'} !~ /^\s*$/ ) {
 		$hash->{'ncRNAevalue'} =~ s/\s+//g;
-		$select .= ", ppe.value AS E-value";
+		$select .= ", ppe.value AS evalue";
 		$join .=
 "join featureprop ppe on (ppe.feature_id = r.subject_id) join cvterm cppe on (ppe.type_id = cppe.cvterm_id) ";
 		if ( $hash->{'ncRNAevM'} eq "exactEv" ) {
@@ -1140,12 +1140,20 @@ sub reverseComplement {
 	return $reverseComplement;
 }
 
+=head2
+
+Method used to realize search by feature
+
+=cut
 sub searchGene {
-	my ( $self, $html, $hash ) = @_;
+	my ( $self, $hash ) = @_;
 	my $dbh = $self->dbh;
 
+#	use Feature;
+
 	my $query =
-"SELECT me.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, feature_relationship_props_subject_feature_2.value AS uniquename "
+"SELECT me.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, feature_relationship_props_subject_feature_2.value AS uniquename, "
+	  . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type "
 	  . "FROM feature me "
 	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
@@ -1156,9 +1164,11 @@ sub searchGene {
 	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureloc_featureprop.type_id "
 	  . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
-	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id ";
+	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
+	  . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
+	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id ";
 	my $where =
-"WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND featureloc_featureprop.value = '"
+"WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = '"
 	  . $hash->{pipeline} . "' ";
 
 	my $connector = "";
@@ -1269,35 +1279,34 @@ sub searchGene {
 	$sth->execute();
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		my %hash = ();
-	#		$hash{feature_id} = $rows[$i][0];
-	#		$hash{name}       = $rows[$i][1];
-	#		$hash{uniquename} = $rows[$i][2];
-	#		$hash{html}       = $html;
-	#
-	#		push @list, \%hash;
-	#	}
-	my @columns = @{ $sth->{NAME} };
+	
+	use Models::Application::Feature;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
-		}
-		$hash{html} = $html;
-		push @list, \%hash;
+		my $feature = Models::Application::Feature->new(
+			feature_id	=> $rows[$i][0],
+			uniquename	=> $rows[$i][2],
+			name 		=> $rows[$i][1],
+			fstart		=> $rows[$i][3],
+			fend		=> $rows[$i][4],
+			type		=> $rows[$i][5] 
+		);
+		push @list, $feature;
 	}
 
 	return \@list;
 }
 
+=head2
+
+Method used to realize search for basic content of any feature
+
+=cut
 sub geneBasics {
-	my ( $self, $html, $hash ) = @_;
+	my ( $self, $hash ) = @_;
 	my $dbh = $self->dbh;
 
 	my $query =
-"SELECT featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS value, srcfeature.uniquename AS uniquename, srcfeature.feature_id AS feature_id "
+"SELECT srcfeature.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, srcfeature.uniquename AS uniquename, featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS value "
 	  . "FROM feature me "
 	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
@@ -1309,13 +1318,15 @@ sub geneBasics {
 	  . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
 	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
 	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
+	  . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
+	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
+	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
 	  . "WHERE ( ( featureloc_featureprop.value = '"
 	  . $hash->{pipeline}
 	  . "' AND me.feature_id = '"
 	  . $hash->{feature_id}
-	  . "' AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
-	  . "GROUP BY featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
-	  . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
+	  . "' AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' AND type_5.name = 'description' ) ) "
+	  . "GROUP BY srcfeature.feature_id, feature_relationship_props_subject_feature.value, feature_relationship_props_subject_feature_2.value, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value ";
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
@@ -1323,29 +1334,27 @@ sub geneBasics {
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		my %hash = ();
-	#		$hash{'fstart'}     = $rows[$i][0];
-	#		$hash{'fend'}       = $rows[$i][1];
-	#		$hash{'value'}      = $rows[$i][2];
-	#		$hash{'uniquename'} = $rows[$i][3];
-	#		$hash{'feature_id'} = $rows[$i][4];
-	#		$hash{'html'}       = $html;
-	#
-	#		push @list, \%hash;
-	#	}
-	my @columns = @{ $sth->{NAME} };
+	use Models::Application::Feature;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
-		}
-		$hash{html} = $html;
-		push @list, \%hash;
+		my $feature = Models::Application::Feature->new(
+			feature_id	=> $rows[$i][0],
+			name 		=> $rows[$i][1],
+			uniquename	=> $rows[$i][2],
+			fstart		=> $rows[$i][3],
+			fend		=> $rows[$i][4],
+			type		=> $rows[$i][5] 
+		);
+		push @list, $feature;
 	}
 
 	return \@list;
 }
+
+=head2
+
+Method used to get gene by position
+
+=cut
 
 sub geneByPosition {
 	my ( $self, $hash ) = @_;
@@ -1394,6 +1403,12 @@ sub geneByPosition {
 	return \@list;
 }
 
+=head2
+
+Method used to realize search for description of non coding RNA
+
+=cut
+
 sub ncRNA_description {
 	my ( $self, $feature_id, $pipeline ) = @_;
 	my $dbh = $self->dbh;
@@ -1430,12 +1445,20 @@ sub ncRNA_description {
 	return \%hash;
 }
 
+=head2
+
+Method used to realize search by subevidences
+
+=cut
+
 sub subevidences {
 	my ( $self, $feature_id ) = @_;
 	my $dbh = $self->dbh;
-
+#   subev_id | subev_type | subev_number | subev_start | subev_end | subev_strand | is_obsolete |         program         
+#----------+------------+--------------+-------------+-----------+--------------+-------------+-------------------------
+#  4426695 | intervals  | 42           |           0 |        62 |            0 | f           | annotation_tmhmm.pl
 	my $query =
-	    "SELECT * FROM get_subevidences('"
+	    "SELECT subev_id, subev_type, subev_number, subev_start, subev_end, is_obsolete, program subev_strand FROM get_subevidences('"
 	  . $feature_id
 	  . "') ORDER BY subev_id ASC";
 
@@ -1471,6 +1494,12 @@ sub subevidences {
 
 	return \@list;
 }
+
+=head2
+
+Method used to realize search by interval evidence properties
+
+=cut
 
 sub intervalEvidenceProperties {
 	my ( $self, $feature_id ) = @_;
@@ -1533,8 +1562,14 @@ sub intervalEvidenceProperties {
 	return \@listProperties;
 }
 
+=head2
+
+Method used to realize search by similarity evidence properties
+
+=cut
+
 sub similarityEvidenceProperties {
-	my ( $self, $feature_id, $html ) = @_;
+	my ( $self, $feature_id ) = @_;
 	my $dbh = $self->dbh;
 
 	my $query =
@@ -1566,12 +1601,17 @@ sub similarityEvidenceProperties {
 			$returnedhash{ $result->{key} } = $result->{key_value};
 		}
 	}
-	$returnedhash{html} = $html;
-	$returnedhash{id}   = $feature_id;
+	$returnedhash{id} = $feature_id;
 
 	return \%returnedhash;
 
 }
+
+=head2
+
+Method used to get feature ID by uniquename
+
+=cut
 
 sub get_feature_id {
 	my ( $self, $uniquename ) = @_;
@@ -1587,6 +1627,12 @@ sub get_feature_id {
 
 	return $rows[0][0];
 }
+
+=head2
+
+Method used to get target class
+
+=cut
 
 sub get_target_class {
 	my ( $self, $type_id, $feature_id ) = @_;
