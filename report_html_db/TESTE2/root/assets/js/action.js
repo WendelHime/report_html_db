@@ -1,3 +1,4 @@
+
 /**
  * File with actions of the website
  * @author Wendel Hime Lino Castro
@@ -26,28 +27,12 @@ $(function() {
 	$("#formGeneIdentifier").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						contentGeneData(data.response);
-					} else {
-						$("#formGeneIdentifier").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-						status = "404";
-					}
-				}
-			)
-			.fail(
-				function(jqxhr, textStatus, error) {
-					if(error.indexOf("Internal Server Error") !== -1) {
-						status = "Internal Server Error"
-					} else if(error.indexOf("Not Found") !== -1) {
-						status = "200";
-						var err = textStatus + ", " + error;
-						$("#formGeneIdentifier").append("<div class='alert alert-danger errors'>Oops, there is a error on the research: "+ err + "</div>");
-					}
-				}
-			);			
+			var gene = searchGene($(this).serialize()).responseJSON.response;
+			if(gene.length > 0) {
+			    contentGeneData(gene);
+			} else {
+			    $("#formGeneIdentifier").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+			}	
 			return false;
 		}
 	);
@@ -60,27 +45,12 @@ $(function() {
 	$("#formGeneDescription").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						contentGeneData(data.response);
-					} else {
-						$("#formGeneDescription").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-					}
-				}
-			)
-			.fail(
-				function(jqxhr, textStatus, error) {
-					if(error.indexOf("Internal Server Error") !== -1) {
-						status = "Internal Server Error"
-					} else if(error.indexOf("Not Found") !== -1) {
-						status = "200";
-						var err = textStatus + ", " + error;
-						$("#formGeneDescription").append("<div class='alert alert-danger errors'>Oops, there is a error on the research: "+ err + "</div>");
-					}
-				}
-			);
+			var gene = searchGene($(this).serialize()).responseJSON.response;
+            if(gene.length > 0) {
+                contentGeneData(gene);
+            } else {
+                $("#formGeneIdentifier").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+            }
 			return false;
 		}
 	);
@@ -93,30 +63,17 @@ $(function() {
 	$("#formAnalysesProteinCodingGenes").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						var featuresIDs = data.response.join(" ");
-						var data = searchGene("", "", "", "", featuresIDs).responseJSON.response;
-						if(data.length > 0) {
-							contentGeneData(data);
-						}
-						else {
-							$("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
-						}
-					}
-					else {
-						$("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-					}
-				}
-			)
-			.fail(
-				function(jqxhr, textStatus, error) {
-					var err = textStatus + ", " + error;
-					console.log(err);
-				}
-			);
+			var ids = analysesCDS($(this).serialize()).responseJSON.response;
+			if(ids.length > 0) {
+                var featuresIDs = ids.join(" ");
+                var data = searchGene("", "", "", "", featuresIDs).responseJSON.response;
+                if(data.length > 0) {
+                    contentGeneData(data);
+                }
+                else {
+                    $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
+                }
+			}
 			return false;
 		}
 	);
@@ -129,34 +86,19 @@ $(function() {
 	$("#trna-form").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						var featuresIDs = "";
-						for(i = 0; i < data.response.length; i++) {
-							featuresIDs += data.response[i].id+" ";
-						}
-						var data = searchGene("", "", "", "", featuresIDs).responseJSON.response;
-							
-						if(data.length > 0) {
-							contentGeneData(data);
-						}
-						else {
-							$("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
-						}	
-					}
-					else {
-						$("#trna-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-					}
-				}
-			)
-			.fail(
-				function(jqxhr, textStatus, erro) {
-					var err = textStatus + ", " + error;
-					console.log(err);
-				}
-			);
+			var tRNAList = trnaSearch($(this).serialize()).responseJSON.response;
+			var featuresIDs = "";
+            for(i = 0; i < tRNAList.length; i++) {
+                featuresIDs += tRNAList[i].id+" ";
+            }
+            var data = searchGene("", "", "", "", featuresIDs).responseJSON.response;
+                
+            if(data.length > 0) {
+                contentGeneData(data);
+            }
+            else {
+                $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
+            }
 			return false;
 		}
 	);
@@ -169,49 +111,39 @@ $(function() {
 	$("#tandemRepeats-form").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						$("#searchPanel").hide();
-						$("#back").show();
-						var html = "<table class='table table-striped table-bordered table-hover result'>" +
-									"	<thead>" +
-									"		<tr>"+
-									"			<th>Contig</th>"+
-									"			<th>Start coordinate</th>"+
-									"			<th>End coordinate</th>"+
-									"			<th>Repeat length</th>"+
-									"			<th>Copy number</th>"+
-									"			<th>Repeat sequence</th>"+
-									"		</tr>" +
-									"	</thead>" +
-									"	<tbody>";
-						for(i = 0; i < data.response.length; i++) {
-							html += "		<tr>" +
-									"			<td>"+data.response[i].contig+"</td>" +
-									"			<td>"+data.response[i].start+"</td>" +
-									"			<td>"+data.response[i].end+"</td>" +
-									"			<td>"+data.response[i].length+"</td>" +
-									"			<td>"+data.response[i].copy_number+"</td>" +
-									"			<td>"+data.response[i].sequence+"</td>" +
-									"		</tr>";
-						}
-						html += "	</tbody>" +
-								"</table>";
-						$("#searchPanel").parent().append(html);
-					}
-					else {
-						$("#tandemRepeats-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-					}
+			var tandemRepeatsList = tandemRepeatsSearch($(this).serialize()).responseJSON.response;
+			if(tandemRepeatsList.length > 0) {
+				$("#searchPanel").hide();
+				$("#back").show();
+				var html = "<table class='table table-striped table-bordered table-hover result'>" +
+							"	<thead>" +
+							"		<tr>"+
+							"			<th>Contig</th>"+
+							"			<th>Start coordinate</th>"+
+							"			<th>End coordinate</th>"+
+							"			<th>Repeat length</th>"+
+							"			<th>Copy number</th>"+
+							"			<th>Repeat sequence</th>"+
+							"		</tr>" +
+							"	</thead>" +
+							"	<tbody>";
+				for(i = 0; i < tandemRepeatsList.length; i++) {
+					html += "		<tr>" +
+							"			<td>"+tandemRepeatsList[i].contig+"</td>" +
+							"			<td>"+tandemRepeatsList[i].start+"</td>" +
+							"			<td>"+tandemRepeatsList[i].end+"</td>" +
+							"			<td>"+tandemRepeatsList[i].length+"</td>" +
+							"			<td>"+tandemRepeatsList[i].copy_number+"</td>" +
+							"			<td>"+tandemRepeatsList[i].sequence+"</td>" +
+							"		</tr>";
 				}
-			)
-			.fail(
-				function(jqxhr, textStatus, error) {
-					var err = textStatus + ", " + error;
-					console.log(err);
-				}
-			);
+				html += "	</tbody>" +
+						"</table>";
+				$("#searchPanel").parent().append(html);
+			}
+			else {
+				$("#tandemRepeats-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+			}
 			return false;
 		}
 	);
@@ -224,27 +156,23 @@ $(function() {
 	$("#otherNonCodingRNAs-form").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						var featuresIDs = "";
-						for(i = 0; i < data.response.length; i++) {
-							featuresIDs += data.response[i].id+" ";
-						}
-						var data = searchGene("", "", "", "", featuresIDs).responseJSON.response;
-						if(data.length > 0) {
-							contentGeneData(data);
-						}
-						else {
-							$("#otherNonCodingRNAs-form").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
-						}
-					}
-					else {
-						$("#otherNonCodingRNAs-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-					}
+			var nonCodingRNAList = ncRNASearch($(this).serialize()).responseJSON.response;
+			if(nonCodingRNAList.length > 0) {
+				var featuresIDs = "";
+				for(i = 0; i < nonCodingRNAList.length; i++) {
+					featuresIDs += nonCodingRNAList[i].id+" ";
 				}
-			);
+				var data = searchGene("", "", "", "", featuresIDs).responseJSON.response;
+				if(data.length > 0) {
+					contentGeneData(data);
+				}
+				else {
+					$("#otherNonCodingRNAs-form").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
+				}
+			}
+			else {
+				$("#otherNonCodingRNAs-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+			};
 			return false;
 		}
 	);
@@ -257,58 +185,48 @@ $(function() {
 	$("#transcriptionalTerminators-form").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						$("#searchPanel").hide();
-						$("#back").show();
-						var html = "<table class='table table-striped table-bordered table-hover result'>" +
-									"	<thead>" +
-									"		<tr>"+
-									"			<th>Contig</th>"+
-									"			<th>Start coordinate</th>"+
-									"			<th>End coordinate</th>";
-						if("confidence" in data.response[0]) {
-							html += "			<th>Confidence</th>";
-						} else if("hairpin_score" in data.response[0]) {
-							html += "			<th>Hairpin score</th>";
-						} else if("tail_score" in data.response[0]) {
-							html += "			<th>Tail score</th>";
-						}
-									
-						html +=		"		</tr>" +
-									"	</thead>" +
-									"	<tbody>";
-						for(i = 0; i < data.response.length; i++) {
-							html += "		<tr>" +
-									"			<td>"+data.response[i].contig+"</td>" +
-									"			<td>"+data.response[i].start+"</td>" +
-									"			<td>"+data.response[i].end+"</td>";
-							if("confidence" in data.response[0]) {
-								html += "		<td>"+data.response[i].confidence+"</td>";
-							} else if("hairpin_score" in data.response[0]) {
-								html += "		<td>"+data.response[i].hairpin_score+"</td>";
-							} else if("tail_score" in data.response[0]) {
-								html += "		<td>"+data.response[i].tail_score+"</td>";
-							}
-							html +=	"		</tr>";
-						}
-						html += "	</tbody>" +
-								"</table>";
-						$("#searchPanel").parent().append(html);
-					}
-					else {
-						$("#transcriptionalTerminators-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-					}
+			var transcriptionalTerminatorList = transcriptionalTerminatorSearch($(this).serialize()).responseJSON.response;
+			if(transcriptionalTerminatorList.length > 0) {
+				$("#searchPanel").hide();
+				$("#back").show();
+				var html = "<table class='table table-striped table-bordered table-hover result'>" +
+							"	<thead>" +
+							"		<tr>"+
+							"			<th>Contig</th>"+
+							"			<th>Start coordinate</th>"+
+							"			<th>End coordinate</th>";
+				if("confidence" in transcriptionalTerminatorList[0]) {
+					html += "			<th>Confidence</th>";
+				} else if("hairpin_score" in transcriptionalTerminatorList[0]) {
+					html += "			<th>Hairpin score</th>";
+				} else if("tail_score" in transcriptionalTerminatorList[0]) {
+					html += "			<th>Tail score</th>";
 				}
-			)
-			.fail(
-				function(jqxhr, textStatus, erro) {
-					var err = textStatus + ", " + error;
-					console.log(err);
+							
+				html +=		"		</tr>" +
+							"	</thead>" +
+							"	<tbody>";
+				for(i = 0; i < transcriptionalTerminatorList.length; i++) {
+					html += "		<tr>" +
+							"			<td>"+transcriptionalTerminatorList[i].contig+"</td>" +
+							"			<td>"+transcriptionalTerminatorList[i].start+"</td>" +
+							"			<td>"+transcriptionalTerminatorList[i].end+"</td>";
+					if("confidence" in transcriptionalTerminatorList[0]) {
+						html += "		<td>"+transcriptionalTerminatorList[i].confidence+"</td>";
+					} else if("hairpin_score" in transcriptionalTerminatorList[0]) {
+						html += "		<td>"+transcriptionalTerminatorList[i].hairpin_score+"</td>";
+					} else if("tail_score" in transcriptionalTerminatorList[0]) {
+						html += "		<td>"+transcriptionalTerminatorList[i].tail_score+"</td>";
+					}
+					html +=	"		</tr>";
 				}
-			);
+				html += "	</tbody>" +
+						"</table>";
+				$("#searchPanel").parent().append(html);
+			}
+			else {
+				$("#transcriptionalTerminators-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+			}
 			return false;
 		}
 	);
@@ -321,67 +239,57 @@ $(function() {
 	$("#ribosomalBindingSites-form").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						$("#searchPanel").hide();
-						$("#back").show();
-						var html = "<table class='table table-striped table-bordered table-hover result'>" +
-									"	<thead>" +
-									"		<tr>"+
-									"			<th>Contig</th>"+
-									"			<th>Start coordinate</th>"+
-									"			<th>End coordinate</th>";
-						if("old_start" in data.response[0]) {
-							html +=
-									"			<th>Old start</th>"+
-									"			<th>New start</th>";
-						}
-						else if("position_shift" in data.response[0]) {
-							html += 
-									"			<th>Position shift</th>";
-						}
-						else if("site_pattern" in data.response[0]) {
-							html += 
-									"			<th>Site pattern</th>";
-						}
-									"		</tr>" +
-									"	</thead>" +
-									"	<tbody>";
-						for(i = 0; i < data.response.length; i++) {
-							html += "		<tr>" +
-									"			<td>"+data.response[i].contig+"</td>" +
-									"			<td>"+data.response[i].start+"</td>" +
-									"			<td>"+data.response[i].end+"</td>";
-							if("old_start" in data.response[i]) {
-								html += 
-									"			<td>"+data.response[i].old_start+"</td>" +
-									"			<td>"+data.response[i].new_start+"</td>" +
-									"		</tr>";
-							} else if("position_shift" in data.response[i]) {
-								html += 
-									"			<td>"+data.response[i].position_shift+"</td>" +
-									"		</tr>";
-							} else if("site_pattern" in data.response[i]) {
-								html += 
-									"			<td>"+data.response[i].site_pattern+"</td>";
-							}
-						}
-						html += "	</tbody>" +
-								"</table>";
-						$("#searchPanel").parent().append(html);
-					} else {
-						$("#ribosomalBindingSites-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+			var rbsList = rbsSearch($(this).serialize()).responseJSON.response;
+			if(rbsList.length > 0) {
+				$("#searchPanel").hide();
+				$("#back").show();
+				var html = "<table class='table table-striped table-bordered table-hover result'>" +
+							"	<thead>" +
+							"		<tr>"+
+							"			<th>Contig</th>"+
+							"			<th>Start coordinate</th>"+
+							"			<th>End coordinate</th>";
+				if("old_start" in rbsList[0]) {
+					html +=
+							"			<th>Old start</th>"+
+							"			<th>New start</th>";
+				}
+				else if("position_shift" in rbsList[0]) {
+					html += 
+							"			<th>Position shift</th>";
+				}
+				else if("site_pattern" in rbsList[0]) {
+					html += 
+							"			<th>Site pattern</th>";
+				}
+							"		</tr>" +
+							"	</thead>" +
+							"	<tbody>";
+				for(i = 0; i < rbsList.length; i++) {
+					html += "		<tr>" +
+							"			<td>"+rbsList[i].contig+"</td>" +
+							"			<td>"+rbsList[i].start+"</td>" +
+							"			<td>"+rbsList[i].end+"</td>";
+					if("old_start" in rbsList[i]) {
+						html += 
+							"			<td>"+rbsList[i].old_start+"</td>" +
+							"			<td>"+rbsList[i].new_start+"</td>" +
+							"		</tr>";
+					} else if("position_shift" in rbsList[i]) {
+						html += 
+							"			<td>"+rbsList[i].position_shift+"</td>" +
+							"		</tr>";
+					} else if("site_pattern" in rbsList[i]) {
+						html += 
+							"			<td>"+rbsList[i].site_pattern+"</td>";
 					}
 				}
-			)
-			.fail(
-				function(jqxhr, textStatus, erro) {
-					var err = textStatus + ", " + error;
-					console.log(err);
-				}
-			);
+				html += "	</tbody>" +
+						"</table>";
+				$("#searchPanel").parent().append(html);
+			} else {
+				$("#ribosomalBindingSites-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+			}
 			return false;
 		}
 	);
@@ -394,71 +302,57 @@ $(function() {
 	$("#horizontalGeneTransfers-form").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-			.done(
-				function(data) {
-					if(data.response.length > 0) {
-						$("#searchPanel").hide();
-						$("#back").show();
-						var html = "<table class='table table-striped table-bordered table-hover result'>" +
-									"	<thead>" +
-									"		<tr>"+
-									"			<th>ID</th>"+
-									"			<th>Contig</th>"+
-									"			<th>Start coordinate</th>"+
-									"			<th>End coordinate</th>";
-						if("score" in data.response[0]) {
-							html += "			<th>Score</th>";
-						} else if("length" in data.response[0]) {
-							html += "			<th>Length</th>";
-						} else if("threshold" in data.response[0]) {
-							html += "			<th>Threshold</th>";
-						}
-						html +=		"		</tr>" +
-									"	</thead>" +
-									"	<tbody>";
-						for(var i = 0; i < data.response.length; i++) {
-							html += "		<tr>" +
-									"			<td><a id='horizontal-transference-"+data.response[i].id+"' href='#'>"+data.response[i].id+"</a></td>" +
-									"			<td>"+data.response[i].contig+"</td>" +
-									"			<td>"+data.response[i].start+"</td>" +
-									"			<td>"+data.response[i].end+"</td>";
-							if("score" in data.response[i]) {
-								html += "		<td>"+data.response[i].score+"</td>";
-							} else if("length" in data.response[i]) {
-								html += "		<td>"+data.response[i].length+"</td>";
-							} else if("threshold" in data.response[i]) {
-								html += "		<td>"+data.response[i].threshold+"</td>";
-							}
-							html +=	"		</tr>";
-						}
-						html += "	</tbody>" +
-								"</table>";
-						$("#searchPanel").parent().append(html);
-						for(var i = 0; i < data.response.length; i++) {
-							var result = data.response[i];
-							$("#horizontal-transference-"+result.id).click(function() {
-								$(".result").remove();
-								$.getJSON("/SearchDatabase/geneByPosition/"+result.start+"/"+result.end, "")
-								.done(
-									function(data) {
-										contentGeneData(data.response);
-									}
-								);
-							});
-						}
-					}
-					else {
-						$("#horizontalGeneTransfers-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
-					}
+			var alienhunterList = alienhunterSearch($(this).serialize()).responseJSON.response;
+			if(alienhunterList.length > 0) {
+				$("#searchPanel").hide();
+				$("#back").show();
+				var html = "<table class='table table-striped table-bordered table-hover result'>" +
+							"	<thead>" +
+							"		<tr>"+
+							"			<th>ID</th>"+
+							"			<th>Contig</th>"+
+							"			<th>Start coordinate</th>"+
+							"			<th>End coordinate</th>";
+				if("score" in alienhunterList[0]) {
+					html += "			<th>Score</th>";
+				} else if("length" in alienhunterList[0]) {
+					html += "			<th>Length</th>";
+				} else if("threshold" in alienhunterList[0]) {
+					html += "			<th>Threshold</th>";
 				}
-			)
-			.fail(
-				function(jqxhr, textStatus, erro) {
-					var err = textStatus + ", " + error;
-					console.log(err);
+				html +=		"		</tr>" +
+							"	</thead>" +
+							"	<tbody>";
+				for(var i = 0; i < alienhunterList.length; i++) {
+					html += "		<tr>" +
+							"			<td><a id='horizontal-transference-"+alienhunterList[i].id+"' href='#'>"+alienhunterList[i].id+"</a></td>" +
+							"			<td>"+alienhunterList[i].contig+"</td>" +
+							"			<td>"+alienhunterList[i].start+"</td>" +
+							"			<td>"+alienhunterList[i].end+"</td>";
+					if("score" in alienhunterList[i]) {
+						html += "		<td>"+alienhunterList[i].score+"</td>";
+					} else if("length" in alienhunterList[i]) {
+						html += "		<td>"+alienhunterList[i].length+"</td>";
+					} else if("threshold" in alienhunterList[i]) {
+						html += "		<td>"+alienhunterList[i].threshold+"</td>";
+					}
+					html +=	"		</tr>";
 				}
-			);
+				html += "	</tbody>" +
+						"</table>";
+				$("#searchPanel").parent().append(html);
+				for(var i = 0; i < alienhunterList.length; i++) {
+					var result = alienhunterList[i];
+					$("#horizontal-transference-"+result.id).click(function() {
+						$(".result").remove();
+						contentGeneData(getGeneByPosition(result.start, result.end).responseJSON.response);
+					});
+				}
+			}
+			else {
+				$("#horizontalGeneTransfers-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
+			}
+				
 			return false;
 		}
 	);
@@ -517,13 +411,13 @@ function dealDataResults(href, featureName, data) {
 		htmlSequence = htmlSequence.replace("[% result.sequence %]", subsequence.sequence);
 		if(type == "CDS") {
 			htmlContent += htmlSequence;
-			var data = getSubEvidences(href.replace("#", "")).responseJSON.response;
+			var subevidences = getSubEvidences(href.replace("#", "")).responseJSON.response;
 			
 			var components = new Object();
 			var componentsEvidences = new Array();
 			var counterComponentsEvidences = 0; 
-			for(i = 0; i < data.subevidences.length; i++) {
-				var componentName = data.subevidences[i].program.replace(".pl", "");
+			for(i = 0; i < subevidences.length; i++) {
+				var componentName = subevidences[i].program.replace(".pl", "");
 				
 				if($.inArray(componentName, componentsEvidences) == -1) {
 					var htmlEvidence = getHTMLContent("teste2/search-database/evidences.tt").responseJSON.response;
@@ -533,7 +427,7 @@ function dealDataResults(href, featureName, data) {
 					htmlEvidence = htmlEvidence.replace("[% result.id %]", href.replace("#", ""));
 					htmlEvidence = htmlEvidence.replace("[% result.id %]", href.replace("#", ""));
 					htmlEvidence = htmlEvidence.replace("[% result.id %]", href.replace("#", ""));
-					htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", data.subevidences[i].descriptionProgram);
+					htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", subevidences[i].program_description);
 					htmlContent += htmlEvidence;
 					componentsEvidences[counterComponentsEvidences] = componentName;
 					counterComponentsEvidences++;
@@ -543,7 +437,7 @@ function dealDataResults(href, featureName, data) {
 					components[componentName] = new Array();
 				} 
 				var arrayEvidences = components[componentName];
-				arrayEvidences[components[componentName].length] = { "id" : data.subevidences[i].subev_id, "type" : data.subevidences[i].subev_type };
+				arrayEvidences[components[componentName].length] = { "id" : subevidences[i].id, "type" : subevidences[i].type };
 				components[componentName] = arrayEvidences;
 			}
 			
@@ -840,41 +734,30 @@ $(function() {
 	$("#formSearchContig").submit(
 		function() {
 			$(".errors").remove();
-			$.getJSON($(this).attr('action'), $(this).serialize())
-				.done(
-					function(data) {
-					    data = data.response;
-						var htmlContent = getHTMLContent("teste2/search-database/contigs.tt").responseJSON.response;
-						htmlContent = htmlContent.replace(/(\[\% sequence.id \%\])+/gim, data.geneID);
-						htmlContent = htmlContent.replace(/(\[\% start \%\])+/gim, $("input[name=contigStart]").val())
-						htmlContent = htmlContent.replace(/(\[\% end \%\])/gim, $("input[name=contigEnd]").val())
-						htmlContent = htmlContent.replace(/(\[\% sequence.name \%\])+/gim, data.gene);
-						htmlContent = htmlContent.replace(/(\[\% contig \%\])+/gim, data.contig);
-						$("#searchPanel").hide();
-						$("#back").show();
-						$("#searchPanel").parent().append(htmlContent);
-						var titlePanel = "Contig search results - Retrieved sequence(";
-						if ($("input[name=contigStart]").val() != "" && 
-							$("input[name=contigEnd]").val() != "") {
-							titlePanel += "from "
-									+ $("input[name=contigStart]").val()
-									+ " to "
-									+ $("input[name=contigEnd]").val() + " of ";
-						}
-						titlePanel += data.gene;
-						if ($("input[name=revCompContig]").is(":checked")) {
-							titlePanel += ", reverse complemented";
-						}
-						titlePanel += ")";
-						$("#title-panel").text(titlePanel);
-					}
-				)
-				.fail(
-					function(jqxhr, textStatus, error) {
-						var err = textStatus + ", " + error;
-						$("#formSearchContig").append("<div class='alert alert-danger errors'>Oops, there is a error on the research: "+ err + "</div>");
-					}
-				);
+			var data = searchContig($(this).serialize()).responseJSON.response;
+			var htmlContent = getHTMLContent("teste2/search-database/contigs.tt").responseJSON.response;
+			htmlContent = htmlContent.replace(/(\[\% sequence.id \%\])+/gim, data.geneID);
+			htmlContent = htmlContent.replace(/(\[\% start \%\])+/gim, $("input[name=contigStart]").val())
+			htmlContent = htmlContent.replace(/(\[\% end \%\])/gim, $("input[name=contigEnd]").val())
+			htmlContent = htmlContent.replace(/(\[\% sequence.name \%\])+/gim, data.gene);
+			htmlContent = htmlContent.replace(/(\[\% contig \%\])+/gim, data.contig);
+			$("#searchPanel").hide();
+			$("#back").show();
+			$("#searchPanel").parent().append(htmlContent);
+			var titlePanel = "Contig search results - Retrieved sequence(";
+			if ($("input[name=contigStart]").val() != "" && 
+				$("input[name=contigEnd]").val() != "") {
+				titlePanel += "from "
+						+ $("input[name=contigStart]").val()
+						+ " to "
+						+ $("input[name=contigEnd]").val() + " of ";
+			}
+			titlePanel += data.gene;
+			if ($("input[name=revCompContig]").is(":checked")) {
+				titlePanel += ", reverse complemented";
+			}
+			titlePanel += ")";
+			$("#title-panel").text(titlePanel);
 			return false;
 		}
 	);

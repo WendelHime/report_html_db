@@ -19,12 +19,8 @@ Method used to realize search based on parameters received by form of analyses o
 
 sub analyses_CDS {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-	###
-	# Query precisa começar encontrado todos os CDS primeiro como base,
-	# inicializar conector,
-	# adicionar na parte do gene também o conector
-	###
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
 	    "(select distinct f.feature_id "
 	  . "from feature f "
@@ -39,7 +35,8 @@ sub analyses_CDS {
 	  . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
 	  . "join featureprop pd on (r.subject_id = pd.feature_id) "
 	  . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
-	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value='4249')";
+	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?)";
+	push @args, $hash->{pipeline};
 	my $connector = "1";
 
 	my $query_gene     = "";
@@ -66,20 +63,19 @@ sub analyses_CDS {
 		  . "JOIN cvterm cp ON (pl.type_id = cp.cvterm_id) "
 		  . "JOIN featureprop pd ON (r.subject_id = pd.feature_id) "
 		  . "JOIN cvterm cd ON (pd.type_id = cd.cvterm_id) "
-		  . "WHERE cr.name = 'based_on' AND cd.name = 'description' AND cp.name = 'pipeline_id' AND pl.value='"
-		  . $hash->{pipeline}
-		  . "' AND ";
-
+		  . "WHERE cr.name = 'based_on' AND cd.name = 'description' AND cp.name = 'pipeline_id' AND pl.value=? AND ";
+		push @args, $hash->{pipeline};
 		$connector = " INTERSECT " if $connector;
 
 		if ( exists $hash->{geneDesc} && $hash->{geneDesc} ) {
-			$query_gene .=
-			  generate_clause( $hash->{geneDesc}, "", "", "pd.value" );
+			$query_gene .= generate_clause( "?", "", "", "lower(pd.value)" );
+			push @args, lc("%".$hash->{geneDesc} . "%");
 			$and = " AND ";
 		}
 		if ( exists $hash->{noDesc} && $hash->{noDesc} ) {
 			$query_gene .=
-			  generate_clause( $hash->{noDesc}, "NOT", $and, "pd.value" );
+			  generate_clause( "?", "NOT", $and, "lower(pd.value)" );
+			push @args, "%" . lc( $hash->{noDesc} ) . "%";
 		}
 		$query_gene .= ")";
 		$query_gene = $connector . $query_gene;
@@ -98,8 +94,9 @@ sub analyses_CDS {
 		  . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
 		  . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
 		  . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-		  . "WHERE c.name ='pipeline_id' AND p.value = '"
-		  . $hash->{pipeline} . "' ";
+		  . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+
+		push @args, $hash->{pipeline};
 
 		$connector = " INTERSECT " if $connector;
 
@@ -109,13 +106,14 @@ sub analyses_CDS {
 		}
 		elsif ( exists $hash->{goID} && $hash->{goID} ) {
 			$query_GO .=
-			  "AND cpd.name LIKE 'evidence_%' AND pd.value LIKE '%"
-			  . $hash->{'goID'} . "%')";
+			  "AND cpd.name LIKE 'evidence_%' AND lower(pd.value) LIKE ?)";
+			push @args, "%" . lc( $hash->{'goID'} ) . "%";
 		}
 		elsif ( exists $hash->{goDesc} && $hash->{goDesc} ) {
 			$query_GO .=
 			  "and cpd.name like 'evidence_%' and "
-			  . generate_clause( $hash->{'goDesc'}, "", "", "pd.value" ) . " )";
+			  . generate_clause( "?", "", "", "lower(pd.value)" ) . " )";
+			push @args, "%" . lc( $hash->{'goDesc'} ) . "%";
 		}
 		$query_GO  = $connector . $query_GO . ")";
 		$connector = "1";
@@ -137,8 +135,8 @@ sub analyses_CDS {
 		  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
 		  . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
 		  . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-		  . "WHERE c.name ='pipeline_id' AND p.value = '"
-		  . $hash->{pipeline} . "' ";
+		  . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+		push @args, $hash->{pipeline};
 
 		$connector = " INTERSECT " if $connector;
 
@@ -147,28 +145,29 @@ sub analyses_CDS {
 			$query_TCDB .= " AND cpd.name = 'TCDB_ID'";
 		}
 		elsif ( $hash->{'tcdbID'} ) {
-			$query_TCDB .= "AND cpd.name = 'TCDB_ID' AND pd.value = '"
-			  . $hash->{'tcdbID'} . "'";
+			$query_TCDB .= "AND cpd.name = 'TCDB_ID' AND pd.value = ?";
+			push @args, $hash->{'tcdbID'};
 		}
 		elsif ( $hash->{'tcdbFam'} ) {
 			$query_TCDB .=
-			  "AND cpd.name = 'TCDB_family' AND pd.value LIKE '"
-			  . $hash->{'tcdbFam'} . "%'";
+			  "AND cpd.name = 'TCDB_family' AND lower(pd.value) LIKE ?";
+			push @args, "%" . lc( $hash->{'tcdbFam'} ) . "%";
 		}
 		elsif ( $hash->{'tcdbSubclass'} ) {
 			$query_TCDB .=
-			  "AND cpd.name = 'TCDB_subclass' AND pd.value = '"
-			  . $hash->{'tcdbSubclass'} . "'";
+			  "AND cpd.name = 'TCDB_subclass' AND lower(pd.value) = ?";
+			push @args, lc( $hash->{'tcdbSubclass'} );
 		}
 		elsif ( $hash->{'tcdbClass'} ) {
 			$query_TCDB .=
-			  "AND cpd.name = 'TCDB_class' AND pd.value = '"
-			  . $hash->{'tcdbClass'} . "'";
+			  "AND cpd.name = 'TCDB_class' AND lower(pd.value) = ?";
+			push @args, lc( $hash->{'tcdbClass'} );
 		}
 		elsif ( $hash->{'tcdbDesc'} ) {
 			$query_TCDB .=
 			  "and cpd.name = 'hit_description' and "
-			  . generate_clause( $hash->{'tcdbDesc'}, "", "", "pd.value" );
+			  . generate_clause( "?", "", "", "lower(pd.value)" );
+			push @args, lc( $hash->{'tcdbDesc'} );
 		}
 		$query_TCDB = $connector . $query_TCDB . ")";
 		$connector  = "1";
@@ -188,8 +187,8 @@ sub analyses_CDS {
 		  . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
 		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
 		my $conditional =
-"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value='"
-		  . $hash->{pipeline} . "'";
+"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
+		push @args, $hash->{pipeline};
 
 		$connector = " INTERSECT " if $connector;
 		if ( $hash->{noPhobius} ) {
@@ -207,14 +206,15 @@ sub analyses_CDS {
 " AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
 
 			if ( $hash->{'tmQuant'} eq "exact" ) {
-				$conditional .= "= $hash->{'TMdom'} ";
+				$conditional .= "= ? ";
 			}
 			elsif ( $hash->{'tmQuant'} eq "orLess" ) {
-				$conditional .= "<= $hash->{'TMdom'} ";
+				$conditional .= "<= ? ";
 			}
 			elsif ( $hash->{'tmQuant'} eq "orMore" ) {
-				$conditional .= ">= $hash->{'TMdom'} ";
+				$conditional .= ">= ? ";
 			}
+			push @args, $hash->{'TMdom'};
 			$query_Phobius = $connector . $select . $join . $conditional . ")";
 			$connector     = "1";
 		}
@@ -247,9 +247,8 @@ sub analyses_CDS {
                         JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
                         JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
                         JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
-                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = '"
-				  . $hash->{pipeline}
-				  . "' AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
+                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
+				push @args, $hash->{pipeline};
 			}
 			$connector = "1";
 		}
@@ -273,20 +272,20 @@ sub analyses_CDS {
                 JOIN featureprop pr ON (r.object_id = pr.feature_id)
                 JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id) ";
 		my $conditional =
-"WHERE a.program = 'annotation_blast.pl' AND c.name ='pipeline_id' AND p.value = '"
-		  . $hash->{pipeline}
-		  . "' AND cra.name = 'alignment' AND cpfo.name = 'subject_id'";
+"WHERE a.program = 'annotation_blast.pl' AND c.name ='pipeline_id' AND p.value = ? AND cra.name = 'alignment' AND cpfo.name = 'subject_id'";
+		push @args, $hash->{pipeline};
 		$connector = " INTERSECT " if $connector;
 		if ( $hash->{'noBlast'} ) {
 			$connector = " EXCEPT " if $connector;
 		}
 		elsif ( $hash->{'blastID'} ) {
-			$conditional .=
-			  " AND pfo.value LIKE '%" . $hash->{'blastID'} . "%'";
+			$conditional .= " AND lower(pfo.value) LIKE ?";
+			push @args, "%" . lc( $hash->{'blastID'} ) . "%";
 		}
 		elsif ( $hash->{'blastDesc'} ) {
-			$conditional .= " AND "
-			  . generate_clause( $hash->{'blastDesc'}, "", "", "pfo.value" );
+			$conditional .=
+			  " AND " . generate_clause( "?", "", "", "lower(pfo.value)" );
+			push @args, $hash->{'blastDesc'};
 		}
 		$query_blast = $connector . $query_blast . $conditional . ")";
 		$connector   = "1";
@@ -312,20 +311,21 @@ sub analyses_CDS {
 		  . "join featureprop pr on (r.object_id = pr.feature_id) "
 		  . "join cvterm cpr on (pr.type_id = cpr.cvterm_id) ";
 		my $conditional =
-"where a.program = 'annotation_rpsblast.pl' and c.name ='pipeline_id' and p.value = '"
-		  . $hash->{pipeline}
-		  . "' and cra.name = 'alignment' and cpfo.name = 'subject_id' ";
+"where a.program = 'annotation_rpsblast.pl' and c.name ='pipeline_id' and p.value = ? and cra.name = 'alignment' and cpfo.name = 'subject_id' ";
+		push @args, $hash->{pipeline};
 		$connector = " INTERSECT " if $connector;
 
 		if ( $hash->{'noRps'} ) {
 			$connector = " EXCEPT " if $connector;
 		}
 		elsif ( $hash->{'rpsID'} ) {
-			$conditional .= " and pfo.value like '%" . $hash->{'rpsID'} . "%'";
+			$conditional .= " and lower(pfo.value) like ? ";
+			push @args, "%" . lc( $hash->{'rpsID'} ) . "%";
 		}
 		elsif ( $hash->{'rpsDesc'} ) {
-			$conditional .= " and "
-			  . generate_clause( $hash->{'rpsDesc'}, "", "", "pfo.value" );
+			$conditional .=
+			  " and " . generate_clause( "?", "", "", "lower(pfo.value)" );
+			push @args, "%" . lc( $hash->{'rpsDesc'} ) . "%";
 		}
 		$query_RPS = $connector . $query_RPS . $conditional . ")";
 		$connector = 1;
@@ -345,8 +345,8 @@ sub analyses_CDS {
 		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id)"
 		  . "join featureprop pd on (pr.subject_id = pd.feature_id)"
 		  . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
-		my $conditional = " where c.name ='pipeline_id' and p.value = '"
-		  . $hash->{pipeline} . "' ";
+		my $conditional = " where c.name ='pipeline_id' and p.value = ? ";
+		push @args, $hash->{pipeline};
 		$connector = " intersect " if $connector;
 		if ( $hash->{'noKEGG'} ) {
 			$connector = " except " if $connector;
@@ -354,13 +354,13 @@ sub analyses_CDS {
 		}
 		elsif ( $hash->{'koID'} ) {
 			$conditional .=
-			  " and cpd.name = 'orthologous_group_id' and pd.value = '"
-			  . $hash->{'koID'} . "'";
+" and cpd.name = 'orthologous_group_id' and lower(pd.value) LIKE ? ";
+			push @args, "%" . lc( $hash->{'koID'} ) . "%";
 		}
 		elsif ( $hash->{'keggPath'} ) {
 			$conditional .=
-			  " and cpd.name = 'metabolic_pathway_id' and pd.value like '%"
-			  . $hash->{'keggPath'} . "%'";
+" and cpd.name = 'metabolic_pathway_id' and lower(pd.value) like ? ";
+			push @args, "%" . lc( $hash->{'keggPath'} ) . "%";
 		}
 		elsif ( $hash->{'keggDesc'} ) {
 			$query_KEGG .=
@@ -368,7 +368,8 @@ sub analyses_CDS {
 			  . "join analysis a on (a.analysis_id = af.analysis_id) ";
 			$conditional .=
 " and a.program = 'annotation_pathways.pl' and cpd.name = 'orthologous_group_description' and "
-			  . generate_clause( $hash->{'keggDesc'}, "", "", "pd.value" );
+			  . generate_clause( "?", "", "", "pd.value" );
+			push @args, "%" . lc( $hash->{'keggDesc'} ) . "%";
 		}
 		$query_KEGG = $connector . $query_KEGG . $conditional . ")";
 		$connector  = "1";
@@ -387,8 +388,8 @@ sub analyses_CDS {
 		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
 		  . "join featureprop pd on (pr.subject_id = pd.feature_id) "
 		  . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
-		my $conditional = "where c.name ='pipeline_id' and p.value = '"
-		  . $hash->{pipeline} . "' ";
+		my $conditional = "where c.name ='pipeline_id' and p.value = ? ";
+		push @args, $hash->{pipeline};
 		$connector = " intersect " if $connector;
 		if ( $hash->{'noOrth'} ) {
 			$connector = " except " if $connector;
@@ -396,8 +397,8 @@ sub analyses_CDS {
 		}
 		elsif ( $hash->{'orthID'} ) {
 			$conditional =
-			  "and cpd.name = 'orthologous_group' and pd.value like '%"
-			  . $hash->{'orthID'} . "%'";
+			  "and cpd.name = 'orthologous_group' and lower(pd.value) like ? ";
+			push @args, "%" . lc( $hash->{'orthID'} ) . "%";
 		}
 		elsif ( $hash->{'orthDesc'} ) {
 			$query_ORTH .=
@@ -405,7 +406,8 @@ sub analyses_CDS {
 			  . " join analysis a on (a.analysis_id = af.analysis_id) ";
 			$conditional .=
 " and a.program = 'annotation_orthology.pl' and cpd.name = 'orthologous_group_description' and "
-			  . generate_clause( $hash->{'orthDesc'}, "", "", "pd.value" );
+			  . generate_clause( "?", "", "", "lower(pd.value)" );
+			push @args, "%" . $hash->{'orthDesc'} . "%";
 		}
 		$query_ORTH = $connector . $query_ORTH . $conditional . ")";
 		$connector  = "1";
@@ -424,8 +426,8 @@ sub analyses_CDS {
 		  . "join feature_relationship pr on (r.subject_id = pr.object_id) "
 		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
 		  . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) ";
-		my $conditional = "where c.name ='pipeline_id' and p.value = '"
-		  . $hash->{pipeline} . "' ";
+		my $conditional = "where c.name ='pipeline_id' and p.value = ? ";
+		push @args, $hash->{pipeline};
 		$connector = " intersect " if $connector;
 		if ( $hash->{'noIP'} ) {
 			$connector = " except " if $connector;
@@ -433,13 +435,13 @@ sub analyses_CDS {
 		}
 		elsif ( $hash->{'interproID'} ) {
 			$conditional .=
-			  "and cpr.name like 'interpro_id' and ppr.value = '"
-			  . $hash->{'interproID'} . "'";
+			  "and cpr.name like 'interpro_id' and ppr.value LIKE ? ";
+			push @args, "%" . $hash->{'interproID'} . "%";
 		}
 		elsif ( $hash->{'interproDesc'} ) {
 			$conditional .=
-			  "and cpr.name like 'description%' and ppr.value like '%"
-			  . $hash->{'interproDesc'} . "%'";
+			  "and cpr.name like 'description%' and ppr.value like ? ";
+			push @args, "%" . $hash->{'interproDesc'} . "%";
 		}
 		$query_interpro = $connector . $query_interpro . $conditional . ")";
 		$connector      = 1;
@@ -458,9 +460,19 @@ sub analyses_CDS {
 	  . $query_ORTH
 	  . $query_interpro;
 
+	my $quantityParameters = () = $query =~ /\?/g;
+	my $counter = scalar @args;
+	if($counter > $quantityParameters) {
+		while(scalar @args > $quantityParameters) {
+			delete $args[$counter-1];
+			$counter--;
+		}
+	}
+	
+
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	return @rows;
 }
@@ -498,8 +510,8 @@ Method used to return tRNA data from database
 
 sub tRNA_search {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
 "select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon "
 	  . "from feature_relationship r "
@@ -515,35 +527,37 @@ sub tRNA_search {
 	  . "join cvterm cpa on (pa.type_id = cpa.cvterm_id) "
 	  . "join featureprop fp on (r.subject_id = fp.feature_id) "
 	  . "join cvterm cfp on (fp.type_id = cfp.cvterm_id) "
-	  . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value='"
-	  . $hash->{pipeline}
-	  . "' and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
-
+	  . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value=? and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
+	push @args, $hash->{pipeline};
 	my $anticodon = "";
 
 	if ( $hash->{'tRNAaa'} ne "" ) {
-		$query .= "and pt.value = '" . $hash->{'tRNAaa'} . "'";
+		$query .= "and pt.value = ?";
+		push @args, $hash->{'tRNAaa'};
 	}
 	elsif ( $hash->{'tRNAcd'} ne "" ) {
 		$anticodon = reverseComplement( $hash->{'tRNAcd'} );
-		$query .= "and pa.value = '$anticodon'";
+		$query .= "and pa.value = ?";
+		push @args, $anticodon;
 	}
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
-	my @rows    = @{ $sth->fetchall_arrayref() };
-	my @list    = ();
-	my @columns = @{ $sth->{NAME} };
+	$sth->execute(@args);
+	my @rows = @{ $sth->fetchall_arrayref() };
+	my @list = ();
+	use Models::Application::TRNASearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
-		}
-		push @list, \%hash;
+		my $result = Models::Application::TRNASearch->new(
+			id         => $rows[$i][0],
+			sequence   => $rows[$i][2],
+			amino_acid => $rows[$i][1],
+			codon      => $rows[$i][3],
+		);
+		push @list, $result;
 	}
 
-	return @list;
+	return \@list;
 }
 
 =head2
@@ -554,8 +568,8 @@ Method used to return tandem repeats data from database
 
 sub trf_search {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh       = $self->dbh;
+	my @args      = ();
 	my $connector = "";
 	my $select =
 "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence ";
@@ -573,30 +587,32 @@ sub trf_search {
                  join featureprop ps on (ps.feature_id = l.srcfeature_id)
                  join cvterm cps on (ps.type_id = cps.cvterm_id) ";
 	my $query =
-"where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value='"
-	  . $hash->{pipeline} . "' ";
+"where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value=? ";
+	push @args, $hash->{pipeline};
 
 	if ( $hash->{'TRFrepSeq'} !~ /^\s*$/ ) {
 		$hash->{'TRFrepSeq'} =~ s/\s+//g;
-		$query .= "and pur.value ilike '%$hash->{'TRFrepSeq'}%' ";
+		$query .= "and lower(pur.value) ilike ? ";
 		$connector = ",";
+		push @args, lc("%$hash->{'TRFrepSeq'}%");
 	}
 
 	if ( $hash->{'TRFrepSize'} !~ /^\s*$/ ) {
 		$hash->{'TRFrepSize'} =~ s/\s+//g;
 
 		if ( $hash->{'TRFsize'} eq "exactTRF" ) {
-			$query .= "and pp.value = '$hash->{'TRFrepSize'}' ";
+			$query .= "and pp.value = ? ";
 			$connector = ",";
 		}
 		elsif ( $hash->{'TRFsize'} eq "orLessTRF" ) {
-			$query .= "and my_to_decimal(pp.value) <= '$hash->{'TRFrepSize'}' ";
+			$query .= "and my_to_decimal(pp.value) <= ? ";
 			$connector = ",";
 		}
 		elsif ( $hash->{'TRFsize'} eq "orMoreTRF" ) {
-			$query .= "and my_to_decimal(pp.value) >= '$hash->{'TRFrepSize'}' ";
+			$query .= "and my_to_decimal(pp.value) >= ? ";
 			$connector = ",";
 		}
+		push @args, $hash->{'TRFrepSize'};
 	}
 
 	if (   $hash->{'TRFrepNumMin'} !~ /^\s*$/
@@ -617,19 +633,23 @@ sub trf_search {
 
 		if ( $min && $max ) {
 			if ( $hash->{'TRFrepNumMin'} == $hash->{'TRFrepNumMax'} ) {
-				$query .=
-				  "and my_to_decimal(pc.value) = $hash->{'TRFrepNumMax'} ";
+				$query .= "and my_to_decimal(pc.value) = ? ";
+				push @args, $hash->{'TRFrepNumMax'};
 			}
 			elsif ( $hash->{'TRFrepNumMin'} < $hash->{'TRFrepNumMax'} ) {
 				$query .=
-"and my_to_decimal(pc.value) >= $hash->{'TRFrepNumMin'} and my_to_decimal(pc.value) <= $hash->{'TRFrepNumMax'} ";
+"and my_to_decimal(pc.value) >= ? and my_to_decimal(pc.value) <= ? ";
+				push @args, $hash->{'TRFrepNumMin'};
+				push @args, $hash->{'TRFrepNumMax'};
 			}
 		}
 		elsif ($min) {
-			$query .= "and my_to_decimal(pc.value) >= $hash->{'TRFrepNumMin'} ";
+			$query .= "and my_to_decimal(pc.value) >= ? ";
+			push @args, $hash->{'TRFrepNumMin'};
 		}
 		elsif ($max) {
-			$query .= "and my_to_decimal(pc.value) <= $hash->{'TRFrepNumMax'} ";
+			$query .= "and my_to_decimal(pc.value) <= ? ";
+			push @args, $hash->{'TRFrepNumMax'};
 		}
 	}
 
@@ -637,21 +657,24 @@ sub trf_search {
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
-
 	my @list = ();
 
-	my @columns = @{ $sth->{NAME} };
+	use Models::Application::TRFSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
-		}
-		push @list, \%hash;
+		my $result = Models::Application::TRFSearch->new(
+			contig      => $rows[$i][0],
+			start       => $rows[$i][2],
+			end         => $rows[$i][1],
+			'length'    => $rows[$i][3],
+			copy_number => $rows[$i][4],
+			sequence    => $rows[$i][5]
+		);
+		push @list, $result;
 	}
 
-	return @list;
+	return \@list;
 }
 
 =head2
@@ -660,19 +683,10 @@ Method used to return non coding RNAs data from database
 
 =cut
 
-#TODO teste de resultado
 sub ncRNA_search {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
-	#		$hash{id}          = $rows[$i][0];
-	#		$hash{contig}      = $rows[$i][1];
-	#		$hash{end}         = $rows[$i][2];
-	#		$hash{start}       = $rows[$i][3];
-	#		$hash{description} = $rows[$i][4];
-	#		if ( $last_column ne "" ) {
-	#			$hash{$last_column} = $rows[$i][5];
-	#		}
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $select =
 "select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description";
 	my $join = " from feature_relationship r 
@@ -687,9 +701,8 @@ sub ncRNA_search {
                 join featureprop pp on (pp.feature_id = r.subject_id) 
                 join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
 	my $query =
-"where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value='"
-	  . $hash->{pipeline}
-	  . "' and cpp.name='target_description' ";
+"where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value=? and cpp.name='target_description' ";
+	push @args, $hash->{pipeline};
 
 	if ( $hash->{'ncRNAtargetID'} !~ /^\s*$/ ) {
 		$hash->{'ncRNAtargetID'} =~ s/\s+//g;
@@ -697,8 +710,8 @@ sub ncRNA_search {
 		$join .=
 "join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
 		$query .=
-		  "and cppc.name = 'target_identifier' and ppc.value = '"
-		  . $hash->{'ncRNAtargetID'} . "' ";
+		  "and cppc.name = 'target_identifier' and lower(ppc.value) = ? ";
+		push @args, "%" . lc( $hash->{'ncRNAtargetID'} ) . "%";
 	}
 
 	elsif ( $hash->{'ncRNAevalue'} !~ /^\s*$/ ) {
@@ -708,19 +721,17 @@ sub ncRNA_search {
 "join featureprop ppe on (ppe.feature_id = r.subject_id) join cvterm cppe on (ppe.type_id = cppe.cvterm_id) ";
 		if ( $hash->{'ncRNAevM'} eq "exactEv" ) {
 			$query .=
-			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = "
-			  . $hash->{'ncRNAevalue'};
+			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = ? ";
 		}
 		elsif ( $hash->{'ncRNAevM'} eq "orLessEv" ) {
 			$query .=
-			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= "
-			  . $hash->{'ncRNAevalue'};
+			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= ? ";
 		}
 		elsif ( $hash->{'ncRNAevM'} eq "orMoreEv" ) {
 			$query .=
-			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= '"
-			  . $hash->{'ncRNAevalue'} . "' ";
+			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= ? ";
 		}
+		push @args, $hash->{'ncRNAevalue'};
 	}
 	elsif ( $hash->{'ncRNAtargetName'} !~ /^\s*$/ ) {
 		$hash->{'ncRNAtargetName'} =~ s/^\s+//;
@@ -728,18 +739,16 @@ sub ncRNA_search {
 		$select .= ", ppn.value AS Target_name";
 		$join .=
 "join featureprop ppn on (ppn.feature_id = r.subject_id) join cvterm cppn on (ppn.type_id = cppn.cvterm_id) ";
-		$query .=
-		  "and cppn.name = 'target_name' and ppn.value ilike '%"
-		  . $hash->{'ncRNAtargetName'} . "%' ";
+		$query .= "and cppn.name = 'target_name' and lower(ppn.value) ilike ? ";
+		push @args, lc( "%" . $hash->{'ncRNAtargetName'} . "%" );
 	}
 
 	elsif ( $hash->{'ncRNAtargetClass'} !~ /^\s*$/ ) {
 		$select .= ", ppc.value AS Target_class";
 		$join .=
 "join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
-		$query .=
-		  "and cppc.name = 'target_class' and ppc.value = '"
-		  . $hash->{'ncRNAtargetClass'} . "'";
+		$query .= "and cppc.name = 'target_class' and ppc.value = ? ";
+		push @args, $hash->{'ncRNAtargetClass'};
 	}
 
 	elsif ( $hash->{'ncRNAtargetType'} !~ /^\s*$/ ) {
@@ -748,48 +757,43 @@ sub ncRNA_search {
 		$select .= ", ppt.value AS Target_type";
 		$join .=
 "join featureprop ppt on (ppt.feature_id = r.subject_id) join cvterm cppt on (ppt.type_id = cppt.cvterm_id) ";
-		$query .=
-		  "and cppt.name = 'target_type' and ppt.value ilike '%"
-		  . $hash->{'ncRNAtargetType'} . "%' ";
+		$query .= "and cppt.name = 'target_type' and lower(ppt.value) ilike ? ";
+		push @args, lc( "%" . $hash->{'ncRNAtargetType'} . "%" );
 	}
 	elsif ( $hash->{'ncRNAtargetDesc'} !~ /^\s*$/ ) {
 		$hash->{'ncRNAtargetDesc'} =~ s/^\s+//;
 		$hash->{'ncRNAtargetDesc'} =~ s/\s+$//;
-		$query .= "and pp.value ilike '%" . $hash->{'ncRNAtargetDesc'} . "%' ";
+		$query .= "and lower(pp.value) ilike ? ";
+		push @args, lc( "%" . $hash->{'ncRNAtargetDesc'} . "%" );
 	}
 
 	$query = $select . $join . $query;
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
-
 	my @list = ();
 
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		my %hash = ();
-	#		$hash{id}          = $rows[$i][0];
-	#		$hash{contig}      = $rows[$i][1];
-	#		$hash{end}         = $rows[$i][2];
-	#		$hash{start}       = $rows[$i][3];
-	#		$hash{description} = $rows[$i][4];
-	#		if ( $last_column ne "" ) {
-	#			$hash{$last_column} = $rows[$i][5];
-	#		}
-	#		push @list, \%hash;
-	#	}
-
-	my @columns = @{ $sth->{NAME} };
+	use Models::Application::NcRNASearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
-		}
-		push @list, \%hash;
+		my $result = Models::Application::NcRNASearch->new(
+			id           => $rows[$i][0],
+			contig       => $rows[$i][1],
+			start        => $rows[$i][3],
+			end          => $rows[$i][2],
+			description  => $rows[$i][4],
+			target_ID    => $rows[$i][5],
+			evalue       => $rows[$i][5],
+			target_name  => $rows[$i][5],
+			target_class => $rows[$i][5],
+			target_type  => $rows[$i][5]
+
+		);
+		push @list, $result;
 	}
 
-	return @list;
+	return \@list;
 }
 
 =head2
@@ -800,7 +804,8 @@ Method used to return transcriptional terminator data from database
 
 sub transcriptional_terminator_search {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $select =
 "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value";
 	if ( $hash->{'TTconf'} !~ /^\s*$/ ) {
@@ -824,8 +829,8 @@ sub transcriptional_terminator_search {
                  join featureprop pp on (pp.feature_id = r.subject_id)
                  join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
 	my $query =
-"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value='"
-	  . $hash->{pipeline} . "' ";
+"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? ";
+	push @args, $hash->{pipeline};
 
 	my $search_field;
 	my $field;
@@ -850,55 +855,47 @@ sub transcriptional_terminator_search {
 	$search_field =~ s/\s+//g;
 
 	if ( $modifier eq "exact" ) {
-		$query .=
-"and cpp.name = '$field' and my_to_decimal(pp.value) = $search_field ";
+		$query .= "and cpp.name = '?' and my_to_decimal(pp.value) = ? ";
 	}
 	elsif ( $modifier eq "orLess" ) {
-		$query .=
-"and cpp.name = '$field' and my_to_decimal(pp.value) <= $search_field ";
+		$query .= "and cpp.name = '?' and my_to_decimal(pp.value) <= ? ";
 	}
 	elsif ( $modifier eq "orMore" ) {
-		$query .=
-"and cpp.name = '$field' and my_to_decimal(pp.value) >= $search_field ";
+		$query .= "and cpp.name = '?' and my_to_decimal(pp.value) >= ? ";
 	}
+
+	push @args, $field    if ($field);
+	push @args, $modifier if ($modifier);
 
 	$query = $select . $join . $query;
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 
-	my @list = ();
-
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		my %hash = ();
-	#		$hash{contig} = $rows[$i][0];
-	#		$hash{start}  = $rows[$i][1];
-	#		$hash{end}    = $rows[$i][2];
-	#		if ( $hash->{'TTconf'} !~ /^\s*$/ ) {
-	#			$hash{confidence} = $rows[$i][3];
-	#		}
-	#		elsif ( $hash->{'TThp'} !~ /^\s*$/ ) {
-	#			$hash{hairpin_score} = $rows[$i][3];
-	#		}
-	#		elsif ( $hash->{'TTtail'} !~ /^\s*$/ ) {
-	#			$hash{tail_score} = $rows[$i][3];
-	#		}
-	#
-	#		push @list, \%hash;
-	#	}
-
+	my @list    = ();
 	my @columns = @{ $sth->{NAME} };
+	use Models::Application::TranscriptionalTerminator;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
+		my $result = Models::Application::TranscriptionalTerminator->new(
+			contig => $rows[$i][0],
+			start  => $rows[$i][1],
+			end    => $rows[$i][2]
+		);
+		if ( $columns[3] eq "confidence" ) {
+			$result->setConfidence( $rows[$i][3] );
 		}
-		push @list, \%hash;
+		elsif ( $columns[3] eq "hairpin_score" ) {
+			$result->setHairpinScore( $rows[$i][3] );
+		}
+		elsif ( $columns[3] eq "tail_score" ) {
+			$result->setTailScore( $rows[$i][3] );
+		}
+		push @list, $result;
 	}
 
-	return @list;
+	return \@list;
 }
 
 =head2
@@ -907,17 +904,14 @@ Method used to return ribosomal binding sites data from database
 
 =cut
 
+#TODO: Criar modelo RBS
 sub rbs_search {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $select =
 "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value";
 
-	#		$hash{contig} = $rows[$i][0];
-	#		$hash{start}  = $rows[$i][2];
-	#		$hash{end}    = $rows[$i][1];
-	#
 	if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
 		$select .= " AS site_pattern";
 	}
@@ -939,16 +933,15 @@ sub rbs_search {
                 join featureprop pp on (pp.feature_id = r.subject_id)
                 join cvterm cpp on (pp.type_id = cpp.cvterm_id)";
 	my $query =
-"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value='"
-	  . $hash->{pipeline} . "' ";
+"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ";
+	push @args, $hash->{pipeline};
 
 	my $newcodon = 0;
 
 	if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
 		$hash->{'RBSpattern'} =~ s/\s*//g;
-		$query .=
-		  "and cpp.name='RBS_pattern' and pp.value like '%"
-		  . $hash->{'RBSpattern'} . "'";
+		$query .= "and cpp.name='RBS_pattern' and lower(pp.value) like ? ";
+		push @args, lc( "%" . $hash->{'RBSpattern'} . "%" );
 	}
 	elsif ( $hash->{'RBSshift'} ) {
 		if ( $hash->{'RBSshiftM'} eq "both" ) {
@@ -976,40 +969,36 @@ sub rbs_search {
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		my %hash = ();
-	#		$hash{contig} = $rows[$i][0];
-	#		$hash{start}  = $rows[$i][2];
-	#		$hash{end}    = $rows[$i][1];
-	#
-	#		if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
-	#			$hash{site_pattern} = $rows[$i][3];
-	#		}
-	#		elsif ( exists $rows[$i][4] ) {
-	#			$hash{old_start} = $rows[$i][3];
-	#			$hash{new_start} = $rows[$i][4];
-	#		}
-	#		else {
-	#			$hash{position_shift} = $rows[$i][3];
-	#		}
-	#
-	#		push @list, \%hash;
-	#	}
-
 	my @columns = @{ $sth->{NAME} };
+	use Models::Application::RBSSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
+		my $result = Models::Application::RBSSearch->new(
+			contig => $rows[$i][0],
+			start  => $rows[$i][1],
+			end    => $rows[$i][2]
+		);
+		if ( $columns[3] eq "site_pattern" ) {
+			$result->setSitePattern( $rows[$i][3] );
 		}
-		push @list, \%hash;
+		elsif ( $columns[3] eq "old_start" ) {
+			$result->setOldStart( $rows[$i][3] );
+		}
+		elsif ( $columns[3] eq "position_shift" ) {
+			$result->setPositionShift( $rows[$i][3] );
+		}
+
+		if ( $columns[4] eq "new_start" ) {
+			$result->setNewStart( $rows[$i][4] );
+		}
+
+		push @list, $result;
 	}
 
-	return @list;
+	return \@list;
 }
 
 =head2
@@ -1020,15 +1009,11 @@ Method used to return horizontal transferences data from database
 
 sub alienhunter_search {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $select =
 "select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS ";
 
-	#		$hash{id}     = $rows[$i][0];
-	#		$hash{contig} = $rows[$i][1];
-	#		$hash{start}  = $rows[$i][2];
-	#		$hash{end}    = $rows[$i][3];
 	if ( $hash->{'AHlen'} !~ /^\s*$/ ) {
 		$select .= "length";
 	}
@@ -1050,8 +1035,8 @@ sub alienhunter_search {
                 join featureprop pp on (pp.feature_id = r.subject_id)
                 join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
 	my $query =
-"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value='"
-	  . $hash->{pipeline} . "' ";
+"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? ";
+	push @args, $hash->{pipeline};
 
 	my $search_field;
 	my $field;
@@ -1076,55 +1061,49 @@ sub alienhunter_search {
 	$search_field =~ s/\s+//g;
 
 	if ( $modifier eq "exact" ) {
-		$query .=
-"and cpp.name = '$field' and my_to_decimal(pp.value) = $search_field ";
+		$query .= "and cpp.name = '?' and my_to_decimal(pp.value) = ? ";
 	}
 	elsif ( $modifier eq "orLess" ) {
-		$query .=
-"and cpp.name = '$field' and my_to_decimal(pp.value) <= $search_field ";
+		$query .= "and cpp.name = '?' and my_to_decimal(pp.value) <= ? ";
 	}
 	elsif ( $modifier eq "orMore" ) {
-		$query .=
-"and cpp.name = '$field' and my_to_decimal(pp.value) >= $search_field ";
+		$query .= "and cpp.name = '?' and my_to_decimal(pp.value) >= ? ";
 	}
+
+	push @args, $field        if $field;
+	push @args, $search_field if $search_field;
 
 	$query = $select . $join . $query;
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		my %hash = ();
-	#		$hash{id}     = $rows[$i][0];
-	#		$hash{contig} = $rows[$i][1];
-	#		$hash{start}  = $rows[$i][2];
-	#		$hash{end}    = $rows[$i][3];
-	#		if ( $hash->{'AHlen'} !~ /^\s*$/ ) {
-	#			$hash{'length'} = $rows[$i][4];
-	#		}
-	#		elsif ( $hash->{'AHscore'} !~ /^\s*$/ ) {
-	#			$hash{score} = $rows[$i][4];
-	#		}
-	#		elsif ( $hash->{'AHthr'} !~ /^\s*$/ ) {
-	#			$hash{threshold} = $rows[$i][4];
-	#		}
-	#
-	#		push @list, \%hash;
-	#	}
-
 	my @columns = @{ $sth->{NAME} };
+	use Models::Application::AlienHunterSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
+		my $result = Models::Application::AlienHunterSearch->new(
+			id     => $rows[$i][0],
+			contig => $rows[$i][1],
+			start  => $rows[$i][2],
+			end    => $rows[$i][3],
+		);
+		if ( $columns[4] eq "length" ) {
+			$result->setLength( $rows[$i][4] );
 		}
-		push @list, \%hash;
+		elsif ( $columns[4] eq "score" ) {
+			$result->setScore( $rows[$i][4] );
+		}
+		elsif ( $columns[4] eq "threshold" ) {
+			$result->setThreshold( $rows[$i][4] );
+		}
+
+		push @list, $result;
 	}
 
-	return @list;
+	return \@list;
 }
 
 =head2
@@ -1145,12 +1124,11 @@ sub reverseComplement {
 Method used to realize search by feature
 
 =cut
+
 sub searchGene {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
-#	use Feature;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
 "SELECT me.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, feature_relationship_props_subject_feature_2.value AS uniquename, "
 	  . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type "
@@ -1168,8 +1146,8 @@ sub searchGene {
 	  . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
 	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id ";
 	my $where =
-"WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = '"
-	  . $hash->{pipeline} . "' ";
+"WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = ? ";
+	push @args, $hash->{pipeline};
 
 	my $connector = "";
 	if ( exists $hash->{featureId} && $hash->{featureId} ) {
@@ -1177,14 +1155,16 @@ sub searchGene {
 			$where .= " AND (";
 			while ( $hash->{featureId} =~ /(\d+)+/g ) {
 				$connector = " OR " if $connector;
-				$where .= $connector . "me.feature_id = '$1'";
+				$where .= $connector . "me.feature_id = ? ";
+				push @args, $1;
 				$connector = "1";
 			}
 			$where .= ")";
 		}
 		else {
 
-			$where .= " AND me.feature_id = '" . $hash->{featureId} . "'";
+			$where .= " AND me.feature_id = ? ";
+			push @args, $hash->{featureId};
 			$connector = "1";
 		}
 	}
@@ -1199,15 +1179,19 @@ sub searchGene {
 		if ( $hash->{geneDescription} ) {
 			while ( $hash->{geneDescription} =~ /(\S+)/g ) {
 				push @likesDescription,
-				  generate_clause( "$1", "", "",
-					"feature_relationship_props_subject_feature_2.value" );
+				  generate_clause( "?", "", "",
+					"lower(feature_relationship_props_subject_feature_2.value)"
+				  );
+				push @args, lc($1);
 			}
 		}
 		if ( $hash->{noDescription} ) {
 			while ( $hash->{noDescription} =~ /(\S+)/g ) {
 				push @likesNoDescription,
-				  generate_clause( "$1", "NOT", "",
-					"feature_relationship_props_subject_feature_2.value" );
+				  generate_clause( "?", "NOT", "",
+					"lower(feature_relationship_props_subject_feature_2.value)"
+				  );
+				push @args, lc($1);
 			}
 		}
 
@@ -1267,8 +1251,8 @@ sub searchGene {
 
 	if ( exists $hash->{geneID} && $hash->{geneID} ) {
 		$where .=
-		  " AND feature_relationship_props_subject_feature.value LIKE '%"
-		  . $hash->{geneID} . "%'";
+" AND lower(feature_relationship_props_subject_feature.value) LIKE ? ";
+		push @args, lc( "%" . $hash->{geneID} . "%" );
 	}
 
 	$query .= $where
@@ -1276,19 +1260,19 @@ sub searchGene {
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-	
+
 	use Models::Application::Feature;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $feature = Models::Application::Feature->new(
-			feature_id	=> $rows[$i][0],
-			uniquename	=> $rows[$i][2],
-			name 		=> $rows[$i][1],
-			fstart		=> $rows[$i][3],
-			fend		=> $rows[$i][4],
-			type		=> $rows[$i][5] 
+			feature_id => $rows[$i][0],
+			uniquename => $rows[$i][2],
+			name       => $rows[$i][1],
+			fstart     => $rows[$i][3],
+			fend       => $rows[$i][4],
+			type       => $rows[$i][5]
 		);
 		push @list, $feature;
 	}
@@ -1299,12 +1283,12 @@ sub searchGene {
 =head2
 
 Method used to realize search for basic content of any feature
-
 =cut
+
 sub geneBasics {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
 "SELECT srcfeature.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, srcfeature.uniquename AS uniquename, featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS value "
 	  . "FROM feature me "
@@ -1321,28 +1305,25 @@ sub geneBasics {
 	  . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
 	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-	  . "WHERE ( ( featureloc_featureprop.value = '"
-	  . $hash->{pipeline}
-	  . "' AND me.feature_id = '"
-	  . $hash->{feature_id}
-	  . "' AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' AND type_5.name = 'description' ) ) "
+	  . "WHERE ( ( featureloc_featureprop.value = ? AND me.feature_id = ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' AND type_5.name = 'description' ) ) "
 	  . "GROUP BY srcfeature.feature_id, feature_relationship_props_subject_feature.value, feature_relationship_props_subject_feature_2.value, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value ";
-
+	push @args, $hash->{pipeline};
+	push @args, $hash->{feature_id};
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
 	use Models::Application::Feature;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $feature = Models::Application::Feature->new(
-			feature_id	=> $rows[$i][0],
-			name 		=> $rows[$i][1],
-			uniquename	=> $rows[$i][2],
-			fstart		=> $rows[$i][3],
-			fend		=> $rows[$i][4],
-			type		=> $rows[$i][5] 
+			feature_id => $rows[$i][0],
+			name       => $rows[$i][1],
+			uniquename => $rows[$i][2],
+			fstart     => $rows[$i][3],
+			fend       => $rows[$i][4],
+			type       => $rows[$i][5]
 		);
 		push @list, $feature;
 	}
@@ -1358,8 +1339,8 @@ Method used to get gene by position
 
 sub geneByPosition {
 	my ( $self, $hash ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
 	    "SELECT me.feature_id AS feature_id "
 	  . "FROM feature me "
@@ -1373,25 +1354,17 @@ sub geneByPosition {
 	  . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
 	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
 	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
-	  . "WHERE ( ( featureloc_featureprop.value = '"
-	  . $hash->{pipeline}
-	  . "' AND featureloc_features_2.fstart >= '"
-	  . $hash->{start}
-	  . "' AND featureloc_features_2.fend <= '"
-	  . $hash->{end}
-	  . "' AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
+	  . "WHERE ( ( featureloc_featureprop.value = ? AND featureloc_features_2.fstart >= ? AND featureloc_features_2.fend <= ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
 	  . "GROUP BY me.feature_id, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
 	  . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
-
+	push @args, $hash->{pipeline};
+	push @args, $hash->{start};
+	push @args, $hash->{end};
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		push @list, $rows[$i][0];
-	#	}
 
 	my @columns = @{ $sth->{NAME} };
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
@@ -1411,8 +1384,8 @@ Method used to realize search for description of non coding RNA
 
 sub ncRNA_description {
 	my ( $self, $feature_id, $pipeline ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
 "SELECT me.object_id AS object_id, feature_relationship_props_subject_feature_2.value AS value "
 	  . "FROM feature_relationship me  "
@@ -1424,20 +1397,18 @@ sub ncRNA_description {
 	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = featureloc_featureprop.type_id "
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = me.subject_id "
 	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-	  . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = '"
-	  . $pipeline
-	  . "' AND me.object_id = '"
-	  . $feature_id
-	  . "' AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
+	  . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = ? AND me.object_id = ? AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
 	  . "GROUP BY me.object_id, feature_relationship_props_subject_feature_2.value "
 	  . "ORDER BY feature_relationship_props_subject_feature_2.value ASC";
-
+	push @args, $pipeline;
+	push @args, $feature_id;
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows    = @{ $sth->fetchall_arrayref() };
 	my %hash    = ();
 	my @columns = @{ $sth->{NAME} };
+
 	for ( my $i = 0 ; $i < scalar @columns ; $i++ ) {
 		$hash{ $columns[$i] } = $rows[0][$i];
 	}
@@ -1453,18 +1424,15 @@ Method used to realize search by subevidences
 
 sub subevidences {
 	my ( $self, $feature_id ) = @_;
-	my $dbh = $self->dbh;
-#   subev_id | subev_type | subev_number | subev_start | subev_end | subev_strand | is_obsolete |         program         
-#----------+------------+--------------+-------------+-----------+--------------+-------------+-------------------------
-#  4426695 | intervals  | 42           |           0 |        62 |            0 | f           | annotation_tmhmm.pl
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
-	    "SELECT subev_id, subev_type, subev_number, subev_start, subev_end, is_obsolete, program subev_strand FROM get_subevidences('"
-	  . $feature_id
-	  . "') ORDER BY subev_id ASC";
+"SELECT subev_id, subev_type, subev_number, subev_start, subev_end, subev_strand, is_obsolete, program FROM get_subevidences(?) ORDER BY subev_id ASC";
+	push @args, $feature_id;
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 
 	my %component_name = (
@@ -1480,16 +1448,21 @@ sub subevidences {
 		'annotation_tmhmm.pl'     => 'TMHMM',
 	);
 
-	my @list    = ();
-	my @columns = @{ $sth->{NAME} };
+	my @list = ();
+	use Models::Application::Subevidence;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my %hash = ();
-		for ( my $j = 0 ; $j < scalar @columns ; $j++ ) {
-			$hash{ $columns[$j] } = $rows[$i][$j];
-		}
-		$hash{descriptionProgram} = $component_name{ $hash{program} };
-
-		push @list, \%hash;
+		my $subevidence = Models::Application::Subevidence->new(
+			id                  => $rows[$i][0],
+			type                => $rows[$i][1],
+			number              => $rows[$i][2],
+			start               => $rows[$i][3],
+			end                 => $rows[$i][4],
+			strand              => $rows[$i][5],
+			is_obsolete         => $rows[$i][6],
+			program             => $rows[$i][7],
+			program_description => $component_name{ $rows[$i][7] }
+		);
+		push @list, $subevidence;
 	}
 
 	return \@list;
@@ -1506,11 +1479,11 @@ sub intervalEvidenceProperties {
 	my $dbh = $self->dbh;
 
 	my $query =
-"SELECT key, key_value FROM get_interval_evidence_properties($feature_id)";
+	  "SELECT key, key_value FROM get_interval_evidence_properties(?)";
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute($feature_id);
 	my @rows = @{ $sth->fetchall_arrayref() };
 
 	my @list = ();
@@ -1573,11 +1546,11 @@ sub similarityEvidenceProperties {
 	my $dbh = $self->dbh;
 
 	my $query =
-"SELECT key, key_value FROM get_similarity_evidence_properties($feature_id)";
+	  "SELECT key, key_value FROM get_similarity_evidence_properties(?)";
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute($feature_id);
 	my @rows = @{ $sth->fetchall_arrayref() };
 
 	my @list    = ();
@@ -1617,12 +1590,11 @@ sub get_feature_id {
 	my ( $self, $uniquename ) = @_;
 	my $dbh = $self->dbh;
 
-	my $query =
-	  "SELECT feature_id FROM feature WHERE uniquename = '$uniquename' LIMIT 1";
+	my $query = "SELECT feature_id FROM feature WHERE uniquename = ? LIMIT 1";
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute($uniquename);
 	my @rows = @{ $sth->fetchall_arrayref() };
 
 	return $rows[0][0];
@@ -1636,27 +1608,19 @@ Method used to get target class
 
 sub get_target_class {
 	my ( $self, $type_id, $feature_id ) = @_;
-	my $dbh = $self->dbh;
-
+	my $dbh  = $self->dbh;
+	my @args = ();
 	my $query =
-	    "SELECT value FROM featureprop WHERE type_id = "
-	  . $type_id
-	  . " AND feature_id = "
-	  . $feature_id
-	  . " ORDER BY value ASC";
-
+"SELECT value FROM featureprop WHERE type_id = ? AND feature_id = ? ORDER BY value ASC";
+	push @args, $type_id;
+	push @args, $feature_id;
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
-	$sth->execute();
+	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 
 	my @list = ();
 
-	#	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-	#		my %hash = ();
-	#		$hash{value} = $rows[$i][0];
-	#		push @list, \%hash;
-	#	}
 	my @columns = @{ $sth->{NAME} };
 	for ( my $i = 0 ; $i < scalar @columns ; $i++ ) {
 		my %hash = ();

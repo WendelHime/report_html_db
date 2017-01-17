@@ -121,7 +121,7 @@
                                  <div class="tab-content">
                                      <div id="geneIdentifier" class="tab-pane fade active in">
                                          <h4></h4>
-                                         <form id="formGeneIdentifier" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
+                                         <form id="formGeneIdentifier">
                                              <div class="form-group">
                                                  [% FOREACH text IN texts %]
                                                      [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
@@ -137,7 +137,7 @@
                                      [% IF blast %]
                                       <div id="geneDescription" class="tab-pane fade">
                                           <h4></h4>
-                                          <form id="formGeneDescription" action="[% c.uri_for('/SearchDatabase/Gene') %]" enctype="multipart/form-data">
+                                          <form id="formGeneDescription">
                                               <div class="form-group">
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
@@ -185,7 +185,7 @@
                          </div>
                          <div id="collapseTwo" class="panel-collapse collapse">
                              <div class="panel-body">
-                                 <form id="formAnalysesProteinCodingGenes" action="[% c.uri_for('/SearchDatabase/analysesCDS') %]" enctype="multipart/form-data">
+                                 <form id="formAnalysesProteinCodingGenes">
                                  	[% IF blast %]
                                       <div class="form-group">
                                           [% FOREACH text IN texts %]
@@ -542,7 +542,7 @@
 			<h4></h4>
 			<div class="tab-content">
 			<div id="contigs" class="tab-pane fade">
-				<form id="formSearchContig" action="[% c.uri_for('/SearchDatabase/Contig') %]" enctype="multipart/form-data">
+				<form id="formSearchContig">
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 							[% IF text.tag == 'search-database-dna-based-analyses-only-contig-title' %]
@@ -588,7 +588,7 @@
 			[% IF trna %]
 			
 				<div id="trna" class="tab-pane fade">
-					<form id="trna-form" action="[% c.uri_for('/SearchDatabase/trnaSearch') %]">
+					<form id="trna-form">
 						<div class="form-group">
 							<div class="checkbox">
 								[% FOREACH text IN texts %]
@@ -636,7 +636,7 @@
 			[% END %]
 			[% IF trf OR mreps OR string %]
 			<div id="tandemRepeats" class="tab-pane fade">
-				<form id="tandemRepeats-form" action="[% c.uri_for('/SearchDatabase/tandemRepeatsSearch') %]">
+				<form id="tandemRepeats-form">
 					<div class="alert alert-info">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-tandem-repeats' %]
@@ -700,7 +700,7 @@
 			[% END %]
 			[% IF infernal %]
 			<div id="otherNonCodingRNAs" class="tab-pane fade">
-				<form id="otherNonCodingRNAs-form" action="[% c.uri_for('/SearchDatabase/ncRNASearch') %]">
+				<form id="otherNonCodingRNAs-form">
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
@@ -770,7 +770,7 @@
 			[% END %]
 			[% IF rbs %]
 			<div id="ribosomalBindingSites" class="tab-pane fade">
-				<form id="ribosomalBindingSites-form" action="[% c.uri_for('/SearchDatabase/rbsSearch') %]">
+				<form id="ribosomalBindingSites-form">
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
@@ -811,7 +811,7 @@
 			[% END %]
 			[% IF transterm %]
 			<div id="transcriptionalTerminators" class="tab-pane fade">
-				<form id="transcriptionalTerminators-form" action="[% c.uri_for('/SearchDatabase/transcriptionalTerminatorSearch') %]">
+				<form id="transcriptionalTerminators-form">
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
@@ -871,7 +871,7 @@
 			[% END %]
 			[% IF alienhunter %]
 			<div id="horizontalGeneTransfers" class="tab-pane fade">
-				<form id="horizontalGeneTransfers-form" action="[% c.uri_for('/SearchDatabase/alienhunterSearch') %]">
+				<form id="horizontalGeneTransfers-form">
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]

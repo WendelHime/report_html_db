@@ -6,9 +6,9 @@
     </head>
     <body>
         <!-- CORE JQUERY SCRIPTS -->
-        <script src="/assets/js/jquery-1.11.1.js"></script>
+        <script type="text/javascript" src="/assets/js/jquery-1.11.1.js"></script>
         <!-- BOOTSTRAP SCRIPTS  -->
-        <script src="/assets/js/bootstrap.js"></script>
+        <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
         [% INCLUDE 'teste2/shared/_header.tt' %]
         <!--import _header from Views/Shared-->
         [% INCLUDE 'teste2/shared/_menu.tt' %]

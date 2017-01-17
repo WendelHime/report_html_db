@@ -300,10 +300,23 @@ sub subEvidences_GET {
 	if ( !$feature and defined $c->request->param("feature") ) {
 		$feature = $c->request->param("feature");
 	}
-
-	my %returnedHash = ();
-	$returnedHash{subevidences} = $c->model('DBI')->subevidences($feature);
-	standardStatusOk( $self, $c, \%returnedHash );
+	my @list       = ();
+	my @resultList = @{ $c->model('DBI')->subevidences($feature) };
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		push @list,
+		  {
+			"id"                  => $resultList[$i]->getID,
+			"type"                => $resultList[$i]->getType,
+			"number"              => $resultList[$i]->getNumber,
+			"start"               => $resultList[$i]->getStart,
+			"end"                 => $resultList[$i]->getEnd,
+			"strand"              => $resultList[$i]->getStrand,
+			"is_obsolete"         => $resultList[$i]->getIsObsolete,
+			"program"             => $resultList[$i]->getProgram,
+			"program_description" => $resultList[$i]->getProgramDescription,
+		  };
+	}
+	standardStatusOk( $self, $c, \@list );
 }
 
 =head2
@@ -529,16 +542,23 @@ sub trnaSearch_GET {
 	my ( $self, $c ) = @_;
 
 	my %hash = ();
-	my @list = ();
-
 	foreach my $key ( keys %{ $c->request->params } ) {
 		if ( $key && $key ne "0" ) {
 			$hash{$key} = $c->request->params->{$key};
 		}
 	}
 	$hash{pipeline} = 4249;
-
-	@list = $c->model('DBI')->tRNA_search( \%hash );
+	my @list       = ();
+	my @resultList = @{ $c->model('DBI')->tRNA_search( \%hash ) };
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		push @list,
+		  {
+			"id"         => $resultList[$i]->getID,
+			"sequence"   => $resultList[$i]->getSequence,
+			"amino_acid" => $resultList[$i]->getAminoAcid,
+			"codon"      => $resultList[$i]->getCodon,
+		  };
+	}
 
 	standardStatusOk( $self, $c, \@list );
 }
@@ -565,7 +585,18 @@ sub tandemRepeatsSearch_GET {
 	}
 	$hash{pipeline} = 4249;
 
-	@list = $c->model('DBI')->trf_search( \%hash );
+	my @resultList = @{ $c->model('DBI')->trf_search( \%hash ) };
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		push @list,
+		  {
+			"contig"      => $resultList[$i]->getContig,
+			"start"       => $resultList[$i]->getStart,
+			"end"         => $resultList[$i]->getEnd,
+			"length"      => $resultList[$i]->getLength,
+			"copy_number" => $resultList[$i]->getCopyNumber,
+			"sequence"    => $resultList[$i]->getSequence,
+		  };
+	}
 
 	standardStatusOk( $self, $c, \@list );
 }
@@ -592,7 +623,23 @@ sub ncRNASearch_GET {
 	}
 	$hash{pipeline} = 4249;
 
-	@list = $c->model('DBI')->ncRNA_search( \%hash );
+	my @resultList = @{ $c->model('DBI')->ncRNA_search( \%hash ) };
+
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		push @list,
+		  {
+			id           => $resultList[$i]->getID,
+			contig       => $resultList[$i]->getContig,
+			start        => $resultList[$i]->getStart,
+			end          => $resultList[$i]->getEnd,
+			description  => $resultList[$i]->getDescription,
+			target_ID    => $resultList[$i]->getTargetID,
+			evalue       => $resultList[$i]->getEvalue,
+			target_name  => $resultList[$i]->getTargetName,
+			target_class => $resultList[$i]->getTargetClass,
+			target_type  => $resultList[$i]->getTargetType
+		  };
+	}
 
 	standardStatusOk( $self, $c, \@list );
 }
@@ -620,7 +667,24 @@ sub transcriptionalTerminatorSearch_GET {
 	}
 	$hash{pipeline} = 4249;
 
-	@list = $c->model('DBI')->transcriptional_terminator_search( \%hash );
+	my @resultList =
+	  @{ $c->model('DBI')->transcriptional_terminator_search( \%hash ) };
+
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		my %hash = (
+			contig => $resultList[$i]->getContig,
+			start  => $resultList[$i]->getStart,
+			end    => $resultList[$i]->getEnd,
+		);
+
+		$hash{confidence} = $resultList[$i]->getConfidence
+		  if $resultList[$i]->getConfidence;
+		$hash{hairpin_score} = $resultList[$i]->getHairpinScore
+		  if $resultList[$i]->getHairpinScore;
+		$hash{tail_score} = $resultList[$i]->getTailScore
+		  if $resultList[$i]->getTailScore;
+		push @list, \%hash;
+	}
 
 	standardStatusOk( $self, $c, \@list );
 }
@@ -632,7 +696,8 @@ Method used to get data of ribosomal binding sites
 =cut
 
 sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(4) :
-  ActionClass('REST') { }
+  ActionClass('REST') {
+}
 
 sub rbsSearch_GET {
 	my ( $self, $c ) = @_;
@@ -647,7 +712,26 @@ sub rbsSearch_GET {
 	}
 	$hash{pipeline} = 4249;
 
-	@list = $c->model('DBI')->rbs_search( \%hash );
+	my @resultList = @{ $c->model('DBI')->rbs_search( \%hash ) };
+
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		my %hash = (
+			contig => $resultList[$i]->getContig,
+			start  => $resultList[$i]->getStart,
+			end    => $resultList[$i]->getEnd,
+		);
+
+		$hash{site_pattern} = $resultList[$i]->getSitePattern
+		  if $resultList[$i]->getSitePattern;
+		$hash{old_start} = $resultList[$i]->getOldStart
+		  if $resultList[$i]->getOldStart;
+		$hash{position_shift} = $resultList[$i]->getPositionShift
+		  if $resultList[$i]->getPositionShift;
+		$hash{new_start} = $resultList[$i]->getNewStart
+		  if $resultList[$i]->getNewStart;
+
+		push @list, \%hash;
+	}
 
 	standardStatusOk( $self, $c, \@list );
 }
@@ -674,7 +758,25 @@ sub alienhunterSearch_GET {
 	}
 	$hash{pipeline} = 4249;
 
-	@list = $c->model('DBI')->alienhunter_search( \%hash );
+	my @resultList = @{ $c->model('DBI')->alienhunter_search( \%hash ) };
+
+	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+		my %hash = (
+			id     => $resultList[$i]->getID,
+			contig => $resultList[$i]->getContig,
+			start  => $resultList[$i]->getStart,
+			end    => $resultList[$i]->getEnd,
+		);
+
+		$hash{length} = $resultList[$i]->getLength
+		  if $resultList[$i]->getLength;
+		$hash{score} = $resultList[$i]->getScore
+		  if $resultList[$i]->getScore;
+		$hash{threshold} = $resultList[$i]->getThreshold
+		  if $resultList[$i]->getThreshold;
+
+		push @list, \%hash;
+	}
 
 	standardStatusOk( $self, $c, \@list );
 }

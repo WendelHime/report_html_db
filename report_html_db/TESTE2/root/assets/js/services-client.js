@@ -1,6 +1,7 @@
 /**
- * This is the library dedicated to the clients
- * Here we have the layer of communication between application and services
+ * This is the library dedicated to the clients Here we have the layer of
+ * communication between application and services
+ * 
  * @author Wendel Hime Lino Castro
  */
 
@@ -24,6 +25,179 @@ function searchGene(geneId, geneDescription, noDescription, individually,
         dataType : "json",
         url : "/SearchDatabase/Gene/" + geneId + "/" + geneDescription + "/"
                 + noDescription + "/" + individually + "/" + featureId,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to search features
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XMLHttpRequest
+ */
+function searchGene(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/Gene?" + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to get feature by position
+ * 
+ * @param start:
+ *            start position of the sequence
+ * @param end:
+ *            end position of the sequence
+ * @returns XMLHttpRequest
+ */
+function getGeneByPosition(start, end) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/geneByPosition/" + start + "/" + end,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to search by contig
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XmlHttpRequest
+ */
+function searchContig(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/Contig?" + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to search for analyses CDS
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XMLHttpRequest
+ */
+function analysesCDS(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/analysesCDS?" + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to realize search by tRNA
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XMLHttpRequest
+ */
+function trnaSearch(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/trnaSearch?" + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to realize search by tandem repeats
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XMLHttpRequest
+ */
+function tandemRepeatsSearch(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/tandemRepeatsSearch?" + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to realize search by non coding RNA
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XmlHttpRequest
+ */
+function ncRNASearch(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/ncRNASearch?" + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to realize search by transcriptional terminators
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XmlHttpRequest
+ */
+function transcriptionalTerminatorSearch(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/transcriptionalTerminatorSearch?"
+                + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to realize search by ribosomal binding sites
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XmlHttpRequest
+ */
+function rbsSearch(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/rbsSearch?" + serializedForm,
+        async : false,
+        cache : false
+    });
+}
+
+/**
+ * Method used to realize search by horizontal transferences
+ * 
+ * @param serializedForm:
+ *            serialized form
+ * @returns XmlHttpRequest
+ */
+function alienhunterSearch(serializedForm) {
+    return $.ajax({
+        type : "GET",
+        dataType : "json",
+        url : "/SearchDatabase/alienhunterSearch?" + serializedForm,
         async : false,
         cache : false
     });
