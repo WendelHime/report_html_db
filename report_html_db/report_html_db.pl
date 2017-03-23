@@ -1518,6 +1518,18 @@ __PACKAGE__->config(
 
 1;
 BASERESPONSE
+	"PagedResponse" => <<PAGEDRESPONSE,
+use strict;
+use warnings;
+use base 'Catalyst::Model::Adaptor';
+
+__PACKAGE__->config( 
+    class       => 'Report_HTML_DB::Models::Services::PagedResponse',
+    constructor => 'new',
+);
+
+1;	
+PAGEDRESPONSE
 	"Feature" => <<FEATURE,
 use strict;
 use warnings;
@@ -1642,8 +1654,8 @@ sub analyses_CDS {
 	my ( \$self, \$hash ) = \@_;
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
-	my \$query =
-	    "(select distinct f.feature_id "
+	my \$query = "SELECT motherfuckerquery.feature_id, COUNT(*) OVER() FROM "
+	  . "((select distinct f.feature_id "
 	  . "from feature f "
 	  . "join feature_relationship r on (f.feature_id = r.object_id) "
 	  . "join cvterm cr on (r.type_id = cr.cvterm_id) "
@@ -2079,7 +2091,24 @@ sub analyses_CDS {
 	  . \$query_RPS
 	  . \$query_KEGG
 	  . \$query_ORTH
-	  . \$query_interpro;
+	  . \$query_interpro
+	  . " ) as motherfuckerquery GROUP BY motherfuckerquery.feature_id ORDER BY motherfuckerquery.feature_id ";
+	  
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 
 	my \$quantityParameters = () = \$query =~ /\\?/g;
 	my \$counter = scalar \@args;
@@ -2095,7 +2124,17 @@ sub analyses_CDS {
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	return \@rows;
+	my \%returnedHash = ();
+	my \@list         = ();
+	
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		push \@list, \$rows[\$i][0];
+		\$returnedHash{total} = \$rows[\$i][1];
+	}
+
+	\$returnedHash{list} = \\\@list;
+
+	return \\\%returnedHash;
 }
 
 =head2
@@ -2116,7 +2155,7 @@ sub generate_clause {
 	foreach my \$term (\@terms) {
 		my \$com = "";
 		\$com = " or " if \$i > 0;
-		\$clause .= "\$com \$field \$not like '\%\$term\%'";
+		\$clause .= "\$com \$field \$not like \$term";
 		\$i++;
 	}
 	\$clause .= ")";
@@ -2752,7 +2791,7 @@ sub searchGene {
 	my \@args = ();
 	my \$query =
 "SELECT me.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, feature_relationship_props_subject_feature_2.value AS uniquename, "
-	  . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type "
+	  . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type,  COUNT(*) OVER() AS total "
 	  . "FROM feature me "
 	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
@@ -2803,7 +2842,7 @@ sub searchGene {
 				  generate_clause( "?", "", "",
 					"lower(feature_relationship_props_subject_feature_2.value)"
 				  );
-				push \@args, lc(\$1);
+				push \@args, lc( "%" . \$1 . "%" );
 			}
 		}
 		if ( \$hash->{noDescription} ) {
@@ -2812,7 +2851,7 @@ sub searchGene {
 				  generate_clause( "?", "NOT", "",
 					"lower(feature_relationship_props_subject_feature_2.value)"
 				  );
-				push \@args, lc(\$1);
+				push \@args, lc( "%" . \$1 . "%" );
 			}
 		}
 
@@ -2875,15 +2914,33 @@ sub searchGene {
 " AND lower(feature_relationship_props_subject_feature.value) LIKE ? ";
 		push \@args, lc( "\%" . \$hash->{geneID} . "\%" );
 	}
+	
+	\$where .= " ORDER BY feature_relationship_props_subject_feature.value ASC ";
 
-	\$query .= \$where
-	  . " ORDER BY feature_relationship_props_subject_feature.value ASC ";
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$where .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$where .= " OFFSET 0 ";
+		}
+		else {
+			\$where .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
+	
+	\$query .= \$where;
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
+	my \%returnedHash = ();
+	my \@list         = ();
 
 	use Report_HTML_DB::Models::Application::Feature;
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
@@ -2893,12 +2950,15 @@ sub searchGene {
 			name       => \$rows[\$i][1],
 			fstart     => \$rows[\$i][3],
 			fend       => \$rows[\$i][4],
-			type       => \$rows[\$i][5]
+			type       => \$rows[\$i][5],
 		);
+		\$returnedHash{total} = \$rows[\$i][6];
 		push \@list, \$feature;
 	}
 
-	return \\\@list;
+	\$returnedHash{list} = \\\@list;
+
+return \\\%returnedHash;
 }
 
 =head2
@@ -3483,23 +3543,31 @@ Standard return of status ok
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response ) = \@_;
-	if ( \$response eq "" ) {
-		\$response = "null";
+	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+	if (   ( defined \$total || \$total )
+		&& ( defined \$pageSize || \$pageSize )
+		&& ( defined \$offset   || \$offset ) )
+	{
+		my \$pagedResponse = \$c->model('PagedResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response,
+			total       => \$total,
+			pageSize    => \$pageSize,
+			offset      => \$offset,
+		);
+		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
 	}
-	if ( \$response =~ /ARRAY/g ) {
-		\$response = "null" if (scalar \@\$response <= 1);
+	else {
+		my \$baseResponse = \$c->model('BaseResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response
+		);
+		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
 	}
-	my \$baseResponse = \$c->model('BaseResponse')->new(
-		status_code => 200,
-		message     => "Ok",
-		elapsed_ms  => \$c->stats->elapsed,
-		response    => \$response
-	);
-	\$self->status_ok(
-		\$c,
-		entity => \$baseResponse->pack(),
-	);
 }
 
 =encoding utf8
@@ -3572,8 +3640,9 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(6) :
   ActionClass('REST') { }
 
 sub searchGene_GET {
-	my ( \$self, \$c, \$pipeline, \$geneID, \$geneDescription, \$noDescription, \$individually,
-		\$featureId )
+	my ( \$self, 	\$c, 	\$pipeline, 	\$geneID, 
+		\$geneDescription, 	\$noDescription, \$individually,	\$featureId,
+		\$pageSize,        \$offset )
 	  = \@_;
 
 	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
@@ -3594,6 +3663,12 @@ sub searchGene_GET {
 	if ( !\$featureId and defined \$c->request->param("featureId") ) {
 		\$featureId = \$c->request->param("featureId");
 	}
+	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+		\$pageSize = \$c->request->param("pageSize");
+	}
+	if ( !\$offset and defined \$c->request->param("offset") ) {
+		\$offset = \$c->request->param("offset");
+	}
 
 	my \@list = ();
 	my \%hash = ();
@@ -3603,14 +3678,17 @@ sub searchGene_GET {
 	\$hash{geneDescription} = \$geneDescription;
 	\$hash{noDescription}   = \$noDescription;
 	\$hash{individually}    = \$individually;
+	\$hash{pageSize}        = \$pageSize;
+	\$hash{offset}          = \$offset;
 
-	my \@resultList = \@{ \$c->model('Repository')->searchGene( \\\%hash ) };
+	my \$result     = \$c->model('Repository')->searchGene( \\\%hash );
+	my \@resultList = \@{ \$result->{list} };
 
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$pageSize, \$offset );
 }
 
 =head2 encodingCorrection
@@ -4249,17 +4327,31 @@ Method used to make a default return of every ok request using BaseResponse mode
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response ) = \@_;
-	my \$baseResponse = \$c->model('BaseResponse')->new(
-		status_code => 200,
-		message     => "Ok",
-		elapsed_ms  => \$c->stats->elapsed,
-		response    => \$response
-	);
-	\$self->status_ok(
-		\$c,
-		entity => \$baseResponse->pack(),
-	);
+	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+	if (   ( defined \$total || \$total )
+		&& ( defined \$pageSize || \$pageSize )
+		&& ( defined \$offset   || \$offset ) )
+	{
+		my \$pagedResponse = \$c->model('PagedResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response,
+			total       => \$total,
+			pageSize    => \$pageSize,
+			offset      => \$offset,
+		);
+		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+	}
+	else {
+		my \$baseResponse = \$c->model('BaseResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response
+		);
+		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+	}
 }
 
 =encoding utf8
@@ -4302,12 +4394,14 @@ Catalyst Controller.
 use base 'Catalyst::Controller::REST';
 BEGIN { extends 'Catalyst::Controller::REST'; }
 
-sub gene : Path("/SearchDatabase/GetGene") : CaptureArgs(5) :
+sub gene : Path("/SearchDatabase/GetGene") : CaptureArgs(7) :
   ActionClass('REST') { }
 
 sub gene_GET {
-	my ( \$self, \$c, \$geneID, \$geneDescription, \$noDescription,
-		\$individually, \$featureId )
+	my ( 
+		\$self,            \$c,             \$pipeline,     \$geneID,
+		\$geneDescription, \$noDescription, \$individually, \$featureId,
+		\$pageSize,        \$offset )
 	  = \@_;
 	if ( !\$geneID and defined \$c->request->param("geneID") ) {
 		\$geneID = \$c->request->param("geneID");
@@ -4324,15 +4418,22 @@ sub gene_GET {
 	if ( !\$featureId and defined \$c->request->param("featureId") ) {
 		\$featureId = \$c->request->param("featureId");
 	}
+	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+		\$pageSize = \$c->request->param("pageSize");
+	}
+	if ( !\$offset and defined \$c->request->param("offset") ) {
+		\$offset = \$c->request->param("offset");
+	}
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$pagedResponse = \$searchDBClient->getGene( \$c->config->{pipeline_id},
+		\$geneID, \$geneDescription,
+		\$noDescription, \$individually, \$featureId, \$pageSize, \$offset );
 	standardStatusOk(
-		\$self, \$c,
-		\$searchDBClient->getGene(
-			\$c->config->{pipeline_id},      \$geneID,       \$geneDescription,
-			\$noDescription, \$individually, \$featureId
-		)
+		\$self, \$c, \$pagedResponse->{response}, \$pagedResponse->{"total"},
+		\$pageSize, \$offset
+
 	);
 }
 
@@ -4351,7 +4452,7 @@ sub gene_basics_GET {
 		\$self, \$c,
 		\$searchDBClient->getGeneBasics(
 			\$id, \$c->config->{pipeline_id}
-		)
+		)->{response}
 	);
 }
 
@@ -4382,7 +4483,7 @@ sub subsequence_GET {
 		\$self, \$c,
 		\$searchDBClient->getSubsequence(
 			\$type, \$contig, \$sequenceName, \$start, \$end, \$c->config->{pipeline_id}
-		)
+		)->{response}
 	);
 }
 
@@ -4401,7 +4502,7 @@ sub ncRNA_desc_GET {
 		\$self, \$c,
 		\$searchDBClient->getncRNA_desc(
 			\$feature, \$c->config->{pipeline_id}
-		)
+		)->{response}
 	); 
 }
 
@@ -4420,7 +4521,7 @@ sub subEvidences_GET {
 		\$self, \$c,
 		\$searchDBClient->getSubevidences(
 			\$feature, \$c->config->{pipeline_id}
-		)
+		)->{response}
 	);
 }
 
@@ -4439,11 +4540,12 @@ sub analysesCDS_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$pagedResponse = \$searchDBClient->getAnalysesCDS( \\\%hash );
 	standardStatusOk(
 		\$self, \$c,
-		\$searchDBClient->getAnalysesCDS(
-			\\\%hash
-		)
+		\$pagedResponse->{response},
+		\$pagedResponse->{total},
+		\$hash{pageSize}, \$hash{offset}
 	);
 }
 
@@ -4467,7 +4569,7 @@ sub trnaSearch_GET {
 		\$self, \$c,
 		\$searchDBClient->getTRNA(
 			\\\%hash
-		)
+		)->{response}
 	);
 }
 
@@ -4491,7 +4593,7 @@ sub tandemRepeatsSearch_GET {
 		\$self, \$c,
 		\$searchDBClient->getTandemRepeats(
 			\\\%hash
-		)
+		)->{response}
 	);
 }
 
@@ -4514,7 +4616,7 @@ sub ncRNASearch_GET {
 		\$self, \$c,
 		\$searchDBClient->getncRNA(
 			\\\%hash
-		)
+		)->{response}
 	);
 }
 
@@ -4538,7 +4640,7 @@ sub transcriptionalTerminatorSearch_GET {
 		\$self, \$c,
 		\$searchDBClient->getTranscriptionalTerminator(
 			\\\%hash
-		)
+		)->{response}
 	);
 }
 
@@ -4562,7 +4664,7 @@ sub rbsSearch_GET {
 		\$self, \$c,
 		\$searchDBClient->getRBSSearch(
 			\\\%hash
-		)
+		)->{response}
 	);
 }
 
@@ -4585,7 +4687,7 @@ sub alienhunterSearch_GET {
 		\$self, \$c,
 		\$searchDBClient->getAlienHunter(
 			\\\%hash
-		)
+		)->{response}
 	);
 }
 
@@ -4607,7 +4709,7 @@ sub geneByPosition_GET {
 		\$self, \$c,
 		\$searchDBClient->getGeneByPosition(
 			\$start, \$end, \$c->config->{pipeline_id}
-		)
+		)->{response}
 	);
 }
 
@@ -4624,7 +4726,7 @@ sub getSimilarityEvidenceProperties_GET {
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
 	standardStatusOk( \$self, \$c,
-		\$searchDBClient->getSimilarityEvidenceProperties(\$feature) );
+		\$searchDBClient->getSimilarityEvidenceProperties(\$feature)->{response} );
 }
 
 sub getIntervalEvidenceProperties :
@@ -4646,7 +4748,7 @@ sub getIntervalEvidenceProperties_GET {
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
 	standardStatusOk( \$self, \$c,
-		\$searchDBClient->getIntervalEvidenceProperties(\$feature, \$typeFeature, \$pipeline) );
+		\$searchDBClient->getIntervalEvidenceProperties(\$feature, \$typeFeature, \$pipeline)->{response} );
 }
 
 =head2
@@ -4654,14 +4756,31 @@ Standard return of status ok
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response ) = \@_;
-	my \$baseResponse = \$c->model('BaseResponse')->new(
-		status_code => 200,
-		message     => "Ok",
-		elapsed_ms  => \$c->stats->elapsed,
-		response    => \$response->getResponse
-	);
-	\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+	if (   ( defined \$total || \$total )
+		&& ( defined \$pageSize || \$pageSize )
+		&& ( defined \$offset   || \$offset ) )
+	{
+		my \$pagedResponse = \$c->model('PagedResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response,
+			total       => \$total,
+			pageSize    => \$pageSize,
+			offset      => \$offset,
+		);
+		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+	}
+	else {
+		my \$baseResponse = \$c->model('BaseResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response
+		);
+		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+	}
 }
 
 =encoding utf8
@@ -6813,6 +6932,7 @@ CONTENTINDEXHOME
     </div>
 </div>
 <!-- CONTENT-WRAPPER SECTION END-->
+
 CONTENTSEARCHDATABASE
 		,
 		"index.tt" => <<CONTENTINDEXSEARCHDATABASE
@@ -6821,10 +6941,41 @@ CONTENTSEARCHDATABASE
     <div class="container">
     	<div class="row">
     		<div class="col-md-12">
-    			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg">
+    			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
     		</div>
-    	</div
-        [% INCLUDE '$lowCaseName/search-database/_forms.tt' %]
+    	</div>
+        [% INCLUDE 'website/search-database/_forms.tt' %]
+        <section class="pagination-section">
+	    	<div class="row">
+	    		<div class="col-sm-2">
+	    			<input type="button" id="begin" value="<<" class="btn btn-info btn-lg" />
+	    		</div>
+	    		<div class="col-sm-2">
+	    			<input type="button" id="less" value="<" class="btn btn-info btn-lg" />
+	    		</div>
+	    		<form id="skipPagination">
+		    		<div class="col-sm-2">
+		    			<div class="row">
+		    				<div class="col-md-6">
+		    					<input type="number" id="numberPage" value="1" min="1" class="form-control" />
+		    				</div>
+		    				<div class="col-md-6"> 
+		    					<p>pages of <span id="totalNumberPages" /></p>	
+		    				</div>
+		    			</div>
+		    		</div>
+		    		<div class="col-sm-2">
+		    			<input type="submit" id="goPage" value="Go" class="btn btn-info btn-lg" />
+		    		</div>
+		    	</form>
+	    		<div class="col-sm-2">
+	    			<input type="button" id="more" value=">" class="btn btn-info btn-lg" />
+	    		</div>
+	    		<div class="col-sm-2">
+	    			<input type="button" id="last" value=">>" class="btn btn-info btn-lg" />
+	    		</div>
+	    	</div>
+    	</section>
     </div>
 </div>
 <script>
@@ -6859,7 +7010,6 @@ CONTENTSEARCHDATABASE
 
 <script type="text/javascript" src="/assets/js/site-client.js"></script>
 <script type="text/javascript" src="/assets/js/action.js"></script>
-
 
 CONTENTINDEXSEARCHDATABASE
 		,

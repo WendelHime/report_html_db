@@ -178,23 +178,31 @@ Standard return of status ok
 =cut
 
 sub standardStatusOk {
-	my ( $self, $c, $response ) = @_;
-	if ( $response eq "" ) {
-		$response = "null";
+	my ( $self, $c, $response, $total, $pageSize, $offset ) = @_;
+	if (   ( defined $total || $total )
+		&& ( defined $pageSize || $pageSize )
+		&& ( defined $offset   || $offset ) )
+	{
+		my $pagedResponse = $c->model('PagedResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => $c->stats->elapsed,
+			response    => $response,
+			total       => $total,
+			pageSize    => $pageSize,
+			offset      => $offset,
+		);
+		$self->status_ok( $c, entity => $pagedResponse->pack(), );
 	}
-	if ( $response =~ /ARRAY/g ) {
-		$response = "null" if (scalar @$response <= 1);
+	else {
+		my $baseResponse = $c->model('BaseResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => $c->stats->elapsed,
+			response    => $response
+		);
+		$self->status_ok( $c, entity => $baseResponse->pack(), );
 	}
-	my $baseResponse = $c->model('BaseResponse')->new(
-		status_code => 200,
-		message     => "Ok",
-		elapsed_ms  => $c->stats->elapsed,
-		response    => $response
-	);
-	$self->status_ok(
-		$c,
-		entity => $baseResponse->pack(),
-	);
 }
 
 =encoding utf8
