@@ -504,7 +504,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
-        ("search-database-analyses-protein-code-tab", "RPSBLAST", "#rpsBlast"),
         ("search-database-analyses-protein-code-tab", "KEGG", "#kegg"),
         ("search-database-analyses-protein-code-tab", "Orthology analysis (eggNOG)", "#orthologyAnalysis"),
         ("search-database-analyses-protein-code-tab", "Interpro", "#interpro"),
@@ -1070,6 +1069,13 @@ SQL
 							}
 						}
 						$components{$component} = $aux;
+					}
+					elsif ( $component_name eq "annotation_rpsblast.pl") {
+						$components{$component} = $component;
+						$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+						("search-database-analyses-protein-code-tab", "RPSBLAST", "#rpsBlast");
+SQL
 					}
 					elsif ( $component_name eq "annotation_string" ) {
 						my $name = $sequence_object->{sequence_name};

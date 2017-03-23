@@ -112,7 +112,7 @@ $("#less").click(function() {
 });
 
 $("#last").click(function() {
-    offset = Math.round(totalValues  / pageSize) * 10;
+    offset = parseInt(totalValues  / pageSize) * 10;
     $("#numberPage").val($("#totalNumberPages").text());
     $(".result").remove();
     $(idForm).submit();
