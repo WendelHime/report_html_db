@@ -1,0 +1,887 @@
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_28
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-0.12
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=15
+  hydrophobe length (median filter)=0
+  hydrophile length (median filter)=23
+  average hydrophobe length = 0.0
+  average hydrophile length = 19.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 101  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 101 (score=1.026) detected by w, w+2 rule.
+  The best cleavage site is 101
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 101 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_29
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-0.67
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=40
+  hydrophobe length (median filter)=0
+  hydrophile length (median filter)=36
+  average hydrophobe length = 0.0
+  average hydrophile length = 38.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_30
+
+N-term Signal :
+  there is a N-term signal   (1..36)
+  maximal score=2.27
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=20
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=15
+  average hydrophobe length = 3.5
+  average hydrophile length = 17.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_31
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-4.18
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=9
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=5
+  average hydrophobe length = 3.5
+  average hydrophile length = 7.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 117  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 117 (score=0.11399999) detected by w, w+2 rule.
+  The best cleavage site is 117
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 117 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_32
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-1.54
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=14
+  hydrophile length (low-pass filter)=14
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=1
+  average hydrophobe length = 10.5
+  average hydrophile length = 7.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_33
+
+N-term Signal :
+  there is a N-term signal   (1..43)
+  maximal score=3.51
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=7
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=11
+  average hydrophobe length = 3.5
+  average hydrophile length = 9.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 145  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 145 (score=0.37699997) detected by w, w+2 rule.
+  There's a potential cleavage site at 142 (score=0.14039999) detected by w, w+2 rule.
+  There's a potential cleavage site at 129 (score=0.13919999) detected by w, w+2 rule.
+  The best cleavage site is 145
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  There is a potential cleavage site at 145 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_34
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-0.2
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=7
+  hydrophobe length (median filter)=10
+  hydrophile length (median filter)=24
+  average hydrophobe length = 5.0
+  average hydrophile length = 15.5
+
+Cleavage site (w) :
+  There's a GPI-anchor near 89  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 89 (score=0.10399999) detected by w, w+2 rule.
+  The best cleavage site is 89
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 89 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_35
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-4.02
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=33
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=26
+  average hydrophobe length = 3.5
+  average hydrophile length = 29.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_36
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-3.19
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=10
+  hydrophile length (low-pass filter)=11
+  hydrophobe length (median filter)=9
+  hydrophile length (median filter)=17
+  average hydrophobe length = 9.5
+  average hydrophile length = 14.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 72  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 72 (score=0.172) detected by w, w+2 rule.
+  The best cleavage site is 72
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 72 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_37
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=0.24
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=12
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=32
+  average hydrophobe length = 3.5
+  average hydrophile length = 22.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_38
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=0.71
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=7
+  hydrophile length (low-pass filter)=2
+  hydrophobe length (median filter)=10
+  hydrophile length (median filter)=27
+  average hydrophobe length = 8.5
+  average hydrophile length = 14.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_39
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-5.36
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=26
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=19
+  average hydrophobe length = 3.5
+  average hydrophile length = 22.5
+
+Cleavage site (w) :
+  There's a GPI-anchor near 74  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 74 (score=1.026) detected by w, w+2 rule.
+  There's a potential cleavage site at 69 (score=0.22799999) detected by w, w+2 rule.
+  The best cleavage site is 74
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 74 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_40
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-1.42
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=8
+  hydrophile length (low-pass filter)=14
+  hydrophobe length (median filter)=8
+  hydrophile length (median filter)=26
+  average hydrophobe length = 8.0
+  average hydrophile length = 20.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_41
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-6.78
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=8
+  hydrophile length (low-pass filter)=16
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=31
+  average hydrophobe length = 7.5
+  average hydrophile length = 23.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_42
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-2.6
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=8
+  hydrophile length (low-pass filter)=32
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=28
+  average hydrophobe length = 7.5
+  average hydrophile length = 30.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_43
+
+N-term Signal :
+  there is a N-term signal   (1..31)
+  maximal score=2.0
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=20
+  hydrophile length (low-pass filter)=1
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=3
+  average hydrophobe length = 13.5
+  average hydrophile length = 2.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area but C-terminal hydrophilic area is too short).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_44
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-5.78
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=18
+  hydrophobe length (median filter)=0
+  hydrophile length (median filter)=18
+  average hydrophobe length = 0.0
+  average hydrophile length = 18.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 209  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 209 (score=0.24000001) detected by w, w+2 rule.
+  The best cleavage site is 209
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 209 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_45
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-2.3
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=12
+  hydrophobe length (median filter)=0
+  hydrophile length (median filter)=36
+  average hydrophobe length = 0.0
+  average hydrophile length = 24.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_46
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-1.52
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=24
+  hydrophobe length (median filter)=0
+  hydrophile length (median filter)=36
+  average hydrophobe length = 0.0
+  average hydrophile length = 30.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_47
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-2.37
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=40
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=32
+  average hydrophobe length = 3.5
+  average hydrophile length = 36.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_48
+
+N-term Signal :
+  there is a N-term signal   (1..44)
+  maximal score=4.06
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=23
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=19
+  average hydrophobe length = 3.5
+  average hydrophile length = 21.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 273  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 273 (score=0.103199996) detected by w, w+2 rule.
+  There's a potential cleavage site at 269 (score=0.13679999) detected by w, w+2 rule.
+  The best cleavage site is 269
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  There is a potential cleavage site at 269 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_49
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-4.34
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=29
+  hydrophile length (low-pass filter)=3
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=13
+  average hydrophobe length = 18.0
+  average hydrophile length = 8.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_50
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-3.46
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=17
+  hydrophile length (low-pass filter)=3
+  hydrophobe length (median filter)=17
+  hydrophile length (median filter)=22
+  average hydrophobe length = 17.0
+  average hydrophile length = 12.5
+
+Cleavage site (w) :
+  There's a GPI-anchor near 85  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 85 (score=0.14039999) detected by w, w+2 rule.
+  The best cleavage site is 85
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 85 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_51
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-2.96
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=37
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=27
+  average hydrophobe length = 3.5
+  average hydrophile length = 32.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_52
+
+N-term Signal :
+  there is a N-term signal   (1..12)
+  maximal score=3.23
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=9
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=28
+  average hydrophobe length = 3.5
+  average hydrophile length = 18.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_53
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=1.69
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=13
+  hydrophile length (low-pass filter)=7
+  hydrophobe length (median filter)=8
+  hydrophile length (median filter)=14
+  average hydrophobe length = 10.5
+  average hydrophile length = 10.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_54
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-1.29
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=7
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=18
+  average hydrophobe length = 3.5
+  average hydrophile length = 12.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_55
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=0.96
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=11
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=29
+  average hydrophobe length = 3.5
+  average hydrophile length = 20.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 350  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 350 (score=0.22799999) detected by w, w+2 rule.
+  The best cleavage site is 350
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 350 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_56
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-0.84
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=11
+  hydrophile length (low-pass filter)=1
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=29
+  average hydrophobe length = 9.0
+  average hydrophile length = 15.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 291  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 291 (score=0.1296) detected by w, w+2 rule.
+  The best cleavage site is 291
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 291 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_57
+
+N-term Signal :
+  there is a N-term signal   (1..36)
+  maximal score=3.12
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=8
+  hydrophile length (low-pass filter)=1
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=16
+  average hydrophobe length = 7.5
+  average hydrophile length = 8.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_58
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-2.39
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=8
+  hydrophile length (low-pass filter)=5
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=31
+  average hydrophobe length = 7.5
+  average hydrophile length = 18.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 14  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 14 (score=0.2924) detected by w, w+2 rule.
+  There's a potential cleavage site at 12 (score=0.52) detected by w, w+2 rule.
+  The best cleavage site is 12
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 12 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_59
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=-0.38
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=19
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=29
+  average hydrophobe length = 3.5
+  average hydrophile length = 24.0
+
+Cleavage site (w) :
+  There's a GPI-anchor near 23  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 23 (score=0.74819994) detected by w, w+2 rule.
+  There's a potential cleavage site at 22 (score=1.1019999) detected by w, w+2 rule.
+  The best cleavage site is 22
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  There is a potential cleavage site at 22 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_60
+
+N-term Signal :
+  there is a N-term signal   (1..39)
+  maximal score=2.62
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=28
+  hydrophobe length (median filter)=0
+  hydrophile length (median filter)=29
+  average hydrophobe length = 0.0
+  average hydrophile length = 28.5
+
+Cleavage site (w) :
+  There's a GPI-anchor near 53  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 53 (score=0.30960003) detected by w, w+2 rule.
+  The best cleavage site is 53
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  There is a potential cleavage site at 53 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_61
+
+N-term Signal :
+  there is a N-term signal   (1..21)
+  maximal score=3.92
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=7
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=30
+  average hydrophobe length = 3.5
+  average hydrophile length = 18.5
+
+Cleavage site (w) :
+  There's a GPI-anchor near 52  (7 aa after hydrophobic tail)
+  There's a potential cleavage site at 52 (score=2.5800002) detected by w, w+2 rule.
+  The best cleavage site is 52
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  There is a potential cleavage site at 52 (w, w+1, w+2)
+
+
+*****************************************
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_62
+
+N-term Signal :
+  there is a N-term signal   (1..14)
+  maximal score=3.85
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=14
+  hydrophile length (low-pass filter)=1
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=1
+  average hydrophobe length = 10.5
+  average hydrophile length = 1.0
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria2_CDS_annotation_glimmer3.pl_log_10_5
+
+N-term Signal :
+  there ISN'T a N-term signal
+  maximal score=1.62
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=19
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=30
+  average hydrophobe length = 3.5
+  average hydrophile length = 24.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (no signal).
+  No cleavage site detected.
+
+
+*****************************************
+>Bacteria2_CDS_annotation_glimmer3.pl_log_10_6
+
+N-term Signal :
+  there is a N-term signal   (1..37)
+  maximal score=8.49
+
+C-term Hydrophobicity profile :
+  hydrophobe length (low-pass filter)=0
+  hydrophile length (low-pass filter)=20
+  hydrophobe length (median filter)=7
+  hydrophile length (median filter)=15
+  average hydrophobe length = 3.5
+  average hydrophile length = 17.5
+
+Cleavage site (w) :
+  no cleavage site detected (w, w+2 rule not respected).
+
+Conclusion :
+  This protein is not GPI-anchored (C-terminal hydrophobic area is too short).
+  No cleavage site detected.
+
+

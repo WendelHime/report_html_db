@@ -1,0 +1,590 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_log_10_45
+
+Length=115
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|234793  PRK00565, rplV, 50S ribosomal protein L22; Reviewed   198     4e-66
+gnl|CDD|223169  COG0091, RplV, Ribosomal protein L22 [Translation...  166     2e-53
+gnl|CDD|249705  pfam00237, Ribosomal_L22, Ribosomal protein L22p/...  164     9e-53
+gnl|CDD|130116  TIGR01044, rplV_bact, ribosomal protein L22, bact...  161     1e-51
+gnl|CDD|238205  cd00336, Ribosomal_L22, Ribosomal protein L22/L17...  139     5e-43
+gnl|CDD|214342  CHL00034, rpl22, ribosomal protein L22                110     2e-31
+gnl|CDD|138835  PRK12279, PRK12279, 50S ribosomal protein L22/unk...  108     5e-29
+gnl|CDD|179794  PRK04223, rpl22p, 50S ribosomal protein L22P; Rev...  66.8    9e-15
+gnl|CDD|211620  TIGR01038, L22_arch, ribosomal protein L22(archae...  62.9    2e-13
+gnl|CDD|240306  PTZ00178, PTZ00178, 60S ribosomal protein L17; Pr...  35.8    0.002
+gnl|CDD|114142  pfam05401, NodS, Nodulation protein S (NodS). Thi...  30.5    0.15 
+gnl|CDD|222919  PHA02688, PHA02688, ORF059 IMV protein VP55; Prov...  29.7    0.33 
+gnl|CDD|181547  PRK08760, PRK08760, replicative DNA helicase; Pro...  29.1    0.58 
+gnl|CDD|237554  PRK13909, PRK13909, putative recombination protei...  28.4    1.0  
+gnl|CDD|239311  cd03013, PRX5_like, Peroxiredoxin (PRX) family, P...  27.5    1.4  
+gnl|CDD|255357  pfam09424, YqeY, Yqey-like protein. The function ...  27.2    1.8  
+gnl|CDD|254239  pfam07499, RuvA_C, RuvA, C-terminal domain. Homol...  25.1    2.6  
+gnl|CDD|250925  pfam01867, Cas_Cas1, CRISPR associated protein Ca...  26.8    2.8  
+gnl|CDD|270985  cd14083, STKc_CaMKI, Catalytic domain of the Seri...  26.6    3.1  
+gnl|CDD|182559  PRK10573, PRK10573, type IV pilin biogenesis prot...  26.8    3.4  
+gnl|CDD|224304  COG1386, scpB, Chromosome segregation and condens...  26.1    3.9  
+gnl|CDD|223705  COG0632, RuvA, Holliday junction resolvasome, DNA...  26.1    4.5  
+gnl|CDD|235205  PRK04028, PRK04028, glutamyl-tRNA(Gln) amidotrans...  25.9    5.5  
+gnl|CDD|173960  cd08550, GlyDH-like, Glycerol_dehydrogenase-like....  25.9    6.5  
+gnl|CDD|130988  TIGR01933, hflK, HflK protein. HflK and HflC are ...  25.8    7.1  
+gnl|CDD|239104  cd02424, Peptidase_C39E, A sub-family of peptidas...  25.4    7.6  
+gnl|CDD|240937  cd12493, RRM2_DND1, RNA recognition motif 2 found...  24.8    8.2  
+gnl|CDD|144565  pfam01024, Colicin, Colicin pore forming domain       25.4    8.7  
+gnl|CDD|271071  cd14169, STKc_CaMKI_beta, Catalytic domain of the...  25.2    9.5  
+gnl|CDD|257602  pfam13246, Hydrolase_like2, Putative hydrolase of...  24.5    9.6  
+
+
+>gnl|CDD|234793 PRK00565, rplV, 50S ribosomal protein L22; Reviewed.
+Length=112
+
+ Score = 198 bits (506),  Expect = 4e-66, Method: Composition-based stats.
+ Identities = 72/110 (65%), Positives = 88/110 (80%), Gaps = 0/110 (0%)
+
+Query  1    METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEH  60
+            ME  AK R+ R S +K RLVADLIRGKKV +AL  L ++ KKAA LVKKVL+SAIANAE+
+Sbjct  1    MEAKAKARYVRVSPRKARLVADLIRGKKVEEALAILKFSPKKAARLVKKVLKSAIANAEN  60
+
+Query  61   NDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDR  110
+            N G DID+L V + +VDEGPT+KR  PRA+GRA RI KR+SHITVVV+++
+Sbjct  61   NHGLDIDNLVVKEAYVDEGPTLKRFRPRARGRASRIRKRTSHITVVVAEK  110
+
+
+>gnl|CDD|223169 COG0091, RplV, Ribosomal protein L22 [Translation, ribosomal 
+structure and biogenesis].
+Length=120
+
+ Score = 166 bits (422),  Expect = 2e-53, Method: Composition-based stats.
+ Identities = 72/110 (65%), Positives = 85/110 (77%), Gaps = 0/110 (0%)
+
+Query  1    METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEH  60
+            ME  AK R+ R S +K RLVADLIRGKKV++AL  L +  KKAA LVKKVLESAIANAE+
+Sbjct  9    MEAKAKARYLRISPKKARLVADLIRGKKVAEALAILEFVPKKAAKLVKKVLESAIANAEN  68
+
+Query  61   NDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDR  110
+            N G D D L V+ I VD+GP +KR MPRA+GRA RI KR+SHITVVV ++
+Sbjct  69   NKGLDPDKLVVSHIAVDKGPVLKRFMPRARGRATRINKRTSHITVVVREK  118
+
+
+>gnl|CDD|249705 pfam00237, Ribosomal_L22, Ribosomal protein L22p/L17e.  This 
+family includes L22 from prokaryotes and chloroplasts and L17 
+from eukaryotes.
+Length=105
+
+ Score = 164 bits (417),  Expect = 9e-53, Method: Composition-based stats.
+ Identities = 60/105 (57%), Positives = 80/105 (76%), Gaps = 0/105 (0%)
+
+Query  5    AKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGA  64
+            A  R+ R S +K RLVADLIRGK V +AL  L +  KKAA ++ K+L+SA+ANAE+N G 
+Sbjct  1    AVARYIRISPKKARLVADLIRGKSVEEALAILEFVPKKAAKIILKLLKSAVANAENNKGL  60
+
+Query  65   DIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSD  109
+            D D+L + +IFVD+GPT+KR  PRA+GRA  I KR+SHIT+V+S+
+Sbjct  61   DPDNLYIKEIFVDKGPTLKRFRPRARGRATPIRKRTSHITIVLSE  105
+
+
+>gnl|CDD|130116 TIGR01044, rplV_bact, ribosomal protein L22, bacterial type. 
+ This model decribes bacterial and chloroplast ribosomal protein 
+L22 [Protein synthesis, Ribosomal proteins: synthesis and 
+modification].
+Length=103
+
+ Score = 161 bits (409),  Expect = 1e-51, Method: Composition-based stats.
+ Identities = 75/103 (73%), Positives = 82/103 (80%), Gaps = 0/103 (0%)
+
+Query  5    AKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGA  64
+            AK R  R S +K RLVADLIRGK VSQAL+ L +T KKAA L+KKVL SAIANAEHN G 
+Sbjct  1    AKARFVRISPRKARLVADLIRGKSVSQALDILRFTPKKAAPLIKKVLASAIANAEHNYGL  60
+
+Query  65   DIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVV  107
+            D D+L V  IFVDEGPT+KRI PRAKGRA RI KR+SHITVVV
+Sbjct  61   DADNLVVVTIFVDEGPTLKRIRPRAKGRASRIRKRTSHITVVV  103
+
+
+>gnl|CDD|238205 cd00336, Ribosomal_L22, Ribosomal protein L22/L17e.  L22 (L17 
+in eukaryotes) is a core protein of the large ribosomal subunit. 
+ It is the only ribosomal protein that interacts with 
+all six domains of 23S rRNA, and is one of the proteins important 
+for directing the proper folding and stabilizing the conformation 
+of 23S rRNA.  L22 is the largest protein contributor 
+to the surface of the polypeptide exit channel, the tunnel 
+through which the polypeptide product passes.  L22 is also 
+one of six proteins located at the putative translocon binding 
+site on the exterior surface of the ribosome.
+Length=105
+
+ Score = 139 bits (352),  Expect = 5e-43, Method: Composition-based stats.
+ Identities = 55/103 (53%), Positives = 72/103 (70%), Gaps = 0/103 (0%)
+
+Query  5    AKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGA  64
+            AK R+ R S +K RLVA LIRG  V +AL  L +  KKAA ++ K+L+SA ANAE+N   
+Sbjct  3    AKGRYLRISPKKARLVARLIRGMSVDEALAQLEFVPKKAAKIILKLLKSAEANAENNGLD  62
+
+Query  65   DIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVV  107
+            D D L +  I V++GPT+KR  PRA+GRA+ I KR+ HITVV+
+Sbjct  63   DPDKLYIKHIQVNKGPTLKRRRPRARGRANPIRKRTCHITVVL  105
+
+
+>gnl|CDD|214342 CHL00034, rpl22, ribosomal protein L22.
+Length=117
+
+ Score = 110 bits (276),  Expect = 2e-31, Method: Composition-based stats.
+ Identities = 47/109 (43%), Positives = 66/109 (61%), Gaps = 0/109 (0%)
+
+Query  2    ETIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHN  61
+            E  A  ++ R SA K R V D IRG+   +AL  L +   +A   + K++ SA ANA HN
+Sbjct  9    EVYALAKYIRMSAHKARRVIDQIRGRSYEEALMILEFMPYRACYPILKLVYSAAANASHN  68
+
+Query  62   DGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDR  110
+             G +  +L ++K  VDEGPT+KR  PRA+GR+  I K + HIT+V+ D 
+Sbjct  69   MGLNKANLFISKAEVDEGPTLKRFRPRAQGRSYPIKKPTCHITIVLKDI  117
+
+
+>gnl|CDD|138835 PRK12279, PRK12279, 50S ribosomal protein L22/unknown domain 
+fusion protein; Provisional.
+Length=311
+
+ Score = 108 bits (270),  Expect = 5e-29, Method: Composition-based stats.
+ Identities = 49/110 (45%), Positives = 70/110 (64%), Gaps = 1/110 (1%)
+
+Query  1    METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEH  60
+            M      R+   S +K  LV DL+R K V +A+  L+ T KK A +V K+L SAI+N +H
+Sbjct  1    MTNKVIQRNIHISHRKASLVIDLVRNKPVHEAIRILSNTPKKFAPIVLKLLNSAISNVQH  60
+
+Query  61   NDGA-DIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSD  109
+            N    D   L + KI  ++GPTMKR +PRAKG AD++ KR++H+ +V+SD
+Sbjct  61   NSKDMDPSKLYIYKIVANQGPTMKRTLPRAKGSADQLFKRTTHLEIVLSD  110
+
+
+>gnl|CDD|179794 PRK04223, rpl22p, 50S ribosomal protein L22P; Reviewed.
+Length=153
+
+ Score = 66.8 bits (164),  Expect = 9e-15, Method: Composition-based stats.
+ Identities = 39/141 (28%), Positives = 56/141 (40%), Gaps = 33/141 (23%)
+
+Query  2    ETIAKH--RHARSSAQKVRLVADLIRGKKVSQALETL-------------TYTNK-----  41
+            E  AK   R    S +    +A  IRG K+ +A   L              +  K     
+Sbjct  13   EKTAKAMGRELPISPKHSVEIAREIRGMKLDEAKAYLEDVIALKRAVPFKRHNKKVGHRK  72
+
+Query  42   ------------KAAGLVKKVLESAIANAEHNDGADIDDLKVTKIFVDEGPTMKRIMPRA  89
+                        KAA    K+LE+A ANAE+  G D + L +  I   +G  +K  MPRA
+Sbjct  73   GIDGWPAGRYPVKAAKAFLKLLENAEANAEYK-GLDTEKLVIVHIAAHKGRVIKGYMPRA  131
+
+Query  90   KGRADRILKRSSHITVVVSDR  110
+             GRA      + +I V++ + 
+Sbjct  132  FGRATPKNTETVNIEVILEEV  152
+
+
+>gnl|CDD|211620 TIGR01038, L22_arch, ribosomal protein L22(archaeal)/L17(eukaryotic/archaeal). 
+ This model describes the ribosomal protein 
+of the eukaryotic cytosol and of the Archaea, variously designated 
+as L17, L22, and L23. The corresponding bacterial homolog, 
+described by a separate model, is designated L22 [Protein 
+synthesis, Ribosomal proteins: synthesis and modification].
+Length=150
+
+ Score = 62.9 bits (153),  Expect = 2e-13, Method: Composition-based stats.
+ Identities = 29/70 (41%), Positives = 43/70 (61%), Gaps = 1/70 (1%)
+
+Query  41   KKAAGLVKKVLESAIANAEHNDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRS  100
+             KAA  + KVL++A ANAE   G D++ L +  I  ++GP ++R MPRA GRA       
+Sbjct  82   VKAAKFILKVLQNAEANAE-YKGLDVEKLVIIHIQANKGPKIRRWMPRAFGRATPYNSSP  140
+
+Query  101  SHITVVVSDR  110
+            +HI +VV ++
+Sbjct  141  THIELVVEEK  150
+
+
+>gnl|CDD|240306 PTZ00178, PTZ00178, 60S ribosomal protein L17; Provisional.
+Length=181
+
+ Score = 35.8 bits (83),  Expect = 0.002, Method: Composition-based stats.
+ Identities = 20/70 (29%), Positives = 39/70 (56%), Gaps = 1/70 (1%)
+
+Query  41   KKAAGLVKKVLESAIANAEHNDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRS  100
+            +K+   V  +L++A ANAE   G D++ L ++ + V+  P  +R   RA GR +  +   
+Sbjct  85   EKSVKFVLSLLKNAEANAEAK-GLDVEKLVISHVQVNRAPRGRRRTYRAHGRINPFMSSP  143
+
+Query  101  SHITVVVSDR  110
+             HI ++ +++
+Sbjct  144  CHIELIATEK  153
+
+
+>gnl|CDD|114142 pfam05401, NodS, Nodulation protein S (NodS).  This family consists 
+of nodulation S (NodS) proteins. The products of the 
+rhizobial nodulation genes are involved in the biosynthesis 
+of lipochitin oligosaccharides (LCOs), which are host-specific 
+signal molecules required for nodule formation. NodS is an 
+S-adenosyl-L-methionine (SAM)-dependent methyltransferase 
+involved in N methylation of LCOs. NodS uses N-deacetylated 
+chitooligosaccharides, the products of the NodBC proteins, as 
+its methyl acceptors.
+Length=201
+
+ Score = 30.5 bits (69),  Expect = 0.15, Method: Composition-based stats.
+ Identities = 13/29 (45%), Positives = 19/29 (66%), Gaps = 0/29 (0%)
+
+Query  81   TMKRIMPRAKGRADRILKRSSHITVVVSD  109
+            T+  +MP A  RA   +K+ SHI+ +VSD
+Sbjct  69   TVIDVMPEAIARARLRMKKWSHISWIVSD  97
+
+
+>gnl|CDD|222919 PHA02688, PHA02688, ORF059 IMV protein VP55; Provisional.
+Length=323
+
+ Score = 29.7 bits (67),  Expect = 0.33, Method: Composition-based stats.
+ Identities = 12/44 (27%), Positives = 23/44 (52%), Gaps = 0/44 (0%)
+
+Query  18   RLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHN  61
+            +L  ++I+   VS +L    Y  +   G+ ++VL +A    EH+
+Sbjct  196  KLYDEIIKNGGVSTSLSFEIYRIENELGINRQVLNNASKYVEHD  239
+
+
+>gnl|CDD|181547 PRK08760, PRK08760, replicative DNA helicase; Provisional.
+Length=476
+
+ Score = 29.1 bits (65),  Expect = 0.58, Method: Composition-based stats.
+ Identities = 17/44 (39%), Positives = 25/44 (57%), Gaps = 3/44 (7%)
+
+Query  66   IDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSD  109
+            I  LK TKIF+D+ P +   + R+K R    LKR   + ++V D
+Sbjct  306  IKMLKETKIFIDDTPGVSPEVLRSKCRR---LKREHDLGLIVID  346
+
+
+>gnl|CDD|237554 PRK13909, PRK13909, putative recombination protein RecB; Provisional.
+Length=910
+
+ Score = 28.4 bits (64),  Expect = 1.0, Method: Composition-based stats.
+ Identities = 12/28 (43%), Positives = 16/28 (57%), Gaps = 1/28 (4%)
+
+Query  17  VRLVADLIRGKKVSQALETLTYTNKKAA  44
+           VR +A L +G   S+ L  LT+T K A 
+Sbjct  17  VRFLALLFKGANPSEIL-ALTFTKKAAN  43
+
+
+>gnl|CDD|239311 cd03013, PRX5_like, Peroxiredoxin (PRX) family, PRX5-like subfamily; 
+members are similar to the human protein, PRX5, a homodimeric 
+TRX peroxidase, widely expressed in tissues and found 
+cellularly in mitochondria, peroxisomes and the cytosol. 
+The cellular location of PRX5 suggests that it may have an 
+important antioxidant role in organelles that are major sources 
+of reactive oxygen species (ROS), as well as a role in the 
+control of signal transduction. PRX5 has been shown to reduce 
+hydrogen peroxide, alkyl hydroperoxides and peroxynitrite. 
+As with all other PRXs, the N-terminal peroxidatic cysteine 
+of PRX5 is oxidized into a sulfenic acid intermediate upon 
+reaction with peroxides. Human PRX5 is able to resolve this 
+intermediate by forming an intramolecular disulfide bond 
+with its C-terminal cysteine (the resolving cysteine), which 
+can then be reduced by TRX, just like an atypical 2-cys PRX. 
+This resolving cysteine, however, is not conserved in other 
+members of the subfamily. In such cases, it is assumed that 
+the oxidized cysteine is directly resolved by an external 
+small-molecule or protein reductant, typical of a 1-cys PRX. 
+In the case of the H. influenza PRX5 hybrid, the resolving 
+glutaredoxin domain is on the same protein chain as PRX. PRX5 
+homodimers show an A-type interface, similar to atypical 2-cys 
+PRXs.
+Length=155
+
+ Score = 27.5 bits (62),  Expect = 1.4, Method: Composition-based stats.
+ Identities = 8/16 (50%), Positives = 11/16 (69%), Gaps = 0/16 (0%)
+
+Query  66   IDDLKVTKIFVDEGPT  81
+            +DD KV  +FV+E P 
+Sbjct  128  VDDGKVKYLFVEEDPG  143
+
+
+>gnl|CDD|255357 pfam09424, YqeY, Yqey-like protein.  The function of this domain 
+found in the YqeY protein is uncertain.
+Length=143
+
+ Score = 27.2 bits (61),  Expect = 1.8, Method: Composition-based stats.
+ Identities = 9/18 (50%), Positives = 11/18 (61%), Gaps = 0/18 (0%)
+
+Query  77   DEGPTMKRIMPRAKGRAD  94
+            D G  M  +MP+  GRAD
+Sbjct  114  DMGKVMGALMPKVAGRAD  131
+
+
+>gnl|CDD|254239 pfam07499, RuvA_C, RuvA, C-terminal domain.  Homologous recombination 
+is a crucial process in all living organisms. In bacteria, 
+this process the RuvA, RuvB, and RuvC proteins are involved. 
+More specifically the proteins process the Holliday 
+junction DNA. RuvA is comprised of three distinct domains. 
+The domain represents the C-terminal domain and plays a significant 
+role in the ATP-dependent branch migration of the hetero-duplex 
+through direct contact with RuvB. Within the Holliday 
+junction, the C-terminal domain makes no interaction with 
+DNA.
+Length=47
+
+ Score = 25.1 bits (56),  Expect = 2.6, Method: Composition-based stats.
+ Identities = 13/41 (32%), Positives = 19/41 (46%), Gaps = 8/41 (20%)
+
+Query  29  VSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGADIDDL  69
+             +AL  L Y  K+A   V KVLE        + G  +++L
+Sbjct  6   AVEALLALGYKEKEAEKAVAKVLE--------DPGLSVEEL  38
+
+
+>gnl|CDD|250925 pfam01867, Cas_Cas1, CRISPR associated protein Cas1.  Clustered 
+regularly interspaced short palindromic repeats (CRISPRs) 
+are a family of DNA direct repeats found in many prokaryotic 
+genomes. This family of proteins corresponds to Cas1, a CRISPR-associated 
+protein. Cas1 may be involved in linking DNA 
+segments to CRISPR.
+Length=284
+
+ Score = 26.8 bits (60),  Expect = 2.8, Method: Composition-based stats.
+ Identities = 9/67 (13%), Positives = 24/67 (36%), Gaps = 2/67 (3%)
+
+Query  4    IAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLES-AIANAEHND  62
+             A+++      +++ L  +++ G K+      L    +     + + +E           
+Sbjct  86   RAQYQAYLDEEKRLELAREIVAG-KIRNQRAVLRRYGRDRGKDLDEAIEELEELEELERA  144
+
+Query  63   GADIDDL  69
+               ID+L
+Sbjct  145  AKSIDEL  151
+
+
+>gnl|CDD|270985 cd14083, STKc_CaMKI, Catalytic domain of the Serine/Threonine 
+kinase, Calcium/calmodulin-dependent protein kinase Type I. 
+ STKs catalyze the transfer of the gamma-phosphoryl group from 
+ATP to serine/threonine residues on protein substrates. 
+CaMKs are multifunctional calcium and calmodulin (CaM) stimulated 
+STKs involved in cell cycle regulation. There are several 
+types of CaMKs including CaMKI, CaMKII, and CaMKIV. In vertebrates, 
+there are four CaMKI proteins encoded by different 
+genes (alpha, beta, gamma, and delta), each producing at 
+least one variant. CaMKs contain an N-terminal catalytic domain 
+and a C-terminal regulatory domain that harbors a CaM binding 
+site. CaMKI proteins are monomeric and they play pivotal 
+roles in the nervous system, including long-term potentiation, 
+dendritic arborization, neurite outgrowth, and the formation 
+of spines, synapses, and axons. In addition, they may 
+be involved in osteoclast differentiation and bone resorption. 
+The CaMKI subfamily is part of a larger superfamily that 
+includes the catalytic domains of other protein kinases, RIO 
+kinases, aminoglycoside phosphotransferase, choline kinase, 
+and phosphoinositide 3-kinase.
+Length=259
+
+ Score = 26.6 bits (59),  Expect = 3.1, Method: Composition-based stats.
+ Identities = 14/42 (33%), Positives = 27/42 (64%), Gaps = 1/42 (2%)
+
+Query  13   SAQKVRLVADLIRGKKV-SQALETLTYTNKKAAGLVKKVLES  53
+            S   + LV +L+ G ++  + +E  +YT K A+ L+++VLE+
+Sbjct  72   SKSHLYLVMELVTGGELFDRIVEKGSYTEKDASHLIRQVLEA  113
+
+
+>gnl|CDD|182559 PRK10573, PRK10573, type IV pilin biogenesis protein; Provisional.
+Length=399
+
+ Score = 26.8 bits (60),  Expect = 3.4, Method: Composition-based stats.
+ Identities = 14/28 (50%), Positives = 16/28 (57%), Gaps = 2/28 (7%)
+
+Query  19   LVADLIRGKKVSQALETLTYTNKKAAGL  46
+            LV  LIRG+K+SQ    L  T    AGL
+Sbjct  255  LVGSLIRGQKLSQIFTILALTQS--AGL  280
+
+
+>gnl|CDD|224304 COG1386, scpB, Chromosome segregation and condensation protein 
+B [DNA replication, recombination and repair].
+Length=184
+
+ Score = 26.1 bits (58),  Expect = 3.9, Method: Composition-based stats.
+ Identities = 11/29 (38%), Positives = 16/29 (55%), Gaps = 5/29 (17%)
+
+Query  22   DLIRGKKVSQALETLTYTNKKAAGLVKKV  50
+            + IRG  VSQ + TL        GL+++V
+Sbjct  113  EEIRGVAVSQVISTL-----LERGLIREV  136
+
+
+>gnl|CDD|223705 COG0632, RuvA, Holliday junction resolvasome, DNA-binding subunit 
+[DNA replication, recombination, and repair].
+Length=201
+
+ Score = 26.1 bits (58),  Expect = 4.5, Method: Composition-based stats.
+ Identities = 17/58 (29%), Positives = 27/58 (47%), Gaps = 7/58 (12%)
+
+Query  12   SSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGADIDDL  69
+            S A+ + L       ++  +AL  L Y  K+    VKKVL+        N  AD+++L
+Sbjct  142  SPAEDLSLDESSPALEEAVEALVALGYKEKEIKKAVKKVLKE-------NPDADVEEL  192
+
+
+>gnl|CDD|235205 PRK04028, PRK04028, glutamyl-tRNA(Gln) amidotransferase subunit 
+E; Validated.
+Length=630
+
+ Score = 25.9 bits (58),  Expect = 5.5, Method: Composition-based stats.
+ Identities = 8/19 (42%), Positives = 11/19 (58%), Gaps = 0/19 (0%)
+
+Query  79   GPTMKRIMPRAKGRADRIL  97
+            GP M  +M   +G+AD  L
+Sbjct  597  GPLMGEVMAELRGKADGKL  615
+
+
+>gnl|CDD|173960 cd08550, GlyDH-like, Glycerol_dehydrogenase-like.  Families of 
+proteins related to glycerol dehydrogenases. Glycerol dehydrogenases 
+(GlyDH) is a key enzyme in the glycerol dissimilation 
+pathway. In anaerobic conditions, many microorganisms utilize 
+glycerol as a source of carbon through coupled oxidative 
+and reductive pathways. One of the pathways involves the 
+oxidation of glycerol to dihydroxyacetone with the reduction 
+of NAD+ to NADH catalyzed by glycerol dehydrogenases. Dihydroxyacetone 
+is then phosphorylated by dihydroxyacetone kinase 
+and enters the glycolytic pathway for further degradation. 
+The activity of GlyDH is zinc-dependent. The zinc ion plays 
+a role in stabilizing an alkoxide intermediate at the active 
+site. Some subfamilies have not been characterized till now.
+Length=349
+
+ Score = 25.9 bits (57),  Expect = 6.5, Method: Composition-based stats.
+ Identities = 14/42 (33%), Positives = 19/42 (45%), Gaps = 4/42 (10%)
+
+Query  24   IRGKKVSQALETLTYTNKKAAGLV----KKVLESAIANAEHN  61
+            +  K+V+QA E +   N   AG V          A A+A HN
+Sbjct  212  MEAKRVTQAFEEVVEANIMLAGTVFESGVDYYRLAAAHAVHN  253
+
+
+>gnl|CDD|130988 TIGR01933, hflK, HflK protein.  HflK and HflC are paralogs encoded 
+by tandem genes in Proteobacteria, spirochetes, and some 
+other bacterial lineages. The HflKC complex is anchored in 
+the membrane and exposed to the periplasm. The complex is 
+not active as a protease, but rather binds to and appears to 
+modulate the ATP-dependent protease FtsH. The overall function 
+of HflKC is not fully described.//Regulation of FtsH by 
+HflKC appears to be negative (PMID:8947034,PMID:96367) [SS 8/27/03].
+Length=261
+
+ Score = 25.8 bits (57),  Expect = 7.1, Method: Composition-based stats.
+ Identities = 7/25 (28%), Positives = 16/25 (64%), Gaps = 1/25 (4%)
+
+Query  75   FVDEGPTMK-RIMPRAKGRADRILK  98
+            +++E       ++P+A+G A RI++
+Sbjct  168  YINEAEAYANEVVPKARGDAQRIIE  192
+
+
+>gnl|CDD|239104 cd02424, Peptidase_C39E, A sub-family of peptidase family C39. 
+Peptidase family C39 mostly contains bacteriocin-processing 
+endopeptidases from bacteria. The cysteine peptidases in family 
+C39 cleave the "double-glycine" leader peptides from the 
+precursors of various bacteriocins (mostly non-lantibiotic). 
+The cleavage is mediated by the transporter as part of the 
+secretion process. Bacteriocins are antibiotic proteins secreted 
+by some species of bacteria that inhibit the growth 
+of other bacterial species. The bacteriocin is synthesized as 
+a precursor with an N-terminal leader peptide, and processing 
+involves removal of the leader peptide by cleavage at a 
+Gly-Gly bond, followed by translocation of the mature bacteriocin 
+across the cytoplasmic membrane. Most endopeptidases of 
+family C39 are N-terminal domains in larger proteins (ABC 
+transporters) that serve both functions. The proposed protease 
+active site is conserved in this sub-family, which contains 
+Colicin V perocessing peptidase.
+Length=129
+
+ Score = 25.4 bits (56),  Expect = 7.6, Method: Composition-based stats.
+ Identities = 6/30 (20%), Positives = 14/30 (47%), Gaps = 1/30 (3%)
+
+Query  50  VLESAIANAEHNDGADIDDLKVTKIFVDEG  79
+           V++  + N  +    D+++LK+       G
+Sbjct  16  VIQM-LYNHYYKKKYDLNELKIKANLKKNG  44
+
+
+>gnl|CDD|240937 cd12493, RRM2_DND1, RNA recognition motif 2 found in vertebrate 
+dead end protein homolog 1 (DND1).  This subgroup corresponds 
+to the RRM2 of DND1, also termed RNA-binding motif, single-stranded-interacting 
+protein 4. It is an RNA-binding protein 
+that is essential for maintaining viable germ cells in 
+vertebrates. It interacts with the 3'-untranslated region (3'-UTR) 
+of multiple messenger RNAs (mRNAs) and prevents micro-RNA 
+(miRNA) mediated repression of mRNA. For instance, DND1 
+binds cell cycle inhibitor, P27 (p27Kip1, CDKN1B), and cell 
+cycle regulator and tumor suppressor, LATS2 (large tumor suppressor, 
+homolog 2 of Drosophila). It helps maintain their 
+protein expression through blocking the inhibitory function 
+of microRNAs (miRNA) from these transcripts. DND1 may also impose 
+another level of translational regulation to modulate 
+expression of critical factors in embryonic stem (ES) cells. 
+Moreover, DND1 interacts specifically with apolipoprotein B 
+editing complex 3 (APOBEC3), a multi-functional protein inhibiting 
+retroviral replication. The DND1-APOBEC3 interaction 
+may play a role in maintaining viability of germ cells and 
+for preventing germ cell tumor development. DND1 contains two 
+conserved RNA recognition motifs (RRMs), also termed RBDs 
+(RNA binding domains) or RNPs (ribonucleoprotein domains). .
+Length=83
+
+ Score = 24.8 bits (54),  Expect = 8.2, Method: Composition-based stats.
+ Identities = 7/26 (27%), Positives = 13/26 (50%), Gaps = 0/26 (0%)
+
+Query  26  GKKVSQALETLTYTNKKAAGLVKKVL  51
+             K    +  + Y++ +AA + KK L
+Sbjct  39  PGKGKGVVALVKYSSHRAAAMAKKAL  64
+
+
+>gnl|CDD|144565 pfam01024, Colicin, Colicin pore forming domain.  
+Length=187
+
+ Score = 25.4 bits (56),  Expect = 8.7, Method: Composition-based stats.
+ Identities = 18/44 (41%), Positives = 22/44 (50%), Gaps = 3/44 (7%)
+
+Query  18  RLVADLIRGKKVSQALETLTYTNKKAAGLVKKVL---ESAIANA  58
+           R +AD  +GKK+    E L    K  A L KK+      AIANA
+Sbjct  39  RELADDAKGKKIRSVDEALASFEKYKANLNKKINAADRDAIANA  82
+
+
+>gnl|CDD|271071 cd14169, STKc_CaMKI_beta, Catalytic domain of the Serine/Threonine 
+kinase, Calcium/calmodulin-dependent protein kinase Type 
+I beta.  STKs catalyze the transfer of the gamma-phosphoryl 
+group from ATP to serine/threonine residues on protein substrates. 
+CaMKs are multifunctional calcium and calmodulin (CaM) 
+stimulated STKs involved in cell cycle regulation. The 
+CaMK family includes CaMKI, CaMKII, CaMKIV, and CaMK kinase 
+(CaMKK). In vertebrates, there are four CaMKI proteins encoded 
+by different genes (alpha, beta, gamma, and delta), each 
+producing at least one variant. CaMKs contain an N-terminal 
+catalytic domain and a C-terminal regulatory domain that harbors 
+a CaM binding site. CaMKI proteins are monomeric and they 
+play pivotal roles in the nervous system, including long-term 
+potentiation, dendritic arborization, neurite outgrowth, 
+and the formation of spines, synapses, and axons. In addition, 
+they may be involved in osteoclast differentiation and 
+bone resorption. The CaMKI-beta subfamily is part of a larger 
+superfamily that includes the catalytic domains of other protein 
+kinases, RIO kinases, aminoglycoside phosphotransferase, 
+choline kinase, and phosphoinositide 3-kinase.
+Length=277
+
+ Score = 25.2 bits (55),  Expect = 9.5, Method: Composition-based stats.
+ Identities = 17/59 (29%), Positives = 30/59 (51%), Gaps = 3/59 (5%)
+
+Query  13   SAQKVRLVADLIRGKKV-SQALETLTYTNKKAAGLVKKVLESAIANAEHNDGADIDDLK  70
+            S   + L  +L+ G ++  + +E  +YT K A+ L+ +VL++      H  G    DLK
+Sbjct  72   SPTHLYLAMELVTGGELFDRIIERGSYTEKDASQLIGQVLQA--VKYLHQLGIVHRDLK  128
+
+
+>gnl|CDD|257602 pfam13246, Hydrolase_like2, Putative hydrolase of sodium-potassium 
+ATPase alpha subunit.  This is a putative hydrolase of 
+the sodium-potassium ATPase alpha subunit.
+Length=91
+
+ Score = 24.5 bits (54),  Expect = 9.6, Method: Composition-based stats.
+ Identities = 8/14 (57%), Positives = 10/14 (71%), Gaps = 0/14 (0%)
+
+Query  90   KGRADRILKRSSHI  103
+            KG  +RIL+R S I
+Sbjct  78   KGAPERILERCSTI  91
+
+
+
+Lambda      K        H        a         alpha
+   0.315    0.129    0.352    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 285996791

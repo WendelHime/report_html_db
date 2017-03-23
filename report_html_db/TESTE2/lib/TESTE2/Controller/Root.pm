@@ -55,7 +55,9 @@ sub searchDatabase : Path("SearchDatabase") : Args(0) {
 	if ( !defined $feature_id ) {
 		$feature_id = get_feature_id($c);
 	}
-	print STDERR $feature_id;
+	print STDERR $feature_id . "\n";
+
+	#	print STDERR $c->stash->{_token};
 	$c->stash( targetClass =>
 		  [ $c->model('DBI')->get_target_class( 81525, $feature_id ) ] );
 

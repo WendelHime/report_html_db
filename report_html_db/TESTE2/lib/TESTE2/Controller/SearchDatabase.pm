@@ -17,6 +17,7 @@ Catalyst Controller.
 =cut
 
 use base 'Catalyst::Controller::REST';
+#use base qw(Catalyst::Controller::RequestToken);
 BEGIN { extends 'Catalyst::Controller::REST'; }
 
 =head2 searchGene
@@ -61,15 +62,7 @@ sub searchGene_GET {
 	my @resultList = @{ $c->model('DBI')->searchGene( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list,
-		  {
-			"feature_id" => $resultList[$i]->getFeatureID,
-			"name"       => $resultList[$i]->getName,
-			"uniquename" => $resultList[$i]->getUniquename,
-			"value"      => $resultList[$i]->getValue,
-			"fstart"     => $resultList[$i]->getStart,
-			"fend"       => $resultList[$i]->getEnd
-		  };
+		push @list, $resultList[$i]->pack();
 	}
 
 	standardStatusOk( $self, $c, \@list );
@@ -98,72 +91,6 @@ sub encodingCorrection {
 	return @texts;
 }
 
-=head2 searchContig
-
-Method used to realize search by contigs, optional return a stretch or a reverse complement
-
-=cut
-
-sub searchContig : Path("/SearchDatabase/Contig") : CaptureArgs(4) :
-  ActionClass('REST') { }
-
-sub searchContig_GET {
-	my ( $self, $c, $contig, $start, $end, $reverseComplement ) = @_;
-	if ( !$contig and defined $c->request->param("contig") ) {
-		$contig = $c->request->param("contig");
-	}
-	if ( !$start and defined $c->request->param("contigStart") ) {
-		$start = $c->request->param("contigStart");
-	}
-	if ( !$end and defined $c->request->param("contigEnd") ) {
-		$end = $c->request->param("contigEnd");
-	}
-	if ( !$reverseComplement
-		and defined $c->request->param("revCompContig") )
-	{
-		$reverseComplement = $c->request->param("revCompContig");
-	}
-
-	use File::Basename;
-	my $data     = "";
-	my $sequence = $c->model('Basic::Sequence')->find($contig);
-
-	open( my $FILEHANDLER,
-		"<", dirname(__FILE__) . "/../../../root/" . $sequence->filepath );
-
-	for my $line (<$FILEHANDLER>) {
-		if ( !( $line =~ /^>\w+\n$/g ) ) {
-			$data .= $line;
-		}
-	}
-	close($FILEHANDLER);
-
-	if ( $start && $end ) {
-		$data = substr( $data, $start, ( $end - $start ) );
-		$c->stash->{start}     = $start;
-		$c->stash->{end}       = $end;
-		$c->stash->{hadLimits} = 1;
-	}
-	if ( defined $reverseComplement ) {
-		$data = formatSequence( reverseComplement($data) );
-		$c->stash->{hadReverseComplement} = 1;
-	}
-	my $result = "";
-	for ( my $i = 0 ; $i < length($data) ; $i += 60 ) {
-		my $line = substr( $data, $i, 60 );
-		$result .= "$line<br />";
-	}
-
-	my @list = ();
-	my %hash = ();
-	$hash{'geneID'} = $sequence->id;
-	$hash{'gene'}   = $sequence->name;
-	$hash{'contig'} = $result;
-
-	push @list, \%hash;
-	standardStatusOk( $self, $c, @list );
-}
-
 =head2 getGeneBasics
 Method used to return basic data of genes from database: the beginning position from sequence, final position from the sequence, type, name
 return a list of hash containing the basic data
@@ -187,15 +114,7 @@ sub getGeneBasics_GET {
 	my @resultList = @{ $c->model('DBI')->geneBasics( \%hash ) };
 	my @list       = ();
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list,
-		  {
-			"feature_id" => $resultList[$i]->getFeatureID,
-			"name"       => $resultList[$i]->getName,
-			"uniquename" => $resultList[$i]->getUniquename,
-			"value"      => $resultList[$i]->getValue,
-			"fstart"     => $resultList[$i]->getStart,
-			"fend"       => $resultList[$i]->getEnd
-		  };
+		push @list, $resultList[$i]->pack();
 	}
 
 	standardStatusOk( $self, $c, \@list );
@@ -303,18 +222,7 @@ sub subEvidences_GET {
 	my @list       = ();
 	my @resultList = @{ $c->model('DBI')->subevidences($feature) };
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list,
-		  {
-			"id"                  => $resultList[$i]->getID,
-			"type"                => $resultList[$i]->getType,
-			"number"              => $resultList[$i]->getNumber,
-			"start"               => $resultList[$i]->getStart,
-			"end"                 => $resultList[$i]->getEnd,
-			"strand"              => $resultList[$i]->getStrand,
-			"is_obsolete"         => $resultList[$i]->getIsObsolete,
-			"program"             => $resultList[$i]->getProgram,
-			"program_description" => $resultList[$i]->getProgramDescription,
-		  };
+		push @list, $resultList[$i]->pack();
 	}
 	standardStatusOk( $self, $c, \@list );
 }
@@ -436,42 +344,6 @@ sub getSimilarityEvidenceProperties_GET {
 		$c->model('DBI')->similarityEvidenceProperties($feature) );
 }
 
-=head2
-
-Method used to return components used
-
-=cut
-
-sub getComponents : Path("/SearchDatabase/getComponents") : Args(0) :
-  ActionClass('REST') { }
-
-sub getComponents_GET {
-	my ( $self, $c ) = @_;
-
-	my $resultSet = $c->model('Basic::Component')->search(
-		{},
-		{
-			order_by => {
-				-asc => [qw/ component /]
-			}
-		}
-	);
-
-	my @list = ();
-	while ( my $result = $resultSet->next ) {
-		my %hash = ();
-		$hash{id}        = $result->id;
-		$hash{name}      = $result->name;
-		$hash{component} = $result->component;
-		if ( $result->filepath ne "" ) {
-			$hash{filepath} = $result->filepath;
-		}
-		push @list, \%hash;
-	}
-
-	standardStatusOk( $self, $c, \@list );
-}
-
 =head2 reverseComplement
 
 Method used to return the reverse complement of a sequence
@@ -526,7 +398,7 @@ sub analysesCDS_GET {
 			push @list, $value;
 		}
 	}
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@{$c->model('DBI')->analyses_CDS( \%hash )} );
 }
 
 =head2
@@ -550,17 +422,17 @@ sub trnaSearch_GET {
 	$hash{pipeline} = 4249;
 	my @list       = ();
 	my @resultList = @{ $c->model('DBI')->tRNA_search( \%hash ) };
-	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list,
-		  {
-			"id"         => $resultList[$i]->getID,
-			"sequence"   => $resultList[$i]->getSequence,
-			"amino_acid" => $resultList[$i]->getAminoAcid,
-			"codon"      => $resultList[$i]->getCodon,
-		  };
-	}
+#	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+#		push @list,
+#		  {
+#			"id"         => $resultList[$i]->getID,
+#			"sequence"   => $resultList[$i]->getSequence,
+#			"amino_acid" => $resultList[$i]->getAminoAcid,
+#			"codon"      => $resultList[$i]->getCodon,
+#		  };
+#	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@resultList );
 }
 
 =head2
@@ -586,19 +458,19 @@ sub tandemRepeatsSearch_GET {
 	$hash{pipeline} = 4249;
 
 	my @resultList = @{ $c->model('DBI')->trf_search( \%hash ) };
-	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list,
-		  {
-			"contig"      => $resultList[$i]->getContig,
-			"start"       => $resultList[$i]->getStart,
-			"end"         => $resultList[$i]->getEnd,
-			"length"      => $resultList[$i]->getLength,
-			"copy_number" => $resultList[$i]->getCopyNumber,
-			"sequence"    => $resultList[$i]->getSequence,
-		  };
-	}
+#	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+#		push @list,
+#		  {
+#			"contig"      => $resultList[$i]->getContig,
+#			"start"       => $resultList[$i]->getStart,
+#			"end"         => $resultList[$i]->getEnd,
+#			"length"      => $resultList[$i]->getLength,
+#			"copy_number" => $resultList[$i]->getCopyNumber,
+#			"sequence"    => $resultList[$i]->getSequence,
+#		  };
+#	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@resultList );
 }
 
 =head2
@@ -625,23 +497,23 @@ sub ncRNASearch_GET {
 
 	my @resultList = @{ $c->model('DBI')->ncRNA_search( \%hash ) };
 
-	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list,
-		  {
-			id           => $resultList[$i]->getID,
-			contig       => $resultList[$i]->getContig,
-			start        => $resultList[$i]->getStart,
-			end          => $resultList[$i]->getEnd,
-			description  => $resultList[$i]->getDescription,
-			target_ID    => $resultList[$i]->getTargetID,
-			evalue       => $resultList[$i]->getEvalue,
-			target_name  => $resultList[$i]->getTargetName,
-			target_class => $resultList[$i]->getTargetClass,
-			target_type  => $resultList[$i]->getTargetType
-		  };
-	}
+#	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
+#		push @list,
+#		  {
+#			id           => $resultList[$i]->getID,
+#			contig       => $resultList[$i]->getContig,
+#			start        => $resultList[$i]->getStart,
+#			end          => $resultList[$i]->getEnd,
+#			description  => $resultList[$i]->getDescription,
+#			target_ID    => $resultList[$i]->getTargetID,
+#			evalue       => $resultList[$i]->getEvalue,
+#			target_name  => $resultList[$i]->getTargetName,
+#			target_class => $resultList[$i]->getTargetClass,
+#			target_type  => $resultList[$i]->getTargetType
+#		  };
+#	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@resultList );
 }
 
 =head2
@@ -822,12 +694,7 @@ sub standardStatusOk {
 	);
 	$self->status_ok(
 		$c,
-		entity => {
-			"status"    => $baseResponse->getStatusCode,
-			"message"   => $baseResponse->getMessage,
-			"elapsedMs" => $baseResponse->getElapsedMs,
-			"response"  => $baseResponse->getResponse
-		}
+		entity => $baseResponse->pack()
 	);
 }
 

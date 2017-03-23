@@ -1,0 +1,342 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_log_10_32
+
+Length=59
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|180163  PRK05611, rpmD, 50S ribosomal protein L30; Reviewed   105     3e-31
+gnl|CDD|100100  cd01658, Ribosomal_L30, Ribosomal protein L30, wh...  86.3    9e-24
+gnl|CDD|130375  TIGR01308, rpmD_bact, ribosomal protein L30, bact...  80.0    3e-21
+gnl|CDD|224754  COG1841, RpmD, Ribosomal protein L30/L7E [Transla...  79.5    4e-21
+gnl|CDD|100098  cd00355, Ribosomal_L30_like, Ribosomal protein L3...  76.3    6e-20
+gnl|CDD|249772  pfam00327, Ribosomal_L30, Ribosomal protein L30p/...  74.0    4e-19
+gnl|CDD|235683  PRK06049, rpl30p, 50S ribosomal protein L30P; Rev...  35.9    3e-04
+gnl|CDD|130376  TIGR01309, L30P_arch, 50S ribosomal protein L30P,...  35.1    6e-04
+gnl|CDD|100099  cd01657, Ribosomal_L7_archeal_euk, Ribosomal prot...  31.3    0.015
+gnl|CDD|147328  pfam05095, DUF687, Protein of unknown function (D...  29.7    0.098
+gnl|CDD|183494  PRK12390, PRK12390, 1-aminocyclopropane-1-carboxy...  25.4    2.2  
+gnl|CDD|200384  TIGR04133, rSAM_w_lipo, radical SAM enzyme, rSAM/...  25.1    2.7  
+gnl|CDD|224085  COG1163, DRG, Predicted GTPase [General function ...  24.9    2.8  
+gnl|CDD|187837  cd09706, Csf2_U, CRISPR/Cas system-associated RAM...  24.9    2.8  
+gnl|CDD|185166  PRK15254, PRK15254, fimbrial chaperone protein St...  24.7    2.9  
+gnl|CDD|234112  TIGR03115, cas_csf2, CRISPR type AFERR-associated...  24.9    3.0  
+gnl|CDD|238782  cd01524, RHOD_Pyr_redox, Member of the Rhodanese ...  23.8    4.7  
+gnl|CDD|254698  pfam08270, PRD_Mga, M protein trans-acting positi...  24.2    4.9  
+gnl|CDD|227187  COG4850, COG4850, Uncharacterized conserved prote...  24.1    5.1  
+gnl|CDD|180970  PRK07417, PRK07417, arogenate dehydrogenase; Revi...  23.7    6.2  
+gnl|CDD|237198  PRK12771, PRK12771, putative glutamate synthase (...  23.7    7.2  
+
+
+>gnl|CDD|180163 PRK05611, rpmD, 50S ribosomal protein L30; Reviewed.
+Length=59
+
+ Score = 105 bits (264),  Expect = 3e-31, Method: Composition-based stats.
+ Identities = 41/58 (71%), Positives = 48/58 (83%), Gaps = 0/58 (0%)
+
+Query  2   AKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE  59
+            KT+KIT ++S IGR PK +ATL GLGLR+I  TVE EDTPAIRGMIN VS++VKVEE
+Sbjct  1   MKTLKITLVKSLIGRKPKQRATLRGLGLRKINSTVELEDTPAIRGMINKVSHLVKVEE  58
+
+
+>gnl|CDD|100100 cd01658, Ribosomal_L30, Ribosomal protein L30, which is found 
+in eukaryotes and prokaryotes but not in archaea, is one of 
+the smallest ribosomal proteins with a molecular mass of about 
+7kDa. L30 binds the 23SrRNA as well as the 5S rRNA and is 
+one of five ribosomal proteins that mediate the interactions 
+5S rRNA makes with the ribosome.  The eukaryotic L30 members 
+have N- and/or C-terminal extensions not found in their 
+prokaryotic orthologs.  L30 is closely related to the ribosomal 
+L7 protein found in eukaryotes and archaea.
+Length=54
+
+ Score = 86.3 bits (215),  Expect = 9e-24, Method: Composition-based stats.
+ Identities = 31/54 (57%), Positives = 41/54 (76%), Gaps = 0/54 (0%)
+
+Query  5   IKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVE  58
+           +KIT ++S IGR  K +ATL  LGL++I  TV  +DTP+IRGMIN V ++VKVE
+Sbjct  1   LKITLVKSLIGRPKKQRATLKALGLKKINQTVVHKDTPSIRGMINKVKHLVKVE  54
+
+
+>gnl|CDD|130375 TIGR01308, rpmD_bact, ribosomal protein L30, bacterial/organelle. 
+ This model describes bacterial (and organellar) 50S ribosomal 
+protein L30. Homologous ribosomal proteins of the eukaryotic 
+cytosol and of the archaea differ substantially in 
+architecture, from bacterial L30 and also from each other, and 
+are described by separate models [Protein synthesis, Ribosomal 
+proteins: synthesis and modification].
+Length=55
+
+ Score = 80.0 bits (198),  Expect = 3e-21, Method: Composition-based stats.
+ Identities = 33/55 (60%), Positives = 40/55 (73%), Gaps = 0/55 (0%)
+
+Query  5   IKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE  59
+           IK+T +RS IGR  K + TL  LGLR+IG  V  ED PAIRGM+N V ++VKVEE
+Sbjct  1   IKVTLVRSLIGRPKKQRKTLKALGLRKIGRQVVLEDNPAIRGMVNKVKHLVKVEE  55
+
+
+>gnl|CDD|224754 COG1841, RpmD, Ribosomal protein L30/L7E [Translation, ribosomal 
+structure and biogenesis].
+Length=55
+
+ Score = 79.5 bits (197),  Expect = 4e-21, Method: Composition-based stats.
+ Identities = 33/55 (60%), Positives = 41/55 (75%), Gaps = 0/55 (0%)
+
+Query  5   IKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE  59
+           +K+T IRS IGR PK + TL  LGLR+I HTV  EDTPA+RGM+N V ++V V E
+Sbjct  1   LKVTLIRSPIGRPPKIRKTLRLLGLRKINHTVIVEDTPAVRGMLNKVKHLVTVGE  55
+
+
+>gnl|CDD|100098 cd00355, Ribosomal_L30_like, Ribosomal protein L30, which is 
+found in eukaryotes and prokaryotes but not in archaea, is one 
+of the smallest ribosomal proteins with a molecular mass 
+of about 7kDa. L30 binds the 23SrRNA as well as the 5S rRNA 
+and is one of five ribosomal proteins that mediate the interactions 
+5S rRNA makes with the ribosome.  The eukaryotic L30 
+members have N- and/or C-terminal extensions not found in their 
+prokaryotic orthologs.  L30 is closely related to the ribosomal 
+L7 protein found in eukaryotes and archaea.
+Length=53
+
+ Score = 76.3 bits (189),  Expect = 6e-20, Method: Composition-based stats.
+ Identities = 28/53 (53%), Positives = 38/53 (72%), Gaps = 0/53 (0%)
+
+Query  6   KITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVE  58
+           K+T++RS IGR PK + TL  LGLR+I  TV  +DTP+IRGM+  V ++V V 
+Sbjct  1   KVTRVRSLIGRPPKQRKTLKALGLRKINQTVFVKDTPSIRGMLRKVKHLVTVG  53
+
+
+>gnl|CDD|249772 pfam00327, Ribosomal_L30, Ribosomal protein L30p/L7e.  This family 
+includes prokaryotic L30 and eukaryotic L7.
+Length=52
+
+ Score = 74.0 bits (183),  Expect = 4e-19, Method: Composition-based stats.
+ Identities = 31/52 (60%), Positives = 38/52 (73%), Gaps = 0/52 (0%)
+
+Query  4   TIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMV  55
+            +KIT+IRS IGR PK K TL  LGLR+I  TV  +DTPAIRGM+  V ++V
+Sbjct  1   LLKITRIRSIIGRPPKQKKTLKLLGLRKINQTVFVKDTPAIRGMLRKVKHLV  52
+
+
+>gnl|CDD|235683 PRK06049, rpl30p, 50S ribosomal protein L30P; Reviewed.
+Length=154
+
+ Score = 35.9 bits (84),  Expect = 3e-04, Method: Composition-based stats.
+ Identities = 14/46 (30%), Positives = 22/46 (48%), Gaps = 0/46 (0%)
+
+Query  7   ITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVS  52
+           + +IR  +        TL  L L R+ H V   +TP+ +GM+  V 
+Sbjct  5   VIRIRGRVNVPRDIADTLKMLRLHRVNHCVLVPETPSYKGMLQKVK  50
+
+
+>gnl|CDD|130376 TIGR01309, L30P_arch, 50S ribosomal protein L30P, archaeal.  
+This model represents the archaeal ribosomal protein similar 
+to longer (~ 250 residue) eukaryotic 60S ribosomal protein 
+L7 and to the much shorter (~ 60 residue) bacterial 50S ribosomal 
+protein L30. Protein naming follows the SwissProt designation 
+as L30P, while the gene symbol rpmD follows TIGR usage 
+[Protein synthesis, Ribosomal proteins: synthesis and modification].
+Length=152
+
+ Score = 35.1 bits (81),  Expect = 6e-04, Method: Composition-based stats.
+ Identities = 14/46 (30%), Positives = 21/46 (46%), Gaps = 0/46 (0%)
+
+Query  7   ITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVS  52
+           + +IR ++        TL  L L R+ H V   +TP   GM+  V 
+Sbjct  3   VIRIRGTVDVPRDIADTLEMLRLHRVNHCVLYPETPTYLGMLQKVK  48
+
+
+>gnl|CDD|100099 cd01657, Ribosomal_L7_archeal_euk, Ribosomal protein L7, which 
+is found in archaea and eukaryotes but not in prokaryotes, 
+binds domain II of the 23S rRNA as well as the 5S rRNA and 
+is one of five ribosomal proteins that mediate the interactions 
+5S rRNA makes with the ribosome.  The eukaryotic L7 members 
+have an N-terminal extension not found in the archeal L7 
+orthologs.  L7 is closely related to the ribosomal L30 protein 
+found in eukaryotes and prokaryotes.
+Length=159
+
+ Score = 31.3 bits (72),  Expect = 0.015, Method: Composition-based stats.
+ Identities = 18/46 (39%), Positives = 25/46 (54%), Gaps = 0/46 (0%)
+
+Query  7   ITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVS  52
+           + +IR  +G  PK + TL  L LRRI + V  + T A  GM+  V 
+Sbjct  4   VVRIRGIVGVPPKIRKTLQLLRLRRINNAVFVKLTKATIGMLKKVE  49
+
+
+>gnl|CDD|147328 pfam05095, DUF687, Protein of unknown function (DUF687).  This 
+family contains several uncharacterized Chlamydia proteins.
+Length=542
+
+ Score = 29.7 bits (67),  Expect = 0.098, Method: Composition-based stats.
+ Identities = 16/45 (36%), Positives = 21/45 (47%), Gaps = 6/45 (13%)
+
+Query  17   LPKHKATLVGLGLRR-IGHT-----VEREDTPAIRGMINLVSYMV  55
+            LP+ +  +  LGLRR  G T     V R    A RG I  +S + 
+Sbjct  403  LPRLRDRVQRLGLRRLTGSTLEQRRVVRSQLAARRGSIGALSTVC  447
+
+
+>gnl|CDD|183494 PRK12390, PRK12390, 1-aminocyclopropane-1-carboxylate deaminase; 
+Provisional.
+Length=337
+
+ Score = 25.4 bits (56),  Expect = 2.2, Method: Composition-based stats.
+ Identities = 9/23 (39%), Positives = 14/23 (61%), Gaps = 0/23 (0%)
+
+Query  6    KITQIRSSIGRLPKHKATLVGLG  28
+            K  Q R+ + R+ ++ A LV LG
+Sbjct  227  KPEQTRAQVLRIARNTAELVELG  249
+
+
+>gnl|CDD|200384 TIGR04133, rSAM_w_lipo, radical SAM enzyme, rSAM/lipoprotein 
+system.  Members of this protein family are radical SAM enzymes 
+with an additional 4Fe4S cluster-binding C-terminal domain 
+(TIGR04085) shared with PqqE and many other peptide and protein-modifying 
+radical SAM enzymes. All members occur in the 
+context of a predicted lipoprotein that usually is encoded 
+by an adjacent gene.
+Length=350
+
+ Score = 25.1 bits (55),  Expect = 2.7, Method: Composition-based stats.
+ Identities = 9/21 (43%), Positives = 16/21 (76%), Gaps = 0/21 (0%)
+
+Query  11   RSSIGRLPKHKATLVGLGLRR  31
+            R ++G+LP+ K  L+ LG++R
+Sbjct  176  RKNLGQLPEFKELLIKLGVKR  196
+
+
+>gnl|CDD|224085 COG1163, DRG, Predicted GTPase [General function prediction only].
+Length=365
+
+ Score = 24.9 bits (55),  Expect = 2.8, Method: Composition-based stats.
+ Identities = 15/35 (43%), Positives = 19/35 (54%), Gaps = 4/35 (11%)
+
+Query  2   AKTI--KITQIRSSIGRLPKHKAT--LVGLGLRRI  32
+           A TI  KI  I   I R PK+KAT   +GL   ++
+Sbjct  1   AMTIEEKIKAIEEEIARTPKNKATEHHIGLLKAKL  35
+
+
+>gnl|CDD|187837 cd09706, Csf2_U, CRISPR/Cas system-associated RAMP superfamily 
+protein Csf2.  CRISPR (Clustered Regularly Interspaced Short 
+Palindromic Repeats) and associated Cas proteins comprise 
+a system for heritable host defense by prokaryotic cells against 
+phage and other foreign DNA; RAMP superfamily protein; 
+Contains several motifs similar to Cas7 family.
+Length=328
+
+ Score = 24.9 bits (54),  Expect = 2.8, Method: Composition-based stats.
+ Identities = 12/39 (31%), Positives = 16/39 (41%), Gaps = 0/39 (0%)
+
+Query  1   MAKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVERE  39
+            AK I      +  GRL +H A ++   LR  G  V   
+Sbjct  50  EAKHIPYIAANNIRGRLRRHAARIIMEALRLRGQKVSLA  88
+
+
+>gnl|CDD|185166 PRK15254, PRK15254, fimbrial chaperone protein StdC; Provisional.
+Length=239
+
+ Score = 24.7 bits (53),  Expect = 2.9, Method: Composition-based stats.
+ Identities = 9/28 (32%), Positives = 17/28 (61%), Gaps = 0/28 (0%)
+
+Query  5    IKITQIRSSIGRLPKHKATLVGLGLRRI  32
+            ++ITQ+R    +LP+ + TL    +R +
+Sbjct  81   VRITQVRGLTDKLPQDRETLFWFNVRGV  108
+
+
+>gnl|CDD|234112 TIGR03115, cas_csf2, CRISPR type AFERR-associated protein Csf2. 
+ Members of this family show up near CRISPR repeats in Acidithiobacillus 
+ferrooxidans ATCC 23270, Azoarcus sp. EbN1, 
+and Rhodoferax ferrireducens DSM 15236. In the latter two species, 
+the CRISPR/cas locus is found on a plasmid. This family 
+is one of several characteristic of a type of CRISPR-associated 
+(cas) gene cluster we designate Aferr after A. ferrooxidans, 
+where it is both chromosomal and the only type of cas 
+gene cluster found. The gene is designated csf2 (CRISPR/cas 
+Subtype as in A. ferrooxidans protein 2), as it lies second 
+closest to the repeats [Mobile and extrachromosomal element 
+functions, Other].
+Length=344
+
+ Score = 24.9 bits (54),  Expect = 3.0, Method: Composition-based stats.
+ Identities = 12/39 (31%), Positives = 16/39 (41%), Gaps = 0/39 (0%)
+
+Query  1   MAKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVERE  39
+            AK I      +  GRL +H A ++   LR  G  V   
+Sbjct  50  EAKHIPYIAANNIRGRLRRHAARIIMEALRLRGQKVSLA  88
+
+
+>gnl|CDD|238782 cd01524, RHOD_Pyr_redox, Member of the Rhodanese Homology Domain 
+superfamily. Included in this CD are the Lactococcus lactis 
+NADH oxidase, Bacillus cereus NADH dehydrogenase, and Bacteroides 
+thetaiotaomicron pyridine nucleotide-disulphide oxidoreductase, 
+and similar rhodanese-like domains found C-terminal 
+of the pyridine nucleotide-disulphide oxidoreductase (Pyr-redox) 
+domain and the Pyr-redox dimerization domain.
+Length=90
+
+ Score = 23.8 bits (52),  Expect = 4.7, Method: Composition-based stats.
+ Identities = 12/36 (33%), Positives = 19/36 (53%), Gaps = 4/36 (11%)
+
+Query  5   IKITQIRSSIGRLPKHKATLV--GLGLRRIGHTVER  38
+           I + ++R  +  LPK K  +V   +GLR  G+   R
+Sbjct  36  IPLDELRDRLNELPKDKEIIVYCAVGLR--GYIAAR  69
+
+
+>gnl|CDD|254698 pfam08270, PRD_Mga, M protein trans-acting positive regulator 
+(MGA) PRD domain.  Mga is a DNA-binding protein that activates 
+the expression of several important virulence genes in group 
+A streptococcus in response to changing environmental conditions. 
+This corresponds to the PRD like region.
+Length=217
+
+ Score = 24.2 bits (53),  Expect = 4.9, Method: Composition-based stats.
+ Identities = 8/32 (25%), Positives = 14/32 (44%), Gaps = 0/32 (0%)
+
+Query  23  TLVGLGLRRIGHTVEREDTPAIRGMINLVSYM  54
+            L+ L  +R G  VE  ++   + +  L  Y 
+Sbjct  33  ILLALNWKRKGFFVEIPNSKLFKQLKKLFIYD  64
+
+
+>gnl|CDD|227187 COG4850, COG4850, Uncharacterized conserved protein [Function 
+unknown].
+Length=373
+
+ Score = 24.1 bits (52),  Expect = 5.1, Method: Composition-based stats.
+ Identities = 8/21 (38%), Positives = 11/21 (52%), Gaps = 0/21 (0%)
+
+Query  6    KITQIRSSIGRLPKHKATLVG  26
+            K   +R+ + R P  K  LVG
+Sbjct  264  KGQSLRNILRRYPDRKFVLVG  284
+
+
+>gnl|CDD|180970 PRK07417, PRK07417, arogenate dehydrogenase; Reviewed.
+Length=279
+
+ Score = 23.7 bits (52),  Expect = 6.2, Method: Composition-based stats.
+ Identities = 16/35 (46%), Positives = 21/35 (60%), Gaps = 7/35 (20%)
+
+Query  25  VGLGLRRIGHTV----EREDT--PAI-RGMINLVS  52
+           +GL LR +GHTV     RE T   AI RG+++  S
+Sbjct  15  LGLDLRSLGHTVYGVSRRESTCERAIERGLVDEAS  49
+
+
+>gnl|CDD|237198 PRK12771, PRK12771, putative glutamate synthase (NADPH) small 
+subunit; Provisional.
+Length=564
+
+ Score = 23.7 bits (52),  Expect = 7.2, Method: Composition-based stats.
+ Identities = 10/20 (50%), Positives = 12/20 (60%), Gaps = 1/20 (5%)
+
+Query  29   LRRIGHTVE-REDTPAIRGM  47
+            LRR+GH V   E  P + GM
+Sbjct  156  LRRMGHAVTIFEAGPKLGGM  175
+
+
+
+Lambda      K        H        a         alpha
+   0.321    0.137    0.371    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 277854304

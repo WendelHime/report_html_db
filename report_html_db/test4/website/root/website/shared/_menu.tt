@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<div class="navbar navbar-inverse set-radius-zero">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="[% c.uri_for('/') %]">
+
+                <img src="/assets/img/logo.png" />
+            </a>
+
+        </div>
+    </div>
+</div>
+<!-- LOGO HEADER END-->
+<section class="menu-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar-collapse collapse ">
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag.search('menu') %]
+                                [% IF text.value == currentPage %]
+                                    <li><a class="menu-top-active" href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
+                                [% ELSE %]
+                                	[% IF hadSearchDatabase && text.value.match("search database") %]
+			                        	<li><a  href="[% c.uri_for('/SearchDatabase') %]">Search database</a></li>
+			                        [% ELSIF hadGlobal && text.value.match("global analyses") %]
+			                        	<li><a	href="[% c.uri_for('/GlobalAnalyses') %]">Global analyses</a></li>
+			                        [% ELSIF !text.value.match("global analyses") && !text.value.match("search database")%]
+			                        	<li><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
+			                        [% END %]
+                                [% END %]
+                            [% END %]
+                        [% END %]
+                        <!--<li><a  class="menu-top-active" href="[% c.uri_for('/') %]">Home</a></li>
+                       	<li><a	href="[% c.uri_for('/Blast') %]">BLAST</a></li>
+                        <li><a	href="[% c.uri_for('/Downloads') %]">Downloads</a></li>
+                        <li><a	href="[% c.uri_for('/Help') %]">Help</a></li>
+                        <li><a	href="[% c.uri_for('/About') %]">About</a></li>-->
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

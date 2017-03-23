@@ -122,6 +122,7 @@
                                      <div id="geneIdentifier" class="tab-pane fade active in">
                                          <h4></h4>
                                          <form id="formGeneIdentifier">
+											<input type="hidden" name="_token" values="[% c.req.param('_token') %]"/>
                                              <div class="form-group">
                                                  [% FOREACH text IN texts %]
                                                      [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]

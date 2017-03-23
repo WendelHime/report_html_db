@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<div class="content-wrapper">
+    <div class="container">		
+        [% INCLUDE 'website/downloads/_content.tt' %]
+    </div>
+</div>

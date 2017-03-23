@@ -146,7 +146,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-button", "Clear sequence", "onclick=""MainBlastForm.SEQUENCE.value = '';MainBlastForm.QUERY_FROM.value = '';MainBlastForm.QUERY_TO.value = '';MainBlastForm.SEQUENCE.focus();"" type=""button"" class='btn btn-default' "),
         ("blast-button", "Search", "type='submit' class='btn btn-primary' "),
         ("search-database-form-title", "Search based on sequences or annotations", ""),
-        ("search-database-gene-ids-descriptions-title", "Protein-coding gene IDs and descriptions", ""),
+        ("search-database-gene-ids-descriptions-title", "Protein-sequence and gene IDs", ""),
         ("search-database-gene-ids-descriptions-tab", "<a href='#geneIdentifier' data-toggle='tab'>Gene identifier</a>", "class='active'"),
         ("search-database-gene-ids-descriptions-tab", "<a href='#geneDescription' data-toggle='tab'>Gene description</a>", ""),
         ("search-database-gene-ids-descriptions-gene-id", "Gene ID: ", ""),
@@ -2114,22 +2114,26 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-or-by-target-type", "Or by target type: ", ""),
         ("search-database-dna-based-analyses-or-by-target-description", "Or by target description: ", "");
 
-INSERT INTO SEQUENCES(id, name, filepath) VALUES (4426568, 'Bacteria_upload', 'seq/Bacteria_upload.fasta');
+INSERT INTO SEQUENCES(id, name, filepath) VALUES (6057173, 'Bacteria', 'seq/Bacteria.fasta');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
         ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
         ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('alienhunter', 'annotation_alienhunter.pl', 'alienhunter_dir/alienhunter.txt_Bacteria_upload');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('alienhunter', 'annotation_alienhunter.pl', '/home/wendelhlc/git/report_html_db/report_html_db/alienhunter_dir/alienhunter.txt_Bacteria');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('bigpi', 'annotation_bigpi.pl', '');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-analyses-protein-code-tab", "BLAST", "#blast"),
         ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('blast', 'annotation_blast.pl', '');
 
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('dgpi', 'annotation_dgpi.pl', '');
+
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('glimmer3', 'annotation_glimmer3.pl', '');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('infernal', 'annotation_infernal.pl', 'infernal_dir/infernal.txt_Bacteria_upload');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('infernal', 'annotation_infernal.pl', '/home/wendelhlc/git/report_html_db/report_html_db/infernal_dir/infernal.txt_Bacteria');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology"),
         ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
@@ -2137,6 +2141,8 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('infernal', 'annotation
         ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", "");
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('interpro', 'annotation_interpro.pl', '');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('mreps', 'annotation_mreps.pl', '/Bacteria_mreps.txt');
 	INSERT INTO TEXTS(tag, value, details) VALUES
 		("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
         ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
@@ -2540,6 +2546,8 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'annotation
         ("search-database-analyses-protein-code-signal-peptide-option", "do not care", "value='sigPwhatever' checked=''");
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('phobius', 'annotation_phobius.pl', '');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('predgpi', 'annotation_predgpi.pl', '');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
         ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
@@ -2549,13 +2557,17 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('phobius', 'annotation_
         ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
         ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('rbsfinder', 'annotation_rbsfinder.pl', 'rbsfinder_dir/Bacteria_upload.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('rbsfinder', 'annotation_rbsfinder.pl', '/home/wendelhlc/git/report_html_db/report_html_db/rbsfinder_dir/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('rnammer', 'annotation_rnammer.pl', 'rnammer_dir/Bacteria_upload_rnammer.gff');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('rnammer', 'annotation_rnammer.pl', '/home/wendelhlc/git/report_html_db/report_html_db/rnammer_dir/Bacteria_rnammer.gff');
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('rpsblast', 'annotation_rpsblast.pl', '');
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('signalP', 'annotation_signalP.pl', '');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('skews', 'annotation_skews.pl', '');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('string', 'annotation_string.pl', '/Bacteria_string.txt');
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('tcdb', 'annotation_tcdb.pl', '');
 
@@ -2566,12 +2578,11 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('tmhmm', 'annotation_tm
         ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
         ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('transterm', 'annotation_transterm.pl', 'transterm_dir/Bacteria_upload.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('transterm', 'annotation_transterm.pl', '/home/wendelhlc/git/report_html_db/report_html_db/transterm_dir/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('trf', 'annotation_trf.pl', 'trf_dir/Bacteria_upload_trf.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('trf', 'annotation_trf.pl', '/home/wendelhlc/git/report_html_db/report_html_db/trf_dir/Bacteria_trf.txt');
 	INSERT INTO TEXTS(tag, value, details) VALUES 
 		("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
-        ("search-database-dna-based-analyses-list-rnas", " List all tRNAs", ""),
         ("search-database-dna-based-analyses-get-by-amino-acid", "Or get tRNAs by amino acid: ", ""),
         ("search-database-dna-based-analyses-get-by-amino-acid-options", "Alanine (A)", "Ala"),                                                                                                
         ("search-database-dna-based-analyses-get-by-amino-acid-options", "Arginine (R)", "Arg"),                                                                                               
@@ -2656,8 +2667,14 @@ INSERT INTO COMPONENTS(name, component, filepath) VALUES('trf', 'annotation_trf.
         ("search-database-dna-based-analyses-get-by-codon-options", "TTG", "TTG"),
         ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT");
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('trna', 'annotation_trna.pl', 'trna_dir/Bacteria_upload_trna.txt');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('trna', 'annotation_trna.pl', '/home/wendelhlc/git/report_html_db/report_html_db/trna_dir/Bacteria_trna.txt');
 
-INSERT INTO COMPONENTS(name, component, filepath) VALUES('report_conclusion', 'report_conclusion.pl', '');
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('conclusion', 'report_conclusion.pl', '');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('go', 'report_go.pl', '/home/wendelhlc/git/report_html_db/report_html_db/go_report/go_mapping.html;');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('orthology', 'report_orthology.pl', '');
+
+INSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'report_pathways.pl', '/home/wendelhlc/git/report_html_db/report_html_db/kegg_report/classes.html;');
 
 INSERT INTO COMPONENTS(name, component, filepath) VALUES('oad_fasta', 'upload_fasta.pl', '');

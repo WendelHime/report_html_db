@@ -4,7 +4,7 @@ use warnings;
 use base 'Catalyst::Model::Adaptor';
 
 __PACKAGE__->config( 
-    class       => 'Models::Services::BaseResponse',
+    class       => 'Report_HTML_DB::Models::Services::BaseResponse',
     constructor => 'new',
 );
 

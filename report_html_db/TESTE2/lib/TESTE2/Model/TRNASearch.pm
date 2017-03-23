@@ -4,7 +4,7 @@ use warnings;
 use base 'Catalyst::Model::Adaptor';
 
 __PACKAGE__->config( 
-    class       => 'Models::Application::TRNASearch',
+    class       => 'Report_HTML_DB::Models::Application::TRNASearch',
     constructor => 'new',
 );
 

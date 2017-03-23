@@ -8,27 +8,10 @@ Deleting old fasta directories
 Separating sequences od multifasta and create directory
 
 Reading sequences
-Component: annotation_tcdb.pl
-Component: annotation_phobius.pl
-Component: annotation_tmhmm.pl
-Component: annotation_signalP.pl
-Component: annotation_blast.pl
-Component: annotation_rpsblast.pl
-Component: annotation_interpro.pl
-Component: annotation_orthology.pl
-Component: annotation_pathways.pl
-Component: annotation_trf.pl
-Component: annotation_trna.pl
-Component: annotation_alienhunter.pl
-Component: annotation_infernal.pl
-Component: annotation_rnammer.pl
-Component: annotation_transterm.pl
-Component: annotation_glimmer3.pl
-Component: annotation_rbsfinder.pl
-Component: report_conclusion.pl
-Component: upload_fasta.pl
 
-Creating project...
+Creating website...
+
+Creating services...
 
 Creating view
 
@@ -36,7 +19,7 @@ Editing view
 
 Creating SQL file	script.sql
 
-Creating database file	/home/wendelhlc/git/report_html_db/report_html_db/TESTE4/database.db
+Creating database file	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/website/database.db
 
 Creating models
 
@@ -44,12 +27,6 @@ Creating controllers...
 Copying files assets
 
 Creating html views
-
-Criando diretorio blast
-
-Criando arquivo _forms.tt
-
-Criando arquivo index.tt
 
 Criando diretorio about
 
@@ -59,84 +36,42 @@ Criando arquivo _content.tt
 
 Criando diretorio shared
 
-Criando arquivo _footer.tt
+Criando arquivo _menu.tt
 
 Criando arquivo _header.tt
 
-Criando arquivo _head.tt
+Criando arquivo _footer.tt
 
-Criando arquivo _menu.tt
+Criando arquivo _head.tt
 
 Criando diretorio downloads
 
-Criando arquivo index.tt
-
 Criando arquivo _content.tt
+
+Criando arquivo index.tt
 
 Criando diretorio home
 
-Criando arquivo index.tt
-
 Criando arquivo _panelInformation.tt
 
-Criando diretorio search-database
+Criando arquivo index.tt
 
-Criando arquivo rnaScanBasicResult.tt
+Criando diretorio blast
 
-Criando arquivo sequence.tt
-
-Criando arquivo subEvidences.tt
-
-Criando arquivo contigs.tt
-
-Criando arquivo rRNAPredictionBasicResult.tt
-
-Criando arquivo geneBasics.tt
-
-Criando arquivo pathways.tt
-
-Criando arquivo result.tt
-
-Criando arquivo gene.tt
+Criando arquivo index.tt
 
 Criando arquivo _forms.tt
 
-Criando arquivo tRNABasicResultHasIntron.tt
-
-Criando arquivo pathwaysBasicResult.tt
-
-Criando arquivo orthologyBasicResult.tt
-
-Criando arquivo tcdbBasicResult.tt
-
-Criando arquivo similarityBasicResult.tt
-
-Criando arquivo interproBasicResult.tt
-
-Criando arquivo properties.tt
-
-Criando arquivo tRNABasicResult.tt
-
-Criando arquivo index.tt
-
-Criando arquivo orthologies.tt
-
-Criando arquivo evidences.tt
-
-Criando arquivo tmhmmBasicResult.tt
-
-Criando arquivo rnaPredictionBasicResult.tt
-
 Criando diretorio help
 
-Criando arquivo _content.tt
-
 Criando arquivo index.tt
+
+Criando arquivo _content.tt
 
 Creating wrapper
 
 Editing root file
 Done
 Turn on the server with this command:
-./TESTE4/script/teste4_server.pl -r
+./website/script/website_server.pl -r
 http://localhost:3000

@@ -44,6 +44,108 @@ sub getHTMLContent_GET {
 }
 
 =head2
+
+Method used to return components used
+
+=cut
+
+sub getComponents : Path("/Components") : Args(0) :
+  ActionClass('REST') { }
+
+sub getComponents_GET {
+	my ( $self, $c ) = @_;
+
+	my $resultSet = $c->model('Basic::Component')->search(
+		{},
+		{
+			order_by => {
+				-asc => [qw/ component /]
+			}
+		}
+	);
+
+	my @list = ();
+	while ( my $result = $resultSet->next ) {
+		my %hash = ();
+		$hash{id}        = $result->id;
+		$hash{name}      = $result->name;
+		$hash{component} = $result->component;
+		if ( $result->filepath ne "" ) {
+			$hash{filepath} = $result->filepath;
+		}
+		push @list, \%hash;
+	}
+
+	standardStatusOk( $self, $c, \@list );
+}
+
+=head2 searchContig
+
+Method used to realize search by contigs, optional return a stretch or a reverse complement
+
+=cut
+
+sub searchContig : Path("/Contig") : CaptureArgs(4) :
+  ActionClass('REST') { }
+
+sub searchContig_GET {
+	my ( $self, $c, $contig, $start, $end, $reverseComplement ) = @_;
+	if ( !$contig and defined $c->request->param("contig") ) {
+		$contig = $c->request->param("contig");
+	}
+	if ( !$start and defined $c->request->param("contigStart") ) {
+		$start = $c->request->param("contigStart");
+	}
+	if ( !$end and defined $c->request->param("contigEnd") ) {
+		$end = $c->request->param("contigEnd");
+	}
+	if ( !$reverseComplement
+		and defined $c->request->param("revCompContig") )
+	{
+		$reverseComplement = $c->request->param("revCompContig");
+	}
+
+	use File::Basename;
+	my $data     = "";
+	my $sequence = $c->model('Basic::Sequence')->find($contig);
+
+	open( my $FILEHANDLER,
+		"<", dirname(__FILE__) . "/../../../root/" . $sequence->filepath );
+
+	for my $line (<$FILEHANDLER>) {
+		if ( !( $line =~ /^>\w+\n$/g ) ) {
+			$data .= $line;
+		}
+	}
+	close($FILEHANDLER);
+
+	if ( $start && $end ) {
+		$data = substr( $data, $start, ( $end - $start ) );
+		$c->stash->{start}     = $start;
+		$c->stash->{end}       = $end;
+		$c->stash->{hadLimits} = 1;
+	}
+	if ( defined $reverseComplement ) {
+		$data = formatSequence( reverseComplement($data) );
+		$c->stash->{hadReverseComplement} = 1;
+	}
+	my $result = "";
+	for ( my $i = 0 ; $i < length($data) ; $i += 60 ) {
+		my $line = substr( $data, $i, 60 );
+		$result .= "$line<br />";
+	}
+
+	my @list = ();
+	my %hash = ();
+	$hash{'geneID'} = $sequence->id;
+	$hash{'gene'}   = $sequence->name;
+	$hash{'contig'} = $result;
+
+	push @list, \%hash;
+	standardStatusOk( $self, $c, @list );
+}
+
+=head2
 Standard return of status ok
 =cut
 

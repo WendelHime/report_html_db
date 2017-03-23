@@ -1,0 +1,15 @@
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                [% FOREACH text IN texts %]
+                    [% IF text.tag == 'footer' %]
+                        <a href="[% c.uri_for(text.details) %]">[% text.value %]</a>
+                    [% END %]
+                [% END %]
+
+            </div>
+
+        </div>
+    </div>
+</footer>

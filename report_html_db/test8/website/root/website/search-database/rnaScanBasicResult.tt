@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Product description:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_description %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Prediction score:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.score %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>E-value of match:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.evalue %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Identifier of match:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_identifier %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Target name:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_name %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Target type:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.target_type %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Bias:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.bias %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Truncated:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.truncated %]</p>
+	</div>
+</div>

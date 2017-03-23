@@ -1,0 +1,535 @@
+Query= Bacteria2_CDS_annotation_glimmer3.pl_log_10_6
+
+Length=378
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|236412  PRK09204, secY, preprotein translocase subunit Se...  548     0.0   
+gnl|CDD|223279  COG0201, SecY, Preprotein translocase subunit Sec...  424     8e-146
+gnl|CDD|233214  TIGR00967, 3a0501s007, preprotein translocase, Se...  371     2e-125
+gnl|CDD|249786  pfam00344, SecY, SecY translocase                     351     2e-118
+gnl|CDD|214379  CHL00161, secY, preprotein translocase subunit Se...  255     2e-80 
+gnl|CDD|183828  PRK12907, secY, preprotein translocase subunit Se...  229     6e-70 
+gnl|CDD|237095  PRK12417, secY, preprotein translocase subunit Se...  113     5e-28 
+gnl|CDD|131966  TIGR02920, acc_sec_Y2, accessory Sec system trans...  104     7e-25 
+gnl|CDD|224038  COG1113, AnsP, Gamma-aminobutyrate permease and r...  31.4    0.77  
+gnl|CDD|234609  PRK00068, PRK00068, hypothetical protein; Validated   31.5    1.0   
+gnl|CDD|185519  PTZ00219, PTZ00219, Sec61 alpha subunit; Provisional  29.6    3.3   
+gnl|CDD|235547  PRK05654, PRK05654, acetyl-CoA carboxylase subuni...  29.0    4.4   
+gnl|CDD|236293  PRK08568, PRK08568, preprotein translocase subuni...  29.0    4.6   
+gnl|CDD|223187  COG0109, CyoE, Polyprenyltransferase (cytochrome ...  28.7    5.0   
+gnl|CDD|213358  cd12824, ZntB-like, Salmonella typhimurium Zn2+ t...  28.3    7.5   
+gnl|CDD|250658  pfam01490, Aa_trans, Transmembrane amino acid tra...  28.4    7.9   
+gnl|CDD|227318  COG4985, COG4985, ABC-type phosphate transport sy...  28.0    7.9   
+gnl|CDD|233040  TIGR00595, priA, primosomal protein N'. All prote...  28.1    8.6   
+gnl|CDD|177102  MTH00016, CYTB, cytochrome b; Validated               28.1    8.9   
+
+
+>gnl|CDD|236412 PRK09204, secY, preprotein translocase subunit SecY; Reviewed.
+Length=426
+
+ Score = 548 bits (1416),  Expect = 0.0, Method: Composition-based stats.
+ Identities = 258/369 (70%), Positives = 299/369 (81%), Gaps = 4/369 (1%)
+
+Query  1    MFSGGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTL  60
+            +FSGGALSR SIFALGIMPYI+ASII+QLLTVV P L E+KKEGEAGRRKI+QYTRY T+
+Sbjct  61   LFSGGALSRFSIFALGIMPYITASIIMQLLTVVIPKLEELKKEGEAGRRKINQYTRYLTV  120
+
+Query  61   VLAIFQSIGIATGLPNMPGMQGLV-INPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIG  119
+            VLA  QSIGIA GL +M G  GLV I PGF FY T V++L  GTMFLMWLGEQITERGIG
+Sbjct  121  VLAFVQSIGIAAGLNSMSGGGGLVPIPPGFFFYLTIVITLTAGTMFLMWLGEQITERGIG  180
+
+Query  120  NGISIIIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRI  179
+            NGIS+IIFAGIVAGLP AIG T E AR G L  L+ LL+ VL  AV  FVVF+E+ QRRI
+Sbjct  181  NGISLIIFAGIVAGLPSAIGQTFELARTGSLSILVFLLLIVLFLAVIAFVVFVEQAQRRI  240
+
+Query  180  VVNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLT  239
+             V YAKRQ GR++Y  QS++LPLKVNMAGVIP IFASSI+LFP TIA +FG G+   WL 
+Sbjct  241  PVQYAKRQVGRKMYGGQSSYLPLKVNMAGVIPVIFASSILLFPATIAQFFGSGS---WLQ  297
+
+Query  240  TISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAK  299
+             I+ YL PG PLY+LLYA  IIFF FFYTA+ FNP E A+NLKKSG F+PGIRPGEQTA+
+Sbjct  298  WIANYLSPGSPLYILLYALLIIFFTFFYTAIQFNPEEIAENLKKSGGFIPGIRPGEQTAE  357
+
+Query  300  YIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLM  359
+            Y+DKV+TRLTLVGA+Y+ FI L+PE +++A+ VPFYFGGTSLLIVV V +D M Q+++ +
+Sbjct  358  YLDKVLTRLTLVGAIYLAFIALLPEILQNALGVPFYFGGTSLLIVVGVALDTMKQIESQL  417
+
+Query  360  MSSQYESAL  368
+            MS QYE  L
+Sbjct  418  MSRQYEGFL  426
+
+
+>gnl|CDD|223279 COG0201, SecY, Preprotein translocase subunit SecY [Intracellular 
+trafficking and secretion].
+Length=436
+
+ Score = 424 bits (1092),  Expect = 8e-146, Method: Composition-based stats.
+ Identities = 207/374 (55%), Positives = 260/374 (70%), Gaps = 10/374 (3%)
+
+Query  1    MFSGGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTL  60
+            MFSGGALSR SIFALGIMPYI+ASII+QLLTV  P L ++ KEGE GRRKI QYTRY TL
+Sbjct  64   MFSGGALSRGSIFALGIMPYITASIIMQLLTVGSPILKKLDKEGEEGRRKIQQYTRYLTL  123
+
+Query  61   VLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGN  120
+            VLA+ Q++G+  G  N       V N G  FY   ++ L  GTMFLMWLGEQIT+RGIGN
+Sbjct  124  VLAVIQALGVVLGGNNGGS-PSDVGNGGIFFYLLIILQLTAGTMFLMWLGEQITKRGIGN  182
+
+Query  121  GISIIIFAGIVAGLPPAIGHTIEQARQG--DLHFLLLLLVAVLVFAVTFFVVFMERGQRR  178
+            GIS+IIFAGIVA LP AI   I     G   L  L LLL+ +L  A+ F VV++E+ +RR
+Sbjct  183  GISLIIFAGIVASLPSAIFGIIGALPTGALFLSILFLLLLVLLTLAIIFLVVYVEQARRR  242
+
+Query  179  IVVNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGW---  235
+            I + YAKRQ  R     QS++LPLK+N AGVIP IFASS++LFP TIA + G G      
+Sbjct  243  IPIQYAKRQSYRG----QSSYLPLKLNYAGVIPVIFASSLLLFPSTIAQFLGNGGLAYYL  298
+
+Query  236  NWLTTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGE  295
+            + LT+IS  L PG P+Y+ LY   IIFF +FYT + FNP E A+NLKKSG F+PGIRPG+
+Sbjct  299  SPLTSISDALSPGSPVYIALYVVLIIFFSYFYTEIQFNPEEIAENLKKSGGFIPGIRPGK  358
+
+Query  296  QTAKYIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQV  355
+             T KY+++V+ RLT +GA+++  I ++PE +  A  VPFYFGGTSLLIVV V +D   Q+
+Sbjct  359  DTEKYLNRVIPRLTFIGALFLGLIAILPELLGTAGGVPFYFGGTSLLIVVGVALDTYEQI  418
+
+Query  356  QTLMMSSQYESALK  369
+            +  ++  +Y    +
+Sbjct  419  EAELLMEKYPGLRR  432
+
+
+>gnl|CDD|233214 TIGR00967, 3a0501s007, preprotein translocase, SecY subunit. 
+ Members of this protein family are the SecY component of the 
+SecYEG translocon, or protein translocation pore, which is 
+driven by the ATPase SecA. This model does not discriminate 
+bacterial from archaeal forms [Protein fate, Protein and peptide 
+secretion and trafficking].
+Length=410
+
+ Score = 371 bits (954),  Expect = 2e-125, Method: Composition-based stats.
+ Identities = 181/373 (49%), Positives = 234/373 (63%), Gaps = 16/373 (4%)
+
+Query  1    MFSGGALSRASIFALGIMPYISASIIIQLLTV-VHPTLAEIKKEGEAGRRKISQYTRYGT  59
+             FSGGAL + SIFALGI PYI+ASIIIQLLT  V P L   KKEGE GRRKI+Q TRY T
+Sbjct  45   TFSGGALGQISIFALGISPYITASIIIQLLTGDVPPLLQLQKKEGEIGRRKINQLTRYLT  104
+
+Query  60   LVLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIG  119
+            L+LA  QS+GI      M GM G V +PG  FY   V+ L TG+M +MWLGEQIT+ GIG
+Sbjct  105  LILAFIQSLGIV-----MTGMYGYVGDPGAFFYLLIVIQLTTGSMIVMWLGEQITKYGIG  159
+
+Query  120  NGISIIIFAGIVAGLPPAIGHTIE--QARQGDLHFLLLLLVAVLVFAVTFFVVFM----E  173
+            NGIS++IFAGI A +P  +    E  Q++  DL   L  L  +L    T  V  +    +
+Sbjct  160  NGISLLIFAGIAATIPSGLLQPTEVRQSKVRDLISFLQNLPFLLYLIATIIVFAVVVFVQ  219
+
+Query  174  RGQRRIVVNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGT  233
+            + +R+I +  AKRQ GRR   +QST+LPLK+N AGVIP IFAS+++  P TI+ +     
+Sbjct  220  QARRKIPIQSAKRQGGRR--GSQSTYLPLKLNYAGVIPVIFASALLSNPATISQFLNSNQ  277
+
+Query  234  GWNWLTTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRP  293
+            G  W     + L    P+  +LY   IIFF FFY  L  NP + A NLKK G F+PGIRP
+Sbjct  278  GGAWFLNPILSLSLSDPIGAILYLILIIFFSFFYVELQLNPEDMAKNLKKQGMFIPGIRP  337
+
+Query  294  GEQTAKYIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVP--FYFGGTSLLIVVVVIMDF  351
+            G+ T KY+ +V+ RLT VG++++  I L+P F+     +P     GGTSLLIVV V +D 
+Sbjct  338  GKMTEKYLKRVIPRLTFVGSLFLGLIALLPNFLGAIGGLPTSKGLGGTSLLIVVGVAIDT  397
+
+Query  352  MAQVQTLMMSSQY  364
+              Q+++ ++S  Y
+Sbjct  398  YKQLESELISRNY  410
+
+
+>gnl|CDD|249786 pfam00344, SecY, SecY translocase.  
+Length=342
+
+ Score = 351 bits (902),  Expect = 2e-118, Method: Composition-based stats.
+ Identities = 173/345 (50%), Positives = 231/345 (67%), Gaps = 7/345 (2%)
+
+Query  11   SIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIGI  70
+            SIFALGI PYI+ASII+QLLTVV P L ++ KEGE GR+KI QYTRY TLVLA+ Q+ GI
+Sbjct  1    SIFALGIGPYITASIIMQLLTVVGPKLEKLDKEGEEGRKKIQQYTRYLTLVLALIQAFGI  60
+
+Query  71   ATGLPNMPGMQ-GLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISIIIFAG  129
+              GL +       +V + GF      V+ L  GTMFLMWLGE IT+ GIGNGIS+IIFAG
+Sbjct  61   ILGLGSYGAASNSIVPSVGFLNLLLIVLQLTAGTMFLMWLGELITKYGIGNGISLIIFAG  120
+
+Query  130  IVAGLPPAIGHTIEQARQ--GDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAKRQ  187
+            IV+ +P AI +           L  L LLL+ ++  AV   VV+++  +RRI + YAKR 
+Sbjct  121  IVSSIPWAIINLFSLLSTKGALLSILYLLLLLIITLAVILLVVYLQEARRRIPIQYAKRV  180
+
+Query  188  QGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYLQP  247
+             G      QS++LP+K+N AGVIP IFASS++ FP TIA + G  +       ++ YL  
+Sbjct  181  VGGGRG--QSSYLPIKLNYAGVIPIIFASSLLAFPQTIAQFLGSRSWPVS--GLAYYLPL  236
+
+Query  248  GQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTR  307
+            G P+Y+L Y   IIFF +FYTA+ FNP++ A+NLKKSG F+PGIRPG+ T KY+++V+ R
+Sbjct  237  GSPVYILFYIVLIIFFSYFYTAIGFNPKDIAENLKKSGGFIPGIRPGKSTEKYLNRVIPR  296
+
+Query  308  LTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFM  352
+            LT +GA+++  I ++P+ +     +P  FGGTSLLI V V +D +
+Sbjct  297  LTFIGAIFLGLIAVLPDLLGALGGLPIAFGGTSLLIAVGVALDTI  341
+
+
+>gnl|CDD|214379 CHL00161, secY, preprotein translocase subunit SecY; Validated.
+Length=417
+
+ Score = 255 bits (654),  Expect = 2e-80, Method: Composition-based stats.
+ Identities = 149/367 (41%), Positives = 228/367 (62%), Gaps = 12/367 (3%)
+
+Query  2    FSGGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKE-GEAGRRKISQYTRYGTL  60
+            FSGG      +FALGI+PYI+ASIIIQLLT + P+L +++KE GEAGRRKI+QYTRY TL
+Sbjct  56   FSGGGFFVIGLFALGILPYINASIIIQLLTSIIPSLEKLQKEEGEAGRRKINQYTRYLTL  115
+
+Query  61   VLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGN  120
+              AI QSIGI+  L      +  + N         V++L +G+M ++WL E ITE+G+GN
+Sbjct  116  GWAIIQSIGISFWL------KPYLFNWNLLLALEIVLALTSGSMIVLWLSELITEKGLGN  169
+
+Query  121  GISIIIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIV  180
+            G S++IF  IV+ LP  +   +       +  L +LL+  L F     ++F++   R+I 
+Sbjct  170  GSSLLIFFNIVSNLPKLLQSLLFSLSAN-ITILSILLLLFLFFITLIGIIFLQEAIRKIP  228
+
+Query  181  VNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTT  240
+            +  AK Q G+    A +++LPL++N AGV+P IFAS++++ PG + +          L+ 
+Sbjct  229  LISAK-QLGKSSRLASNSYLPLRLNQAGVMPIIFASALLVLPGYLTNILLNQFLLPLLSL  287
+
+Query  241  ISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKY  300
+                L   + LY++LY   I+FF +FY+ +V NP++ ++NL+K    +PGIRPG+ T KY
+Sbjct  288  FL-QLASFKILYLVLYFVLILFFSYFYSTIVLNPKDISENLQKMAVSIPGIRPGKATTKY  346
+
+Query  301  IDKVMTRLTLVGAMYITFICLIPEFMRDAMKVPFY--FGGTSLLIVVVVIMDFMAQVQTL  358
+            + K + RLTL+GA+++ FI L+P  +   + +  +   G TSLLI+V V +D   Q+QT 
+Sbjct  347  LKKTLNRLTLLGALFLAFIALLPNLIESVLNLSVFKGLGTTSLLILVGVAIDTSRQIQTY  406
+
+Query  359  MMSSQYE  365
+            ++S+ YE
+Sbjct  407  LISNNYE  413
+
+
+>gnl|CDD|183828 PRK12907, secY, preprotein translocase subunit SecY; Reviewed.
+Length=434
+
+ Score = 229 bits (584),  Expect = 6e-70, Method: Composition-based stats.
+ Identities = 160/381 (42%), Positives = 236/381 (62%), Gaps = 13/381 (3%)
+
+Query  1    MFSGGALSRASIFALGIMPYISASIIIQLLTV-VHPTLAEIKKEGEAGRRKISQYTRYGT  59
+            +F GGAL   SIFA+GI PYI+ASII+QLL + V P  +E  K+GE GR+K +Q+TRY T
+Sbjct  58   VFGGGALQHFSIFAVGITPYITASIIVQLLQMDVIPKFSEWAKQGEMGRKKSAQFTRYFT  117
+
+Query  60   LVLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIG  119
+            ++LA  Q+IG++ G  N+ G Q L+ +  +  Y      L  GT FL+WLGEQIT  G+G
+Sbjct  118  IILAFIQAIGMSYGFNNIAGGQ-LITDQSWTTYLFIATVLTAGTAFLLWLGEQITANGVG  176
+
+Query  120  NGISIIIFAGIVAGLPPAIGHTIEQARQ--GD---LHFLLLLLVAVLVFAVTFFVVFMER  174
+            NGIS++IFAG+VA +P        Q  Q  GD   +H + +LL+ +++ A+   V+++++
+Sbjct  177  NGISMLIFAGLVAAIPNVANQIYLQQFQNAGDQLFMHIIKMLLIGLVILAIVVGVIYIQQ  236
+
+Query  175  GQRRIVVNYAKRQQGRRVY-AAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGT  233
+              R+I + YAK   G   Y  A++THLPLKVN AGVIP IFAS+ ++ P TIA  F   +
+Sbjct  237  AVRKIPIQYAKAVSGNNQYQGAKNTHLPLKVNSAGVIPVIFASAFLMTPRTIAQLFPDSS  296
+
+Query  234  GWNWLTTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRP  293
+               WL      L    P+ + LY   I+ F +FY  +  NP + A+NLKK   +VPGIRP
+Sbjct  297  VSKWLVA---NLDFAHPIGMTLYVGLIVAFTYFYAFIQVNPEQMAENLKKQNGYVPGIRP  353
+
+Query  294  GEQTAKYIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVP--FYFGGTSLLIVVVVIMDF  351
+            G+ T +Y+ K++ RLT +GA+++  I ++P        +P     GGTSLLI+V V ++ 
+Sbjct  354  GKSTEQYVTKILYRLTFIGAIFLGAISILPLVFTKIATLPPSAQIGGTSLLIIVGVALET  413
+
+Query  352  MAQVQTLMMSSQYESALKKAN  372
+            M  +++ ++   Y+  +KKAN
+Sbjct  414  MKTLESQLVKRHYKGFIKKAN  434
+
+
+>gnl|CDD|237095 PRK12417, secY, preprotein translocase subunit SecY; Reviewed.
+Length=404
+
+ Score = 113 bits (285),  Expect = 5e-28, Method: Composition-based stats.
+ Identities = 94/382 (25%), Positives = 177/382 (46%), Gaps = 50/382 (13%)
+
+Query  4    GGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLA  63
+            GG L   +IF+LG+ P++++ II+QL +         +   E   R+     R  TL++A
+Sbjct  58   GGDLRTLNIFSLGLGPWMTSMIILQLFSYRKRDGLMKQTIEEQHYRE-----RILTLIIA  112
+
+Query  64   IFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGIS  123
+            + QS+ +   LP+   +    I           + LVTGTMFL+WL +    R    G  
+Sbjct  113  VIQSLAVILSLPSKERISQTNI-------LLNTLILVTGTMFLVWLSDL-NARYGIGGPM  164
+
+Query  124  IIIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNY  183
+             I+   ++  +P  +   I      D   ++++L+ +LV    FF+ F+E  + RI  N 
+Sbjct  165  PIVLVSMIKSIPQDVIEYI------DASHIVIILLILLVIITLFFLYFIELVEYRIPYND  218
+
+Query  184  AKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGT----IASWFGGGTGWN-WL  238
+                   ++Y    ++L +K+N AG +P +++ S+++FP      I S F   +G +  +
+Sbjct  219  IMNHNRFKMY----SYLSIKLNPAGGMPIMYSMSLLVFPQYIIILILSIFPNNSGISADM  274
+
+Query  239  TTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTA  298
+              +S     G PL V +Y        +F++ +  N ++ A ++ KSG ++PG+ PG+ T 
+Sbjct  275  DMLSF----GSPLGVTVYLILQFLLSYFFSFVNINTKQIAKDMLKSGNYIPGVYPGKDTE  330
+
+Query  299  KYIDKVMTRLTLVGAMYITFIC--------LIPEFMRDAMKVPFYFGGTSLLIVVVVIMD  350
+            +Y++ +  R +  GA+++T I           P    +           S   ++ V M 
+Sbjct  331  RYLNYIARRFSWFGALFVTVIAGIPLYFTLFDPHLSTEIY--------FSGQFMMFVGMS  382
+
+Query  351  FMA--QVQTLMMSSQYESALKK  370
+            F    +++ L+   +Y+  L +
+Sbjct  383  FNIADEIRALLYFDKYKPLLNQ  404
+
+
+>gnl|CDD|131966 TIGR02920, acc_sec_Y2, accessory Sec system translocase SecY2. 
+ Members of this family are restricted to the Firmicutes lineage 
+(low-GC Gram-positive bacteria) and appear to be paralogous 
+to, and much more divergent than, the preprotein translocase 
+SecY. Members include the SecY2 protein of the accessory 
+Sec system in Streptococcus gordonii, involved in export 
+of the highly glycosylated platelet-binding protein GspB [Protein 
+fate, Protein and peptide secretion and trafficking].
+Length=395
+
+ Score = 104 bits (260),  Expect = 7e-25, Method: Composition-based stats.
+ Identities = 92/376 (24%), Positives = 173/376 (46%), Gaps = 37/376 (10%)
+
+Query  2    FSGGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQY-TRYGTL  60
+             +GG L+  SIF+LG+ P++++ II+QL +             +A   K  QY  R+ TL
+Sbjct  48   NTGGNLTTLSIFSLGLGPWMTSMIILQLFSFTK------SDGFDAQSPKEQQYRERFLTL  101
+
+Query  61   VLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGN  120
+            ++AI Q + I     N  G+    +         A + LVTGT  L+WL +   + GIG 
+Sbjct  102  IIAIIQGLAIIHSFTNKNGLSDFNM-------LLATLILVTGTCLLVWLADLNAKYGIGG  154
+
+Query  121  GISIIIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIV  180
+             + I     ++  +   I   + +  Q   +  L+ L+ +L     F + F+ER + RI 
+Sbjct  155  SMPI-----VLVSMLKNIPSNVFELFQ-MSYIWLIALLILLTLVALFLLAFIERAEYRIP  208
+
+Query  181  VNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGT----IASWFGGGTGWN  236
+            VN         +     ++LP+K+N AG +  ++  S+++ P      +   F   +  N
+Sbjct  209  VNDISLHNRSNLM----SYLPIKLNPAGGMMYMYVMSLLMLPQYIIILLGRIFPNSSLIN  264
+
+Query  237  WLTTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQ  296
+                   +     P+ +L+Y    +   +F+T +  NP+E + + +KSG ++PGI PG+ 
+Sbjct  265  NWVFQFSF---SSPVGILIYLILQMLLSYFFTFVNINPKEISKSFRKSGNYIPGIAPGKD  321
+
+Query  297  TAKYIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMA---  353
+            T +Y++++  R    G ++  F   IP  +  A+ VP       +    ++I        
+Sbjct  322  TQRYLNRLARRFCWFGGVFNAFQLGIP--LYFALFVPHLLTEAYIPGQFMMITGMSFNIA  379
+
+Query  354  -QVQTLMMSSQYESAL  368
+             +++T++   +Y+  L
+Sbjct  380  DEIRTILYFDRYKPLL  395
+
+
+>gnl|CDD|224038 COG1113, AnsP, Gamma-aminobutyrate permease and related permeases 
+[Amino acid transport and metabolism].
+Length=462
+
+ Score = 31.4 bits (72),  Expect = 0.77, Method: Composition-based stats.
+ Identities = 17/88 (19%), Positives = 37/88 (42%), Gaps = 17/88 (19%)
+
+Query  178  RIVVNYAKRQQGRRVYAAQSTHLPLKVNMAGV-IPAIFASSIILFPGTIASWFGGGTGWN  236
+            R++ + AK+    + +A        K++  GV + AI  S+++L  G + ++      + 
+Sbjct  311  RMLYSLAKQGDAPKAFA--------KLSKRGVPVNAILLSAVVLLLGVVLNYILPEKVFE  362
+
+Query  237  WLTTISMYLQPGQPLYVLLYASAIIFFC  264
+             +T+ S           LL+   +I   
+Sbjct  363  LVTSSSGLG--------LLFVWLMILLS  382
+
+
+>gnl|CDD|234609 PRK00068, PRK00068, hypothetical protein; Validated.
+Length=970
+
+ Score = 31.5 bits (72),  Expect = 1.0, Method: Composition-based stats.
+ Identities = 26/126 (21%), Positives = 44/126 (35%), Gaps = 36/126 (29%)
+
+Query  253  VLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTRLTLVG  312
+            VL     ++     + +L    R     + K+ +  P        A+Y   V  RL L  
+Sbjct  62   VLFIPVGLLVGGIVFISLWLAYRSRPVFVPKADSNDP-------VARYRAVVEKRLRLFL  114
+
+Query  313  AMYITFICLI-------------------------PEFMRD----AMKVPFYFGGTSLLI  343
+                +FI L+                         P+F +D    A K+PFY    S L+
+Sbjct  115  IGIPSFIGLLAGIFAQSYWYRIQLFLNGVDFGVKDPQFGKDLSFYAFKLPFYRSLLSYLL  174
+
+Query  344  VVVVIM  349
+            V++++ 
+Sbjct  175  VLLILA  180
+
+
+>gnl|CDD|185519 PTZ00219, PTZ00219, Sec61 alpha  subunit; Provisional.
+Length=474
+
+ Score = 29.6 bits (67),  Expect = 3.3, Method: Composition-based stats.
+ Identities = 15/82 (18%), Positives = 35/82 (43%), Gaps = 5/82 (6%)
+
+Query  250  PLYVLLYASAIIFFCFFYTALVFN-----PRETADNLKKSGAFVPGIRPGEQTAKYIDKV  304
+            P++ +LY   ++F C  ++           ++ A  LK  G  + G R      + +++ 
+Sbjct  359  PIHTILYIVFVLFSCALFSKTWIEVSGSSAKDVAKQLKDQGMGMVGYRDSSSMVRVLNRY  418
+
+Query  305  MTRLTLVGAMYITFICLIPEFM  326
+            +      G M I  + ++ +F+
+Sbjct  419  IPTAASFGGMCIGALTILADFL  440
+
+
+>gnl|CDD|235547 PRK05654, PRK05654, acetyl-CoA carboxylase subunit beta; Validated.
+Length=292
+
+ Score = 29.0 bits (66),  Expect = 4.4, Method: Composition-based stats.
+ Identities = 22/76 (29%), Positives = 29/76 (38%), Gaps = 27/76 (36%)
+
+Query  3    SGGALSRASIFALGIMPYISASI---------IIQLLTVVHPT---------------LA  38
+            SGGA  +  + +L  M   SA++          I +LT   PT               +A
+Sbjct  165  SGGARMQEGLLSLMQMAKTSAALKRLSEAGLPYISVLT--DPTTGGVSASFAMLGDIIIA  222
+
+Query  39   EIKKE-GEAGRRKISQ  53
+            E K   G AG R I Q
+Sbjct  223  EPKALIGFAGPRVIEQ  238
+
+
+>gnl|CDD|236293 PRK08568, PRK08568, preprotein translocase subunit SecY; Reviewed.
+Length=462
+
+ Score = 29.0 bits (66),  Expect = 4.6, Method: Composition-based stats.
+ Identities = 78/405 (19%), Positives = 150/405 (37%), Gaps = 69/405 (17%)
+
+Query  6    ALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIF  65
+            A S  ++  LGI P ++A II+QLL  V   L  +       R       +   +V+   
+Sbjct  67   AGSFGTLLQLGIGPIVTAGIILQLL--VGSKLINLDLSDPEDRALFQGLQKLLAIVMIAL  124
+
+Query  66   QSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISII  125
+            ++          P                  + L  G + ++ L E +++ GIG+GIS+ 
+Sbjct  125  EAAPFVLAGAFGPATGLAS---TPLLALLIFLQLFLGGILIILLDELVSKWGIGSGISLF  181
+
+Query  126  IFAGI------------------VAGLPPA-IGHTIEQARQGDLHFLLLLLVAVLVFAVT  166
+            I AG+                    G  PA             L      L+ + +    
+Sbjct  182  ILAGVSQTIFVGLFNWLTGGQGLPVGFIPALFSAITSGNLTLALLLTTRGLLLLGLITTI  241
+
+Query  167  FFVVF---MERGQRRIVVNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSI---IL  220
+               +    +E  +  I +++ + +  R  Y       PLK     V+P I   ++   I 
+Sbjct  242  VIFLIVVYLESMRVEIPLSHGRVRGARGRY-------PLKFIYVSVLPVILVRALQANIQ  294
+
+Query  221  FPGTIAS-----WFG--GGTGWNWLTTISMYLQPGQ--------PLYVLLYASAIIFFCF  265
+              G +         G    +G + ++ ++ YL P          PL  ++YA  +I    
+Sbjct  295  LFGQLLQRLGIPILGTYDSSGASPISGLAYYLSPPHSPYDWIQDPLRAIIYALFMIVLSI  354
+
+Query  266  FYTALVF------NPRETADNLKKSGAFVPGIRPGEQT-AKYIDKVMTRLTLVGAMYITF  318
+             + A+ +      +P+  A  L+ SG  +PG R   +   K +++ +  +T++G   +  
+Sbjct  355  LF-AIFWVETTGLDPKTQARQLQNSGMQIPGFRRNPKVIEKVLERYIPPVTVIGGAIVGL  413
+
+Query  319  ICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDF---MAQVQTLMM  360
+            + ++ + +          GGT LL+ V ++      +A+ Q + M
+Sbjct  414  LAVLADLLG------ALGGGTGLLLTVSIVYQLYEEIAREQLMEM  452
+
+
+>gnl|CDD|223187 COG0109, CyoE, Polyprenyltransferase (cytochrome oxidase assembly 
+factor) [Posttranslational modification, protein turnover, 
+chaperones].
+Length=304
+
+ Score = 28.7 bits (65),  Expect = 5.0, Method: Composition-based stats.
+ Identities = 14/85 (16%), Positives = 29/85 (34%), Gaps = 12/85 (14%)
+
+Query  200  LPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWL------------TTISMYLQP  247
+            LP+          I   ++ L P ++     G  G+ +L                +Y + 
+Sbjct  211  LPVVKGERRTKRQILLYTLALAPVSLLLALLGYVGYLYLVVATLLGAWFLALAWKLYRKD  270
+
+Query  248  GQPLYVLLYASAIIFFCFFYTALVF  272
+             +     L+  +II+    + AL+ 
+Sbjct  271  DRKWARKLFKYSIIYLALLFVALLI  295
+
+
+>gnl|CDD|213358 cd12824, ZntB-like, Salmonella typhimurium Zn2+ transporter ZntB-like 
+subfamily.  A bacterial subfamily belonging to the 
+Escherichia coli CorA-Salmonella typhimurium ZntB_like family 
+(EcCorA_ZntB-like) family of the MIT superfamily of essential 
+membrane proteins involved in transporting divalent cations 
+(uptake or efflux) across membranes. This subfamily includes 
+the Zn2+ transporter Salmonella typhimurium ZntB which 
+mediates the efflux of Zn2+ (and Cd2+). Structures of the intracellular 
+domain of Vibrio parahaemolyticus and Salmonella 
+typhimurium ZntB form funnel-shaped homopentamers, the tip 
+of the funnel is formed from two C-terminal transmembrane (TM) 
+helices from each monomer, and the large opening of the funnel 
+from the N-terminal cytoplasmic domains. The GMN signature 
+motif of the MIT superfamily occurs just after TM1, mutation 
+within this motif is known to abolish Mg2+ transport through 
+Salmonella typhimurium CorA, and Mrs2p. Natural variants 
+such as GVN and GIN, which occur in proteins belonging to 
+this subfamily, may be associated with the transport of different 
+divalent cations, such as zinc and cadmium. The functional 
+diversity of MIT transporters may also be due to minor 
+structural differences regulating gating, substrate selection, 
+and transport.
+Length=290
+
+ Score = 28.3 bits (63),  Expect = 7.5, Method: Composition-based stats.
+ Identities = 16/53 (30%), Positives = 22/53 (42%), Gaps = 6/53 (11%)
+
+Query  59   TLVLAIFQSIGIATGL--PNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWL  109
+            T+V  +F  +   TGL   N+ G+   V +P     F  V  L      L WL
+Sbjct  234  TVVATVFLPLTFITGLLGMNVGGIPD-VESP---MGFWWVTGLSILVALLAWL  282
+
+
+>gnl|CDD|250658 pfam01490, Aa_trans, Transmembrane amino acid transporter protein. 
+ This transmembrane region is found in many amino acid 
+transporters including UNC-47 and MTR. UNC-47 encodes a vesicular 
+amino butyric acid (GABA) transporter, (VGAT). UNC-47 
+is predicted to have 10 transmembrane domains. MTR is a N system 
+amino acid transporter system protein involved in methyltryptophan 
+resistance. Other members of this family include 
+proline transporters and amino acid permeases.
+Length=405
+
+ Score = 28.4 bits (64),  Expect = 7.9, Method: Composition-based stats.
+ Identities = 10/65 (15%), Positives = 22/65 (34%), Gaps = 0/65 (0%)
+
+Query  10   ASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIG  69
+              +  +G++   +  ++++    V  T    K  G+ G R      R   L   +    G
+Sbjct  38   ILLVIVGLISLYTLHLLVRCSKEVDVTGKRNKSYGDLGYRLFGPKGRLLILFAILLNLFG  97
+
+Query  70   IATGL  74
+            +    
+Sbjct  98   VCISY  102
+
+
+>gnl|CDD|227318 COG4985, COG4985, ABC-type phosphate transport system, auxiliary 
+component [Inorganic ion transport and metabolism].
+Length=289
+
+ Score = 28.0 bits (62),  Expect = 7.9, Method: Composition-based stats.
+ Identities = 8/16 (50%), Positives = 11/16 (69%), Gaps = 0/16 (0%)
+
+Query  224  TIASWFGGGTGWNWLT  239
+            T+ +WF  G+ W WLT
+Sbjct  7    TMLNWFKSGSPWIWLT  22
+
+
+>gnl|CDD|233040 TIGR00595, priA, primosomal protein N'.  All proteins in this 
+family for which functions are known are components of the 
+primosome which is involved in replication, repair, and recombination.This 
+family is based on the phylogenomic analysis 
+of JA Eisen (1999, Ph.D. Thesis, Stanford University) [DNA metabolism, 
+DNA replication, recombination, and repair].
+Length=505
+
+ Score = 28.1 bits (63),  Expect = 8.6, Method: Composition-based stats.
+ Identities = 11/50 (22%), Positives = 18/50 (36%), Gaps = 7/50 (14%)
+
+Query  25   IIIQLLTVVHPTLAEIKKEG-------EAGRRKISQYTRYGTLVLAIFQS  67
+            +IIQ     HP +              E  +R+   Y  +  L+  IF+ 
+Sbjct  374  VIIQTYNPNHPAIQAALTGDYEAFYEQELAQRRALNYPPFTRLIRLIFRG  423
+
+
+>gnl|CDD|177102 MTH00016, CYTB, cytochrome b; Validated.
+Length=378
+
+ Score = 28.1 bits (63),  Expect = 8.9, Method: Composition-based stats.
+ Identities = 18/57 (32%), Positives = 26/57 (46%), Gaps = 5/57 (9%)
+
+Query  61   VLAIFQSIGIATGLPNMPG--MQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITE  115
+            V+A+F SI I   LP +     +GL   P     F     LV+  + L W+G +  E
+Sbjct  292  VVAMFASILILFFLPFIFKQKFRGLSFYPLNQILFW---LLVSNFLLLTWIGGRPVE  345
+
+
+
+Lambda      K        H        a         alpha
+   0.328    0.142    0.424    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 1883101572

@@ -1,0 +1,84 @@
+#***********************************************************************************
+#
+PIPELINE= Report HTML da Bactéria do curso 
+#
+#***********************************************************************************
+#===================================================================================
+PHASE= Upload XML
+program = upload_xml.pl
+xml_file = bacteria.xml
+#===================================================================================
+                              # _||_ #
+                              # \  / #
+                              #  \/  #
+#===================================================================================
+PHASE= Report HTML
+program = report_html_db.pl
+#===================================================================================
+organism_name=Bacteria do curso
+uniquename=Bacteria
+type_target_class_id=81525
+pipeline=4528
+fasta_dir = seq
+aa_fasta_dir = orfs_aa
+nt_fasta_dir = orfs_nt
+fasta_file = bacteria.fasta
+aa_orf_file = saida_db/annotation_glimmer3.pl_log_10/genes_aa.fasta
+nt_orf_file = saida_db/annotation_glimmer3.pl_log_10/genes_nt.fasta
+alienhunter_dir = saida_db/annotation_alienhunter.pl_log_6/
+alienhunter_output_file = alienhunter.txt_Bacteria
+bigpi_dir = saida_db/annotation_bigpi.pl_log_13/
+bigpi_output_file = Bacteria.html
+blast_dir_list=saida_db/annotation_blast.pl_log_21/
+blast_output_dir = blastp.txt
+dgpi_dir = saida_db/annotation_dgpi.pl_log_15/
+dgpi_output_file = dgpi.txt 
+hmmer_dir = saida_db/annotation_hmmer.pl_log_12/
+hmmer_output_file = hmmer.txt
+infernal_dir = saida_db/annotation_infernal.pl_log_7/
+infernal_output_file = infernal.txt_Bacteria
+interpro_dir = saida_db/annotation_interpro.pl_log_23/
+intepro_output_file = interpro.txt
+mreps_dir = saida_db/annotation_mreps.pl_log_4/
+mreps_output_file = Bacteria_mreps.txt
+orthology_dir = saida_db/annotation_orthology.pl.pl_log_24/
+orthology_output_file = eggnog.txt
+pathways_dir = saida_db/annotation_pathways.pl_log_25/
+pathways_output_file = kegg.txt
+phobius_dir = saida_db/annotation_phobius.pl_log_18/
+phobius_output_dir = phobius.txt
+predgpi_dir = saida_db/annotation_predgpi.pl_log_14/
+predgpi_outpur_dir = predgpi.txt
+rbsfinder_dir = saida_db/annotation_rbsfinder.pl_log_16/
+rbsfinder_output_file = Bacteria.txt
+rnammer_dir = saida_db/annotation_rnammer.pl_log_8/
+rnammer_output_file = Bacteria_rnammer.fasta
+rpsblast_dir = saida_db/annotation_rpsblast.pl_log_22/
+rpsblast_output_file = rpsblast.txt
+signalp_dir = saida_db/annotation_signalP.pl_log_20/
+signalp_output_file = signalp.txt
+skews_dir = saida_db/annotation_skews.pl_log_11/
+skews_output_file = Bacteria_GC_cumul.txt
+string_dir = saida_db/annotation_string.pl_log_3/
+string_output_file = Bacteria_string.txt
+tcdb_dir = saida_db/annotation_tcdb.pl_log_17/
+tcdb_output_file = tcdb.txt
+tmhmm_dir = saida_db/annotation_tmhmm.pl_log_19/
+tmhmm_output_file = tmhmm.txt
+transterm_dir = saida_db/annotation_transterm.pl_log_9/
+transterm_output_file = Bacteria.txt
+trf_dir = saida_db/annotation_trf.pl_log_2/
+trf_output_file = Bacteria_trf.txt
+trna_dir = saida_db/annotation_trna.pl_log_5/
+trna_output_file = Bacteria_trna.txt
+report_pathways_dir = kegg_report_db/
+report_go_dir=go_report_db/
+go_file=go_mapping.html
+report_eggnog_dir= eggnog_report_db/
+database_code_list=INSD
+TCDB_file=/usr/local/genome/databases/TCDB/TCDB_ID_list
+ko_file= /usr/local/genome/databases/kegg/ko/ko
+homepage_text_file = example.json
+homepage_banner_image = /home/wendelhlc/Downloads/rsz_platypus256x256.png
+
+#===================================================================================

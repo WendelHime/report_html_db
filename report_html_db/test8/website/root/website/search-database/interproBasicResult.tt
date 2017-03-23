@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+		</div>
+	</div>
+	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+		<div class="row">
+			<div class="col-md-3">
+				<p>InterPro identifier:</p>
+			</div>
+			<div class="col-md-9">
+				<p><a href="http://www.ebi.ac.uk/interpro/entry/[% result.interpro_id %]">[% result.interpro_id %]</a></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>InterPro description:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.description_interpro %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Database identifier and database:</p>
+			</div>
+			<div class="col-md-9">
+				<p><a href="http://www.ebi.ac.uk/interpro/search?q=[% result.DB_id %]">[% result.DB_id %]</a> ([% result.DB_name %])</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Database match description:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.description %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>GO process:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.evidence_process %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>GO function:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.evidence_function %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>GO component:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.evidence_component %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Match score:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.score %]</p>
+			</div>
+		</div>
+	</div>
+</div>

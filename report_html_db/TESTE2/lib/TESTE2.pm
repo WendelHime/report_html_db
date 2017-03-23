@@ -20,7 +20,12 @@ use Catalyst qw/
     -Debug
     ConfigLoader
     Static::Simple
+    Session
+	Session::State::Cookie
+	Session::Store::FastMmap
+	FillInForm
 /;
+
 
 extends 'Catalyst';
 
@@ -40,6 +45,10 @@ __PACKAGE__->config(
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header => 1, # Send X-Catalyst header
+    'Controller::SearchDatabase' => {
+    	session_name => '_token',
+    	request_name => '_token',
+    }
 );
 
 # Start the application

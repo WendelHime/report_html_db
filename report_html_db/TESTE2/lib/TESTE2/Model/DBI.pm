@@ -546,9 +546,9 @@ sub tRNA_search {
 	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-	use Models::Application::TRNASearch;
+	use Report_HTML_DB::Models::Application::TRNASearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Models::Application::TRNASearch->new(
+		my $result = Report_HTML_DB::Models::Application::TRNASearch->new(
 			id         => $rows[$i][0],
 			sequence   => $rows[$i][2],
 			amino_acid => $rows[$i][1],
@@ -661,9 +661,9 @@ sub trf_search {
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
-	use Models::Application::TRFSearch;
+	use Report_HTML_DB::Models::Application::TRFSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Models::Application::TRFSearch->new(
+		my $result = Report_HTML_DB::Models::Application::TRFSearch->new(
 			contig      => $rows[$i][0],
 			start       => $rows[$i][2],
 			end         => $rows[$i][1],
@@ -775,9 +775,9 @@ sub ncRNA_search {
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
-	use Models::Application::NcRNASearch;
+	use Report_HTML_DB::Models::Application::NcRNASearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Models::Application::NcRNASearch->new(
+		my $result = Report_HTML_DB::Models::Application::NcRNASearch->new(
 			id           => $rows[$i][0],
 			contig       => $rows[$i][1],
 			start        => $rows[$i][3],
@@ -876,9 +876,9 @@ sub transcriptional_terminator_search {
 
 	my @list    = ();
 	my @columns = @{ $sth->{NAME} };
-	use Models::Application::TranscriptionalTerminator;
+	use Report_HTML_DB::Models::Application::TranscriptionalTerminator;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Models::Application::TranscriptionalTerminator->new(
+		my $result = Report_HTML_DB::Models::Application::TranscriptionalTerminator->new(
 			contig => $rows[$i][0],
 			start  => $rows[$i][1],
 			end    => $rows[$i][2]
@@ -974,9 +974,9 @@ sub rbs_search {
 	my @list = ();
 
 	my @columns = @{ $sth->{NAME} };
-	use Models::Application::RBSSearch;
+	use Report_HTML_DB::Models::Application::RBSSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Models::Application::RBSSearch->new(
+		my $result = Report_HTML_DB::Models::Application::RBSSearch->new(
 			contig => $rows[$i][0],
 			start  => $rows[$i][1],
 			end    => $rows[$i][2]
@@ -1082,9 +1082,9 @@ sub alienhunter_search {
 	my @list = ();
 
 	my @columns = @{ $sth->{NAME} };
-	use Models::Application::AlienHunterSearch;
+	use Report_HTML_DB::Models::Application::AlienHunterSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Models::Application::AlienHunterSearch->new(
+		my $result = Report_HTML_DB::Models::Application::AlienHunterSearch->new(
 			id     => $rows[$i][0],
 			contig => $rows[$i][1],
 			start  => $rows[$i][2],
@@ -1264,9 +1264,9 @@ sub searchGene {
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
-	use Models::Application::Feature;
+	use Report_HTML_DB::Models::Application::Feature;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $feature = Models::Application::Feature->new(
+		my $feature = Report_HTML_DB::Models::Application::Feature->new(
 			feature_id => $rows[$i][0],
 			uniquename => $rows[$i][2],
 			name       => $rows[$i][1],
@@ -1315,9 +1315,9 @@ sub geneBasics {
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
 
-	use Models::Application::Feature;
+	use Report_HTML_DB::Models::Application::Feature;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $feature = Models::Application::Feature->new(
+		my $feature = Report_HTML_DB::Models::Application::Feature->new(
 			feature_id => $rows[$i][0],
 			name       => $rows[$i][1],
 			uniquename => $rows[$i][2],
@@ -1449,9 +1449,9 @@ sub subevidences {
 	);
 
 	my @list = ();
-	use Models::Application::Subevidence;
+	use Report_HTML_DB::Models::Application::Subevidence;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $subevidence = Models::Application::Subevidence->new(
+		my $subevidence = Report_HTML_DB::Models::Application::Subevidence->new(
 			id                  => $rows[$i][0],
 			type                => $rows[$i][1],
 			number              => $rows[$i][2],

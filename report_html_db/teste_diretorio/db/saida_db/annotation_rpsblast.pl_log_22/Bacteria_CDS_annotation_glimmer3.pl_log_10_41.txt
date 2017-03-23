@@ -1,0 +1,242 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_log_10_41
+
+Length=84
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|235532  PRK05610, rpsQ, 30S ribosomal protein S17; Reviewed   139     6e-44
+gnl|CDD|213841  TIGR03635, S17_bact, 30S ribosomal protein S17. T...  124     3e-38
+gnl|CDD|223264  COG0186, RpsQ, Ribosomal protein S17 [Translation...  115     2e-34
+gnl|CDD|109426  pfam00366, Ribosomal_S17, Ribosomal protein S17       99.3    2e-28
+gnl|CDD|177064  CHL00142, rps17, ribosomal protein S17; Validated     98.6    7e-28
+gnl|CDD|236296  PRK08572, rps17p, 30S ribosomal protein S17P; Rev...  75.3    1e-18
+gnl|CDD|132669  TIGR03630, arch_S17P, archaeal ribosomal protein ...  65.0    1e-14
+gnl|CDD|240326  PTZ00241, PTZ00241, 40S ribosomal protein S11; Pr...  44.7    4e-07
+gnl|CDD|237237  PRK12860, PRK12860, transcriptional activator Flh...  27.8    0.54 
+gnl|CDD|237181  PRK12722, PRK12722, transcriptional activator Flh...  27.2    0.93 
+gnl|CDD|203227  pfam05280, FlhC, Flagellar transcriptional activa...  26.9    1.1  
+gnl|CDD|234954  PRK01424, PRK01424, S-adenosylmethionine:tRNA rib...  26.4    2.1  
+gnl|CDD|234390  TIGR03904, SAM_YgiQ, uncharacterized radical SAM ...  25.1    4.5  
+gnl|CDD|222991  PHA03119, PHA03119, helicase-primase primase subu...  25.3    5.4  
+
+
+>gnl|CDD|235532 PRK05610, rpsQ, 30S ribosomal protein S17; Reviewed.
+Length=84
+
+ Score = 139 bits (354),  Expect = 6e-44, Method: Composition-based stats.
+ Identities = 57/82 (70%), Positives = 65/82 (79%), Gaps = 0/82 (0%)
+
+Query  1   MTDKIRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVE  60
+                +TLQGRVVSDKM+K+IVV +ER+VKHPLYGK +KR+ K H HDENNE  IGDVV 
+Sbjct  2   ERMPRKTLQGRVVSDKMDKTIVVLVERRVKHPLYGKIVKRSKKYHAHDENNEAKIGDVVR  61
+
+Query  61  IRETRPLSKTKSWTLVRVVEKA  82
+           I ETRPLSKTK W LV +VEKA
+Sbjct  62  IMETRPLSKTKRWRLVEIVEKA  83
+
+
+>gnl|CDD|213841 TIGR03635, S17_bact, 30S ribosomal protein S17.  This model describes 
+the bacterial ribosomal small subunit protein S17, 
+while excluding cytosolic eukaryotic homologs and archaeal homologs. 
+The model finds many, but not, chloroplast and mitochondrial 
+counterparts to bacterial S17 [Protein synthesis, 
+Ribosomal proteins: synthesis and modification].
+Length=71
+
+ Score = 124 bits (315),  Expect = 3e-38, Method: Composition-based stats.
+ Identities = 52/70 (74%), Positives = 59/70 (84%), Gaps = 0/70 (0%)
+
+Query  6   RTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETR  65
+           +TLQG VVSDKM+K+IVV +ER+VKHPLYGK +KRT K H HDENNEC +GDVV I ETR
+Sbjct  2   KTLQGVVVSDKMDKTIVVLVERRVKHPLYGKIVKRTKKYHAHDENNECKVGDVVRIIETR  61
+
+Query  66  PLSKTKSWTL  75
+           PLSKTK W L
+Sbjct  62  PLSKTKRWRL  71
+
+
+>gnl|CDD|223264 COG0186, RpsQ, Ribosomal protein S17 [Translation, ribosomal 
+structure and biogenesis].
+Length=87
+
+ Score = 115 bits (291),  Expect = 2e-34, Method: Composition-based stats.
+ Identities = 47/82 (57%), Positives = 63/82 (77%), Gaps = 0/82 (0%)
+
+Query  1   MTDKIRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVE  60
+           +  + R L+G VVSDKM+K++VV +ERKV HP YGK+++R+ K H HDE NE  +GD+V 
+Sbjct  4   LRVRGRVLEGVVVSDKMDKTVVVEVERKVYHPKYGKYVRRSKKYHAHDECNEAKVGDIVR  63
+
+Query  61  IRETRPLSKTKSWTLVRVVEKA  82
+           I ETRPLSKTK + +V +VEKA
+Sbjct  64  IAETRPLSKTKRFVVVEIVEKA  85
+
+
+>gnl|CDD|109426 pfam00366, Ribosomal_S17, Ribosomal protein S17.  
+Length=69
+
+ Score = 99.3 bits (248),  Expect = 2e-28, Method: Composition-based stats.
+ Identities = 42/69 (61%), Positives = 49/69 (71%), Gaps = 0/69 (0%)
+
+Query  10  GRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETRPLSK  69
+           G VVSDKMEK+IVV +ER V HP YGK+ KRT K   HD      +GDVV+I E RPLSK
+Sbjct  1   GVVVSDKMEKTIVVRVERLVPHPKYGKYEKRTKKYPAHDPPCFRKVGDVVKIGECRPLSK  60
+
+Query  70  TKSWTLVRV  78
+           TK + +VRV
+Sbjct  61  TKRFRVVRV  69
+
+
+>gnl|CDD|177064 CHL00142, rps17, ribosomal protein S17; Validated.
+Length=84
+
+ Score = 98.6 bits (246),  Expect = 7e-28, Method: Composition-based stats.
+ Identities = 46/80 (58%), Positives = 57/80 (71%), Gaps = 0/80 (0%)
+
+Query  5   IRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRET  64
+           ++   G VVS+KM K+IVVA+E + KHP+YGK I +T K  VHDE NEC IGD V I ET
+Sbjct  3   VKEKIGIVVSNKMNKTIVVAVENRYKHPIYGKIITKTKKYLVHDEENECNIGDQVLIEET  62
+
+Query  65  RPLSKTKSWTLVRVVEKAIL  84
+           RPLSKTK W L  ++ K+ L
+Sbjct  63  RPLSKTKRWILKEILSKSSL  82
+
+
+>gnl|CDD|236296 PRK08572, rps17p, 30S ribosomal protein S17P; Reviewed.
+Length=108
+
+ Score = 75.3 bits (186),  Expect = 1e-18, Method: Composition-based stats.
+ Identities = 36/81 (44%), Positives = 50/81 (62%), Gaps = 5/81 (6%)
+
+Query  6    RTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNEC---GIGDVVEIR  62
+            + L+G VVSDKM K++VV  E     P Y ++ KR +++H H  N  C    +GD V+I 
+Sbjct  30   QVLEGTVVSDKMHKTVVVEREYLHYVPKYERYEKRRSRIHAH--NPPCIDAKVGDKVKIA  87
+
+Query  63   ETRPLSKTKSWTLVRVVEKAI  83
+            E RPLSKTKS+ +V   E+A 
+Sbjct  88   ECRPLSKTKSFVVVEKKERAE  108
+
+
+>gnl|CDD|132669 TIGR03630, arch_S17P, archaeal ribosomal protein S17P.  This 
+model describes exclusively the archaeal ribosomal protein S17P. 
+It excludes the homologous ribosomal protein S17 from bacteria, 
+and is not intended for use on eukaryotic sequences, 
+where some instances of ribosomal proteins S11 score above 
+the trusted cutoff [Protein synthesis, Ribosomal proteins: 
+synthesis and modification].
+Length=102
+
+ Score = 65.0 bits (159),  Expect = 1e-14, Method: Composition-based stats.
+ Identities = 34/77 (44%), Positives = 47/77 (61%), Gaps = 5/77 (6%)
+
+Query  6    RTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNEC---GIGDVVEIR  62
+            + L+G VVSDKM K++VV  E       Y ++ +R +K+H H  N  C     GD+V I 
+Sbjct  28   QILEGVVVSDKMNKTVVVEREYLYYDRKYERYERRRSKIHAH--NPPCIDVKEGDIVIIG  85
+
+Query  63   ETRPLSKTKSWTLVRVV  79
+            ETRPLSKTKS+ ++  V
+Sbjct  86   ETRPLSKTKSFVVLGKV  102
+
+
+>gnl|CDD|240326 PTZ00241, PTZ00241, 40S ribosomal protein S11; Provisional.
+Length=158
+
+ Score = 44.7 bits (106),  Expect = 4e-07, Method: Composition-based stats.
+ Identities = 27/81 (33%), Positives = 45/81 (56%), Gaps = 5/81 (6%)
+
+Query  6    RTLQGRVVSDKMEKSIVVAIERKVKH--PLYGKFIKRTTKLHVHDENN-ECGIGDVVEIR  62
+            R L+G V+S KM+++I+  I R   H    Y ++ KR   + VH     +   GD+V + 
+Sbjct  69   RILRGVVISTKMKRTII--IRRDYLHYVKKYNRYEKRHKNIPVHCSPCFDVKEGDIVVVG  126
+
+Query  63   ETRPLSKTKSWTLVRVVEKAI  83
+            + RPLSKT  + +++V +  I
+Sbjct  127  QCRPLSKTVRFNVLKVEKNEI  147
+
+
+>gnl|CDD|237237 PRK12860, PRK12860, transcriptional activator FlhC; Provisional.
+Length=189
+
+ Score = 27.8 bits (62),  Expect = 0.54, Method: Composition-based stats.
+ Identities = 8/18 (44%), Positives = 12/18 (67%), Gaps = 0/18 (0%)
+
+Query  67   LSKTKSWTLVRVVEKAIL  84
+            L  T++WTLVR  +  +L
+Sbjct  115  LDLTRAWTLVRFFDAGML  132
+
+
+>gnl|CDD|237181 PRK12722, PRK12722, transcriptional activator FlhC; Provisional.
+Length=187
+
+ Score = 27.2 bits (61),  Expect = 0.93, Method: Composition-based stats.
+ Identities = 10/18 (56%), Positives = 14/18 (78%), Gaps = 0/18 (0%)
+
+Query  67   LSKTKSWTLVRVVEKAIL  84
+            LS T++WTLVR V+  +L
+Sbjct  115  LSLTRAWTLVRFVDSGML  132
+
+
+>gnl|CDD|203227 pfam05280, FlhC, Flagellar transcriptional activator (FlhC). 
+ This family consists of several bacterial flagellar transcriptional 
+activator (FlhC) proteins. FlhC combines with FlhD 
+to form a regulatory complex in Escherichia coli, this complex 
+has been shown to be a global regulator involved in many 
+cellular processes as well as a flagellar transcriptional activator.
+Length=176
+
+ Score = 26.9 bits (60),  Expect = 1.1, Method: Composition-based stats.
+ Identities = 11/27 (41%), Positives = 16/27 (59%), Gaps = 1/27 (4%)
+
+Query  59   VEIRETRP-LSKTKSWTLVRVVEKAIL  84
+            +   E  P LS T++WTLVR  +  +L
+Sbjct  106  IPADELEPVLSLTRAWTLVRFFDSGML  132
+
+
+>gnl|CDD|234954 PRK01424, PRK01424, S-adenosylmethionine:tRNA ribosyltransferase-isomerase; 
+Provisional.
+Length=366
+
+ Score = 26.4 bits (58),  Expect = 2.1, Method: Composition-based stats.
+ Identities = 11/33 (33%), Positives = 18/33 (55%), Gaps = 0/33 (0%)
+
+Query  17  MEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDE  49
+           + K+I + + +K+    +  F K   KLHV DE
+Sbjct  67  LGKNITINLNQKLSDDSWSAFAKPARKLHVGDE  99
+
+
+>gnl|CDD|234390 TIGR03904, SAM_YgiQ, uncharacterized radical SAM protein YgiQ. 
+ Members of this family are fairly widespread uncharacterized 
+radical SAM family proteins, many of which are designated 
+YgiQ [Unknown function, Enzymes of unknown specificity].
+Length=559
+
+ Score = 25.1 bits (56),  Expect = 4.5, Method: Composition-based stats.
+ Identities = 9/24 (38%), Positives = 15/24 (63%), Gaps = 0/24 (0%)
+
+Query  9    QGRVVSDKMEKSIVVAIERKVKHP  32
+            QGR++  + E+SI+   +R  K P
+Sbjct  317  QGRIIQSRSEESILREAKRLTKMP  340
+
+
+>gnl|CDD|222991 PHA03119, PHA03119, helicase-primase primase subunit; Provisional.
+Length=1085
+
+ Score = 25.3 bits (55),  Expect = 5.4, Method: Composition-based stats.
+ Identities = 15/71 (21%), Positives = 33/71 (46%), Gaps = 2/71 (3%)
+
+Query  8    LQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRET--R  65
+            L+   ++D      VV+     +  +   F    ++L++ D  ++  I DVV + E   R
+Sbjct  367  LRAVTLTDIALIPDVVSASSLGRSAIENFFSHVRSRLNISDYISKNVICDVVVLNEKLGR  426
+
+Query  66   PLSKTKSWTLV  76
+              + +K++ +V
+Sbjct  427  KYAASKTYPIV  437
+
+
+
+Lambda      K        H        a         alpha
+   0.319    0.134    0.378    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 286182176

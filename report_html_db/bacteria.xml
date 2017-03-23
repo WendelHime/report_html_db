@@ -2,7 +2,7 @@
 <multi_sequence  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
       xsi:noNamespaceSchemaLocation='http://www.coccidia.icb.usp.br/xml/2005/xsd/egene2.xsd'>
 <sequence>
-	<name>Bacteria_upload</name>
+	<name>Bacteria</name>
 	<sequence_type>n</sequence_type>
 	<sequence_source>prokaryotic_genome</sequence_source>
 	<project_name>"Bacteria_for_course"</project_name>
