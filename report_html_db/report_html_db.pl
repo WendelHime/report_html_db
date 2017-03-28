@@ -537,12 +537,12 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-footer", "Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose ""Search"" button has been pressed will be searched.", ""),
         ("global-analyses-go-terms-mapping", "GO terms mapping", ""),
         ("global-analyses-expansible-tree", "Expansible tree", "data/GO_mapping.xml"),
-        ("global-analyses-table-ontologies", "Table of ontologies", "data/GO_mapping.html"),
+        ("global-analyses-table-ontologies", "Table of ontologies", "go_report_db/go_mapping.html"),
         ("global-analyses-go-terms-mapping-footer", "NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to ""Table of ontologies"" to visualize the results.", ""),
         ("global-analyses-eggNOG", "eggNOG", ""),
-        ("global-analyses-orthology-analysis-classes", "Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups", "data/MN7_eggnog_report/classes.html"),
+        ("global-analyses-orthology-analysis-classes", "Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups", "eggnog_report_db/classes.html"),
         ("global-analyses-kegg-pathways", "KEGG Pathways", ""),
-        ("global-analyses-kegg-report", "Enzyme by enzyme report of KEGG results", "data/MN7_kegg_report/classes.html"),
+        ("global-analyses-kegg-report", "Enzyme by enzyme report of KEGG results", "kegg_report_db/classes.html"),
         ("global-analyses-kegg-report-page", "Map by map report of KEGG results", "data/MN7_kegg_global/html_page/classes.html"),
         ("global-analyses-comparative-metabolic-reconstruction", "Comparative Metabolic Reconstruction", ""),
         ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)", "data/MN7_X_Pasym/html_page/classes.html"),
@@ -2173,7 +2173,7 @@ sub tRNA_search {
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
 	my \$query =
-"select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon "
+"select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon, COUNT(*) OVER() AS total "
 	  . "from feature_relationship r "
 	  . "join cvterm c on (r.type_id = c.cvterm_id) "
 	  . "join featureloc l on (r.subject_id = l.feature_id) "
@@ -4571,7 +4571,7 @@ sub trnaSearch_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getTRNA( \%hash );
+	my \$response = \$searchDBClient->getTRNA( \\\%hash );
 	standardStatusOk(
 		\$self, \$c, \$response->{response}, \$response->{total}, \$hash{pageSize},
 		\$hash{offset}
@@ -5159,17 +5159,26 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 	\$c->response->body(\$file);
 	\$c->response->header('Content-Disposition' => 'attachment; filename='.\$filename);
 	close \$FILEHANDLER;
+}
 
-	#####
-	#
-	#
-	# Recebe por parametro o tipo de download desejado
-	# Faz consulta no banco de dados SQLite pesquisando pelo arquivo
-	# Recebe string da coluna dos resultados
-	# Abre arquivo e coloca no status ou coloca no body do response
-	#
-	#
-	#####
+sub reports : Path("reports") : CaptureArgs(3) {
+	my ( \$self, \$c, \$type, \$file, \$file2 ) = \@_;
+	my \$filepath = "\$type/\$file";
+	\$filepath .= "/\$file2" if \$file2;
+	use File::Basename;
+
+	open( my \$FILEHANDLER,
+		"<", dirname(__FILE__) . "/../../../root/" . \$filepath );
+	my \$content = "";
+	while ( my \$line = <\$FILEHANDLER> ) {
+		\$line =~ s/href="/href="\\/reports\\/\$type\\//
+		  if ( \$line =~ /href="/ && \$line !~ /href="http\\:\\/\\// );
+		\$content .= \$line . "\\n";
+	}
+	close(\$FILEHANDLER);
+	\$content =~ s/src="/src="\\/\$type\\//igm;
+	\$content =~ s/HREF="/HREF="\\/\$type\\//g;
+	\$c->response->body(\$content);
 }
 
 =head2 default
@@ -5839,6 +5848,8 @@ CONTENTGLOBALANALYSES
         [% INCLUDE '$lowCaseName/global-analyses/_content.tt' %]
     </div>
 </div>
+<script type="text/javascript" src="/assets/js/site-client.js"></script>
+<script type="text/javascript" src="/assets/js/action.js"></script>
 CONTENTGLOBALANALYSESINDEX
 	},
 	"help" => {

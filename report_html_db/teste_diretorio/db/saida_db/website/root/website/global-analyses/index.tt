@@ -4,3 +4,5 @@
         [% INCLUDE 'website/global-analyses/_content.tt' %]
     </div>
 </div>
+<script type="text/javascript" src="/assets/js/site-client.js"></script>
+<script type="text/javascript" src="/assets/js/action.js"></script>

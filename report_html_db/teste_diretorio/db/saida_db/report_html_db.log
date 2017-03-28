@@ -986,11 +986,17 @@ Value:	annotation_alienhunter.pl_log_6/alienhunter.txt_Bacteria
 Key:	annotation_rbsfinder.pl_log_16
 Value:	annotation_rbsfinder.pl_log_16/Bacteria.txt
 
-Key:	annotation_glimmer3.pl_log_10
-Value:	annotation_glimmer3.pl_log_10/glimmer3.txt
+Key:	report_pathways
+Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
 
-Key:	annotation_trf.pl_log_2
-Value:	annotation_trf.pl_log_2/Bacteria_trf.txt
+Key:	annotation_infernal.pl_log_7
+Value:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
+
+Key:	report_eggnog
+Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db/classes.html;
+
+Key:	report_go
+Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
 
 Key:	annotation_transterm.pl_log_9
 Value:	annotation_transterm.pl_log_9/Bacteria.txt
@@ -998,23 +1004,17 @@ Value:	annotation_transterm.pl_log_9/Bacteria.txt
 Key:	annotation_mreps.pl_log_4
 Value:	annotation_mreps.pl_log_4/Bacteria_mreps.txt
 
-Key:	annotation_infernal.pl_log_7
-Value:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
-
-Key:	annotation_trna.pl_log_5
-Value:	annotation_trna.pl_log_5/Bacteria_trna.txt
-
-Key:	report_eggnog
-Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db/classes.html;
+Key:	annotation_trf.pl_log_2
+Value:	annotation_trf.pl_log_2/Bacteria_trf.txt
 
 Key:	annotation_rnammer.pl_log_8
 Value:	annotation_rnammer.pl_log_8/Bacteria_rnammer.gff
 
-Key:	report_pathways
-Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
+Key:	annotation_trna.pl_log_5
+Value:	annotation_trna.pl_log_5/Bacteria_trna.txt
 
-Key:	report_go
-Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
+Key:	annotation_glimmer3.pl_log_10
+Value:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Creating website...
 
@@ -1040,13 +1040,21 @@ Filepath component:	annotation_rbsfinder.pl_log_16/Bacteria.txt
 
 Dir:	annotation_rbsfinder.pl_log_16
 
-Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
+Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
 
-Dir:	annotation_glimmer3.pl_log_10
+Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db
 
-Filepath component:	annotation_trf.pl_log_2/Bacteria_trf.txt
+Filepath component:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
 
-Dir:	annotation_trf.pl_log_2
+Dir:	annotation_infernal.pl_log_7
+
+Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db/classes.html;
+
+Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db
+
+Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
+
+Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db
 
 Filepath component:	annotation_transterm.pl_log_9/Bacteria.txt
 
@@ -1056,42 +1064,116 @@ Filepath component:	annotation_mreps.pl_log_4/Bacteria_mreps.txt
 
 Dir:	annotation_mreps.pl_log_4
 
-Filepath component:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
+Filepath component:	annotation_trf.pl_log_2/Bacteria_trf.txt
 
-Dir:	annotation_infernal.pl_log_7
-
-Filepath component:	annotation_trna.pl_log_5/Bacteria_trna.txt
-
-Dir:	annotation_trna.pl_log_5
-
-Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db/classes.html;
-
-Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db
+Dir:	annotation_trf.pl_log_2
 
 Filepath component:	annotation_rnammer.pl_log_8/Bacteria_rnammer.gff
 
 Dir:	annotation_rnammer.pl_log_8
 
-Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
+Filepath component:	annotation_trna.pl_log_5/Bacteria_trna.txt
 
-Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db
+Dir:	annotation_trna.pl_log_5
 
-Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
+Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
-Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db
+Dir:	annotation_glimmer3.pl_log_10
 Copying files assets
 
 Creating html views
 
-Criando diretorio downloads
+Criando diretorio shared
+
+Criando arquivo _head.tt
+
+Criando arquivo _header.tt
+
+Criando arquivo _footer.tt
+
+Criando arquivo _menu.tt
+
+Criando diretorio search-database
+
+Criando arquivo sequence.tt
+
+Criando arquivo rnaPredictionBasicResult.tt
+
+Criando arquivo properties.tt
+
+Criando arquivo tmhmmBasicResult.tt
+
+Criando arquivo orthologyBasicResult.tt
+
+Criando arquivo geneBasics.tt
+
+Criando arquivo rnaScanBasicResult.tt
+
+Criando arquivo predgpiBasicResult.tt
+
+Criando arquivo evidences.tt
+
+Criando arquivo tRNABasicResultHasIntron.tt
+
+Criando arquivo result.tt
+
+Criando arquivo pathwaysBasicResult.tt
+
+Criando arquivo gene.tt
+
+Criando arquivo interproBasicResult.tt
+
+Criando arquivo orthologies.tt
+
+Criando arquivo rRNAPredictionBasicResult.tt
+
+Criando arquivo tRNABasicResult.tt
+
+Criando arquivo subEvidences.tt
+
+Criando arquivo similarityBasicResult.tt
+
+Criando arquivo pathways.tt
+
+Criando arquivo contigs.tt
+
+Criando arquivo dgpiBasicResult.tt
+
+Criando arquivo tcdbBasicResult.tt
+
+Criando arquivo index.tt
+
+Criando arquivo _forms.tt
+
+Criando arquivo hmmerBasicResult.tt
+
+Criando diretorio home
+
+Criando arquivo index.tt
+
+Criando arquivo _panelInformation.tt
+
+Criando diretorio global-analyses
+
+Criando arquivo _content.tt
+
+Criando arquivo index.tt
+
+Criando diretorio blast
+
+Criando arquivo index.tt
+
+Criando arquivo _forms.tt
+
+Criando diretorio help
 
 Criando arquivo index.tt
 
 Criando arquivo _content.tt
 
-Criando diretorio blast
+Criando diretorio downloads
 
-Criando arquivo _forms.tt
+Criando arquivo _content.tt
 
 Criando arquivo index.tt
 
@@ -1100,88 +1182,6 @@ Criando diretorio about
 Criando arquivo index.tt
 
 Criando arquivo _content.tt
-
-Criando diretorio global-analyses
-
-Criando arquivo _content.tt
-
-Criando arquivo index.tt
-
-Criando diretorio shared
-
-Criando arquivo _menu.tt
-
-Criando arquivo _header.tt
-
-Criando arquivo _head.tt
-
-Criando arquivo _footer.tt
-
-Criando diretorio home
-
-Criando arquivo _panelInformation.tt
-
-Criando arquivo index.tt
-
-Criando diretorio search-database
-
-Criando arquivo result.tt
-
-Criando arquivo dgpiBasicResult.tt
-
-Criando arquivo contigs.tt
-
-Criando arquivo rRNAPredictionBasicResult.tt
-
-Criando arquivo pathways.tt
-
-Criando arquivo pathwaysBasicResult.tt
-
-Criando arquivo orthologies.tt
-
-Criando arquivo sequence.tt
-
-Criando arquivo properties.tt
-
-Criando arquivo gene.tt
-
-Criando arquivo rnaPredictionBasicResult.tt
-
-Criando arquivo tRNABasicResult.tt
-
-Criando arquivo _forms.tt
-
-Criando arquivo subEvidences.tt
-
-Criando arquivo hmmerBasicResult.tt
-
-Criando arquivo interproBasicResult.tt
-
-Criando arquivo index.tt
-
-Criando arquivo orthologyBasicResult.tt
-
-Criando arquivo tRNABasicResultHasIntron.tt
-
-Criando arquivo tmhmmBasicResult.tt
-
-Criando arquivo rnaScanBasicResult.tt
-
-Criando arquivo evidences.tt
-
-Criando arquivo similarityBasicResult.tt
-
-Criando arquivo tcdbBasicResult.tt
-
-Criando arquivo geneBasics.tt
-
-Criando arquivo predgpiBasicResult.tt
-
-Criando diretorio help
-
-Criando arquivo _content.tt
-
-Criando arquivo index.tt
 
 Creating wrapper
 

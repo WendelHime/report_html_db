@@ -1,4 +1,4 @@
-# report_html_db
+# report\_html\_db
 Projeto de iniciação científica, componente utilizado para gerar site(com conteúdo dinâmico) baseado nos resultados de componentes utilizados anteriormente
 
 Para instalar dependencias:
@@ -34,6 +34,7 @@ O que esta sendo feito agora:
 -	JS recebe paged response, precisa de uma variavel global ou criação de input hidden contendo offset += 10 e pageSize = 10 - Done
 
 -	Atualizar report_html_db.pl para voltar aos reports
+-	Adicionar mktree.css e mktree.js ao arquivo de assets, no index do global analyses fazer a linkagem entre eles
 -	Global Analyses receber 2 parametros para KEGG pathways, do report e global
 -	GO mapping recebe apenas um parametro
 -	eggNOG recebe eggNOG_report

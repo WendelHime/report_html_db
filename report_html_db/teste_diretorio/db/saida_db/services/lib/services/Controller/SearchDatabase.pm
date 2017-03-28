@@ -29,12 +29,12 @@ sub getFeatureID : Path("/SearchDatabase/GetFeatureID") : CaptureArgs(1) :
   ActionClass('REST') { }
 
 sub getFeatureID_GET {
-	my ( $self, $c, $uniquename ) = @_;
+	my ($self, $c, $uniquename) = @_;
 	if ( !$uniquename and defined $c->request->param("uniquename") ) {
 		$uniquename = $c->request->param("uniquename");
 	}
 	return standardStatusOk( $self, $c,
-		$c->model('Repository')->get_feature_id($uniquename) );
+		$c->model('Repository')->get_feature_id($uniquename));
 }
 
 =head2 searchGene
@@ -47,11 +47,10 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(6) :
   ActionClass('REST') { }
 
 sub searchGene_GET {
-	my (
-		$self,            $c,             $pipeline,     $geneID,
-		$geneDescription, $noDescription, $individually, $featureId,
-		$pageSize,        $offset
-	) = @_;
+	my ( $self, 	$c, 	$pipeline, 	$geneID, 
+		$geneDescription, 	$noDescription, $individually,	$featureId,
+		$pageSize,        $offset )
+	  = @_;
 
 	if ( !$pipeline and defined $c->request->param("pipeline") ) {
 		$pipeline = $c->request->param("pipeline");
@@ -141,7 +140,7 @@ sub getGeneBasics_GET {
 	if ( !$pipeline and defined $c->request->param("pipeline") ) {
 		$pipeline = $c->request->param("pipeline");
 	}
-
+	
 	my %hash = ();
 	$hash{pipeline}   = $pipeline;
 	$hash{feature_id} = $id;
@@ -165,8 +164,7 @@ sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(6) :
   ActionClass('REST') { }
 
 sub getSubsequence_GET {
-	my ( $self, $c, $type, $contig, $sequenceName, $start, $end, $pipeline ) =
-	  @_;
+	my ( $self, $c, $type, $contig, $sequenceName, $start, $end, $pipeline ) = @_;
 	if ( !$contig and defined $c->request->param("contig") ) {
 		$contig = $c->request->param("contig");
 	}
@@ -304,8 +302,7 @@ sub getIntervalEvidenceProperties_GET {
 	}
 
 	my %hash = ();
-	$hash{properties} =
-	  $c->model('Repository')->intervalEvidenceProperties($feature);
+	$hash{properties} = $c->model('Repository')->intervalEvidenceProperties($feature);
 	if ( exists $hash{intron} ) {
 		if ( $hash{intron} eq 'yes' ) {
 			$hash{coordinatesGene} = $hash{intron_start} - $hash{intron_end};
@@ -425,11 +422,11 @@ Method used to format sequence
 =cut
 
 sub formatSequence {
-	my $seq = shift;
-	my $block = shift || 80;
-	$seq =~ s/.{$block}/$&\n/gs;
-	chomp $seq;
-	return $seq;
+    my $seq = shift;
+    my $block = shift || 80;
+    $seq =~ s/.{$block}/$&\n/gs;
+    chomp $seq;
+    return $seq;
 }
 
 =head2 analysesCDS
@@ -714,7 +711,7 @@ sub geneByPosition_GET {
 	%hash            = ();
 	$hash{pipeline}  = $pipeline_id;
 	$hash{featureId} = $featureId;
-
+	
 	my @resultList = @{ $c->model('Repository')->searchGene( \%hash ) };
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
@@ -723,16 +720,14 @@ sub geneByPosition_GET {
 	standardStatusOk( $self, $c, \@list );
 }
 
-sub targetClass : Path("/SearchDatabase/targetClass") : CaptureArgs(1) :
-  ActionClass('REST') { }
+sub targetClass : Path("/SearchDatabase/targetClass") : CaptureArgs(1) : ActionClass('REST') { }
 
 sub targetClass_GET {
-	my ( $self, $c, $pipeline_id ) = @_;
+	my($self, $c, $pipeline_id) = @_;
 	if ( !$pipeline_id and defined $c->request->param("pipeline_id") ) {
 		$pipeline_id = $c->request->param("pipeline_id");
 	}
-	standardStatusOk( $self, $c,
-		$c->model('Repository')->get_target_class($pipeline_id) );
+	standardStatusOk($self, $c, $c->model('Repository')->get_target_class($pipeline_id));
 }
 
 =head2

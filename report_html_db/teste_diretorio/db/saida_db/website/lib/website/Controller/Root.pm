@@ -8,7 +8,7 @@ BEGIN { extends 'Catalyst::Controller' }
 # Sets the actions in this controller to be registered with no prefix
 # so they function identically to actions created in MyApp.pm
 #
-__PACKAGE__->config(namespace => '');
+__PACKAGE__->config( namespace => '' );
 
 =encoding utf-8
 
@@ -23,6 +23,7 @@ Root where will have the main pages
 =head1 METHODS
 
 =cut 
+
 my $feature_id;
 
 =head2 globalAnalyses
@@ -31,64 +32,77 @@ Global analyses page
 
 =cut
 
-sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
+sub globalAnalyses : Path("GlobalAnalyses") : Args(0) {
 	my ( $self, $c ) = @_;
 	$c->stash->{titlePage} = 'Global Analyses';
-	$c->stash(currentPage => 'global-analyses');
-	$c->stash(texts => [encodingCorrection ($c->model('Basic::Text')->search({
-		-or => [
-			tag => {'like', 'header%'},
-			tag => 'menu',
-			tag => 'footer',
-			tag => {'like', 'global-analyses%'}
+	$c->stash( currentPage => 'global-analyses' );
+	$c->stash(
+		texts => [
+			encodingCorrection(
+				$c->model('Basic::Text')->search(
+					{
+						-or => [
+							tag => { 'like', 'header%' },
+							tag => 'menu',
+							tag => 'footer',
+							tag => { 'like', 'global-analyses%' }
+						]
+					}
+				)
+			)
 		]
-	}))]);
-	
-	$c->stash(template => 'website/global-analyses/index.tt');
-	$c->stash(components => [$c->model('Basic::Component')->all]);
-	$c->stash->{hadGlobal} = 1;
+	);
+
+	$c->stash( template   => 'website/global-analyses/index.tt' );
+	$c->stash( components => [ $c->model('Basic::Component')->all ] );
+	$c->stash->{hadGlobal}         = 1;
 	$c->stash->{hadSearchDatabase} = 1;
-	
 
 }
 
-	
 =head2 searchDatabase
 
 Search database page (/SearchDatabase)
 
 =cut
-sub searchDatabase :Path("SearchDatabase") :Args(0) {
+
+sub searchDatabase : Path("SearchDatabase") : Args(0) {
 	my ( $self, $c ) = @_;
 	$c->stash->{titlePage} = 'Search Database';
-	$c->stash(currentPage => 'search-database');
-	$c->stash(texts => [encodingCorrection ($c->model('Basic::Text')->search({
-				-or => [
-					tag => {'like', 'header%'},
-					tag => 'menu',
-					tag => 'footer',
-					tag => {'like', 'search-database%'}
-				]
-	}))]);
-	my $searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => $c->config->{rest_endpoint});
-	$feature_id = $searchDBClient->getFeatureID($c->config->{uniquename})->getResponse();
+	$c->stash( currentPage => 'search-database' );
 	$c->stash(
-		targetClass => $searchDBClient->getTargetClass($c->config->{pipeline_id})->getResponse()  
-	);
-	
-	$c->stash(
-		sequences => [
-			$c->model('Basic::Sequence')->all
+		texts => [
+			encodingCorrection(
+				$c->model('Basic::Text')->search(
+					{
+						-or => [
+							tag => { 'like', 'header%' },
+							tag => 'menu',
+							tag => 'footer',
+							tag => { 'like', 'search-database%' }
+						]
+					}
+				)
+			)
 		]
 	);
-	
-	$c->stash(template => 'website/search-database/index.tt');
-	$c->stash(components => [$c->model('Basic::Component')->all]);
-	$c->stash->{hadGlobal} = 1;
+	my $searchDBClient =
+	  Report_HTML_DB::Clients::SearchDBClient->new(
+		rest_endpoint => $c->config->{rest_endpoint} );
+	$feature_id =
+	  $searchDBClient->getFeatureID( $c->config->{uniquename} )->getResponse();
+	$c->stash( targetClass =>
+		  $searchDBClient->getTargetClass( $c->config->{pipeline_id} )
+		  ->getResponse() );
+
+	$c->stash( sequences => [ $c->model('Basic::Sequence')->all ] );
+
+	$c->stash( template   => 'website/search-database/index.tt' );
+	$c->stash( components => [ $c->model('Basic::Component')->all ] );
+	$c->stash->{hadGlobal}         = 1;
 	$c->stash->{hadSearchDatabase} = 1;
 
 }
-
 
 =head2 about
 
@@ -148,7 +162,7 @@ sub blast : Path("Blast") : Args(0) {
 			)
 		]
 	);
-	
+
 	$c->stash( template => 'website/blast/index.tt' );
 	$c->stash->{hadGlobal}         = 0;
 	$c->stash->{hadSearchDatabase} = 1;
@@ -181,7 +195,7 @@ sub downloads : Path("Downloads") : Args(0) {
 			)
 		]
 	);
-	
+
 	$c->stash( template => 'website/downloads/index.tt' );
 	$c->stash->{hadGlobal}         = 0;
 	$c->stash->{hadSearchDatabase} = 1;
@@ -248,6 +262,7 @@ sub help : Path("Help") : Args(0) {
 			)
 		]
 	);
+
 	#if ( !defined $feature_id ) {
 	#	$feature_id = get_feature_id($c);
 	#}
@@ -284,6 +299,7 @@ sub index : Path : Args(0) {
 			)
 		]
 	);
+
 	#if ( !defined $feature_id ) {
 	#	$feature_id = get_feature_id($c);
 	#}
@@ -321,11 +337,12 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 	$c->response->body($file);
 	$c->response->headers->content_type('application/x-download');
 	my $filename = "";
-	if($filepath =~ /\/([\w\s\-_]+\.[\w\s\-_]+)/g) {
+	if ( $filepath =~ /\/([\w\s\-_]+\.[\w\s\-_]+)/g ) {
 		$filename = $1;
 	}
 	$c->response->body($file);
-	$c->response->header('Content-Disposition' => 'attachment; filename='.$filename);
+	$c->response->header(
+		'Content-Disposition' => 'attachment; filename=' . $filename );
 	close $FILEHANDLER;
 
 	#####
@@ -338,6 +355,26 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 	#
 	#
 	#####
+}
+
+sub reports : Path("reports") : CaptureArgs(3) {
+	my ( $self, $c, $type, $file, $file2 ) = @_;
+	my $filepath = "$type/$file";
+	$filepath .= "/$file2" if $file2;
+	use File::Basename;
+
+	open( my $FILEHANDLER,
+		"<", dirname(__FILE__) . "/../../../root/" . $filepath );
+	my $content = "";
+	while ( my $line = <$FILEHANDLER> ) {
+		$line =~ s/href="/href="\/reports\/$type\//
+		  if ( $line =~ /href="/ && $line !~ /href="http\:\/\// );
+		$content .= $line . "\n";
+	}
+	close($FILEHANDLER);
+	$content =~ s/src="/src="\/$type\//igm;
+	$content =~ s/HREF="/HREF="\/$type\//g;
+	$c->response->body($content);
 }
 
 =head2 default
@@ -375,5 +412,4 @@ it under the same terms as Perl itself.
 __PACKAGE__->meta->make_immutable;
 
 1;
-
 
