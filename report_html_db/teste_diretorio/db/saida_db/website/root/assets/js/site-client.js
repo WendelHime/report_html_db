@@ -81,13 +81,18 @@ function searchGeneByID(featureId) {
  * 
  * @param serializedForm:
  *            serialized form
+ * @param pageSize:
+ *            page size to limit query
+ * @param offset:
+ *            offset
  * @returns XMLHttpRequest
  */
 function searchGene(serializedForm, pageSize, offset) {
     return $.ajax({
         type : "GET",
         dataType : "json",
-        url : "/SearchDatabase/GetGene?" + serializedForm + "&pageSize=" + pageSize + "&offset=" + offset,
+        url : "/SearchDatabase/GetGene?" + serializedForm + "&pageSize="
+                + pageSize + "&offset=" + offset,
         async : false,
         cache : false
     });
@@ -117,13 +122,18 @@ function getGeneByPosition(start, end) {
  * 
  * @param serializedForm:
  *            serialized form
+ * @param pageSize:
+ *            page size to limit query
+ * @param offset:
+ *            offset
  * @returns XMLHttpRequest
  */
 function analysesCDS(serializedForm, pageSize, offset) {
     return $.ajax({
         type : "GET",
         dataType : "json",
-        url : "/SearchDatabase/analysesCDS?" + serializedForm + "&pageSize=" + pageSize + "&offset=" + offset,
+        url : "/SearchDatabase/analysesCDS?" + serializedForm + "&pageSize="
+                + pageSize + "&offset=" + offset,
         async : false,
         cache : false
     });
@@ -134,13 +144,18 @@ function analysesCDS(serializedForm, pageSize, offset) {
  * 
  * @param serializedForm:
  *            serialized form
+ * @param pageSize:
+ *            page size to limit query
+ * @param offset:
+ *            offset
  * @returns XMLHttpRequest
  */
-function trnaSearch(serializedForm) {
+function trnaSearch(serializedForm, pageSize, offset) {
     return $.ajax({
         type : "GET",
         dataType : "json",
-        url : "/SearchDatabase/trnaSearch?" + serializedForm,
+        url : "/SearchDatabase/trnaSearch?" + serializedForm + "&pageSize="
+                + pageSize + "&offset=" + offset,
         async : false,
         cache : false
     });

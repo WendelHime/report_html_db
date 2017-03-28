@@ -211,7 +211,11 @@ $(function() {
 	$("#trna-form").submit(
 		function() {
 			$(".errors").remove();
-			var tRNAList = trnaSearch($(this).serialize()).responseJSON.response;
+			var pagedResponse = trnaSearch($(this).serialize(), pageSize, offset).responseJSON;
+			var tRNAList = pagedResponse.response;
+			totalValues = pagedResponse.total;
+            if(!verifyPagedResponse(idForm, "#trna-form", totalValues)) 
+                idForm = "#trna-form";
 			var featuresIDs = "";
             for(i = 0; i < tRNAList.length; i++) {
                 featuresIDs += tRNAList[i].id+" ";

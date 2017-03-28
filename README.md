@@ -27,22 +27,19 @@ O que esta sendo feito agora:
 -	Colocar Interpro description e id no nome do painel - Done
 -	Atualizar Repository(linhas 858, 861, 864, 868, 1064, 1067, 1070), action.js - Done
 -	Testar todas as pesquisas - Done
+-	Função do repositorio recebe parametro de page_size(limite em quantidade) e offset(compensação antes de pegar o limite) - Done
+-	Service preenche e retorna PagedResponse passando a resposta do repositorio + os parametros page size, offset e total(quantidade de retornados) - Done
+-	Service.Client envia parametros page_size e offset, retorna paged response - Done
+-	Aplicação envia parametros de page_size e offset ao client, retorna paged response - Done
+-	JS recebe paged response, precisa de uma variavel global ou criação de input hidden contendo offset += 10 e pageSize = 10 - Done
 
-
+-	Atualizar report_html_db.pl para voltar aos reports
 -	Global Analyses receber 2 parametros para KEGG pathways, do report e global
 -	GO mapping recebe apenas um parametro
 -	eggNOG recebe eggNOG_report
 -	Comparative Metabolic Reconstruction recebe mais de um filepath como parametro fica em duvida se não deve passar pelo json
 -	Utilizar o caminho do SQLite para vincular os componentes com os arquivos
 
-Criando funções com resposta paginada:
-
-
-Função do repositorio recebe parametro de page_size(limite em quantidade) e offset(compensação antes de pegar o limite) - Done
-Service preenche e retorna PagedResponse passando a resposta do repositorio + os parametros page size, offset e total(quantidade de retornados) - Done
-Service.Client envia parametros page_size e offset, retorna paged response - Done
-Aplicação envia parametros de page_size e offset ao client, retorna paged response - Done
-JS recebe paged response, precisa de uma variavel global ou criação de input hidden contendo offset += 10 e pageSize = 10
 
 TODO:
 -

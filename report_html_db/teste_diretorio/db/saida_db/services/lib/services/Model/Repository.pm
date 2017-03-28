@@ -21,7 +21,8 @@ sub analyses_CDS {
 	my ( $self, $hash ) = @_;
 	my $dbh  = $self->dbh;
 	my @args = ();
-	my $query = "SELECT motherfuckerquery.feature_id, COUNT(*) OVER() FROM "
+	my $query =
+	    "SELECT motherfuckerquery.feature_id, COUNT(*) OVER() FROM "
 	  . "((select distinct f.feature_id "
 	  . "from feature f "
 	  . "join feature_relationship r on (f.feature_id = r.object_id) "
@@ -69,7 +70,7 @@ sub analyses_CDS {
 
 		if ( exists $hash->{geneDesc} && $hash->{geneDesc} ) {
 			$query_gene .= generate_clause( "?", "", "", "lower(pd.value)" );
-			push @args, lc("%".$hash->{geneDesc} . "%");
+			push @args, lc( "%" . $hash->{geneDesc} . "%" );
 			$and = " AND ";
 		}
 		if ( exists $hash->{noDesc} && $hash->{noDesc} ) {
@@ -460,7 +461,7 @@ sub analyses_CDS {
 	  . $query_ORTH
 	  . $query_interpro
 	  . " ) as motherfuckerquery GROUP BY motherfuckerquery.feature_id ORDER BY motherfuckerquery.feature_id ";
-	  
+
 	if (   exists $hash->{pageSize}
 		&& $hash->{pageSize}
 		&& exists $hash->{offset}
@@ -479,21 +480,20 @@ sub analyses_CDS {
 
 	my $quantityParameters = () = $query =~ /\?/g;
 	my $counter = scalar @args;
-	if($counter > $quantityParameters) {
-		while(scalar @args > $quantityParameters) {
-			delete $args[$counter-1];
+	if ( $counter > $quantityParameters ) {
+		while ( scalar @args > $quantityParameters ) {
+			delete $args[ $counter - 1 ];
 			$counter--;
 		}
 	}
-	
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
-	my @rows = @{ $sth->fetchall_arrayref() };
+	my @rows         = @{ $sth->fetchall_arrayref() };
 	my %returnedHash = ();
 	my @list         = ();
-	
+
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		push @list, $rows[$i][0];
 		$returnedHash{total} = $rows[$i][1];
@@ -540,7 +540,7 @@ sub tRNA_search {
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $query =
-"select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon "
+"select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon, COUNT(*) OVER() AS total "
 	  . "from feature_relationship r "
 	  . "join cvterm c on (r.type_id = c.cvterm_id) "
 	  . "join featureloc l on (r.subject_id = l.feature_id) "
@@ -568,11 +568,28 @@ sub tRNA_search {
 		push @args, $anticodon;
 	}
 
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
+	}
+
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
-	my @rows = @{ $sth->fetchall_arrayref() };
-	my @list = ();
+	my @rows         = @{ $sth->fetchall_arrayref() };
+	my %returnedHash = ();
+	my @list         = ();
 	use Report_HTML_DB::Models::Application::TRNASearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $result = Report_HTML_DB::Models::Application::TRNASearch->new(
@@ -581,10 +598,12 @@ sub tRNA_search {
 			amino_acid => $rows[$i][1],
 			codon      => $rows[$i][3],
 		);
+		$returnedHash{total} = $rows[$i][4];
 		push @list, $result;
 	}
+	$returnedHash{"list"} = \@list;
 
-	return \@list;
+	return \%returnedHash;
 }
 
 =head2
@@ -814,7 +833,9 @@ sub ncRNA_search {
 			evalue       => $rows[$i][5] ? $rows[$i][5] !~ '' : '',
 			target_name  => $rows[$i][5] ? $rows[$i][5] !~ '' : '',
 			target_class => $rows[$i][5] ? $rows[$i][5] !~ '' : '',
-			target_type  => $rows[$i][5] ? $rows[$i][5] !~ '' : ''
+			target_type  => $rows[$i][5]
+			? $rows[$i][5] !~ ''
+			: ''
 
 		);
 		push @list, $result;
@@ -891,8 +912,8 @@ sub transcriptional_terminator_search {
 		$query .= "and cpp.name = ? and my_to_decimal(pp.value) >= ? ";
 	}
 
-	push @args, $field    if ($field);
-	push @args, ($search_field - 1) if ($search_field);
+	push @args, $field if ($field);
+	push @args, ( $search_field - 1 ) if ($search_field);
 
 	$query = $select . $join . $query;
 
@@ -905,11 +926,12 @@ sub transcriptional_terminator_search {
 	my @columns = @{ $sth->{NAME} };
 	use Report_HTML_DB::Models::Application::TranscriptionalTerminator;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Report_HTML_DB::Models::Application::TranscriptionalTerminator->new(
+		my $result =
+		  Report_HTML_DB::Models::Application::TranscriptionalTerminator->new(
 			contig => $rows[$i][0],
 			start  => $rows[$i][1],
 			end    => $rows[$i][2]
-		);
+		  );
 		if ( $columns[3] eq "confidence" ) {
 			$result->setConfidence( $rows[$i][3] );
 		}
@@ -1097,8 +1119,8 @@ sub alienhunter_search {
 		$query .= "and cpp.name = ? and my_to_decimal(pp.value) >= ? ";
 	}
 
-	push @args, $field        if $field;
-	push @args, ($search_field - 1) if $search_field;
+	push @args, $field if $field;
+	push @args, ( $search_field - 1 ) if $search_field;
 
 	$query = $select . $join . $query;
 
@@ -1111,12 +1133,13 @@ sub alienhunter_search {
 	my @columns = @{ $sth->{NAME} };
 	use Report_HTML_DB::Models::Application::AlienHunterSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $result = Report_HTML_DB::Models::Application::AlienHunterSearch->new(
+		my $result =
+		  Report_HTML_DB::Models::Application::AlienHunterSearch->new(
 			id     => $rows[$i][0],
 			contig => $rows[$i][1],
 			start  => $rows[$i][2],
 			end    => $rows[$i][3],
-		);
+		  );
 		if ( $columns[4] eq "length" ) {
 			$result->setLength( $rows[$i][4] );
 		}
@@ -1281,7 +1304,7 @@ sub searchGene {
 " AND lower(feature_relationship_props_subject_feature.value) LIKE ? ";
 		push @args, lc( "%" . $hash->{geneID} . "%" );
 	}
-	
+
 	$where .= " ORDER BY feature_relationship_props_subject_feature.value ASC ";
 
 	if (   exists $hash->{pageSize}
@@ -1299,13 +1322,13 @@ sub searchGene {
 			push @args, $hash->{offset};
 		}
 	}
-	
+
 	$query .= $where;
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
-	my @rows = @{ $sth->fetchall_arrayref() };
+	my @rows         = @{ $sth->fetchall_arrayref() };
 	my %returnedHash = ();
 	my @list         = ();
 
@@ -1325,7 +1348,7 @@ sub searchGene {
 
 	$returnedHash{list} = \@list;
 
-return \%returnedHash;
+	return \%returnedHash;
 }
 
 =head2
@@ -1493,15 +1516,16 @@ sub subevidences {
 		'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
 		'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
 		'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
-		'annotation_predgpi.pl'	=> 'PreDGPI',
+		'annotation_predgpi.pl'   => 'PreDGPI',
 		'annotation_tmhmm.pl'     => 'TMHMM',
-		'annotation_hmmer.pl'	=> 'HMMER',
+		'annotation_hmmer.pl'     => 'HMMER',
 	);
 
 	my @list = ();
 	use Report_HTML_DB::Models::Application::Subevidence;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
-		my $subevidence = Report_HTML_DB::Models::Application::Subevidence->new(
+		my $subevidence =
+		  Report_HTML_DB::Models::Application::Subevidence->new(
 			id                  => $rows[$i][0],
 			type                => $rows[$i][1],
 			number              => $rows[$i][2],
@@ -1511,7 +1535,7 @@ sub subevidences {
 			is_obsolete         => $rows[$i][6],
 			program             => $rows[$i][7],
 			program_description => $component_name{ $rows[$i][7] }
-		);
+		  );
 		push @list, $subevidence;
 	}
 
@@ -1658,10 +1682,9 @@ Method used to get target class
 
 sub get_target_class {
 	my ( $self, $pipeline_id ) = @_;
-	my $dbh  = $self->dbh;
-	my @args = ();
-	my $query =
-"select ppc.value as value 
+	my $dbh   = $self->dbh;
+	my @args  = ();
+	my $query = "select ppc.value as value 
 	from feature_relationship r 
 	join featureloc l on (r.subject_id = l.feature_id) 
 	join featureprop p on (p.feature_id = l.srcfeature_id) 

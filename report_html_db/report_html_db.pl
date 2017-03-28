@@ -2205,7 +2205,8 @@ sub tRNA_search {
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
+	my \%returnedHash = ();
+	my \@list         = ();
 	use Report_HTML_DB::Models::Application::TRNASearch;
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \$result = Report_HTML_DB::Models::Application::TRNASearch->new(
@@ -2214,10 +2215,12 @@ sub tRNA_search {
 			amino_acid => \$rows[\$i][1],
 			codon      => \$rows[\$i][3],
 		);
+		\$returnedHash{total} = \$rows[\$i][4];
 		push \@list, \$result;
 	}
+	\$returnedHash{"list"} = \\\@list;
 
-	return \\\@list;
+	return \\\%returnedHash;
 }
 
 =head2
@@ -4042,12 +4045,12 @@ sub analysesCDS_GET {
 			\$hash{\$key} = \$c->request->params->{\$key};
 		}
 	}
-	foreach my \$array ( \$c->model('Repository')->analyses_CDS( \\\%hash ) ) {
-		foreach my \$value (\@\$array) {
-			push \@list, \$value;
-		}
+	my \$result = \$c->model('Repository')->analyses_CDS( \\\%hash );
+	foreach my \$value ( \@{ \$result->{list} } ) {
+		push \@list, \$value;
 	}
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize},
+		\$hash{offset} );
 }
 
 =head2
@@ -4069,12 +4072,15 @@ sub trnaSearch_GET {
 		}
 	}
 	my \@list       = ();
-	my \@resultList = \@{ \$c->model('Repository')->tRNA_search( \\%hash ) };
+	my \$result     = \$c->model('Repository')->tRNA_search( \\\%hash );
+	my \@resultList = \@{ \$result->{list} };
+
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize},
+		\$hash{offset} );
 }
 
 =head2
@@ -4565,11 +4571,10 @@ sub trnaSearch_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$response = \$searchDBClient->getTRNA( \%hash );
 	standardStatusOk(
-		\$self, \$c,
-		\$searchDBClient->getTRNA(
-			\\\%hash
-		)->{response}
+		\$self, \$c, \$response->{response}, \$response->{total}, \$hash{pageSize},
+		\$hash{offset}
 	);
 }
 
@@ -5695,16 +5700,16 @@ CONTENTINDEXDOWNLOADS
 			%]
 			
 			[% FOREACH component IN components %]
-				[% IF component.component.match("report_go_mapping.pl") %]
+				[% IF component.component.match("report_go") %]
 					[% go_mapping = 1 %]
 				[% END %]
-				[% IF component.component.match("report_orthology.pl") %]
+				[% IF component.component.match("report_eggnog") %]
 					[% orthology = 1 %]
 				[% END %]
-				[% IF component.component.match("report_pathways.pl") %]
+				[% IF component.component.match("report_pathways") %]
 					[% pathways = 1 %]
 				[% END %]
-				[% IF component.component.match("report_kegg_organism.pl") %]
+				[% IF component.component.match("report_kegg_organism") %]
 					[% organism = 1 %]
 				[% END %]
 			[% END %]

@@ -23,11 +23,11 @@ sub gene : Path("/SearchDatabase/GetGene") : CaptureArgs(7) :
   ActionClass('REST') { }
 
 sub gene_GET {
-	my ( 
+	my (
 		$self,            $c,             $pipeline,     $geneID,
 		$geneDescription, $noDescription, $individually, $featureId,
-		$pageSize,        $offset )
-	  = @_;
+		$pageSize,        $offset
+	) = @_;
 	if ( !$geneID and defined $c->request->param("geneID") ) {
 		$geneID = $c->request->param("geneID");
 	}
@@ -56,7 +56,7 @@ sub gene_GET {
 		$geneID, $geneDescription,
 		$noDescription, $individually, $featureId, $pageSize, $offset );
 	standardStatusOk(
-		$self, $c, $pagedResponse->{response}, $pagedResponse->{"total"},
+		$self,     $c, $pagedResponse->{response}, $pagedResponse->{"total"},
 		$pageSize, $offset
 
 	);
@@ -73,17 +73,14 @@ sub gene_basics_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getGeneBasics(
-			$id, $c->config->{pipeline_id}
-		)->{response}
-	);
+	standardStatusOk( $self, $c,
+		$searchDBClient->getGeneBasics( $id, $c->config->{pipeline_id} )
+		  ->{response} );
 }
 
 sub subsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(5) :
   ActionClass('REST') { }
-  
+
 sub subsequence_GET {
 	my ( $self, $c, $type, $contig, $sequenceName, $start, $end ) = @_;
 	if ( !$contig and defined $c->request->param("contig") ) {
@@ -106,15 +103,14 @@ sub subsequence_GET {
 		rest_endpoint => $c->config->{rest_endpoint} );
 	standardStatusOk(
 		$self, $c,
-		$searchDBClient->getSubsequence(
-			$type, $contig, $sequenceName, $start, $end, $c->config->{pipeline_id}
-		)->{response}
+		$searchDBClient->getSubsequence( $type, $contig, $sequenceName, $start,
+			$end, $c->config->{pipeline_id} )->{response}
 	);
 }
 
 sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) :
   ActionClass('REST') { }
-  
+
 sub ncRNA_desc_GET {
 	my ( $self, $c, $feature ) = @_;
 	if ( !$feature and defined $c->request->param("feature") ) {
@@ -123,38 +119,32 @@ sub ncRNA_desc_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getncRNA_desc(
-			$feature, $c->config->{pipeline_id}
-		)->{response}
-	); 
+	standardStatusOk( $self, $c,
+		$searchDBClient->getncRNA_desc( $feature, $c->config->{pipeline_id} )
+		  ->{response} );
 }
 
 sub subEvidences : Path("/SearchDatabase/SubEvidences") : CaptureArgs(1) :
   ActionClass('REST') { }
 
 sub subEvidences_GET {
-	my ( $self, $c, $feature) = @_;
+	my ( $self, $c, $feature ) = @_;
 	if ( !$feature and defined $c->request->param("feature") ) {
 		$feature = $c->request->param("feature");
 	}
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getSubevidences(
-			$feature, $c->config->{pipeline_id}
-		)->{response}
-	);
+	standardStatusOk( $self, $c,
+		$searchDBClient->getSubevidences( $feature, $c->config->{pipeline_id} )
+		  ->{response} );
 }
 
 sub analysesCDS : Path("/SearchDatabase/analysesCDS") : CaptureArgs(31) :
   ActionClass('REST') { }
 
 sub analysesCDS_GET {
-	my ( $self, $c) = @_;
+	my ( $self, $c ) = @_;
 	my %hash = ();
 	foreach my $key ( keys %{ $c->request->params } ) {
 		if ( $key && $key ne "0" ) {
@@ -190,11 +180,10 @@ sub trnaSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
+	my $response = $searchDBClient->getTRNA( \%hash );
 	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getTRNA(
-			\%hash
-		)->{response}
+		$self, $c, $response->{response}, $response->{total}, $hash{pageSize},
+		$hash{offset}
 	);
 }
 
@@ -214,12 +203,8 @@ sub tandemRepeatsSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getTandemRepeats(
-			\%hash
-		)->{response}
-	);
+	standardStatusOk( $self, $c,
+		$searchDBClient->getTandemRepeats( \%hash )->{response} );
 }
 
 sub ncRNASearch : Path("/SearchDatabase/ncRNASearch") : CaptureArgs(7) :
@@ -237,12 +222,8 @@ sub ncRNASearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getncRNA(
-			\%hash
-		)->{response}
-	);
+	standardStatusOk( $self, $c,
+		$searchDBClient->getncRNA( \%hash )->{response} );
 }
 
 sub transcriptionalTerminatorSearch :
@@ -261,12 +242,8 @@ sub transcriptionalTerminatorSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getTranscriptionalTerminator(
-			\%hash
-		)->{response}
-	);
+	standardStatusOk( $self, $c,
+		$searchDBClient->getTranscriptionalTerminator( \%hash )->{response} );
 }
 
 sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(4) :
@@ -285,12 +262,8 @@ sub rbsSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getRBSSearch(
-			\%hash
-		)->{response}
-	);
+	standardStatusOk( $self, $c,
+		$searchDBClient->getRBSSearch( \%hash )->{response} );
 }
 
 sub alienhunterSearch : Path("/SearchDatabase/alienhunterSearch") :
@@ -308,12 +281,8 @@ sub alienhunterSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk(
-		$self, $c,
-		$searchDBClient->getAlienHunter(
-			\%hash
-		)->{response}
-	);
+	standardStatusOk( $self, $c,
+		$searchDBClient->getAlienHunter( \%hash )->{response} );
 }
 
 sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
@@ -332,9 +301,8 @@ sub geneByPosition_GET {
 		rest_endpoint => $c->config->{rest_endpoint} );
 	standardStatusOk(
 		$self, $c,
-		$searchDBClient->getGeneByPosition(
-			$start, $end, $c->config->{pipeline_id}
-		)->{response}
+		$searchDBClient->getGeneByPosition( $start, $end,
+			$c->config->{pipeline_id} )->{response}
 	);
 }
 
@@ -351,7 +319,8 @@ sub getSimilarityEvidenceProperties_GET {
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
 	standardStatusOk( $self, $c,
-		$searchDBClient->getSimilarityEvidenceProperties($feature)->{response} );
+		$searchDBClient->getSimilarityEvidenceProperties($feature)->{response}
+	);
 }
 
 sub getIntervalEvidenceProperties :
@@ -372,8 +341,11 @@ sub getIntervalEvidenceProperties_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk( $self, $c,
-		$searchDBClient->getIntervalEvidenceProperties($feature, $typeFeature, $pipeline)->{response} );
+	standardStatusOk(
+		$self, $c,
+		$searchDBClient->getIntervalEvidenceProperties( $feature, $typeFeature,
+			$pipeline )->{response}
+	);
 }
 
 =head2
