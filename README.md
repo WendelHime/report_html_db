@@ -32,14 +32,12 @@ O que esta sendo feito agora:
 -	Service.Client envia parametros page_size e offset, retorna paged response - Done
 -	Aplicação envia parametros de page_size e offset ao client, retorna paged response - Done
 -	JS recebe paged response, precisa de uma variavel global ou criação de input hidden contendo offset += 10 e pageSize = 10 - Done
-
--	Atualizar report_html_db.pl para voltar aos reports
--	Adicionar mktree.css e mktree.js ao arquivo de assets, no index do global analyses fazer a linkagem entre eles
--	Global Analyses receber 2 parametros para KEGG pathways, do report e global
--	GO mapping recebe apenas um parametro
--	eggNOG recebe eggNOG_report
--	Comparative Metabolic Reconstruction recebe mais de um filepath como parametro fica em duvida se não deve passar pelo json
--	Utilizar o caminho do SQLite para vincular os componentes com os arquivos
+-	Global analyses - Done
+-	report_html_db.pl deve executar makeblastdb nos arquivos do Services - Done
+-	Criar controller no Services para blast
+-	Criar função blast no Services
+-	Filtrar parâmetros para montar comando
+-	Retornar conteúdo
 
 
 TODO:

@@ -15,23 +15,26 @@ has rest_endpoint => ( is => 'ro', isa => 'Str' );
 
 sub getFeatureID {
 	my ( $self, $uniquename ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/GetFeatureID",
 		\%{
 			{
 				uniquename => $uniquename
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getGene {
-	my ( $self, $pipeline, $geneID, $geneDescription, $noDescription,
-		$individually, $featureId, $pageSize, $offset )
-	  = @_;
-	my $response = makeGetRequest(
+	my (
+		$self,            $pipeline,      $geneID,
+		$geneDescription, $noDescription, $individually,
+		$featureId,       $pageSize,      $offset
+	) = @_;
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/Gene",
 		\%{
@@ -42,17 +45,18 @@ sub getGene {
 				"noDescription"   => $noDescription,
 				"individually"    => $individually,
 				"featureId"       => $featureId,
-				"pageSize"		  => $pageSize,
-				"offset"		  => $offset,
+				"pageSize"        => $pageSize,
+				"offset"          => $offset,
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getGeneBasics {
 	my ( $self, $id, $pipeline ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/GetGeneBasics",
 		\%{
@@ -60,14 +64,15 @@ sub getGeneBasics {
 				id       => $id,
 				pipeline => $pipeline,
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getSubsequence {
 	my ( $self, $type, $contig, $sequenceName, $start, $end, $pipeline ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/GetSubsequence",
 		\%{
@@ -79,14 +84,15 @@ sub getSubsequence {
 				end          => $end,
 				pipeline     => $pipeline,
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getncRNA_desc {
 	my ( $self, $feature, $pipeline ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/ncRNA_desc",
 		\%{
@@ -94,14 +100,15 @@ sub getncRNA_desc {
 				feature  => $feature,
 				pipeline => $pipeline,
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getSubevidences {
 	my ( $self, $feature, $pipeline ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/subEvidences",
 		\%{
@@ -109,7 +116,8 @@ sub getSubevidences {
 				feature  => $feature,
 				pipeline => $pipeline,
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
@@ -121,8 +129,8 @@ sub getAnalysesCDS {
 	#	foreach my $key (keys %$parameters) {
 	#		$hash{$key} = $parameters->{$key};
 	#	}
-	my $response = makeGetRequest( $self->{rest_endpoint},
-		"/SearchDatabase/analysesCDS", $parameters );
+	my $response = makeRequest( $self->{rest_endpoint},
+		"/SearchDatabase/analysesCDS", $parameters, "GET" );
 	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
@@ -133,8 +141,8 @@ sub getTRNA {
 	#	foreach my $key (keys %$parameters) {
 	#		$hash{$key} = $parameters->{$key};
 	#	}
-	my $response = makeGetRequest( $self->{rest_endpoint},
-		"/SearchDatabase/trnaSearch", $parameters );
+	my $response = makeRequest( $self->{rest_endpoint},
+		"/SearchDatabase/trnaSearch", $parameters, "GET" );
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
@@ -145,8 +153,11 @@ sub getTandemRepeats {
 	#	foreach my $key (keys %$parameters) {
 	#		$hash{$key} = $parameters->{$key};
 	#	}
-	my $response = makeGetRequest( $self->{rest_endpoint},
-		"/SearchDatabase/tandemRepeatsSearch", $parameters );
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/tandemRepeatsSearch",
+		$parameters, "GET"
+	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
@@ -157,8 +168,8 @@ sub getncRNA {
 	#	foreach my $key (keys %$parameters) {
 	#		$hash{$key} = $parameters->{$key};
 	#	}
-	my $response = makeGetRequest( $self->{rest_endpoint},
-		"/SearchDatabase/ncRNASearch", $parameters );
+	my $response = makeRequest( $self->{rest_endpoint},
+		"/SearchDatabase/ncRNASearch", $parameters, "GET" );
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
@@ -169,8 +180,11 @@ sub getTranscriptionalTerminator {
 	#	foreach my $key (keys %$parameters) {
 	#		$hash{$key} = $parameters->{$key};
 	#	}
-	my $response = makeGetRequest( $self->{rest_endpoint},
-		"/SearchDatabase/transcriptionalTerminatorSearch", $parameters );
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/transcriptionalTerminatorSearch",
+		$parameters, "GET"
+	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
@@ -181,8 +195,8 @@ sub getRBSSearch {
 	#	foreach my $key (keys %$parameters) {
 	#		$hash{$key} = $parameters->{$key};
 	#	}
-	my $response = makeGetRequest( $self->{rest_endpoint},
-		"/SearchDatabase/rbsSearch", $parameters );
+	my $response = makeRequest( $self->{rest_endpoint},
+		"/SearchDatabase/rbsSearch", $parameters, "GET" );
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
@@ -193,81 +207,110 @@ sub getAlienHunter {
 	#	foreach my $key (keys %$parameters) {
 	#		$hash{$key} = $parameters->{$key};
 	#	}
-	my $response = makeGetRequest( $self->{rest_endpoint},
-		"/SearchDatabase/alienhunterSearch", $parameters );
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/alienhunterSearch",
+		$parameters, "GET"
+	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getGeneByPosition {
 	my ( $self, $start, $end, $pipeline ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/geneByPosition",
 		\%{
 			{
-				start    => $start,
-				end      => $end,
+				start       => $start,
+				end         => $end,
 				pipeline_id => $pipeline,
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getTargetClass {
 	my ( $self, $pipeline_id ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/targetClass",
 		\%{
 			{
 				pipeline_id => $pipeline_id,
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getSimilarityEvidenceProperties {
 	my ( $self, $feature_id ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/getSimilarityEvidenceProperties",
 		\%{
 			{
 				feature => $feature_id
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
 sub getIntervalEvidenceProperties {
 	my ( $self, $feature, $typeFeature, $pipeline ) = @_;
-	my $response = makeGetRequest(
+	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/getIntervalEvidenceProperties",
 		\%{
 			{
-				feature => $feature,
+				feature     => $feature,
 				typeFeature => $typeFeature,
-				pipeline => $pipeline
+				pipeline    => $pipeline
 			}
-		}
+		},
+		"GET"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
-sub makeGetRequest {
-	my ( $rest_endpoint, $action, $parameters ) = @_;
+sub postBlast {
+	my ( $self, $parameters ) = @_;
+
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/blast",
+		$parameters, "POST"
+	);
+	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+}
+
+sub makeRequest {
+	my ( $rest_endpoint, $action, $parameters, $method ) = @_;
 	my $user_agent = LWP::UserAgent->new;
-	my $request =
-	  HTTP::Request->new( 'GET' => $rest_endpoint
-		  . $action . "?"
-		  . stringifyParameters($parameters) );
-	$request->header( 'content_type' => 'application/json' );
-	my $response = $user_agent->request($request);
-	return $response->content;
+	my $url        = "";
+	if ( $method eq "GET" ) {
+		$url =
+		  $rest_endpoint . $action . "?" . stringifyParameters($parameters);
+		my $request = HTTP::Request->new( GET => $url );
+		$request->header( 'content_type' => 'application/json' );
+		my $response = $user_agent->request($request);
+		return $response->content;
+	}
+	elsif ( $method eq "POST" ) {
+		$url = $rest_endpoint;
+		my $request = HTTP::Request->new( POST => $url );
+		$request->content($parameters);
+		$request->header( 'content_type' => 'application/json' );
+		my $response = $user_agent->request($request);
+		return $response->content;
+	}
+
 }
 
 sub stringifyParameters {

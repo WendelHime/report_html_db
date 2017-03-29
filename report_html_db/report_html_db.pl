@@ -1337,6 +1337,11 @@ SQL
 	close(AA);
 	close(FILE_AA);
 	close(FILE_NT);
+	#$html_dir/root/$aa_fasta_dir/$file_aa
+	`makeblastdb -dbtype prot -in $html_dir/root/$aa_fasta_dir/$file_aa -parse_seqids -title '$name' -out $html_dir/root/$aa_fasta_dir/$name -logfile $html_dir/root/$aa_fasta_dir/makeblastdb.log`;
+	#$html_dir/root/$nt_fasta_dir/$file_nt
+	`makeblastdb -dbtype nucl -in $html_dir/root/$nt_fasta_dir/$file_nt -parse_seqids -title '$name' -out $html_dir/root/$nt_fasta_dir/$name -logfile $html_dir/root/$nt_fasta_dir/makeblastdb.log`;
+	`makeblastdb -dbtype nucl -in $html_dir/root/$fasta_dir/$name.fasta -parse_seqids -title '$name' -out $html_dir/root/$fasta_dir/$name -logfile $html_dir/root/$fasta_dir/makeblastdb.log`;
 	`mkdir -p $services_dir/root/`;
 	`mkdir -p $html_dir/root/$nt_fasta_dir/`;
 	`cp -r $html_dir/root/$aa_fasta_dir/ $services_dir/root/`;
