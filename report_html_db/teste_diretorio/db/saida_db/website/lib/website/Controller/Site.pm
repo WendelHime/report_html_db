@@ -31,7 +31,7 @@ sub getHTMLContent_GET {
 	if ( !$filepath and defined $c->request->param("filepath") ) {
 		$filepath = $c->request->param("filepath");
 	}
-	if($filepath =~ m/..\//) {
+	if($filepath =~ m/\.\.\//) {
 		$self->status_bad_request($c, message => "Invalid filepath");
 	}
 	use File::Basename;

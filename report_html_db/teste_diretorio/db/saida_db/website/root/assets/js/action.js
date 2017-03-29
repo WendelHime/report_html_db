@@ -77,21 +77,9 @@ $(".result").remove();
  */
 $("#back").click(function() {
 	$("#searchPanel").show();
-	$("#accordion").show();
 	$("#back").hide();
 	$(".pagination-section").hide();
 	$(".result").remove();
-});
-
-/**
- * 
- */
-$(".global-analyses-link").click(function() {
-    /**
-     * click in anchor
-     * getHTMLContent
-     */
-    var htmlContent = getHTMLContent("kegg_report_db/classes.html").responseJSON.response;
 });
 
 $("#begin").click(function() {

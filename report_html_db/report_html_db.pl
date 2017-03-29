@@ -536,17 +536,10 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         
         ("search-database-dna-based-analyses-footer", "Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose ""Search"" button has been pressed will be searched.", ""),
         ("global-analyses-go-terms-mapping", "GO terms mapping", ""),
-        ("global-analyses-expansible-tree", "Expansible tree", "data/GO_mapping.xml"),
-        ("global-analyses-table-ontologies", "Table of ontologies", "go_report_db/go_mapping.html"),
         ("global-analyses-go-terms-mapping-footer", "NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to ""Table of ontologies"" to visualize the results.", ""),
         ("global-analyses-eggNOG", "eggNOG", ""),
-        ("global-analyses-orthology-analysis-classes", "Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups", "eggnog_report_db/classes.html"),
         ("global-analyses-kegg-pathways", "KEGG Pathways", ""),
-        ("global-analyses-kegg-report", "Enzyme by enzyme report of KEGG results", "kegg_report_db/classes.html"),
-        ("global-analyses-kegg-report-page", "Map by map report of KEGG results", "data/MN7_kegg_global/html_page/classes.html"),
         ("global-analyses-comparative-metabolic-reconstruction", "Comparative Metabolic Reconstruction", ""),
-        ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)", "data/MN7_X_Pasym/html_page/classes.html"),
-        ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)", "data/MN7_X_TT01/html_page/classes.html"),
         ("downloads-genes", "Genes", ""),
         ("downloads-other-sequences", "Other sequences", ""),
         ("help-table-contents", "Table of contents", ""),
@@ -3399,7 +3392,7 @@ sub getHTMLContent_GET {
 	if ( !\$filepath and defined \$c->request->param("filepath") ) {
 		\$filepath = \$c->request->param("filepath");
 	}
-	if(\$filepath =~ m/..\\//) {
+	if(\$filepath =~ m/\\.\\.\\//) {
 		\$self->status_bad_request(\$c, message => "Invalid filepath");
 	}
 	use File::Basename;
@@ -4949,8 +4942,8 @@ sub about : Path("About") : Args(0) {
 		]
 	);
 	\$c->stash( template => '$lowCaseName/about/index.tt' );
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
+	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -4982,8 +4975,8 @@ sub blast : Path("Blast") : Args(0) {
 	);
 	
 	\$c->stash( template => '$lowCaseName/blast/index.tt' );
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
+	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -5015,8 +5008,8 @@ sub downloads : Path("Downloads") : Args(0) {
 	);
 	
 	\$c->stash( template => '$lowCaseName/downloads/index.tt' );
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
+	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -5085,8 +5078,8 @@ sub help : Path("Help") : Args(0) {
 	#}
 	#\$c->stash( teste    => \$feature_id );
 	\$c->stash( template => '$lowCaseName/help/index.tt' );
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
+	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -5120,8 +5113,8 @@ sub index : Path : Args(0) {
 	#	\$feature_id = get_feature_id(\$c);
 	#}
 	\$c->stash( template => '$lowCaseName/home/index.tt' );
-	\$c->stash->{hadGlobal}         = 0;
-	\$c->stash->{hadSearchDatabase} = 1;
+	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -5165,8 +5158,11 @@ sub reports : Path("reports") : CaptureArgs(3) {
 	my ( \$self, \$c, \$type, \$file, \$file2 ) = \@_;
 	my \$filepath = "\$type/\$file";
 	\$filepath .= "/\$file2" if \$file2;
+	
+	\$self->status_bad_request( \$c, message => "Invalid request" )
+	  if ( \$filepath =~ m/\\.\\.\\// );
+	
 	use File::Basename;
-
 	open( my \$FILEHANDLER,
 		"<", dirname(__FILE__) . "/../../../root/" . \$filepath );
 	my \$content = "";
@@ -5738,14 +5734,14 @@ CONTENTINDEXDOWNLOADS
 	                        <div class="form-group">
 	                            [% FOREACH text IN texts %]
 	                                [% IF text.tag == 'global-analyses-expansible-tree' %]
-	                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+	                                    <label>[% text.value %]</label>
 	                                [% END %]
 	                            [% END %]
 	                        </div>
 	                        <div class="form-group">
 	                            [% FOREACH text IN texts %]
 	                                [% IF text.tag == 'global-analyses-table-ontologies' %]
-	                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+	                                    <label>[% text.value %]</label>
 	                                [% END %]
 	                            [% END %]
 	                        </div>
@@ -5777,7 +5773,7 @@ CONTENTINDEXDOWNLOADS
 	                        <div class="form-group">
 	                            [% FOREACH text IN texts %]
 	                                [% IF text.tag == 'global-analyses-orthology-analysis-classes' %]
-	                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+	                                    <label>[% text.value %]</label>
 	                                [% END %]
 	                            [% END %]
 	                        </div>
@@ -5802,7 +5798,7 @@ CONTENTINDEXDOWNLOADS
 	                        [% FOREACH text IN texts %]
 	                            [% IF text.tag.search('global-analyses-kegg-report') %]
 	                                <div class="form-group">
-	                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+	                                    <label>[% text.value %]</label>
 	                                </div>
 	                            [% END %]
 	                        [% END %]
@@ -5827,7 +5823,7 @@ CONTENTINDEXDOWNLOADS
 	                        [% FOREACH text IN texts %]
 	                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction-topics' %]
 	                                <div class="form-group">
-	                                    <label><a href="[% text.details %]">[% text.value %]</a></label>
+	                                    <label>[% text.value %]</label>
 	                                </div>
 	                            [% END %]
 	                        [% END %]
@@ -5839,6 +5835,7 @@ CONTENTINDEXDOWNLOADS
         </div>
     </div>
 </div>
+
 CONTENTGLOBALANALYSES
 		,
 		"index.tt" => <<CONTENTGLOBALANALYSESINDEX

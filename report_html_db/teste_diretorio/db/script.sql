@@ -188,17 +188,10 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         
         ("search-database-dna-based-analyses-footer", "Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose ""Search"" button has been pressed will be searched.", ""),
         ("global-analyses-go-terms-mapping", "GO terms mapping", ""),
-        ("global-analyses-expansible-tree", "Expansible tree", "data/GO_mapping.xml"),
-        ("global-analyses-table-ontologies", "Table of ontologies", "data/GO_mapping.html"),
         ("global-analyses-go-terms-mapping-footer", "NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to ""Table of ontologies"" to visualize the results.", ""),
         ("global-analyses-eggNOG", "eggNOG", ""),
-        ("global-analyses-orthology-analysis-classes", "Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups", "data/MN7_eggnog_report/classes.html"),
         ("global-analyses-kegg-pathways", "KEGG Pathways", ""),
-        ("global-analyses-kegg-report", "Enzyme by enzyme report of KEGG results", "data/MN7_kegg_report/classes.html"),
-        ("global-analyses-kegg-report-page", "Map by map report of KEGG results", "data/MN7_kegg_global/html_page/classes.html"),
         ("global-analyses-comparative-metabolic-reconstruction", "Comparative Metabolic Reconstruction", ""),
-        ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)", "data/MN7_X_Pasym/html_page/classes.html"),
-        ("global-analyses-comparative-metabolic-reconstruction-topics", "<i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)", "data/MN7_X_TT01/html_page/classes.html"),
         ("downloads-genes", "Genes", ""),
         ("downloads-other-sequences", "Other sequences", ""),
         ("help-table-contents", "Table of contents", ""),
@@ -382,6 +375,15 @@ INSERT INTO TEXTS(tag, value, details) VALUES
 			INSERT INTO TEXTS(tag, value) VALUES ("_commentFooter1", "Content of the footer");
 			INSERT INTO TEXTS(tag, value) VALUES ("footer", "&copy; 2016 YourCompany | By : Name");
 			INSERT INTO TEXTS(tag, value) VALUES ("_commentFooter2", "End footer");
+			INSERT INTO TEXTS(tag, value) VALUES ("_commentGlobalAnalyses1", "This section is dedicated to global analyses, the keys shouldn't be changed. If doesn't exist or there is no content related, just remove it");
+			INSERT INTO TEXTS(tag, value) VALUES ("_commentGlobalAnalyses2", "Just change href values starting by '/reports/', after that, use the 'directory/file' ");
+			INSERT INTO TEXTS(tag, value) VALUES ("global-analyses-expansible-tree", "<a href='/reports/go_report_db/go_mapping.html'>Expansible tree</a>");
+			INSERT INTO TEXTS(tag, value) VALUES ("global-analyses-table-ontologies", "<a href='/reports/go_report_db/go_mapping.html'>Table of ontologies</a>");
+			INSERT INTO TEXTS(tag, value) VALUES ("global-analyses-orthology-analysis-classes", "<a href='/reoports/eggnog_report_db/classes.html'>Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups</a>");
+			INSERT INTO TEXTS(tag, value) VALUES ("global-analyses-kegg-report-page", "<a href='/reports/MN7_kegg_global/html_page/classes.html'>Map by map report of KEGG results</a>");
+			INSERT INTO TEXTS(tag, value) VALUES ("global-analyses-comparative-metabolic-reconstruction-topics", "<a href='/reports/MN7_X_Pasym/html_page/classes.html'><i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)");
+			INSERT INTO TEXTS(tag, value) VALUES ("global-analyses-comparative-metabolic-reconstruction-topics", "<a href='/reports/MN7_X_TT01/html_page/classes.html' ><i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)");
+			INSERT INTO TEXTS(tag, value) VALUES ("global-analyses-kegg-report", "<a href='/reports/kegg_report_db/classes.html'>Enzyme by enzyme report of KEGG results</a>");
 			INSERT INTO TEXTS(tag, value) VALUES ("_COMMENT-HOW-TO-ADD-FILE-DOWNLOADS", "All file download, starts in the key with 'files-' after that, comes the tag and like value the filepath. 
 	The links should be represented with the difference on the value anchor");
 			INSERT INTO TEXTS(tag, value) VALUES ("downloads-genes-links-1", "<a href='/DownloadFile?type=ag'>All genes (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)</a>");
