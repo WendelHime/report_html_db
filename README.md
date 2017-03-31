@@ -34,14 +34,16 @@ O que esta sendo feito agora:
 -	JS recebe paged response, precisa de uma variavel global ou criação de input hidden contendo offset += 10 e pageSize = 10 - Done
 -	Global analyses - Done
 -	report_html_db.pl deve executar makeblastdb nos arquivos do Services - Done
--	Criar controller no Services para blast
--	Criar função blast no Services
--	Filtrar parâmetros para montar comando
--	Retornar conteúdo
+-	Criar controller no Services para blast - Done
+-	Criar função blast no Services - Done
+-	Modificar Repository.pm atual para SearchDatabaseRepository.pm
+-	Criar BlastRepository.pm
 
 
 TODO:
 -
 -	Criar o resto dos modelos que serão utilizados pelo repositorio
 -	Criar pagina de erro geral
--	
+-	Criar função no BlastRepository para executar comando
+-	Filtrar parâmetros para montar comando
+-	Retornar conteúdo
