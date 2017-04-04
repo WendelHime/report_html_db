@@ -36,14 +36,14 @@ O que esta sendo feito agora:
 -	report_html_db.pl deve executar makeblastdb nos arquivos do Services - Done
 -	Criar controller no Services para blast - Done
 -	Criar função blast no Services - Done
--	Modificar Repository.pm atual para SearchDatabaseRepository.pm
--	Criar BlastRepository.pm
+-	Criar BlastRepository.pm - Done
+-	Validar parametros no services
+-	Criar BlastClient.pm - Testar
+-	Criar BlastController no Website para receber requisição para usar BlastClient
 
 
 TODO:
 -
 -	Criar o resto dos modelos que serão utilizados pelo repositorio
 -	Criar pagina de erro geral
--	Criar função no BlastRepository para executar comando
--	Filtrar parâmetros para montar comando
--	Retornar conteúdo
+-	Modificar Repository.pm atual para SearchDatabaseRepository.pm

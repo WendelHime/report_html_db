@@ -45,9 +45,9 @@ $colorSchema			=>	scalar with the color schema
 
 sub search : Path("/Blast/search") : CaptureArgs(18) : ActionClass('REST') { }
 
-sub search_GET {
+sub search_POST {
 	my (
-		$self,                $c,                  $blast,
+		$self, $c, $hash, $blast,
 		$database,            $fastaSequence,      $from,
 		$to,                  $filter,             $expect,
 		$matrix,              $ungappedAlignment,  $geneticCode,
@@ -55,6 +55,8 @@ sub search_GET {
 		$graphicalOverview,   $alignmentView,      $descriptions,
 		$alignments,          $colorSchema
 	) = @_;
+
+	$hash = $c->req->body_data;
 
 	if ( !$blast and defined $c->request->param("program") ) {
 		$blast = $c->request->param("program");
@@ -119,7 +121,7 @@ sub search_GET {
 	return standardStatusOk(
 		$self, $c,
 		$c->model('BlastRepository')->executeBlastSearch(
-			$blast,       $database,            $fastaSequence,
+			$blast,         $database,            $fastaSequence,
 			$from,          $to,                  $filter,
 			$expect,        $matrix,              $ungappedAlignment,
 			$geneticCode,   $databaseGeneticCode, $frameShiftPenality,

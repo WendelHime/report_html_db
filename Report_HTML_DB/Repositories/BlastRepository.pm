@@ -21,7 +21,14 @@ sub executeBlastSearch {
 		$otherAdvanced, $graphicalOverview,   $alignmentView,
 		$descriptions,  $alignments,          $colorSchema
 	) = @_;
-#	$fastaSequence = ($fastaSequence =~ s/\\n//);
+	
+	###
+	#Ver como funciona frameShiftPenalty
+	#Ver como funcionam os filtros usando os parametros -dust e -seg
+	#Pedir para remover opções avançadas
+	#Como aplicar color schema
+	###
+	
 	my $command =
 	  "echo -e \"$fastaSequence\" | $blast -db $database -show_gis ";
 	$command .= " -query_loc \"" . $from . "-" . $to . "\" " if $from && $to;
@@ -32,23 +39,17 @@ sub executeBlastSearch {
 		|| $blast eq "blastx"
 		|| $blast eq "tblastn"
 		|| $blast eq "tblastx" );
-	###
-	#Ver como funcionam os filtros usando os parametros -dust e -seg
-	###
+		
 	$command .= " -ungapped " if $ungappedAlignment;
 	$command .= " -query_genetic_code $geneticCode "
 	  if $geneticCode && $blast eq "blastx";
 	$command .= " -db_gen_code $databaseGeneticCode "
 	  if $databaseGeneticCode
 	  && ( $blast eq "tblastn" || $blast eq "tblastx" );
-	###
-	#Ver como funciona frameShiftPenalty
-	#Pedir para remover opções avançadas
-	#Como aplicar color schema
-	###
+	  
 	$command .= " -num_descriptions $descriptions " if $descriptions;
 	$command .= " -num_alignments $alignments "     if $alignments;
-	$command .= " -outfmt 0 "                       if $alignmentView == 0;
+	$command .= " -outfmt 0 "                       if !$alignmentView || undef $alignmentView;
 	$command .= " -outfmt $alignmentView "          if $alignmentView;
 
 	my @response = `$command`;
