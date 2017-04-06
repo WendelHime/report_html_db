@@ -12,13 +12,13 @@
  * @returns XMLHttpRequest
  */
 function getHTMLContent(filepath) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/GetHTMLContent?filepath=" + filepath,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/GetHTMLContent?filepath=" + filepath,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -27,13 +27,13 @@ function getHTMLContent(filepath) {
  * @returns XMLHttpRequest
  */
 function getComponents() {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/Components",
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/Components",
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -44,13 +44,13 @@ function getComponents() {
  * @returns XmlHttpRequest
  */
 function searchContig(serializedForm) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/Contig?" + serializedForm,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/Contig?" + serializedForm,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -67,13 +67,13 @@ function searchContig(serializedForm) {
  * @returns XMLHttpRequest
  */
 function searchGeneByID(featureId) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/GetGene?featureId=" + featureId,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/GetGene?featureId=" + featureId,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -88,14 +88,14 @@ function searchGeneByID(featureId) {
  * @returns XMLHttpRequest
  */
 function searchGene(serializedForm, pageSize, offset) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/GetGene?" + serializedForm + "&pageSize="
-                + pageSize + "&offset=" + offset,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/GetGene?" + serializedForm + "&pageSize="
+				+ pageSize + "&offset=" + offset,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -108,13 +108,13 @@ function searchGene(serializedForm, pageSize, offset) {
  * @returns XMLHttpRequest
  */
 function getGeneByPosition(start, end) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/geneByPosition/" + start + "/" + end,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/geneByPosition/" + start + "/" + end,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -129,14 +129,14 @@ function getGeneByPosition(start, end) {
  * @returns XMLHttpRequest
  */
 function analysesCDS(serializedForm, pageSize, offset) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/analysesCDS?" + serializedForm + "&pageSize="
-                + pageSize + "&offset=" + offset,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/analysesCDS?" + serializedForm + "&pageSize="
+				+ pageSize + "&offset=" + offset,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -151,14 +151,14 @@ function analysesCDS(serializedForm, pageSize, offset) {
  * @returns XMLHttpRequest
  */
 function trnaSearch(serializedForm, pageSize, offset) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/trnaSearch?" + serializedForm + "&pageSize="
-                + pageSize + "&offset=" + offset,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/trnaSearch?" + serializedForm + "&pageSize="
+				+ pageSize + "&offset=" + offset,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -169,13 +169,13 @@ function trnaSearch(serializedForm, pageSize, offset) {
  * @returns XMLHttpRequest
  */
 function tandemRepeatsSearch(serializedForm) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/tandemRepeatsSearch?" + serializedForm,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/tandemRepeatsSearch?" + serializedForm,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -186,13 +186,13 @@ function tandemRepeatsSearch(serializedForm) {
  * @returns XmlHttpRequest
  */
 function ncRNASearch(serializedForm) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/ncRNASearch?" + serializedForm,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/ncRNASearch?" + serializedForm,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -203,14 +203,14 @@ function ncRNASearch(serializedForm) {
  * @returns XmlHttpRequest
  */
 function transcriptionalTerminatorSearch(serializedForm) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/transcriptionalTerminatorSearch?"
-                + serializedForm,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/transcriptionalTerminatorSearch?"
+				+ serializedForm,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -221,13 +221,13 @@ function transcriptionalTerminatorSearch(serializedForm) {
  * @returns XmlHttpRequest
  */
 function rbsSearch(serializedForm) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/rbsSearch?" + serializedForm,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/rbsSearch?" + serializedForm,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -238,13 +238,13 @@ function rbsSearch(serializedForm) {
  * @returns XmlHttpRequest
  */
 function alienhunterSearch(serializedForm) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/alienhunterSearch?" + serializedForm,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/alienhunterSearch?" + serializedForm,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -256,13 +256,13 @@ function alienhunterSearch(serializedForm) {
  * @returns XMLHttpRequest
  */
 function getGeneBasics(id) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/GetGeneBasics/" + id,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/GetGeneBasics/" + id,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -275,14 +275,14 @@ function getGeneBasics(id) {
  * @returns XMLHttpRequest
  */
 function getIntervalEvidenceProperties(id, component) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/getIntervalEvidenceProperties/" + id + "/"
-                + component,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/getIntervalEvidenceProperties/" + id + "/"
+				+ component,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -295,14 +295,14 @@ function getIntervalEvidenceProperties(id, component) {
  * @returns XMLHttpRequest
  */
 function getSimilarityEvidenceProperties(id, component) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/getSimilarityEvidenceProperties/" + id + "/"
-                + component,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/getSimilarityEvidenceProperties/" + id + "/"
+				+ component,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -321,14 +321,14 @@ function getSimilarityEvidenceProperties(id, component) {
  * @returns XMLHttpRequest
  */
 function getSubsequence(type, contig, sequenceName, start, end) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/GetSubsequence/" + type + "/" + contig + "/"
-                + sequenceName + "/" + start + "/" + end,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/GetSubsequence/" + type + "/" + contig + "/"
+				+ sequenceName + "/" + start + "/" + end,
+		async : false,
+		cache : false
+	});
 }
 
 /**
@@ -339,11 +339,33 @@ function getSubsequence(type, contig, sequenceName, start, end) {
  * @returns XMLHttpRequest
  */
 function getSubEvidences(featureId) {
-    return $.ajax({
-        type : "GET",
-        dataType : "json",
-        url : "/SearchDatabase/SubEvidences/" + featureId,
-        async : false,
-        cache : false
-    });
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/SubEvidences/" + featureId,
+		async : false,
+		cache : false
+	});
+}
+
+/**
+ * Method used to realize search blast posting a object json
+ * 
+ * @param sourceObject
+ *            formData
+ * @returns XMLHttpRequest
+ */
+function postBlast(formData) {
+	return $.ajax({
+		type : "POST",
+		"mimeType": "multipart/form-data",
+		"contentType" : false,
+		"processData" : false,
+		"headers" : {
+			"accept" : "application/json",
+			"cache-control" : "no-cache",
+		},
+		"url" : "/Blast/search",
+		"data" : formData
+	});
 }

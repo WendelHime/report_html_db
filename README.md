@@ -38,8 +38,15 @@ O que esta sendo feito agora:
 -	Criar função blast no Services - Done
 -	Criar BlastRepository.pm - Done
 -	Validar parametros no services
--	Criar BlastClient.pm - Testar
--	Criar BlastController no Website para receber requisição para usar BlastClient
+-	Criar BlastClient.pm - Done
+-	Criar BlastController no Website para receber requisição para usar BlastClient - Done
+-	Criar arquivos js para requisitar Blast - Done
+-	search BLAST deve retornar conteúdo no formato padrão
+-	Criar função para executar fancy_blast.pl que vai receber o conteudo do arquivo, 
+a função irá criar um arquivo temporário e aaaaarmazenar o conteúdo BLAST nele, 
+vai criar um diretório temporário com UNLINK => 0, executar fancy_blast.pl conteudoblast.txt /tmp no_code;
+edita HTML para substituir img href para algum MD5 que será o nome renomeado do arquivo .png
+-	Criar função para receber MD5 com o nome do arquivo PNG da pasta /tmp/ e retornar conteúdo para ser baixado
 
 
 TODO:
@@ -47,3 +54,5 @@ TODO:
 -	Criar o resto dos modelos que serão utilizados pelo repositorio
 -	Criar pagina de erro geral
 -	Modificar Repository.pm atual para SearchDatabaseRepository.pm
+-	Modificar action.js para search-database.js
+-	Adicionar fileHandler.js para o assets.tar.gz

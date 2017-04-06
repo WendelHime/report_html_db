@@ -21,114 +21,73 @@ BEGIN { extends 'Catalyst::Controller::REST'; }
 
 =head2
 
-Method used to get feature id
-$program				=>	scalar with the name of the program
-$database				=>	scalar with the database
-$fastaSequence			=>	scalar with the sequence
-$from					=>	scalar from position sequence
-$to						=>	scalar to position sequence
-$filter					=>	referenced list with filters
-$expect					=>	scalar with the expected evalue
-$matrix					=>	scalar with matrix
-$ungappedAlignment		=>	scalar with off or on for ungapped alignments
-$geneticCode			=>	scalar with the genetic code
-$databaseGeneticCode	=>	scalar with the database genetic code
-$frameShiftPenality		=>	scalar with the frame shift penality option
-$otherAdvanced			=>	scalar with other advanced options
-$graphicalOverview		=>	scalar with off or on for graphical overview
-$alignmentView			=>	scalar with the alignment view
-$descriptions			=>	scalar with the quantity of descriptions
-$alignments				=>	scalar with the quantity of alignments
-$colorSchema			=>	scalar with the color schema
+Method used to realize search blast
 
 =cut
 
 sub search : Path("/Blast/search") : CaptureArgs(18) : ActionClass('REST') { }
 
 sub search_POST {
-	my (
-		$self, $c, $hash, $blast,
-		$database,            $fastaSequence,      $from,
-		$to,                  $filter,             $expect,
-		$matrix,              $ungappedAlignment,  $geneticCode,
-		$databaseGeneticCode, $frameShiftPenality, $otherAdvanced,
-		$graphicalOverview,   $alignmentView,      $descriptions,
-		$alignments,          $colorSchema
-	) = @_;
+	my ( $self, $c ) = @_;
 
-	$hash = $c->req->body_data;
+	#fazer regex body
+	#	foreach my $key ( keys %{ $c->request->params->{"\$VAR1"} } ) {
+	#		if ( $key && $key ne "0" ) {
+	#			$hash{$key} = $c->request->params->{$key};
+	#		}
+	#	}
+	open( my $FILEHANDLER, "<", $c->req->body );
+	my $formData = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+	use JSON;
+	my %hash = %{ decode_json($formData) };
 
-	if ( !$blast and defined $c->request->param("program") ) {
-		$blast = $c->request->param("program");
-	}
-	if ( !$database and defined $c->request->param("database") ) {
-		$database = $c->request->param("database");
-	}
-	if ( !$fastaSequence and defined $c->request->param("fastaSequence") ) {
-		$fastaSequence = $c->request->param("fastaSequence");
-	}
-	if ( !$from and defined $c->request->param("from") ) {
-		$from = $c->request->param("from");
-	}
-	if ( !$to and defined $c->request->param("to") ) {
-		$to = $c->request->param("to");
-	}
-	if ( !$expect and defined $c->request->param("expect") ) {
-		$expect = $c->request->param("expect");
-	}
-	if ( !$matrix and defined $c->request->param("matrix") ) {
-		$matrix = $c->request->param("matrix");
-	}
-	if ( !$ungappedAlignment
-		and defined $c->request->param("ungappedAlignment") )
-	{
-		$ungappedAlignment = $c->request->param("ungappedAlignment");
-	}
-	if ( !$geneticCode and defined $c->request->param("geneticCode") ) {
-		$geneticCode = $c->request->param("geneticCode");
-	}
-	if ( !$databaseGeneticCode
-		and defined $c->request->param("databaseGeneticCode") )
-	{
-		$databaseGeneticCode = $c->request->param("databaseGeneticCode");
-	}
-	if ( !$frameShiftPenality
-		and defined $c->request->param("frameShiftPenality") )
-	{
-		$frameShiftPenality = $c->request->param("frameShiftPenality");
-	}
-	if ( !$otherAdvanced and defined $c->request->param("otherAdvanced") ) {
-		$otherAdvanced = $c->request->param("otherAdvanced");
-	}
-	if ( !$graphicalOverview
-		and defined $c->request->param("graphicalOverview") )
-	{
-		$graphicalOverview = $c->request->param("graphicalOverview");
-	}
-	if ( !$alignmentView and defined $c->request->param("alignmentView") ) {
-		$alignmentView = $c->request->param("alignmentView");
-	}
-	if ( !$descriptions and defined $c->request->param("descriptions") ) {
-		$descriptions = $c->request->param("descriptions");
-	}
-	if ( !$alignments and defined $c->request->param("alignments") ) {
-		$alignments = $c->request->param("alignments");
-	}
-	if ( !$colorSchema and defined $c->request->param("colorSchema") ) {
-		$colorSchema = $c->request->param("colorSchema");
+	foreach my $key ( keys %hash ) {
+		if ($key) {
+			chomp( $hash{$key} ) if $key ne "SEQUENCE";
+		}
 	}
 
-	return standardStatusOk(
-		$self, $c,
-		$c->model('BlastRepository')->executeBlastSearch(
-			$blast,         $database,            $fastaSequence,
-			$from,          $to,                  $filter,
-			$expect,        $matrix,              $ungappedAlignment,
-			$geneticCode,   $databaseGeneticCode, $frameShiftPenality,
-			$otherAdvanced, $graphicalOverview,   $alignmentView,
-			$descriptions,  $alignments,          $colorSchema
-		)
-	);
+	use File::Temp ();
+	my $fh    = File::Temp->new();
+	my $fname = $fh->filename;
+	open( $FILEHANDLER, ">", $fname );
+	my @fuckingSequence = split( /\\n/, $hash{SEQUENCE} );
+	$hash{SEQUENCE} = join( "\n", @fuckingSequence );
+	print $FILEHANDLER $hash{SEQUENCE};
+	close($FILEHANDLER);
+
+	$hash{DATALIB} = "saida_db/services/root/seq/Bacteria"
+	  if ( $hash{DATALIB} eq "PMN_genome_1" );
+	$hash{DATALIB} = "saida_db/services/root/orfs_nt/Bacteria"
+	  if ( $hash{DATALIB} eq "PMN_genes_1" );
+	$hash{DATALIB} = "saida_db/services/root/orfs_aa/Bacteria"
+	  if ( $hash{DATALIB} eq "PMN_prot_1" );
+	my $content = "";
+	if ( exists $hash{PROGRAM}) {
+		if($hash{PROGRAM} eq "blastn" || $hash{PROGRAM} eq "blastp" || $hash{PROGRAM} eq "blastx" || $hash{PROGRAM} eq "tblastn" || $hash{PROGRAM} eq "tblastx") {
+			my @response = @{
+				$c->model('BlastRepository')->executeBlastSearch(
+					$hash{PROGRAM},            $hash{DATALIB},
+					$fname,                    $hash{QUERY_FROM},
+					$hash{QUERY_TO},           $hash{FILTER},
+					$hash{EXPECT},             $hash{MAT_PARAM},
+					$hash{UNGAPPED_ALIGNMENT}, $hash{GENETIC_CODE},
+					$hash{DB_GENETIC_CODE},    $hash{OOF_ALIGN},
+					$hash{OTHER_ADVANCED},     $hash{OVERVIEW},
+					$hash{ALIGNMENT_VIEW},     $hash{DESCRIPTIONS},
+					$hash{ALIGNMENTS},         $hash{COLOR_SCHEMA}
+				)
+			};
+			$content = join( "", @response );
+		} else {
+			$content = "PROGRAM NOT IN THE LIST";
+		}
+	} else {
+		$content = "NO PROGRAM DEFINED";
+	}
+
+	return standardStatusOk( $self, $c, $content );
 }
 
 =head2

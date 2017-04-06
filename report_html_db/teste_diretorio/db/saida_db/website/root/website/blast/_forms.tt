@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
-        <form action="http://puma.icb.usp.br/blast/blast.cgi" method="POST" name="MainBlastForm" enctype="multipart/form-data">
+        <form id="formBlast">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     [% FOREACH text IN texts %]
@@ -45,7 +45,7 @@
                                 <label>[% text.value %]</label>
                             [% END %]
                         [% END %]
-                        <textarea class="form-control" name="SEQUENCE" rows="6" cols="60"></textarea>
+                        <textarea class="form-control" name="SEQUENCE" id="SEQUENCE" rows="6" cols="60"></textarea>
                     </div>
                     <div class="form-group">
                         [% FOREACH text IN texts %]
