@@ -30,12 +30,6 @@ sub search : Path("/Blast/search") : CaptureArgs(18) : ActionClass('REST') { }
 sub search_POST {
 	my ( $self, $c ) = @_;
 
-	#fazer regex body
-	#	foreach my $key ( keys %{ $c->request->params->{"\$VAR1"} } ) {
-	#		if ( $key && $key ne "0" ) {
-	#			$hash{$key} = $c->request->params->{$key};
-	#		}
-	#	}
 	open( my $FILEHANDLER, "<", $c->req->body );
 	my $formData = do { local $/; <$FILEHANDLER> };
 	close($FILEHANDLER);
@@ -64,8 +58,13 @@ sub search_POST {
 	$hash{DATALIB} = "saida_db/services/root/orfs_aa/Bacteria"
 	  if ( $hash{DATALIB} eq "PMN_prot_1" );
 	my $content = "";
-	if ( exists $hash{PROGRAM}) {
-		if($hash{PROGRAM} eq "blastn" || $hash{PROGRAM} eq "blastp" || $hash{PROGRAM} eq "blastx" || $hash{PROGRAM} eq "tblastn" || $hash{PROGRAM} eq "tblastx") {
+	if ( exists $hash{PROGRAM} ) {
+		if (   $hash{PROGRAM} eq "blastn"
+			|| $hash{PROGRAM} eq "blastp"
+			|| $hash{PROGRAM} eq "blastx"
+			|| $hash{PROGRAM} eq "tblastn"
+			|| $hash{PROGRAM} eq "tblastx" )
+		{
 			my @response = @{
 				$c->model('BlastRepository')->executeBlastSearch(
 					$hash{PROGRAM},            $hash{DATALIB},
@@ -80,14 +79,52 @@ sub search_POST {
 				)
 			};
 			$content = join( "", @response );
-		} else {
+		}
+		else {
 			$content = "PROGRAM NOT IN THE LIST";
 		}
-	} else {
+	}
+	else {
 		$content = "NO PROGRAM DEFINED";
 	}
 
 	return standardStatusOk( $self, $c, $content );
+}
+
+sub fancy : Path("/Blast/fancy") : CaptureArgs(3) : ActionClass('REST') { }
+
+sub fancy_POST {
+	my ( $self, $c ) = @_;
+	open( my $FILEHANDLER, "<", $c->req->body );
+	my $formData = do { local $/; <$FILEHANDLER> };
+	close($FILEHANDLER);
+	use JSON;
+	my %hash = %{ decode_json($formData) };
+
+	use File::Temp ();
+	my $fh    = File::Temp->new();
+	my $fname = $fh->filename;
+	open( $FILEHANDLER, ">", $fname );
+	print $FILEHANDLER $hash{blast};
+	close($FILEHANDLER);
+	use File::Temp qw/ :mktemp  /;
+	my $tmpdir_name = mkdtemp("/tmp/XXXXXX");
+	%hash = ();
+	if ($c->model('BlastRepository')->fancyBlast($fname, $tmpdir_name)) {
+		my @files = ();
+		opendir(my $DIR, $tmpdir_name);
+		@files = grep(!/^\./, readdir($DIR));
+		closedir($DIR);
+		use MIME::Base64;
+		for(my $i = 0; $i < scalar @files; $i++) 
+		{
+			open($FILEHANDLER, "<", $tmpdir_name . "/" . $files[$i]);
+			my $content = do { local $/; <$FILEHANDLER> };
+			$hash{$files[$i]} = MIME::Base64::encode_base64($content);
+			close($FILEHANDLER);
+		}
+	}
+	return standardStatusOk($self, $c, \%hash);
 }
 
 =head2

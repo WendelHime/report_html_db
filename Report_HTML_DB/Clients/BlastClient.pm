@@ -16,10 +16,16 @@ has rest_endpoint => ( is => 'ro', isa => 'Str' );
 sub search {
 	my ( $self, $parameters ) = @_;
 
+	my $response = makeRequest( $self->{rest_endpoint},
+		"/Blast/search", $parameters, "POST" );
+	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+}
+
+sub fancy {
+	my ( $self, $blast ) = @_;
 	my $response = makeRequest(
-		$self->{rest_endpoint},
-		"/Blast/search",
-		$parameters, "POST"
+		$self->{rest_endpoint}, "/Blast/fancy",
+		\%{ { blast => $blast } }, "POST"
 	);
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
@@ -39,11 +45,15 @@ sub makeRequest {
 	elsif ( $method eq "POST" ) {
 		$url = $rest_endpoint . $action;
 		my $request = HTTP::Request->new( "POST", $url );
-#		use Data::Dumper;
-#		$request->content(Dumper($parameters));
+
+		#		use Data::Dumper;
+		#		$request->content(Dumper($parameters));
 		use JSON;
-		$request->content( encode_json($parameters));
-		$request->header( 'Content-Type' => 'application/json', 'Accept' => 'application/json' );
+		$request->content( encode_json($parameters) );
+		$request->header(
+			'Content-Type' => 'application/json',
+			'Accept'       => 'application/json'
+		);
 		my $response = $user_agent->request($request);
 		return $response->content;
 	}

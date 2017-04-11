@@ -78,4 +78,16 @@ sub executeBlastSearch {
 	return \@response;
 }
 
+sub fancyBlast {
+	my ($self, $blast, $output, $database) = @_;
+	my $status = 0;
+	$database = " no_code " if !$database || !defined $database;
+	if (($blast && defined($blast)) && ($output && defined($output))) {
+		`fancy_blast.pl $blast $output $database`;
+		$status = 1;
+		return $status;
+	}
+	return $status;
+}
+
 1;
