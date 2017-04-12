@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <div class="row">
 	<div class="col-md-3">
+		<p>Identifier</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.identifier %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Description</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.description %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
 		<p>E-value of match</p>
 	</div>
 	<div class="col-md-9">

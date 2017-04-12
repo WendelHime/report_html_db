@@ -349,8 +349,13 @@ sub getSimilarityEvidenceProperties_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
-	standardStatusOk( $self, $c,
-		$searchDBClient->getSimilarityEvidenceProperties($feature)->{response} );
+	
+	my %hash = %{$searchDBClient->getSimilarityEvidenceProperties($feature)->{response}};
+	my %returnedHash = %{$searchDBClient->getIdentifierAndDescriptionSimilarity($feature)->{response}};
+	foreach my $key (keys %returnedHash) {
+		$hash{$key} = $returnedHash{$key};
+	}
+	standardStatusOk( $self, $c, \%hash );
 }
 
 sub getIntervalEvidenceProperties :

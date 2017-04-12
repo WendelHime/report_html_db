@@ -129,6 +129,8 @@ sub fancy_POST {
 			close($FILEHANDLER);
 		}
 	}
+	use File::Path;
+	rmtree($tmpdir_name);
 	return standardStatusOk($self, $c, \%hash);
 }
 

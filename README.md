@@ -43,17 +43,17 @@ O que esta sendo feito agora:
 -	Criar arquivos js para requisitar Blast - Done
 -	search BLAST deve retornar conteúdo no formato padrão
 -	Criar função para executar fancy_blast.pl que vai receber o conteudo do arquivo, 
-a função irá criar um arquivo temporário e aaaaarmazenar o conteúdo BLAST nele, 
-vai criar um diretório temporário com UNLINK => 0, executar fancy_blast.pl conteudoblast.txt /tmp no_code;
-edita HTML para substituir img href para algum MD5 que será o nome renomeado do arquivo .png
--	Criar função para receber MD5 com o nome do arquivo PNG da pasta /tmp/ e retornar conteúdo para ser baixado
+a função irá criar um arquivo temporário e armazenar o conteúdo BLAST nele, salvar o conteudo do fancy_blast em diretorio temporario e retornar conteúdo
+do arquivo .html e arquivo .png; O arquivo .png deve ser retornado em base64 - Done
+-	Adicionar acesso ao repositorio e services a função de pegar o identificador e descrição de buscas de similaridade - Done
 
 
 TODO:
 -
--	Criar o resto dos modelos que serão utilizados pelo repositorio
 -	Criar pagina de erro geral
 -	Modificar Repository.pm atual para SearchDatabaseRepository.pm
--	Modificar action.js para search-database.js
+-	Modificar e atualizar action.js para search-database.js
 -	Adicionar fileHandler.js para o assets.tar.gz
--	Adicionar ao repositorio e services acesso a função de pegar o identificador e descrição de buscas de similaridade
+-	Atualizar SearchDatabase report\_html\_db.pl services e website
+-	Inserir Blast.pm e BlastRepository.pm report\_html\_db.pl services
+-	

@@ -588,23 +588,38 @@ function dealDataResults(href, featureName, data) {
 						for(i = 0; i < components[componentTemp].length; i++) {
 							var response = undefined;
 							if(componentTemp != "annotation_phobius" && componentTemp != "annotation_tmhmm" && componentTemp != 'annotation_orthology' && componentTemp != 'annotation_pathways' 
-								&& componentTemp != 'annotation_interpro' && componentTemp != 'annotation_predgpi' && componentTemp != 'annotation_dgpi') {
+								&& componentTemp != 'annotation_interpro' && componentTemp != 'annotation_predgpi' && componentTemp != 'annotation_dgpi' && componentTemp != "annotation_tcdb") {
 								response = getSimilarityEvidenceProperties(components[componentTemp][i].id, componentTemp).responseJSON.response;
 								var htmlSubevidence = getHTMLContent("website/search-database/subEvidences.tt").responseJSON.response;
 								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
-								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", response.subject_name);
+								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", response.identifier + " - " + response.description);
+								
 								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
 								addPanelResult("#evidence-"+componentTemp+"-"+href.replace("#", ""), htmlSubevidence);
 							}
 							if(components[componentTemp][i].type == "similarity") {
-								var html = getHTMLContent("website/search-database/similarityBasicResult.tt").responseJSON.response;
-								html = html.replace("[% result.evalue %]", response.evalue);
-								html = html.replace("[% result.percent_id %]", response.percent_id);
-                                html = html.replace("[% result.similarity %]", response.similarity);
-                                html = html.replace("[% result.score %]", response.score);
-                                html = html.replace("[% result.block_size %]", response.block_size);
-                                addPanelResult("#subevidence-"+response.id, html);
+								var html = "";
+//								if(componentTemp == "annotation_blast" || componentTemp == "annotation_rpsblast") {
+									html = getHTMLContent("website/search-database/similarityBasicResult.tt").responseJSON.response;
+									if (componentTemp == "annotation_blast") {
+										html = html.replace("[% result.identifier %]", "<a href='http://www.ncbi.nlm.nih.gov/protein/" + response.identifier + "' >" + response.identifier + "</a>");
+									}
+									else if (componentTemp == "annotation_rpsblast") {
+										html = html.replace("[% result.identifier %]", "<a href='http://www.ncbi.nlm.nih.gov/Structure/cdd/cddsrv.cgi?uid=" + response.identifier + "' >" + response.identifier + "</a>");
+									}
+									else if (componentTemp == "annotation_hmmer") {
+										html = html.replace("[% result.identifier %]", response.identifier);
+									}
+									html = html.replace("[% result.description %]", response.description);
+									html = html.replace("[% result.evalue %]", response.evalue);
+									html = html.replace("[% result.percent_id %]", response.percent_id);
+	                                html = html.replace("[% result.similarity %]", response.similarity);
+	                                html = html.replace("[% result.score %]", response.score);
+	                                html = html.replace("[% result.block_size %]", response.block_size);
+//								} 
+								addPanelResult("#subevidence-"+response.id, html);
                                 console.log(response);
+								
 							} else if(components[componentTemp][i].type == "intervals") {
 								var responseIntervals = getIntervalEvidenceProperties(components[componentTemp][i].id, componentTemp).responseJSON.response;
 								var listHTMLs = new Array();
@@ -680,8 +695,15 @@ function dealDataResults(href, featureName, data) {
 									}
 								} else if(componentTemp == 'annotation_tcdb') {
 									for(var j = 0; j < responseIntervals.properties.length; j++) {
-									    $("#subevidence-"+responseIntervals.id).empty();
+										$("#evidence-"+componentTemp+"-"+href.replace("#", "")).empty();
 										html = getHTMLContent("website/search-database/tcdbBasicResult.tt").responseJSON.response;
+										html = html.replace("[% result.componentName %]", componentTemp);
+										html = html.replace("[% result.componentName %]", componentTemp);
+										html = html.replace("[% result.feature_id %]", href.replace("#", ""));
+										html = html.replace("[% result.feature_id %]", href.replace("#", ""));
+										html = html.replace("[% result.counter %]", counterHTMLs);
+										html = html.replace("[% result.counter %]", responseIntervals.properties[j].hit_description);
+										html = html.replace("[% result.counter %]", counterHTMLs);
 										html = html.replace("[% result.TCDB_ID %]", responseIntervals.properties[j].TCDB_ID);
 										html = html.replace("[% result.TCDB_ID %]", responseIntervals.properties[j].TCDB_ID);
 										html = html.replace("[% result.hit_description %]", responseIntervals.properties[j].hit_description);
@@ -696,7 +718,7 @@ function dealDataResults(href, featureName, data) {
 										listHTMLs[counterHTMLs] = html;
 										counterHTMLs++;
 									}
-									idTable = "#subevidence-"+responseIntervals.id;
+									idTable = "#evidence-"+componentTemp+"-"+href.replace("#", "");
 								} else if(componentTemp == 'annotation_pathways') {
 									for(var j = 0; j < responseIntervals.properties.length; j++) {
 									    $("#evidence-"+componentTemp+"-"+href.replace("#", "")).empty();

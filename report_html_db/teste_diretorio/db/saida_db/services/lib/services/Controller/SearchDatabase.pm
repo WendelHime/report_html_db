@@ -402,6 +402,19 @@ sub getSimilarityEvidenceProperties_GET {
 		$c->model('Repository')->similarityEvidenceProperties($feature) );
 }
 
+sub getIdentifierAndDescriptionSimilarity :
+  Path("/SearchDatabase/getIdentifierAndDescriptionSimilarity") : CaptureArgs(1) :
+  ActionClass('REST') { }
+  
+sub getIdentifierAndDescriptionSimilarity_GET {
+	my ( $self, $c, $feature_id ) = @_;
+	if ( !$feature_id and defined $c->request->param("feature_id") ) {
+		$feature_id = $c->request->param("feature_id");
+	}
+	standardStatusOk( $self, $c,
+		$c->model('Repository')->getIdentifierAndDescriptionSimilarity($feature_id) );
+}  
+
 =head2 reverseComplement
 
 Method used to return the reverse complement of a sequence

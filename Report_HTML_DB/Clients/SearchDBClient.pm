@@ -262,6 +262,21 @@ sub getSimilarityEvidenceProperties {
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
+sub getIdentifierAndDescriptionSimilarity {
+	my ($self, $feature_id) = @_;
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/getIdentifierAndDescriptionSimilarity",
+		\%{
+			{
+				feature_id => $feature_id
+			}
+		},
+		"GET"
+	);
+	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+}
+
 sub getIntervalEvidenceProperties {
 	my ( $self, $feature, $typeFeature, $pipeline ) = @_;
 	my $response = makeRequest(

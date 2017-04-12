@@ -1635,6 +1635,71 @@ sub similarityEvidenceProperties {
 
 =head2
 
+Method used to get identifier and description of similarity
+
+=cut
+
+sub getIdentifierAndDescriptionSimilarity {
+	my ($self, $feature_id) = @_;
+	my $dbh = $self->dbh;
+
+	my $query =
+	  "select p.value from feature_relationship r 
+join feature q on (r.subject_id = q.feature_id)         
+join featureprop p on (p.feature_id = r.subject_id)
+join cvterm c on (p.type_id = c.cvterm_id)
+join cvterm cr on (r.type_id = cr.cvterm_id)
+join cvterm cq on (q.type_id = cq.cvterm_id)
+where cr.name='alignment' 
+and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
+#	my @featureIdList = split(' ', $feature_id);
+#	$query .= " and ( ";
+#	for(my $i = 0; $i < scalar @featureIdList; $i++) {
+#		$query .= " r.object_id=?";
+#		if( $i != (scalar @featureIdList) - 1) {
+#			$query .= " or ";
+#		}
+#	}
+#	$query .= " ) ";
+	my $sth = $dbh->prepare($query);
+	print STDERR $query;
+#	$sth->execute(@featureIdList);
+	$sth->execute($feature_id);
+	my @rows = @{ $sth->fetchall_arrayref() };
+#	my @list = ();
+	my %hash = ();
+	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
+#		my %hash = ();
+		my $response = $rows[$i][0];
+		my @values = ();
+		if ($response =~ /\|/g) {
+			if ($response =~ /CDD/g) {
+				$response =~ /\|\w+\|(\d*)([\w\ ;.,]*)/g;
+				while ($response =~ /\|\w+\|(\d*)([\w\ ;.,]*)/g) {
+					push @values, $1;
+					push @values, $2;
+				}
+			}  else {
+				while ($response =~ /(?:\w+)\|(\w+\.*\w*)\|([\w\ \:\[\]\<\>\.\-\+\*\(\)\&\%\$\#\@\!\/]*)$/g) {
+					push @values, $1;
+					push @values, $2;
+				}
+			} 
+		} else {
+			while ($response =~ /(\w+)([\w\s]*)/g) {
+				push @values, $1;
+				push @values, $2;
+			}
+		}
+		$hash{identifier} = $values[0];
+		$hash{description} = $values[1];
+#		push @list, \%hash;
+	}
+	return \%hash;
+}
+
+=head2
+
 Method used to get feature ID by uniquename
 
 =cut

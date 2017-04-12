@@ -140,13 +140,10 @@ sub search_POST {
 	  Report_HTML_DB::Clients::BlastClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
 	my $baseResponse = $blastClient->search( \%hash );
+	%hash = ();
 	$baseResponse = $blastClient->fancy( $baseResponse->{response} );
 	my $returnedHash = $baseResponse->{response};
-	use File::Temp ();
-	use File::Temp qw/ :mktemp  /;
 	use MIME::Base64;
-	my $tmpdir_name = mkdtemp("/tmp/XXXXXX");
-	%hash = ();
 	foreach my $key (keys %$returnedHash) {
 		if($key =~ /\.html/ ) {
 			$hash{$key} = MIME::Base64::decode_base64($returnedHash->{$key});
