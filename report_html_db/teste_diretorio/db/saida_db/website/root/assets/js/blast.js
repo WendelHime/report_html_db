@@ -39,14 +39,12 @@ $(function() {
 			var baseResponse = postBlast(formData).done(function(baseResponse) {
 				baseResponse = JSON.parse(baseResponse);
 				var response = baseResponse.response;
-//				var w = window.open();
-//				w.document.open();
-//				w.document.write(response);
-//				w.close();
-				 $("#back").show();
-				 $("#formBlast").hide();
-				 var html = "<div class='row response'><div class='col-md-12'>" + response + "</div></div>";
-				 $("#containerBlast").append(html);
+				var srcToChange = response.html.match(/<img src="(\w+\.\w+)"/gm);
+				response.html = response.html.replace(srcToChange, "<img src='data:image/png;base64,"+response.image+"' ");
+				$("#back").show();
+				$("#formBlast").hide();
+				var html = "<div class='row response'><div class='col-md-12'>" + response.html + "</div></div>";
+				$("#containerBlast").append(html);
 			});
 		}
 		return false;

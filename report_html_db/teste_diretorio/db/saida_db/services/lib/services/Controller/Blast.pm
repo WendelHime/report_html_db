@@ -120,7 +120,12 @@ sub fancy_POST {
 		{
 			open($FILEHANDLER, "<", $tmpdir_name . "/" . $files[$i]);
 			my $content = do { local $/; <$FILEHANDLER> };
-			$hash{$files[$i]} = MIME::Base64::encode_base64($content);
+			if($files[$i] =~ /\.html/g) {
+				$hash{html} = $content;
+			}
+			elsif($files[$i] =~ /\.png/g) {
+				$hash{image} = MIME::Base64::encode_base64($content);
+			}
 			close($FILEHANDLER);
 		}
 	}

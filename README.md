@@ -56,3 +56,4 @@ TODO:
 -	Modificar Repository.pm atual para SearchDatabaseRepository.pm
 -	Modificar action.js para search-database.js
 -	Adicionar fileHandler.js para o assets.tar.gz
+-	Adicionar ao repositorio e services acesso a função de pegar o identificador e descrição de buscas de similaridade
