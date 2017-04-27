@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+		</div>
+	</div>
+	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+		<div class="row">
+			<div class="col-md-3">
+				<p>Transporter classification:</p>
+			</div>
+			<div class="col-md-9">
+				<p><a href="http://tcdb.org/search/result.php?tc=[% result.TCDB_ID %]">[% result.hit_description %]</a></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Class:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.TCDB_class %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Subclass:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.TCDB_subclass %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Family:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.TCDB_family %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Match identifier:</p>
+			</div>
+			<div class="col-md-9">
+				<p><a href="http://www.uniprot.org/uniprot/[% result.hit_name %]">[% result.hit_name %]</a></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>E-value of match:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.evalue %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Percent identity:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.percent_id %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Percent similarity:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.similarity %]</p>
+			</div>
+		</div>
+	</div>
+</div>
+		

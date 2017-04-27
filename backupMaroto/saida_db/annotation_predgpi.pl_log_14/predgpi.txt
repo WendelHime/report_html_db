@@ -1,0 +1,703 @@
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 109
+Specificity = 30.2%
+Sequence = M A K A P I R A R K R V R K Q V S D G V A H I H A S F N N T I V T I T D R Q G N A L G W A T A G G S G F R G S R K S T P F A A Q V A A E R C A E A V K E Y G I K N L E V M V K G P G P G R E S T I R A L N A A G F R I T 
+Omega = N
+C-ter = I T D V T P I P H N G C R P P K K R R V
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 98
+Specificity = 22.7%
+Sequence = V A R I A G I N I P D Q K H T V I A L T S I Y G I G K T R S Q A I C A A A G I A E H V K I S E L S E E Q I D K L R D E V A K Y V V E G D L R R E V T L S I K R L M D L G T Y R G L R H R R G L P V 
+Omega = R
+C-ter = G Q R T K T N A R T R K G P R K P I K K
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 417
+Specificity = 47.8%
+Sequence = M A K Q P G L D F Q S A K G G L G E L K R R L L F V I G A L I V F R I G S F I P I P G I D A T V L A K L L E Q Q R G T I I E M F N M F S G G A L S R A S I F A L G I M P Y I S A S I I I Q L L T V V H P T L A E I K K E G E A G R R K I S Q Y T R Y G T L V L A I F Q S I G I A T G L P N M P G M Q G L V I N P G F A F Y F T A V V S L V T G T M F L M W L G E Q I T E R G I G N G I S I I I F A G I V A G L P P A I G H T I E Q A R Q G D L H F L L L L L V A V L V F A V T F F V V F M E R G Q R R I V V N Y A K R Q Q G R R V Y A A Q S T H L P L K V N M A G V I P A I F A S S I I L F P G T I A S W F G G G T G W N W L T T I S M Y L Q P G Q P L Y V L L Y A S A I I F F C F F Y T A L V F N P R E T A D N L K K S G A F V P G I R P G E Q T A K Y I D K V M T R L T L V G A M Y I T F I C L I P E F M R D A M K V P F Y F G G T S L L I V V V V I M D F 
+Omega = M
+C-ter = A Q V Q T L M M S S Q Y E S A L K K A N L K G Y N R
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 122
+Specificity = 30.2%
+Sequence = M R L N T L S P A E G S K H A P K R V G R G I G S G L G K T G G R G H K G Q K S R S G G G V R R G F E G G Q M P L Y R R L P K F G F T S R K A M V T A E V R L S D F A A V E G D I I D L N A L K A A N V V G T Q I E F A K V I L S G E I N R A V T 
+Omega = V
+C-ter = R G L R V T K G A R A A I E A A G G K I E E
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 39
+Specificity = 12.1%
+Sequence = M A K T I K I T Q I R S S I G R L P K H K A T L V G L G L R R I G H T V E R 
+Omega = E
+C-ter = D T P A I R G M I N L V S Y M V K V E E
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 146
+Specificity = 12.1%
+Sequence = M A H I E K Q A G E L Q E K L I A V N R V S K T V K G G R I F S F T A L T V V G D G N G R V G F G Y G K A R E V P A A I Q K A M E K A R R N M K T V A L N S G T L Y H P V K G A H T G S R V F M Q P A H E G T G I I A G G A M R A V L E V A G V R N V L A K T Y G S T N P I N V V R A T L D A L D 
+Omega = S
+C-ter = M K S P E M V A A K R G K S V E E I L G
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 92
+Specificity = 39.6%
+Sequence = M D K K A A R I R R A T R A R R K L Q E L G A T R L V V H R T P R H I Y A Q V I A P N G S E T L V A A S T T E K A I N E Q L K Y T G N K E A A A A V G K V I A E R A L E K G I K D V S 
+Omega = F
+C-ter = D R S G F Q Y H G R V Q A L A D A A R E A G L Q F
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 157
+Specificity = 92.6%
+Sequence = M S R V A K A P V V I P A G V E V K L D G Q V I S I K G K N G E L S R T I H S A V E V K H A D N Q L T F A P R D G Y V D G W A Q A G T T R S L L N A M V I G V T E G F T K K L Q L V G V G Y R A A V K G N A I N M S L G F S H P V D H E L P A G I T A E C P S Q T E I V L K G A D K Q V I G Q V A A E L R A Y R R P E P 
+Omega = Y
+C-ter = K G K G V R Y A D E V V R I K E A K K K
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 74
+Specificity = 2.2%
+Sequence = V A I A K V L K E E G Y I E D Y K I E G D T K P E L E L V L K Y F Q G K A V V E S I Q R V S R P S L R I Y K K K D E L P Q V M A G L G I A V V S T 
+Omega = S
+C-ter = K G V M T D R A A R Q A G L G G E I L C Y V A
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 76
+Specificity = 14.5%
+Sequence = M A K Q S L K A R D V K R A K L A E K F F T K R V E L K A V I S D V N A S D E E R W N A V L K L Q T L P R D S S P S R Q R N R C R Q T G R P H A F L R 
+Omega = K
+C-ter = F G L S R I K V R E A A M R G E I P G L K K A S W
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 121
+Specificity = 14.5%
+Sequence = M G V G E A I A D K K L L D N A A A D L A A I S G Q K P L I T K A R K S V A G F K I R Q G Y P I G C K V T L R G E R M W E F L E R L I S I A V P R I R D F R G L S A K S F D G R G N Y S M G V R E Q I I F P E I D Y D K V D R V R G L D I T I T 
+Omega = T
+C-ter = T A K S D D E G R A L L A A F N F P F R K
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 84
+Specificity = 42.5%
+Sequence = M A A K I R R D D E V I V L T G K D K G K R G K V K Q V L S T G K V I V E G I N L V K K H Q K P V P A L N Q P G G I V E K E A A I Q V S N V A I F N A A T G K A D R V 
+Omega = G
+C-ter = F R F E D G K K V R F F K S N S E T I K
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 99
+Specificity = 21.1%
+Sequence = M I Q E Q T M L N V A D N S G A R R V M C I K V L G G S H R R Y A H V G D I I K V T I K E A I P R G K V K K G D V L K A V V V R T K K G V R R P D G S V I R F D G N A C V L L N N T S E Q V I G T R 
+Omega = I
+C-ter = F G P V T R E L R N E K F M K I I S L A P E V L
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 63
+Specificity = 28.0%
+Sequence = M T D K I R T L Q G R V V S D K M E K S I V V A I E R K V K H P L Y G K F I K R T T K L H V H D E N N E C G I G D V V E I R 
+Omega = E
+C-ter = T R P L S K T K S W T L V R V V E K A I L
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 40
+Specificity = 32.5%
+Sequence = M K A Q E L R E K S V E E L N T E L L N L L R E Q F N L R M Q A A S G Q L Q Q 
+Omega = S
+C-ter = H L L K Q V R R N I A R V K T L L T E K A G A
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 115
+Specificity = 22.7%
+Sequence = M L Q P K R T K F R K M H K G R N R G L A A G A D V S F G T F G L K A V G R G R L T A R Q I E A A R R A M T R A I K R Q G K I W I R V F P D K P I T E K P L E V R M G K G K G N V E Y W V A L I Q P G K V L Y E M D G V P E E L A R 
+Omega = E
+C-ter = A F K L A A A K L P I K T T F V T K T V M
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 211
+Specificity = 28.0%
+Sequence = M G Q K V H P N G I R L G I V K P W N S T W Y A N T K E F A D N L D S D F K V R Q Y L N K E L A K A S I S R I V I E R P A K S I R V T I H T A R P G I V I G K K G E D V E K L R K T V A E I A G V P A Q I N I S E V R K P E L D A K L V A D S I T S Q L E R R V M F R R A M K R A V Q N A M R L G A K G I K V E V S G R L G G A E I A R T E W Y R E G R V P L H T L R A D I D Y N T S E A H T T Y G V L G V K V W I F K G E I L G G 
+Omega = M
+C-ter = A A V E Q A E K P A A Q P K K Q Q R K G R K
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 92
+Specificity = 32.5%
+Sequence = M E T I A K H R H A R S S A Q K V R L V A D L I R G K K V S Q A L E T L T Y T N K K A A G L V K K V L E S A I A N A E H N D G A D I D D L K V T K I F V D E G P T M K R I M P R A K G 
+Omega = R
+C-ter = A D R I L K R S S H I T V V V S D R W D S G D
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 67
+Specificity = 37.3%
+Sequence = M P R S L K K G P F I D L H L L K K V E K A V E S G D K K P I K T W S R R S T I F P N M I G L T I A V H N G R Q H V P V F V S D E M 
+Omega = V
+C-ter = G H K L G E F A P T R T Y R G H A A D K K A K K R
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 254
+Specificity = 30.2%
+Sequence = M A I V K C K P T S P G R R H V V K V V N P E L H K G K P Y A P L L E K S S K T G G R N N N G R I T T R H I G G G H K Q H Y R L I D F K R N K D G I P A V V E R L E Y D P N R S A N I A L V L Y K D G E R R Y I L A P K G L K A G D Q I Q S G A D A A I K T G N A L P M R N I P V G S T V H N V E M K P G K G G Q L A R S A G A Y V Q I V A R D G S Y V T L R L R S G E M R K V L S D C R A T L G E V G N A E H M L R V L G K A G A S R W R G I R P T V R G T A M N P V D H P H G G G E G R N F G K H P V T P W G V Q T K 
+Omega = G
+C-ter = K K T R S N K R T D Q F I V R R R T K K
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 280
+Specificity = 42.5%
+Sequence = M E L V M K D A Q G A L T V S E T T F G R D F N E A L V H Q V V V A Y A A G A R Q G T R A Q K T R A E V S G S G K K P W R Q K G T G R A R S G S I K S P I W R S G G V T F A A K P Q D H S Q K V N K K M Y R G A L K S I L S E L V R Q D R L I V V E K F S V E A P K T K L L V Q K L K E M A L E D V L I I T H E V D E N L F L A A R N L Y K V D V R D V A G I D P V S L I A F D K V V M T A D A V K Q V E E M L A W S V K N V C W K Y C A R R T Y L K K L L Q R W K R A T P S F S K L Q K T R L K Q K S K L L C R N F L K S K L K V L T L C W L K A K L N A T V S V L V V V A 
+Omega = T
+C-ter = G K K L T S H W R K A R I W T S S V V Q S K P E E
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 189
+Specificity = 47.8%
+Sequence = M I G L V G K K V G M T R I F T E D G V S I P V T V I E I E D N R V T Q V K D L D S D G Y R A I Q V T T G S K K A N R I N K P E A G H F A K A G V E A G R I L R E F R L S E G E E Y A V G Q N I S V E I F A D V K K V D V T G T S K G K G F A G T V K R W N F R T Q D A S H G N S L S H R V P G S I G Q N Q T P G K V F K G K K M A G Q L G N E R V T V Q S L D V V R V D A E R N L L L 
+Omega = V
+C-ter = K G A V P G A T G G N L I V K P A V K A
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 75
+Specificity = 25.9%
+Sequence = M Q N Q R I R I R L K A F D H R L I D Q S T A E I V E T A K R T G A Q V R G P I P L P T R K E R F T V L I S P H V N K D A R D Q Y E I R T H K R L V 
+Omega = D
+C-ter = I V E P T E K T V D A L M R L D L A A G V D V Q I S L G
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 138
+Specificity = 78.4%
+Sequence = M K G D K K M I A H L N K L L G N E L V A I N Q Y F L H A R M F K N W G L T R L N D K E Y H E S I D E M K H A D R Y I E R I L F L E G I P N L Q D L G K L N I G E D I E E M L K S D L Q L E L Q G A R D L K E A I A Y A D S I H D Y V S R D L M I D I L D E E E E H I D W L E T Q 
+Omega = F
+C-ter = E L I E R M G I Q N Y T Q A Q I L E G E
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_52
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 48
+Specificity = 42.5%
+Sequence = V L F M Y V C L C N A V S D K T I R N A V R Q H H I H S I R E L K R I V P V G R D C G K C I R 
+Omega = Q
+C-ter = A R E L I N E E I A Q L P K I D N V A W
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 370
+Specificity = 37.3%
+Sequence = M S K E K F E R T K P H V N V G T I G H V D H G K T T L T A A I T T V L A K T Y G G N A R A F D Q I D N A P E E K A R G I T I S T S H V E Y D T P S R H Y A H V D C P G H A D Y V K N M I T G A A Q M D G A I L V V A A T D G P M P Q T R E H I L L G R Q V G V P Y I I V F L N K C D M V D D E E L L E L V E M E V R E L L S Q Y D F P G D D T P V I R G S A L K A L E G D A E W E S K I L E L A E A L D S Y I P E P E R A I D Q P F L L P I E D V F S I S G R G T V V T G R V E R G I V K V G E E V E I V G I K D T T K T T C T G V E M F R K L L D E G R A G E N V G V L L R G T K R D E I E R G Q V L A K P G S I K P H T T F E S E V Y I L S K D E G G R H T P F F K G Y R P Q F Y F R T T D V T G T I E L P E G V E M V M P G D N I Q M K V T L I A P I A M 
+Omega = D
+C-ter = Q G L R F A I R E G G R T V G A G V V A K I I A
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_54
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 41
+Specificity = 12.1%
+Sequence = M P A S S A A H S R Q C E R T M Q Q K N R H L W S F G H K T L I L I Q L A V F F 
+Omega = N
+C-ter = I F R S N N R Q K S L T T I E E L I T V P D K T W
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 364
+Specificity = 30.2%
+Sequence = M I N K Q L K L T L S K A T Q F F T L L H S L Q K K P I K I Q K S L R L P L I S R Y H A I Y F L P G T G C L L Q L V Q P A Q T G R C W F M N K K E P F L A T P Y L Q F N R E Q W A T L R D S V P L T L T K E E L I D L K G I N E E I S L E E V V E I Y L P L S R L L N F Y I S S N L R R Q A V L E Q F L G T D G Q K V P Y V I G I A G S V A V G K S T T A R L L Q A L L S R W P E H R S V E L I T T D G F L H S N N V L N E R G L M K K K G F P Q S Y D M H S L V K F V S D I K S G S K Q V S A P V Y S H L T Y D I V P N E Q K F I K Q P D I L I L E G L N V L Q S G M D Y P H D P H H V F V S D F V D F S I Y V D A P E K L L K S W Y I S R F L K F R Q G A F S D P D S Y F H S Y S K L S E E E A I N T A S D I W Q E I N G L N L R Q N I L P T R E 
+Omega = R
+C-ter = A S L I M T K G T N H T I E S V R L R K
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 289
+Specificity = 6.3%
+Sequence = V P L Q L I K I L S D G D V H S G Q Q L G Q D L G M S R A G I N K H I Q T I R E W G I E L E T T P G K G Y S L V E P M Q L L D E S T I F Q Y L P Q D R I T V L P V I D S T N Q Y L L E R L S E L K S G D A C V A E Y Q Y A G R G R R G R K W V S P F G K N L Y L S M Y W R L E Q G P A A A I G L S L V V G I V I A E V L H R F G A D R I R V K W P N D L Y L D D K K L A G I L V E L I G K T G D A A Q V V I G A G I N I S M D H K D E E S I N Q Q W I N L L Q A G I E V D R N K L A V E I I L D L R K A L I Q F E N E G L S S F V S R W F E L D N F M D R P V K L I I G S Q E V Y G I A R G I N 
+Omega = Q
+C-ter = Q G A L L L D Q N G V I T P Y I G G E I S L R G C
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 324
+Specificity = 81.8%
+Sequence = M L S L K E F N T F G L S A Y A K R L D I A E S A E S L L T L W Q K A K S E K Q P A L L L G G G S N V L F T A N F E G T V I L N R I M G I Q Q R E T D E S W H L H V G A G E N W H K L V C R S L K N Q I Y G L E N L A L I P G C V G A A P I Q N I G A Y G I E F R D V C E Y V D V L N L E T G E K T R L S V G E C Q F G Y R D S V F K N K Y K T N H S I I S V G L L L K K N W Q P I L N Y G D L T R F S K D N V T P Q Q I F D S I C A M R T S K L P D P V I T G N A G S F F K N P I V S E E V A A K I R E N Y P D S P Q Y P Y M N G M F K L A A G W L I E H C N L K G Y R I G G A S V H L R Q A L V L I N Q E N A T G K D V V S L A A Y I R Q Q V I S K F G V L L E P 
+Omega = E
+C-ter = V R F I G S K G E I D A V E C I S W K I
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_58
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 28
+Specificity = 21.1%
+Sequence = M P N S A V K R R S A D G S V G S P H V R V G N C Q T 
+Omega = L
+C-ter = F W D K K A I Q K G G L F A F N K K L T
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_59
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 32
+Specificity = 34.8%
+Sequence = M W E G P D S Q D V G L E A A I I E R K R N S S L V E S A C A 
+Omega = E
+C-ter = D V T G L N H A P K L R Q R H V G V V G
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_60
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 68
+Specificity = 30.2%
+Sequence = M W F N S M Q R E E P Y L L L T S R E D L R D E V V P S G A L R Q V L H G C R Q L V L W N V G L S P A T S A T L I L C C Q R V K A G T 
+Omega = Q
+C-ter = R R L P V I N R R K V G M T S S H H G P Y E
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_61
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 64
+Specificity = 34.8%
+Sequence = V K S P G S T W E W H L R L V G W S L V E G G R I P C V A V K C V E M W R N T G G E G G P L D E D W R S G A K A W G A N R I R 
+Omega = Y
+C-ter = P G S P R C K R C R F G G C G L E L W L P K L T R
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria_CDS_annotation_glimmer3.pl_log_10_62
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA_CDS_ANNOTATION_GLIMME
+Position = 33
+Specificity = 6.3%
+Sequence = V L L L R V T S K F N S V Q A E P F L P A E S T L Q P E G L L H 
+Omega = T
+C-ter = R G M A A S G L R P L C N I P H C C L P
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria2_CDS_annotation_glimmer3.pl_log_10_5
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA2_CDS_ANNOTATION_GLIMM
+Position = 44
+Specificity = 21.1%
+Sequence = M F L I R N V N A C Y T G H Y A L L S Y L F T A T S F W K A R F Q D T Q T M L L W Y K 
+Omega = K
+C-ter = D W L A N L A S S N R L C K K N M L F Y
+--------------------------------------------------------------------------------
+
+********************************************************************************
+--------------------------------------------------------------------------------
+Bacteria2_CDS_annotation_glimmer3.pl_log_10_6
+--------------------------------------------------------------------------------
+
+Highly probable = 0 
+Probable = 0 
+Weakly probable = 0 
+Not GPI-anchored = 1 
+
+--------------------------------------------------------------------------------
+Name = BACTERIA2_CDS_ANNOTATION_GLIMM
+Position = 352
+Specificity = 71.2%
+Sequence = M F S G G A L S R A S I F A L G I M P Y I S A S I I I Q L L T V V H P T L A E I K K E G E A G R R K I S Q Y T R Y G T L V L A I F Q S I G I A T G L P N M P G M Q G L V I N P G F A F Y F T A V V S L V T G T M F L M W L G E Q I T E R G I G N G I S I I I F A G I V A G L P P A I G H T I E Q A R Q G D L H F L L L L L V A V L V F A V T F F V V F M E R G Q R R I V V N Y A K R Q Q G R R V Y A A Q S T H L P L K V N M A G V I P A I F A S S I I L F P G T I A S W F G G G T G W N W L T T I S M Y L Q P G Q P L Y V L L Y A S A I I F F C F F Y T A L V F N P R E T A D N L K K S G A F V P G I R P G E Q T A K Y I D K V M T R L T L V G A M Y I T F I C L I P E F M R D A M K V P F Y F G G T S L L I V V V V I M D F 
+Omega = M
+C-ter = A Q V Q T L M M S S Q Y E S A L K K A N L K G Y N R
+--------------------------------------------------------------------------------
+

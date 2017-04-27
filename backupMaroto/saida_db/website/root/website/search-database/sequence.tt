@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<div class="panel panel-default sequences">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#sequence-[% result.feature_id %]">Sequence</a>
+		</div>
+	</div>
+	<div id="sequence-[% result.feature_id %]" class="panel-body collapse sequence">
+		[% result.sequence %]
+	</div>
+</div>

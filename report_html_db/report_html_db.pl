@@ -173,6 +173,8 @@ my $mreps_dir     = "";
 my $filepath_log = "";
 
 #my $csv_file;
+my $component_name_list;
+
 #local variables
 my @arguments;
 my $config;
@@ -333,6 +335,9 @@ if ( defined( $config->{"uniquename"} ) ) {
 if ( defined( $config->{"filepath_log"} ) ) {
 	$filepath_log = $config->{"filepath_log"};
 }
+if ( defined( $config->{"component_name_list"} ) ) {
+	$component_name_list = $config->{"component_name_list"};
+}
 
 #
 # ==> END OF AUTO GENERATED CODE
@@ -363,6 +368,7 @@ CREATE TABLE FILES (
 CREATE TABLE COMPONENTS(
 	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  
 	name VARCHAR(2000),
+	locus_tag VARCHAR(2000),
 	component VARCHAR(2000),
 	filepath VARCHAR(2000)
 );
@@ -667,6 +673,18 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("help_6-2-paragraph", "To be added...", ""),
         ("result-warning-contigs", "Stretch not exist", "");
         
+	INSERT INTO TEXTS(tag, value, details) VALUES
+		("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
+        ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
+        
+    INSERT INTO TEXTS(tag, value, details) VALUES
+		("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
+        ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
+        ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", ""),
+        ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
+        ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
+        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", ""),
+        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
 SQL
 
 #        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
@@ -737,46 +755,66 @@ print $LOG "\nSeparating sequences od multifasta and create directory\n";
 #separa sequencias do multifasta e cria diretorio
 my $html_dir     = "website";
 my $services_dir = "services";
-
+print $LOG "\nCreating $html_dir\n";
 !system("mkdir -p $html_dir")
   or die "Could not created directory $html_dir\n";
-
+print $LOG "\nCreating $fasta_dir\n";
 !system("mkdir -p $html_dir/root/$fasta_dir")
   or die "Could not created directory $html_dir/root/$fasta_dir\n";
 
-$/ = ">";
-
 #print $LOG "Separating ORFs em AA of multifasta AA";
 ##separa ORFs em aa do multifasta aa
+print $LOG "\nCreating $aa_fasta_dir\n";
 !system("mkdir -p $html_dir/root/$aa_fasta_dir")
   or die "Could not created directory $html_dir/root/$aa_fasta_dir\n";
 #
-if ( $aa_orf_file ne "" ) {
-	open( FILE_AA, "$aa_orf_file" ) or die "Could not open file $aa_orf_file\n";
-}
+#if ( $aa_orf_file ne "" ) {
+#	open( FILE_AA, "$aa_orf_file" ) or print $LOG "Could not open file $aa_orf_file\n";
+#}
 #
 #print $LOG "Separating ORFs NT of multifasta NT";
 ##separa ORFs nt do multifasta nt
-if ( not -d "$html_dir/root/$nt_fasta_dir" ) {
-	!system("mkdir -p $html_dir/root/$nt_fasta_dir")
-	  or die "Could not created directory $html_dir/root/$nt_fasta_dir\n";
-}
+print $LOG "\nCreating $nt_fasta_dir\n";
+!system("mkdir -p $html_dir/root/$nt_fasta_dir")
+  or print $LOG "Could not created directory $html_dir/root/$nt_fasta_dir\n";
 
 #if($nt_orf_file ne "")
 #{
 #    open(FILE,"$nt_orf_file") or die "Could not open file $nt_orf_file\n";
 #}
 
-$/ = ">";
-
 #prefix_name for sequence
 my $prefix_name;
 my $header;
+print $LOG "\nComponent list: " . $component_name_list . "\n";
+my @components_name = split( ';', $component_name_list );
 
-#my @components_name = split (';',$component_name_list);
 #push @components_name,"go_terms";
-#my %comp_names = map {$_ => 1} @components_name;
-
+my @comp_dna = ();
+my @comp_ev  = ();
+foreach my $c ( sort @components_name ) {
+	if (   $c eq "annotation_alienhunter.pl"
+		|| $c eq "annotation_skews.pl"
+		|| $c eq "annotation_infernal.pl"
+		|| $c eq "annotation_rbsfinder.pl"
+		|| $c eq "annotation_rnammer.pl"
+		|| $c eq "annotation_transterm.pl"
+		|| $c eq "annotation_trf.pl"
+		|| $c eq "annotation_trna.pl"
+		|| $c eq "annotation_string.pl"
+		|| $c eq "annotation_mreps.pl"
+		|| $c eq "annotation_glimmer3.pl"
+		|| $c eq "annotation_trna.pl"
+		|| $c eq "annotation_alienhunter.pl" )
+	{
+		$c =~ s/.pl//g;
+		push @comp_dna, $c;
+	}
+	else {
+		$c =~ s/.pl//g;
+		push @comp_ev, $c;
+	}
+}
 #
 # Read ALL Sequence Objects and sort by name for nice display
 #
@@ -788,7 +826,8 @@ my $strlen    = 4;
 my $count_seq = 1;
 
 my $sequence_object = new EGeneUSP::SequenceObject();
-my %hash_dna;
+my %hash_ev         = ();
+my %hash_dna        = ();
 my @seq_links;
 
 #contador de sequencias
@@ -873,15 +912,13 @@ while ( $sequence_object->read() ) {
 	print FASTAOUT $bases;
 	close(FASTAOUT);
 
+#	my @logs = @{ $sequence_object->get_logs_hash() };
+
 	foreach my $conclusion (@conclusions) {
 		$sequence_object->get_evidence_for_conclusion();
-		my %hash = %{ $sequence_object->{array_evidence} };
+		my %hash      = %{ $sequence_object->{array_evidence} };
+		my @evidences = @{ $conclusion->{evidence_number} };
 
-#		print STDERR "\npassou por uma conclusão[854]\n";
-#		my @evidences = $sequence_object->get_evidences_with_conclusions();
-#		my @evidences = $sequence_object->get_evidence_for_conclusion_from_database();
-		my @evidences    = @{ $conclusion->{evidence_number} };
-		my @subevidences = ();
 		###
 		#
 		# Receber lista de componentes rodados
@@ -889,10 +926,7 @@ while ( $sequence_object->read() ) {
 		###
 
 		foreach my $ev (@evidences) {
-			my $evidence = $hash{$ev};
-
-			#			print STDERR "\npassou por uma evidencia[861]\n";
-			#			print STDERR "EVIDENCE: $evidence\n";
+			my $evidence      = $hash{$ev};
 			my $ev_name = $sequence_object->fasta_header_evidence($evidence);
 			$ev_name =~ s/>//;
 			my $fasta_header_evidence =
@@ -905,199 +939,37 @@ while ( $sequence_object->read() ) {
 
 			$fasta_header_evidence =~ s/>//g;
 
-			#print $LOG "\nTag: ".$evidence->{tag}."\n";
-
 			my $component = $sequence_object->fasta_header_program($evidence);
-			print $LOG
-"\nTentativa de pegar o nome do componente pelo Log name:\t$evidence->{log}{name}\n"
-			  . "\nTentativa de pegar o nome do componente pelo fasta header program:\t$component\n";
 			my $component_name =
 			  !$evidence->{log}{name}
 			  ? ( $component =~ /(annotation[_\w]+)/g )[0]
 			  : $evidence->{log}{name};
 			$component_name =~ s/.pl//g;
+			my $locus_tag;
+
+			if ( $conclusion->{locus_tag} ) {
+				$locus_tag = $conclusion->{locus_tag};
+			}
+			else {
+				$locus++;
+				$locus_tag = "NOLOCUSTAG_$locus";
+			}
+			
 			if ( $component && $component_name ) {
-#				$component = reverse($component);
-#				chop($component);
-#				$component = reverse($component);
-
-		  #			my $component_name = ($component =~ /(annotation[_\w]+)/g)[0];
-		  #print STDERR "\nFasta header program[897]\t-\t".$component_name."\n";
-				print $LOG "\nFasta header program[898]\t-\t"
-				  . $component . "\n";
-				print $LOG
-				  "\nPORRA DO NOME DO COMPONENTE [$!]:\t$component_name\n";
-				if (   !exists $components{$component}
-					&& !$components{$component} )
-				{
-					if ( $component_name eq "annotation_alienhunter" ) {
-						my $name = $sequence_object->{sequence_name};
-						my $file = $alienhunter_output_file . "_" . $name;
-						$components{$component} = $component . "/" . $file;
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
-			        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
-			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
-SQL
-					}
-					elsif ( $component_name eq "annotation_blast" ) {
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-analyses-protein-code-tab", "BLAST", "#blast"),
-			        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
-SQL
-						$components{$component} = $component;
-
-					   #print $LOG "\nComponent blast test[917]:\t$component\n";
-					}
-					elsif ( $component_name eq "annotation_glimmer3" ) {
-						$components{$component} = $component . "/glimmer3.txt";
-					}
-					elsif ( $component_name eq "annotation_infernal" ) {
-						my $file = $infernal_output_file . "_" . $name;
-						$components{$component} = "$component/$file";
-					}
-					elsif ( $component_name eq "annotation_interpro" ) {
-						$components{$component} = $component;
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology"),
-			        ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
-			        ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
-			        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", "");
-SQL
-					}
-					elsif ( $component_name eq "annotation_mreps" ) {
-						my $name = $sequence_object->{sequence_name};
-						my $file = $component . "/" . $name . "_mreps.txt";
-						$components{$component} = "$file";
-					}
-					elsif ( $component_name eq "annotation_orthology" ) {
-						$components{$component} = $component;
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
-			        ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
-SQL
-					}
-					elsif ( $component_name eq "annotation_pathways" ) {
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
-			        ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
-			        ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", "");
-SQL
-						###
-						#
-						#	Pegando todos os pathways do arquivo KO
-						#
-						###
-						open( my $KOFILE, "<", $ko_file )
-						  or warn
-						  "WARNING: Could not open KO file $ko_file: $!\n";
-						my $content        = do { local $/; <$KOFILE> };
-						my @idKEGG         = ();
-						my %workAroundSort = ();
-						while ( $content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm ) {
-							if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
-								$workAroundSort{$2} = $1;
-								push @idKEGG, $1;
-							}
+				my $resp = verify_element( $component_name, \@comp_dna );
+				print $LOG "\n[948] $component_name -  resp = $resp\n";
+				if ($resp) {
+					if (   !exists $components{$component}
+						&& !$components{$component} )
+					{
+						if ( $component_name eq "annotation_trf" ) {
+							my $file = $name . "_trf.txt";
+							$components{$component} = "$component/$file";
 						}
-
-						foreach my $key ( sort keys %workAroundSort ) {
-							my $value = $workAroundSort{$key};
+						elsif ( $component_name eq "annotation_trna" ) {
+							my $file = $name . "_trna.txt";
+							$components{$component} = "$component/$file";
 							$scriptSQL .= <<SQL;
-									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
-SQL
-						}
-						close($KOFILE);
-						$components{$component} = $component;
-					}
-					elsif ( $component_name eq "annotation_phobius" ) {
-						$components{$component} = $component;
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-analyses-protein-code-tab", "Phobius", "#phobius"),
-			        ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
-			        ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains:", ""),
-			        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-or-less", " or less", "value='orLess'"),
-			        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-or-more", " or more", "value='orMore'"),
-			        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity-exactly", " exactly", "value='exact' checked"),
-			        ("search-database-analyses-protein-code-signal-peptide", "With signal peptide?", ""),
-			        ("search-database-analyses-protein-code-signal-peptide-option", "yes", "value='sigPyes'"),
-			        ("search-database-analyses-protein-code-signal-peptide-option", "no", "value='sigPno'"),
-			        ("search-database-analyses-protein-code-signal-peptide-option", "do not care", "value='sigPwhatever' checked=''");
-SQL
-					}
-					elsif ( $component_name eq "annotation_rbsfinder" ) {
-						my $file = $name . ".txt";
-						$components{$component} = "$component/$file";
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
-			        ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " upstream", "value='neg' checked"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " downstream", "value='pos'"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
-SQL
-					}
-					elsif ( $component_name eq "annotation_rnammer" ) {
-						my $file = $name . "_rnammer.gff";
-						$components{$component} = "$component/$file";
-					}
-					elsif ( $component_name eq "annotation_skews" ) {
-						my $filestring   = `ls $skews_dir`;
-						my @phdfilenames = split( /\n/, $filestring );
-						my $seq_name     = $sequence_object->sequence_name();
-						my $aux          = "";
-						foreach my $file (@phdfilenames) {
-							if (    $file =~ m/$seq_name/
-								and $file =~ m/.png/ )
-							{
-								$aux .= "$component/$file\n";
-							}
-						}
-						$components{$component} = $aux;
-					}
-					elsif ( $component_name eq "annotation_rpsblast.pl") {
-						$components{$component} = $component;
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-						("search-database-analyses-protein-code-tab", "RPSBLAST", "#rpsBlast");
-SQL
-					}
-					elsif ( $component_name eq "annotation_string" ) {
-						my $name = $sequence_object->{sequence_name};
-						my $file = $string_dir . "/" . $name . "_string.txt";
-						$components{$component} = "$component/$file";
-					}
-					elsif ( $component_name eq "annotation_transterm" ) {
-						my $file = $name . ".txt";
-						$components{$component} = "$component/$file";
-						$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
-			        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
-			        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
-			        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
-SQL
-					}
-					elsif ( $component_name eq "annotation_trf" ) {
-						my $file = $name . "_trf.txt";
-
-					   #print $LOG "\nCompoment literally[1046]:\t$component\n";
-						$components{$component} = "$component/$file";
-
-	#print $LOG "\nValue components hash[1048]:\t".$components{$component}."\n";
-					}
-					elsif ( $component_name eq "annotation_trna" ) {
-						my $file = $name . "_trna.txt";
-						$components{$component} = "$component/$file";
-						$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES 
 					("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
 			        ("search-database-dna-based-analyses-get-by-amino-acid", "Or get tRNAs by amino acid: ", ""),
@@ -1184,13 +1056,337 @@ SQL
 			        ("search-database-dna-based-analyses-get-by-codon-options", "TTG", "TTG"),
 			        ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT");
 SQL
+						}
+						elsif ( $component_name eq "annotation_alienhunter" ) {
+							my $name = $sequence_object->{sequence_name};
+							my $file = $alienhunter_output_file . "_" . $name;
+							$components{$component} = $component . "/" . $file;
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
+			        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
+			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
+SQL
+						}
+						elsif ( $component_name eq "annotation_infernal" ) {
+							my $file = $infernal_output_file . "_" . $name;
+							$components{$component} = "$component/$file";
+						}
+						elsif ( $component_name eq "annotation_skews" ) {
+							my $filestring = `ls $skews_dir`;
+							my @phdfilenames = split( /\n/, $filestring );
+							my $seq_name = $sequence_object->sequence_name();
+							my $aux      = "";
+							foreach my $file (@phdfilenames) {
+								if (    $file =~ m/$seq_name/
+									and $file =~ m/.png/ )
+								{
+									$aux .= "$component/$file\n";
+								}
+							}
+							$components{$component} = $aux;
+						}
+						elsif ( $component_name eq "annotation_rbsfinder" ) {
+							my $file = $name . ".txt";
+							$components{$component} = "$component/$file";
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
+			        ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " upstream", "value='neg' checked"),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " downstream", "value='pos'"),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
+SQL
+						}
+						elsif ( $component_name eq "annotation_rnammer" ) {
+							my $file = $name . "_rnammer.gff";
+							$components{$component} = "$component/$file";
+						}
+						elsif ( $component_name eq "annotation_glimmer3" ) {
+							$components{$component} =
+							  $component . "/glimmer3.txt";
+						}
+						elsif ( $component_name eq "annotation_transterm" ) {
+							my $file = $name . ".txt";
+							$components{$component} = "$component/$file";
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
+			        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
+			        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
+			        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
+SQL
+						}
+						elsif ( $component_name eq "annotation_mreps" ) {
+							my $name = $sequence_object->{sequence_name};
+							my $file = $component . "/" . $name . "_mreps.txt";
+							$components{$component} = "$file";
+						}
+						elsif ( $component_name eq "annotation_string" ) {
+							my $name = $sequence_object->{sequence_name};
+							my $file =
+							  $string_dir . "/" . $name . "_string.txt";
+							$components{$component} = "$component/$file";
+						}
+					}
+#					if ( $component_name =~ /annotation_/g ) {
+#						$component_name =~ s/annotation_//g;
+#					}
+#					els
+					if ( $component_name =~ /report_/g ) {
+						$component_name =~ s/report_//g;
 					}
 
-					###
+					push @filepathsComponents, $components{$component};
+
+#					print STDERR "\n[1119] Name:\t$component_name\nComponent:\t$component\nfilepath:\t$components{$component}\n\n";
+					$scriptSQL .=
+"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$components{$component}');\n";
+				}
+
+			}
+			
+			$fasta_header_evidence =~ s/>//g;
+			$fasta_header_evidence =~ s/>//g;
+			$fasta_header_evidence =~ s/\|/_/g;
+			$fasta_header_evidence =~ s/__/_/g;
+			my $html_file = $fasta_header_evidence . ".html";
+			my $txt_file  = $fasta_header_evidence . ".txt";
+			my $png_file  = $fasta_header_evidence . ".png";
+			$component_name = $evidence->{log}{name};
+			$fasta_header_evidence =~ s/>//g;
+
+			if ( $evidence->{tag} eq "CDS" ) {
+
+				#				foreach my $subevidence ( @{ $evidence->{evidences} } ) {
+				#					push @subevidences, $subevidence;
+				#				}
+
+				
+
+				print $LOG "\nLocus tag: " . $locus_tag . "\n";
+
+				#####
+#
+#
+#	Sequência da evidência: verificar o campo strand (tag intervals) e calcular o reverso complementar da sequência caso a fita seja negativa (verificar se a strand é ‘-1’ ou ‘-’)
+#
+#
+				#####
+
+				my $number = $evidence->{number};
+				my $start;
+				my $end;
+
+				if ( $evidence->{start} < $evidence->{end} ) {
+					$start = $evidence->{start};
+					$end   = $evidence->{end};
+				}
+				else {
+					$start = $evidence->{end};
+					$end   = $evidence->{start};
+				}
+#				@logs = ();
+#				foreach my $log (@logs) {
+#					my %hash_log = %{$log};
+#					my $log_name = $hash_log{program};
+#
+#					#					$log_name =~ s/annotation_//g;
+#					$log_name =~ s/.pl//g;
+#					my $resp = verify_element( $log_name, \@comp_ev );
+#					if ($resp) {
+#						my $dir =
+#						  $hash_log{program} . "_log_" . $hash_log{log_number};
+#						if ( $log_name eq "blast" ) {
+#	
+#						}
+#						elsif ( $component_name eq "annotation_interpro" ) {
+#							$components{$component} = "$dir/HTML/$html_file";
+#						}
+#						elsif ( $log_name eq "annotation_orthology" ) {
+#							my $code;
+#							
+#							while ( $hash_log{arguments} =~
+#								/database_code\s*=\s*(\w+)+\s*/ig )
+#							{
+#								$code = $1;
+#							}
+#							my $aux_html = $html_file;
+#							$code = "." . $code . ".html";
+#							$aux_html =~ s/.html/$code/g;
+#							$components{$component} = "$dir/$aux_html";
+#						}
+#						elsif ( $log_name eq "annotation_pathways" ) {
+#							###
+#							#
+#							#	Pegando todos os pathways do arquivo KO
+#							#
+#							###
+#							open( my $KOFILE, "<", $ko_file )
+#							  or warn
+#							  "WARNING: Could not open KO file $ko_file: $!\n";
+#							my $content        = do { local $/; <$KOFILE> };
+#							my @idKEGG         = ();
+#							my %workAroundSort = (); 
+#							while (
+#								$content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm )
+#							{
+#								if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
+#									$workAroundSort{$2} = $1;
+#									push @idKEGG, $1;
+#								}
+#							}
+#
+#							foreach my $key ( sort keys %workAroundSort ) {
+#								my $value = $workAroundSort{$key};
+#							}
+#							close($KOFILE);
+#							$components{$component} = "$dir/$html_file";
+#							
+#						}
+#						elsif ( $log_name eq "annotation_phobius" ) {
+#							$components{$component} = "$dir/$png_file";
+#						}
+#						elsif ( $component_name eq "annotation_rpsblast.pl" ) {
+#							$components{$component} = "$dir/$txt_file";
+#
+#						}
+#						elsif ( $log_name eq "annotation_signalP" ) {
+#							$components{$component} = "$dir/$png_file";
+#						}
+#						elsif ( $log_name eq "annotation_psort" ) {
+#							$components{$component} = "psort_dir/$txt_file";
+#						}
+#					}
+#				}
+				my @sub_evidences = @{ $evidence->{evidences} };
+				
+				foreach my $sub_evidence (@sub_evidences) {
+					my $component_name = $sub_evidence->{log}{name};
+#					print STDERR "\n[1252]\t$sub_evidence->{log}{arguments}\n";
+					$component_name =~ s/.pl//g;
+					my $component =
+					  $sequence_object->fasta_header_program($sub_evidence);
+
+#					print STDERR "\n[1297] - Program ev: $program_ev\n";
+					#$signalp_dir = $program_ev;
+					my $resp = verify_element( $component_name, \@comp_ev );
+					print $LOG "\n[1263] - $component - $component_name - resp = $resp - locus_tag = $locus_tag\n";
+#					print STDERR "\n[1263]\t-\t$component/$html_file\n";
+					
+					if (  $resp  )
+					{
+#						print STDERR "\n[1268]\t-\t$component_name\t$component/$html_file\n" ;
+						if ( $component_name eq "annotation_blast" ) {
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
+SQL
+							$components{$component} = "$component/$html_file";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+
+					   #print $LOG "\nComponent blast test[917]:\t$component\n";
+						}
+						elsif ( $component_name eq "annotation_glimmer3" ) {
+							$components{$component} =
+							  $component . "/glimmer3.txt";
+							  $scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/glimmer3.txt');\n";
+						}
+						elsif ( $component_name eq "annotation_interpro" ) {
+							$components{$component} = "$component/";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/HTML/$html_file');\n";
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
+SQL
+						}
+						elsif ( $component_name eq "annotation_orthology" ) {
+							my $code;
+							
+							while ( $sub_evidence->{log}{arguments} =~
+								/database_code\s*=\s*(\w+)+\s*/ig )
+							{
+								$code = $1;
+							}
+							my $aux_html = $html_file;
+							$code = "." . $code . ".html";
+							$aux_html =~ s/.html/$code/g;
+							$components{$component} = "$component/$aux_html";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$aux_html');\n";
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
+SQL
+						}
+						elsif ( $component_name eq "annotation_pathways" ) {
+							###
+							#
+							#	Pegando todos os pathways do arquivo KO
+							#
+							###
+							open( my $KOFILE, "<", $ko_file )
+							  or warn
+							  "WARNING: Could not open KO file $ko_file: $!\n";
+							my $content        = do { local $/; <$KOFILE> };
+							my @idKEGG         = ();
+							my %workAroundSort = ();
+							while (
+								$content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm )
+							{
+								if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
+									$workAroundSort{$2} = $1;
+									push @idKEGG, $1;
+								}
+							}
+
+							foreach my $key ( sort keys %workAroundSort ) {
+								my $value = $workAroundSort{$key};
+								$scriptSQL .= <<SQL;
+									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
+SQL
+							}
+							close($KOFILE);
+							$components{$component} = "$component/$html_file";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+SQL
+						}
+						elsif ( $component_name eq "annotation_phobius" ) {
+							$components{$component} = "$component/$png_file";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Phobius", "#phobius");
+SQL
+						}
+						elsif ( $component_name eq "annotation_rpsblast" ) {
+							$components{$component} = "$component/$txt_file";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$txt_file');\n";
+							$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
+SQL
+						}
+					}
+					push @filepathsComponents, $components{$component};
+				}
+				
+				###
 	   #
 	   #	TODO: confirmar com a professora os erros existentes para depois tentar
 	   #
-					####
+				####
 
 			   #				unless ($filepath) {
 			   #			foreach my $log ( @{ $sequence_object->get_logs() } ) {
@@ -1222,60 +1418,6 @@ SQL
 			   #				}
 			   #			}
 			   #				}
-
-					if ( $component_name =~ /annotation_/g ) {
-						$component_name =~ s/annotation_//g;
-					}
-					elsif ( $component_name =~ /report_/g ) {
-						$component_name =~ s/report_//g;
-					}
-
-					#push @filepathsComponents, $components{$component};
-					print $LOG
-"\n[1170] Name:\t$component_name\nComponent:\t$component\nfilepath:\t$components{$component}\n\n";
-					$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('$component_name', '$component', '$components{$component}');\n";
-				}
-			}
-
-			if ( $evidence->{tag} eq "CDS" ) {
-
-				#				foreach my $subevidence ( @{ $evidence->{evidences} } ) {
-				#					push @subevidences, $subevidence;
-				#				}
-
-				my $locus_tag;
-
-				if ( $conclusion->{locus_tag} ) {
-					$locus_tag = $conclusion->{locus_tag};
-				}
-				else {
-					$locus++;
-					$locus_tag = "NOLOCUSTAG_$locus";
-				}
-
-				print $LOG "\nLocus tag: " . $locus_tag . "\n";
-
-				#####
-#
-#
-#	Sequência da evidência: verificar o campo strand (tag intervals) e calcular o reverso complementar da sequência caso a fita seja negativa (verificar se a strand é ‘-1’ ou ‘-’)
-#
-#
-				#####
-
-				my $number = $evidence->{number};
-				my $start;
-				my $end;
-
-				if ( $evidence->{start} < $evidence->{end} ) {
-					$start = $evidence->{start};
-					$end   = $evidence->{end};
-				}
-				else {
-					$start = $evidence->{end};
-					$end   = $evidence->{start};
-				}
 
 		   #				print STDERR "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
 		   #				print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
@@ -1337,11 +1479,13 @@ SQL
 	close(AA);
 	close(FILE_AA);
 	close(FILE_NT);
+
 	#$html_dir/root/$aa_fasta_dir/$file_aa
-	`makeblastdb -dbtype prot -in $html_dir/root/$aa_fasta_dir/$file_aa -parse_seqids -title '$name' -out $html_dir/root/$aa_fasta_dir/$name -logfile $html_dir/root/$aa_fasta_dir/makeblastdb.log`;
+`makeblastdb -dbtype prot -in $html_dir/root/$aa_fasta_dir/$file_aa -parse_seqids -title '$name' -out $html_dir/root/$aa_fasta_dir/$name -logfile $html_dir/root/$aa_fasta_dir/makeblastdb.log`;
+
 	#$html_dir/root/$nt_fasta_dir/$file_nt
-	`makeblastdb -dbtype nucl -in $html_dir/root/$nt_fasta_dir/$file_nt -parse_seqids -title '$name' -out $html_dir/root/$nt_fasta_dir/$name -logfile $html_dir/root/$nt_fasta_dir/makeblastdb.log`;
-	`makeblastdb -dbtype nucl -in $html_dir/root/$fasta_dir/$name.fasta -parse_seqids -title '$name' -out $html_dir/root/$fasta_dir/$name -logfile $html_dir/root/$fasta_dir/makeblastdb.log`;
+`makeblastdb -dbtype nucl -in $html_dir/root/$nt_fasta_dir/$file_nt -parse_seqids -title '$name' -out $html_dir/root/$nt_fasta_dir/$name -logfile $html_dir/root/$nt_fasta_dir/makeblastdb.log`;
+`makeblastdb -dbtype nucl -in $html_dir/root/$fasta_dir/$name.fasta -parse_seqids -title '$name' -out $html_dir/root/$fasta_dir/$name -logfile $html_dir/root/$fasta_dir/makeblastdb.log`;
 	`mkdir -p $services_dir/root/`;
 	`mkdir -p $html_dir/root/$nt_fasta_dir/`;
 	`cp -r $html_dir/root/$aa_fasta_dir/ $services_dir/root/`;
@@ -1578,13 +1722,27 @@ __PACKAGE__->config(
 1;
 
 TRNASEARCH
-	"SearchDBClient" => <<CLIENTS
+	"SearchDBClient" => <<CLIENTS,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
 
 __PACKAGE__->config(
 	class		=> 'Report_HTML_DB::Clients::SearchDBClient',
+	constructor	=> 'new',
+);
+
+1;
+
+CLIENTS
+
+	"BlastClient" => <<CLIENTS,
+use strict;
+use warnings;
+use base 'Catalyst::Model::Adaptor';
+
+__PACKAGE__->config(
+	class		=> 'Report_HTML_DB::Clients::BlastClient',
 	constructor	=> 'new',
 );
 
@@ -3266,6 +3424,63 @@ sub similarityEvidenceProperties {
 
 =head2
 
+Method used to get identifier and description of similarity
+
+=cut
+
+sub getIdentifierAndDescriptionSimilarity {
+	my (\$self, \$feature_id) = \@_;
+	my \$dbh = \$self->dbh;
+
+	my \$query =
+	  "select p.value from feature_relationship r 
+join feature q on (r.subject_id = q.feature_id)         
+join featureprop p on (p.feature_id = r.subject_id)
+join cvterm c on (p.type_id = c.cvterm_id)
+join cvterm cr on (r.type_id = cr.cvterm_id)
+join cvterm cq on (q.type_id = cq.cvterm_id)
+where cr.name='alignment' 
+and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
+
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+
+	\$sth->execute(\$feature_id);
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+
+	my \%hash = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+
+		my \$response = \$rows[\$i][0];
+		my \@values = ();
+		if (\$response =~ /\\|/g) {
+			if (\$response =~ /CDD/g) {
+				\$response =~ /\\|\\w+\\|(\\d*)([\\w\\ ;.,]*)/g;
+				while (\$response =~ /\\|\\w+\\|(\\d*)([\\w\\ ;.,]*)/g) {
+					push \@values, \$1;
+					push \@values, \$2;
+				}
+			}  else {
+				while (\$response =~ /(?:\\w+)\\|(\\w+\\.*\\w*)\\|([\\w\\ \\:\\[\\]\\<\\>\\.\\-\\+\\*\\(\\)\\&\\%\\$\\#\\@\\!\\/]*)\$/g) {
+					push \@values, \$1;
+					push \@values, \$2;
+				}
+			} 
+		} else {
+			while (\$response =~ /(\\w+)([\\w\\s]*)/g) {
+				push \@values, \$1;
+				push \@values, \$2;
+			}
+		}
+		\$hash{identifier} = \$values[0];
+		\$hash{description} = \$values[1];
+
+	}
+	return \\\%hash;
+}
+
+=head2
+
 Method used to get feature ID by uniquename
 
 =cut
@@ -3348,7 +3563,27 @@ it under the same terms as Perl itself.
 
 DBI
 
-writeFile( "$services_dir/lib/$services_dir/Model/SearchDatabaseRepository.pm", $DBI );
+writeFile( "$services_dir/lib/$services_dir/Model/SearchDatabaseRepository.pm",
+	$DBI );
+	
+$packageDBI = $services_dir . "::Model::BlastRepository";
+$DBI        = <<DBI;
+package $packageDBI;
+use strict;
+use warnings;
+use base 'Catalyst::Model::Adaptor';
+
+__PACKAGE__->config(
+	class		=> 'Report_HTML_DB::Repositories::BlastRepository',
+	constructor	=> 'new',
+);
+
+1;
+
+DBI
+
+writeFile( "$services_dir/lib/$services_dir/Model/BlastRepository.pm",
+	$DBI );
 
 #####
 #
@@ -3426,7 +3661,7 @@ sub getComponents_GET {
 		{
 			order_by => {
 				-asc => [qw/ component /]
-			}
+			},
 		}
 	);
 
@@ -3588,6 +3823,197 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 CONTENTSite
+$temporaryPackage = $services_dir . '::Controller::Blast';
+writeFile( "$services_dir/lib/$services_dir/Controller/Blast.pm" , <<CONTENT
+package $temporaryPackage;
+use Moose;
+use namespace::autoclean;
+
+BEGIN { extends 'Catalyst::Controller'; }
+
+=head1 NAME
+
+services::Controller::Blast - Catalyst Controller
+
+=head1 DESCRIPTION
+
+Catalyst Controller.
+
+=head1 METHODS
+
+=cut
+
+use base 'Catalyst::Controller::REST';
+BEGIN { extends 'Catalyst::Controller::REST'; }
+
+=head2
+
+Method used to realize search blast
+
+=cut
+
+sub search : Path("/Blast/search") : CaptureArgs(18) : ActionClass('REST') { }
+
+sub search_POST {
+	my ( \$self, \$c ) = \@_;
+
+	open( my \$FILEHANDLER, "<", \$c->req->body );
+	my \$formData = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER);
+	use JSON;
+	my \%hash = \%{ decode_json(\$formData) };
+
+	foreach my \$key ( keys \%hash ) {
+		if (\$key) {
+			chomp( \$hash{\$key} ) if \$key ne "SEQUENCE";
+		}
+	}
+
+	use File::Temp ();
+	my \$fh    = File::Temp->new();
+	my \$fname = \$fh->filename;
+	open( \$FILEHANDLER, ">", \$fname );
+	my \@fuckingSequence = split( /\\\\n/, \$hash{SEQUENCE} );
+	\$hash{SEQUENCE} = join( "\\n", \@fuckingSequence );
+	print \$FILEHANDLER \$hash{SEQUENCE};
+	close(\$FILEHANDLER);
+
+	\$hash{DATALIB} = "saida_db/services/root/seq/Bacteria"
+	  if ( \$hash{DATALIB} eq "PMN_genome_1" );
+	\$hash{DATALIB} = "saida_db/services/root/orfs_nt/Bacteria"
+	  if ( \$hash{DATALIB} eq "PMN_genes_1" );
+	\$hash{DATALIB} = "saida_db/services/root/orfs_aa/Bacteria"
+	  if ( \$hash{DATALIB} eq "PMN_prot_1" );
+	my \$content = "";
+	if ( exists \$hash{PROGRAM} ) {
+		if (   \$hash{PROGRAM} eq "blastn"
+			|| \$hash{PROGRAM} eq "blastp"
+			|| \$hash{PROGRAM} eq "blastx"
+			|| \$hash{PROGRAM} eq "tblastn"
+			|| \$hash{PROGRAM} eq "tblastx" )
+		{
+			my \@response = \@{
+				\$c->model('BlastRepository')->executeBlastSearch(
+					\$hash{PROGRAM},            \$hash{DATALIB},
+					\$fname,                    \$hash{QUERY_FROM},
+					\$hash{QUERY_TO},           \$hash{FILTER},
+					\$hash{EXPECT},             \$hash{MAT_PARAM},
+					\$hash{UNGAPPED_ALIGNMENT}, \$hash{GENETIC_CODE},
+					\$hash{DB_GENETIC_CODE},    \$hash{OOF_ALIGN},
+					\$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
+					\$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
+					\$hash{ALIGNMENTS},         \$hash{COLOR_SCHEMA}
+				)
+			};
+			\$content = join( "", \@response );
+		}
+		else {
+			\$content = "PROGRAM NOT IN THE LIST";
+		}
+	}
+	else {
+		\$content = "NO PROGRAM DEFINED";
+	}
+
+	return standardStatusOk( \$self, \$c, \$content );
+}
+
+sub fancy : Path("/Blast/fancy") : CaptureArgs(3) : ActionClass('REST') { }
+
+sub fancy_POST {
+	my ( \$self, \$c ) = \@_;
+	open( my \$FILEHANDLER, "<", \$c->req->body );
+	my \$formData = do { local \$/; <\$FILEHANDLER> };
+	close(\$FILEHANDLER);
+	use JSON;
+	my \%hash = \%{ decode_json(\$formData) };
+
+	use File::Temp ();
+	my \$fh    = File::Temp->new();
+	my \$fname = \$fh->filename;
+	open( \$FILEHANDLER, ">", \$fname );
+	print \$FILEHANDLER \$hash{blast};
+	close(\$FILEHANDLER);
+	use File::Temp qw/ :mktemp  /;
+	my \$tmpdir_name = mkdtemp("/tmp/XXXXXX");
+	\%hash = ();
+	if (\$c->model('BlastRepository')->fancyBlast(\$fname, \$tmpdir_name)) {
+		my \@files = ();
+		opendir(my \$DIR, \$tmpdir_name);
+		\@files = grep(!/^\\./, readdir(\$DIR));
+		closedir(\$DIR);
+		use MIME::Base64;
+		for(my \$i = 0; \$i < scalar \@files; \$i++) 
+		{
+			open(\$FILEHANDLER, "<", \$tmpdir_name . "/" . \$files[\$i]);
+			my \$content = do { local \$/; <\$FILEHANDLER> };
+			if(\$files[\$i] =~ /\\.html/g) {
+				\$hash{html} = \$content;
+			}
+			elsif(\$files[\$i] =~ /\\.png/g) {
+				\$hash{image} = MIME::Base64::encode_base64(\$content);
+			}
+			close(\$FILEHANDLER);
+		}
+	}
+	use File::Path;
+	rmtree(\$tmpdir_name);
+	return standardStatusOk(\$self, \$c, \\\%hash);
+}
+
+=head2
+
+Method used to make a default return of every ok request using BaseResponse model
+
+=cut
+
+sub standardStatusOk {
+	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+	if (   ( defined \$total || \$total )
+		&& ( defined \$pageSize || \$pageSize )
+		&& ( defined \$offset   || \$offset ) )
+	{
+		my \$pagedResponse = \$c->model('PagedResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response,
+			total       => \$total,
+			pageSize    => \$pageSize,
+			offset      => \$offset,
+		);
+		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+	}
+	else {
+		my \$baseResponse = \$c->model('BaseResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response
+		);
+		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+	}
+}
+
+=encoding utf8
+
+=head1 AUTHOR
+
+Wendel Hime L. Castro,,,
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+__PACKAGE__->meta->make_immutable;
+
+1;
+
+CONTENT
+);
 
 $temporaryPackage = $services_dir . '::Controller::SearchDatabase';
 writeFile( "$services_dir/lib/$services_dir/Controller/SearchDatabase.pm",
@@ -3600,7 +4026,7 @@ BEGIN { extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
-$temporaryPackage - Catalyst Controller
+services::Controller::SearchDatabase - Catalyst Controller
 
 =head1 DESCRIPTION
 
@@ -3739,7 +4165,7 @@ sub getGeneBasics_GET {
 	\$hash{pipeline}   = \$pipeline;
 	\$hash{feature_id} = \$id;
 
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->geneBasics( \\%hash ) };
+	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->geneBasics( \\\%hash ) };
 	my \@list       = ();
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
@@ -3791,7 +4217,7 @@ sub getSubsequence_GET {
 			  . ".fasta"
 		);
 		for my \$line (<\$FILEHANDLER>) {
-			if ( !( \$line =~ /\^\>\\w\+\\n\$/g ) ) {
+			if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
 				\$content .= \$line;
 			}
 		}
@@ -3930,7 +4356,7 @@ sub getIntervalEvidenceProperties_GET {
 				\$pathway{id}            = \$ids[\$j];
 				\$pathway{description}   = \$descriptions[\$j];
 				\$pathway{classfication} = \$classifications[\$j];
-				push \@pathways, \\%pathway;
+				push \@pathways, \\\%pathway;
 			}
 		}
 
@@ -3995,6 +4421,19 @@ sub getSimilarityEvidenceProperties_GET {
 	standardStatusOk( \$self, \$c,
 		\$c->model('SearchDatabaseRepository')->similarityEvidenceProperties(\$feature) );
 }
+
+sub getIdentifierAndDescriptionSimilarity :
+  Path("/SearchDatabase/getIdentifierAndDescriptionSimilarity") : CaptureArgs(1) :
+  ActionClass('REST') { }
+  
+sub getIdentifierAndDescriptionSimilarity_GET {
+	my ( \$self, \$c, \$feature_id ) = \@_;
+	if ( !\$feature_id and defined \$c->request->param("feature_id") ) {
+		\$feature_id = \$c->request->param("feature_id");
+	}
+	standardStatusOk( \$self, \$c,
+		\$c->model('SearchDatabaseRepository')->getIdentifierAndDescriptionSimilarity(\$feature_id) );
+}  
 
 =head2 reverseComplement
 
@@ -4102,7 +4541,7 @@ sub tandemRepeatsSearch_GET {
 		}
 	}
 
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->trf_search( \\%hash ) };
+	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->trf_search( \\\%hash ) };
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
 	}
@@ -4131,7 +4570,7 @@ sub ncRNASearch_GET {
 		}
 	}
 
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->ncRNA_search( \\%hash ) };
+	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->ncRNA_search( \\\%hash ) };
 
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
@@ -4728,8 +5167,13 @@ sub getSimilarityEvidenceProperties_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
-	standardStatusOk( \$self, \$c,
-		\$searchDBClient->getSimilarityEvidenceProperties(\$feature)->{response} );
+	
+	my \%hash = \%{\$searchDBClient->getSimilarityEvidenceProperties(\$feature)->{response}};
+	my \%returnedHash = \%{\$searchDBClient->getIdentifierAndDescriptionSimilarity(\$feature)->{response}};
+	foreach my \$key (keys \%returnedHash) {
+		\$hash{\$key} = \$returnedHash{\$key};
+	}
+	standardStatusOk( \$self, \$c, \\\%hash );
 }
 
 sub getIntervalEvidenceProperties :
@@ -4806,6 +5250,197 @@ __PACKAGE__->meta->make_immutable;
 SEARCHDBCONTENT
 writeFile( "$html_dir/lib/$html_dir/Controller/SearchDatabase.pm",
 	$searchDBContent );
+	
+$temporaryPackage = $html_dir . '::Controller::Blast';
+my $blastContent = <<BLAST;
+package website::Controller::Blast;
+use Moose;
+use namespace::autoclean;
+
+BEGIN { extends 'Catalyst::Controller'; }
+
+=head1 NAME
+
+website::Controller::SearchDatabase - Catalyst Controller
+
+=head1 DESCRIPTION
+
+Catalyst Controller.
+
+=head1 METHODS
+
+=cut
+
+use base 'Catalyst::Controller::REST';
+BEGIN { extends 'Catalyst::Controller::REST'; }
+
+sub search : Path("/Blast/search") : CaptureArgs(7) : ActionClass('REST') { }
+
+sub search_POST {
+	my (
+		\$self,                \$c,                  \$blast,
+		\$database,            \$fastaSequence,      \$from,
+		\$to,                  \$filter,             \$expect,
+		\$matrix,              \$ungappedAlignment,  \$geneticCode,
+		\$databaseGeneticCode, \$frameShiftPenality, \$otherAdvanced,
+		\$graphicalOverview,   \$alignmentView,      \$descriptions,
+		\$alignments,          \$colorSchema,        \$fastaFile
+	) = \@_;
+	if ( !\$blast and defined \$c->request->param("PROGRAM") ) {
+		\$blast = \$c->request->param("PROGRAM");
+	}
+	if ( !\$database and defined \$c->request->param("DATALIB") ) {
+		\$database = \$c->request->param("DATALIB");
+	}
+	if ( !\$fastaSequence and defined \$c->request->param("SEQUENCE") ) {
+		\$fastaSequence = \$c->request->param("SEQUENCE");
+	}
+	if ( !\$fastaFile and defined \$c->request->param("SEQFILE") ) {
+		\$fastaFile = \$c->request->param("SEQFILE");
+	}
+	if ( !\$from and defined \$c->request->param("QUERY_FROM") ) {
+		\$from = \$c->request->param("QUERY_FROM");
+	}
+	if ( !\$to and defined \$c->request->param("QUERY_TO") ) {
+		\$to = \$c->request->param("QUERY_TO");
+	}
+	if ( !\$filter and defined \$c->request->param("FILTER") ) {
+		\$filter = \$c->request->param("FILTER");
+	}
+	if ( !\$expect and defined \$c->request->param("EXPECT") ) {
+		\$expect = \$c->request->param("EXPECT");
+	}
+	if ( !\$matrix and defined \$c->request->param("MAT_PARAM") ) {
+		\$matrix = \$c->request->param("MAT_PARAM");
+	}
+	if ( !\$ungappedAlignment
+		and defined \$c->request->param("UNGAPPED_ALIGNMENT") )
+	{
+		\$ungappedAlignment = \$c->request->param("UNGAPPED_ALIGNMENT");
+	}
+	if ( !\$geneticCode and defined \$c->request->param("GENETIC_CODE") ) {
+		\$geneticCode = \$c->request->param("GENETIC_CODE");
+	}
+	if ( !\$databaseGeneticCode
+		and defined \$c->request->param("DB_GENETIC_CODE") )
+	{
+		\$databaseGeneticCode = \$c->request->param("DB_GENETIC_CODE");
+	}
+	if ( !\$frameShiftPenality
+		and defined \$c->request->param("OOF_ALIGN") )
+	{
+		\$frameShiftPenality = \$c->request->param("OOF_ALIGN");
+	}
+	if ( !\$otherAdvanced and defined \$c->request->param("OTHER_ADVANCED") ) {
+		\$otherAdvanced = \$c->request->param("OTHER_ADVANCED");
+	}
+	if ( !\$graphicalOverview
+		and defined \$c->request->param("OVERVIEW") )
+	{
+		\$graphicalOverview = \$c->request->param("OVERVIEW");
+	}
+	if ( !\$alignmentView and defined \$c->request->param("ALIGNMENT_VIEW") ) {
+		\$alignmentView = \$c->request->param("ALIGNMENT_VIEW");
+	}
+	if ( !\$descriptions and defined \$c->request->param("DESCRIPTIONS") ) {
+		\$descriptions = \$c->request->param("DESCRIPTIONS");
+	}
+	if ( !\$alignments and defined \$c->request->param("ALIGNMENTS") ) {
+		\$alignments = \$c->request->param("ALIGNMENTS");
+	}
+	if ( !\$colorSchema and defined \$c->request->param("COLOR_SCHEMA") ) {
+		\$colorSchema = \$c->request->param("COLOR_SCHEMA");
+	}
+
+	my \%hash = ();
+
+	foreach my \$key ( keys \%{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	
+	unless ( exists \$hash{SEQUENCE} ) {
+		\$hash{SEQUENCE} = \$hash{SEQFILE};
+		delete \$hash{SEQFILE};
+	}
+	my \$content = "";
+	my \@fuckingSequence = split(/\\s+/, \$hash{SEQUENCE});
+	 \$hash{SEQUENCE} = join('\\n', \@fuckingSequence);
+	print "\\n".\$hash{SEQUENCE}."\\n";
+
+	my \$blastClient =
+	  Report_HTML_DB::Clients::BlastClient->new(
+		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$baseResponse = \$blastClient->search( \\\%hash );
+	\%hash = ();
+	\$baseResponse = \$blastClient->fancy( \$baseResponse->{response} );
+	my \$returnedHash = \$baseResponse->{response};
+	use MIME::Base64;
+	foreach my \$key (keys \%\$returnedHash) {
+		if(\$key =~ /\.html/ ) {
+			\$hash{\$key} = MIME::Base64::decode_base64(\$returnedHash->{\$key});
+		} else {
+			\$hash{\$key} = \$returnedHash->{\$key};
+		}
+	}
+	
+	standardStatusOk(\$self, \$c, \\\%hash);
+}
+
+=head2
+Standard return of status ok
+=cut
+
+sub standardStatusOk {
+	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+	if (   ( defined \$total || \$total )
+		&& ( defined \$pageSize || \$pageSize )
+		&& ( defined \$offset   || \$offset ) )
+	{
+		my \$pagedResponse = \$c->model('PagedResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response,
+			total       => \$total,
+			pageSize    => \$pageSize,
+			offset      => \$offset,
+		);
+		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+	}
+	else {
+		my \$baseResponse = \$c->model('BaseResponse')->new(
+			status_code => 200,
+			message     => "Ok",
+			elapsed_ms  => \$c->stats->elapsed,
+			response    => \$response
+		);
+		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+	}
+}
+
+=encoding utf8
+
+=head1 AUTHOR
+
+Wendel Hime L. Castro,,,
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+__PACKAGE__->meta->make_immutable;
+
+1;
+
+BLAST
+
+writeFile( "$html_dir/lib/$html_dir/Controller/Blast.pm",
+	$blastContent );
 
 $temporaryPackage = $html_dir . '::Controller::Root';
 my $rootContent = <<ROOT;
@@ -5245,10 +5880,10 @@ foreach my $filepathComponent (@filepathsComponents) {
 			if ( $1 ne '_dir' ) {
 				my $directory = $1;
 				if ( $1 !~ m/report/g ) {
-`ln -s $filepath/$standard_dir/$directory $standard_dir/$html_dir/root/`;
+`ln -s $filepath/$standard_dir/$directory $standard_dir/$html_dir/root/` if !-e "$standard_dir/$html_dir/root/$directory";
 				}
 				else {
-					`ln -s $directory $standard_dir/$html_dir/root/`;
+					`ln -s $directory $standard_dir/$html_dir/root/` if !-e "$standard_dir/$html_dir/root/$directory";
 				}
 			}
 		}
@@ -5336,7 +5971,7 @@ CONTENTABOUTINDEX
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
-        <form action="http://puma.icb.usp.br/blast/blast.cgi" method="POST" name="MainBlastForm" enctype="multipart/form-data">
+        <form id="formBlast">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     [% FOREACH text IN texts %]
@@ -5380,7 +6015,7 @@ CONTENTABOUTINDEX
                                 <label>[% text.value %]</label>
                             [% END %]
                         [% END %]
-                        <textarea class="form-control" name="SEQUENCE" rows="6" cols="60"></textarea>
+                        <textarea class="form-control" name="SEQUENCE" id="SEQUENCE" rows="6" cols="60"></textarea>
                     </div>
                     <div class="form-group">
                         [% FOREACH text IN texts %]
@@ -5613,15 +6248,24 @@ CONTENTABOUTINDEX
         </form>
     </div>
 </div>
+
 CONTENTBLAST
 		,
 		"index.tt" => <<CONTENTINDEXBLAST
 <!DOCTYPE html>
 <div class="content-wrapper">
-    <div class="container">	
-        [% INCLUDE '$lowCaseName/blast/_forms.tt' %]
+    <div id="containerBlast" class="container">	
+    	<div class="row">
+    		<div class="col-md-12">
+    			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
+    		</div>
+    	</div>
+        [% INCLUDE 'website/blast/_forms.tt' %]
     </div>
 </div>
+<script type="text/javascript" src="/assets/js/fileHandler.js"></script>
+<script type="text/javascript" src="/assets/js/site-client.js"></script>
+<script type="text/javascript" src="/assets/js/blast.js"></script>
 CONTENTINDEXBLAST
 	},
 	"downloads" => {
@@ -5851,7 +6495,7 @@ CONTENTGLOBALANALYSES
     </div>
 </div>
 <script type="text/javascript" src="/assets/js/site-client.js"></script>
-<script type="text/javascript" src="/assets/js/action.js"></script>
+<script type="text/javascript" src="/assets/js/search-database.js"></script>
 CONTENTGLOBALANALYSESINDEX
 	},
 	"help" => {
@@ -6224,8 +6868,10 @@ CONTENTINDEXHOME
                                       </div>
                                   [% END %]
                                      <ul class="nav nav-pills">
+                                     	[% values = [];%]
                                          [% FOREACH text IN texts %]
-                                             [% IF text.tag.search('search-database-analyses-protein-code-tab') %]
+                                             [% IF text.tag.search('search-database-analyses-protein-code-tab') AND !(values.grep(text.value).size) %]
+                                             	[% values.push(text.value); %]
                                                  <li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
                                              [% END %]
                                          [% END %]
@@ -6239,6 +6885,7 @@ CONTENTINDEXHOME
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag == 'search-database-analyses-protein-code-not-containing-classification' %]
                                                               <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -6247,6 +6894,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="goID">
@@ -6268,6 +6916,7 @@ CONTENTINDEXHOME
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-tcdb') %]
                                                               <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -6377,6 +7026,7 @@ CONTENTINDEXHOME
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-blast') %]
                                                               <label><input type="checkbox" name="noBlast">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -6385,6 +7035,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="blastID">
@@ -6406,6 +7057,7 @@ CONTENTINDEXHOME
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-rpsblast') %]
                                                               <label><input type="checkbox" name="noRps">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -6414,6 +7066,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="rpsID">
@@ -6422,6 +7075,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="rpsDesc">
@@ -6435,6 +7089,7 @@ CONTENTINDEXHOME
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-kegg') %]
                                                               <label><input type="checkbox" name="noKEGG">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -6443,6 +7098,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-by-orthology-identifier-kegg') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="koID">
@@ -6451,6 +7107,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag == 'search-database-analyses-protein-code-by-kegg-pathway' %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <select class="form-control" name="keggPath">
@@ -6466,6 +7123,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="keggDesc">
@@ -6479,6 +7137,7 @@ CONTENTINDEXHOME
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-eggNOG') %]
                                                               <label><input type="checkbox" name="noOrth"> [% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -6487,6 +7146,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-eggNOG') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="orthID">
@@ -6495,6 +7155,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="orthDesc">
@@ -6508,6 +7169,7 @@ CONTENTINDEXHOME
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-interpro') %]
                                                               <label><input type="checkbox" name="noIP"> [% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -6516,6 +7178,7 @@ CONTENTINDEXHOME
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-interpro') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="interproID">
@@ -7027,7 +7690,7 @@ CONTENTSEARCHDATABASE
 </script>
 
 <script type="text/javascript" src="/assets/js/site-client.js"></script>
-<script type="text/javascript" src="/assets/js/action.js"></script>
+<script type="text/javascript" src="/assets/js/search-database.js"></script>
 
 CONTENTINDEXSEARCHDATABASE
 		,
@@ -8075,4 +8738,24 @@ sub formatSequence {
 	$seq =~ s/.{$block}/$&\n/gs;
 	chomp $seq;
 	return $seq;
+}
+
+=head2 verify_element
+
+Method used to verify if element exists in list reference
+
+=cut
+
+sub verify_element {
+	my $element = shift;
+	my $vector  = shift;
+	my @array   = @{$vector};
+	my %params  = map { $_ => 1 } @array;
+
+	if ( exists( $params{$element} ) ) {
+		return 1;
+	}
+
+	return 0;
+
 }

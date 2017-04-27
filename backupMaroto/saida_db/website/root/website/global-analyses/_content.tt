@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group" id="accordion">
+			[%
+				go_mapping = 0
+				orthology = 0 
+				pathways = 0
+				organism = 0 
+			%]
+			
+			[% FOREACH component IN components %]
+				[% IF component.component.match("report_go") %]
+					[% go_mapping = 1 %]
+				[% END %]
+				[% IF component.component.match("report_eggnog") %]
+					[% orthology = 1 %]
+				[% END %]
+				[% IF component.component.match("report_pathways") %]
+					[% pathways = 1 %]
+				[% END %]
+				[% IF component.component.match("report_kegg_organism") %]
+					[% organism = 1 %]
+				[% END %]
+			[% END %]
+			[% IF go_mapping %]
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <h4 class="panel-title">
+	                        [% FOREACH text IN texts %]
+	                            [% IF text.tag == 'global-analyses-go-terms-mapping' %]
+	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+	                            [% END %]
+	                        [% END %]
+	                    </h4>
+	                </div>
+	                <div id="collapseOne" class="panel-collapse collapse">
+	                    <div class="panel-body">
+	                        <div class="form-group">
+	                            [% FOREACH text IN texts %]
+	                                [% IF text.tag == 'global-analyses-expansible-tree' %]
+	                                    <label>[% text.value %]</label>
+	                                [% END %]
+	                            [% END %]
+	                        </div>
+	                        <div class="form-group">
+	                            [% FOREACH text IN texts %]
+	                                [% IF text.tag == 'global-analyses-table-ontologies' %]
+	                                    <label>[% text.value %]</label>
+	                                [% END %]
+	                            [% END %]
+	                        </div>
+	                    </div>
+	                    <div class="panel-footer">
+	                        [% FOREACH text IN texts %]
+	                            [% IF text.tag == 'global-analyses-go-terms-mapping-footer' %]
+	                                [% text.value %]
+	                            [% END %]
+	                        [% END %]
+	                    </div>
+	                </div>
+	            </div>
+            [% END %]
+            
+            [% IF orthology %]
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <h4 class="panel-title">
+	                        [% FOREACH text IN texts %]
+	                            [% IF text.tag == 'global-analyses-eggNOG' %]
+	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">[% text.value %]</a>
+	                            [% END %]
+	                        [% END %]
+	                    </h4>
+	                </div>
+	                <div id="collapseTwo" class="panel-collapse collapse">
+	                    <div class="panel-body">
+	                        <div class="form-group">
+	                            [% FOREACH text IN texts %]
+	                                [% IF text.tag == 'global-analyses-orthology-analysis-classes' %]
+	                                    <label>[% text.value %]</label>
+	                                [% END %]
+	                            [% END %]
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+            [% END %]
+
+			[% IF pathways %]
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <h4 class="panel-title">
+	                        [% FOREACH text IN texts %]
+	                            [% IF text.tag == 'global-analyses-kegg-pathways' %]
+	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
+	                            [% END %]
+	                        [% END %]
+	                    </h4>
+	                </div>
+	                <div id="collapseThree" class="panel-collapse collapse">
+	                    <div class="panel-body">
+	                        [% FOREACH text IN texts %]
+	                            [% IF text.tag.search('global-analyses-kegg-report') %]
+	                                <div class="form-group">
+	                                    <label>[% text.value %]</label>
+	                                </div>
+	                            [% END %]
+	                        [% END %]
+	                    </div>
+	                </div>
+	            </div>
+	        [% END %]
+
+			[% IF organism %]
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    <h4 class="panel-title">
+	                        [% FOREACH text IN texts %]
+	                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction' %]
+	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed">[% text.value %]</a>
+	                            [% END %]
+	                        [% END %]
+	                    </h4>
+	                </div>
+	                <div id="collapseFour" class="panel-collapse collapse">
+	                    <div class="panel-body">
+	                        [% FOREACH text IN texts %]
+	                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction-topics' %]
+	                                <div class="form-group">
+	                                    <label>[% text.value %]</label>
+	                                </div>
+	                            [% END %]
+	                        [% END %]
+	                    </div>
+	                </div>
+	            </div>
+            [% END %]
+            
+        </div>
+    </div>
+</div>
+

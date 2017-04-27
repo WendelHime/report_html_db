@@ -1,0 +1,37 @@
+                NewStart     Stop      RibosomeBindingSite                                OldStart 
+    GeneID      Position    Position     Pattern Position     NewStartCodon    Shift   Codon Position
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28           411          22       CGGGG      425          ATG             0     ATG      411
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29           783         427       AGGAG      794          GTG             0     GTG      783
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30          2413        1082         ---        0          ATG             0     ATG     2413
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31          2855        2421       AGGAG     2866          ATG             0     ATG     2855
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32          3038        2859         ---        0          ATG             0     ATG     3038
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33          3544        3044       AGAGG     3555          ATG             0     ATG     3544
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34          3912        3559       AAGAG     3941          ATG             0     ATG     3912
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35          4455        3922       GGGAG     4466          ATG             0     ATG     4455
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36          4862        4470       GGGAG     4876          ATG           -99     GTG     4763
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37          5201        4896       GGCAG     5213          ATG             0     ATG     5201
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38          5753        5214       TGGAG     5765          ATG          -111     ATG     5642
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39          6082        5768       AGGAG     6093          ATG             0     ATG     6082
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40          6464        6093       CGGAG     6476          ATG             0     ATG     6464
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41          6897        6643       AGGCG     6910          ATG             0     ATG     6897
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42          7088        6897         ---        0          ATG             0     ATG     7088
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43          7498        7088       AGGAG     7511          ATG             0     ATG     7498
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44          8212        7511       TGGAG     8224          ATG             0     ATG     8212
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45          8562        8215       AGGAG     8573          ATG             0     ATG     8562
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46          8855        8577       AGAGG     8867          ATG             0     ATG     8855
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47          9694        8870       AGGAG     9708          ATG             0     ATG     9694
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48         10618        9701       AGGAG    10629          ATG             0     ATG    10618
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49         11264       10635       GAGAG    11278          ATG             0     ATG    11264
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50         11608       11297       AGGAG    11653          ATG             0     ATG    11608
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51         12379       11903       AGGAG    12390          ATG             0     ATG    12379
+Bacteria_CDS_annotation_glimmer3.pl_log_10_52         12659       12453         ---        0          GTG             0     GTG    12659
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53         14606       13422         ---        0          ATG             0     ATG    14606
+Bacteria_CDS_annotation_glimmer3.pl_log_10_54         15145       15345         ---        0          ATG             0     ATG    15145
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55         15379       16533         ---        0          ATG             0     ATG    15379
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56         17522       16578       AGGCG    17567          GTG             0     GTG    17522
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57         18559       17525       AGTAG    18584          ATG             0     ATG    18559
+Bacteria_CDS_annotation_glimmer3.pl_log_10_58         18776       18630       AAGAG    18823          ATG             0     ATG    18776
+Bacteria_CDS_annotation_glimmer3.pl_log_10_59         20840       20682       AGTGG    20851          ATG             0     ATG    20840
+Bacteria_CDS_annotation_glimmer3.pl_log_10_60         22534       22262       AGCGG    22545          ATG             0     ATG    22534
+Bacteria_CDS_annotation_glimmer3.pl_log_10_61         22879       22610         ---        0          GTG             0     GTG    22879
+Bacteria_CDS_annotation_glimmer3.pl_log_10_62         22980       23141       CGGAG    22968          GTG             0     GTG    22980

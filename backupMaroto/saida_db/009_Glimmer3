@@ -1,0 +1,13 @@
+6057173
+6057174
+unlink glimmer3_temp_dir_185/longorfs_1
+unlink glimmer3_temp_dir_185/g3_1st_pass.predict
+unlink glimmer3_temp_dir_185/g3.train
+unlink glimmer3_temp_dir_185/temp_glimmer3_input_185
+unlink glimmer3_temp_dir_185/temp_glimmer3_output_185.predict
+unlink glimmer3_temp_dir_185/g3.upstream
+unlink glimmer3_temp_dir_185/temp_glimmer3_output_185.detail
+unlink glimmer3_temp_dir_185/g3_1st_pass.detail
+unlink glimmer3_temp_dir_185/g3_1st_pass.coords
+unlink glimmer3_temp_dir_185/g3.motif
+rmdir glimmer3_temp_dir_185

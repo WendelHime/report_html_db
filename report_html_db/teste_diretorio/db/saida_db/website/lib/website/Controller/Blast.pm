@@ -104,24 +104,6 @@ sub search_POST {
 			$hash{$key} = $c->request->params->{$key};
 		}
 	}
-
-#	open( my $FILEHANDLER, "<", $c->req->body );
-#	my $formData = do { local $/; <$FILEHANDLER> };
-#	close($FILEHANDLER);
-
-	##pega todos os names and values que não sejam de arquivos
-#	while ( $formData =~ /name="([\w_]+)"\s*([\w\/_.<>\\\s]+)/g  )
-#	{
-#		$hash{$1} = $2;
-#	}
-
-	#pega todos os names and values de arquivos
-#	if ( $formData =~ /application\/octet-stream/ ) {
-#		while ($formData =~ /name="(\w+)";[\s\w=".\-:\/]*([\w\s>]+)/g) 
-#		{
-#			$hash{$1} = $2;
-#		}
-#	}
 	
 	unless ( exists $hash{SEQUENCE} ) {
 		$hash{SEQUENCE} = $hash{SEQFILE};
@@ -129,12 +111,8 @@ sub search_POST {
 	}
 	my $content = "";
 	my @fuckingSequence = split(/\s+/, $hash{SEQUENCE});
-	 $hash{SEQUENCE} = join('\\n', @fuckingSequence);
+	 $hash{SEQUENCE} = join('\n', @fuckingSequence);
 	print "\n".$hash{SEQUENCE}."\n";
-	#
-	#	$hash{blast} = $blast;
-	#	$hash{database} = $database;
-	#	$hash{fastaSequence} = $fastaSequence;
 
 	my $blastClient =
 	  Report_HTML_DB::Clients::BlastClient->new(
@@ -145,7 +123,7 @@ sub search_POST {
 	my $returnedHash = $baseResponse->{response};
 	use MIME::Base64;
 	foreach my $key (keys %$returnedHash) {
-		if($key =~ /\.html/ ) {
+		if($key =~ /.html/ ) {
 			$hash{$key} = MIME::Base64::decode_base64($returnedHash->{$key});
 		} else {
 			$hash{$key} = $returnedHash->{$key};
@@ -153,14 +131,6 @@ sub search_POST {
 	}
 	
 	standardStatusOk($self, $c, \%hash);
-	#	my $pagedResponse = $searchDBClient->getGene( $c->config->{pipeline_id},
-	#		$geneID, $geneDescription,
-	#		$noDescription, $individually, $featureId, $pageSize, $offset );
-	#	standardStatusOk(
-	#		$self, $c, $pagedResponse->{response}, $pagedResponse->{"total"},
-	#		$pageSize, $offset
-	#
-	#	);
 }
 
 =head2

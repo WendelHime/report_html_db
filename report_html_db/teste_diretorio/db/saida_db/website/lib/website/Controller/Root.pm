@@ -219,7 +219,7 @@ Method used to get feature id
 
 #sub get_feature_id {
 #	my ($c) = @_;
-#	return $c->model('Repository')->get_feature_id($c->config->{uniquename});
+#	return $c->model('SearchDatabaseRepository')->get_feature_id($c->config->{uniquename});
 #}
 
 =head2 help

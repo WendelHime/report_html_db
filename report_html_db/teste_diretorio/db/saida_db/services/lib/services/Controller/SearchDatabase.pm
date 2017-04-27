@@ -34,7 +34,7 @@ sub getFeatureID_GET {
 		$uniquename = $c->request->param("uniquename");
 	}
 	return standardStatusOk( $self, $c,
-		$c->model('Repository')->get_feature_id($uniquename));
+		$c->model('SearchDatabaseRepository')->get_feature_id($uniquename));
 }
 
 =head2 searchGene
@@ -88,7 +88,7 @@ sub searchGene_GET {
 	$hash{pageSize}        = $pageSize;
 	$hash{offset}          = $offset;
 
-	my $result     = $c->model('Repository')->searchGene( \%hash );
+	my $result     = $c->model('SearchDatabaseRepository')->searchGene( \%hash );
 	my @resultList = @{ $result->{list} };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
@@ -145,7 +145,7 @@ sub getGeneBasics_GET {
 	$hash{pipeline}   = $pipeline;
 	$hash{feature_id} = $id;
 
-	my @resultList = @{ $c->model('Repository')->geneBasics( \%hash ) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->geneBasics( \%hash ) };
 	my @list       = ();
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
@@ -250,7 +250,7 @@ sub ncRNA_desc_GET {
 		$pipeline = $c->request->param("pipeline");
 	}
 	standardStatusOk( $self, $c,
-		$c->model('Repository')->ncRNA_description( $feature, $pipeline ) );
+		$c->model('SearchDatabaseRepository')->ncRNA_description( $feature, $pipeline ) );
 
 }
 
@@ -272,7 +272,7 @@ sub subEvidences_GET {
 		$pipeline = $c->request->param("pipeline");
 	}
 	my @list       = ();
-	my @resultList = @{ $c->model('Repository')->subevidences($feature) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->subevidences($feature) };
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
 	}
@@ -302,7 +302,7 @@ sub getIntervalEvidenceProperties_GET {
 	}
 
 	my %hash = ();
-	$hash{properties} = $c->model('Repository')->intervalEvidenceProperties($feature);
+	$hash{properties} = $c->model('SearchDatabaseRepository')->intervalEvidenceProperties($feature);
 	if ( exists $hash{intron} ) {
 		if ( $hash{intron} eq 'yes' ) {
 			$hash{coordinatesGene} = $hash{intron_start} - $hash{intron_end};
@@ -399,7 +399,7 @@ sub getSimilarityEvidenceProperties_GET {
 	}
 
 	standardStatusOk( $self, $c,
-		$c->model('Repository')->similarityEvidenceProperties($feature) );
+		$c->model('SearchDatabaseRepository')->similarityEvidenceProperties($feature) );
 }
 
 sub getIdentifierAndDescriptionSimilarity :
@@ -412,7 +412,7 @@ sub getIdentifierAndDescriptionSimilarity_GET {
 		$feature_id = $c->request->param("feature_id");
 	}
 	standardStatusOk( $self, $c,
-		$c->model('Repository')->getIdentifierAndDescriptionSimilarity($feature_id) );
+		$c->model('SearchDatabaseRepository')->getIdentifierAndDescriptionSimilarity($feature_id) );
 }  
 
 =head2 reverseComplement
@@ -462,7 +462,7 @@ sub analysesCDS_GET {
 			$hash{$key} = $c->request->params->{$key};
 		}
 	}
-	my $result = $c->model('Repository')->analyses_CDS( \%hash );
+	my $result = $c->model('SearchDatabaseRepository')->analyses_CDS( \%hash );
 	foreach my $value ( @{ $result->{list} } ) {
 		push @list, $value;
 	}
@@ -489,7 +489,7 @@ sub trnaSearch_GET {
 		}
 	}
 	my @list       = ();
-	my $result     = $c->model('Repository')->tRNA_search( \%hash );
+	my $result     = $c->model('SearchDatabaseRepository')->tRNA_search( \%hash );
 	my @resultList = @{ $result->{list} };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
@@ -521,7 +521,7 @@ sub tandemRepeatsSearch_GET {
 		}
 	}
 
-	my @resultList = @{ $c->model('Repository')->trf_search( \%hash ) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->trf_search( \%hash ) };
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
 	}
@@ -550,7 +550,7 @@ sub ncRNASearch_GET {
 		}
 	}
 
-	my @resultList = @{ $c->model('Repository')->ncRNA_search( \%hash ) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->ncRNA_search( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
@@ -582,7 +582,7 @@ sub transcriptionalTerminatorSearch_GET {
 	}
 
 	my @resultList =
-	  @{ $c->model('Repository')->transcriptional_terminator_search( \%hash ) };
+	  @{ $c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		my %hash = (
@@ -625,7 +625,7 @@ sub rbsSearch_GET {
 		}
 	}
 
-	my @resultList = @{ $c->model('Repository')->rbs_search( \%hash ) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->rbs_search( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		my %hash = (
@@ -670,7 +670,7 @@ sub alienhunterSearch_GET {
 		}
 	}
 
-	my @resultList = @{ $c->model('Repository')->alienhunter_search( \%hash ) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->alienhunter_search( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		my %hash = (
@@ -719,13 +719,13 @@ sub geneByPosition_GET {
 	$hash{pipeline} = $pipeline_id;
 	$hash{start}    = $start;
 	$hash{end}      = $end;
-	my @ids = @{ $c->model('Repository')->geneByPosition( \%hash ) };
+	my @ids = @{ $c->model('SearchDatabaseRepository')->geneByPosition( \%hash ) };
 	my $featureId = join( " ", @ids );
 	%hash            = ();
 	$hash{pipeline}  = $pipeline_id;
 	$hash{featureId} = $featureId;
 	
-	my @resultList = @{ $c->model('Repository')->searchGene( \%hash ) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->searchGene( \%hash ) };
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
 	}
@@ -740,7 +740,7 @@ sub targetClass_GET {
 	if ( !$pipeline_id and defined $c->request->param("pipeline_id") ) {
 		$pipeline_id = $c->request->param("pipeline_id");
 	}
-	standardStatusOk($self, $c, $c->model('Repository')->get_target_class($pipeline_id));
+	standardStatusOk($self, $c, $c->model('SearchDatabaseRepository')->get_target_class($pipeline_id));
 }
 
 =head2

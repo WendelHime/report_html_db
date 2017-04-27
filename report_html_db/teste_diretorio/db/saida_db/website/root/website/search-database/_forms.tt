@@ -205,8 +205,10 @@
                                       </div>
                                   [% END %]
                                      <ul class="nav nav-pills">
+                                     	[% values = [];%]
                                          [% FOREACH text IN texts %]
-                                             [% IF text.tag.search('search-database-analyses-protein-code-tab') %]
+                                             [% IF text.tag.search('search-database-analyses-protein-code-tab') AND !(values.grep(text.value).size) %]
+                                             	[% values.push(text.value); %]
                                                  <li class=""><a href="[% text.details %]" data-toggle="tab">[% text.value %]</a></li>
                                              [% END %]
                                          [% END %]
@@ -220,6 +222,7 @@
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag == 'search-database-analyses-protein-code-not-containing-classification' %]
                                                               <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -228,6 +231,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="goID">
@@ -249,6 +253,7 @@
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-tcdb') %]
                                                               <label><input type="checkbox" name="noGO">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -358,6 +363,7 @@
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-blast') %]
                                                               <label><input type="checkbox" name="noBlast">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -366,6 +372,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="blastID">
@@ -381,12 +388,13 @@
                                           </div>
                                       [% END %]
                                       [% IF rpsblast %]
-                                          <div id="rpsBlast" class="tab-pane fade">
+                                          <div id="rpsblast" class="tab-pane fade">
                                               <div class="form-group">
                                                   <div class="checkbox">
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-rpsblast') %]
                                                               <label><input type="checkbox" name="noRps">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -395,6 +403,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-sequence') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="rpsID">
@@ -403,6 +412,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="rpsDesc">
@@ -410,12 +420,13 @@
                                           </div>
                                       [% END %]
                                       [% IF pathways %]
-                                          <div id="kegg" class="tab-pane fade">
+                                          <div id="pathways" class="tab-pane fade">
                                               <div class="form-group">
                                                   <div class="checkbox">
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-kegg') %]
                                                               <label><input type="checkbox" name="noKEGG">[% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -424,6 +435,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-by-orthology-identifier-kegg') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="koID">
@@ -432,6 +444,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag == 'search-database-analyses-protein-code-by-kegg-pathway' %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <select class="form-control" name="keggPath">
@@ -447,6 +460,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="keggDesc">
@@ -460,6 +474,7 @@
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-eggNOG') %]
                                                               <label><input type="checkbox" name="noOrth"> [% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -468,6 +483,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-eggNOG') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="orthID">
@@ -476,6 +492,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-search-by-description') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="orthDesc">
@@ -489,6 +506,7 @@
                                                       [% FOREACH text IN texts %]
                                                           [% IF text.tag.search('search-database-analyses-protein-code-not-containing-classification-interpro') %]
                                                               <label><input type="checkbox" name="noIP"> [% text.value %]</label>
+                                                              [% LAST %]
                                                           [% END %]
                                                       [% END %]
                                                   </div>
@@ -497,6 +515,7 @@
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-analyses-protein-code-interpro') %]
                                                           <label>[% text.value %]</label>
+                                                          [% LAST %]
                                                       [% END %]
                                                   [% END %]
                                                   <input class="form-control" type="text" name="interproID">

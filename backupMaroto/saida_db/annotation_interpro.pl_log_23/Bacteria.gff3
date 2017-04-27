@@ -1,0 +1,1354 @@
+##gff-version 3
+##feature-ontology http://song.cvs.sourceforge.net/viewvc/song/ontology/sofa.obo?revision=1.269
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_36 1 97
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36	.	polypeptide	1	97	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_36;md5=bb2f24d6777f17754c7e4ba2f9a6e707
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36	Gene3D	protein_match	41	96	1.4E-28	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_36 41 96;ID=match$1_41_96;Name=G3DSA:3.30.1490.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36	ProSitePatterns	protein_match	67	84	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_36 67 84;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$2_67_84;signature_desc=Ribosomal protein S8 signature.;Name=PS00053;status=T;Dbxref="InterPro:IPR000630"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36	Pfam	protein_match	2	96	7.6E-35	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_36 2 96;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$3_2_96;signature_desc=Ribosomal protein S8;Name=PF00410;status=T;Dbxref="InterPro:IPR000630"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36	Gene3D	protein_match	1	39	5.5E-9	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_36 1 39;ID=match$4_1_39;Name=G3DSA:3.30.1370.30;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_36	SUPERFAMILY	protein_match	2	96	1.57E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_36 2 96;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$5_2_96;Name=SSF56047;status=T;Dbxref="InterPro:IPR000630"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_53 1 394
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	.	polypeptide	1	394	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_53;md5=ab039c200cb015410c468d2c2d31cf71
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	Pfam	protein_match	225	293	3.8E-17	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 225 293;Ontology_term="GO:0005525";ID=match$6_225_293;signature_desc=Elongation factor Tu domain 2;Name=PF03144;status=T;Dbxref="InterPro:IPR004161"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	ProSiteProfiles	protein_match	10	204	60.491	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 10 204;Ontology_term="GO:0003924","GO:0005525";ID=match$7_10_204;signature_desc=Translational (tr)-type guanine nucleotide-binding (G) domain profile.;Name=PS51722;status=T;Dbxref="InterPro:IPR000795"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	CDD	protein_match	211	297	7.30854E-51	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 211 297;ID=match$8_211_297;signature_desc=EFTU_II;Name=cd03697;status=T;Dbxref="InterPro:IPR033720"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	ProSitePatterns	protein_match	51	66	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 51 66;ID=match$9_51_66;signature_desc=Translational (tr)-type guanine nucleotide-binding (G) domain signature.;Name=PS00301;status=T;Dbxref="InterPro:IPR031157"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	PRINTS	protein_match	58	66	2.9E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 58 66;Ontology_term="GO:0003924","GO:0005525";ID=match$10_58_66;signature_desc=GTP-binding elongation factor signature;Name=PR00315;status=T;Dbxref="InterPro:IPR000795"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	PRINTS	protein_match	14	27	2.9E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 14 27;Ontology_term="GO:0003924","GO:0005525";ID=match$10_14_27;signature_desc=GTP-binding elongation factor signature;Name=PR00315;status=T;Dbxref="InterPro:IPR000795"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	PRINTS	protein_match	131	140	2.9E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 131 140;Ontology_term="GO:0003924","GO:0005525";ID=match$10_131_140;signature_desc=GTP-binding elongation factor signature;Name=PR00315;status=T;Dbxref="InterPro:IPR000795"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	PRINTS	protein_match	94	105	2.9E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 94 105;Ontology_term="GO:0003924","GO:0005525";ID=match$10_94_105;signature_desc=GTP-binding elongation factor signature;Name=PR00315;status=T;Dbxref="InterPro:IPR000795"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	PRINTS	protein_match	78	88	2.9E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 78 88;Ontology_term="GO:0003924","GO:0005525";ID=match$10_78_88;signature_desc=GTP-binding elongation factor signature;Name=PR00315;status=T;Dbxref="InterPro:IPR000795"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	SUPERFAMILY	protein_match	298	393	1.5E-35	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 298 393;ID=match$11_298_393;Name=SSF50465;status=T;Dbxref="InterPro:IPR009001"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	Pfam	protein_match	10	201	2.9E-59	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 10 201;ID=match$12_10_201;signature_desc=Elongation factor Tu GTP binding domain;Name=PF00009;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	CDD	protein_match	11	203	9.17657E-133	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 11 203;ID=match$13_11_203;signature_desc=EF_Tu;Name=cd01884;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	TIGRFAM	protein_match	13	148	2.3E-14	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 13 148;Ontology_term="GO:0005525";ID=match$14_13_148;signature_desc=small_GTP: small GTP-binding protein domain;Name=TIGR00231;status=T;Dbxref="InterPro:IPR005225"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	Gene3D	protein_match	3	208	6.2E-69	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 3 208;ID=match$15_3_208;Name=G3DSA:3.40.50.300;status=T;Dbxref="InterPro:IPR027417"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	TIGRFAM	protein_match	1	393	1.0E-238	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 1 393;Ontology_term="GO:0003746","GO:0005525","GO:0005622","GO:0006414";ID=match$16_1_393;signature_desc=EF-Tu: translation elongation factor Tu;Name=TIGR00485;status=T;Dbxref="InterPro:IPR004541"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	Pfam	protein_match	298	392	5.9E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 298 392;ID=match$17_298_392;signature_desc=Elongation factor Tu C-terminal domain;Name=PF03143;status=T;Dbxref="InterPro:IPR004160"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	Gene3D	protein_match	209	298	6.6E-37	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 209 298;ID=match$18_209_298;Name=G3DSA:2.40.30.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	Gene3D	protein_match	300	393	6.0E-47	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 300 393;ID=match$19_300_393;Name=G3DSA:2.40.30.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	SUPERFAMILY	protein_match	6	219	5.02E-61	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 6 219;ID=match$20_6_219;Name=SSF52540;status=T;Dbxref="InterPro:IPR027417"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	Hamap	protein_match	1	394	61.056	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 1 394;Ontology_term="GO:0003746","GO:0005525","GO:0005622","GO:0006414";ID=match$21_1_394;signature_desc=Elongation factor Tu [tuf].;Name=MF_00118_B;status=T;Dbxref="InterPro:IPR004541"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	SUPERFAMILY	protein_match	205	301	6.48E-30	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 205 301;ID=match$22_205_301;Name=SSF50447;status=T;Dbxref="InterPro:IPR009000"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_53	CDD	protein_match	300	389	9.88133E-63	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_53 300 389;ID=match$23_300_389;signature_desc=EFTU_III;Name=cd03707;status=T
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_42 1 63
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	.	polypeptide	1	63	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_42;md5=6c0cc79eecec776af385a8edc95c8645
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	Pfam	protein_match	4	60	7.8E-23	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_42 4 60;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$24_4_60;signature_desc=Ribosomal L29 protein;Name=PF00831;status=T;Dbxref="InterPro:IPR001854"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	SUPERFAMILY	protein_match	1	61	9.29E-22	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_42 1 61;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$25_1_61;Name=SSF46561;status=T;Dbxref="InterPro:IPR001854"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	ProSitePatterns	protein_match	39	53	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_42 39 53;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$26_39_53;signature_desc=Ribosomal protein L29 signature.;Name=PS00579;status=T;Dbxref="InterPro:IPR018254"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	Hamap	protein_match	1	60	18.624	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_42 1 60;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$27_1_60;signature_desc=50S ribosomal protein L29 [rpmC].;Name=MF_00374;status=T;Dbxref="InterPro:IPR001854"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	CDD	protein_match	4	60	2.68044E-13	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_42 4 60;ID=match$28_4_60;signature_desc=Ribosomal_L29_HIP;Name=cd00427;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	TIGRFAM	protein_match	5	60	2.0E-22	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_42 5 60;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$29_5_60;signature_desc=L29: ribosomal protein uL29;Name=TIGR00012;status=T;Dbxref="InterPro:IPR001854"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_42	Gene3D	protein_match	1	60	1.1E-27	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_42 1 60;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$30_1_60;Name=G3DSA:1.10.287.310;status=T;Dbxref="InterPro:IPR001854"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_47 1 274
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	.	polypeptide	1	274	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_47;md5=a936bc053527d61f6b8042a2846aa29a
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	SMART	protein_match	42	118	2.2E-48	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 42 118;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$31_42_118;Name=SM01383;status=T;Dbxref="InterPro:IPR002171"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	SMART	protein_match	124	251	5.3E-91	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 124 251;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$32_124_251;Name=SM01382;status=T;Dbxref="InterPro:IPR022669"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	Pfam	protein_match	42	117	1.5E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 42 117;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$33_42_117;signature_desc=Ribosomal Proteins L2, RNA binding domain;Name=PF00181;status=T;Dbxref="InterPro:IPR022666"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	Gene3D	protein_match	196	272	6.3E-35	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 196 272;ID=match$34_196_272;Name=G3DSA:4.10.950.10;status=T;Dbxref="InterPro:IPR014726"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	SUPERFAMILY	protein_match	2	125	1.58E-50	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 2 125;ID=match$35_2_125;Name=SSF50249;status=T;Dbxref="InterPro:IPR012340"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	PIRSF	protein_match	12	274	2.9E-101	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 12 274;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$36_12_274;Name=PIRSF002158;status=T;Dbxref="InterPro:IPR002171"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	SUPERFAMILY	protein_match	127	269	6.02E-60	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 127 269;ID=match$37_127_269;Name=SSF50104;status=T;Dbxref="InterPro:IPR008991"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	Pfam	protein_match	125	249	1.0E-55	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 125 249;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$38_125_249;signature_desc=Ribosomal Proteins L2, C-terminal domain;Name=PF03947;status=T;Dbxref="InterPro:IPR022669"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	Hamap	protein_match	1	272	47.311	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 1 272;Ontology_term="GO:0003723","GO:0003735","GO:0006412","GO:0015934","GO:0016740";ID=match$39_1_272;signature_desc=50S ribosomal protein L2 [rplB].;Name=MF_01320_B;status=T;Dbxref="InterPro:IPR005880"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	TIGRFAM	protein_match	3	272	2.7E-132	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 3 272;Ontology_term="GO:0003723","GO:0003735","GO:0006412","GO:0015934","GO:0016740";ID=match$40_3_272;signature_desc=rplB_bact: ribosomal protein uL2;Name=TIGR01171;status=T;Dbxref="InterPro:IPR005880"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	Gene3D	protein_match	119	195	3.3E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 119 195;ID=match$41_119_195;Name=G3DSA:2.30.30.30;status=T;Dbxref="InterPro:IPR014722"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	ProSitePatterns	protein_match	218	229	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 218 229;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$42_218_229;signature_desc=Ribosomal protein L2 signature.;Name=PS00467;status=T;Dbxref="InterPro:IPR022671"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_47	Gene3D	protein_match	1	114	2.7E-51	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_47 1 114;ID=match$43_1_114;Name=G3DSA:2.40.50.140;status=T;Dbxref="InterPro:IPR012340"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_40 1 123
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	.	polypeptide	1	123	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_40;md5=4b6f37ae3976661aac21b32e8bc0f43a
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	Pfam	protein_match	1	123	1.6E-54	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_40 1 123;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$44_1_123;signature_desc=Ribosomal protein L14p/L23e;Name=PF00238;status=T;Dbxref="InterPro:IPR000218"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	Gene3D	protein_match	1	123	2.2E-55	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_40 1 123;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$45_1_123;Name=G3DSA:2.40.150.20;status=T;Dbxref="InterPro:IPR000218"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	SMART	protein_match	1	123	5.8E-85	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_40 1 123;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$46_1_123;Name=SM01374;status=T;Dbxref="InterPro:IPR000218"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	SUPERFAMILY	protein_match	2	122	6.8E-51	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_40 2 122;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$47_2_122;Name=SSF50193;status=T;Dbxref="InterPro:IPR000218"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	Hamap	protein_match	1	123	28.366	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_40 1 123;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$48_1_123;signature_desc=50S ribosomal protein L14 [rplN].;Name=MF_01367;status=T;Dbxref="InterPro:IPR000218"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	ProSitePatterns	protein_match	60	86	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_40 60 86;ID=match$49_60_86;signature_desc=Ribosomal protein L14 signature.;Name=PS00049;status=T;Dbxref="InterPro:IPR019972"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_40	TIGRFAM	protein_match	1	123	2.4E-58	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_40 1 123;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$50_1_123;signature_desc=rplN_bact: ribosomal protein uL14;Name=TIGR01067;status=T;Dbxref="InterPro:IPR005745"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_33 1 166
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	.	polypeptide	1	166	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_33;md5=0bbdc5469cbdc64704a3df2273ae9ce6
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	SUPERFAMILY	protein_match	9	75	1.57E-23	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 9 75;ID=match$51_9_75;Name=SSF54768;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	Pfam	protein_match	87	157	4.2E-30	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 87 157;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$52_87_157;signature_desc=Ribosomal protein S5, C-terminal domain;Name=PF03719;status=T;Dbxref="InterPro:IPR005324"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	Hamap	protein_match	1	163	34.503	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 1 163;Ontology_term="GO:0003735","GO:0006412","GO:0015935";ID=match$53_1_163;signature_desc=30S ribosomal protein S5 [rpsE].;Name=MF_01307_B;status=T;Dbxref="InterPro:IPR005712"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	Pfam	protein_match	11	74	6.0E-29	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 11 74;Ontology_term="GO:0003723","GO:0003735","GO:0005840","GO:0006412";ID=match$54_11_74;signature_desc=Ribosomal protein S5, N-terminal domain;Name=PF00333;status=T;Dbxref="InterPro:IPR013810"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	ProSitePatterns	protein_match	28	60	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 28 60;ID=match$55_28_60;signature_desc=Ribosomal protein S5 signature.;Name=PS00585;status=T;Dbxref="InterPro:IPR018192"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	Gene3D	protein_match	10	71	3.6E-30	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 10 71;ID=match$56_10_71;Name=G3DSA:3.30.160.20;status=T;Dbxref="InterPro:IPR014720"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	Gene3D	protein_match	77	159	7.8E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 77 159;ID=match$57_77_159;Name=G3DSA:3.30.230.10;status=T;Dbxref="InterPro:IPR014721"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	SUPERFAMILY	protein_match	79	159	3.79E-27	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 79 159;ID=match$58_79_159;Name=SSF54211;status=T;Dbxref="InterPro:IPR020568"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	ProSiteProfiles	protein_match	11	74	25.166	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 11 74;Ontology_term="GO:0003723","GO:0003735","GO:0005840","GO:0006412";ID=match$59_11_74;signature_desc=S5 double stranded RNA-binding domain profile.;Name=PS50881;status=T;Dbxref="InterPro:IPR013810"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_33	TIGRFAM	protein_match	10	163	2.1E-70	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_33 10 163;Ontology_term="GO:0003735","GO:0006412","GO:0015935";ID=match$60_10_163;signature_desc=rpsE_bact: ribosomal protein uS5;Name=TIGR01021;status=T;Dbxref="InterPro:IPR005712"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_46 1 92
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	.	polypeptide	1	92	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_46;md5=985a3b22608cd9c97666b2036184ad01
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	SUPERFAMILY	protein_match	3	84	9.68E-36	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 3 84;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$61_3_84;Name=SSF54570;status=T;Dbxref="InterPro:IPR023575"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	Pfam	protein_match	3	83	3.4E-37	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 3 83;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$62_3_83;signature_desc=Ribosomal protein S19;Name=PF00203;status=T;Dbxref="InterPro:IPR002222"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	TIGRFAM	protein_match	1	91	2.3E-46	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 1 91;Ontology_term="GO:0003735","GO:0006412","GO:0015935";ID=match$63_1_91;signature_desc=rpsS_bact: ribosomal protein uS19;Name=TIGR01050;status=T;Dbxref="InterPro:IPR005732"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	ProSitePatterns	protein_match	53	77	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 53 77;Ontology_term="GO:0003723";ID=match$64_53_77;signature_desc=Ribosomal protein S19 signature.;Name=PS00323;status=T;Dbxref="InterPro:IPR020934"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	PIRSF	protein_match	1	92	5.7E-32	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 1 92;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$65_1_92;Name=PIRSF002144;status=T;Dbxref="InterPro:IPR002222"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	Hamap	protein_match	1	89	25.691	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 1 89;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$66_1_89;signature_desc=30S ribosomal protein S19 [rpsS].;Name=MF_00531;status=T;Dbxref="InterPro:IPR002222"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	PRINTS	protein_match	53	65	1.1E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 53 65;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$67_53_65;signature_desc=Ribosomal protein S19 family signature;Name=PR00975;status=T;Dbxref="InterPro:IPR002222"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	PRINTS	protein_match	33	52	1.1E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 33 52;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$67_33_52;signature_desc=Ribosomal protein S19 family signature;Name=PR00975;status=T;Dbxref="InterPro:IPR002222"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	PRINTS	protein_match	65	80	1.1E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 65 80;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$67_65_80;signature_desc=Ribosomal protein S19 family signature;Name=PR00975;status=T;Dbxref="InterPro:IPR002222"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_46	Gene3D	protein_match	1	91	2.4E-41	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_46 1 91;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$68_1_91;Name=G3DSA:3.30.860.10;status=T;Dbxref="InterPro:IPR023575"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_35 1 177
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	.	polypeptide	1	177	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_35;md5=2fa9e8b07c0fec10757685571ca7f7aa
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	Gene3D	protein_match	83	177	2.0E-40	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 83 177;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$69_83_177;Name=G3DSA:3.90.930.12;status=T;Dbxref="InterPro:IPR020040"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	Pfam	protein_match	90	164	6.2E-19	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 90 164;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$70_90_164;signature_desc=Ribosomal protein L6;Name=PF00347;status=T;Dbxref="InterPro:IPR020040"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	Pfam	protein_match	11	82	1.9E-18	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 11 82;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$70_11_82;signature_desc=Ribosomal protein L6;Name=PF00347;status=T;Dbxref="InterPro:IPR020040"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	PIRSF	protein_match	1	177	5.4E-43	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 1 177;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$71_1_177;Name=PIRSF002162;status=T;Dbxref="InterPro:IPR000702"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	Hamap	protein_match	1	176	36.477	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 1 176;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$72_1_176;signature_desc=50S ribosomal protein L6 [rplF].;Name=MF_01365_B;status=T;Dbxref="InterPro:IPR019906"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	Gene3D	protein_match	2	82	3.5E-29	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 2 82;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$73_2_82;Name=G3DSA:3.90.930.12;status=T;Dbxref="InterPro:IPR020040"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	ProSitePatterns	protein_match	154	162	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 154 162;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$74_154_162;signature_desc=Ribosomal protein L6 signature 1.;Name=PS00525;status=T;Dbxref="InterPro:IPR002358"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	PRINTS	protein_match	99	115	8.7E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 99 115;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$75_99_115;signature_desc=Ribosomal protein L6 signature;Name=PR00059;status=T;Dbxref="InterPro:IPR019906"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	PRINTS	protein_match	141	162	8.7E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 141 162;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$75_141_162;signature_desc=Ribosomal protein L6 signature;Name=PR00059;status=T;Dbxref="InterPro:IPR019906"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	PRINTS	protein_match	71	96	8.7E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 71 96;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$75_71_96;signature_desc=Ribosomal protein L6 signature;Name=PR00059;status=T;Dbxref="InterPro:IPR019906"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	TIGRFAM	protein_match	2	176	1.6E-73	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 2 176;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$76_2_176;signature_desc=L6_bact: ribosomal protein uL6;Name=TIGR03654;status=T;Dbxref="InterPro:IPR019906"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	SUPERFAMILY	protein_match	83	177	1.44E-35	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 83 177;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$77_83_177;Name=SSF56053;status=T;Dbxref="InterPro:IPR020040"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_35	SUPERFAMILY	protein_match	1	82	1.57E-23	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_35 1 82;Ontology_term="GO:0003735","GO:0005840","GO:0006412","GO:0019843";ID=match$78_1_82;Name=SSF56053;status=T;Dbxref="InterPro:IPR020040"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_44 1 233
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	.	polypeptide	1	233	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_44;md5=da8bb69df298dd1e5eadd4abae8749fc
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	Pfam	protein_match	38	111	2.4E-19	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 38 111;Ontology_term="GO:0003723";ID=match$79_38_111;signature_desc=KH domain;Name=PF07650;status=T;Dbxref="InterPro:IPR004044"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	CDD	protein_match	2	109	2.10123E-51	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 2 109;ID=match$80_2_109;signature_desc=30S_S3_KH;Name=cd02412;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	ProSiteProfiles	protein_match	61	105	8.534	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 61 105;Ontology_term="GO:0003723";ID=match$81_61_105;signature_desc=Type-1 KH domain profile.;Name=PS50084;status=T;Dbxref="InterPro:IPR004088"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	Pfam	protein_match	120	202	3.9E-41	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 120 202;ID=match$82_120_202;signature_desc=Ribosomal protein S3, C-terminal domain;Name=PF00189;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	ProSiteProfiles	protein_match	39	107	18.198	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 39 107;Ontology_term="GO:0003723";ID=match$83_39_107;signature_desc=Type-2 KH domain profile.;Name=PS50823;status=T;Dbxref="InterPro:IPR004044"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	SUPERFAMILY	protein_match	2	106	4.71E-38	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 2 106;Ontology_term="GO:0003723";ID=match$84_2_106;Name=SSF54814;status=T;Dbxref="InterPro:IPR009019"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	Hamap	protein_match	1	206	39.428	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 1 206;Ontology_term="GO:0003735","GO:0006412","GO:0015935";ID=match$85_1_206;signature_desc=30S ribosomal protein S3 [rpsC].;Name=MF_01309_B;status=T;Dbxref="InterPro:IPR005704"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	TIGRFAM	protein_match	1	209	7.2E-101	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 1 209;Ontology_term="GO:0003735","GO:0006412","GO:0015935";ID=match$86_1_209;signature_desc=rpsC_bact: ribosomal protein uS3;Name=TIGR01009;status=T;Dbxref="InterPro:IPR005704"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	SMART	protein_match	60	125	1.6E-7	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 60 125;Ontology_term="GO:0003676";ID=match$87_60_125;Name=SM00322;status=T;Dbxref="InterPro:IPR004087"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	Gene3D	protein_match	18	107	1.4E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 18 107;ID=match$88_18_107;Name=G3DSA:3.30.300.20;status=T;Dbxref="InterPro:IPR015946"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	Gene3D	protein_match	108	207	8.1E-48	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 108 207;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$89_108_207;Name=G3DSA:3.30.1140.32;status=T;Dbxref="InterPro:IPR001351"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	SUPERFAMILY	protein_match	108	206	1.05E-40	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 108 206;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$90_108_206;Name=SSF54821;status=T;Dbxref="InterPro:IPR001351"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_44	ProSitePatterns	protein_match	163	197	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_44 163 197;ID=match$91_163_197;signature_desc=Ribosomal protein S3 signature.;Name=PS00548;status=T;Dbxref="InterPro:IPR018280"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_57 1 344
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	.	polypeptide	1	344	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_57;md5=00ef70eb84070bfd5c50d332dbc8d6b1
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	Gene3D	protein_match	229	340	1.9E-44	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 229 340;Ontology_term="GO:0008762","GO:0055114";ID=match$92_229_340;Name=G3DSA:3.90.78.10;status=T;Dbxref="InterPro:IPR011601"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	SUPERFAMILY	protein_match	3	192	7.48E-45	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 3 192;Ontology_term="GO:0003824","GO:0016614","GO:0050660","GO:0055114";ID=match$93_3_192;Name=SSF56176;status=T;Dbxref="InterPro:IPR016166"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	ProSiteProfiles	protein_match	12	182	16.394	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 12 182;Ontology_term="GO:0003824","GO:0016614","GO:0050660","GO:0055114";ID=match$94_12_182;signature_desc=PCMH-type FAD-binding domain profile.;Name=PS51387;status=T;Dbxref="InterPro:IPR016166"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	Pfam	protein_match	205	328	1.7E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 205 328;Ontology_term="GO:0008762","GO:0055114";ID=match$95_205_328;signature_desc=UDP-N-acetylenolpyruvoylglucosamine reductase, C-terminal domain;Name=PF02873;status=T;Dbxref="InterPro:IPR011601"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	Gene3D	protein_match	71	228	5.3E-51	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 71 228;Ontology_term="GO:0050660";ID=match$96_71_228;Name=G3DSA:3.30.465.10;status=T;Dbxref="InterPro:IPR016169"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	Pfam	protein_match	21	148	1.0E-21	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 21 148;Ontology_term="GO:0016491","GO:0050660","GO:0055114";ID=match$97_21_148;signature_desc=FAD binding domain;Name=PF01565;status=T;Dbxref="InterPro:IPR006094"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	Hamap	protein_match	1	344	85.674	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 1 344;Ontology_term="GO:0008762","GO:0055114";ID=match$98_1_344;signature_desc=UDP-N-acetylenolpyruvoylglucosamine reductase [murB].;Name=MF_00037;status=T;Dbxref="InterPro:IPR003170"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	TIGRFAM	protein_match	4	329	1.7E-107	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 4 329;Ontology_term="GO:0008762","GO:0055114";ID=match$99_4_329;signature_desc=murB: UDP-N-acetylenolpyruvoylglucosamine reductase;Name=TIGR00179;status=T;Dbxref="InterPro:IPR003170"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	Gene3D	protein_match	3	66	4.4E-22	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 3 66;Ontology_term="GO:0003824","GO:0050660","GO:0055114";ID=match$100_3_66;Name=G3DSA:3.30.43.10;status=T;Dbxref="InterPro:IPR016167"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_57	SUPERFAMILY	protein_match	201	339	9.42E-51	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_57 201 339;Ontology_term="GO:0008762","GO:0055114";ID=match$101_201_339;Name=SSF56194;status=T;Dbxref="InterPro:IPR011601"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_43 1 136
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	.	polypeptide	1	136	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_43;md5=06e88d76f43c2fd1d25c5996437ad100
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	ProSitePatterns	protein_match	58	69	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 58 69;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$102_58_69;signature_desc=Ribosomal protein L16 signature 1.;Name=PS00586;status=T;Dbxref="InterPro:IPR020798"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	Pfam	protein_match	4	131	2.5E-46	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 4 131;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$103_4_131;signature_desc=Ribosomal protein L16p/L10e;Name=PF00252;status=T;Dbxref="InterPro:IPR016180"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	Gene3D	protein_match	23	133	3.4E-53	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 23 133;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$104_23_133;Name=G3DSA:3.90.1170.10;status=T;Dbxref="InterPro:IPR016180"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	ProSitePatterns	protein_match	81	92	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 81 92;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$105_81_92;signature_desc=Ribosomal protein L16 signature 2.;Name=PS00701;status=T;Dbxref="InterPro:IPR020798"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	CDD	protein_match	22	131	1.56166E-50	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 22 131;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$106_22_131;signature_desc=Ribosomal_L16_L10e;Name=cd01433;status=T;Dbxref="InterPro:IPR016180"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	Hamap	protein_match	1	133	38.236	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 1 133;Ontology_term="GO:0003735","GO:0006412","GO:0019843";ID=match$107_1_133;signature_desc=50S ribosomal protein L16 [rplP].;Name=MF_01342;status=T;Dbxref="InterPro:IPR000114"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	PRINTS	protein_match	87	116	1.2E-39	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 87 116;Ontology_term="GO:0003735","GO:0006412","GO:0019843";ID=match$108_87_116;signature_desc=Ribosomal protein L16 signature;Name=PR00060;status=T;Dbxref="InterPro:IPR000114"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	PRINTS	protein_match	57	86	1.2E-39	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 57 86;Ontology_term="GO:0003735","GO:0006412","GO:0019843";ID=match$108_57_86;signature_desc=Ribosomal protein L16 signature;Name=PR00060;status=T;Dbxref="InterPro:IPR000114"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	PRINTS	protein_match	23	35	1.2E-39	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 23 35;Ontology_term="GO:0003735","GO:0006412","GO:0019843";ID=match$108_23_35;signature_desc=Ribosomal protein L16 signature;Name=PR00060;status=T;Dbxref="InterPro:IPR000114"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	PRINTS	protein_match	41	52	1.2E-39	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 41 52;Ontology_term="GO:0003735","GO:0006412","GO:0019843";ID=match$108_41_52;signature_desc=Ribosomal protein L16 signature;Name=PR00060;status=T;Dbxref="InterPro:IPR000114"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	TIGRFAM	protein_match	2	126	5.8E-59	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 2 126;Ontology_term="GO:0003735","GO:0006412","GO:0019843";ID=match$109_2_126;signature_desc=rplP_bact: ribosomal protein uL16;Name=TIGR01164;status=T;Dbxref="InterPro:IPR000114"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_43	SUPERFAMILY	protein_match	3	133	7.06E-55	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_43 3 133;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$110_3_133;Name=SSF54686;status=T;Dbxref="InterPro:IPR016180"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_49 1 209
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	.	polypeptide	1	209	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_49;md5=c6c225d82a12fc9a81d8388d70610487
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	Gene3D	protein_match	158	207	4.1E-8	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 158 207;ID=match$111_158_207;Name=G3DSA:2.40.30.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	Gene3D	protein_match	3	32	4.1E-8	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 3 32;ID=match$111_3_32;Name=G3DSA:2.40.30.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	Hamap	protein_match	1	207	41.024	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 1 207;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$112_1_207;signature_desc=50S ribosomal protein L3 [rplC].;Name=MF_01325_B;status=T;Dbxref="InterPro:IPR019927"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	Gene3D	protein_match	77	157	1.1E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 77 157;ID=match$113_77_157;Name=G3DSA:4.10.960.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	Pfam	protein_match	34	182	4.4E-15	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 34 182;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$114_34_182;signature_desc=Ribosomal protein L3;Name=PF00297;status=T;Dbxref="InterPro:IPR000597"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	ProSitePatterns	protein_match	101	124	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 101 124;ID=match$115_101_124;signature_desc=Ribosomal protein L3 signature.;Name=PS00474;status=T;Dbxref="InterPro:IPR019926"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	SUPERFAMILY	protein_match	1	208	3.88E-81	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 1 208;ID=match$116_1_208;Name=SSF50447;status=T;Dbxref="InterPro:IPR009000"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_49	TIGRFAM	protein_match	3	204	7.1E-93	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_49 3 204;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$117_3_204;signature_desc=L3_bact: 50S ribosomal protein uL3;Name=TIGR03625;status=T;Dbxref="InterPro:IPR019927"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_50 1 103
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	.	polypeptide	1	103	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_50;md5=45d53e98b9ae88d2567b52bea3a6f87c
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	ProSitePatterns	protein_match	29	44	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 29 44;Ontology_term="GO:0003723","GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$118_29_44;signature_desc=Ribosomal protein S10 signature.;Name=PS00361;status=T;Dbxref="InterPro:IPR018268"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	PRINTS	protein_match	40	55	1.2E-18	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 40 55;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$119_40_55;signature_desc=Ribosomal protein S10 family signature;Name=PR00971;status=T;Dbxref="InterPro:IPR001848"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	PRINTS	protein_match	61	75	1.2E-18	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 61 75;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$119_61_75;signature_desc=Ribosomal protein S10 family signature;Name=PR00971;status=T;Dbxref="InterPro:IPR001848"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	PRINTS	protein_match	5	18	1.2E-18	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 5 18;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$119_5_18;signature_desc=Ribosomal protein S10 family signature;Name=PR00971;status=T;Dbxref="InterPro:IPR001848"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	SMART	protein_match	7	101	1.0E-56	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 7 101;ID=match$120_7_101;Name=SM01403;status=T;Dbxref="InterPro:IPR027486"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	Gene3D	protein_match	3	102	8.7E-44	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 3 102;ID=match$121_3_102;Name=G3DSA:3.30.70.600;status=T;Dbxref="InterPro:IPR027486"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	Pfam	protein_match	7	100	2.0E-35	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 7 100;ID=match$122_7_100;signature_desc=Ribosomal protein S10p/S20e;Name=PF00338;status=T;Dbxref="InterPro:IPR027486"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	Hamap	protein_match	3	102	27.353	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 3 102;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$123_3_102;signature_desc=30S ribosomal protein S10 [rpsJ].;Name=MF_00508;status=T;Dbxref="InterPro:IPR001848"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	TIGRFAM	protein_match	4	101	1.0E-46	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 4 101;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$124_4_101;signature_desc=rpsJ_bact: ribosomal protein uS10;Name=TIGR01049;status=T;Dbxref="InterPro:IPR001848"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_50	SUPERFAMILY	protein_match	5	101	1.26E-36	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_50 5 101;ID=match$125_5_101;Name=SSF54999;status=T;Dbxref="InterPro:IPR027486"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_41 1 84
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	.	polypeptide	1	84	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_41;md5=1e5dfd4092ffee2ec52c2a3ada0c4f20
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	ProDom	protein_match	6	76	2.0E-35	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 6 76;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$126_6_76;signature_desc=RIBOSOMAL S17 30S RIBONUCLEOPROTEIN RRNA-BINDING RNA-BINDING 40S S11 S17P S11;Name=PD001295;status=T;Dbxref="InterPro:IPR000266"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	TIGRFAM	protein_match	6	76	8.5E-39	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 6 76;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$127_6_76;signature_desc=uS17_bact: ribosomal protein uS17;Name=TIGR03635;status=T;Dbxref="InterPro:IPR019984"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	PRINTS	protein_match	24	47	5.3E-14	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 24 47;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$128_24_47;signature_desc=Ribosomal protein S17 family signature;Name=PR00973;status=T;Dbxref="InterPro:IPR000266"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	PRINTS	protein_match	56	66	5.3E-14	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 56 66;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$128_56_66;signature_desc=Ribosomal protein S17 family signature;Name=PR00973;status=T;Dbxref="InterPro:IPR000266"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	PRINTS	protein_match	66	73	5.3E-14	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 66 73;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$128_66_73;signature_desc=Ribosomal protein S17 family signature;Name=PR00973;status=T;Dbxref="InterPro:IPR000266"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	Hamap	protein_match	3	81	26.504	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 3 81;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$129_3_81;signature_desc=30S ribosomal protein S17 [rpsQ].;Name=MF_01345_B;status=T;Dbxref="InterPro:IPR000266"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	ProSitePatterns	protein_match	56	68	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 56 68;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$130_56_68;signature_desc=Ribosomal protein S17 signature.;Name=PS00056;status=T;Dbxref="InterPro:IPR019979"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	Pfam	protein_match	10	76	4.2E-34	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 10 76;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$131_10_76;signature_desc=Ribosomal protein S17;Name=PF00366;status=T;Dbxref="InterPro:IPR000266"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	Gene3D	protein_match	6	82	1.1E-36	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 6 82;ID=match$132_6_82;Name=G3DSA:2.40.50.140;status=T;Dbxref="InterPro:IPR012340"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_41	SUPERFAMILY	protein_match	5	82	2.48E-33	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_41 5 82;ID=match$133_5_82;Name=SSF50249;status=T;Dbxref="InterPro:IPR012340"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_51 1 158
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	.	polypeptide	1	158	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_51;md5=0e82c6c7f24c188628613cc2b48a3f74
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	Gene3D	protein_match	1	154	5.6E-65	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 1 154;ID=match$134_1_154;Name=G3DSA:1.20.1260.10;status=T;Dbxref="InterPro:IPR012347"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	SUPERFAMILY	protein_match	1	154	1.5E-53	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 1 154;ID=match$135_1_154;Name=SSF47240;status=T;Dbxref="InterPro:IPR009078"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	ProSiteProfiles	protein_match	1	145	29.099	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 1 145;ID=match$136_1_145;signature_desc=Ferritin-like diiron domain profile.;Name=PS50905;status=T;Dbxref="InterPro:IPR009040"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	CDD	protein_match	2	154	8.50053E-84	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 2 154;ID=match$137_2_154;signature_desc=Bacterioferritin;Name=cd00907;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	Pfam	protein_match	8	144	2.1E-40	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 8 144;Ontology_term="GO:0006879","GO:0008199";ID=match$138_8_144;signature_desc=Ferritin-like domain;Name=PF00210;status=T;Dbxref="InterPro:IPR008331"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	TIGRFAM	protein_match	1	155	9.0E-80	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 1 155;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$139_1_155;signature_desc=bfr: bacterioferritin;Name=TIGR00754;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PRINTS	protein_match	23	43	2.4E-74	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 23 43;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$140_23_43;signature_desc=Bacterioferritin signature;Name=PR00601;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PRINTS	protein_match	44	64	2.4E-74	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 44 64;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$140_44_64;signature_desc=Bacterioferritin signature;Name=PR00601;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PRINTS	protein_match	86	106	2.4E-74	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 86 106;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$140_86_106;signature_desc=Bacterioferritin signature;Name=PR00601;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PRINTS	protein_match	128	149	2.4E-74	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 128 149;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$140_128_149;signature_desc=Bacterioferritin signature;Name=PR00601;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PRINTS	protein_match	3	22	2.4E-74	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 3 22;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$140_3_22;signature_desc=Bacterioferritin signature;Name=PR00601;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PRINTS	protein_match	107	127	2.4E-74	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 107 127;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$140_107_127;signature_desc=Bacterioferritin signature;Name=PR00601;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PRINTS	protein_match	65	85	2.4E-74	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 65 85;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$140_65_85;signature_desc=Bacterioferritin signature;Name=PR00601;status=T;Dbxref="InterPro:IPR002024"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_51	PIRSF	protein_match	1	157	1.4E-70	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_51 1 157;Ontology_term="GO:0006826","GO:0006879","GO:0008199";ID=match$141_1_157;Name=PIRSF002560;status=T;Dbxref="InterPro:IPR002024"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_45 1 115
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	.	polypeptide	1	115	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_45;md5=c8bbe79a1abf55e34f4c2965aad95205
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	CDD	protein_match	5	107	9.95008E-44	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_45 5 107;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$142_5_107;signature_desc=Ribosomal_L22;Name=cd00336;status=T;Dbxref="InterPro:IPR001063"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	Pfam	protein_match	8	107	1.1E-33	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_45 8 107;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$143_8_107;signature_desc=Ribosomal protein L22p/L17e;Name=PF00237;status=T;Dbxref="InterPro:IPR001063"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	Hamap	protein_match	1	110	28.742	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_45 1 110;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$144_1_110;signature_desc=50S ribosomal protein L22 [rplV].;Name=MF_01331_B;status=T;Dbxref="InterPro:IPR005727"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	TIGRFAM	protein_match	5	107	8.7E-50	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_45 5 107;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$145_5_107;signature_desc=rplV_bact: ribosomal protein uL22;Name=TIGR01044;status=T;Dbxref="InterPro:IPR005727"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	Gene3D	protein_match	1	110	1.1E-42	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_45 1 110;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$146_1_110;Name=G3DSA:3.90.470.10;status=T;Dbxref="InterPro:IPR001063"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	ProSitePatterns	protein_match	83	107	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_45 83 107;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$147_83_107;signature_desc=Ribosomal protein L22 signature.;Name=PS00464;status=T;Dbxref="InterPro:IPR018260"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_45	SUPERFAMILY	protein_match	1	110	1.44E-42	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_45 1 110;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$148_1_110;Name=SSF54843;status=T;Dbxref="InterPro:IPR001063"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_30 1 443
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	.	polypeptide	1	443	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_30;md5=7e095aee492a113c8ba60eb26680278c
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	TIGRFAM	protein_match	20	429	1.4E-140	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 20 429;Ontology_term="GO:0015031","GO:0016020";ID=match$149_20_429;signature_desc=3a0501s007: preprotein translocase, SecY subunit;Name=TIGR00967;status=T;Dbxref="InterPro:IPR002208"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	ProSitePatterns	protein_match	173	190	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 173 190;ID=match$150_173_190;signature_desc=Protein secY signature 2.;Name=PS00756;status=T;Dbxref="InterPro:IPR030659"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	Pfam	protein_match	76	417	1.4E-119	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 76 417;Ontology_term="GO:0015031","GO:0016020";ID=match$151_76_417;signature_desc=SecY translocase;Name=PF00344;status=T;Dbxref="InterPro:IPR002208"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	Hamap	protein_match	10	433	29.911	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 10 433;ID=match$152_10_433;signature_desc=Protein translocase subunit SecY [secY].;Name=MF_01465;status=T;Dbxref="InterPro:IPR026593"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	ProSitePatterns	protein_match	76	95	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 76 95;ID=match$153_76_95;signature_desc=Protein secY signature 1.;Name=PS00755;status=T;Dbxref="InterPro:IPR030659"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PIRSF	protein_match	11	441	5.0E-124	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 11 441;Ontology_term="GO:0015031","GO:0016020";ID=match$154_11_441;Name=PIRSF004557;status=T;Dbxref="InterPro:IPR002208"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	Coils	protein_match	438	443	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 438 443;ID=match$155_438_443;Name=Coil;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	Gene3D	protein_match	17	437	3.5E-167	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 17 437;ID=match$156_17_437;Name=G3DSA:1.10.3370.10;status=T;Dbxref="InterPro:IPR023201"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	180	203	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 180 203;ID=match$157_180_203;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	370	388	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 370 388;ID=match$157_370_388;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	272	291	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 272 291;ID=match$157_272_291;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	315	337	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 315 337;ID=match$157_315_337;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	402	420	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 402 420;ID=match$157_402_420;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	154	179	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 154 179;ID=match$157_154_179;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	75	95	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 75 95;ID=match$157_75_95;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	116	139	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 116 139;ID=match$157_116_139;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	PRINTS	protein_match	23	41	3.5E-98	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 23 41;ID=match$157_23_41;signature_desc=Preprotein translocase SecY subunit signature;Name=PR00303;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_30	SUPERFAMILY	protein_match	16	424	1.31E-133	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_30 16 424;ID=match$158_16_424;Name=SSF103491;status=T;Dbxref="InterPro:IPR023201"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_56 1 314
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	.	polypeptide	1	314	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_56;md5=c7a744bcc7d46398321a194e05dad76f
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	Gene3D	protein_match	3	58	1.9E-21	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 3 58;ID=match$159_3_58;Name=G3DSA:1.10.10.10;status=T;Dbxref="InterPro:IPR011991"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	Gene3D	protein_match	266	313	1.1E-21	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 266 313;ID=match$160_266_313;Name=G3DSA:2.30.30.100;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	SUPERFAMILY	protein_match	266	312	1.65E-10	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 266 312;ID=match$161_266_312;Name=SSF50037;status=T;Dbxref="InterPro:IPR008988"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	SUPERFAMILY	protein_match	66	263	6.16E-59	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 66 263;ID=match$162_66_263;Name=SSF55681;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	TIGRFAM	protein_match	1	67	2.0E-21	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 1 67;Ontology_term="GO:0006355";ID=match$163_1_67;signature_desc=birA_repr_reg: biotin operon repressor;Name=TIGR00122;status=T;Dbxref="InterPro:IPR004409"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	Pfam	protein_match	79	203	6.3E-23	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 79 203;Ontology_term="GO:0006464";ID=match$164_79_203;signature_desc=Biotin/lipoate A/B protein ligase family;Name=PF03099;status=T;Dbxref="InterPro:IPR004143"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	Pfam	protein_match	4	53	3.9E-12	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 4 53;ID=match$165_4_53;signature_desc=HTH domain;Name=PF08279;status=T;Dbxref="InterPro:IPR013196"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	SUPERFAMILY	protein_match	3	56	2.97E-10	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 3 56;ID=match$166_3_56;Name=SSF46785;status=T;Dbxref="InterPro:IPR011991"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	Gene3D	protein_match	70	263	4.0E-60	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 70 263;ID=match$167_70_263;Name=G3DSA:3.30.930.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	ProSiteProfiles	protein_match	61	249	29.969	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 61 249;Ontology_term="GO:0006464";ID=match$168_61_249;signature_desc=Biotinyl protein ligase (BPL) and lipoyl protein ligase (LPL) catalytic domain profile.;Name=PS51733;status=T;Dbxref="InterPro:IPR004143"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	Hamap	protein_match	2	312	32.077	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 2 312;Ontology_term="GO:0004077","GO:0006355";ID=match$169_2_312;signature_desc=Bifunctional ligase/repressor BirA [birA].;Name=MF_00978;status=T;Dbxref="InterPro:IPR030855"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	Pfam	protein_match	269	312	8.0E-9	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 269 312;Ontology_term="GO:0006464";ID=match$170_269_312;signature_desc=Biotin protein ligase C terminal domain;Name=PF02237;status=T;Dbxref="InterPro:IPR003142"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_56	TIGRFAM	protein_match	76	312	1.7E-73	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_56 76 312;Ontology_term="GO:0004077","GO:0006464";ID=match$171_76_312;signature_desc=birA_ligase: biotin--[acetyl-CoA-carboxylase] ligase;Name=TIGR00121;status=T;Dbxref="InterPro:IPR004408"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_52 1 68
+Bacteria_CDS_annotation_glimmer3.pl_log_10_52	.	polypeptide	1	68	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_52;md5=573fd4969e96a83c2366f4056303d6b8
+Bacteria_CDS_annotation_glimmer3.pl_log_10_52	Pfam	protein_match	5	55	1.9E-15	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_52 5 55;ID=match$172_5_55;signature_desc=BFD-like [2Fe-2S] binding domain;Name=PF04324;status=T;Dbxref="InterPro:IPR007419"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_29 1 118
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	.	polypeptide	1	118	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_29;md5=14d7a46d0f04447f0a840a4552a0b4c7
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	PIRSF	protein_match	1	118	4.1E-42	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 1 118;Ontology_term="GO:0003723","GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$173_1_118;Name=PIRSF002134;status=T;Dbxref="InterPro:IPR001892"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	Coils	protein_match	46	66	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 46 66;ID=match$174_46_66;Name=Coil;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	Hamap	protein_match	1	118	26.073	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 1 118;Ontology_term="GO:0003723","GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$175_1_118;signature_desc=30S ribosomal protein S13 [rpsM].;Name=MF_01315;status=T;Dbxref="InterPro:IPR001892"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	ProSiteProfiles	protein_match	4	111	40.248	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 4 111;Ontology_term="GO:0003723","GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$176_4_111;signature_desc=Ribosomal protein S13 family profile.;Name=PS50159;status=T;Dbxref="InterPro:IPR001892"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	ProSitePatterns	protein_match	87	100	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 87 100;Ontology_term="GO:0003723","GO:0003735","GO:0005840","GO:0006412";ID=match$177_87_100;signature_desc=Ribosomal protein S13 signature.;Name=PS00646;status=T;Dbxref="InterPro:IPR018269"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	Pfam	protein_match	3	108	1.9E-33	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 3 108;Ontology_term="GO:0003723","GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$178_3_108;signature_desc=Ribosomal protein S13/S18;Name=PF00416;status=T;Dbxref="InterPro:IPR001892"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	Gene3D	protein_match	72	118	7.5E-26	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 72 118;ID=match$179_72_118;Name=G3DSA:4.10.910.10;status=T;Dbxref="InterPro:IPR027437"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	SUPERFAMILY	protein_match	2	114	5.3E-46	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 2 114;Ontology_term="GO:0003676";ID=match$180_2_114;Name=SSF46946;status=T;Dbxref="InterPro:IPR010979"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	Gene3D	protein_match	2	71	6.3E-29	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 2 71;ID=match$181_2_71;Name=G3DSA:1.10.8.50;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_29	TIGRFAM	protein_match	3	114	8.3E-53	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_29 3 114;Ontology_term="GO:0003723","GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$182_3_114;signature_desc=uS13_bact: ribosomal protein uS13;Name=TIGR03631;status=T;Dbxref="InterPro:IPR019980"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_37 1 101
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37	.	polypeptide	1	101	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_37;md5=ad5afd532ce66b31b6760eb8c40b6227
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37	Hamap	protein_match	1	101	25.769	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_37 1 101;ID=match$183_1_101;signature_desc=30S ribosomal protein S14 [rpsN].;Name=MF_00537;status=T;Dbxref="InterPro:IPR023036"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37	ProSitePatterns	protein_match	63	85	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_37 63 85;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$184_63_85;signature_desc=Ribosomal protein S14 signature.;Name=PS00527;status=T;Dbxref="InterPro:IPR018271"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37	Gene3D	protein_match	41	101	5.9E-31	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_37 41 101;ID=match$185_41_101;Name=G3DSA:4.10.830.10;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37	Pfam	protein_match	47	100	3.4E-26	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_37 47 100;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$186_47_100;signature_desc=Ribosomal protein S14p/S29e;Name=PF00253;status=T;Dbxref="InterPro:IPR001209"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_37	SUPERFAMILY	protein_match	2	101	2.71E-37	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_37 2 101;ID=match$187_2_101;Name=SSF57716;status=T
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_39 1 104
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	.	polypeptide	1	104	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_39;md5=55aec0d7d3ab4d442464275938898f55
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	SUPERFAMILY	protein_match	4	100	2.77E-33	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 4 100;ID=match$188_4_100;Name=SSF50104;status=T;Dbxref="InterPro:IPR008991"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	SMART	protein_match	4	31	0.0012	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 4 31;ID=match$189_4_31;Name=SM00739;status=T;Dbxref="InterPro:IPR005824"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	Gene3D	protein_match	3	92	2.1E-22	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 3 92;ID=match$190_3_92;Name=G3DSA:2.30.30.30;status=T;Dbxref="InterPro:IPR014722"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	Hamap	protein_match	3	97	20.18	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 3 97;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$191_3_97;signature_desc=50S ribosomal protein L24 [rplX].;Name=MF_01326_B;status=T;Dbxref="InterPro:IPR003256"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	ProSitePatterns	protein_match	8	25	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 8 25;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$192_8_25;signature_desc=Ribosomal protein L24 signature.;Name=PS01108;status=T;Dbxref="InterPro:IPR005825"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	Pfam	protein_match	39	103	1.6E-23	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 39 103;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$193_39_103;signature_desc=Ribosomal proteins 50S L24/mitochondrial 39S L24;Name=PF17136;status=T;Dbxref="InterPro:IPR003256"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	TIGRFAM	protein_match	3	103	1.1E-39	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 3 103;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$194_3_103;signature_desc=rplX_bact: ribosomal protein uL24;Name=TIGR01079;status=T;Dbxref="InterPro:IPR003256"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	CDD	protein_match	8	72	1.15438E-21	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 8 72;ID=match$195_8_72;signature_desc=KOW_RPL26;Name=cd06089;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_39	Pfam	protein_match	8	37	7.7E-5	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_39 8 37;ID=match$196_8_37;signature_desc=KOW motif;Name=PF00467;status=T;Dbxref="InterPro:IPR005824"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_34 1 117
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	.	polypeptide	1	117	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_34;md5=b1e6db1f7827d78c64c1b13e577e62a2
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	Hamap	protein_match	2	117	26.354	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_34 2 117;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$197_2_117;signature_desc=50S ribosomal protein L18 [rplR].;Name=MF_01337_B;status=T;Dbxref="InterPro:IPR004389"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	CDD	protein_match	17	115	3.28176E-41	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_34 17 115;ID=match$198_17_115;signature_desc=Ribosomal_L18_L5e;Name=cd00432;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	TIGRFAM	protein_match	3	117	1.4E-46	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_34 3 117;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$199_3_117;signature_desc=L18_bact: ribosomal protein uL18;Name=TIGR00060;status=T;Dbxref="InterPro:IPR004389"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	Pfam	protein_match	1	117	3.6E-44	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_34 1 117;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$200_1_117;signature_desc=Ribosomal L18 of archaea, bacteria, mitoch. and chloroplast;Name=PF00861;status=T;Dbxref="InterPro:IPR005484"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	Coils	protein_match	1	21	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_34 1 21;ID=match$201_1_21;Name=Coil;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	SUPERFAMILY	protein_match	3	115	3.71E-55	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_34 3 115;ID=match$202_3_115;Name=SSF53137;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_34	Gene3D	protein_match	24	117	1.5E-37	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_34 24 117;ID=match$203_24_117;Name=G3DSA:3.30.420.100;status=T
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_31 1 144
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31	.	polypeptide	1	144	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_31;md5=e0648cc5af3a7e9231c18c8c2feb986d
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31	Hamap	protein_match	3	144	19.137	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_31 3 144;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$204_3_144;signature_desc=50S ribosomal protein L15 [rplO].;Name=MF_01341;status=T;Dbxref="InterPro:IPR030878"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31	SUPERFAMILY	protein_match	4	143	2.35E-46	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_31 4 143;ID=match$205_4_143;Name=SSF52080;status=T;Dbxref="InterPro:IPR021131"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31	TIGRFAM	protein_match	2	143	6.8E-51	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_31 2 143;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$206_2_143;signature_desc=rplO_bact: ribosomal protein uL15;Name=TIGR01071;status=T;Dbxref="InterPro:IPR005749"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31	ProSitePatterns	protein_match	109	139	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_31 109 139;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$207_109_139;signature_desc=Ribosomal protein L15 signature.;Name=PS00475;status=T;Dbxref="InterPro:IPR001196"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31	Pfam	protein_match	28	143	4.5E-31	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_31 28 143;ID=match$208_28_143;signature_desc=Ribosomal proteins 50S-L15, 50S-L18e, 60S-L27A;Name=PF00828;status=T;Dbxref="InterPro:IPR021131"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_31	Gene3D	protein_match	32	143	2.0E-26	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_31 32 143;ID=match$209_32_143;Name=G3DSA:3.100.10.10;status=T
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_55 1 384
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55	.	polypeptide	1	384	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_55;md5=3183b1400880e42f022dce13b92b2637
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55	CDD	protein_match	158	382	1.01937E-130	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_55 158 382;ID=match$210_158_382;signature_desc=PanK;Name=cd02025;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55	Pfam	protein_match	158	311	4.6E-16	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_55 158 311;Ontology_term="GO:0005524","GO:0008152","GO:0016301";ID=match$211_158_311;signature_desc=Phosphoribulokinase / Uridine kinase family;Name=PF00485;status=T;Dbxref="InterPro:IPR006083"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55	Hamap	protein_match	69	384	180.252	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_55 69 384;Ontology_term="GO:0004594","GO:0005524","GO:0005737","GO:0015937";ID=match$212_69_384;signature_desc=Pantothenate kinase [coaA].;Name=MF_00215;status=T;Dbxref="InterPro:IPR004566"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55	TIGRFAM	protein_match	78	384	9.2E-165	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_55 78 384;Ontology_term="GO:0004594","GO:0005524","GO:0005737","GO:0015937";ID=match$213_78_384;signature_desc=panK_bact: pantothenate kinase;Name=TIGR00554;status=T;Dbxref="InterPro:IPR004566"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55	Gene3D	protein_match	78	384	1.3E-110	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_55 78 384;ID=match$214_78_384;Name=G3DSA:3.40.50.300;status=T;Dbxref="InterPro:IPR027417"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_55	SUPERFAMILY	protein_match	78	383	1.38E-77	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_55 78 383;ID=match$215_78_383;Name=SSF52540;status=T;Dbxref="InterPro:IPR027417"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_28 1 129
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	.	polypeptide	1	129	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_28;md5=cd2ade55df70dfcee4574b32401de264
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	PIRSF	protein_match	1	129	4.8E-53	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_28 1 129;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$216_1_129;Name=PIRSF002131;status=T;Dbxref="InterPro:IPR001971"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	TIGRFAM	protein_match	10	126	1.8E-55	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_28 10 126;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$217_10_126;signature_desc=uS11_bact: ribosomal protein uS11;Name=TIGR03632;status=T;Dbxref="InterPro:IPR019981"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	Gene3D	protein_match	9	129	9.1E-55	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_28 9 129;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$218_9_129;Name=G3DSA:3.30.420.80;status=T;Dbxref="InterPro:IPR001971"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	Hamap	protein_match	7	129	32.772	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_28 7 129;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$219_7_129;signature_desc=30S ribosomal protein S11 [rpsK].;Name=MF_01310;status=T;Dbxref="InterPro:IPR001971"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	ProSitePatterns	protein_match	97	119	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_28 97 119;ID=match$220_97_119;signature_desc=Ribosomal protein S11 signature.;Name=PS00054;status=T;Dbxref="InterPro:IPR018102"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	Pfam	protein_match	19	128	1.6E-54	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_28 19 128;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$221_19_128;signature_desc=Ribosomal protein S11;Name=PF00411;status=T;Dbxref="InterPro:IPR001971"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_28	SUPERFAMILY	protein_match	14	129	3.79E-48	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_28 14 129;ID=match$222_14_129;Name=SSF53137;status=T
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_32 1 59
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	.	polypeptide	1	59	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_32;md5=96bd80f2a7ebb5231e16993b76aaff81
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	SUPERFAMILY	protein_match	3	59	3.79E-22	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 3 59;ID=match$223_3_59;Name=SSF55129;status=T;Dbxref="InterPro:IPR016082"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	CDD	protein_match	5	58	1.68867E-24	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 5 58;ID=match$224_5_58;signature_desc=Ribosomal_L30;Name=cd01658;status=T
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	PIRSF	protein_match	1	59	1.1E-29	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 1 59;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$225_1_59;Name=PIRSF002211;status=T;Dbxref="InterPro:IPR005996"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	Hamap	protein_match	2	59	22.538	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 2 59;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$226_2_59;signature_desc=50S ribosomal protein L30 [rpmD].;Name=MF_01371_B;status=T;Dbxref="InterPro:IPR005996"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	Pfam	protein_match	5	55	1.3E-20	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 5 55;ID=match$227_5_55;signature_desc=Ribosomal protein L30p/L7e;Name=PF00327;status=T;Dbxref="InterPro:IPR016082"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	Gene3D	protein_match	2	59	3.7E-31	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 2 59;ID=match$228_2_59;Name=G3DSA:3.30.1390.20;status=T;Dbxref="InterPro:IPR016082"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	ProSitePatterns	protein_match	23	55	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 23 55;ID=match$229_23_55;signature_desc=Ribosomal protein L30 signature.;Name=PS00634;status=T;Dbxref="InterPro:IPR018038"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_32	TIGRFAM	protein_match	5	59	1.7E-27	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_32 5 59;Ontology_term="GO:0003735","GO:0006412","GO:0015934";ID=match$230_5_59;signature_desc=rpmD_bact: ribosomal protein uL30;Name=TIGR01308;status=T;Dbxref="InterPro:IPR005996"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_38 1 142
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	.	polypeptide	1	142	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_38;md5=8c4f82db91c178882668dc2003263cd0
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	Hamap	protein_match	1	142	32.616	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_38 1 142;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$231_1_142;signature_desc=50S ribosomal protein L5 [rplE].;Name=MF_01333_B;status=T;Dbxref="InterPro:IPR020930"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	SUPERFAMILY	protein_match	1	141	2.0E-64	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_38 1 141;ID=match$232_1_141;Name=SSF55282;status=T;Dbxref="InterPro:IPR022803"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	PIRSF	protein_match	1	142	2.2E-55	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_38 1 142;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$233_1_142;Name=PIRSF002161;status=T;Dbxref="InterPro:IPR002132"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	ProSitePatterns	protein_match	20	36	.	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_38 20 36;Ontology_term="GO:0003735","GO:0005622","GO:0005840","GO:0006412";ID=match$234_20_36;signature_desc=Ribosomal protein L5 signature.;Name=PS00358;status=T;Dbxref="InterPro:IPR020929"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	Gene3D	protein_match	1	142	1.2E-64	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_38 1 142;ID=match$235_1_142;Name=G3DSA:3.30.1440.10;status=T;Dbxref="InterPro:IPR022803"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	Pfam	protein_match	1	43	1.4E-18	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_38 1 43;ID=match$236_1_43;signature_desc=Ribosomal protein L5;Name=PF00281;status=T;Dbxref="InterPro:IPR031310"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_38	Pfam	protein_match	47	140	8.8E-42	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_38 47 140;ID=match$237_47_140;signature_desc=ribosomal L5P family C-terminus;Name=PF00673;status=T;Dbxref="InterPro:IPR031309"
+##sequence-region Bacteria_CDS_annotation_glimmer3.pl_log_10_48 1 305
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48	.	polypeptide	1	305	.	+	.	ID=Bacteria_CDS_annotation_glimmer3.pl_log_10_48;md5=0bf83dd80f13cfb2ce213108195bce23
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48	Gene3D	protein_match	53	201	1.3E-59	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_48 53 201;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$238_53_201;Name=G3DSA:3.40.1370.10;status=T;Dbxref="InterPro:IPR023574"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48	TIGRFAM	protein_match	13	198	3.9E-75	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_48 13 198;ID=match$239_13_198;signature_desc=rplD_bact: 50S ribosomal protein uL4;Name=TIGR03953;status=T;Dbxref="InterPro:IPR013005"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48	Pfam	protein_match	13	198	2.3E-64	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_48 13 198;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$240_13_198;signature_desc=Ribosomal protein L4/L1 family;Name=PF00573;status=T;Dbxref="InterPro:IPR002136"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48	Hamap	protein_match	6	201	34.182	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_48 6 201;ID=match$241_6_201;signature_desc=50S ribosomal protein L4 [rplD].;Name=MF_01328_B;status=T;Dbxref="InterPro:IPR013005"
+Bacteria_CDS_annotation_glimmer3.pl_log_10_48	SUPERFAMILY	protein_match	9	200	2.75E-73	+	.	date=21-02-2017;Target=Bacteria_CDS_annotation_glimmer3.pl_log_10_48 9 200;Ontology_term="GO:0003735","GO:0005840","GO:0006412";ID=match$242_9_200;Name=SSF52166;status=T;Dbxref="InterPro:IPR023574"
+##FASTA
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_28
+MAKAPIRARKRVRKQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTP
+FAAQVAAERCAEAVKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNG
+CRPPKKRRV
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_29
+VARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEV
+AKYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_30
+MAKQPGLDFQSAKGGLGELKRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTI
+IEMFNMFSGGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYT
+RYGTLVLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITE
+RGIGNGISIIIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERG
+QRRIVVNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGW
+NWLTTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGE
+QTAKYIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQV
+QTLMMSSQYESALKKANLKGYNR
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_31
+MRLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRR
+LPKFGFTSRKAMVTAEVRLSDFAAVEGDIIDLNALKAANVVGTQIEFAKVILSGEINRAV
+TVRGLRVTKGARAAIEAAGGKIEE
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_32
+MAKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_33
+MAHIEKQAGELQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAI
+QKAMEKARRNMKTVALNSGTLYHPVKGAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGV
+RNVLAKTYGSTNPINVVRATLDALDSMKSPEMVAAKRGKSVEEILG
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_34
+MDKKAARIRRATRARRKLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINE
+QLKYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_35
+MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVD
+GWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAG
+ITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKKK
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_36
+VAIAKVLKEEGYIEDYKIEGDTKPELELVLKYFQGKAVVESIQRVSRPSLRIYKKKDELP
+QVMAGLGIAVVSTSKGVMTDRAARQAGLGGEILCYVA
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_37
+MAKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQ
+RNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_38
+MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMW
+EFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT
+TTAKSDDEGRALLAAFNFPFRK
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_39
+MAAKIRRDDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVE
+KEAAIQVSNVAIFNAATGKADRVGFRFEDGKKVRFFKSNSETIK
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_40
+MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKA
+VVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAP
+EVL
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_41
+MTDKIRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVE
+IRETRPLSKTKSWTLVRVVEKAIL
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_42
+MKAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK
+AGA
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_43
+MLQPKRTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQ
+GKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLA
+AAKLPIKTTFVTKTVM
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_44
+MGQKVHPNGIRLGIVKPWNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERP
+AKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEVRKPELDAKLVADSI
+TSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEWYREGRVPLHTLRA
+DIDYNTSEAHTTYGVLGVKVWIFKGEILGGMAAVEQAEKPAAQPKKQQRKGRK
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_45
+METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEH
+NDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDRWDSGD
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_46
+MPRSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPV
+FVSDEMVGHKLGEFAPTRTYRGHAADKKAKKR
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_47
+MAIVKCKPTSPGRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQ
+HYRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGA
+DAAIKTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGE
+MRKVLSDCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNF
+GKHPVTPWGVQTKGKKTRSNKRTDQFIVRRRTKK
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_48
+MELVMKDAQGALTVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVSGSGKKPW
+RQKGTGRARSGSIKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSELVRQDRLIV
+VEKFSVEAPKTKLLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDVAGIDPVSL
+IAFDKVVMTADAVKQVEEMLAWSVKNVCWKYCARRTYLKKLLQRWKRATPSFSKLQKTRL
+KQKSKLLCRNFLKSKLKVLTLCWLKAKLNATVSVLVVVATGKKLTSHWRKARIWTSSVVQ
+SKPEE
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_49
+MIGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRI
+NKPEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAG
+TVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRV
+DAERNLLLVKGAVPGATGGNLIVKPAVKA
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_50
+MQNQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKD
+ARDQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISLG
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_51
+MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIE
+RILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLM
+IDILDEEEEHIDWLETQFELIERMGIQNYTQAQILEGE
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_52
+VLFMYVCLCNAVSDKTIRNAVRQHHIHSIRELKRIVPVGRDCGKCIRQARELINEEIAQL
+PKIDNVAW
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_53
+MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARG
+ITISTSHVEYDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHI
+LLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALE
+GDAEWESKILELAEALDSYIPEPERAIDQPFLLPIEDVFSISGRGTVVTGRVERGIVKVG
+EEVEIVGIKDTTKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKRDEIERGQVLAKPGSIK
+PHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIQMK
+VTLIAPIAMDQGLRFAIREGGRTVGAGVVAKIIA
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_55
+MINKQLKLTLSKATQFFTLLHSLQKKPIKIQKSLRLPLISRYHAIYFLPGTGCLLQLVQP
+AQTGRCWFMNKKEPFLATPYLQFNREQWATLRDSVPLTLTKEELIDLKGINEEISLEEVV
+EIYLPLSRLLNFYISSNLRRQAVLEQFLGTDGQKVPYVIGIAGSVAVGKSTTARLLQALL
+SRWPEHRSVELITTDGFLHSNNVLNERGLMKKKGFPQSYDMHSLVKFVSDIKSGSKQVSA
+PVYSHLTYDIVPNEQKFIKQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAP
+EKLLKSWYISRFLKFRQGAFSDPDSYFHSYSKLSEEEAINTASDIWQEINGLNLRQNILP
+TRERASLIMTKGTNHTIESVRLRK
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_56
+VPLQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGYSLVEPMQ
+LLDESTIFQYLPQDRITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVS
+PFGKNLYLSMYWRLEQGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLA
+GILVELIGKTGDAAQVVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILD
+LRKALIQFENEGLSSFVSRWFELDNFMDRPVKLIIGSQEVYGIARGINQQGALLLDQNGV
+ITPYIGGEISLRGC
+>Bacteria_CDS_annotation_glimmer3.pl_log_10_57
+MLSLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGT
+VILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQN
+IGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLK
+KNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVA
+AKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGK
+DVVSLAAYIRQQVISKFGVLLEPEVRFIGSKGEIDAVECISWKI
+>match$1_41_96
+SIQRVSRPSLRIYKKKDELPQVMAGLGIAVVSTSKGVMTDRAARQAGLGGEILCYV
+>match$2_67_84
+GIAVVSTSKGVMTDRAAR
+>match$3_2_96
+AIAKVLKEEGYIEDYKIEGDTKPELELVLKYFQGKAVVESIQRVSRPSLRIYKKKDELPQ
+VMAGLGIAVVSTSKGVMTDRAARQAGLGGEILCYV
+>match$4_1_39
+VAIAKVLKEEGYIEDYKIEGDTKPELELVLKYFQGKAVV
+>match$5_2_96
+AIAKVLKEEGYIEDYKIEGDTKPELELVLKYFQGKAVVESIQRVSRPSLRIYKKKDELPQ
+VMAGLGIAVVSTSKGVMTDRAARQAGLGGEILCYV
+>match$6_225_293
+GTVVTGRVERGIVKVGEEVEIVGIKDTTKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKR
+DEIERGQVL
+>match$7_10_204
+KPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGITISTSHVE
+YDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVP
+YIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEWESKI
+LELAEALDSYIPEPE
+>match$8_211_297
+FLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIKDTTKTTCTGVEMFRKLLDEGR
+AGENVGVLLRGTKRDEIERGQVLAKPG
+>match$9_51_66
+DNAPEEKARGITISTS
+>match$10_14_27
+NVGTIGHVDHGKTT
+>match$10_58_66
+ARGITISTS
+>match$10_78_88
+AHVDCPGHADY
+>match$10_94_105
+TGAAQMDGAILV
+>match$10_131_140
+IIVFLNKCDM
+>match$11_298_393
+SIKPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNI
+QMKVTLIAPIAMDQGLRFAIREGGRTVGAGVVAKII
+>match$12_10_201
+KPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGITISTSHVE
+YDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVP
+YIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEWESKI
+LELAEALDSYIP
+>match$13_11_203
+PHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGITISTSHVEY
+DTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPY
+IIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEWESKIL
+ELAEALDSYIPEP
+>match$14_13_148
+VNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGITISTSHVEYDT
+PSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYII
+VFLNKCDMVDDEELLE
+>match$15_3_208
+KEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGIT
+ISTSHVEYDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILL
+GRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGD
+AEWESKILELAEALDSYIPEPERAID
+>match$16_1_393
+MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARG
+ITISTSHVEYDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHI
+LLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALE
+GDAEWESKILELAEALDSYIPEPERAIDQPFLLPIEDVFSISGRGTVVTGRVERGIVKVG
+EEVEIVGIKDTTKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKRDEIERGQVLAKPGSIK
+PHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIQMK
+VTLIAPIAMDQGLRFAIREGGRTVGAGVVAKII
+>match$17_298_392
+SIKPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNI
+QMKVTLIAPIAMDQGLRFAIREGGRTVGAGVVAKI
+>match$18_209_298
+QPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIKDTTKTTCTGVEMFRKLLDE
+GRAGENVGVLLRGTKRDEIERGQVLAKPGS
+>match$19_300_393
+KPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIQM
+KVTLIAPIAMDQGLRFAIREGGRTVGAGVVAKII
+>match$20_6_219
+FERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGITIST
+SHVEYDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQ
+VGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEW
+ESKILELAEALDSYIPEPERAIDQPFLLPIEDVF
+>match$21_1_394
+MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARG
+ITISTSHVEYDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHI
+LLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALE
+GDAEWESKILELAEALDSYIPEPERAIDQPFLLPIEDVFSISGRGTVVTGRVERGIVKVG
+EEVEIVGIKDTTKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKRDEIERGQVLAKPGSIK
+PHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIQMK
+VTLIAPIAMDQGLRFAIREGGRTVGAGVVAKIIA
+>match$22_205_301
+RAIDQPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIKDTTKTTCTGVEMFRK
+LLDEGRAGENVGVLLRGTKRDEIERGQVLAKPGSIKP
+>match$23_300_389
+KPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIQM
+KVTLIAPIAMDQGLRFAIREGGRTVGAGVV
+>match$24_4_60
+QELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK
+>match$25_1_61
+MKAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK
+A
+>match$26_39_53
+QSHLLKQVRRNIARV
+>match$27_1_60
+MKAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK
+>match$28_4_60
+QELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK
+>match$29_5_60
+ELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK
+>match$30_1_60
+MKAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEK
+>match$31_42_118
+GRNNNGRITTRHIGGGHKQHYRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGER
+RYILAPKGLKAGDQIQS
+>match$32_124_251
+IKTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGEMRK
+VLSDCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGKH
+PVTPWGVQ
+>match$33_42_117
+GRNNNGRITTRHIGGGHKQHYRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGER
+RYILAPKGLKAGDQIQ
+>match$34_196_272
+GNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGKHPVTPWGVQTKGK
+KTRSNKRTDQFIVRRRT
+>match$35_2_125
+AIVKCKPTSPGRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQH
+YRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGAD
+AAIK
+>match$36_12_274
+GRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQHYRLIDFKRNK
+DGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGADAAIKTGNALP
+MRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGEMRKVLSDCRAT
+LGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGKHPVTPWGVQ
+TKGKKTRSNKRTDQFIVRRRTKK
+>match$37_127_269
+GNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGEMRKVLS
+DCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGKHPVT
+PWGVQTKGKKTRSNKRTDQFIVR
+>match$38_125_249
+KTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGEMRKV
+LSDCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGKHP
+VTPWG
+>match$39_1_272
+MAIVKCKPTSPGRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQ
+HYRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGA
+DAAIKTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGE
+MRKVLSDCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNF
+GKHPVTPWGVQTKGKKTRSNKRTDQFIVRRRT
+>match$40_3_272
+IVKCKPTSPGRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQHY
+RLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGADA
+AIKTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGEMR
+KVLSDCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGK
+HPVTPWGVQTKGKKTRSNKRTDQFIVRRRT
+>match$41_119_195
+GADAAIKTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRS
+GEMRKVLSDCRATLGEV
+>match$42_218_229
+PTVRGTAMNPVD
+>match$43_1_114
+MAIVKCKPTSPGRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQ
+HYRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGD
+>match$44_1_123
+MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKA
+VVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAP
+EVL
+>match$45_1_123
+MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKA
+VVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAP
+EVL
+>match$46_1_123
+MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKA
+VVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAP
+EVL
+>match$47_2_122
+IQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKAV
+VVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAPE
+V
+>match$48_1_123
+MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKA
+VVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAP
+EVL
+>match$49_60_86
+AVVVRTKKGVRRPDGSVIRFDGNACVL
+>match$50_1_123
+MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKA
+VVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAP
+EVL
+>match$51_9_75
+GELQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAIQKAMEKAR
+RNMKTVA
+>match$52_87_157
+GAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGVRNVLAKTYGSTNPINVVRATLDALDS
+MKSPEMVAAKR
+>match$53_1_163
+MAHIEKQAGELQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAI
+QKAMEKARRNMKTVALNSGTLYHPVKGAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGV
+RNVLAKTYGSTNPINVVRATLDALDSMKSPEMVAAKRGKSVEE
+>match$54_11_74
+LQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAIQKAMEKARRN
+MKTV
+>match$55_28_60
+GRIFSFTALTVVGDGNGRVGFGYGKAREVPAAI
+>match$56_10_71
+ELQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAIQKAMEKARR
+NM
+>match$57_77_159
+NSGTLYHPVKGAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGVRNVLAKTYGSTNPINV
+VRATLDALDSMKSPEMVAAKRGK
+>match$58_79_159
+GTLYHPVKGAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGVRNVLAKTYGSTNPINVVR
+ATLDALDSMKSPEMVAAKRGK
+>match$59_11_74
+LQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAIQKAMEKARRN
+MKTV
+>match$60_10_163
+ELQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAIQKAMEKARR
+NMKTVALNSGTLYHPVKGAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGVRNVLAKTYG
+STNPINVVRATLDALDSMKSPEMVAAKRGKSVEE
+>match$61_3_84
+RSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPVFV
+SDEMVGHKLGEFAPTRTYRGHA
+>match$62_3_83
+RSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPVFV
+SDEMVGHKLGEFAPTRTYRGH
+>match$63_1_91
+MPRSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPV
+FVSDEMVGHKLGEFAPTRTYRGHAADKKAKK
+>match$64_53_77
+NGRQHVPVFVSDEMVGHKLGEFAPT
+>match$65_1_92
+MPRSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPV
+FVSDEMVGHKLGEFAPTRTYRGHAADKKAKKR
+>match$66_1_89
+MPRSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPV
+FVSDEMVGHKLGEFAPTRTYRGHAADKKA
+>match$67_33_52
+TWSRRSTIFPNMIGLTIAVH
+>match$67_53_65
+NGRQHVPVFVSDE
+>match$67_65_80
+EMVGHKLGEFAPTRTY
+>match$68_1_91
+MPRSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPV
+FVSDEMVGHKLGEFAPTRTYRGHAADKKAKK
+>match$69_83_177
+FTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAGITAECPSQTEIVLKGADKQVIG
+QVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKKK
+>match$70_11_82
+IPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDGWAQAGTTRS
+LLNAMVIGVTEG
+>match$70_90_164
+VGVGYRAAVKGNAINMSLGFSHPVDHELPAGITAECPSQTEIVLKGADKQVIGQVAAELR
+AYRRPEPYKGKGVRY
+>match$71_1_177
+MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVD
+GWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAG
+ITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKKK
+>match$72_1_176
+MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVD
+GWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAG
+ITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKK
+>match$73_2_82
+SRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDG
+WAQAGTTRSLLNAMVIGVTEG
+>match$74_154_162
+PEPYKGKGV
+>match$75_71_96
+LLNAMVIGVTEGFTKKLQLVGVGYRA
+>match$75_99_115
+KGNAINMSLGFSHPVDH
+>match$75_141_162
+IGQVAAELRAYRRPEPYKGKGV
+>match$76_2_176
+SRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDG
+WAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAGI
+TAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKK
+>match$77_83_177
+FTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAGITAECPSQTEIVLKGADKQVIG
+QVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKKK
+>match$78_1_82
+MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVD
+GWAQAGTTRSLLNAMVIGVTEG
+>match$79_38_111
+KVRQYLNKELAKASISRIVIERPAKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGV
+PAQINISEVRKPEL
+>match$80_2_109
+GQKVHPNGIRLGIVKPWNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERPA
+KSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEVRKP
+>match$81_61_105
+AKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISE
+>match$82_120_202
+ITSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEWYREGRVPLHTLR
+ADIDYNTSEAHTTYGVLGVKVWI
+>match$83_39_107
+VRQYLNKELAKASISRIVIERPAKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVP
+AQINISEVR
+>match$84_2_106
+GQKVHPNGIRLGIVKPWNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERPA
+KSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEV
+>match$85_1_206
+MGQKVHPNGIRLGIVKPWNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERP
+AKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEVRKPELDAKLVADSI
+TSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEWYREGRVPLHTLRA
+DIDYNTSEAHTTYGVLGVKVWIFKGE
+>match$86_1_209
+MGQKVHPNGIRLGIVKPWNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERP
+AKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEVRKPELDAKLVADSI
+TSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEWYREGRVPLHTLRA
+DIDYNTSEAHTTYGVLGVKVWIFKGEILG
+>match$87_60_125
+PAKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEVRKPELDAKLVADS
+ITSQLE
+>match$88_18_107
+WNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERPAKSIRVTIHTARPGIVI
+GKKGEDVEKLRKTVAEIAGVPAQINISEVR
+>match$89_108_207
+KPELDAKLVADSITSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEW
+YREGRVPLHTLRADIDYNTSEAHTTYGVLGVKVWIFKGEI
+>match$90_108_206
+KPELDAKLVADSITSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEW
+YREGRVPLHTLRADIDYNTSEAHTTYGVLGVKVWIFKGE
+>match$91_163_197
+ARTEWYREGRVPLHTLRADIDYNTSEAHTTYGVLG
+>match$92_229_340
+FFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQA
+LVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEVRFIGSKGEIDAVECI
+>match$93_3_192
+SLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVI
+LNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIG
+AYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKN
+WQPILNYGDL
+>match$94_12_182
+LSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVILNRIMGIQQ
+RETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRDV
+CEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKN
+>match$95_205_328
+IFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAA
+GWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPE
+VRFI
+>match$96_71_228
+QRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRD
+VCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNWQPILNYG
+DLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGS
+>match$97_21_148
+IAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVILNRIMGIQQRETDESWHL
+HVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNL
+ETGEKTRL
+>match$98_1_344
+MLSLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGT
+VILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQN
+IGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLK
+KNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVA
+AKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGK
+DVVSLAAYIRQQVISKFGVLLEPEVRFIGSKGEIDAVECISWKI
+>match$99_4_329
+LKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVIL
+NRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGA
+YGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNW
+QPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKI
+RENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVV
+SLAAYIRQQVISKFGVLLEPEVRFIG
+>match$100_3_66
+SLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVI
+LNRI
+>match$101_201_339
+TPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMF
+KLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVL
+LEPEVRFIGSKGEIDAVEC
+>match$102_58_69
+KRQGKIWIRVFP
+>match$103_4_131
+PKRTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGKI
+WIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAK
+LPIKTTFV
+>match$104_23_133
+GADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGKIWIRVFPDKPITEKPLEVRM
+GKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAKLPIKTTFVTK
+>match$105_81_92
+RMGKGKGNVEYW
+>match$106_22_131
+AGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGKIWIRVFPDKPITEKPLEVR
+MGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAKLPIKTTFV
+>match$107_1_133
+MLQPKRTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQ
+GKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLA
+AAKLPIKTTFVTK
+>match$108_23_35
+GADVSFGTFGLKA
+>match$108_41_52
+LTARQIEAARRA
+>match$108_57_86
+IKRQGKIWIRVFPDKPITEKPLEVRMGKGK
+>match$108_87_116
+GNVEYWVALIQPGKVLYEMDGVPEELAREA
+>match$109_2_126
+LQPKRTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQG
+KIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAA
+AKLPI
+>match$110_3_133
+QPKRTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGK
+IWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAA
+KLPIKTTFVTK
+>match$111_3_32
+GLVGKKVGMTRIFTEDGVSIPVTVIEIEDN
+>match$111_158_207
+GKKMAGQLGNERVTVQSLDVVRVDAERNLLLVKGAVPGATGGNLIVKPAV
+>match$112_1_207
+MIGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRI
+NKPEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAG
+TVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRV
+DAERNLLLVKGAVPGATGGNLIVKPAV
+>match$113_77_157
+RILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAGTVKRWNFRTQDASHGN
+SLSHRVPGSIGQNQTPGKVFK
+>match$114_34_182
+VTQVKDLDSDGYRAIQVTTGSKKANRINKPEAGHFAKAGVEAGRILREFRLSEGEEYAVG
+QNISVEIFADVKKVDVTGTSKGKGFAGTVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPG
+KVFKGKKMAGQLGNERVTVQSLDVVRVDA
+>match$115_101_124
+FADVKKVDVTGTSKGKGFAGTVKR
+>match$116_1_208
+MIGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRI
+NKPEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAG
+TVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRV
+DAERNLLLVKGAVPGATGGNLIVKPAVK
+>match$117_3_204
+GLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRINK
+PEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAGTV
+KRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRVDA
+ERNLLLVKGAVPGATGGNLIVK
+>match$118_29_44
+AKRTGAQVRGPIPLPT
+>match$119_5_18
+RIRIRLKAFDHRLI
+>match$119_40_55
+IPLPTRKERFTVLISP
+>match$119_61_75
+ARDQYEIRTHKRLVD
+>match$120_7_101
+RIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYE
+IRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQIS
+>match$121_3_102
+NQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDAR
+DQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL
+>match$122_7_100
+RIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYE
+IRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQI
+>match$123_3_102
+NQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDAR
+DQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL
+>match$124_4_101
+QRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARD
+QYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQIS
+>match$125_5_101
+RIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQ
+YEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQIS
+>match$126_6_76
+RTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETR
+PLSKTKSWTLV
+>match$127_6_76
+RTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETR
+PLSKTKSWTLV
+>match$128_24_47
+AIERKVKHPLYGKFIKRTTKLHVH
+>match$128_56_66
+GDVVEIRETRP
+>match$128_66_73
+PLSKTKSW
+>match$129_3_81
+DKIRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIR
+ETRPLSKTKSWTLVRVVEK
+>match$130_56_68
+GDVVEIRETRPLS
+>match$131_10_76
+GRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETRPLSK
+TKSWTLV
+>match$132_6_82
+RTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETR
+PLSKTKSWTLVRVVEKA
+>match$133_5_82
+IRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRET
+RPLSKTKSWTLVRVVEKA
+>match$134_1_154
+MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIE
+RILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLM
+IDILDEEEEHIDWLETQFELIERMGIQNYTQAQI
+>match$135_1_154
+MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIE
+RILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLM
+IDILDEEEEHIDWLETQFELIERMGIQNYTQAQI
+>match$136_1_145
+MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIE
+RILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLM
+IDILDEEEEHIDWLETQFELIERMG
+>match$137_2_154
+KGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIER
+ILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLMI
+DILDEEEEHIDWLETQFELIERMGIQNYTQAQI
+>match$138_8_144
+IAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIERILFLEG
+IPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLMIDILDEE
+EEHIDWLETQFELIERM
+>match$139_1_155
+MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIE
+RILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLM
+IDILDEEEEHIDWLETQFELIERMGIQNYTQAQIL
+>match$140_3_22
+GDKKMIAHLNKLLGNELVAI
+>match$140_23_43
+NQYFLHARMFKNWGLTRLNDK
+>match$140_44_64
+EYHESIDEMKHADRYIERILF
+>match$140_65_85
+LEGIPNLQDLGKLNIGEDIEE
+>match$140_86_106
+MLKSDLQLELQGARDLKEAIA
+>match$140_107_127
+YADSIHDYVSRDLMIDILDEE
+>match$140_128_149
+EEHIDWLETQFELIERMGIQNY
+>match$141_1_157
+MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIE
+RILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLM
+IDILDEEEEHIDWLETQFELIERMGIQNYTQAQILEG
+>match$142_5_107
+AKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGA
+DIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVV
+>match$143_8_107
+RHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGADID
+DLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVV
+>match$144_1_110
+METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEH
+NDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDR
+>match$145_5_107
+AKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGA
+DIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVV
+>match$146_1_110
+METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEH
+NDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDR
+>match$147_83_107
+KRIMPRAKGRADRILKRSSHITVVV
+>match$148_1_110
+METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEH
+NDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDR
+>match$149_20_429
+KRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTIIEMFNMFSGGALSRASIFA
+LGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIGIATGL
+PNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISIIIFAGIVAGL
+PPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAKRQQGRRVYA
+AQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYLQPGQPLYVL
+LYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTRLTLVGAM
+YITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLMMSSQY
+>match$150_173_190
+WLGEQITERGIGNGISII
+>match$151_76_417
+SIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIGI
+ATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISIIIFAGI
+VAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAKRQQGR
+RVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYLQPGQP
+LYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTRLTL
+VGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFM
+>match$152_10_433
+QSAKGGLGELKRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTIIEMFNMFSG
+GALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAI
+FQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISI
+IIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYA
+KRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMY
+LQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKV
+MTRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLMMSSQY
+ESAL
+>match$153_76_95
+SIFALGIMPYISASIIIQLL
+>match$154_11_441
+SAKGGLGELKRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTIIEMFNMFSGG
+ALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIF
+QSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISII
+IFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAK
+RQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYL
+QPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVM
+TRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLMMSSQYE
+SALKKANLKGY
+>match$155_438_443
+LKGYNR
+>match$156_17_437
+GELKRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTIIEMFNMFSGGALSRAS
+IFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIGIA
+TGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISIIIFAGIV
+AGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAKRQQGRR
+VYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYLQPGQPL
+YVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTRLTLV
+GAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLMMSSQYESALKKA
+N
+>match$157_23_41
+LLFVIGALIVFRIGSFIPI
+>match$157_75_95
+ASIFALGIMPYISASIIIQLL
+>match$157_116_139
+ISQYTRYGTLVLAIFQSIGIATGL
+>match$157_154_179
+FAFYFTAVVSLVTGTMFLMWLGEQIT
+>match$157_180_203
+ERGIGNGISIIIFAGIVAGLPPAI
+>match$157_272_291
+AGVIPAIFASSIILFPGTIA
+>match$157_315_337
+PLYVLLYASAIIFFCFFYTALVF
+>match$157_370_388
+MTRLTLVGAMYITFICLIP
+>match$157_402_420
+GGTSLLIVVVVIMDFMAQV
+>match$158_16_424
+LGELKRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTIIEMFNMFSGGALSRA
+SIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIGI
+ATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISIIIFAGI
+VAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAKRQQGR
+RVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYLQPGQP
+LYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTRLTL
+VGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLM
+>match$159_3_58
+LQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGYSLVEP
+>match$160_266_313
+FMDRPVKLIIGSQEVYGIARGINQQGALLLDQNGVITPYIGGEISLRG
+>match$161_266_312
+FMDRPVKLIIGSQEVYGIARGINQQGALLLDQNGVITPYIGGEISLR
+>match$162_66_263
+TIFQYLPQDRITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVSPFGKN
+LYLSMYWRLEQGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLAGILVE
+LIGKTGDAAQVVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILDLRKAL
+IQFENEGLSSFVSRWFEL
+>match$163_1_67
+VPLQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGYSLVEPMQ
+LLDESTI
+>match$164_79_203
+LPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVSPFGKNLYLSMYWRLEQGP
+AAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLAGILVELIGKTGDAAQVVI
+GAGIN
+>match$165_4_53
+QLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGY
+>match$166_3_56
+LQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGYSLV
+>match$167_70_263
+YLPQDRITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVSPFGKNLYLS
+MYWRLEQGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLAGILVELIGK
+TGDAAQVVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILDLRKALIQFE
+NEGLSSFVSRWFEL
+>match$168_61_249
+LLDESTIFQYLPQDRITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVS
+PFGKNLYLSMYWRLEQGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLA
+GILVELIGKTGDAAQVVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILD
+LRKALIQFE
+>match$169_2_312
+PLQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGYSLVEPMQL
+LDESTIFQYLPQDRITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVSP
+FGKNLYLSMYWRLEQGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLAG
+ILVELIGKTGDAAQVVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILDL
+RKALIQFENEGLSSFVSRWFELDNFMDRPVKLIIGSQEVYGIARGINQQGALLLDQNGVI
+TPYIGGEISLR
+>match$170_269_312
+RPVKLIIGSQEVYGIARGINQQGALLLDQNGVITPYIGGEISLR
+>match$171_76_312
+ITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVSPFGKNLYLSMYWRLE
+QGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLAGILVELIGKTGDAAQ
+VVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILDLRKALIQFENEGLSS
+FVSRWFELDNFMDRPVKLIIGSQEVYGIARGINQQGALLLDQNGVITPYIGGEISLR
+>match$172_5_55
+YVCLCNAVSDKTIRNAVRQHHIHSIRELKRIVPVGRDCGKCIRQARELINE
+>match$173_1_118
+VARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEV
+AKYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK
+>match$174_46_66
+SELSEEQIDKLRDEVAKYVVE
+>match$175_1_118
+VARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEV
+AKYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK
+>match$176_4_111
+IAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAKY
+VVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKG
+>match$177_87_100
+RGLRHRRGLPVRGQ
+>match$178_3_108
+RIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAK
+YVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNART
+>match$179_72_118
+EVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK
+>match$180_2_114
+ARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVA
+KYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRK
+>match$181_2_71
+ARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVA
+KYVVEGDLRR
+>match$182_3_114
+RIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAK
+YVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRK
+>match$183_1_101
+MAKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQ
+RNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW
+>match$184_63_85
+RCRQTGRPHAFLRKFGLSRIKVR
+>match$185_41_101
+RWNAVLKLQTLPRDSSPSRQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKAS
+W
+>match$186_47_100
+KLQTLPRDSSPSRQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKAS
+>match$187_2_101
+AKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQR
+NRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW
+>match$188_4_100
+KIRRDDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVEKEA
+AIQVSNVAIFNAATGKADRVGFRFEDGKKVRFFKSNS
+>match$189_4_31
+KIRRDDEVIVLTGKDKGKRGKVKQVLST
+>match$190_3_92
+AKIRRDDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVEKE
+AAIQVSNVAIFNAATGKADRVGFRFEDGKK
+>match$191_3_97
+AKIRRDDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVEKE
+AAIQVSNVAIFNAATGKADRVGFRFEDGKKVRFFK
+>match$192_8_25
+DDEVIVLTGKDKGKRGKV
+>match$193_39_103
+INLVKKHQKPVPALNQPGGIVEKEAAIQVSNVAIFNAATGKADRVGFRFEDGKKVRFFKS
+NSETI
+>match$194_3_103
+AKIRRDDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVEKE
+AAIQVSNVAIFNAATGKADRVGFRFEDGKKVRFFKSNSETI
+>match$195_8_72
+DDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVEKEAAIQV
+SNVAI
+>match$196_8_37
+DDEVIVLTGKDKGKRGKVKQVLSTGKVIVE
+>match$197_2_117
+DKKAARIRRATRARRKLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQ
+LKYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF
+>match$198_17_115
+KLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGK
+VIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGL
+>match$199_3_117
+KKAARIRRATRARRKLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQL
+KYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF
+>match$200_1_117
+MDKKAARIRRATRARRKLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINE
+QLKYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF
+>match$201_1_21
+MDKKAARIRRATRARRKLQEL
+>match$202_3_115
+KKAARIRRATRARRKLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQL
+KYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGL
+>match$203_24_117
+TRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGKVIAERAL
+EKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF
+>match$204_3_144
+LNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRLP
+KFGFTSRKAMVTAEVRLSDFAAVEGDIIDLNALKAANVVGTQIEFAKVILSGEINRAVTV
+RGLRVTKGARAAIEAAGGKIEE
+>match$205_4_143
+NTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRLPK
+FGFTSRKAMVTAEVRLSDFAAVEGDIIDLNALKAANVVGTQIEFAKVILSGEINRAVTVR
+GLRVTKGARAAIEAAGGKIE
+>match$206_2_143
+RLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRL
+PKFGFTSRKAMVTAEVRLSDFAAVEGDIIDLNALKAANVVGTQIEFAKVILSGEINRAVT
+VRGLRVTKGARAAIEAAGGKIE
+>match$207_109_139
+KVILSGEINRAVTVRGLRVTKGARAAIEAAG
+>match$208_28_143
+GKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRLPKFGFTSRKAMVTAEVRLSDFAAVEG
+DIIDLNALKAANVVGTQIEFAKVILSGEINRAVTVRGLRVTKGARAAIEAAGGKIE
+>match$209_32_143
+GRGHKGQKSRSGGGVRRGFEGGQMPLYRRLPKFGFTSRKAMVTAEVRLSDFAAVEGDIID
+LNALKAANVVGTQIEFAKVILSGEINRAVTVRGLRVTKGARAAIEAAGGKIE
+>match$210_158_382
+VIGIAGSVAVGKSTTARLLQALLSRWPEHRSVELITTDGFLHSNNVLNERGLMKKKGFPQ
+SYDMHSLVKFVSDIKSGSKQVSAPVYSHLTYDIVPNEQKFIKQPDILILEGLNVLQSGMD
+YPHDPHHVFVSDFVDFSIYVDAPEKLLKSWYISRFLKFRQGAFSDPDSYFHSYSKLSEEE
+AINTASDIWQEINGLNLRQNILPTRERASLIMTKGTNHTIESVRL
+>match$211_158_311
+VIGIAGSVAVGKSTTARLLQALLSRWPEHRSVELITTDGFLHSNNVLNERGLMKKKGFPQ
+SYDMHSLVKFVSDIKSGSKQVSAPVYSHLTYDIVPNEQKFIKQPDILILEGLNVLQSGMD
+YPHDPHHVFVSDFVDFSIYVDAPEKLLKSWYISR
+>match$212_69_384
+MNKKEPFLATPYLQFNREQWATLRDSVPLTLTKEELIDLKGINEEISLEEVVEIYLPLSR
+LLNFYISSNLRRQAVLEQFLGTDGQKVPYVIGIAGSVAVGKSTTARLLQALLSRWPEHRS
+VELITTDGFLHSNNVLNERGLMKKKGFPQSYDMHSLVKFVSDIKSGSKQVSAPVYSHLTY
+DIVPNEQKFIKQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAPEKLLKSWY
+ISRFLKFRQGAFSDPDSYFHSYSKLSEEEAINTASDIWQEINGLNLRQNILPTRERASLI
+MTKGTNHTIESVRLRK
+>match$213_78_384
+TPYLQFNREQWATLRDSVPLTLTKEELIDLKGINEEISLEEVVEIYLPLSRLLNFYISSN
+LRRQAVLEQFLGTDGQKVPYVIGIAGSVAVGKSTTARLLQALLSRWPEHRSVELITTDGF
+LHSNNVLNERGLMKKKGFPQSYDMHSLVKFVSDIKSGSKQVSAPVYSHLTYDIVPNEQKF
+IKQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAPEKLLKSWYISRFLKFRQ
+GAFSDPDSYFHSYSKLSEEEAINTASDIWQEINGLNLRQNILPTRERASLIMTKGTNHTI
+ESVRLRK
+>match$214_78_384
+TPYLQFNREQWATLRDSVPLTLTKEELIDLKGINEEISLEEVVEIYLPLSRLLNFYISSN
+LRRQAVLEQFLGTDGQKVPYVIGIAGSVAVGKSTTARLLQALLSRWPEHRSVELITTDGF
+LHSNNVLNERGLMKKKGFPQSYDMHSLVKFVSDIKSGSKQVSAPVYSHLTYDIVPNEQKF
+IKQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAPEKLLKSWYISRFLKFRQ
+GAFSDPDSYFHSYSKLSEEEAINTASDIWQEINGLNLRQNILPTRERASLIMTKGTNHTI
+ESVRLRK
+>match$215_78_383
+TPYLQFNREQWATLRDSVPLTLTKEELIDLKGINEEISLEEVVEIYLPLSRLLNFYISSN
+LRRQAVLEQFLGTDGQKVPYVIGIAGSVAVGKSTTARLLQALLSRWPEHRSVELITTDGF
+LHSNNVLNERGLMKKKGFPQSYDMHSLVKFVSDIKSGSKQVSAPVYSHLTYDIVPNEQKF
+IKQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAPEKLLKSWYISRFLKFRQ
+GAFSDPDSYFHSYSKLSEEEAINTASDIWQEINGLNLRQNILPTRERASLIMTKGTNHTI
+ESVRLR
+>match$216_1_129
+MAKAPIRARKRVRKQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTP
+FAAQVAAERCAEAVKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNG
+CRPPKKRRV
+>match$217_10_126
+KRVRKQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTPFAAQVAAER
+CAEAVKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNGCRPPKK
+>match$218_9_129
+RKRVRKQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTPFAAQVAAE
+RCAEAVKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNGCRPPKKRR
+V
+>match$219_7_129
+RARKRVRKQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTPFAAQVA
+AERCAEAVKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNGCRPPKK
+RRV
+>match$220_97_119
+IRALNAAGFRITNITDVTPIPHN
+>match$221_19_128
+GVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTPFAAQVAAERCAEAVKEYG
+IKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNGCRPPKKRR
+>match$222_14_129
+KQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTPFAAQVAAERCAEA
+VKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNGCRPPKKRRV
+>match$223_3_59
+KTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE
+>match$224_5_58
+IKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVE
+>match$225_1_59
+MAKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE
+>match$226_2_59
+AKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE
+>match$227_5_55
+IKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMV
+>match$228_2_59
+AKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE
+>match$229_23_55
+TLVGLGLRRIGHTVEREDTPAIRGMINLVSYMV
+>match$230_5_59
+IKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE
+>match$231_1_142
+MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMW
+EFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT
+TTAKSDDEGRALLAAFNFPFRK
+>match$232_1_141
+MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMW
+EFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT
+TTAKSDDEGRALLAAFNFPFR
+>match$233_1_142
+MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMW
+EFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT
+TTAKSDDEGRALLAAFNFPFRK
+>match$234_20_36
+LAAISGQKPLITKARKS
+>match$235_1_142
+MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMW
+EFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT
+TTAKSDDEGRALLAAFNFPFRK
+>match$236_1_43
+MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIR
+>match$237_47_140
+PIGCKVTLRGERMWEFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDY
+DKVDRVRGLDITITTTAKSDDEGRALLAAFNFPF
+>match$238_53_201
+SGSGKKPWRQKGTGRARSGSIKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSEL
+VRQDRLIVVEKFSVEAPKTKLLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDV
+AGIDPVSLIAFDKVVMTADAVKQVEEMLA
+>match$239_13_198
+TVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVSGSGKKPWRQKGTGRARSGS
+IKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSELVRQDRLIVVEKFSVEAPKTK
+LLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDVAGIDPVSLIAFDKVVMTADA
+VKQVEE
+>match$240_13_198
+TVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVSGSGKKPWRQKGTGRARSGS
+IKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSELVRQDRLIVVEKFSVEAPKTK
+LLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDVAGIDPVSLIAFDKVVMTADA
+VKQVEE
+>match$241_6_201
+KDAQGALTVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVSGSGKKPWRQKGT
+GRARSGSIKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSELVRQDRLIVVEKFS
+VEAPKTKLLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDVAGIDPVSLIAFDK
+VVMTADAVKQVEEMLA
+>match$242_9_200
+QGALTVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVSGSGKKPWRQKGTGRA
+RSGSIKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSELVRQDRLIVVEKFSVEA
+PKTKLLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDVAGIDPVSLIAFDKVVM
+TADAVKQVEEML

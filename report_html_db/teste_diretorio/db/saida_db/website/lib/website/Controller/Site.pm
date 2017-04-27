@@ -60,7 +60,7 @@ sub getComponents_GET {
 		{
 			order_by => {
 				-asc => [qw/ component /]
-			}
+			},
 		}
 	);
 
