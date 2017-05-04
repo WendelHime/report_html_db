@@ -79,6 +79,164 @@ sub getComponents_GET {
 	standardStatusOk( $self, $c, \@list );
 }
 
+
+=head2
+
+Method used to get file by component id
+
+=cut
+sub getFileByComponentID : Path("/FileByComponentID") : CaptureArgs(1) {
+	my ( $self, $c, $id ) = @_;
+	if ( !$id and defined $c->request->param("id") ) {
+		$id = $c->request->param("id");
+	}
+
+	my $resultSet = $c->model('Basic::Component')->search(
+		{
+			'locus_tag' => $id,
+		},
+		{
+			order_by => {
+				-asc => [qw/ component /]
+			},
+		}
+	);
+	my %hash = ();
+	while ( my $result = $resultSet->next ) {
+		$hash{id}        = $result->id;
+		$hash{name}      = $result->name;
+		$hash{component} = $result->component;
+		$hash{locus_tag} = $result->locus_tag;
+		if ( $result->filepath ne "" ) {
+			$hash{filepath} = $result->filepath;
+		}
+	}
+
+	use File::Basename;
+	use Digest::MD5 qw(md5 md5_hex md5_base64);
+	use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+	my $randomString = md5_base64( rand($$) );
+	$randomString =~ s/\///;
+	my $zip = Archive::Zip->new();
+
+	$zip->addFile( dirname(__FILE__) . "/../../../root/" . $hash{filepath},
+		getFilenameByFilepath( $hash{filepath} ) );
+	if (   $hash{name} =~ /annotation\_blast/
+		|| $hash{name} =~ /annotation\_pathways/
+		|| $hash{name} =~ /annotation\_orthology/
+		|| $hash{name} =~ /annotation\_tcdb/ )
+	{
+		$hash{filepath} =~ s/\.html/\.png/;
+		$zip->addFile( dirname(__FILE__) . "/../../../root/" . $hash{filepath},
+			getFilenameByFilepath( $hash{filepath} ) );
+	}
+	elsif ( $hash{name} =~ /annotation\_interpro/ ) {
+		$hash{filepath} =~ s/\/[\w\s\-_]+\.[\w\s\-_ .]+//;
+		$zip->addDirectory(
+			dirname(__FILE__)
+			  . "/../../../root/"
+			  . $hash{filepath}
+			  . "/resources",
+			"resources"
+		);
+	}
+
+	unless ( $zip->writeToFileNamed("/tmp/$randomString") == AZ_OK ) {
+		die 'error';
+	}
+
+	open( my $FILEHANDLER, "<", "/tmp/$randomString" );
+	binmode $FILEHANDLER;
+	my $file;
+
+	local $/ = \10240;
+	while (<$FILEHANDLER>) {
+		$file .= $_;
+	}
+
+	$c->response->headers->content_type('application/x-download');
+	$c->response->header( 'Content-Disposition' => 'attachment; filename='
+		  . $randomString
+		  . '.zip' );
+	$c->response->body($file);
+	close $FILEHANDLER;
+	unlink("/tmp/$randomString");
+}
+
+=head2
+
+Method used to view result by component ID
+
+=cut
+
+sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(1) {
+	my ( $self, $c, $id ) = @_;
+	if ( !$id and defined $c->request->param("id") ) {
+		$id = $c->request->param("id");
+	}
+
+	my $resultSet = $c->model('Basic::Component')->search(
+		{
+			'locus_tag' => $id,
+		},
+		{
+			order_by => {
+				-asc => [qw/ component /]
+			},
+		}
+	);
+	my %hash = ();
+	while ( my $result = $resultSet->next ) {
+		$hash{id}        = $result->id;
+		$hash{name}      = $result->name;
+		$hash{component} = $result->component;
+		$hash{locus_tag} = $result->locus_tag;
+		if ( $result->filepath ne "" ) {
+			$hash{filepath} = $result->filepath;
+		}
+	}
+
+	use File::Basename;
+	open( my $FILEHANDLER,
+		"<", dirname(__FILE__) . "/../../../root/" . $hash{filepath} );
+	my $content = do { local($/); <$FILEHANDLER> };
+	close($FILEHANDLER);
+	
+	if (   $hash{name} =~ /annotation\_blast/
+		|| $hash{name} =~ /annotation\_pathways/
+		|| $hash{name} =~ /annotation\_orthology/
+		|| $hash{name} =~ /annotation\_tcdb/ )
+	{
+		my $directory = $hash{filepath};
+		$directory =~ s/\/([\w\s\-_]+.[\w\s\-_.]+)//;
+		$content =~ s/src="/src="\/$directory\//igm;
+	}
+	elsif ( $hash{name} =~ /annotation\_interpro/ ) {
+		my $directory = $hash{filepath};
+		$directory =~ s/\/([\w\s\-_]+\.[\w\s\-_.]+)//;
+		$content =~ s/src="resources/src="\/$directory\/resources/igm;
+		$content =~ s/href="resources/href="\/$directory\/resources/g;
+	}
+
+	$c->response->body($content);
+	
+}
+
+=head2
+
+Method used to get filename by filepath
+
+=cut
+
+sub getFilenameByFilepath {
+	my ($filepath) = @_;
+	my $filename = "";
+	if ( $filepath =~ /\/([\w\s\-_]+\.[\w\s\-_.]+)/g ) {
+		$filename = $1;
+	}
+	return $filename;
+}
+
 =head2 searchContig
 
 Method used to realize search by contigs, optional return a stretch or a reverse complement

@@ -59,7 +59,7 @@
 	"_commentGlobalAnalyses2" : "Just change href values starting by '/reports/', after that, use the 'directory/file' ",
 	"global-analyses-expansible-tree" : "<a href='/reports/go_report_db/go_mapping.html'>Expansible tree</a>",
 	"global-analyses-table-ontologies" : "<a href='/reports/go_report_db/go_mapping.html'>Table of ontologies</a>",
-	"global-analyses-orthology-analysis-classes" : "<a href='/reoports/eggnog_report_db/classes.html'>Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups</a>",
+	"global-analyses-orthology-analysis-classes" : "<a href='/reports/eggnog_report_db/classes.html'>Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups</a>",
 	"global-analyses-kegg-report-page" : "<a href='/reports/MN7_kegg_global/html_page/classes.html'>Map by map report of KEGG results</a>",
 	"global-analyses-comparative-metabolic-reconstruction-topics" : "<a href='/reports/MN7_X_Pasym/html_page/classes.html'><i>P. luminescens</i> MN7 versus <i>P. asymbiotica</i> ATCC43949</a><br /> (in yellow or red, enzymes found only in either MN7 or <i>P. asymbiotica</i>, respectively; in green, those found in both)",
 	"global-analyses-comparative-metabolic-reconstruction-topics" : "<a href='/reports/MN7_X_TT01/html_page/classes.html' ><i>P. luminescens</i> MN7 versus <i>P. luminescens</i> TT01</a><br /> (in yellow or dark blue, enzymes found only in either MN7 or TT01, respectively; in green, those found in both)",

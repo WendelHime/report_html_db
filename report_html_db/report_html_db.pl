@@ -410,11 +410,11 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-search-options-filter-options", "Mask for lookup table only", "value='m'"),
         ("blast-search-options-expect", "<a href='http://puma.icb.usp.br/blast/docs/newoptions.html#expect'>Expect</a> (e.g. 1e-6)", ""),
         ("blast-search-options-matrix", "Matrix", "http://puma.icb.usp.br/blast/docs/matrix_info.html"),
-        ("blast-search-options-matrix-options", "PAM30", "PAM30	 9	 1"),
-        ("blast-search-options-matrix-options", "PAM70", "PAM70	 10	 1"),
-        ("blast-search-options-matrix-options", "BLOSUM80", "BLOSUM80	 10	 1"),
-        ("blast-search-options-matrix-options", "BLOSUM62", "BLOSUM62	 11	 1"),
-        ("blast-search-options-matrix-options", "BLOSUM45", "BLOSUM45	 14	 2"),
+        ("blast-search-options-matrix-options", "PAM30", "PAM30"),
+        ("blast-search-options-matrix-options", "PAM70", "PAM70"),
+        ("blast-search-options-matrix-options", "BLOSUM80", "BLOSUM80"),
+        ("blast-search-options-matrix-options", "BLOSUM62", "BLOSUM62"),
+        ("blast-search-options-matrix-options", "BLOSUM45", "BLOSUM45"),
         ("blast-search-options-alignment", "Perform ungapped alignment", ""),
         ("blast-search-options-query", "Query Genetic Codes (blastx only)", "http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes"),
         ("blast-search-options-query-options", "Standard (1)", ""),
@@ -510,7 +510,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
-        ("search-database-analyses-protein-code-tab", "KEGG", "#kegg"),
         ("search-database-analyses-protein-code-tab", "Orthology analysis (eggNOG)", "#orthologyAnalysis"),
         ("search-database-analyses-protein-code-tab", "Interpro", "#interpro"),
         
@@ -684,7 +683,16 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
         ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
         ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", ""),
-        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
+        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", ""),
+        ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
+        ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains: ", ""),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity", "or less", "value='orLess'"),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity", "or more", "value='orMore'"),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity", "exactly", "value='exact'"),
+        ("search-database-analyses-protein-code-signal-peptide", "With signal peptide? ", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option", " yes", "value='sigPyes'"),
+        ("search-database-analyses-protein-code-signal-peptide-option", " no", "value='sigPno'"),
+        ("search-database-analyses-protein-code-signal-peptide-option", " do not care", "value='sigPwhatever'");
 SQL
 
 #        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
@@ -955,9 +963,68 @@ while ( $sequence_object->read() ) {
 				$locus_tag = "NOLOCUSTAG_$locus";
 			}
 			
+			#				print STDERR "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
+		   #				print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
+		   
+		   my $number = $evidence->{number};
+			my $start;
+			my $end;
+
+			if ( $evidence->{start} < $evidence->{end} ) {
+				$start = $evidence->{start};
+				$end   = $evidence->{end};
+			}
+			else {
+				$start = $evidence->{end};
+				$end   = $evidence->{start};
+			}
+			if ( $evidence->{tag} eq "CDS" ) {
+				my $len_nt = ( $end - $start ) + 1;
+				my $sequence_nt;
+				my $nt_seq = substr( $bases, $start - 1, $len_nt );
+				$len_nt = length($nt_seq);
+				my $file_ev = $locus_tag . ".fasta";
+				open( AA, ">$html_dir/root/$aa_fasta_dir/$file_ev" );
+				print FILE_NT ">$locus_tag\n";
+				print AA "\nNucleotide sequence:\n\n";
+				print AA ">$locus_tag\n";
+	
+				my @intervals = @{ $evidence->{intervals} };
+				print $LOG "\nIntervals:	" . @intervals . "\n";
+				my $strand = $intervals[0]->{strand};
+				print $LOG "\nstrand:	" . $strand . "\n";
+				if ( ( $strand eq '-' ) or ( ( $strand eq '-1' ) ) ) {
+	
+					#					print $LOG "Sequencia antes:\t".$nt_seq."\n";
+					$nt_seq = formatSequence( reverseComplement($nt_seq) );
+	
+			#					print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
+			#					print $LOG "\nSequencia depois:\t".$nt_seq."\n";
+				}
+	
+				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+					$sequence_nt = substr( $nt_seq, $i, 60 );
+					print FILE_NT "$sequence_nt\n";
+					print AA "$sequence_nt\n";
+				}
+				my $seq_aa = $evidence->{protein_sequence};
+				my $sequence_aa;
+				my $len_aa = length($seq_aa);
+				print FILE_AA ">$locus_tag\n";
+				print AA "\nTranslated sequence:\n\n";
+				print AA ">$locus_tag\n";
+				for ( my $i = 0 ; $i < $len_aa ; $i += 60 ) {
+					$sequence_aa = substr( $seq_aa, $i, 60 );
+					print FILE_AA "$sequence_aa\n";
+					print AA "$sequence_aa\n";
+				}
+			}
+			
 			if ( $component && $component_name ) {
 				my $resp = verify_element( $component_name, \@comp_dna );
-				print $LOG "\n[948] $component_name -  resp = $resp\n";
+				$locus_tag = $evidence->{evidence_id};
+#				print $LOG "\n[961]\t-\t$locus_tag\n";
+				print $LOG "\n[962] $component_name -  resp = $resp\n";
 				if ($resp) {
 					if (   !exists $components{$component}
 						&& !$components{$component} )
@@ -1155,6 +1222,7 @@ SQL
 			my $html_file = $fasta_header_evidence . ".html";
 			my $txt_file  = $fasta_header_evidence . ".txt";
 			my $png_file  = $fasta_header_evidence . ".png";
+			my $eps_file  = $fasta_header_evidence . ".eps";
 			$component_name = $evidence->{log}{name};
 			$fasta_header_evidence =~ s/>//g;
 
@@ -1176,18 +1244,7 @@ SQL
 #
 				#####
 
-				my $number = $evidence->{number};
-				my $start;
-				my $end;
-
-				if ( $evidence->{start} < $evidence->{end} ) {
-					$start = $evidence->{start};
-					$end   = $evidence->{end};
-				}
-				else {
-					$start = $evidence->{end};
-					$end   = $evidence->{start};
-				}
+				
 #				@logs = ();
 #				foreach my $log (@logs) {
 #					my %hash_log = %{$log};
@@ -1264,6 +1321,8 @@ SQL
 				my @sub_evidences = @{ $evidence->{evidences} };
 				
 				foreach my $sub_evidence (@sub_evidences) {
+					$locus_tag = $sub_evidence->{evidence_id};
+#					print $LOG "\n[1271]\t-\t$locus_tag\n";
 					my $component_name = $sub_evidence->{log}{name};
 #					print STDERR "\n[1252]\t$sub_evidence->{log}{arguments}\n";
 					$component_name =~ s/.pl//g;
@@ -1357,7 +1416,7 @@ SQL
 								"\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
 							$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 SQL
 						}
 						elsif ( $component_name eq "annotation_phobius" ) {
@@ -1377,6 +1436,22 @@ SQL
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 SQL
+						}
+						elsif( $component_name eq "annotation_tmhmm" ) {
+							$components{$component} = "$component/$eps_file";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$eps_file');\n";
+						}
+						elsif($component_name eq "annotation_predgpi" || $component_name eq "annotation_dgpi" || $component_name eq "annotation_tcdb") {
+							$components{$component} = "$component/$html_file";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+						}
+						elsif ( $component_name eq "annotation_hmmer" ) {
+							$components{$component} =
+							  $component . "/hmmer.txt";
+							  $scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/hmmer.txt');\n";
 						}
 					}
 					push @filepathsComponents, $components{$component};
@@ -1419,48 +1494,6 @@ SQL
 			   #			}
 			   #				}
 
-		   #				print STDERR "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
-		   #				print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
-
-				my $len_nt = ( $end - $start ) + 1;
-				my $sequence_nt;
-				my $nt_seq = substr( $bases, $start - 1, $len_nt );
-				$len_nt = length($nt_seq);
-				my $file_ev = $locus_tag . ".fasta";
-				open( AA, ">$html_dir/root/$aa_fasta_dir/$file_ev" );
-				print FILE_NT ">$locus_tag\n";
-				print AA "\nNucleotide sequence:\n\n";
-				print AA ">$locus_tag\n";
-
-				my @intervals = @{ $evidence->{intervals} };
-				print $LOG "\nIntervals:	" . @intervals . "\n";
-				my $strand = $intervals[0]->{strand};
-				print $LOG "\nstrand:	" . $strand . "\n";
-				if ( ( $strand eq '-' ) or ( ( $strand eq '-1' ) ) ) {
-
-					#					print $LOG "Sequencia antes:\t".$nt_seq."\n";
-					$nt_seq = formatSequence( reverseComplement($nt_seq) );
-
-			#					print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
-			#					print $LOG "\nSequencia depois:\t".$nt_seq."\n";
-				}
-
-				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
-					$sequence_nt = substr( $nt_seq, $i, 60 );
-					print FILE_NT "$sequence_nt\n";
-					print AA "$sequence_nt\n";
-				}
-				my $seq_aa = $evidence->{protein_sequence};
-				my $sequence_aa;
-				my $len_aa = length($seq_aa);
-				print FILE_AA ">$locus_tag\n";
-				print AA "\nTranslated sequence:\n\n";
-				print AA ">$locus_tag\n";
-				for ( my $i = 0 ; $i < $len_aa ; $i += 60 ) {
-					$sequence_aa = substr( $seq_aa, $i, 60 );
-					print FILE_AA "$sequence_aa\n";
-					print AA "$sequence_aa\n";
-				}
 			}
 
 		}
@@ -3461,7 +3494,7 @@ and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
 					push \@values, \$2;
 				}
 			}  else {
-				while (\$response =~ /(?:\\w+)\\|(\\w+\\.*\\w*)\\|([\\w\\ \\:\\[\\]\\<\\>\\.\\-\\+\\*\\(\\)\\&\\%\\$\\#\\@\\!\\/]*)\$/g) {
+				while (\$response =~ /(?:\\w+)\\|(\\w+\\.*\\w*)\\|([\\w\\ \\:\\[\\]\\<\\>\\.\\-\\+\\*\\(\\)\\&\\%\\\$\\#\\@\\!\\/]*)\$/g) {
 					push \@values, \$1;
 					push \@values, \$2;
 				}
@@ -3678,6 +3711,164 @@ sub getComponents_GET {
 	}
 
 	standardStatusOk( \$self, \$c, \\\@list );
+}
+
+
+=head2
+
+Method used to get file by component id
+
+=cut
+sub getFileByComponentID : Path("/FileByComponentID") : CaptureArgs(1) {
+	my ( \$self, \$c, \$id ) = \@_;
+	if ( !\$id and defined \$c->request->param("id") ) {
+		\$id = \$c->request->param("id");
+	}
+
+	my \$resultSet = \$c->model('Basic::Component')->search(
+		{
+			'locus_tag' => \$id,
+		},
+		{
+			order_by => {
+				-asc => [qw/ component /]
+			},
+		}
+	);
+	my \%hash = ();
+	while ( my \$result = \$resultSet->next ) {
+		\$hash{id}        = \$result->id;
+		\$hash{name}      = \$result->name;
+		\$hash{component} = \$result->component;
+		\$hash{locus_tag} = \$result->locus_tag;
+		if ( \$result->filepath ne "" ) {
+			\$hash{filepath} = \$result->filepath;
+		}
+	}
+
+	use File::Basename;
+	use Digest::MD5 qw(md5 md5_hex md5_base64);
+	use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+	my \$randomString = md5_base64( rand(\$\$) );
+	\$randomString =~ s/\\///;
+	my \$zip = Archive::Zip->new();
+
+	\$zip->addFile( dirname(__FILE__) . "/../../../root/" . \$hash{filepath},
+		getFilenameByFilepath( \$hash{filepath} ) );
+	if (   \$hash{name} =~ /annotation\\_blast/
+		|| \$hash{name} =~ /annotation\\_pathways/
+		|| \$hash{name} =~ /annotation\\_orthology/
+		|| \$hash{name} =~ /annotation\\_tcdb/ )
+	{
+		\$hash{filepath} =~ s/\\.html/\\.png/;
+		\$zip->addFile( dirname(__FILE__) . "/../../../root/" . \$hash{filepath},
+			getFilenameByFilepath( \$hash{filepath} ) );
+	}
+	elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
+		\$hash{filepath} =~ s/\\/[\\w\\s\\-_]+\\.[\\w\\s\\-_ .]+//;
+		\$zip->addDirectory(
+			dirname(__FILE__)
+			  . "/../../../root/"
+			  . \$hash{filepath}
+			  . "/resources",
+			"resources"
+		);
+	}
+
+	unless ( \$zip->writeToFileNamed("/tmp/\$randomString") == AZ_OK ) {
+		die 'error';
+	}
+
+	open( my \$FILEHANDLER, "<", "/tmp/\$randomString" );
+	binmode \$FILEHANDLER;
+	my \$file;
+
+	local \$/ = \\10240;
+	while (<\$FILEHANDLER>) {
+		\$file .= \$_;
+	}
+
+	\$c->response->headers->content_type('application/x-download');
+	\$c->response->header( 'Content-Disposition' => 'attachment; filename='
+		  . \$randomString
+		  . '.zip' );
+	\$c->response->body(\$file);
+	close \$FILEHANDLER;
+	unlink("/tmp/\$randomString");
+}
+
+=head2
+
+Method used to view result by component ID
+
+=cut
+
+sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(1) {
+	my ( \$self, \$c, \$id ) = \@_;
+	if ( !\$id and defined \$c->request->param("id") ) {
+		\$id = \$c->request->param("id");
+	}
+
+	my \$resultSet = \$c->model('Basic::Component')->search(
+		{
+			'locus_tag' => \$id,
+		},
+		{
+			order_by => {
+				-asc => [qw/ component /]
+			},
+		}
+	);
+	my \%hash = ();
+	while ( my \$result = \$resultSet->next ) {
+		\$hash{id}        = \$result->id;
+		\$hash{name}      = \$result->name;
+		\$hash{component} = \$result->component;
+		\$hash{locus_tag} = \$result->locus_tag;
+		if ( \$result->filepath ne "" ) {
+			\$hash{filepath} = \$result->filepath;
+		}
+	}
+
+	use File::Basename;
+	open( my \$FILEHANDLER,
+		"<", dirname(__FILE__) . "/../../../root/" . \$hash{filepath} );
+	my \$content = do { local(\$/); <\$FILEHANDLER> };;
+	close(\$FILEHANDLER);
+	
+	if (   \$hash{name} =~ /annotation\\_blast/
+		|| \$hash{name} =~ /annotation\\_pathways/
+		|| \$hash{name} =~ /annotation\\_orthology/
+		|| \$hash{name} =~ /annotation\\_tcdb/ )
+	{
+		my \$directory = \$hash{filepath};
+		\$directory =~ s/\\/([\\w\\s\\-_]+\.[\\w\\s\\-_.]+)//;
+		\$content =~ s/src="/src="\\/\$directory\\//igm;
+	}
+	elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
+		my \$directory = \$hash{filepath};
+		\$directory =~ s/\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_.]+)//;
+		\$content =~ s/src="resources/src="\\/\$directory\\/resources/igm;
+		\$content =~ s/href="resources/href="\\/\$directory\\/resources/g;
+	}
+
+	\$c->response->body(\$content);
+	
+}
+
+=head2
+
+Method used to get filename by filepath
+
+=cut
+
+sub getFilenameByFilepath {
+	my (\$filepath) = \@_;
+	my \$filename = "";
+	if ( \$filepath =~ /\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_.]+)/g ) {
+		\$filename = \$1;
+	}
+	return \$filename;
 }
 
 =head2 searchContig
@@ -7051,7 +7242,7 @@ CONTENTINDEXHOME
                                           </div>
                                       [% END %]
                                       [% IF rpsblast %]
-                                          <div id="rpsBlast" class="tab-pane fade">
+                                          <div id="rpsblast" class="tab-pane fade">
                                               <div class="form-group">
                                                   <div class="checkbox">
                                                       [% FOREACH text IN texts %]
@@ -7745,12 +7936,13 @@ CONTENT
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="panel-title">
-			<a id="anchor-evidence-[% result.componentName %]-[% result.id %]" data-toggle="collapse" data-parent="#accordion" href="#evidence-[% result.componentName %]-[% result.id %]">[% result.descriptionComponent %]</a>
+			[% result.descriptionComponent %]
 		</div>
 	</div>
 	<div id="evidence-[% result.componentName %]-[% result.id %]" class="panel-body collapse">
 	</div>
 </div>
+
 CONTENT
 		,
 		"hmmerBasicResult.tt" => <<CONTENT
@@ -8131,6 +8323,22 @@ CONTENT
 		,
 		"similarityBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Identifier</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.identifier %]</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		<p>Description</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.description %]</p>
+	</div>
+</div>
 <div class="row">
 	<div class="col-md-3">
 		<p>E-value of match</p>

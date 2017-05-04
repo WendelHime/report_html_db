@@ -15,7 +15,7 @@ Creating orfs_aa
 
 Creating orfs_nt
 
-Component list: annotation_trf.pl;annotation_trna.pl;annotation_alienhunter.pl;annotation_infernal.pl;annotation_rnammer.pl;annotation_transterm.pl;annotation_rbsfinder.pl;annotation_bigpi.pl;annotation_predgpi.pl;annotation_tcdb.pl;annotation_phobius.pl;annotation_tmhmm.pl;annotation_signalP.pl;annotation_blast.pl;annotation_rpsblast.pl;annotation_interpro.pl;annotation_orthology.pl;annotation_pathways.pl;annotation_mreps.pl;annotation_glimmer3.pl
+Component list: annotation_trf.pl;annotation_trna.pl;annotation_alienhunter.pl;annotation_infernal.pl;annotation_rnammer.pl;annotation_transterm.pl;annotation_rbsfinder.pl;annotation_bigpi.pl;annotation_predgpi.pl;annotation_tcdb.pl;annotation_phobius.pl;annotation_tmhmm.pl;annotation_signalP.pl;annotation_blast.pl;annotation_rpsblast.pl;annotation_interpro.pl;annotation_orthology.pl;annotation_pathways.pl;annotation_mreps.pl;annotation_glimmer3.pl;annotation_hmmer.pl;annotation_dgpi;
 
 Reading sequences
 
@@ -23,1132 +23,1138 @@ Database name:	testedb
 Host:	localhost
 User:	chadouser
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
+[962] annotation_rbsfinder -  resp = 1
 
-[948] annotation_rbsfinder -  resp = 1
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_44
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_44
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_44
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_44
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_44
+[962] annotation_rbsfinder -  resp = 1
 
 Intervals:	1
 
 strand:	+
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_43
+Locus tag: 6057305
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_43
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057523
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_43
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057775
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_43
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6058012
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_43
-
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_42
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_42
-
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_42
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_42
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_42
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_42
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6058015
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_40
+Locus tag: 6057303
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_40
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057521
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_40
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057557
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_40
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057773
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_40
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_40
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6058009
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_36
+Locus tag: 6057301
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_36
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057519
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_36
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057555
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_36
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057771
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_36
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6058003
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_36
-
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_35
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_35
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_35
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_35
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_35
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6058006
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_34
+Locus tag: 6057299
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_34
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057517
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_34
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057553
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_34
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057769
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_34
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057997
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_34
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_34
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_34
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_34
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_34
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_34
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_34
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_34
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_34
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6058000
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_33
+Locus tag: 6057297
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_33
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057515
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_33
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057551
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_33
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057767
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_33
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057991
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_33
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057994
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_33
+Intervals:	1
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_33
+strand:	-
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_33
+[962] annotation_glimmer3 -  resp = 1
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_33
+Locus tag: 6057295
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_33
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057442
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_33
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057445
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_33
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057513
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_33
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057765
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057985
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057988
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058192
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058195
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058313
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058575
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058635
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057293
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057433
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057436
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057439
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057511
+
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057549
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057763
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057979
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057982
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058186
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058189
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058410
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058573
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058633
 
 Intervals:	1
 
 strand:	+
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_32
+Locus tag: 6057291
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_32
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057424
 
-[1263] - annotation_phobius.pl_log_18 - annotation_phobius - resp = 1 - locus_tag = Bact_32
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057427
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_32
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057430
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_32
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057509
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_32
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057547
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057761
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057973
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057976
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058180
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058183
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058468
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058571
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058631
 
 Intervals:	1
 
 strand:	+
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_27
+Locus tag: 6057289
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_27
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057507
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_27
+[1263] - annotation_phobius.pl_log_18 - annotation_phobius - resp = 1 - locus_tag = 6057639
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_27
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057755
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_27
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057757
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_27
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_27
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057759
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_26
+Locus tag: 6057287
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_26
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057412
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057415
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057418
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057421
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057505
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057753
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057967
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057970
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058174
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_26
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058177
 
-Intervals:	1
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058210
 
-strand:	-
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058569
 
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_25
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_25
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_25
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_25
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058629
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_24
+Locus tag: 6057285
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_24
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057409
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_24
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057503
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_24
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057751
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_24
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057961
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_24
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057964
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_24
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058168
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_24
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058171
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_24
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058424
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_24
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058567
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_24
-
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_23
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_23
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_23
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_23
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058627
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_22
+Locus tag: 6057283
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_22
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057406
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057501
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_22
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057749
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057955
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057958
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058162
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058165
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058368
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058565
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_22
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_22
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058625
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_21
+Locus tag: 6057281
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_21
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057403
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_21
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057499
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057545
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057747
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057949
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057952
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058156
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058159
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058346
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_21
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_21
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058623
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_20
+Locus tag: 6057279
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_20
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057400
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057497
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057745
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057943
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057946
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058150
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058153
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058337
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_20
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058563
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_20
-
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_19
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_19
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_19
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_19
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058621
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_18
+Locus tag: 6057277
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_18
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057397
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_18
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057495
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_18
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057543
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_18
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057743
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_18
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057937
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_18
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057940
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_18
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058144
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_18
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058147
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_18
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058500
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_18
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058561
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_18
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_18
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_18
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058619
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_17
+Locus tag: 6057275
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_17
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057391
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057394
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057493
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057741
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057931
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057934
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058138
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058141
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058241
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_17
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058559
 
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_16
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_16
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_16
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_16
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_16
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058617
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_15
+Locus tag: 6057273
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_15
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057388
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057491
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057739
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057925
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057928
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058132
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058135
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058274
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_15
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058557
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_15
-
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_14
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_14
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_14
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_14
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_14
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058615
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_13
+Locus tag: 6057271
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_13
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057385
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057489
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_13
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057737
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057919
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057922
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058126
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058129
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058383
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058555
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_13
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_13
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058613
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_12
+Locus tag: 6057269
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_12
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057376
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_12
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057379
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057382
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057487
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057541
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057735
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057913
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057916
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058120
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058123
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_12
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058299
 
-Intervals:	1
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058553
 
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_11
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_11
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_11
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_11
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058611
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_10
+Locus tag: 6057267
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_10
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057373
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057485
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_10
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057733
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057907
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057910
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058114
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058117
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058324
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058551
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_10
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_10
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058609
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_09
+Locus tag: 6057265
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_09
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057367
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057370
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057483
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057731
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057901
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057904
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058108
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058111
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058233
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_09
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058549
 
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_08
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_08
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_08
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_08
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_08
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058607
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_07
+Locus tag: 6057263
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_07
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057364
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_07
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057481
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_07
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057729
 
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_07
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057895
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_07
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057898
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_07
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058102
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_07
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058105
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_07
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058357
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_07
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058547
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_07
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_07
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_07
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058605
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_06
+Locus tag: 6057261
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_06
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057358
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057361
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057479
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057727
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057889
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057892
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058096
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058099
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058255
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_06
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058545
 
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_05
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_05
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_05
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_05
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_05
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058603
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_04
+Locus tag: 6057259
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_04
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057355
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057477
 
-[1263] - annotation_tcdb.pl_log_17 - annotation_tcdb - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057539
 
-[1263] - annotation_phobius.pl_log_18 - annotation_phobius - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057725
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057883
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057886
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058090
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058093
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058443
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058543
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_04
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_04
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058601
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_glimmer3 -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-Locus tag: Bact_02
+Locus tag: 6057257
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_02
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057349
 
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_02
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057352
 
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057475
 
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057723
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057877
 
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057880
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058084
 
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058087
 
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058492
 
-[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = Bact_02
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058541
 
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_02
-
-Intervals:	1
-
-strand:	-
-
-[948] annotation_glimmer3 -  resp = 1
-
-Locus tag: Bact_01
-
-[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 0 - locus_tag = Bact_01
-
-[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = Bact_01
-
-[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 0 - locus_tag = Bact_01
-
-[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = Bact_01
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_01
-
-[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = Bact_01
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_01
-
-[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = Bact_01
-
-[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = Bact_01
-
-[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = Bact_01
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058599
 
 Intervals:	1
 
 strand:	-
 
-[948] annotation_transterm -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-[948] annotation_transterm -  resp = 1
+Locus tag: 6057255
 
-[948] annotation_transterm -  resp = 1
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057346
 
-[948] annotation_transterm -  resp = 1
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057473
 
-[948] annotation_transterm -  resp = 1
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057721
 
-[948] annotation_transterm -  resp = 1
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057871
 
-[948] annotation_rnammer -  resp = 1
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057874
 
-[948] annotation_rnammer -  resp = 1
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058078
 
-[948] annotation_rnammer -  resp = 1
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058081
 
-[948] annotation_infernal -  resp = 1
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058437
 
-[948] annotation_alienhunter -  resp = 1
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058539
 
-[948] annotation_trna -  resp = 1
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058597
 
-[948] annotation_trna -  resp = 1
+Intervals:	1
 
-[948] annotation_trna -  resp = 1
+strand:	-
 
-[948] annotation_trna -  resp = 1
+[962] annotation_glimmer3 -  resp = 1
 
-[948] annotation_trna -  resp = 1
+Locus tag: 6057253
 
-[948] annotation_mreps -  resp = 1
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057343
 
-[948] annotation_mreps -  resp = 1
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057471
 
-[948] annotation_mreps -  resp = 1
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057537
 
-[948] annotation_mreps -  resp = 1
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057719
 
-[948] annotation_trf -  resp = 1
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057865
 
-[948] annotation_trf -  resp = 1
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057868
 
-[948] annotation_trf -  resp = 1
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058072
 
-[948] annotation_trf -  resp = 1
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058075
 
-[948] annotation_trf -  resp = 1
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058204
 
-[948] annotation_trf -  resp = 1
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058537
 
-[948] annotation_trf -  resp = 1
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058595
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057251
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057340
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057469
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057717
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057859
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057862
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058066
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058069
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058285
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058535
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058593
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057249
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057337
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057467
+
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057535
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057715
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057853
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057856
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058060
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058063
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058453
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058533
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058591
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057247
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057331
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057334
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057465
+
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057533
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057713
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057847
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057850
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058054
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058057
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058263
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058531
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058589
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057245
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057328
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057463
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057711
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057841
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057844
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058048
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058051
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058483
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058529
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058587
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057243
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057325
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057461
+
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057531
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057709
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057835
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057838
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058042
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058045
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058461
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058527
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058585
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057241
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057322
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057459
+
+[1263] - annotation_tcdb.pl_log_17 - annotation_tcdb - resp = 1 - locus_tag = 6057613
+
+[1263] - annotation_phobius.pl_log_18 - annotation_phobius - resp = 1 - locus_tag = 6057617
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057667
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057669
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057671
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057673
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057675
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057677
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057679
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057681
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057683
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057685
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057687
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057689
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057691
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057693
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057695
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057697
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057699
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057701
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057703
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057705
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057707
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057829
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057832
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058036
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058039
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058391
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058525
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058583
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057239
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057316
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057319
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057457
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057665
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057823
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057826
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058030
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058033
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058426
+
+[1263] - annotation_orthology.pl_log_24 - annotation_orthology - resp = 1 - locus_tag = 6058523
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058581
+
+Intervals:	1
+
+strand:	-
+
+[962] annotation_glimmer3 -  resp = 1
+
+Locus tag: 6057237
+
+[1263] - annotation_hmmer.pl_log_12 - annotation_hmmer - resp = 1 - locus_tag = 6057313
+
+[1263] - annotation_predgpi.pl_log_14 - annotation_predgpi - resp = 1 - locus_tag = 6057455
+
+[1263] - annotation_dgpi.pl_log_15 - annotation_dgpi - resp = 1 - locus_tag = 6057529
+
+[1263] - annotation_tmhmm.pl_log_19 - annotation_tmhmm - resp = 1 - locus_tag = 6057663
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057817
+
+[1263] - annotation_blast.pl_log_21 - annotation_blast - resp = 1 - locus_tag = 6057820
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058024
+
+[1263] - annotation_rpsblast.pl_log_22 - annotation_rpsblast - resp = 1 - locus_tag = 6058027
+
+[1263] - annotation_interpro.pl_log_23 - annotation_interpro - resp = 1 - locus_tag = 6058475
+
+[1263] - annotation_pathways.pl_log_25 - annotation_pathways - resp = 1 - locus_tag = 6058579
+
+[962] annotation_transterm -  resp = 1
+
+[962] annotation_transterm -  resp = 1
+
+[962] annotation_transterm -  resp = 1
+
+[962] annotation_transterm -  resp = 1
+
+[962] annotation_transterm -  resp = 1
+
+[962] annotation_transterm -  resp = 1
+
+[962] annotation_rnammer -  resp = 1
+
+[962] annotation_rnammer -  resp = 1
+
+[962] annotation_rnammer -  resp = 1
+
+[962] annotation_infernal -  resp = 1
+
+[962] annotation_alienhunter -  resp = 1
+
+[962] annotation_trna -  resp = 1
+
+[962] annotation_trna -  resp = 1
+
+[962] annotation_trna -  resp = 1
+
+[962] annotation_trna -  resp = 1
+
+[962] annotation_trna -  resp = 1
+
+[962] annotation_mreps -  resp = 1
+
+[962] annotation_mreps -  resp = 1
+
+[962] annotation_mreps -  resp = 1
+
+[962] annotation_mreps -  resp = 1
+
+[962] annotation_trf -  resp = 1
+
+[962] annotation_trf -  resp = 1
+
+[962] annotation_trf -  resp = 1
+
+[962] annotation_trf -  resp = 1
+
+[962] annotation_trf -  resp = 1
+
+[962] annotation_trf -  resp = 1
+
+[962] annotation_trf -  resp = 1
+
+Key:	annotation_tmhmm.pl_log_19
+Value:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.eps
+
+Key:	annotation_predgpi.pl_log_14
+Value:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
 
 Key:	annotation_trf.pl_log_2
 Value:	annotation_trf.pl_log_2/Bacteria_trf.txt
 
-Key:	annotation_rbsfinder.pl_log_16
-Value:	annotation_rbsfinder.pl_log_16/Bacteria.txt
+Key:	annotation_pathways.pl_log_25
+Value:	annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
 
-Key:	report_go
-Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
+Key:	annotation_infernal.pl_log_7
+Value:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
 
 Key:	annotation_rpsblast.pl_log_22
 Value:	annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.txt
@@ -1156,44 +1162,53 @@ Value:	annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_
 Key:	annotation_phobius.pl_log_18
 Value:	annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.png
 
-Key:	annotation_glimmer3.pl_log_10
-Value:	annotation_glimmer3.pl_log_10/glimmer3.txt
+Key:	annotation_tcdb.pl_log_17
+Value:	annotation_tcdb.pl_log_17/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html
 
-Key:	report_pathways
-Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
-
-Key:	annotation_orthology.pl_log_24
-Value:	annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eggnog.html
-
-Key:	annotation_mreps.pl_log_4
-Value:	annotation_mreps.pl_log_4/Bacteria_mreps.txt
-
-Key:	annotation_alienhunter.pl_log_6
-Value:	annotation_alienhunter.pl_log_6/alienhunter.txt_Bacteria
-
-Key:	annotation_transterm.pl_log_9
-Value:	annotation_transterm.pl_log_9/Bacteria.txt
-
-Key:	annotation_trna.pl_log_5
-Value:	annotation_trna.pl_log_5/Bacteria_trna.txt
+Key:	report_go
+Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
 
 Key:	report_eggnog
 Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db/classes.html;
 
+Key:	annotation_hmmer.pl_log_12
+Value:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Key:	annotation_trna.pl_log_5
+Value:	annotation_trna.pl_log_5/Bacteria_trna.txt
+
+Key:	annotation_glimmer3.pl_log_10
+Value:	annotation_glimmer3.pl_log_10/glimmer3.txt
+
+Key:	annotation_rbsfinder.pl_log_16
+Value:	annotation_rbsfinder.pl_log_16/Bacteria.txt
+
+Key:	annotation_interpro.pl_log_23
+Value:	annotation_interpro.pl_log_23/
+
+Key:	annotation_transterm.pl_log_9
+Value:	annotation_transterm.pl_log_9/Bacteria.txt
+
 Key:	annotation_rnammer.pl_log_8
 Value:	annotation_rnammer.pl_log_8/Bacteria_rnammer.gff
+
+Key:	annotation_orthology.pl_log_24
+Value:	annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eggnog.html
+
+Key:	report_pathways
+Value:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
+
+Key:	annotation_dgpi.pl_log_15
+Value:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
+
+Key:	annotation_alienhunter.pl_log_6
+Value:	annotation_alienhunter.pl_log_6/alienhunter.txt_Bacteria
 
 Key:	annotation_blast.pl_log_21
 Value:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
 
-Key:	annotation_infernal.pl_log_7
-Value:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
-
-Key:	annotation_pathways.pl_log_25
-Value:	annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
-
-Key:	annotation_interpro.pl_log_23
-Value:	annotation_interpro.pl_log_23/
+Key:	annotation_mreps.pl_log_4
+Value:	annotation_mreps.pl_log_4/Bacteria_mreps.txt
 
 Creating website...
 
@@ -1323,6 +1338,14 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1334,6 +1357,18 @@ Dir:	annotation_blast.pl_log_21
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.html
 
@@ -1343,6 +1378,18 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1354,6 +1401,18 @@ Dir:	annotation_blast.pl_log_21
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html
 
@@ -1367,6 +1426,18 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1378,6 +1449,22 @@ Dir:	annotation_blast.pl_log_21
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html
 
@@ -1411,6 +1498,30 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1442,6 +1553,30 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html
 
@@ -1475,13 +1610,53 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.html
+
+Dir:	annotation_predgpi.pl_log_14
+
 Filepath component:	annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.png
 
 Dir:	annotation_phobius.pl_log_18
 
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html
 
@@ -1515,6 +1690,18 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1546,6 +1733,18 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html
 
@@ -1579,6 +1778,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1606,6 +1821,18 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html
 
@@ -1639,6 +1866,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1670,6 +1913,22 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html
 
@@ -1703,6 +1962,18 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1734,6 +2005,18 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html
 
@@ -1767,6 +2050,30 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1798,6 +2105,18 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html
 
@@ -1831,6 +2150,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1862,6 +2197,18 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html
 
@@ -1895,6 +2242,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1926,6 +2289,22 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html
 
@@ -1959,6 +2338,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html
 
 Dir:	annotation_blast.pl_log_21
@@ -1990,6 +2385,18 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html
 
@@ -2023,6 +2430,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html
 
 Dir:	annotation_blast.pl_log_21
@@ -2054,6 +2477,18 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html
 
@@ -2087,6 +2522,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html
 
 Dir:	annotation_blast.pl_log_21
@@ -2118,6 +2569,26 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html
 
@@ -2151,6 +2622,18 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html
 
 Dir:	annotation_blast.pl_log_21
@@ -2182,6 +2665,22 @@ Dir:	annotation_pathways.pl_log_25
 Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html
 
@@ -2215,9 +2714,105 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tcdb.pl_log_17/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html
+
+Dir:	annotation_tcdb.pl_log_17
+
 Filepath component:	annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.png
 
 Dir:	annotation_phobius.pl_log_18
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps
+
+Dir:	annotation_tmhmm.pl_log_19
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html
 
@@ -2251,6 +2846,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html
 
 Dir:	annotation_blast.pl_log_21
@@ -2283,6 +2894,22 @@ Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
 
 Dir:	annotation_glimmer3.pl_log_10
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
+
+Dir:	annotation_predgpi.pl_log_14
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
 
 Dir:	annotation_blast.pl_log_21
@@ -2415,17 +3042,25 @@ Filepath component:	annotation_trf.pl_log_2/Bacteria_trf.txt
 
 Dir:	annotation_trf.pl_log_2
 
+Filepath component:	annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.eps
+
+Dir:	annotation_tmhmm.pl_log_19
+
+Filepath component:	annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
+
+Dir:	annotation_predgpi.pl_log_14
+
 Filepath component:	annotation_trf.pl_log_2/Bacteria_trf.txt
 
 Dir:	annotation_trf.pl_log_2
 
-Filepath component:	annotation_rbsfinder.pl_log_16/Bacteria.txt
+Filepath component:	annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
 
-Dir:	annotation_rbsfinder.pl_log_16
+Dir:	annotation_pathways.pl_log_25
 
-Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
+Filepath component:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
 
-Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db
+Dir:	annotation_infernal.pl_log_7
 
 Filepath component:	annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.txt
 
@@ -2435,60 +3070,78 @@ Filepath component:	annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer
 
 Dir:	annotation_phobius.pl_log_18
 
-Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
+Filepath component:	annotation_tcdb.pl_log_17/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html
 
-Dir:	annotation_glimmer3.pl_log_10
+Dir:	annotation_tcdb.pl_log_17
 
-Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
+Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db/go_mapping.html;
 
-Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db
-
-Filepath component:	annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eggnog.html
-
-Dir:	annotation_orthology.pl_log_24
-
-Filepath component:	annotation_mreps.pl_log_4/Bacteria_mreps.txt
-
-Dir:	annotation_mreps.pl_log_4
-
-Filepath component:	annotation_alienhunter.pl_log_6/alienhunter.txt_Bacteria
-
-Dir:	annotation_alienhunter.pl_log_6
-
-Filepath component:	annotation_transterm.pl_log_9/Bacteria.txt
-
-Dir:	annotation_transterm.pl_log_9
-
-Filepath component:	annotation_trna.pl_log_5/Bacteria_trna.txt
-
-Dir:	annotation_trna.pl_log_5
+Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/go_report_db
 
 Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db/classes.html;
 
 Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/eggnog_report_db
 
+Filepath component:	annotation_hmmer.pl_log_12/hmmer.txt
+
+Dir:	annotation_hmmer.pl_log_12
+
+Filepath component:	annotation_trna.pl_log_5/Bacteria_trna.txt
+
+Dir:	annotation_trna.pl_log_5
+
+Filepath component:	annotation_glimmer3.pl_log_10/glimmer3.txt
+
+Dir:	annotation_glimmer3.pl_log_10
+
+Filepath component:	annotation_rbsfinder.pl_log_16/Bacteria.txt
+
+Dir:	annotation_rbsfinder.pl_log_16
+
+Filepath component:	annotation_interpro.pl_log_23/
+
+Dir:	annotation_interpro.pl_log_23
+
+Filepath component:	annotation_transterm.pl_log_9/Bacteria.txt
+
+Dir:	annotation_transterm.pl_log_9
+
 Filepath component:	annotation_rnammer.pl_log_8/Bacteria_rnammer.gff
 
 Dir:	annotation_rnammer.pl_log_8
+
+Filepath component:	annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eggnog.html
+
+Dir:	annotation_orthology.pl_log_24
+
+Filepath component:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db/classes.html;
+
+Dir:	/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/kegg_report_db
+
+Filepath component:	annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
+
+Dir:	annotation_dgpi.pl_log_15
+
+Filepath component:	annotation_alienhunter.pl_log_6/alienhunter.txt_Bacteria
+
+Dir:	annotation_alienhunter.pl_log_6
 
 Filepath component:	annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
 
 Dir:	annotation_blast.pl_log_21
 
-Filepath component:	annotation_infernal.pl_log_7/infernal.txt_Bacteria
+Filepath component:	annotation_mreps.pl_log_4/Bacteria_mreps.txt
 
-Dir:	annotation_infernal.pl_log_7
-
-Filepath component:	annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html
-
-Dir:	annotation_pathways.pl_log_25
-
-Filepath component:	annotation_interpro.pl_log_23/
-
-Dir:	annotation_interpro.pl_log_23
+Dir:	annotation_mreps.pl_log_4
 Copying files assets
 
 Creating html views
+
+Criando diretorio home
+
+Criando arquivo _panelInformation.tt
+
+Criando arquivo index.tt
 
 Criando diretorio about
 
@@ -2496,99 +3149,93 @@ Criando arquivo _content.tt
 
 Criando arquivo index.tt
 
-Criando diretorio downloads
-
-Criando arquivo index.tt
-
-Criando arquivo _content.tt
-
 Criando diretorio shared
-
-Criando arquivo _menu.tt
-
-Criando arquivo _header.tt
 
 Criando arquivo _head.tt
 
+Criando arquivo _header.tt
+
 Criando arquivo _footer.tt
 
-Criando diretorio help
-
-Criando arquivo index.tt
-
-Criando arquivo _content.tt
-
-Criando diretorio home
-
-Criando arquivo index.tt
-
-Criando arquivo _panelInformation.tt
+Criando arquivo _menu.tt
 
 Criando diretorio blast
 
-Criando arquivo _forms.tt
-
 Criando arquivo index.tt
-
-Criando diretorio search-database
-
-Criando arquivo tmhmmBasicResult.tt
-
-Criando arquivo tcdbBasicResult.tt
-
-Criando arquivo pathwaysBasicResult.tt
-
-Criando arquivo index.tt
-
-Criando arquivo interproBasicResult.tt
-
-Criando arquivo sequence.tt
-
-Criando arquivo orthologies.tt
-
-Criando arquivo result.tt
-
-Criando arquivo tRNABasicResultHasIntron.tt
 
 Criando arquivo _forms.tt
 
-Criando arquivo rnaScanBasicResult.tt
+Criando diretorio help
 
-Criando arquivo pathways.tt
+Criando arquivo _content.tt
 
-Criando arquivo dgpiBasicResult.tt
-
-Criando arquivo rRNAPredictionBasicResult.tt
-
-Criando arquivo properties.tt
-
-Criando arquivo contigs.tt
-
-Criando arquivo subEvidences.tt
-
-Criando arquivo tRNABasicResult.tt
-
-Criando arquivo similarityBasicResult.tt
-
-Criando arquivo predgpiBasicResult.tt
-
-Criando arquivo orthologyBasicResult.tt
-
-Criando arquivo rnaPredictionBasicResult.tt
-
-Criando arquivo hmmerBasicResult.tt
-
-Criando arquivo geneBasics.tt
-
-Criando arquivo evidences.tt
-
-Criando arquivo gene.tt
+Criando arquivo index.tt
 
 Criando diretorio global-analyses
 
 Criando arquivo _content.tt
 
 Criando arquivo index.tt
+
+Criando diretorio search-database
+
+Criando arquivo sequence.tt
+
+Criando arquivo _forms.tt
+
+Criando arquivo gene.tt
+
+Criando arquivo properties.tt
+
+Criando arquivo index.tt
+
+Criando arquivo rnaPredictionBasicResult.tt
+
+Criando arquivo tmhmmBasicResult.tt
+
+Criando arquivo subEvidences.tt
+
+Criando arquivo interproBasicResult.tt
+
+Criando arquivo rRNAPredictionBasicResult.tt
+
+Criando arquivo tRNABasicResultHasIntron.tt
+
+Criando arquivo rnaScanBasicResult.tt
+
+Criando arquivo pathwaysBasicResult.tt
+
+Criando arquivo geneBasics.tt
+
+Criando arquivo orthologyBasicResult.tt
+
+Criando arquivo pathways.tt
+
+Criando arquivo evidences.tt
+
+Criando arquivo tRNABasicResult.tt
+
+Criando arquivo orthologies.tt
+
+Criando arquivo hmmerBasicResult.tt
+
+Criando arquivo dgpiBasicResult.tt
+
+Criando arquivo similarityBasicResult.tt
+
+Criando arquivo result.tt
+
+Criando arquivo predgpiBasicResult.tt
+
+Criando arquivo tcdbBasicResult.tt
+
+Criando arquivo contigs.tt
+
+Criando diretorio downloads
+
+Criando arquivo index.tt
+
+Criando arquivo _content.tt
 
 Creating wrapper
 

@@ -157,7 +157,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-title", "Analyses of protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
-        ("search-database-analyses-protein-code-tab", "KEGG", "#kegg"),
         ("search-database-analyses-protein-code-tab", "Orthology analysis (eggNOG)", "#orthologyAnalysis"),
         ("search-database-analyses-protein-code-tab", "Interpro", "#interpro"),
         
@@ -327,11 +326,20 @@ INSERT INTO TEXTS(tag, value, details) VALUES
     INSERT INTO TEXTS(tag, value, details) VALUES
 		("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
         ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
-        ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", "")
+        ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", ""),
         ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
         ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
-        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", "");
-        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", "");
+        ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", ""),
+        ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", ""),
+        ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
+        ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains: ", ""),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity", "or less", "value='orLess'"),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity", "or more", "value='orMore'"),
+        ("search-database-analyses-protein-code-number-transmembrane-domain-quantity", "exactly", "value='exact'"),
+        ("search-database-analyses-protein-code-signal-peptide", "With signal peptide? ", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option", " yes", "value='sigPyes'"),
+        ("search-database-analyses-protein-code-signal-peptide-option", " no", "value='sigPno'"),
+        ("search-database-analyses-protein-code-signal-peptide-option", " do not care", "value='sigPwhatever'");
 			INSERT INTO TEXTS(tag, value) VALUES ("_comment", "This is a example of the texts that will be used on site,
 					the first value inside of pair of quotes is the tag name to be referenced,
 					after the first value, comes colon(:) to separate the tag name of value,
@@ -2144,129 +2152,165 @@ INSERT INTO SEQUENCES(id, name, filepath) VALUES (6057173, 'Bacteria', 'seq/Bact
 			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
 			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_1', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057611', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_2', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057609', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_3', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057607', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_4', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057605', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_5', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057603', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_6', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057601', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_7', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057599', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_8', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057597', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_9', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057595', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_10', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057593', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_11', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057591', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_12', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057589', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_13', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057587', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_14', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057585', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_15', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057583', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_16', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057581', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_17', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057579', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_18', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057577', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_19', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057575', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_20', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057573', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_21', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057571', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_22', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057569', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_23', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057567', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_24', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057565', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_25', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057563', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_26', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057561', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', 'NOLOCUSTAG_27', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rbsfinder', '6057559', 'annotation_rbsfinder.pl_log_16', 'annotation_rbsfinder.pl_log_16/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_44', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057305', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057523', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057775', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_44', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6058012', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_44', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6058015', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_62.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_43', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057303', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057521', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057557', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057773', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_43', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6058009', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_61.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_42', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057301', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057519', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057555', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057771', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_42', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6058003', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_42', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6058006', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_60.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_40', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057299', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057517', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057553', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057769', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_40', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057997', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_40', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6058000', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_59.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_36', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057297', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057515', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057551', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057767', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_36', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057991', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_36', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057994', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_58.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_35', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057295', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057442', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057445', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057513', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057765', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_35', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057985', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_35', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057988', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_35', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058192', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_35', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058195', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_35', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058313', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_35', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058575', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -2649,33 +2693,45 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_35', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058635', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_57.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_34', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057293', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057433', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057436', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057439', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057511', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057549', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057763', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_34', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057979', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_34', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057982', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_34', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058186', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_34', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058189', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_34', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058410', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_34', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058573', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -3058,33 +3114,45 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_34', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058633', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_56.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_33', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057291', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057424', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057427', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057430', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057509', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057547', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057761', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_33', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057973', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_33', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057976', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_33', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058180', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_33', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058183', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_33', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058468', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_33', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058571', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -3467,39 +3535,59 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_33', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058631', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_55.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_32', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057289', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_phobius', 'Bact_32', 'annotation_phobius.pl_log_18', 'annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.png');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057507', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_phobius', '6057639', 'annotation_phobius.pl_log_18', 'annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.png');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Phobius", "#phobius");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_27', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057755', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057757', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057759', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_54.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057287', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057412', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057415', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057418', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057421', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057505', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057753', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_27', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057967', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_27', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057970', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_27', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058174', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_27', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058177', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_27', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058210', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_27', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058569', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -3882,33 +3970,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_27', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058629', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_53.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_26', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057285', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057409', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057503', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057751', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_26', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057961', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_26', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057964', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_26', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058168', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_26', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058171', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_26', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058424', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_26', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058567', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -4291,33 +4385,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_26', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058627', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_52.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_25', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057283', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057406', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057501', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057749', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_25', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057955', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_25', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057958', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_25', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058162', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_25', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058165', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_25', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058368', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_25', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058565', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -4700,29 +4800,37 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_25', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058625', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_51.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_24', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057281', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057403', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057499', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057545', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057747', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_24', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057949', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_24', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057952', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_24', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058156', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_24', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058159', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_24', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058346', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -5105,33 +5213,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_24', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058623', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_50.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_23', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057279', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057400', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057497', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057745', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_23', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057943', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_23', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057946', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_23', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058150', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_23', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058153', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_23', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058337', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_23', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058563', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -5514,33 +5628,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_23', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058621', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_49.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_22', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057277', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057397', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057495', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057543', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057743', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_22', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057937', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_22', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057940', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_22', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058144', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_22', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058147', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_22', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058500', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_22', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058561', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -5923,33 +6045,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_22', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058619', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_48.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_21', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057275', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057391', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057394', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057493', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057741', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_21', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057931', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_21', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057934', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_21', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058138', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_21', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058141', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_21', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058241', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_21', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058559', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -6332,33 +6462,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_21', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058617', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_47.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_20', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057273', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057388', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057491', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057739', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_20', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057925', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_20', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057928', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_20', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058132', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_20', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058135', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_20', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058274', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_20', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058557', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -6741,33 +6877,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_20', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058615', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_46.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_19', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057271', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057385', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057489', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057737', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_19', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057919', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_19', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057922', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_19', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058126', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_19', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058129', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_19', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058383', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_19', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058555', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -7150,33 +7292,45 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_19', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058613', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_45.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_18', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057269', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057376', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057379', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057382', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057487', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057541', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057735', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_18', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057913', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_18', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057916', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_18', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058120', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_18', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058123', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_18', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058299', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_18', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058553', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -7559,33 +7713,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_18', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058611', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_44.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_17', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057267', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057373', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057485', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057733', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_17', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057907', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_17', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057910', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_17', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058114', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_17', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058117', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_17', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058324', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_17', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058551', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -7968,33 +8128,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_17', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058609', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_43.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_16', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057265', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057367', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057370', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057483', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057731', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_16', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057901', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_16', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057904', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_16', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058108', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_16', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058111', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_16', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058233', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_16', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058549', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -8377,33 +8545,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_16', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058607', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_42.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_15', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057263', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057364', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057481', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057729', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_15', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057895', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_15', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057898', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_15', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058102', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_15', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058105', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_15', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058357', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_15', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058547', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -8786,33 +8960,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_15', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058605', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_41.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_14', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057261', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057358', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057361', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057479', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057727', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_14', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057889', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_14', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057892', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_14', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058096', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_14', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058099', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_14', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058255', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_14', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058545', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -9195,33 +9377,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_14', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058603', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_40.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_13', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057259', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057355', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057477', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057539', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057725', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_13', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057883', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_13', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057886', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_13', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058090', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_13', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058093', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_13', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058443', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_13', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058543', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -9604,33 +9794,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_13', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058601', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_39.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_12', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057257', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057349', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057352', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057475', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057723', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_12', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057877', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_12', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057880', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_12', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058084', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_12', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058087', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_12', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058492', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_12', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058541', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -10013,33 +10211,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_12', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058599', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_38.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_11', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057255', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057346', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057473', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057721', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_11', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057871', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_11', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057874', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_11', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058078', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_11', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058081', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_11', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058437', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_11', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058539', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -10422,33 +10626,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_11', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058597', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_37.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_10', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057253', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057343', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057471', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057537', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057719', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_10', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057865', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_10', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057868', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_10', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058072', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_10', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058075', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_10', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058204', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_10', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058537', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -10831,33 +11043,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_10', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058595', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_36.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_09', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057251', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057340', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057469', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057717', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_09', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057859', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_09', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057862', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_09', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058066', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_09', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058069', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_09', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058285', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_09', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058535', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -11240,33 +11458,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_09', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058593', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_35.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_08', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057249', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057337', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057467', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057535', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057715', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_08', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057853', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_08', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057856', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_08', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058060', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_08', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058063', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_08', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058453', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_08', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058533', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -11649,33 +11875,43 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_08', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058591', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_34.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_07', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057247', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057331', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057334', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057465', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057533', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057713', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_07', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057847', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_07', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057850', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_07', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058054', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_07', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058057', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_07', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058263', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_07', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058531', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -12058,33 +12294,39 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_07', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058589', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_33.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_06', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057245', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057328', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057463', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057711', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_06', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057841', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_06', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057844', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_06', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058048', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_06', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058051', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_06', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058483', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_06', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058529', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -12467,33 +12709,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_06', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058587', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_32.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_05', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057243', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057325', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057461', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057531', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057709', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_05', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057835', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_05', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057838', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_05', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058042', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_05', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058045', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_05', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058461', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_05', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058527', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -12876,37 +13126,85 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_05', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058585', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_31.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_04', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057241', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_phobius', 'Bact_04', 'annotation_phobius.pl_log_18', 'annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.png');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057322', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057459', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tcdb', '6057613', 'annotation_tcdb.pl_log_17', 'annotation_tcdb.pl_log_17/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_phobius', '6057617', 'annotation_phobius.pl_log_18', 'annotation_phobius.pl_log_18/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.png');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Phobius", "#phobius");
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057667', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057669', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057671', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057673', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057675', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057677', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057679', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057681', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057683', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057685', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057687', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057689', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057691', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057693', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057695', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057697', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057699', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057701', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057703', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057705', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057707', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_04', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057829', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_04', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057832', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_04', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058036', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_04', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058039', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_04', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058391', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_04', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058525', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -13289,33 +13587,41 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_04', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058583', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_30.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_02', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057239', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057316', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057319', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057457', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057665', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_02', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057823', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_02', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057826', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_02', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058030', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_02', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058033', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_02', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058426', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', 'Bact_02', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eggnog.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_orthology', '6058523', 'annotation_orthology.pl_log_24', 'annotation_orthology.pl_log_24/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.eggnog.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -13698,29 +14004,37 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_02', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058581', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_29.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', 'Bact_01', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_glimmer3', '6057237', 'annotation_glimmer3.pl_log_10', 'annotation_glimmer3.pl_log_10/glimmer3.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_hmmer', '6057313', 'annotation_hmmer.pl_log_12', 'annotation_hmmer.pl_log_12/hmmer.txt');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_predgpi', '6057455', 'annotation_predgpi.pl_log_14', 'annotation_predgpi.pl_log_14/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_dgpi', '6057529', 'annotation_dgpi.pl_log_15', 'annotation_dgpi.pl_log_15/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
+
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_tmhmm', '6057663', 'annotation_tmhmm.pl_log_19', 'annotation_tmhmm.pl_log_19/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.eps');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_01', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057817', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', 'Bact_01', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_blast', '6057820', 'annotation_blast.pl_log_21', 'annotation_blast.pl_log_21/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_01', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058024', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', 'Bact_01', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rpsblast', '6058027', 'annotation_rpsblast.pl_log_22', 'annotation_rpsblast.pl_log_22/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.txt');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', 'Bact_01', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_interpro', '6058475', 'annotation_interpro.pl_log_23', 'annotation_interpro.pl_log_23/HTML/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "2-Oxocarboxylic acid metabolism", "01210");
@@ -14103,40 +14417,40 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
 
-INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', 'Bact_01', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
+INSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('annotation_pathways', '6058579', 'annotation_pathways.pl_log_25', 'annotation_pathways.pl_log_25/Bacteria_CDS_annotation_glimmer3.pl_log_10_28.html');
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Pathways", "#pathways");
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
 				INSERT INTO TEXTS(tag, value, details) VALUES 
 					("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
 			        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
 			        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
 			        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', 'NOLOCUSTAG_28', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', '6057235', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', 'NOLOCUSTAG_29', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', '6057233', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', 'NOLOCUSTAG_30', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', '6057231', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', 'NOLOCUSTAG_31', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', '6057229', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', 'NOLOCUSTAG_32', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', '6057227', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', 'NOLOCUSTAG_33', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_transterm', '6057225', 'annotation_transterm.pl_log_9', 'annotation_transterm.pl_log_9/Bacteria.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rnammer', 'Bact_41', 'annotation_rnammer.pl_log_8', 'annotation_rnammer.pl_log_8/Bacteria_rnammer.gff');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rnammer', '6057223', 'annotation_rnammer.pl_log_8', 'annotation_rnammer.pl_log_8/Bacteria_rnammer.gff');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rnammer', 'Bact_39', 'annotation_rnammer.pl_log_8', 'annotation_rnammer.pl_log_8/Bacteria_rnammer.gff');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rnammer', '6057221', 'annotation_rnammer.pl_log_8', 'annotation_rnammer.pl_log_8/Bacteria_rnammer.gff');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rnammer', 'Bact_37', 'annotation_rnammer.pl_log_8', 'annotation_rnammer.pl_log_8/Bacteria_rnammer.gff');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_rnammer', '6057219', 'annotation_rnammer.pl_log_8', 'annotation_rnammer.pl_log_8/Bacteria_rnammer.gff');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_infernal', 'Bact_03', 'annotation_infernal.pl_log_7', 'annotation_infernal.pl_log_7/infernal.txt_Bacteria');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_infernal', '6057215', 'annotation_infernal.pl_log_7', 'annotation_infernal.pl_log_7/infernal.txt_Bacteria');
 				INSERT INTO TEXTS(tag, value, details) VALUES 
 					("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
 			        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
 			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_alienhunter', 'NOLOCUSTAG_34', 'annotation_alienhunter.pl_log_6', 'annotation_alienhunter.pl_log_6/alienhunter.txt_Bacteria');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_alienhunter', '6057213', 'annotation_alienhunter.pl_log_6', 'annotation_alienhunter.pl_log_6/alienhunter.txt_Bacteria');
 				INSERT INTO TEXTS(tag, value, details) VALUES 
 					("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
 			        ("search-database-dna-based-analyses-get-by-amino-acid", "Or get tRNAs by amino acid: ", ""),
@@ -14223,34 +14537,34 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 			        ("search-database-dna-based-analyses-get-by-codon-options", "TTG", "TTG"),
 			        ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT");
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', 'Bact_28', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', '6057211', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', 'Bact_29', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', '6057209', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', 'Bact_30', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', '6057207', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', 'Bact_31', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', '6057205', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', 'Bact_38', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', '6057203', 'annotation_trna.pl_log_5', 'annotation_trna.pl_log_5/Bacteria_trna.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', 'NOLOCUSTAG_35', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057199', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', 'NOLOCUSTAG_36', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057197', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', 'NOLOCUSTAG_37', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057195', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', 'NOLOCUSTAG_38', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057193', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Bacteria_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', 'NOLOCUSTAG_39', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057187', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', 'NOLOCUSTAG_40', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057185', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', 'NOLOCUSTAG_41', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057183', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', 'NOLOCUSTAG_42', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057181', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', 'NOLOCUSTAG_43', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057179', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', 'NOLOCUSTAG_44', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057177', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', 'NOLOCUSTAG_45', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057175', 'annotation_trf.pl_log_2', 'annotation_trf.pl_log_2/Bacteria_trf.txt');

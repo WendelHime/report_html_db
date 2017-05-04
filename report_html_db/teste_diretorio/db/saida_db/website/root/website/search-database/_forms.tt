@@ -420,7 +420,7 @@
                                           </div>
                                       [% END %]
                                       [% IF pathways %]
-                                          <div id="pathways" class="tab-pane fade">
+                                          <div id="kegg" class="tab-pane fade">
                                               <div class="form-group">
                                                   <div class="checkbox">
                                                       [% FOREACH text IN texts %]

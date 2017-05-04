@@ -22,14 +22,12 @@ http://127.0.0.1:3000
 O que esta sendo feito agora:
 -
 -	Adicionar links as evidencias/componentes que não tem resultados
--	Criar função que va receber locus_tag + nome do componente, realize consulta no SQLite e retorne o conteudo do arquivo 
--	Resolver bugs dos componentes na parte de analises de proteinas codificantes
+-	Corrigir a parte do phobius das analises cds
 
 TODO:
 -
 -	Validar parametros no services
 -	Criar pagina de erro geral	
--	Encobrir no report\_html\_\_db.pl os componentes que não estão criando links simbolicos e adicionando ao SQLite
 
 
 Done:
@@ -67,3 +65,6 @@ do arquivo .html e arquivo .png; O arquivo .png deve ser retornado em base64
 -	Inserir Blast.pm, BlastRepository.pm, BlastClient.pm report\_html\_db.pl services e website
 -	Atualizar HTMLs
 -	Atualizar SearchDatabase report\_html\_db.pl services e website
+-	Criar função que va receber locus_tag + nome do componente, realize consulta no SQLite e retorne o conteudo do arquivo 
+-	Resolver bugs dos componentes na parte de analises de proteinas codificantes
+-	Encobrir no report\_html\_\_db.pl os componentes que não estão criando links simbolicos e adicionando ao SQLite

@@ -556,12 +556,12 @@ function dealDataResults(href, featureName, data) {
 				if($.inArray(componentName, componentsEvidences) == -1) {
 					var htmlEvidence = getHTMLContent("website/search-database/evidences.tt").responseJSON.response;
 					htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
-					htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
-					htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
 					htmlEvidence = htmlEvidence.replace("[% result.id %]", href.replace("#", ""));
-					htmlEvidence = htmlEvidence.replace("[% result.id %]", href.replace("#", ""));
-					htmlEvidence = htmlEvidence.replace("[% result.id %]", href.replace("#", ""));
-					htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", subevidences[i].program_description);
+					if (subevidences[i].type == 'intervals') {
+						htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'><a style='color: inherit;' id='anchor-evidence-"+componentName+"-"+href.replace("#", "")+"' data-toggle='collapse' data-parent='#accordion' href='#evidence-"+componentName+"-"+href.replace("#", "")+"'>" + subevidences[i].program_description + "</a></div><div class='col-md-1'><a href='/ViewResultByComponentID?id="+subevidences[i].id+"'>View</a></div></div>");
+					} else {
+						htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<a id='anchor-evidence-"+componentName+"-"+href.replace("#", "")+"' data-toggle='collapse' data-parent='#accordion' href='#evidence-"+componentName+"-"+href.replace("#", "")+"'>" + subevidences[i].program_description + "</a>");
+					}
 					htmlContent += htmlEvidence;
 					componentsEvidences[counterComponentsEvidences] = componentName;
 					counterComponentsEvidences++;
@@ -592,7 +592,7 @@ function dealDataResults(href, featureName, data) {
 								response = getSimilarityEvidenceProperties(components[componentTemp][i].id, componentTemp).responseJSON.response;
 								var htmlSubevidence = getHTMLContent("website/search-database/subEvidences.tt").responseJSON.response;
 								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
-								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", response.identifier + " - " + response.description);
+								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", "<div class='row'><div class='col-md-11'>" + response.identifier + " - " + response.description + "</div><div class='col-md-1'><a href='/ViewResultByComponentID?id="+components[componentTemp][i].id+"'>View</a></div></div>");
 								
 								htmlSubevidence = htmlSubevidence.replace("[% result.feature_id %]", components[componentTemp][i].id);
 								addPanelResult("#evidence-"+componentTemp+"-"+href.replace("#", ""), htmlSubevidence);

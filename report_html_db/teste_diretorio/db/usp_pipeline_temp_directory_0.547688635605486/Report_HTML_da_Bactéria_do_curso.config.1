@@ -1,23 +1,3 @@
-#***********************************************************************************
-#
-PIPELINE= Report HTML da Bactéria do curso 
-#
-#***********************************************************************************
-#===================================================================================
-#PHASE= Upload XML
-#program = upload_xml.pl
-#xml_file = bacteria.xml
-PHASE= Upload DB
-program = upload_db.pl
-#----------------------------------------------------------------------------------
-ids_file = saida_db/ids.ids
-#===================================================================================
-                              # _||_ #
-                              # \  / #
-                              #  \/  #
-#===================================================================================
-PHASE= Report HTML
-program = report_html_db.pl
 #===================================================================================
 html_dir=TESTE4
 organism_name=Bacteria do curso
@@ -43,3 +23,4 @@ homepage_banner_image = /home/wendelhlc/Downloads/rsz_platypus256x256.png
 filepath_log = /home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/report_html_db.log
 component_name_list = annotation_trf.pl;annotation_trna.pl;annotation_alienhunter.pl;annotation_infernal.pl;annotation_rnammer.pl;annotation_transterm.pl;annotation_rbsfinder.pl;annotation_bigpi.pl;annotation_predgpi.pl;annotation_tcdb.pl;annotation_phobius.pl;annotation_tmhmm.pl;annotation_signalP.pl;annotation_blast.pl;annotation_rpsblast.pl;annotation_interpro.pl;annotation_orthology.pl;annotation_pathways.pl;annotation_mreps.pl;annotation_glimmer3.pl;annotation_hmmer.pl;annotation_dgpi;
 #===================================================================================
+std_dir=saida_db
