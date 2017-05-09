@@ -41,8 +41,8 @@ sub getGene {
 			{
 				"pipeline"        => $pipeline,
 				"geneID"          => $geneID,
-				"geneDescription" => $geneDescription,
-				"noDescription"   => $noDescription,
+				"geneDesc" 		  => $geneDescription,
+				"noDesc"		  => $noDescription,
 				"individually"    => $individually,
 				"featureId"       => $featureId,
 				"pageSize"        => $pageSize,

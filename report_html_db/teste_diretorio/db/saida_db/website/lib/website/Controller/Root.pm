@@ -78,7 +78,14 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 	
 	$c->stash(
 		sequences => [
-			$c->model('Basic::Sequence')->all
+			$c->model('Basic::Sequence')->search({
+				
+			}, {
+				order_by => {
+					-asc => [qw/ name /]
+				},
+				group_by => [ qw/ name / ]
+			})
 		]
 	);
 	

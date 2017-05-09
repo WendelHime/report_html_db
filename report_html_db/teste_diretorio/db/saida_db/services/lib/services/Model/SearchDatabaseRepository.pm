@@ -695,8 +695,8 @@ sub trf_search {
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $result = Report_HTML_DB::Models::Application::TRFSearch->new(
 			contig      => $rows[$i][0],
-			start       => $rows[$i][2],
-			end         => $rows[$i][1],
+			start       => $rows[$i][1],
+			end         => $rows[$i][2],
 			'length'    => $rows[$i][3],
 			copy_number => $rows[$i][4],
 			sequence    => $rows[$i][5]

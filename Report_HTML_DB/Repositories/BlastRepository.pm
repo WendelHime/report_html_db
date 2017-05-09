@@ -33,24 +33,16 @@ $colorSchema			=>	scalar with the color schema
 
 sub executeBlastSearch {
 	my (
-		$self,              $blast,         $database,
-		$fastaSequence,     $from,          $to,
-		$filter,            $expect,        $matrix,
-		$ungappedAlignment, $geneticCode,   $databaseGeneticCode,
-		$frameShiftPenalty, $otherAdvanced, $graphicalOverview,
-		$alignmentView,     $descriptions,  $alignments,
-		$colorSchema
+		$self,              $blast,        $database,
+		$fastaSequence,     $from,         $to,
+		$filter,            $expect,       $matrix,
+		$ungappedAlignment, $geneticCode,  $databaseGeneticCode,
+		$otherAdvanced,     $graphicalOverview,
+		$alignmentView,     $descriptions, $alignments
 	) = @_;
 
-	###
-	#Ver como funciona frameShiftPenalty
-	#Ver como funcionam os filtros usando os parametros -dust e -seg
-	#Pedir para remover opções avançadas
-	#Como aplicar color schema
-	###
-
 	my $command =
-	  "$blast -query $fastaSequence -db $database -show_gis ";
+	  "$blast -query \"$fastaSequence\" -db \"$database\" -show_gis ";
 	$command .= " -query_loc \"" . $from . "-" . $to . "\" " if $from && $to;
 	$command .= " -evalue \"$expect\" "                      if $expect;
 	$command .= " -matrix \"$matrix\" "
@@ -61,29 +53,32 @@ sub executeBlastSearch {
 		|| $blast eq "tblastx" );
 
 	$command .= " -ungapped " if $ungappedAlignment;
-	$command .= " -query_genetic_code $geneticCode "
+	$command .= " -query_genetic_code \"$geneticCode\" "
 	  if $geneticCode && $blast eq "blastx";
-	$command .= " -db_gen_code $databaseGeneticCode "
+	$command .= " -db_gen_code \"$databaseGeneticCode\" "
 	  if $databaseGeneticCode
 	  && ( $blast eq "tblastn" || $blast eq "tblastx" );
 
-	$command .= " -num_descriptions $descriptions " if $descriptions;
-	$command .= " -num_alignments $alignments " if $alignments;
+	$command .= " -num_descriptions \"$descriptions\" " if $descriptions;
+	$command .= " -num_alignments \"$alignments\" " if $alignments;
 	$command .= " -outfmt 0 " if !$alignmentView || undef $alignmentView;
-	$command .= " -outfmt $alignmentView " if $alignmentView;
+	$command .= " -outfmt \"$alignmentView\" " if $alignmentView;
+	$otherAdvanced =~ s/['"&.|]//g;
+	$command .= " $otherAdvanced ";
 	print STDERR "\n$command\n";
 	my @response = `$command`;
-#	my $content = join( "", @response );
-#	print "\n".$content."\n";
+
+	#	my $content = join( "", @response );
+	#	print "\n".$content."\n";
 	return \@response;
 }
 
 sub fancyBlast {
-	my ($self, $blast, $output, $database) = @_;
+	my ( $self, $blast, $output, $database ) = @_;
 	my $status = 0;
 	$database = " no_code " if !$database || !defined $database;
-	if (($blast && defined($blast)) && ($output && defined($output))) {
-		`fancy_blast.pl $blast $output $database`;
+	if ( ( $blast && defined($blast) ) && ( $output && defined($output) ) ) {
+		`fancy_blast.pl "$blast" "$output" "$database"`;
 		$status = 1;
 		return $status;
 	}

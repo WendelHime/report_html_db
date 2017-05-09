@@ -102,6 +102,7 @@ sub search_POST {
 	foreach my $key ( keys %{ $c->request->params } ) {
 		if ( $key && $key ne "0" ) {
 			$hash{$key} = $c->request->params->{$key};
+			$hash{$key} =~ s/['"&.|]//g;
 		}
 	}
 	
@@ -113,7 +114,9 @@ sub search_POST {
 	my @fuckingSequence = split(/\s+/, $hash{SEQUENCE});
 	 $hash{SEQUENCE} = join('\n', @fuckingSequence);
 	print "\n".$hash{SEQUENCE}."\n";
-
+	if($hash{SEQUENCE} !~ />/) {
+		$hash{SEQUENCE} = ">Sequence\n" . $hash{SEQUENCE};
+	}
 	my $blastClient =
 	  Report_HTML_DB::Clients::BlastClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );

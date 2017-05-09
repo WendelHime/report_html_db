@@ -38,6 +38,7 @@ sub search_POST {
 
 	foreach my $key ( keys %hash ) {
 		if ($key) {
+			$hash{$key} =~ s/['"&.|]//g;
 			chomp( $hash{$key} ) if $key ne "SEQUENCE";
 		}
 	}

@@ -76,7 +76,11 @@ $(".result").remove();
  * Button back on click
  */
 $("#back").click(function() {
+	pageSize = 10;
+	offset = 1;
+	totalValues = 10;
 	$("#searchPanel").show();
+	$("#numberPage").val(1);
 	$("#back").hide();
 	$(".pagination-section").hide();
 	$(".result").remove();

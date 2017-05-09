@@ -725,7 +725,7 @@ sub geneByPosition_GET {
 	$hash{pipeline}  = $pipeline_id;
 	$hash{featureId} = $featureId;
 	
-	my @resultList = @{ $c->model('SearchDatabaseRepository')->searchGene( \%hash ) };
+	my @resultList = @{ $c->model('SearchDatabaseRepository')->searchGene( \%hash )->{list} };
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
 	}

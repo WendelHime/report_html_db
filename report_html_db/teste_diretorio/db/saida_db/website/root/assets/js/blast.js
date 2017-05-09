@@ -15,8 +15,10 @@ $("#SEQFILE").on("change", function() {
  */
 $("#back").click(function() {
 	$("#formBlast").show();
+	$("#SEQFILE").val("");
 	$("#back").hide();
 	$(".response").remove();
+	$(".errors").remove();
 });
 
 /**
@@ -39,12 +41,17 @@ $(function() {
 			var baseResponse = postBlast(formData).done(function(baseResponse) {
 				baseResponse = JSON.parse(baseResponse);
 				var response = baseResponse.response;
-				var srcToChange = response.html.match(/<img src="(\w+\.\w+)"/gm);
+				if(!response.html) {
+					$("#formBlast").append("<div class='row'><div class='col-md-12'><div class='alert alert-danger errors'> Oops, there is something wrong with the query, please check fields and try again </div></div></div>");
+				}
+				var srcToChange = response.html.match(/<img src="([\.\w\s]*)"/gm);
 				response.html = response.html.replace(srcToChange, "<img src='data:image/png;base64,"+response.image+"' ");
 				$("#back").show();
 				$("#formBlast").hide();
 				var html = "<div class='row response'><div class='col-md-12'>" + response.html + "</div></div>";
 				$("#containerBlast").append(html);
+			}).fail(function() {
+				$("#formBlast").append("<div class='row'><div class='col-md-12'><div class='alert alert-danger errors'> Oops, there is something wrong with the query, please check fields and try again </div></div></div>");
 			});
 		}
 		return false;

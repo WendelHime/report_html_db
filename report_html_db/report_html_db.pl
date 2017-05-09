@@ -417,53 +417,47 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-search-options-matrix-options", "BLOSUM45", "BLOSUM45"),
         ("blast-search-options-alignment", "Perform ungapped alignment", ""),
         ("blast-search-options-query", "Query Genetic Codes (blastx only)", "http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes"),
-        ("blast-search-options-query-options", "Standard (1)", ""),
-        ("blast-search-options-query-options", "Vertebrate Mitochondrial (2)", ""),
-        ("blast-search-options-query-options", "Yeast Mitochondrial (3)", ""),
-        ("blast-search-options-query-options", "Mold Mitochondrial; ... (4)", ""),
-        ("blast-search-options-query-options", "Invertebrate Mitochondrial (5)", ""),
-        ("blast-search-options-query-options", "Ciliate Nuclear; ... (6)", ""),
-        ("blast-search-options-query-options", "Echinoderm Mitochondrial (9)", ""),
-        ("blast-search-options-query-options", "Euplotid Nuclear (10)", ""),
-        ("blast-search-options-query-options", "Bacterial (11)", ""),
-        ("blast-search-options-query-options", "Alternative Yeast Nuclear (12)", ""),
-        ("blast-search-options-query-options", "Ascidian Mitochondrial (13)", ""),
-        ("blast-search-options-query-options", "Flatworm Mitochondrial (14)", ""),
-        ("blast-search-options-query-options", "Blepharisma Macronuclear (15)", ""),
+        ("blast-search-options-query-options", "Standard (1)", "value='1'"),
+        ("blast-search-options-query-options", "Vertebrate Mitochondrial (2)", "value='2'"),
+        ("blast-search-options-query-options", "Yeast Mitochondrial (3)", "value='3'"),
+        ("blast-search-options-query-options", "Mold Mitochondrial; ... (4)", "value='4'"),
+        ("blast-search-options-query-options", "Invertebrate Mitochondrial (5)", "value='5'"),
+        ("blast-search-options-query-options", "Ciliate Nuclear; ... (6)", "value='6'"),
+        ("blast-search-options-query-options", "Echinoderm Mitochondrial (9)", "value='9'"),
+        ("blast-search-options-query-options", "Euplotid Nuclear (10)", "value='10'"),
+        ("blast-search-options-query-options", "Bacterial (11)", "value='11'"),
+        ("blast-search-options-query-options", "Alternative Yeast Nuclear (12)", "value='12'"),
+        ("blast-search-options-query-options", "Ascidian Mitochondrial (13)", "value='13'"),
+        ("blast-search-options-query-options", "Alternative Flatworm Mitochondrial (14)", "value='14'"),
+        ("blast-search-options-query-options", "Blepharisma Macronuclear (15)", "value='15'"),
+        ("blast-search-options-query-options", "Chlorophycean Mitochondrial (16)", "value='16'"),
+        ("blast-search-options-query-options", "Trematode Mitochondrial (21)", "value='21'"),
+        ("blast-search-options-query-options", "Scenedesmus obliquus Mitochondrial (22)", "value='22'"),
+        ("blast-search-options-query-options", "Thraustochytrium Mitochondrial (23)", "value='23'"),
+        ("blast-search-options-query-options", "Pterobranchia Mitochondrial (24)", "value='24'"),
+        ("blast-search-options-query-options", "Candidate Division SR1 and Gracilibacteria (25)", "value='25'"),
+        ("blast-search-options-query-options", "Pachysolen tannophilus Nuclear (26)", "value='26'"),
         ("blast-search-options-database", "Database Genetic Codes (tblast[nx] only)", "http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes"),
-        ("blast-search-options-database-options", "Standard (1)", ""),
-        ("blast-search-options-database-options", "Vertebrate Mitochondrial (2)", ""),
-        ("blast-search-options-database-options", "Yeast Mitochondrial (3)", ""),
-        ("blast-search-options-database-options", "Mold Mitochondrial; ... (4)", ""),
-        ("blast-search-options-database-options", "Invertebrate Mitochondrial (5)", ""),
-        ("blast-search-options-database-options", "Ciliate Nuclear; ... (6)", ""),
-        ("blast-search-options-database-options", "Echinoderm Mitochondrial (9)", ""),
-        ("blast-search-options-database-options", "Euplotid Nuclear (10)", ""),
-        ("blast-search-options-database-options", "Bacterial (11)", ""),
-        ("blast-search-options-database-options", "Alternative Yeast Nuclear (12)", ""),
-        ("blast-search-options-database-options", "Ascidian Mitochondrial (13)", ""),
-        ("blast-search-options-database-options", "Flatworm Mitochondrial (14)", ""),
-        ("blast-search-options-database-options", "Blepharisma Macronuclear (15)", ""),
-        ("blast-search-options-frame-shift-penalty", "<a href='http://puma.icb.usp.br/blast/docs/oof_notation.html'>Frame shift penalty</a> for blastx ", ""),
-        ("blast-search-options-frame-shift-penalty-options", "6", ""),
-        ("blast-search-options-frame-shift-penalty-options", "7", ""),
-        ("blast-search-options-frame-shift-penalty-options", "8", ""),
-        ("blast-search-options-frame-shift-penalty-options", "9", ""),
-        ("blast-search-options-frame-shift-penalty-options", "10", ""),
-        ("blast-search-options-frame-shift-penalty-options", "11", ""),
-        ("blast-search-options-frame-shift-penalty-options", "12", ""),
-        ("blast-search-options-frame-shift-penalty-options", "13", ""),
-        ("blast-search-options-frame-shift-penalty-options", "14", ""),
-        ("blast-search-options-frame-shift-penalty-options", "15", ""),
-        ("blast-search-options-frame-shift-penalty-options", "16", ""),
-        ("blast-search-options-frame-shift-penalty-options", "17", ""),
-        ("blast-search-options-frame-shift-penalty-options", "18", ""),
-        ("blast-search-options-frame-shift-penalty-options", "19", ""),
-        ("blast-search-options-frame-shift-penalty-options", "20", ""),
-        ("blast-search-options-frame-shift-penalty-options", "25", ""),
-        ("blast-search-options-frame-shift-penalty-options", "30", ""),
-        ("blast-search-options-frame-shift-penalty-options", "50", ""),
-        ("blast-search-options-frame-shift-penalty-options", "1000", ""),
+        ("blast-search-options-database-options", "Standard (1)", "value='1'"),
+        ("blast-search-options-database-options", "Vertebrate Mitochondrial (2)", "value='2'"),
+        ("blast-search-options-database-options", "Yeast Mitochondrial (3)", "value='3'"),
+        ("blast-search-options-database-options", "Mold Mitochondrial; ... (4)", "value='4'"),
+        ("blast-search-options-database-options", "Invertebrate Mitochondrial (5)", "value='5'"),
+        ("blast-search-options-database-options", "Ciliate Nuclear; ... (6)", "value='6'"),
+        ("blast-search-options-database-options", "Echinoderm Mitochondrial (9)", "value='9'"),
+        ("blast-search-options-database-options", "Euplotid Nuclear (10)", "value='10'"),
+        ("blast-search-options-database-options", "Bacterial (11)", "value='11'"),
+        ("blast-search-options-database-options", "Alternative Yeast Nuclear (12)", "value='12'"),
+        ("blast-search-options-database-options", "Ascidian Mitochondrial (13)", "value='13'"),
+        ("blast-search-options-database-options", "Alternative Flatworm Mitochondrial (14)", "value='14'"),
+        ("blast-search-options-database-options", "Blepharisma Macronuclear (15)", "value='15'"),
+        ("blast-search-options-database-options", "Chlorophycean Mitochondrial (16)", "value='16'"),
+        ("blast-search-options-database-options", "Trematode Mitochondrial (21)", "value='21'"),
+        ("blast-search-options-database-options", "Scenedesmus obliquus Mitochondrial (22)", "value='22'"),
+        ("blast-search-options-database-options", "Thraustochytrium Mitochondrial (23)", "value='23'"),
+        ("blast-search-options-database-options", "Pterobranchia Mitochondrial (24)", "value='24'"),
+        ("blast-search-options-database-options", "Candidate Division SR1 and Gracilibacteria (25)", "value='25'"),
+        ("blast-search-options-database-options", "Pachysolen tannophilus Nuclear (26)", "value='26'"),
         ("blast-search-options-other-advanced-options", "Other advanced options:", "http://puma.icb.usp.br/blast/docs/full_options.html"),
         ("blast-display-options-title", "Display options", ""),
         ("blast-display-options-graphical-overview", "Graphical Overview", "http://puma.icb.usp.br/blast/docs/newoptions.html#graphical-overview"),
@@ -489,14 +483,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-display-options-alignments-options", "100", ""),
         ("blast-display-options-alignments-options", "250", ""),
         ("blast-display-options-alignments-options", "500", ""),
-        ("blast-display-options-color-schema", "Color schema", "http://puma.icb.usp.br/blast/docs/color_schema.html"),
-        ("blast-display-options-color-schema-options", "No color schema", "selected value='0'"),
-        ("blast-display-options-color-schema-options", "Color schema 1", "value='1'"),
-        ("blast-display-options-color-schema-options", "Color schema 2", "value='2'"),
-        ("blast-display-options-color-schema-options", "Color schema 3", "value='3'"),
-        ("blast-display-options-color-schema-options", "Color schema 4", "value='4'"),
-        ("blast-display-options-color-schema-options", "Color schema 5", "value='5'"),
-        ("blast-display-options-color-schema-options", "Color schema 6", "value='6'"),
         ("blast-button", "Clear sequence", "onclick=""MainBlastForm.SEQUENCE.value = '';MainBlastForm.QUERY_FROM.value = '';MainBlastForm.QUERY_TO.value = '';MainBlastForm.SEQUENCE.focus();"" type=""button"" class='btn btn-default' "),
         ("blast-button", "Search", "type='submit' class='btn btn-primary' "),
         ("search-database-form-title", "Search based on sequences or annotations", ""),
@@ -692,7 +678,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-signal-peptide", "With signal peptide? ", ""),
         ("search-database-analyses-protein-code-signal-peptide-option", " yes", "value='sigPyes'"),
         ("search-database-analyses-protein-code-signal-peptide-option", " no", "value='sigPno'"),
-        ("search-database-analyses-protein-code-signal-peptide-option", " do not care", "value='sigPwhatever'");
+        ("search-database-analyses-protein-code-signal-peptide-option", " do not care", "value='sigPwhatever' checked='checked'");
 SQL
 
 #        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
@@ -1039,7 +1025,7 @@ while ( $sequence_object->read() ) {
 							$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES 
 					("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid", "Or get tRNAs by amino acid: ", ""),
+			        ("search-database-dna-based-analyses-get-by-amino-acid", "Get tRNAs by amino acid: ", ""),
 			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Alanine (A)", "Ala"),                                                                                                
 			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Arginine (R)", "Arg"),                                                                                               
 			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Asparagine (N)", "Asp"),                                                                                             
@@ -2517,8 +2503,8 @@ sub trf_search {
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \$result = Report_HTML_DB::Models::Application::TRFSearch->new(
 			contig      => \$rows[\$i][0],
-			start       => \$rows[\$i][2],
-			end         => \$rows[\$i][1],
+			start       => \$rows[\$i][1],
+			end         => \$rows[\$i][2],
 			'length'    => \$rows[\$i][3],
 			copy_number => \$rows[\$i][4],
 			sequence    => \$rows[\$i][5]
@@ -4056,6 +4042,7 @@ sub search_POST {
 
 	foreach my \$key ( keys \%hash ) {
 		if (\$key) {
+			\$hash{\$key} =~ s/['"&.|]//g;
 			chomp( \$hash{\$key} ) if \$key ne "SEQUENCE";
 		}
 	}
@@ -4090,10 +4077,10 @@ sub search_POST {
 					\$hash{QUERY_TO},           \$hash{FILTER},
 					\$hash{EXPECT},             \$hash{MAT_PARAM},
 					\$hash{UNGAPPED_ALIGNMENT}, \$hash{GENETIC_CODE},
-					\$hash{DB_GENETIC_CODE},    \$hash{OOF_ALIGN},
+					\$hash{DB_GENETIC_CODE},    
 					\$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
 					\$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
-					\$hash{ALIGNMENTS},         \$hash{COLOR_SCHEMA}
+					\$hash{ALIGNMENTS}
 				)
 			};
 			\$content = join( "", \@response );
@@ -4936,7 +4923,7 @@ sub geneByPosition_GET {
 	\$hash{pipeline}  = \$pipeline_id;
 	\$hash{featureId} = \$featureId;
 	
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash ) };
+	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash )->{list} };
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
 	}
@@ -5517,11 +5504,6 @@ sub search_POST {
 	{
 		\$databaseGeneticCode = \$c->request->param("DB_GENETIC_CODE");
 	}
-	if ( !\$frameShiftPenality
-		and defined \$c->request->param("OOF_ALIGN") )
-	{
-		\$frameShiftPenality = \$c->request->param("OOF_ALIGN");
-	}
 	if ( !\$otherAdvanced and defined \$c->request->param("OTHER_ADVANCED") ) {
 		\$otherAdvanced = \$c->request->param("OTHER_ADVANCED");
 	}
@@ -5539,15 +5521,13 @@ sub search_POST {
 	if ( !\$alignments and defined \$c->request->param("ALIGNMENTS") ) {
 		\$alignments = \$c->request->param("ALIGNMENTS");
 	}
-	if ( !\$colorSchema and defined \$c->request->param("COLOR_SCHEMA") ) {
-		\$colorSchema = \$c->request->param("COLOR_SCHEMA");
-	}
 
 	my \%hash = ();
 
 	foreach my \$key ( keys \%{ \$c->request->params } ) {
 		if ( \$key && \$key ne "0" ) {
 			\$hash{\$key} = \$c->request->params->{\$key};
+			\$hash{\$key} =~ s/['"&.|]//g;
 		}
 	}
 	
@@ -5559,7 +5539,9 @@ sub search_POST {
 	my \@fuckingSequence = split(/\\s+/, \$hash{SEQUENCE});
 	 \$hash{SEQUENCE} = join('\\n', \@fuckingSequence);
 	print "\\n".\$hash{SEQUENCE}."\\n";
-
+	if(\$hash{SEQUENCE} !~ />/) {
+		\$hash{SEQUENCE} = ">Sequence\\n" . \$hash{SEQUENCE};
+	}
 	my \$blastClient =
 	  Report_HTML_DB::Clients::BlastClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
@@ -6301,7 +6283,7 @@ CONTENTABOUTINDEX
                                         <select class="form-control" name="GENETIC_CODE">
                                             [% FOREACH text IN texts %]
                                                 [% IF text.tag == "blast-search-options-query-options" %]
-                                                    <option>[% text.value %]</option>
+                                                    <option [% text.details %]>[% text.value %]</option>
                                                 [% END %]
                                             [% END %]
                                         </select>
@@ -6318,21 +6300,6 @@ CONTENTABOUTINDEX
                                                     <option>[% text.value %]</option>
                                                 [% END %]
                                             [% END %]
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        [% FOREACH text IN texts %]
-                                            [% IF text.tag == "blast-search-options-frame-shift-penalty" %]
-                                                <label>[% text.value %]</label>
-                                            [% END %]
-                                        [% END %]
-                                        <select class="form-control" name="OOF_ALIGN"> 
-                                            [% FOREACH text IN texts %]
-                                                [% IF text.tag == "blast-search-options-frame-shift-penalty-options" %]
-                                                    <option>[% text.value %]</option>
-                                                [% END %]
-                                            [% END %]
-                                            <option selected="" value="0"> No OOF</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -6404,20 +6371,6 @@ CONTENTABOUTINDEX
                                         <select class="form-control" name="ALIGNMENTS">
                                             [% FOREACH text IN texts %]
                                                 [% IF text.tag == "blast-display-options-alignments-options" %]
-                                                    <option [% text.details %]>[% text.value %]</option>
-                                                [% END %]
-                                            [% END %]
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        [% FOREACH text IN texts %]
-                                            [% IF text.tag == "blast-display-options-color-schema" %]
-                                                <label><a href="[% text.details %]">[% text.value %]</a></label>
-                                            [% END %]
-                                        [% END %]
-                                        <select class="form-control" name="COLOR_SCHEMA">
-                                            [% FOREACH text IN texts %]
-                                                [% IF text.tag == "blast-display-options-color-schema-options" %]
                                                     <option [% text.details %]>[% text.value %]</option>
                                                 [% END %]
                                             [% END %]
