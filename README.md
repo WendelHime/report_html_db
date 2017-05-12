@@ -22,32 +22,27 @@ http://127.0.0.1:3000
 O que esta sendo feito agora:
 -
 
-
 TODO:
 -
 -	Criar pagina de erro geral
 
+-	Atualizar SearchDatabaseRepository, SearchDatabase do Services e search-database.js
 
--	Alienhunter, Terminator: 3 colunas(dos resultados) e link para sequência
--	tRNA: Bug exibindo tudo quando não existe
--	tRNA: Adicionar link do arquivo
--	Analyses of protein - coding genes: não esta mostrando erro caso não encontra nada
+-	Analyses of protein coding genes: 
 -	Arquivos das análises de DNA
--	Transporter: Não mostra se esta vazio
 -	Alinhar sequencia de nucleotídeos
--	Busca por identificador do orthology não esta funcionando
-
 
 -	Global analyses:
 -	Go mapping: expansible tree
 -	KEGG pathways: link errado
-
 
 -	Downloads:
 -	Protein-coding genes para CDS
 -	All-genes: colocar reverso complementar 
 -	All-genes: colocar todos os genes(e não somente CDS)
 -	Arquivos para download em fasta
+
+-	tRNA: Adicionar link do arquivo
 
 Done:
 -
@@ -95,3 +90,9 @@ Done:
 -	Phobius: Marcar peptídeo sinal como padrão
 -	Validar parametros no services do BLAST
 -	Paginação: Resolver atualização do numero da pagina
+-	Alienhunter, Terminator, RBS: 3 colunas(dos resultados) e link para sequência
+-	tRNA: Bug exibindo tudo quando não existe
+-	Analyses of protein coding genes: 
+-	não esta mostrando erro caso não encontra nada
+-	Busca por identificador do orthology não esta funcionando
+-	Transporter: Não mostra se esta vazio

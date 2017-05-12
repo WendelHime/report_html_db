@@ -9,12 +9,13 @@ This class will be used to represent transcriptional terminator results
 
 =cut
 
-has contig         => ( is => 'ro', isa => 'Str' );
-has start          => ( is => 'ro', isa => 'Str' );
-has end            => ( is => 'ro', isa => 'Str' );
-has confidence     => ( is => 'ro', isa => 'Str' );
-has hairping_score => ( is => 'ro', isa => 'Str' );
-has tail_score     => ( is => 'ro', isa => 'Str' );
+has contig         	=> ( is => 'ro', isa => 'Str' );
+has start          	=> ( is => 'ro', isa => 'Str' );
+has end            	=> ( is => 'ro', isa => 'Str' );
+has confidence     	=> ( is => 'ro', isa => 'Str' );
+has hairping_score 	=> ( is => 'ro', isa => 'Str' );
+has tail_score     	=> ( is => 'ro', isa => 'Str' );
+has feature_id		=> ( is => 'ro', isa => 'Str' );
 
 sub setContig {
 	my ( $self, $contig ) = @_;
@@ -80,6 +81,17 @@ sub setTailScore {
 sub getTailScore {
 	my ($self) = @_;
 	return $self->{tail_score};
+}
+
+sub setFeatureID {
+	my ( $self, $feature_id) = @_;
+	$self->{feature_id} = $feature_id;
+	return $self->{feature_id};
+}
+
+sub getFeatureID {
+	my ($self) = @_;
+	return $self->{feature_id};
 }
 
 1;

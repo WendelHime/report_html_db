@@ -585,19 +585,7 @@ sub transcriptionalTerminatorSearch_GET {
 	  @{ $c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		my %hash = (
-			contig => $resultList[$i]->getContig,
-			start  => $resultList[$i]->getStart,
-			end    => $resultList[$i]->getEnd,
-		);
-
-		$hash{confidence} = $resultList[$i]->getConfidence
-		  if $resultList[$i]->getConfidence;
-		$hash{hairpin_score} = $resultList[$i]->getHairpinScore
-		  if $resultList[$i]->getHairpinScore;
-		$hash{tail_score} = $resultList[$i]->getTailScore
-		  if $resultList[$i]->getTailScore;
-		push @list, \%hash;
+		push @list, $resultList[$i]->pack();
 	}
 
 	standardStatusOk( $self, $c, \@list );
@@ -628,22 +616,7 @@ sub rbsSearch_GET {
 	my @resultList = @{ $c->model('SearchDatabaseRepository')->rbs_search( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		my %hash = (
-			contig => $resultList[$i]->getContig,
-			start  => $resultList[$i]->getStart,
-			end    => $resultList[$i]->getEnd,
-		);
-
-		$hash{site_pattern} = $resultList[$i]->getSitePattern
-		  if $resultList[$i]->getSitePattern;
-		$hash{old_start} = $resultList[$i]->getOldStart
-		  if $resultList[$i]->getOldStart;
-		$hash{position_shift} = $resultList[$i]->getPositionShift
-		  if $resultList[$i]->getPositionShift;
-		$hash{new_start} = $resultList[$i]->getNewStart
-		  if $resultList[$i]->getNewStart;
-
-		push @list, \%hash;
+		push @list, $resultList[$i]->pack();
 	}
 
 	standardStatusOk( $self, $c, \@list );
@@ -673,21 +646,7 @@ sub alienhunterSearch_GET {
 	my @resultList = @{ $c->model('SearchDatabaseRepository')->alienhunter_search( \%hash ) };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		my %hash = (
-			id     => $resultList[$i]->getID,
-			contig => $resultList[$i]->getContig,
-			start  => $resultList[$i]->getStart,
-			end    => $resultList[$i]->getEnd,
-		);
-
-		$hash{length} = $resultList[$i]->getLength
-		  if $resultList[$i]->getLength;
-		$hash{score} = $resultList[$i]->getScore
-		  if $resultList[$i]->getScore;
-		$hash{threshold} = $resultList[$i]->getThreshold
-		  if $resultList[$i]->getThreshold;
-
-		push @list, \%hash;
+		push @list, $resultList[$i]->pack();
 	}
 
 	standardStatusOk( $self, $c, \@list );

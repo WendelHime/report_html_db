@@ -9,13 +9,14 @@ This is a class of a alien hunter result search
 
 =cut
 
-has id        => ( is => 'ro', isa => 'Str' );
-has contig    => ( is => 'ro', isa => 'Str' );
-has start     => ( is => 'ro', isa => 'Str' );
-has end       => ( is => 'ro', isa => 'Str' );
-has 'length'  => ( is => 'ro', isa => 'Str' );
-has score     => ( is => 'ro', isa => 'Str' );
-has threshold => ( is => 'ro', isa => 'Str' );
+has id        	=> ( is => 'ro', isa => 'Str' );
+has contig    	=> ( is => 'ro', isa => 'Str' );
+has start     	=> ( is => 'ro', isa => 'Str' );
+has end       	=> ( is => 'ro', isa => 'Str' );
+has 'length'  	=> ( is => 'ro', isa => 'Str' );
+has score     	=> ( is => 'ro', isa => 'Str' );
+has threshold 	=> ( is => 'ro', isa => 'Str' );
+has feature_id	=> ( is => 'ro', isa => 'Str' );
 
 sub setID {
 	my ( $self, $id ) = @_;
@@ -92,6 +93,17 @@ sub setThreshold {
 sub getThreshold {
 	my ($self) = @_;
 	return $self->{threshold};
+}
+
+sub setFeatureID {
+	my ( $self, $feature_id) = @_;
+	$self->{feature_id} = $feature_id;
+	return $self->{feature_id};
+}
+
+sub getFeatureID {
+	my ($self) = @_;
+	return $self->{feature_id};
 }
 
 1;

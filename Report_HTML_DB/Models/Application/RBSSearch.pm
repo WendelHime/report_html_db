@@ -16,6 +16,7 @@ has site_pattern   => ( is => 'ro', isa => 'Str' );
 has old_start      => ( is => 'ro', isa => 'Str' );
 has position_shift => ( is => 'ro', isa => 'Str' );
 has new_start      => ( is => 'ro', isa => 'Str' );
+has feature_id	=> ( is => 'ro', isa => 'Str' );
 
 sub setContig {
 	my ( $self, $contig ) = @_;
@@ -92,6 +93,17 @@ sub setNewStart {
 sub getNewStart {
 	my ($self) = @_;
 	return $self->{new_start};
+}
+
+sub setFeatureID {
+	my ( $self, $feature_id) = @_;
+	$self->{feature_id} = $feature_id;
+	return $self->{feature_id};
+}
+
+sub getFeatureID {
+	my ($self) = @_;
+	return $self->{feature_id};
 }
 
 1;

@@ -15,6 +15,7 @@ has end				=>	(is => 'ro', isa => 'Str');
 has 'length'		=>	(is => 'ro', isa => 'Str');
 has copy_number		=>	(is => 'ro', isa => 'Str');
 has sequence		=>	(is => 'ro', isa => 'Str');
+has feature_id		=> ( is => 'ro', isa => 'Str' );
 
 sub setContig {
 	my ($self, $contig) = @_;
@@ -81,4 +82,16 @@ sub getSequence {
 	my($self) = @_;
 	return $self->{sequence};
 }
+
+sub setFeatureID {
+	my ( $self, $feature_id) = @_;
+	$self->{feature_id} = $feature_id;
+	return $self->{feature_id};
+}
+
+sub getFeatureID {
+	my ($self) = @_;
+	return $self->{feature_id};
+}
+
 1;

@@ -172,87 +172,6 @@ sub analyses_CDS {
 		$query_TCDB = $connector . $query_TCDB . ")";
 		$connector  = "1";
 	}
-	if (   ( exists $hash->{'noPhobius'} && $hash->{'noPhobius'} )
-		|| ( exists $hash->{'TMdom'} && $hash->{'TMdom'} )
-		|| ( exists $hash->{'sigP'}  && $hash->{'sigP'} ) )
-	{
-		my $select = "(SELECT DISTINCT r.object_id ";
-		my $join =
-		    "FROM feature f "
-		  . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
-		  . "JOIN feature fo ON (r.object_id = fo.feature_id) "
-		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-		  . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
-		  . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
-		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
-		my $conditional =
-"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
-		push @args, $hash->{pipeline};
-
-		$connector = " INTERSECT " if $connector;
-		if ( $hash->{noPhobius} ) {
-			$connector = " EXCEPT " if $connector;
-			$query_Phobius = $connector . $select . $join . $conditional . ")";
-		}
-		elsif ( $hash->{'TMdom'} ) {
-			$join .=
-			    "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-			  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
-			  . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
-			  . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
-			  . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
-			$conditional .=
-" AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
-
-			if ( $hash->{'tmQuant'} eq "exact" ) {
-				$conditional .= "= ? ";
-			}
-			elsif ( $hash->{'tmQuant'} eq "orLess" ) {
-				$conditional .= "<= ? ";
-			}
-			elsif ( $hash->{'tmQuant'} eq "orMore" ) {
-				$conditional .= ">= ? ";
-			}
-			push @args, $hash->{'TMdom'};
-			$query_Phobius = $connector . $select . $join . $conditional . ")";
-			$connector     = "1";
-		}
-		else {
-			$query_Phobius = "";
-		}
-		if ( $hash->{'sigP'} ne "sigPwhatever" ) {
-			if ( $hash->{'sigP'} ne "sigPwhatever"
-				&& !$hash->{'noPhobius'} )
-			{
-				my $sigPconn = "";
-				if ( $hash->{'sigP'} eq "sigPyes" ) {
-					$sigPconn = " INTERSECT " if $connector;
-				}
-				elsif ( $hash->{'sigP'} eq "sigPno" ) {
-					$sigPconn = " EXCEPT " if $connector;
-				}
-
-				$query_sigP .=
-				  " $sigPconn (SELECT DISTINCT r.object_id FROM feature f
-                        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
-                        JOIN feature fo ON (r.object_id = fo.feature_id)
-                        JOIN featureloc l ON (r.object_id = l.feature_id)
-                        JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
-                        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
-                        JOIN analysis a ON (a.analysis_id = af.analysis_id)
-                        JOIN cvterm c ON (p.type_id = c.cvterm_id)
-                        JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
-                        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
-                        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
-                        JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
-                        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
-                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
-				push @args, $hash->{pipeline};
-			}
-			$connector = "1";
-		}
-	}
 	if (   ( exists $hash->{'noBlast'} && $hash->{'noBlast'} )
 		|| ( exists $hash->{'blastID'}   && $hash->{'blastID'} )
 		|| ( exists $hash->{'blastDesc'} && $hash->{'blastDesc'} ) )
@@ -446,6 +365,86 @@ sub analyses_CDS {
 		$query_interpro = $connector . $query_interpro . $conditional . ")";
 		$connector      = 1;
 	}
+	if (   ( exists $hash->{'noPhobius'} && $hash->{'noPhobius'} )
+		|| ( exists $hash->{'TMdom'} && $hash->{'TMdom'} ) )
+	{
+		my $select = "(SELECT DISTINCT r.object_id ";
+		my $join =
+		    "FROM feature f "
+		  . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
+		  . "JOIN feature fo ON (r.object_id = fo.feature_id) "
+		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+		  . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
+		  . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
+		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
+		my $conditional =
+"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
+		push @args, $hash->{pipeline};
+
+		$connector = " INTERSECT " if $connector;
+		if ( $hash->{noPhobius} ) {
+			$connector = " EXCEPT " if $connector;
+			$query_Phobius = $connector . $select . $join . $conditional . ")";
+		}
+		elsif ( $hash->{'TMdom'} ) {
+			$join .=
+			    "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+			  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+			  . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
+			  . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
+			  . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
+			$conditional .=
+" AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
+
+			if ( $hash->{'tmQuant'} eq "exact" ) {
+				$conditional .= "= ? ";
+			}
+			elsif ( $hash->{'tmQuant'} eq "orLess" ) {
+				$conditional .= "<= ? ";
+			}
+			elsif ( $hash->{'tmQuant'} eq "orMore" ) {
+				$conditional .= ">= ? ";
+			}
+			push @args, $hash->{'TMdom'} if $hash->{'tmQuant'};
+			$query_Phobius = $connector . $select . $join . $conditional . ")";
+			$connector     = "1";
+		}
+		else {
+			$query_Phobius = "";
+		}
+		if ( $hash->{'sigP'} ne "sigPwhatever" ) {
+			if ( $hash->{'sigP'} ne "sigPwhatever"
+				&& !$hash->{'noPhobius'} )
+			{
+				my $sigPconn = "";
+				if ( $hash->{'sigP'} eq "sigPyes" ) {
+					$sigPconn = " INTERSECT " if $connector;
+				}
+				elsif ( $hash->{'sigP'} eq "sigPno" ) {
+					$sigPconn = " EXCEPT " if $connector;
+				}
+
+				$query_sigP .=
+				  " $sigPconn (SELECT DISTINCT r.object_id FROM feature f
+                        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+                        JOIN feature fo ON (r.object_id = fo.feature_id)
+                        JOIN featureloc l ON (r.object_id = l.feature_id)
+                        JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
+                        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+                        JOIN analysis a ON (a.analysis_id = af.analysis_id)
+                        JOIN cvterm c ON (p.type_id = c.cvterm_id)
+                        JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
+                        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
+                        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
+                        JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
+                        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
+                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
+				push @args, $hash->{pipeline};
+			}
+			$connector = "1";
+		}
+	}
 
 	$query =
 	    $query
@@ -461,6 +460,19 @@ sub analyses_CDS {
 	  . $query_interpro
 	  . " ) as motherfuckerquery GROUP BY motherfuckerquery.feature_id ORDER BY motherfuckerquery.feature_id ";
 	  
+	if (!$query_Phobius) {
+		my $quantityParameters = () = $query =~ /\?/g;
+		my $counter = scalar @args;
+		if($counter > $quantityParameters) {
+			while(scalar @args > $quantityParameters) {
+				print STDERR "\nARGS:\t".$_."\n" foreach (@args);
+				shift @args;
+#				delete $args[$counter-1];
+#				$counter--;
+			}
+		}
+	}
+	  
 	if (   exists $hash->{pageSize}
 		&& $hash->{pageSize}
 		&& exists $hash->{offset}
@@ -475,17 +487,7 @@ sub analyses_CDS {
 			$query .= " OFFSET ? ";
 			push @args, $hash->{offset};
 		}
-	}
-
-	my $quantityParameters = () = $query =~ /\?/g;
-	my $counter = scalar @args;
-	if($counter > $quantityParameters) {
-		while(scalar @args > $quantityParameters) {
-			delete $args[$counter-1];
-			$counter--;
-		}
-	}
-	
+	}	
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
@@ -602,7 +604,7 @@ sub trf_search {
 	my @args      = ();
 	my $connector = "";
 	my $select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence ";
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence, fl.feature_id ";
 	my $join = "from feature_relationship r
                  join featureloc l on (r.subject_id = l.feature_id)
                  join feature fl on (fl.feature_id = l.srcfeature_id)
@@ -699,7 +701,8 @@ sub trf_search {
 			end         => $rows[$i][2],
 			'length'    => $rows[$i][3],
 			copy_number => $rows[$i][4],
-			sequence    => $rows[$i][5]
+			sequence    => $rows[$i][5],
+			feature_id	=> $rows[$i][6],
 		);
 		push @list, $result;
 	}
@@ -837,16 +840,8 @@ sub transcriptional_terminator_search {
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value";
-	if ( $hash->{'TTconf'} !~ /^\s*$/ ) {
-		$select .= " AS confidence";
-	}
-	elsif ( $hash->{'TThp'} !~ /^\s*$/ ) {
-		$select .= " AS hairpin_score";
-	}
-	elsif ( $hash->{'TTtail'} !~ /^\s*$/ ) {
-		$select .= " AS tail_score";
-	}
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppConfidence.value AS confidence, ppHairpinScore.value AS hairpin_score, ppTailScore.value AS tail_score, fl.feature_id ";
+	
 	my $join = " from feature_relationship r
                  join featureloc lc on (r.subject_id = lc.feature_id)
                  join feature fl on (fl.feature_id = lc.srcfeature_id)
@@ -856,10 +851,14 @@ sub transcriptional_terminator_search {
                  join analysis a on (a.analysis_id = af.analysis_id)
                  join featureprop p on (p.feature_id = l.srcfeature_id)
                  join cvterm cp on (p.type_id = cp.cvterm_id)
-                 join featureprop pp on (pp.feature_id = r.subject_id)
-                 join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+                 join featureprop ppConfidence on (ppConfidence.feature_id = r.subject_id)
+                 join cvterm cppConfidence on (ppConfidence.type_id = cppConfidence.cvterm_id) 
+                 join featureprop ppHairpinScore on (ppHairpinScore.feature_id = r.subject_id)
+                 join cvterm cppHairpinScore on (ppHairpinScore.type_id = cppHairpinScore.cvterm_id) 
+                 join featureprop ppTailScore on (ppTailScore.feature_id = r.subject_id)
+                 join cvterm cppTailScore on (ppTailScore.type_id = cppTailScore.cvterm_id) ";
 	my $query =
-"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? ";
+"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? and cppConfidence.name = 'confidence' AND cppHairpinScore.name = 'hairpin' AND cppTailScore.name = 'tail' ";
 	push @args, $hash->{pipeline};
 
 	my $search_field;
@@ -869,32 +868,31 @@ sub transcriptional_terminator_search {
 	if ( $hash->{'TTconf'} !~ /^\s*$/ ) {
 		$search_field = $hash->{'TTconf'} + 1;
 		$modifier     = $hash->{'TTconfM'};
-		$field        = "confidence";
+		$field        = "ppConfidence";
 	}
 	elsif ( $hash->{'TThp'} !~ /^\s*$/ ) {
 		$search_field = $hash->{'TThp'} + 1;
 		$modifier     = $hash->{'TThpM'};
-		$field        = "hairpin";
+		$field        = "ppHairpinScore";
 	}
 	elsif ( $hash->{'TTtail'} !~ /^\s*$/ ) {
 		$search_field = $hash->{'TTtail'} + 1;
 		$modifier     = $hash->{'TTtailM'};
-		$field        = "tail";
+		$field        = "ppTailScore";
 	}
 
 	$search_field =~ s/\s+//g;
 
 	if ( $modifier eq "exact" ) {
-		$query .= "and cpp.name = ? and my_to_decimal(pp.value) = ? ";
+		$query .= " and my_to_decimal($field.value) = ? ";
 	}
 	elsif ( $modifier eq "orLess" ) {
-		$query .= "and cpp.name = ? and my_to_decimal(pp.value) <= ? ";
+		$query .= " and my_to_decimal($field.value) <= ? ";
 	}
 	elsif ( $modifier eq "orMore" ) {
-		$query .= "and cpp.name = ? and my_to_decimal(pp.value) >= ? ";
+		$query .= " and my_to_decimal($field.value) >= ? ";
 	}
 
-	push @args, $field    if ($field);
 	push @args, ($search_field - 1) if ($search_field);
 
 	$query = $select . $join . $query;
@@ -909,19 +907,14 @@ sub transcriptional_terminator_search {
 	use Report_HTML_DB::Models::Application::TranscriptionalTerminator;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $result = Report_HTML_DB::Models::Application::TranscriptionalTerminator->new(
-			contig => $rows[$i][0],
-			start  => $rows[$i][1],
-			end    => $rows[$i][2]
+			contig 			=> $rows[$i][0],
+			start  			=> $rows[$i][1],
+			end    			=> $rows[$i][2],
+			confidence    	=> $rows[$i][3],
+			hairping_score  => $rows[$i][4],
+			tail_score    	=> $rows[$i][5],
+			feature_id		=> $rows[$i][6],
 		);
-		if ( $columns[3] eq "confidence" ) {
-			$result->setConfidence( $rows[$i][3] );
-		}
-		elsif ( $columns[3] eq "hairpin_score" ) {
-			$result->setHairpinScore( $rows[$i][3] );
-		}
-		elsif ( $columns[3] eq "tail_score" ) {
-			$result->setTailScore( $rows[$i][3] );
-		}
 		push @list, $result;
 	}
 
@@ -940,17 +933,18 @@ sub rbs_search {
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value";
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, fl.feature_id, ppSitePattern.value AS site_pattern, ppPositionShift.value AS position_shift, ".
+	" ppOldStart.value AS old_start ";
 
-	if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
-		$select .= " AS site_pattern";
-	}
-	elsif ( $hash->{'RBSnewcodon'} !~ /^\s*$/ ) {
-		$select .= " AS old_start";
-	}
-	else {
-		$select .= " AS position_shift";
-	}
+#	if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
+#		$select .= " AS site_pattern";
+#	}
+#	elsif ( $hash->{'RBSnewcodon'} !~ /^\s*$/ ) {
+#		$select .= " AS old_start";
+#	}
+#	else {
+#		$select .= " AS position_shift";
+#	}
 	my $join = " from feature_relationship r
                 join featureloc lc on (r.subject_id = lc.feature_id) 
                 join feature fl on (fl.feature_id = lc.srcfeature_id) 
@@ -960,30 +954,33 @@ sub rbs_search {
                 join analysis a on (a.analysis_id = af.analysis_id)
                 join featureprop p on (p.feature_id = l.srcfeature_id)
                 join cvterm cp on (p.type_id = cp.cvterm_id)
-                join featureprop pp on (pp.feature_id = r.subject_id)
-                join cvterm cpp on (pp.type_id = cpp.cvterm_id)";
+                join featureprop ppSitePattern on (ppSitePattern.feature_id = r.subject_id)
+                join cvterm cppSitePattern on (ppSitePattern.type_id = cppSitePattern.cvterm_id) 
+                join featureprop ppOldStart on (ppOldStart.feature_id = r.subject_id)
+                join cvterm cppOldStart on (ppOldStart.type_id = cppOldStart.cvterm_id)
+                join featureprop ppPositionShift on (ppPositionShift.feature_id = r.subject_id)
+                join cvterm cppPositionShift on (ppPositionShift.type_id = cppPositionShift.cvterm_id)";
 	my $query =
-"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ";
+"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
+" and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift' ";
 	push @args, $hash->{pipeline};
-
-	my $newcodon = 0;
 
 	if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
 		$hash->{'RBSpattern'} =~ s/\s*//g;
-		$query .= "and cpp.name='RBS_pattern' and lower(pp.value) like ? ";
+		$query .= " and lower(ppSitePattern.value) like ? ";
 		push @args, lc( "%" . $hash->{'RBSpattern'} . "%" );
 	}
 	elsif ( $hash->{'RBSshift'} ) {
 		if ( $hash->{'RBSshiftM'} eq "both" ) {
-			$query .= "and cpp.name='position_shift' and pp.value != '0'";
+			$query .= " and ppPositionShift.value != '0'";
 		}
 		elsif ( $hash->{'RBSshiftM'} eq "neg" ) {
 			$query .=
-			  "and cpp.name='position_shift' and my_to_decimal(pp.value) < '0'";
+			  " and my_to_decimal(ppPositionShift.value) < '0'";
 		}
 		elsif ( $hash->{'RBSshiftM'} eq "pos" ) {
 			$query .=
-			  "and cpp.name='position_shift' and my_to_decimal(pp.value) > '0'";
+			  " and my_to_decimal(ppPositionShift.value) >= '0'";
 		}
 	}
 	elsif ( $hash->{'RBSnewcodon'} ) {
@@ -991,8 +988,7 @@ sub rbs_search {
 		$join .=
 "join featureprop pp2 on (pp2.feature_id = r.subject_id) join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id)";
 		$query .=
-"and cpp.name='old_start_codon' and cpp2.name='new_start_codon' and (pp.value != pp2.value)";
-		$newcodon++;
+"and cppOldStart.name='old_start_codon' and cpp2.name='new_start_codon' and (ppOldStart.value != pp2.value)";
 	}
 
 	$query = $select . $join . $query;
@@ -1007,22 +1003,17 @@ sub rbs_search {
 	use Report_HTML_DB::Models::Application::RBSSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $result = Report_HTML_DB::Models::Application::RBSSearch->new(
-			contig => $rows[$i][0],
-			start  => $rows[$i][1],
-			end    => $rows[$i][2]
+			contig 			=> $rows[$i][0],
+			start  			=> $rows[$i][2],
+			end    			=> $rows[$i][1],
+			feature_id 		=> $rows[$i][3],
+			site_pattern	=> $rows[$i][4],
+			position_shift	=> $rows[$i][5],
+			old_start		=> $rows[$i][6]
 		);
-		if ( $columns[3] eq "site_pattern" ) {
-			$result->setSitePattern( $rows[$i][3] );
-		}
-		elsif ( $columns[3] eq "old_start" ) {
-			$result->setOldStart( $rows[$i][3] );
-		}
-		elsif ( $columns[3] eq "position_shift" ) {
-			$result->setPositionShift( $rows[$i][3] );
-		}
 
-		if ( $columns[4] eq "new_start" ) {
-			$result->setNewStart( $rows[$i][4] );
+		if ( $columns[7] eq "new_start" ) {
+			$result->setNewStart( $rows[$i][7] );
 		}
 
 		push @list, $result;
@@ -1042,30 +1033,25 @@ sub alienhunter_search {
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $select =
-"select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value ";
+"select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppLength.value AS length, ppScore.value AS score, ppThreshold.value AS threshold, fl.feature_id ";
 
-	if ( $hash->{'AHlen'} !~ /^\s*$/ ) {
-		$select .= " AS length";
-	}
-	elsif ( $hash->{'AHscore'} !~ /^\s*$/ ) {
-		$select .= " AS score";
-	}
-	elsif ( $hash->{'AHthr'} !~ /^\s*$/ ) {
-		$select .= " AS threshold";
-	}
 	my $join = " from feature_relationship r
                 join featureloc lc on (r.subject_id = lc.feature_id) 
                 join feature fl on (fl.feature_id = lc.srcfeature_id) 
-                join cvterm c on (r.type_id = c.cvterm_id)
-                join featureloc l on (r.subject_id = l.feature_id)
-                join analysisfeature af on (af.feature_id = r.object_id)
-                join analysis a on (a.analysis_id = af.analysis_id)
-                join featureprop p on (p.feature_id = l.srcfeature_id)
-                join cvterm cp on (p.type_id = cp.cvterm_id)
-                join featureprop pp on (pp.feature_id = r.subject_id)
-                join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+                join cvterm c on (r.type_id = c.cvterm_id) 
+                join featureloc l on (r.subject_id = l.feature_id) 
+                join analysisfeature af on (af.feature_id = r.object_id) 
+                join analysis a on (a.analysis_id = af.analysis_id) 
+                join featureprop p on (p.feature_id = l.srcfeature_id) 
+                join cvterm cp on (p.type_id = cp.cvterm_id) 
+                join featureprop ppLength on (ppLength.feature_id = r.subject_id) 
+                join cvterm cppLength on (ppLength.type_id = cppLength.cvterm_id) 
+                join featureprop ppScore on (ppScore.feature_id = r.subject_id) 
+                join cvterm cppScore on (ppScore.type_id = cppScore.cvterm_id) 
+                join featureprop ppThreshold on (ppThreshold.feature_id = r.subject_id) 
+                join cvterm cppThreshold on (ppThreshold.type_id = cppThreshold.cvterm_id) ";
 	my $query =
-"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? ";
+"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? and cppLength.name = 'length' and cppScore.name = 'score' and cppThreshold.name = 'threshold' ";
 	push @args, $hash->{pipeline};
 
 	my $search_field;
@@ -1075,32 +1061,31 @@ sub alienhunter_search {
 	if ( $hash->{'AHlen'} !~ /^\s*$/ ) {
 		$search_field = $hash->{'AHlen'} + 1;
 		$modifier     = $hash->{'AHlenM'};
-		$field        = "length";
+		$field		  = "ppLength";
 	}
 	elsif ( $hash->{'AHscore'} !~ /^\s*$/ ) {
 		$search_field = $hash->{'AHscore'} + 1;
 		$modifier     = $hash->{'AHscM'};
-		$field        = "score";
+		$field		  = "ppScore";
 	}
 	elsif ( $hash->{'AHthr'} !~ /^\s*$/ ) {
 		$search_field = $hash->{'AHthr'} + 1;
 		$modifier     = $hash->{'AHthrM'};
-		$field        = "threshold";
+		$field		  = "ppThreshold";
 	}
 
 	$search_field =~ s/\s+//g;
 
 	if ( $modifier eq "exact" ) {
-		$query .= "and cpp.name = ? and my_to_decimal(pp.value) = ? ";
+		$query .= " and my_to_decimal($field.value) = ? ";
 	}
 	elsif ( $modifier eq "orLess" ) {
-		$query .= "and cpp.name = ? and my_to_decimal(pp.value) <= ? ";
+		$query .= " and my_to_decimal($field.value) <= ? ";
 	}
 	elsif ( $modifier eq "orMore" ) {
-		$query .= "and cpp.name = ? and my_to_decimal(pp.value) >= ? ";
+		$query .= " and my_to_decimal($field.value) >= ? ";
 	}
 
-	push @args, $field        if $field;
 	push @args, ($search_field - 1) if $search_field;
 
 	$query = $select . $join . $query;
@@ -1115,20 +1100,15 @@ sub alienhunter_search {
 	use Report_HTML_DB::Models::Application::AlienHunterSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $result = Report_HTML_DB::Models::Application::AlienHunterSearch->new(
-			id     => $rows[$i][0],
-			contig => $rows[$i][1],
-			start  => $rows[$i][2],
-			end    => $rows[$i][3],
+			id     		=> $rows[$i][0],
+			contig 		=> $rows[$i][1],
+			start  		=> $rows[$i][2],
+			end    		=> $rows[$i][3],
+			length 		=> $rows[$i][4],
+			score  		=> $rows[$i][5],
+			threshold 	=> $rows[$i][6],
+			feature_id	=> $rows[$i][7],
 		);
-		if ( $columns[4] eq "length" ) {
-			$result->setLength( $rows[$i][4] );
-		}
-		elsif ( $columns[4] eq "score" ) {
-			$result->setScore( $rows[$i][4] );
-		}
-		elsif ( $columns[4] eq "threshold" ) {
-			$result->setThreshold( $rows[$i][4] );
-		}
 
 		push @list, $result;
 	}

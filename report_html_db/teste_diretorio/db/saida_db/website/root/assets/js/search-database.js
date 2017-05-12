@@ -202,7 +202,9 @@ $(function() {
                 else {
                     $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
                 }
-			}
+			} else {
+                $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
+            }
 			return false;
 		}
 	);
@@ -217,21 +219,25 @@ $(function() {
 			$(".errors").remove();
 			var pagedResponse = trnaSearch($(this).serialize(), pageSize, offset).responseJSON;
 			var tRNAList = pagedResponse.response;
-			totalValues = pagedResponse.total;
-            if(!verifyPagedResponse(idForm, "#trna-form", totalValues)) 
-                idForm = "#trna-form";
-			var featuresIDs = "";
-            for(i = 0; i < tRNAList.length; i++) {
-                featuresIDs += tRNAList[i].id+" ";
-            }
-            var data = searchGeneByID(featuresIDs).responseJSON.response;
-                
-            if(data.length > 0) {
-                contentGeneData(data);
-            }
-            else {
-                $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
-            }
+			if(tRNAList.length > 0) {
+				totalValues = pagedResponse.total;
+	            if(!verifyPagedResponse(idForm, "#trna-form", totalValues)) 
+	                idForm = "#trna-form";
+				var featuresIDs = "";
+	            for(i = 0; i < tRNAList.length; i++) {
+	                featuresIDs += tRNAList[i].id+" ";
+	            }
+	            var data = searchGeneByID(featuresIDs).responseJSON.response;
+	                
+	            if(data.length > 0) {
+	                contentGeneData(data);
+	            }
+	            else {
+	                $("#trna-form").append("<div class='alert alert-danger errors'>Oops, not found any tRNA</div>");
+	            }
+			} else {
+				$("#trna-form").append("<div class='alert alert-danger errors'>Oops, not found any tRNA</div>");
+			}
 			return false;
 		}
 	);
@@ -257,6 +263,7 @@ $(function() {
 							"			<th>Repeat length</th>"+
 							"			<th>Copy number</th>"+
 							"			<th>Repeat sequence</th>"+
+							"			<th>Sequence</th>"+
 							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
@@ -268,11 +275,21 @@ $(function() {
 							"			<td>"+tandemRepeatsList[i].length+"</td>" +
 							"			<td>"+tandemRepeatsList[i].copy_number+"</td>" +
 							"			<td>"+tandemRepeatsList[i].sequence+"</td>" +
+							"			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+
 							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
 				$("#searchPanel").parent().append(html);
+				for(i = 0; i < tandemRepeatsList.length; i++) {
+					$("#sequence-"+i).click(
+							{
+								feature_id : tandemRepeatsList[i].feature_id, 
+								start : tandemRepeatsList[i].start, 
+								end : tandemRepeatsList[i].end 
+							}, 
+								searchContigWorkAround);
+				}
 			}
 			else {
 				$("#tandemRepeats-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
@@ -327,35 +344,37 @@ $(function() {
 							"		<tr>"+
 							"			<th>Contig</th>"+
 							"			<th>Start coordinate</th>"+
-							"			<th>End coordinate</th>";
-				if("confidence" in transcriptionalTerminatorList[0]) {
-					html += "			<th>Confidence</th>";
-				} else if("hairpin_score" in transcriptionalTerminatorList[0]) {
-					html += "			<th>Hairpin score</th>";
-				} else if("tail_score" in transcriptionalTerminatorList[0]) {
-					html += "			<th>Tail score</th>";
-				}
-							
-				html +=		"		</tr>" +
+							"			<th>End coordinate</th>"+
+							"			<th>Confidence</th>"+
+							"			<th>Hairpin score</th>"+
+							"			<th>Tail score</th>"+
+							"			<th>Sequence</th>"+
+							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
 				for(i = 0; i < transcriptionalTerminatorList.length; i++) {
 					html += "		<tr>" +
 							"			<td>"+transcriptionalTerminatorList[i].contig+"</td>" +
 							"			<td>"+transcriptionalTerminatorList[i].start+"</td>" +
-							"			<td>"+transcriptionalTerminatorList[i].end+"</td>";
-					if("confidence" in transcriptionalTerminatorList[0]) {
-						html += "		<td>"+transcriptionalTerminatorList[i].confidence+"</td>";
-					} else if("hairpin_score" in transcriptionalTerminatorList[0]) {
-						html += "		<td>"+transcriptionalTerminatorList[i].hairpin_score+"</td>";
-					} else if("tail_score" in transcriptionalTerminatorList[0]) {
-						html += "		<td>"+transcriptionalTerminatorList[i].tail_score+"</td>";
-					}
-					html +=	"		</tr>";
+							"			<td>"+transcriptionalTerminatorList[i].end+"</td>"+
+							"			<td>"+transcriptionalTerminatorList[i].confidence+"</td>"+
+							"			<td>"+transcriptionalTerminatorList[i].hairping_score+"</td>"+
+							"			<td>"+transcriptionalTerminatorList[i].tail_score+"</td>"+
+							"			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+
+							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
 				$("#searchPanel").parent().append(html);
+				for(i = 0; i < transcriptionalTerminatorList.length; i++) {
+					$("#sequence-"+i).click(
+							{
+								feature_id : transcriptionalTerminatorList[i].feature_id, 
+								start : transcriptionalTerminatorList[i].start, 
+								end : transcriptionalTerminatorList[i].end 
+							}, 
+								searchContigWorkAround);
+				}
 			}
 			else {
 				$("#transcriptionalTerminators-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
@@ -365,6 +384,14 @@ $(function() {
 	);
 });
 
+function searchContigWorkAround (event) {
+	$(".result").remove();
+	$("[name='contig']").val(event.data.feature_id);
+	$("[name='contigStart']").val(event.data.start);
+	$("[name='contigEnd']").val(event.data.end);
+	$("#formSearchContig").submit();
+}
+
 /**
  * Add function to submit form
  */
@@ -373,6 +400,7 @@ $(function() {
 		function() {
 			$(".errors").remove();
 			var rbsList = rbsSearch($(this).serialize()).responseJSON.response;
+			//&& ($("[name='RBSpattern']").val() !== "" || $("[name='RBSshift']")[0].checked !== false || $("[name='RBSnewcodon']")[0].checked !== false)
 			if(rbsList.length > 0) {
 				$("#searchPanel").hide();
 				$("#back").show();
@@ -381,20 +409,15 @@ $(function() {
 							"		<tr>"+
 							"			<th>Contig</th>"+
 							"			<th>Start coordinate</th>"+
-							"			<th>End coordinate</th>";
-				if("old_start" in rbsList[0]) {
+							"			<th>End coordinate</th>"+
+							"			<th>Position shift</th>"+
+							"			<th>Site pattern</th>"+
+							"			<th>Old start</th>";
+				if("new_start" in rbsList[0]) {
 					html +=
-							"			<th>Old start</th>"+
-							"			<th>New start</th>";
+						"			<th>New start</th>";
 				}
-				else if("position_shift" in rbsList[0]) {
-					html += 
-							"			<th>Position shift</th>";
-				}
-				else if("site_pattern" in rbsList[0]) {
-					html += 
-							"			<th>Site pattern</th>";
-				}
+				html +=		"		<th>Sequence</th>"
 							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
@@ -402,24 +425,29 @@ $(function() {
 					html += "		<tr>" +
 							"			<td>"+rbsList[i].contig+"</td>" +
 							"			<td>"+rbsList[i].start+"</td>" +
-							"			<td>"+rbsList[i].end+"</td>";
-					if("old_start" in rbsList[i]) {
-						html += 
-							"			<td>"+rbsList[i].old_start+"</td>" +
-							"			<td>"+rbsList[i].new_start+"</td>" +
-							"		</tr>";
-					} else if("position_shift" in rbsList[i]) {
-						html += 
-							"			<td>"+rbsList[i].position_shift+"</td>" +
-							"		</tr>";
-					} else if("site_pattern" in rbsList[i]) {
-						html += 
-							"			<td>"+rbsList[i].site_pattern+"</td>";
+							"			<td>"+rbsList[i].end+"</td>" +
+							"			<td>"+rbsList[i].position_shift+"</td>"+
+							"			<td>"+rbsList[i].site_pattern+"</td>"+
+							"			<td>"+rbsList[i].old_start+"</td>";
+					if("new_start" in rbsList[0]) {
+						html += 							
+							"			<td>"+rbsList[i].new_start+"</td>";
 					}
+					html += "			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+ 
+							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
 				$("#searchPanel").parent().append(html);
+				for(i = 0; i < rbsList.length; i++) {
+					$("#sequence-"+i).click(
+							{
+								feature_id : rbsList[i].feature_id, 
+								start : rbsList[i].start, 
+								end : rbsList[i].end 
+							}, 
+								searchContigWorkAround);
+				}
 			} else {
 				$("#ribosomalBindingSites-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
 			}
@@ -445,15 +473,12 @@ $(function() {
 							"			<th>ID</th>"+
 							"			<th>Contig</th>"+
 							"			<th>Start coordinate</th>"+
-							"			<th>End coordinate</th>";
-				if("score" in alienhunterList[0]) {
-					html += "			<th>Score</th>";
-				} else if("length" in alienhunterList[0]) {
-					html += "			<th>Length</th>";
-				} else if("threshold" in alienhunterList[0]) {
-					html += "			<th>Threshold</th>";
-				}
-				html +=		"		</tr>" +
+							"			<th>End coordinate</th>"+
+							"			<th>Length</th>"+
+							"			<th>Score</th>"+
+							"			<th>Threshold</th>"+
+							"			<th>Sequence</th>"+
+							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
 				for(var i = 0; i < alienhunterList.length; i++) {
@@ -461,15 +486,12 @@ $(function() {
 							"			<td><a id='horizontal-transference-"+alienhunterList[i].id+"' href='#'>"+alienhunterList[i].id+"</a></td>" +
 							"			<td>"+alienhunterList[i].contig+"</td>" +
 							"			<td>"+alienhunterList[i].start+"</td>" +
-							"			<td>"+alienhunterList[i].end+"</td>";
-					if("score" in alienhunterList[i]) {
-						html += "		<td>"+alienhunterList[i].score+"</td>";
-					} else if("length" in alienhunterList[i]) {
-						html += "		<td>"+alienhunterList[i].length+"</td>";
-					} else if("threshold" in alienhunterList[i]) {
-						html += "		<td>"+alienhunterList[i].threshold+"</td>";
-					}
-					html +=	"		</tr>";
+							"			<td>"+alienhunterList[i].end+"</td>"+
+							"			<td>"+alienhunterList[i].length+"</td>"+
+							"			<td>"+alienhunterList[i].score+"</td>"+
+							"			<td>"+alienhunterList[i].threshold+"</td>"+
+							"			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+
+							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
@@ -480,6 +502,15 @@ $(function() {
 						$(".result").remove();
 						contentGeneData(getGeneByPosition(result.start, result.end).responseJSON.response);
 					});
+				}
+				for(i = 0; i < alienhunterList.length; i++) {
+					$("#sequence-"+i).click(
+							{
+								feature_id : alienhunterList[i].feature_id, 
+								start : alienhunterList[i].start, 
+								end : alienhunterList[i].end 
+							}, 
+								searchContigWorkAround);
 				}
 			}
 			else {
