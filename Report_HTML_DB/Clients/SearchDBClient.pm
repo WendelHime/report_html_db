@@ -32,7 +32,8 @@ sub getGene {
 	my (
 		$self,            $pipeline,      $geneID,
 		$geneDescription, $noDescription, $individually,
-		$featureId,       $pageSize,      $offset
+		$featureId,       $pageSize,      $offset,
+		$contig
 	) = @_;
 	my $response = makeRequest(
 		$self->{rest_endpoint},
@@ -47,6 +48,7 @@ sub getGene {
 				"featureId"       => $featureId,
 				"pageSize"        => $pageSize,
 				"offset"          => $offset,
+				"contig"		  => $contig,
 			}
 		},
 		"GET"
@@ -91,7 +93,7 @@ sub getSubsequence {
 }
 
 sub getncRNA_desc {
-	my ( $self, $feature, $pipeline ) = @_;
+	my ( $self, $feature, $pipeline, $pageSize, $offset ) = @_;
 	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/ncRNA_desc",
@@ -99,11 +101,13 @@ sub getncRNA_desc {
 			{
 				feature  => $feature,
 				pipeline => $pipeline,
+				pageSize => $pageSize,
+				offset	 => $offset,
 			}
 		},
 		"GET"
 	);
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getSubevidences {
@@ -143,7 +147,7 @@ sub getTRNA {
 	#	}
 	my $response = makeRequest( $self->{rest_endpoint},
 		"/SearchDatabase/trnaSearch", $parameters, "GET" );
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getTandemRepeats {
@@ -158,7 +162,7 @@ sub getTandemRepeats {
 		"/SearchDatabase/tandemRepeatsSearch",
 		$parameters, "GET"
 	);
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getncRNA {
@@ -170,7 +174,7 @@ sub getncRNA {
 	#	}
 	my $response = makeRequest( $self->{rest_endpoint},
 		"/SearchDatabase/ncRNASearch", $parameters, "GET" );
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getTranscriptionalTerminator {
@@ -185,7 +189,7 @@ sub getTranscriptionalTerminator {
 		"/SearchDatabase/transcriptionalTerminatorSearch",
 		$parameters, "GET"
 	);
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getRBSSearch {
@@ -197,7 +201,7 @@ sub getRBSSearch {
 	#	}
 	my $response = makeRequest( $self->{rest_endpoint},
 		"/SearchDatabase/rbsSearch", $parameters, "GET" );
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getAlienHunter {
@@ -212,7 +216,7 @@ sub getAlienHunter {
 		"/SearchDatabase/alienhunterSearch",
 		$parameters, "GET"
 	);
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getGeneByPosition {

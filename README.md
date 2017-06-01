@@ -9,7 +9,7 @@ cpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::
 
 Para rodar:
 
-bigou\_m.pl -c html\_db.cnf -d database\_name -u username\_database -p password -h address -o output_dir
+bigou\_m.pl -c html\_db.cnf -d database\_name -u username\_database -p password -h address -o output\_dir
 
 Inicialize o servidor:
 
@@ -19,30 +19,20 @@ Acesse o site:
 
 http://127.0.0.1:3000
 
-O que esta sendo feito agora:
--
 
 TODO:
 -
--	Criar pagina de erro geral
-
--	Atualizar SearchDatabaseRepository, SearchDatabase do Services e search-database.js
-
--	Analyses of protein coding genes: 
--	Arquivos das análises de DNA
--	Alinhar sequencia de nucleotídeos
 
 -	Global analyses:
 -	Go mapping: expansible tree
 -	KEGG pathways: link errado
 
--	Downloads:
--	Protein-coding genes para CDS
--	All-genes: colocar reverso complementar 
--	All-genes: colocar todos os genes(e não somente CDS)
--	Arquivos para download em fasta
+-	Criar pagina de erro geral
 
--	tRNA: Adicionar link do arquivo
+Dev:
+-
+-       Adicionar opção de selecionar contig em pesquisas de gene
+-		Preparar SearchDatabase do website, search-database.js e site-client.js para searchGene
 
 Done:
 -
@@ -96,3 +86,19 @@ Done:
 -	não esta mostrando erro caso não encontra nada
 -	Busca por identificador do orthology não esta funcionando
 -	Transporter: Não mostra se esta vazio
+
+
+-	Remover redundancia de inserções e correções de textos da pagina SearchDatabase
+-	Atualizar SearchDatabaseRepository, SearchDatabase do Services e search-database.js
+-	Blast services esta com caminhos fixos para o banco de dados
+-	Criar arquivo unificado de sequencias separando pelos tipos para geração do makeblastdb
+-	Adicionar valor absoluto para pegar arquivos para download
+-	Paginar resultados de tabelas
+-	Script deve gerar arquivos fasta de CDS(done); ribosomal RNA; transferRNA; other non coding;
+-	Atualizar LIMIT e OFFSET nas pesquisas tandemRepeats, transcriptionalTerminators, ribosomalBindingSites, horizontalGeneTransfers, ncRNA no SearchDatabaseRepository, SearchDatabaseController do services  e no SearchDatabaseController do website
+-	All-genes: colocar reverso complementar e colocar todos os genes(e não somente CDS)
+-	Protein-coding genes para CDS
+-	Alinhar sequencia de nucleotídeos
+-       Arquivos das análises de DNA
+-       tRNA: Adicionar link do arquivo
+-       Arquivos das analises estão linkados no SQLite, criar função para acesso e link para baixar 

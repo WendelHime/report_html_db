@@ -188,6 +188,7 @@ my $banner;
 my $tcdb_file = "";
 my $ko_file;
 my $uniquename;
+my $annotation_dir;
 
 #
 #read configuration file
@@ -338,6 +339,9 @@ if ( defined( $config->{"filepath_log"} ) ) {
 if ( defined( $config->{"component_name_list"} ) ) {
 	$component_name_list = $config->{"component_name_list"};
 }
+if ( defined( $config->{"annotation_dir"} ) ) {
+	$annotation_dir = $config->{"annotation_dir"};
+}
 
 #
 # ==> END OF AUTO GENERATED CODE
@@ -378,7 +382,7 @@ CREATE TABLE SEQUENCES(
 	name VARCHAR(2000),
 	filepath VARCHAR(2000)
 );
-
+BEGIN TRANSACTION;
 INSERT INTO TEXTS(tag, value, details) VALUES
         ("menu", "home", "/"),
         ("menu", "blast", "/Blast"),
@@ -864,7 +868,31 @@ if ( scalar @report_kegg_organism_dir > 0 ) {
 }
 
 print $LOG "\nReading sequences\n";
+
+my $annotation_blast = 0;
+my $annotation_interpro = 0;
+my $annotation_orthology = 0;
+my $annotation_pathways = 0;
+my $annotation_trna = 0;
+my $annotation_alienhunter = 0;
+my $annotation_rbs = 0;
+my $annotation_transterm = 0;
+my $annotation_phobius = 0;
+my $annotation_rpsblast = 0;
+
+open(my $SEQUENCES, ">", "$html_dir/root/Sequences.fasta");
+open(my $SEQUENCES_NT, ">", "$html_dir/root/Sequences_NT.fasta");
+open(my $SEQUENCES_AA, ">", "$html_dir/root/Sequences_AA.fasta");
+
+$scriptSQL .= <<SQL;
+			INSERT INTO FILES(tag, filepath) VALUES ("ag", "all_genes.fasta"), 
+			("trg", "trna_seqs.fasta"), ("rrg", "rrna_seqs.fasta"), ("oncg", "rna_seqs.fasta"), ("pro", "Sequences_NT.fasta"), 
+			("ac", "Sequences.fasta"), ("tt", "transterm_seqs.fasta");
+SQL
+
 while ( $sequence_object->read() ) {
+	$sequence_object->print();
+	print $LOG "\nSequence:\t" . $sequence_object->{sequence_id} . "\nName:\t".$sequence_object->sequence_name()."\n"; 
 	++$seq_count;
 	$header = $sequence_object->fasta_header();
 	my @conclusions = @{ $sequence_object->get_conclusions() };
@@ -899,9 +927,14 @@ while ( $sequence_object->read() ) {
 # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
 # pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
 	open( FASTAOUT, ">$html_dir/root/$fasta_dir/$name.fasta" )
-	  or die
+	  or warn
 	  "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
 	my $length = length($bases);
+	print $SEQUENCES ">$name\n";
+	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
+		my $sequence = substr( $bases, $i, 60 );
+		print $SEQUENCES "$sequence\n";
+	}
 	print FASTAOUT ">$name\n";
 	print FASTAOUT $bases;
 	close(FASTAOUT);
@@ -964,16 +997,22 @@ while ( $sequence_object->read() ) {
 				$start = $evidence->{end};
 				$end   = $evidence->{start};
 			}
+			my $len_nt = ( $end - $start ) + 1;
+			my $sequence_nt;
+			my $nt_seq = substr( $bases, $start - 1, $len_nt );
+			$len_nt = length($nt_seq);
+			my $file_ev = $locus_tag . ".fasta";
+			
+			open(ALL_GENES, ">>", "$html_dir/root/all_genes.fasta");
+			
 			if ( $evidence->{tag} eq "CDS" ) {
-				my $len_nt = ( $end - $start ) + 1;
-				my $sequence_nt;
-				my $nt_seq = substr( $bases, $start - 1, $len_nt );
-				$len_nt = length($nt_seq);
-				my $file_ev = $locus_tag . ".fasta";
 				open( AA, ">$html_dir/root/$aa_fasta_dir/$file_ev" );
 				print FILE_NT ">$locus_tag\n";
 				print AA "\nNucleotide sequence:\n\n";
 				print AA ">$locus_tag\n";
+				print $SEQUENCES_NT ">$locus_tag\n";
+				
+				print ALL_GENES ">$locus_tag\n";
 	
 				my @intervals = @{ $evidence->{intervals} };
 				print $LOG "\nIntervals:	" . @intervals . "\n";
@@ -987,11 +1026,15 @@ while ( $sequence_object->read() ) {
 			#					print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
 			#					print $LOG "\nSequencia depois:\t".$nt_seq."\n";
 				}
+				
+				$nt_seq =~ s/\n//g;
 	
 				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
 					$sequence_nt = substr( $nt_seq, $i, 60 );
 					print FILE_NT "$sequence_nt\n";
 					print AA "$sequence_nt\n";
+					print $SEQUENCES_NT "$sequence_nt\n";
+					print ALL_GENES "$sequence_nt\n";
 				}
 				my $seq_aa = $evidence->{protein_sequence};
 				my $sequence_aa;
@@ -999,12 +1042,59 @@ while ( $sequence_object->read() ) {
 				print FILE_AA ">$locus_tag\n";
 				print AA "\nTranslated sequence:\n\n";
 				print AA ">$locus_tag\n";
+				print $SEQUENCES_AA ">$locus_tag\n";
 				for ( my $i = 0 ; $i < $len_aa ; $i += 60 ) {
 					$sequence_aa = substr( $seq_aa, $i, 60 );
 					print FILE_AA "$sequence_aa\n";
 					print AA "$sequence_aa\n";
+					print $SEQUENCES_AA "$sequence_aa\n";
 				}
 			}
+			elsif ($evidence->{tag} eq "tRNAscan") {
+				open( tRNA_FILE, ">>", "$html_dir/root/trna_seqs.fasta" );
+				print tRNA_FILE ">$locus_tag\n";
+				print ALL_GENES ">$locus_tag\n";				
+				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+					my $sequence = substr( $nt_seq, $i, 60 );
+					print tRNA_FILE "$sequence\n";
+					print ALL_GENES "$sequence\n";
+				}
+				close(tRNA_FILE);
+			}
+			elsif ($evidence->{tag} eq "RNA_scan"){
+				open( rna_FILE, ">>", "$html_dir/root/rna_seqs.fasta" );
+				print rna_FILE ">$locus_tag\n";
+				print ALL_GENES ">$locus_tag\n";				
+				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+					my $sequence = substr( $nt_seq, $i, 60 );
+					print rna_FILE "$sequence\n";
+					print ALL_GENES "$sequence\n";
+				}
+				close(rna_FILE);
+			}
+			elsif ($evidence->{tag} eq "rRNA_prediction"){
+				open( rRNA_FILE, ">>", "$html_dir/root/rrna_seqs.fasta" );
+				print rRNA_FILE ">$locus_tag\n";				
+				print ALL_GENES ">$locus_tag\n";
+				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+					my $sequence = substr( $nt_seq, $i, 60 );
+					print rRNA_FILE "$sequence\n";
+					print ALL_GENES "$sequence\n";
+				}
+				close(rRNA_FILE);
+			} else {
+				print $LOG "\n[1082] TAG:\t".$evidence->{tag}."\n";
+				open( UNKNOWN_FILE, ">>", "$html_dir/root/".$evidence->{tag}."_seqs.fasta" );
+				print UNKNOWN_FILE ">$locus_tag\n";				
+				print ALL_GENES ">$locus_tag\n";
+				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+					my $sequence = substr( $nt_seq, $i, 60 );
+					print UNKNOWN_FILE "$sequence\n";
+					print ALL_GENES "$sequence\n";
+				}
+				close(UNKNOWN_FILE);
+			}
+			close(ALL_GENES);
 			
 			if ( $component && $component_name ) {
 				my $resp = verify_element( $component_name, \@comp_dna );
@@ -1012,178 +1102,66 @@ while ( $sequence_object->read() ) {
 #				print $LOG "\n[961]\t-\t$locus_tag\n";
 				print $LOG "\n[962] $component_name -  resp = $resp\n";
 				if ($resp) {
-					if (   !exists $components{$component}
-						&& !$components{$component} )
-					{
-						if ( $component_name eq "annotation_trf" ) {
-							my $file = $name . "_trf.txt";
-							$components{$component} = "$component/$file";
-						}
-						elsif ( $component_name eq "annotation_trna" ) {
-							my $file = $name . "_trna.txt";
-							$components{$component} = "$component/$file";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid", "Get tRNAs by amino acid: ", ""),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Alanine (A)", "Ala"),                                                                                                
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Arginine (R)", "Arg"),                                                                                               
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Asparagine (N)", "Asp"),                                                                                             
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Aspartic acid (D)", "Ala"),                                                                                          
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Cysteine (C)", "Cys"),                                                                                               
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamic acid (E)", "Glu"),                                                                                          
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamine (Q)", "Gln"),                                                                                              
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glycine (G)", "Gly"),                                                                                                
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Histidine (H)", "His"),                                                                                              
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Isoleucine (I)", "Ile"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Leucine (L)", "Leu"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Lysine (K)", "Lys"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Methionine (M)", "Met"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Phenylalanine (F)", "Phe"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Proline (P)", "Pro"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Serine (S)", "Ser"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Threonine (T)", "Thr"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tryptophan (W)", "Trp"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tyrosine (Y)", "Tyr"),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Valine (V)", "Val"),
-			        ("search-database-dna-based-analyses-get-by-codon", "Or get tRNAs by codon: ", ""),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AAA", "AAA"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AAC", "AAC"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AAG", "AAG"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AAT", "AAT"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ACA", "ACA"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ACC", "ACC"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ACG", "ACG"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ACT", "ACT"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AGA", "AGA"),                                                                                                             
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AGC", "AGC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AGG", "AGG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "AGT", "AGT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ATA", "ATA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ATC", "ATC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ATG", "ATG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "ATT", "ATT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CAA", "CAA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CAC", "CAC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CAG", "CAG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CAT", "CAT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CCA", "CCA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CCC", "CCC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CCG", "CCG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CCT", "CCT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CGA", "CGA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CGC", "CGC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CGG", "CGG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CGT", "CGT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CTA", "CTA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CTC", "CTC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CTG", "CTG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "CTT", "CTT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GAA", "GAA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GAC", "GAC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GAG", "GAG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GAT", "GAT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GCA", "GCA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GCC", "GCC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GCG", "GCG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GCT", "GCT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GGA", "GGA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GGC", "GGC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GGG", "GGG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GGT", "GGT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GTA", "GTA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GTC", "GTC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GTG", "GTG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "GTT", "GTT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TAC", "TAC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TAT", "TAT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TCA", "TCA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TCC", "TCC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TCG", "TCG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TCT", "TCT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TGC", "TGC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TGG", "TGG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TGT", "TGT"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TTA", "TTA"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TTC", "TTC"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TTG", "TTG"),
-			        ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT");
-SQL
-						}
-						elsif ( $component_name eq "annotation_alienhunter" ) {
-							my $name = $sequence_object->{sequence_name};
-							my $file = $alienhunter_output_file . "_" . $name;
-							$components{$component} = $component . "/" . $file;
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
-			        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
-			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
-SQL
-						}
-						elsif ( $component_name eq "annotation_infernal" ) {
-							my $file = $infernal_output_file . "_" . $name;
-							$components{$component} = "$component/$file";
-						}
-						elsif ( $component_name eq "annotation_skews" ) {
-							my $filestring = `ls $skews_dir`;
-							my @phdfilenames = split( /\n/, $filestring );
-							my $seq_name = $sequence_object->sequence_name();
-							my $aux      = "";
-							foreach my $file (@phdfilenames) {
-								if (    $file =~ m/$seq_name/
-									and $file =~ m/.png/ )
-								{
-									$aux .= "$component/$file\n";
-								}
-							}
-							$components{$component} = $aux;
-						}
-						elsif ( $component_name eq "annotation_rbsfinder" ) {
-							my $file = $name . ".txt";
-							$components{$component} = "$component/$file";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
-			        ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " upstream", "value='neg' checked"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " downstream", "value='pos'"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
-SQL
-						}
-						elsif ( $component_name eq "annotation_rnammer" ) {
-							my $file = $name . "_rnammer.gff";
-							$components{$component} = "$component/$file";
-						}
-						elsif ( $component_name eq "annotation_glimmer3" ) {
-							$components{$component} =
-							  $component . "/glimmer3.txt";
-						}
-						elsif ( $component_name eq "annotation_transterm" ) {
-							my $file = $name . ".txt";
-							$components{$component} = "$component/$file";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
-			        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
-			        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
-			        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
-SQL
-						}
-						elsif ( $component_name eq "annotation_mreps" ) {
-							my $name = $sequence_object->{sequence_name};
-							my $file = $component . "/" . $name . "_mreps.txt";
-							$components{$component} = "$file";
-						}
-						elsif ( $component_name eq "annotation_string" ) {
-							my $name = $sequence_object->{sequence_name};
-							my $file =
-							  $string_dir . "/" . $name . "_string.txt";
-							$components{$component} = "$component/$file";
-						}
+					
+					if ( $component_name eq "annotation_trf" ) {
+						my $file = $name . "_trf.txt";
+						$components{$component} = "$annotation_dir/$component/$file";
 					}
+					elsif ( $component_name eq "annotation_trna" ) {
+						my $file = $name . "_trna.txt";
+						$components{$component} = "$annotation_dir/$component/$file";
+						$annotation_trna = 1;
+					}
+					elsif ( $component_name eq "annotation_alienhunter" ) {
+						my $file = $alienhunter_output_file . "_" . $name;
+						$components{$component} = "$annotation_dir/" . $component . "/" . $file;
+						$annotation_alienhunter = 1;
+					}
+					elsif ( $component_name eq "annotation_infernal" ) {
+						my $file = $infernal_output_file . "_" . $name;
+						$components{$component} = "$annotation_dir/$component/$file";
+					}
+					elsif ( $component_name eq "annotation_skews" ) {
+						my $filestring = `ls $skews_dir`;
+						my @phdfilenames = split( /\n/, $filestring );
+						my $aux      = "";
+						foreach my $file (@phdfilenames) {
+							if (    $file =~ m/$name/
+								and $file =~ m/.png/ )
+							{
+								$aux .= "$annotation_dir/$component/$file\n";
+							}
+						}
+						$components{$component} = $aux;
+					}
+					elsif ( $component_name eq "annotation_rbsfinder" ) {
+						my $file = $name . ".txt";
+						$components{$component} = "$annotation_dir/$component/$file";
+						$annotation_rbs = 1;
+					}
+					elsif ( $component_name eq "annotation_rnammer" ) {
+						my $file = $name . "_rnammer.gff";
+						$components{$component} = "$annotation_dir/$component/$file";
+					}
+					elsif ( $component_name eq "annotation_glimmer3" ) {
+						$components{$component} =
+						  "$annotation_dir/$component/glimmer3.txt";
+					}
+					elsif ( $component_name eq "annotation_transterm" ) {
+						my $file = $name . ".txt";
+						$components{$component} = "$annotation_dir/$component/$file";
+						$annotation_transterm = 1;
+					}
+					elsif ( $component_name eq "annotation_mreps" ) {
+						my $file = $component . "/" . $name . "_mreps.txt";
+						$components{$component} = "$file";
+					}
+					elsif ( $component_name eq "annotation_string" ) {
+						my $file =
+						  $string_dir . "/" . $name . "_string.txt";
+						$components{$component} = "$annotation_dir/$component/$file";
+					}
+					
 #					if ( $component_name =~ /annotation_/g ) {
 #						$component_name =~ s/annotation_//g;
 #					}
@@ -1325,30 +1303,23 @@ SQL
 					{
 #						print STDERR "\n[1268]\t-\t$component_name\t$component/$html_file\n" ;
 						if ( $component_name eq "annotation_blast" ) {
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
-SQL
-							$components{$component} = "$component/$html_file";
+							$components{$component} = "$annotation_dir/$component/$html_file";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
-
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$html_file');\n";
+							$annotation_blast = 1;
 					   #print $LOG "\nComponent blast test[917]:\t$component\n";
 						}
 						elsif ( $component_name eq "annotation_glimmer3" ) {
 							$components{$component} =
-							  $component . "/glimmer3.txt";
+							  "$annotation_dir/". $component . "/glimmer3.txt";
 							  $scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/glimmer3.txt');\n";
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/glimmer3.txt');\n";
 						}
 						elsif ( $component_name eq "annotation_interpro" ) {
-							$components{$component} = "$component/";
+							$components{$component} = "$annotation_dir/$component/";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/HTML/$html_file');\n";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
-SQL
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/HTML/$html_file');\n";
+							$annotation_interpro = 1;
 						}
 						elsif ( $component_name eq "annotation_orthology" ) {
 							my $code;
@@ -1361,83 +1332,43 @@ SQL
 							my $aux_html = $html_file;
 							$code = "." . $code . ".html";
 							$aux_html =~ s/.html/$code/g;
-							$components{$component} = "$component/$aux_html";
+							$components{$component} = "$annotation_dir/$component/$aux_html";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$aux_html');\n";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
-SQL
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$aux_html');\n";
+							$annotation_orthology = 1;
 						}
 						elsif ( $component_name eq "annotation_pathways" ) {
-							###
-							#
-							#	Pegando todos os pathways do arquivo KO
-							#
-							###
-							open( my $KOFILE, "<", $ko_file )
-							  or warn
-							  "WARNING: Could not open KO file $ko_file: $!\n";
-							my $content        = do { local $/; <$KOFILE> };
-							my @idKEGG         = ();
-							my %workAroundSort = ();
-							while (
-								$content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm )
-							{
-								if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
-									$workAroundSort{$2} = $1;
-									push @idKEGG, $1;
-								}
-							}
-
-							foreach my $key ( sort keys %workAroundSort ) {
-								my $value = $workAroundSort{$key};
-								$scriptSQL .= <<SQL;
-									INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
-SQL
-							}
-							close($KOFILE);
-							$components{$component} = "$component/$html_file";
+							$components{$component} = "$annotation_dir/$component/$html_file";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
-SQL
+								"\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$html_file');\n";
+							$annotation_pathways = 1;
 						}
 						elsif ( $component_name eq "annotation_phobius" ) {
-							$components{$component} = "$component/$png_file";
+							$components{$component} = "$annotation_dir/$component/$png_file";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "Phobius", "#phobius");
-SQL
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$png_file');\n";
 						}
 						elsif ( $component_name eq "annotation_rpsblast" ) {
-							$components{$component} = "$component/$txt_file";
+							$components{$component} = "$annotation_dir/$component/$txt_file";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$txt_file');\n";
-							$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
-SQL
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$txt_file');\n";
+							$annotation_rpsblast = 1;
 						}
 						elsif( $component_name eq "annotation_tmhmm" ) {
-							$components{$component} = "$component/$eps_file";
+							$components{$component} = "$annotation_dir/$component/$eps_file";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$eps_file');\n";
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$eps_file');\n";
 						}
 						elsif($component_name eq "annotation_predgpi" || $component_name eq "annotation_dgpi" || $component_name eq "annotation_tcdb") {
-							$components{$component} = "$component/$html_file";
+							$components{$component} = "$annotation_dir/$component/$html_file";
 							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$html_file');\n";
 						}
 						elsif ( $component_name eq "annotation_hmmer" ) {
-							$components{$component} =
+							$components{$component} = "$annotation_dir/" .
 							  $component . "/hmmer.txt";
 							  $scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/hmmer.txt');\n";
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/hmmer.txt');\n";
 						}
 					}
 					push @filepathsComponents, $components{$component};
@@ -1499,18 +1430,6 @@ SQL
 	close(FILE_AA);
 	close(FILE_NT);
 
-	#$html_dir/root/$aa_fasta_dir/$file_aa
-`makeblastdb -dbtype prot -in $html_dir/root/$aa_fasta_dir/$file_aa -parse_seqids -title '$name' -out $html_dir/root/$aa_fasta_dir/$name -logfile $html_dir/root/$aa_fasta_dir/makeblastdb.log`;
-
-	#$html_dir/root/$nt_fasta_dir/$file_nt
-`makeblastdb -dbtype nucl -in $html_dir/root/$nt_fasta_dir/$file_nt -parse_seqids -title '$name' -out $html_dir/root/$nt_fasta_dir/$name -logfile $html_dir/root/$nt_fasta_dir/makeblastdb.log`;
-`makeblastdb -dbtype nucl -in $html_dir/root/$fasta_dir/$name.fasta -parse_seqids -title '$name' -out $html_dir/root/$fasta_dir/$name -logfile $html_dir/root/$fasta_dir/makeblastdb.log`;
-	`mkdir -p $services_dir/root/`;
-	`mkdir -p $html_dir/root/$nt_fasta_dir/`;
-	`cp -r $html_dir/root/$aa_fasta_dir/ $services_dir/root/`;
-	`cp -r $html_dir/root/$nt_fasta_dir/ $services_dir/root/`;
-	`cp -r $html_dir/root/$fasta_dir/ $services_dir/root/`;
-
 #	if ( @{ $sequence_object->get_logs() } ) {
 #		foreach my $log ( @{ $sequence_object->get_logs() } ) {
 #			my $component = $log->{program};
@@ -1560,7 +1479,205 @@ SQL
 	#	foreach my $component ( sort @components_name ) {
 	#
 	#	}
+	#$sequence_object->print();
+}
 
+close($SEQUENCES_NT);
+close($SEQUENCES_AA);
+close($SEQUENCES);
+`cp -r $html_dir/root/Sequences.fasta $html_dir/root/$fasta_dir/Sequences.fasta`;
+`cp -r $html_dir/root/Sequences_AA.fasta $html_dir/root/$aa_fasta_dir/Sequences_AA.fasta`;
+`cp -r $html_dir/root/Sequences_NT.fasta $html_dir/root/$nt_fasta_dir/Sequences_NT.fasta`;
+`makeblastdb -dbtype prot -in $html_dir/root/$aa_fasta_dir/Sequences_AA.fasta -parse_seqids -title 'Sequences_AA' -out $html_dir/root/$aa_fasta_dir/Sequences_AA -logfile $html_dir/root/$aa_fasta_dir/makeblastdb.log`;
+`makeblastdb -dbtype nucl -in $html_dir/root/$nt_fasta_dir/Sequences_NT.fasta -parse_seqids -title 'Sequences_NT' -out $html_dir/root/$nt_fasta_dir/Sequences_NT -logfile $html_dir/root/$nt_fasta_dir/makeblastdb.log`;
+`makeblastdb -dbtype nucl -in $html_dir/root/$fasta_dir/Sequences.fasta -parse_seqids -title 'Sequences' -out $html_dir/root/$fasta_dir/Sequences -logfile $html_dir/root/$fasta_dir/makeblastdb.log`;
+`mkdir -p $services_dir/root/`;
+`mkdir -p $html_dir/root/$nt_fasta_dir/`;
+`cp -r $html_dir/root/$aa_fasta_dir/ $services_dir/root/`;
+`cp -r $html_dir/root/$nt_fasta_dir/ $services_dir/root/`;
+`cp -r $html_dir/root/$fasta_dir/ $services_dir/root/`;
+
+if($annotation_blast) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "BLAST", "#blast");
+SQL
+}
+if($annotation_interpro) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Gene ontology", "#geneOntology");
+SQL
+}
+if($annotation_orthology) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Orthology", "#orthologyAnalysis");
+SQL
+}
+if($annotation_pathways) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "KEGG", "#kegg");
+SQL
+
+	###
+	#
+	#	Pegando todos os pathways do arquivo KO
+	#
+	###
+	open( my $KOFILE, "<", $ko_file )
+	  or warn
+	  "WARNING: Could not open KO file $ko_file: $!\n";
+	my $content        = do { local $/; <$KOFILE> };
+	my @idKEGG         = ();
+	my %workAroundSort = ();
+	while (
+		$content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm )
+	{
+		if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
+			$workAroundSort{$2} = $1;
+			push @idKEGG, $1;
+		}
+	}
+
+	foreach my $key ( sort keys %workAroundSort ) {
+		my $value = $workAroundSort{$key};
+		$scriptSQL .= <<SQL;
+			INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "$key", "$value");
+SQL
+	}
+	close($KOFILE);
+}
+if($annotation_phobius) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Phobius", "#phobius");
+SQL
+}
+if($annotation_rpsblast) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
+SQL
+}
+if ($annotation_transterm) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
+			        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
+			        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
+			        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
+SQL
+}
+if($annotation_rbs) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-tab", "Ribosomal binding sites", "#ribosomalBindingSites"),
+			        ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " upstream", "value='neg' checked"),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " downstream", "value='pos'"),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", " either", "value='both'"),
+			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
+SQL
+}
+if($annotation_alienhunter) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
+			        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
+			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
+SQL
+}
+if($annotation_trna) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-tab", "tRNA", "#trna"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid", "Get tRNAs by amino acid: ", ""),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Alanine (A)", "Ala"),                                                                                                
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Arginine (R)", "Arg"),                                                                                               
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Asparagine (N)", "Asp"),                                                                                             
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Aspartic acid (D)", "Ala"),                                                                                          
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Cysteine (C)", "Cys"),                                                                                               
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamic acid (E)", "Glu"),                                                                                          
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glutamine (Q)", "Gln"),                                                                                              
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Glycine (G)", "Gly"),                                                                                                
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Histidine (H)", "His"),                                                                                              
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Isoleucine (I)", "Ile"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Leucine (L)", "Leu"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Lysine (K)", "Lys"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Methionine (M)", "Met"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Phenylalanine (F)", "Phe"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Proline (P)", "Pro"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Serine (S)", "Ser"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Threonine (T)", "Thr"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tryptophan (W)", "Trp"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Tyrosine (Y)", "Tyr"),
+			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "Valine (V)", "Val"),
+			        ("search-database-dna-based-analyses-get-by-codon", "Or get tRNAs by codon: ", ""),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AAA", "AAA"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AAC", "AAC"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AAG", "AAG"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AAT", "AAT"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ACA", "ACA"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ACC", "ACC"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ACG", "ACG"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ACT", "ACT"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AGA", "AGA"),                                                                                                             
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AGC", "AGC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AGG", "AGG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "AGT", "AGT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ATA", "ATA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ATC", "ATC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ATG", "ATG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "ATT", "ATT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CAA", "CAA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CAC", "CAC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CAG", "CAG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CAT", "CAT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CCA", "CCA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CCC", "CCC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CCG", "CCG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CCT", "CCT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CGA", "CGA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CGC", "CGC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CGG", "CGG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CGT", "CGT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CTA", "CTA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CTC", "CTC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CTG", "CTG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "CTT", "CTT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GAA", "GAA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GAC", "GAC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GAG", "GAG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GAT", "GAT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GCA", "GCA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GCC", "GCC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GCG", "GCG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GCT", "GCT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GGA", "GGA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GGC", "GGC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GGG", "GGG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GGT", "GGT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GTA", "GTA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GTC", "GTC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GTG", "GTG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "GTT", "GTT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TAC", "TAC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TAT", "TAT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TCA", "TCA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TCC", "TCC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TCG", "TCG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TCT", "TCT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TGC", "TGC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TGG", "TGG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TGT", "TGT"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TTA", "TTA"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TTC", "TTC"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TTG", "TTG"),
+			        ("search-database-dna-based-analyses-get-by-codon-options", "TTT", "TTT");
+SQL
 }
 
 #my $help;
@@ -1654,8 +1771,13 @@ print $fileHandler "\npipeline_id "
   . $uniquename . "\n";
 close($fileHandler);
 
+open($fileHandler, ">>", "$services_dir/services.conf");
+print $fileHandler "\nannotations_dir " . $annotation_dir;
+close($fileHandler);
+
 #create the file sql to be used
 print $LOG "\nCreating SQL file\tscript.sql\n";
+$scriptSQL .= "\nCOMMIT;\n";
 writeFile( "script.sql", $scriptSQL );
 
 #create file database
@@ -1794,7 +1916,7 @@ foreach my $component ( sort keys %components ) {
 	{
 		$hadGlobal = 1;
 	}
-	if ( $component =~ /^annotation_/gi ) {
+	if ( $component =~ m/annotation/gi ) {
 		$hadSearchDatabase = 1;
 	}
 }
@@ -1843,8 +1965,16 @@ sub analyses_CDS {
 	  . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
 	  . "join featureprop pd on (r.subject_id = pd.feature_id) "
 	  . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
-	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?)";
+	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ";
 	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ) ";
+		push \@args, \$hash->{contig};
+	} else {
+		\$query .= " ) ";
+	}
+	
 	my \$connector = "1";
 
 	my \$query_gene     = "";
@@ -1979,87 +2109,6 @@ sub analyses_CDS {
 		}
 		\$query_TCDB = \$connector . \$query_TCDB . ")";
 		\$connector  = "1";
-	}
-	if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
-		|| ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} )
-		|| ( exists \$hash->{'sigP'}  && \$hash->{'sigP'} ) )
-	{
-		my \$select = "(SELECT DISTINCT r.object_id ";
-		my \$join =
-		    "FROM feature f "
-		  . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
-		  . "JOIN feature fo ON (r.object_id = fo.feature_id) "
-		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-		  . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
-		  . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
-		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
-		my \$conditional =
-"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
-		push \@args, \$hash->{pipeline};
-
-		\$connector = " INTERSECT " if \$connector;
-		if ( \$hash->{noPhobius} ) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
-		}
-		elsif ( \$hash->{'TMdom'} ) {
-			\$join .=
-			    "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-			  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
-			  . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
-			  . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
-			  . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
-			\$conditional .=
-" AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
-
-			if ( \$hash->{'tmQuant'} eq "exact" ) {
-				\$conditional .= "= ? ";
-			}
-			elsif ( \$hash->{'tmQuant'} eq "orLess" ) {
-				\$conditional .= "<= ? ";
-			}
-			elsif ( \$hash->{'tmQuant'} eq "orMore" ) {
-				\$conditional .= ">= ? ";
-			}
-			push \@args, \$hash->{'TMdom'};
-			\$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
-			\$connector     = "1";
-		}
-		else {
-			\$query_Phobius = "";
-		}
-		if ( \$hash->{'sigP'} ne "sigPwhatever" ) {
-			if ( \$hash->{'sigP'} ne "sigPwhatever"
-				&& !\$hash->{'noPhobius'} )
-			{
-				my \$sigPconn = "";
-				if ( \$hash->{'sigP'} eq "sigPyes" ) {
-					\$sigPconn = " INTERSECT " if \$connector;
-				}
-				elsif ( \$hash->{'sigP'} eq "sigPno" ) {
-					\$sigPconn = " EXCEPT " if \$connector;
-				}
-
-				\$query_sigP .=
-				  " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
-                        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
-                        JOIN feature fo ON (r.object_id = fo.feature_id)
-                        JOIN featureloc l ON (r.object_id = l.feature_id)
-                        JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
-                        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
-                        JOIN analysis a ON (a.analysis_id = af.analysis_id)
-                        JOIN cvterm c ON (p.type_id = c.cvterm_id)
-                        JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
-                        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
-                        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
-                        JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
-                        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
-                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
-				push \@args, \$hash->{pipeline};
-			}
-			\$connector = "1";
-		}
 	}
 	if (   ( exists \$hash->{'noBlast'} && \$hash->{'noBlast'} )
 		|| ( exists \$hash->{'blastID'}   && \$hash->{'blastID'} )
@@ -2254,6 +2303,86 @@ sub analyses_CDS {
 		\$query_interpro = \$connector . \$query_interpro . \$conditional . ")";
 		\$connector      = 1;
 	}
+	if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
+		|| ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) )
+	{
+		my \$select = "(SELECT DISTINCT r.object_id ";
+		my \$join =
+		    "FROM feature f "
+		  . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
+		  . "JOIN feature fo ON (r.object_id = fo.feature_id) "
+		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+		  . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
+		  . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
+		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
+		my \$conditional =
+"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
+		push \@args, \$hash->{pipeline};
+
+		\$connector = " INTERSECT " if \$connector;
+		if ( \$hash->{noPhobius} ) {
+			\$connector = " EXCEPT " if \$connector;
+			\$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
+		}
+		elsif ( \$hash->{'TMdom'} ) {
+			\$join .=
+			    "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+			  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+			  . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
+			  . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
+			  . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
+			\$conditional .=
+" AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
+
+			if ( \$hash->{'tmQuant'} eq "exact" ) {
+				\$conditional .= "= ? ";
+			}
+			elsif ( \$hash->{'tmQuant'} eq "orLess" ) {
+				\$conditional .= "<= ? ";
+			}
+			elsif ( \$hash->{'tmQuant'} eq "orMore" ) {
+				\$conditional .= ">= ? ";
+			}
+			push \@args, \$hash->{'TMdom'} if \$hash->{'tmQuant'};
+			\$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
+			\$connector     = "1";
+		}
+		else {
+			\$query_Phobius = "";
+		}
+		if ( \$hash->{'sigP'} ne "sigPwhatever" ) {
+			if ( \$hash->{'sigP'} ne "sigPwhatever"
+				&& !\$hash->{'noPhobius'} )
+			{
+				my \$sigPconn = "";
+				if ( \$hash->{'sigP'} eq "sigPyes" ) {
+					\$sigPconn = " INTERSECT " if \$connector;
+				}
+				elsif ( \$hash->{'sigP'} eq "sigPno" ) {
+					\$sigPconn = " EXCEPT " if \$connector;
+				}
+
+				\$query_sigP .=
+				  " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
+                        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+                        JOIN feature fo ON (r.object_id = fo.feature_id)
+                        JOIN featureloc l ON (r.object_id = l.feature_id)
+                        JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
+                        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+                        JOIN analysis a ON (a.analysis_id = af.analysis_id)
+                        JOIN cvterm c ON (p.type_id = c.cvterm_id)
+                        JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
+                        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
+                        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
+                        JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
+                        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
+                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
+				push \@args, \$hash->{pipeline};
+			}
+			\$connector = "1";
+		}
+	}
 
 	\$query =
 	    \$query
@@ -2269,6 +2398,19 @@ sub analyses_CDS {
 	  . \$query_interpro
 	  . " ) as motherfuckerquery GROUP BY motherfuckerquery.feature_id ORDER BY motherfuckerquery.feature_id ";
 	  
+	if (!\$query_Phobius) {
+		my \$quantityParameters = () = \$query =~ /\\?/g;
+		my \$counter = scalar \@args;
+		if(\$counter > \$quantityParameters) {
+			while(scalar \@args > \$quantityParameters) {
+				print STDERR "\nARGS:\t".\$_."\n" foreach (\@args);
+				shift \@args;
+#				delete \$args[\$counter-1];
+#				\$counter--;
+			}
+		}
+	}
+	  
 	if (   exists \$hash->{pageSize}
 		&& \$hash->{pageSize}
 		&& exists \$hash->{offset}
@@ -2283,17 +2425,7 @@ sub analyses_CDS {
 			\$query .= " OFFSET ? ";
 			push \@args, \$hash->{offset};
 		}
-	}
-
-	my \$quantityParameters = () = \$query =~ /\\?/g;
-	my \$counter = scalar \@args;
-	if(\$counter > \$quantityParameters) {
-		while(scalar \@args > \$quantityParameters) {
-			delete \$args[\$counter-1];
-			\$counter--;
-		}
-	}
-	
+	}	
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
@@ -2375,6 +2507,22 @@ sub tRNA_search {
 		\$query .= "and pa.value = ?";
 		push \@args, \$anticodon;
 	}
+	
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
@@ -2410,7 +2558,7 @@ sub trf_search {
 	my \@args      = ();
 	my \$connector = "";
 	my \$select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence ";
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence, fl.feature_id, COUNT(*) OVER() AS total ";
 	my \$join = "from feature_relationship r
                  join featureloc l on (r.subject_id = l.feature_id)
                  join feature fl on (fl.feature_id = l.srcfeature_id)
@@ -2492,13 +2640,30 @@ sub trf_search {
 	}
 
 	\$query = \$select . \$join . \$query;
+	
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
 	my \@list = ();
-
+	my \%hash = ();
+	
 	use Report_HTML_DB::Models::Application::TRFSearch;
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \$result = Report_HTML_DB::Models::Application::TRFSearch->new(
@@ -2507,12 +2672,15 @@ sub trf_search {
 			end         => \$rows[\$i][2],
 			'length'    => \$rows[\$i][3],
 			copy_number => \$rows[\$i][4],
-			sequence    => \$rows[\$i][5]
+			sequence    => \$rows[\$i][5],
+			feature_id	=> \$rows[\$i][6],
 		);
 		push \@list, \$result;
+		\$hash{total} = \$rows[\$i][7];
 	}
 
-	return \\\@list;
+	\$hash{list} = \\\@list;
+	return \\\%hash;
 }
 
 =head2
@@ -2526,7 +2694,7 @@ sub ncRNA_search {
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
 	my \$select =
-"select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description";
+"select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description, COUNT(*) OVER() AS total ";
 	my \$join = " from feature_relationship r 
                 join featureloc lc on (r.subject_id = lc.feature_id)
                 join feature fl on (fl.feature_id = lc.srcfeature_id)
@@ -2606,13 +2774,29 @@ sub ncRNA_search {
 	}
 
 	\$query = \$select . \$join . \$query;
+	
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
 	my \@list = ();
-
+	my \%hash = ();
 	use Report_HTML_DB::Models::Application::NcRNASearch;
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \$result = Report_HTML_DB::Models::Application::NcRNASearch->new(
@@ -2621,17 +2805,18 @@ sub ncRNA_search {
 			start        => \$rows[\$i][3],
 			end          => \$rows[\$i][2],
 			description  => \$rows[\$i][4],
-			target_ID    => \$rows[\$i][5] ? \$rows[\$i][5] !~ '' : '',
-			evalue       => \$rows[\$i][5] ? \$rows[\$i][5] !~ '' : '',
-			target_name  => \$rows[\$i][5] ? \$rows[\$i][5] !~ '' : '',
-			target_class => \$rows[\$i][5] ? \$rows[\$i][5] !~ '' : '',
-			target_type  => \$rows[\$i][5] ? \$rows[\$i][5] !~ '' : ''
+			target_ID    => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+			evalue       => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+			target_name  => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+			target_class => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+			target_type  => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : ''
 
 		);
 		push \@list, \$result;
+		\$hash{total} = \$rows[\$i][5];
 	}
-
-	return \\\@list;
+	\$hash{list} = \\\@list;
+	return \\\%hash;
 }
 
 =head2
@@ -2645,16 +2830,8 @@ sub transcriptional_terminator_search {
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
 	my \$select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value";
-	if ( \$hash->{'TTconf'} !~ /^\\s*\$/ ) {
-		\$select .= " AS confidence";
-	}
-	elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ ) {
-		\$select .= " AS hairpin_score";
-	}
-	elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ ) {
-		\$select .= " AS tail_score";
-	}
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppConfidence.value AS confidence, ppHairpinScore.value AS hairpin_score, ppTailScore.value AS tail_score, fl.feature_id, COUNT(*) OVER() AS total ";
+	
 	my \$join = " from feature_relationship r
                  join featureloc lc on (r.subject_id = lc.feature_id)
                  join feature fl on (fl.feature_id = lc.srcfeature_id)
@@ -2664,10 +2841,14 @@ sub transcriptional_terminator_search {
                  join analysis a on (a.analysis_id = af.analysis_id)
                  join featureprop p on (p.feature_id = l.srcfeature_id)
                  join cvterm cp on (p.type_id = cp.cvterm_id)
-                 join featureprop pp on (pp.feature_id = r.subject_id)
-                 join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+                 join featureprop ppConfidence on (ppConfidence.feature_id = r.subject_id)
+                 join cvterm cppConfidence on (ppConfidence.type_id = cppConfidence.cvterm_id) 
+                 join featureprop ppHairpinScore on (ppHairpinScore.feature_id = r.subject_id)
+                 join cvterm cppHairpinScore on (ppHairpinScore.type_id = cppHairpinScore.cvterm_id) 
+                 join featureprop ppTailScore on (ppTailScore.feature_id = r.subject_id)
+                 join cvterm cppTailScore on (ppTailScore.type_id = cppTailScore.cvterm_id) ";
 	my \$query =
-"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? ";
+"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? and cppConfidence.name = 'confidence' AND cppHairpinScore.name = 'hairpin' AND cppTailScore.name = 'tail' ";
 	push \@args, \$hash->{pipeline};
 
 	my \$search_field;
@@ -2677,63 +2858,74 @@ sub transcriptional_terminator_search {
 	if ( \$hash->{'TTconf'} !~ /^\\s*\$/ ) {
 		\$search_field = \$hash->{'TTconf'} + 1;
 		\$modifier     = \$hash->{'TTconfM'};
-		\$field        = "confidence";
+		\$field        = "ppConfidence";
 	}
 	elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ ) {
 		\$search_field = \$hash->{'TThp'} + 1;
 		\$modifier     = \$hash->{'TThpM'};
-		\$field        = "hairpin";
+		\$field        = "ppHairpinScore";
 	}
 	elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ ) {
 		\$search_field = \$hash->{'TTtail'} + 1;
 		\$modifier     = \$hash->{'TTtailM'};
-		\$field        = "tail";
+		\$field        = "ppTailScore";
 	}
 
 	\$search_field =~ s/\\s+//g;
 
 	if ( \$modifier eq "exact" ) {
-		\$query .= "and cpp.name = ? and my_to_decimal(pp.value) = ? ";
+		\$query .= " and my_to_decimal(\$field.value) = ? ";
 	}
 	elsif ( \$modifier eq "orLess" ) {
-		\$query .= "and cpp.name = ? and my_to_decimal(pp.value) <= ? ";
+		\$query .= " and my_to_decimal(\$field.value) <= ? ";
 	}
 	elsif ( \$modifier eq "orMore" ) {
-		\$query .= "and cpp.name = ? and my_to_decimal(pp.value) >= ? ";
+		\$query .= " and my_to_decimal(\$field.value) >= ? ";
 	}
 
-	push \@args, \$field    if (\$field);
 	push \@args, (\$search_field - 1) if (\$search_field);
 
 	\$query = \$select . \$join . \$query;
+
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
-
+	my \%hash = ();
 	my \@list    = ();
 	my \@columns = \@{ \$sth->{NAME} };
 	use Report_HTML_DB::Models::Application::TranscriptionalTerminator;
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \$result = Report_HTML_DB::Models::Application::TranscriptionalTerminator->new(
-			contig => \$rows[\$i][0],
-			start  => \$rows[\$i][1],
-			end    => \$rows[\$i][2]
+			contig 			=> \$rows[\$i][0],
+			start  			=> \$rows[\$i][1],
+			end    			=> \$rows[\$i][2],
+			confidence    	=> \$rows[\$i][3],
+			hairping_score  	=> \$rows[\$i][4],
+			tail_score    	=> \$rows[\$i][5],
+			feature_id		=> \$rows[\$i][6],
 		);
-		if ( \$columns[3] eq "confidence" ) {
-			\$result->setConfidence( \$rows[\$i][3] );
-		}
-		elsif ( \$columns[3] eq "hairpin_score" ) {
-			\$result->setHairpinScore( \$rows[\$i][3] );
-		}
-		elsif ( \$columns[3] eq "tail_score" ) {
-			\$result->setTailScore( \$rows[\$i][3] );
-		}
 		push \@list, \$result;
+		\$hash{total} = \$rows[\$i][7];
 	}
-
-	return \\\@list;
+	\$hash{list} = \\\@list;
+	return \\\%hash;
 }
 
 =head2
@@ -2742,23 +2934,23 @@ Method used to return ribosomal binding sites data from database
 
 =cut
 
-#TODO: Criar modelo RBS
 sub rbs_search {
 	my ( \$self, \$hash ) = \@_;
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
 	my \$select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value";
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, fl.feature_id, ppSitePattern.value AS site_pattern, ppPositionShift.value AS position_shift, ".
+	" ppOldStart.value AS old_start, COUNT(*) OVER() AS total ";
 
-	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
-		\$select .= " AS site_pattern";
-	}
-	elsif ( \$hash->{'RBSnewcodon'} !~ /^\\s*\$/ ) {
-		\$select .= " AS old_start";
-	}
-	else {
-		\$select .= " AS position_shift";
-	}
+#	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
+#		\$select .= " AS site_pattern";
+#	}
+#	elsif ( \$hash->{'RBSnewcodon'} !~ /^\\s*\$/ ) {
+#		\$select .= " AS old_start";
+#	}
+#	else {
+#		\$select .= " AS position_shift";
+#	}
 	my \$join = " from feature_relationship r
                 join featureloc lc on (r.subject_id = lc.feature_id) 
                 join feature fl on (fl.feature_id = lc.srcfeature_id) 
@@ -2768,30 +2960,33 @@ sub rbs_search {
                 join analysis a on (a.analysis_id = af.analysis_id)
                 join featureprop p on (p.feature_id = l.srcfeature_id)
                 join cvterm cp on (p.type_id = cp.cvterm_id)
-                join featureprop pp on (pp.feature_id = r.subject_id)
-                join cvterm cpp on (pp.type_id = cpp.cvterm_id)";
+                join featureprop ppSitePattern on (ppSitePattern.feature_id = r.subject_id)
+                join cvterm cppSitePattern on (ppSitePattern.type_id = cppSitePattern.cvterm_id) 
+                join featureprop ppOldStart on (ppOldStart.feature_id = r.subject_id)
+                join cvterm cppOldStart on (ppOldStart.type_id = cppOldStart.cvterm_id)
+                join featureprop ppPositionShift on (ppPositionShift.feature_id = r.subject_id)
+                join cvterm cppPositionShift on (ppPositionShift.type_id = cppPositionShift.cvterm_id)";
 	my \$query =
-"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ";
+"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
+" and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift' ";
 	push \@args, \$hash->{pipeline};
-
-	my \$newcodon = 0;
 
 	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
 		\$hash->{'RBSpattern'} =~ s/\\s*//g;
-		\$query .= "and cpp.name='RBS_pattern' and lower(pp.value) like ? ";
+		\$query .= " and lower(ppSitePattern.value) like ? ";
 		push \@args, lc( "\%" . \$hash->{'RBSpattern'} . "\%" );
 	}
 	elsif ( \$hash->{'RBSshift'} ) {
 		if ( \$hash->{'RBSshiftM'} eq "both" ) {
-			\$query .= "and cpp.name='position_shift' and pp.value != '0'";
+			\$query .= " and ppPositionShift.value != '0'";
 		}
 		elsif ( \$hash->{'RBSshiftM'} eq "neg" ) {
 			\$query .=
-			  "and cpp.name='position_shift' and my_to_decimal(pp.value) < '0'";
+			  " and my_to_decimal(ppPositionShift.value) < '0'";
 		}
 		elsif ( \$hash->{'RBSshiftM'} eq "pos" ) {
 			\$query .=
-			  "and cpp.name='position_shift' and my_to_decimal(pp.value) > '0'";
+			  " and my_to_decimal(ppPositionShift.value) >= '0'";
 		}
 	}
 	elsif ( \$hash->{'RBSnewcodon'} ) {
@@ -2799,44 +2994,53 @@ sub rbs_search {
 		\$join .=
 "join featureprop pp2 on (pp2.feature_id = r.subject_id) join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id)";
 		\$query .=
-"and cpp.name='old_start_codon' and cpp2.name='new_start_codon' and (pp.value != pp2.value)";
-		\$newcodon++;
+"and cppOldStart.name='old_start_codon' and cpp2.name='new_start_codon' and (ppOldStart.value != pp2.value)";
 	}
 
 	\$query = \$select . \$join . \$query;
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
 	my \@list = ();
-
+	my \%hash = ();
 	my \@columns = \@{ \$sth->{NAME} };
 	use Report_HTML_DB::Models::Application::RBSSearch;
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \$result = Report_HTML_DB::Models::Application::RBSSearch->new(
-			contig => \$rows[\$i][0],
-			start  => \$rows[\$i][1],
-			end    => \$rows[\$i][2]
+			contig 			=> \$rows[\$i][0],
+			start  			=> \$rows[\$i][2],
+			end    			=> \$rows[\$i][1],
+			feature_id 		=> \$rows[\$i][3],
+			site_pattern	=> \$rows[\$i][4],
+			position_shift	=> \$rows[\$i][5],
+			old_start		=> \$rows[\$i][6]
 		);
-		if ( \$columns[3] eq "site_pattern" ) {
-			\$result->setSitePattern( \$rows[\$i][3] );
-		}
-		elsif ( \$columns[3] eq "old_start" ) {
-			\$result->setOldStart( \$rows[\$i][3] );
-		}
-		elsif ( \$columns[3] eq "position_shift" ) {
-			\$result->setPositionShift( \$rows[\$i][3] );
-		}
 
-		if ( \$columns[4] eq "new_start" ) {
-			\$result->setNewStart( \$rows[\$i][4] );
+		if ( \$columns[8] eq "new_start" ) {
+			\$result->setNewStart( \$rows[\$i][8] );
 		}
-
+		\$hash{total} = \$rows[\$i][7];
 		push \@list, \$result;
 	}
-
-	return \\\@list;
+	\$hash{list} = \\\@list;
+	return \\\%hash;
 }
 
 =head2
@@ -2850,30 +3054,25 @@ sub alienhunter_search {
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
 	my \$select =
-"select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value ";
+"select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppLength.value AS length, ppScore.value AS score, ppThreshold.value AS threshold, fl.feature_id, COUNT(*) OVER() AS total ";
 
-	if ( \$hash->{'AHlen'} !~ /^\\s*\$/ ) {
-		\$select .= " AS length";
-	}
-	elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ ) {
-		\$select .= " AS score";
-	}
-	elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ ) {
-		\$select .= " AS threshold";
-	}
 	my \$join = " from feature_relationship r
                 join featureloc lc on (r.subject_id = lc.feature_id) 
                 join feature fl on (fl.feature_id = lc.srcfeature_id) 
-                join cvterm c on (r.type_id = c.cvterm_id)
-                join featureloc l on (r.subject_id = l.feature_id)
-                join analysisfeature af on (af.feature_id = r.object_id)
-                join analysis a on (a.analysis_id = af.analysis_id)
-                join featureprop p on (p.feature_id = l.srcfeature_id)
-                join cvterm cp on (p.type_id = cp.cvterm_id)
-                join featureprop pp on (pp.feature_id = r.subject_id)
-                join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+                join cvterm c on (r.type_id = c.cvterm_id) 
+                join featureloc l on (r.subject_id = l.feature_id) 
+                join analysisfeature af on (af.feature_id = r.object_id) 
+                join analysis a on (a.analysis_id = af.analysis_id) 
+                join featureprop p on (p.feature_id = l.srcfeature_id) 
+                join cvterm cp on (p.type_id = cp.cvterm_id) 
+                join featureprop ppLength on (ppLength.feature_id = r.subject_id) 
+                join cvterm cppLength on (ppLength.type_id = cppLength.cvterm_id) 
+                join featureprop ppScore on (ppScore.feature_id = r.subject_id) 
+                join cvterm cppScore on (ppScore.type_id = cppScore.cvterm_id) 
+                join featureprop ppThreshold on (ppThreshold.feature_id = r.subject_id) 
+                join cvterm cppThreshold on (ppThreshold.type_id = cppThreshold.cvterm_id) ";
 	my \$query =
-"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? ";
+"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? and cppLength.name = 'length' and cppScore.name = 'score' and cppThreshold.name = 'threshold' ";
 	push \@args, \$hash->{pipeline};
 
 	my \$search_field;
@@ -2883,65 +3082,76 @@ sub alienhunter_search {
 	if ( \$hash->{'AHlen'} !~ /^\\s*\$/ ) {
 		\$search_field = \$hash->{'AHlen'} + 1;
 		\$modifier     = \$hash->{'AHlenM'};
-		\$field        = "length";
+		\$field		  = "ppLength";
 	}
 	elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ ) {
 		\$search_field = \$hash->{'AHscore'} + 1;
 		\$modifier     = \$hash->{'AHscM'};
-		\$field        = "score";
+		\$field		  = "ppScore";
 	}
 	elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ ) {
 		\$search_field = \$hash->{'AHthr'} + 1;
 		\$modifier     = \$hash->{'AHthrM'};
-		\$field        = "threshold";
+		\$field		  = "ppThreshold";
 	}
 
 	\$search_field =~ s/\\s+//g;
 
 	if ( \$modifier eq "exact" ) {
-		\$query .= "and cpp.name = ? and my_to_decimal(pp.value) = ? ";
+		\$query .= " and my_to_decimal(\$field.value) = ? ";
 	}
 	elsif ( \$modifier eq "orLess" ) {
-		\$query .= "and cpp.name = ? and my_to_decimal(pp.value) <= ? ";
+		\$query .= " and my_to_decimal(\$field.value) <= ? ";
 	}
 	elsif ( \$modifier eq "orMore" ) {
-		\$query .= "and cpp.name = ? and my_to_decimal(pp.value) >= ? ";
+		\$query .= " and my_to_decimal(\$field.value) >= ? ";
 	}
 
-	push \@args, \$field        if \$field;
 	push \@args, (\$search_field - 1) if \$search_field;
 
 	\$query = \$select . \$join . \$query;
+	
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
 	my \@list = ();
-
+	my \%hash = ();
 	my \@columns = \@{ \$sth->{NAME} };
 	use Report_HTML_DB::Models::Application::AlienHunterSearch;
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \$result = Report_HTML_DB::Models::Application::AlienHunterSearch->new(
-			id     => \$rows[\$i][0],
-			contig => \$rows[\$i][1],
-			start  => \$rows[\$i][2],
-			end    => \$rows[\$i][3],
+			id     		=> \$rows[\$i][0],
+			contig 		=> \$rows[\$i][1],
+			start  		=> \$rows[\$i][2],
+			end    		=> \$rows[\$i][3],
+			length 		=> \$rows[\$i][4],
+			score  		=> \$rows[\$i][5],
+			threshold 	=> \$rows[\$i][6],
+			feature_id	=> \$rows[\$i][7],
 		);
-		if ( \$columns[4] eq "length" ) {
-			\$result->setLength( \$rows[\$i][4] );
-		}
-		elsif ( \$columns[4] eq "score" ) {
-			\$result->setScore( \$rows[\$i][4] );
-		}
-		elsif ( \$columns[4] eq "threshold" ) {
-			\$result->setThreshold( \$rows[\$i][4] );
-		}
 
+		\$hash{total} = \$rows[\$i][8];
 		push \@list, \$result;
 	}
-
-	return \\\@list;
+	\$hash{list} = \\\@list;
+	return \\\%hash;
 }
 
 =head2
@@ -2986,6 +3196,11 @@ sub searchGene {
 	my \$where =
 "WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = ? ";
 	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$where .= " AND featureloc_features_2.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
 
 	my \$connector = "";
 	if ( exists \$hash->{featureId} && \$hash->{featureId} ) {
@@ -3020,7 +3235,7 @@ sub searchGene {
 				  generate_clause( "?", "", "",
 					"lower(feature_relationship_props_subject_feature_2.value)"
 				  );
-				push \@args, lc( "%" . \$1 . "%" );
+				push \@args, lc( "\%" . \$1 . "\%" );
 			}
 		}
 		if ( \$hash->{noDescription} ) {
@@ -3029,7 +3244,7 @@ sub searchGene {
 				  generate_clause( "?", "NOT", "",
 					"lower(feature_relationship_props_subject_feature_2.value)"
 				  );
-				push \@args, lc( "%" . \$1 . "%" );
+				push \@args, lc( "\%" . \$1 . "\%" );
 			}
 		}
 
@@ -3378,7 +3593,7 @@ sub intervalEvidenceProperties {
 					\$tempHash{\$key} = \$property{\$key};
 				}
 			}
-			push \@listProperties, \\%tempHash;
+			push \@listProperties, \\\%tempHash;
 			\%property = ();
 			if ( \$hash->{key} eq "anticodon" ) {
 				\$property{ \$hash->{key} } = \$hash->{key_value};
@@ -3480,7 +3695,7 @@ and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
 					push \@values, \$2;
 				}
 			}  else {
-				while (\$response =~ /(?:\\w+)\\|(\\w+\\.*\\w*)\\|([\\w\\ \\:\\[\\]\\<\\>\\.\\-\\+\\*\\(\\)\\&\\%\\\$\\#\\@\\!\\/]*)\$/g) {
+				while (\$response =~ /(?:\\w+)\\|(\\w+\\.*\\w*)\\|([\\w\\ \\:\\[\\]\\<\\>\\.\\-\\+\\*\\(\\)\\&\\\\\%\\\$\\#\\\@\\!\\/]*)\$/g) {
 					push \@values, \$1;
 					push \@values, \$2;
 				}
@@ -3557,7 +3772,7 @@ sub get_target_class {
 
 =head1 NAME
 
-$packageDBI - DBI Model Class
+services::Model::SearchDatabaseRepository - DBI Model Class
 
 =head1 SYNOPSIS
 
@@ -3818,7 +4033,7 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
 
 	use File::Basename;
 	open( my \$FILEHANDLER,
-		"<", dirname(__FILE__) . "/../../../root/" . \$hash{filepath} );
+		"<", \$hash{filepath} );
 	my \$content = do { local(\$/); <\$FILEHANDLER> };;
 	close(\$FILEHANDLER);
 	
@@ -3841,6 +4056,53 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
 	\$c->response->body(\$content);
 	
 }
+
+sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : CaptureArgs(2) {
+	my (\$self, \$c, \$contig, \$type) = \@_;
+	if ( !\$type and defined \$c->request->param("type") ) {
+		\$type = \$c->request->param("type");
+	}
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
+	my \$name = "";
+	if(\$type eq "rna") {
+		\$name = "infernal";
+	} elsif(\$type eq "rrna_prediction") {
+		\$name = "rnammer";
+	} elsif(\$type =~ "trna") {
+		\$name = "trna";
+	}
+	
+	my \$filepath = (
+		\$c->model('Basic::Component')->search(
+			{
+				name 		=> {  "like", "%".\$name."%"},
+				filepath 	=> { "like", "%".\$contig."%"}
+			},
+			{
+				columns => qw/filepath/,
+				rows    => 1
+			}
+		)->single->get_column(qw/filepath/)
+	);
+	open( my \$FILEHANDLER, "<", \$filepath );
+	binmode \$FILEHANDLER;
+	my \$file;
+
+	local \$/ = \\10240;
+	while (<\$FILEHANDLER>) {
+		\$file .= \$_;
+	}
+	\$c->response->body(\$file);
+	\$c->response->headers->content_type('application/x-download');
+	my \$filename = "";
+	\$filename = \$_ foreach (\$filepath =~ /\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_]+)/g);
+	\$c->response->body(\$file);
+	\$c->response->header('Content-Disposition' => 'attachment; filename='.\$filename);
+	close \$FILEHANDLER;
+}
+	 
 
 =head2
 
@@ -4056,11 +4318,11 @@ sub search_POST {
 	print \$FILEHANDLER \$hash{SEQUENCE};
 	close(\$FILEHANDLER);
 
-	\$hash{DATALIB} = "saida_db/services/root/seq/Bacteria"
+	\$hash{DATALIB} = \$c->config->{annotations_dir} . "/services/root/seq/Sequences"
 	  if ( \$hash{DATALIB} eq "PMN_genome_1" );
-	\$hash{DATALIB} = "saida_db/services/root/orfs_nt/Bacteria"
+	\$hash{DATALIB} = \$c->config->{annotations_dir} . "/services/root/orfs_nt/Sequences_NT"
 	  if ( \$hash{DATALIB} eq "PMN_genes_1" );
-	\$hash{DATALIB} = "saida_db/services/root/orfs_aa/Bacteria"
+	\$hash{DATALIB} = \$c->config->{annotations_dir} . "/services/root/orfs_aa/Sequences_AA"
 	  if ( \$hash{DATALIB} eq "PMN_prot_1" );
 	my \$content = "";
 	if ( exists \$hash{PROGRAM} ) {
@@ -4247,7 +4509,7 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(6) :
 sub searchGene_GET {
 	my ( \$self, 	\$c, 	\$pipeline, 	\$geneID, 
 		\$geneDescription, 	\$noDescription, \$individually,	\$featureId,
-		\$pageSize,        \$offset )
+		\$pageSize,        \$offset, \$contig )
 	  = \@_;
 
 	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
@@ -4274,6 +4536,9 @@ sub searchGene_GET {
 	if ( !\$offset and defined \$c->request->param("offset") ) {
 		\$offset = \$c->request->param("offset");
 	}
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
 
 	my \@list = ();
 	my \%hash = ();
@@ -4285,6 +4550,7 @@ sub searchGene_GET {
 	\$hash{individually}    = \$individually;
 	\$hash{pageSize}        = \$pageSize;
 	\$hash{offset}          = \$offset;
+	\$hash{contig}		    = \$contig if \$contig;
 
 	my \$result     = \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash );
 	my \@resultList = \@{ \$result->{list} };
@@ -4718,13 +4984,14 @@ sub tandemRepeatsSearch_GET {
 			\$hash{\$key} = \$c->request->params->{\$key};
 		}
 	}
-
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->trf_search( \\\%hash ) };
+	my \$result = \$c->model('SearchDatabaseRepository')->trf_search( \\\%hash );
+	my \@resultList = \@{ \$result->{list} };
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, 
+		\$hash{offset} );
 }
 
 =head2
@@ -4748,13 +5015,15 @@ sub ncRNASearch_GET {
 		}
 	}
 
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->ncRNA_search( \\\%hash ) };
+	my \$result = \$c->model('SearchDatabaseRepository')->ncRNA_search( \\\%hash );
+	my \@resultList = \@{ \$result->{list} };
 
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, 
+		\$hash{offset} );
 }
 
 =head2
@@ -4779,26 +5048,28 @@ sub transcriptionalTerminatorSearch_GET {
 		}
 	}
 
+	my \$result = \$c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \\\%hash );
 	my \@resultList =
-	  \@{ \$c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \\\%hash ) };
+	  \@{ \$result->{list} };
 
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		my \%hash = (
+		my \%object = (
 			contig => \$resultList[\$i]->getContig,
 			start  => \$resultList[\$i]->getStart,
 			end    => \$resultList[\$i]->getEnd,
 		);
 
-		\$hash{confidence} = \$resultList[\$i]->getConfidence
+		\$object{confidence} = \$resultList[\$i]->getConfidence
 		  if \$resultList[\$i]->getConfidence;
-		\$hash{hairpin_score} = \$resultList[\$i]->getHairpinScore
+		\$object{hairpin_score} = \$resultList[\$i]->getHairpinScore
 		  if \$resultList[\$i]->getHairpinScore;
-		\$hash{tail_score} = \$resultList[\$i]->getTailScore
+		\$object{tail_score} = \$resultList[\$i]->getTailScore
 		  if \$resultList[\$i]->getTailScore;
-		push \@list, \\\%hash;
+		push \@list, \\\%object;
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total},  \$hash{pageSize}, 
+		\$hash{offset} );
 }
 
 =head2
@@ -4823,28 +5094,29 @@ sub rbsSearch_GET {
 		}
 	}
 
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->rbs_search( \\\%hash ) };
+	my \$result = \$c->model('SearchDatabaseRepository')->rbs_search( \\\%hash );
+	my \@resultList = \@{ \$result->{list} };
 
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		my \%hash = (
+		my \%object = (
 			contig => \$resultList[\$i]->getContig,
 			start  => \$resultList[\$i]->getStart,
 			end    => \$resultList[\$i]->getEnd,
 		);
 
-		\$hash{site_pattern} = \$resultList[\$i]->getSitePattern
+		\$object{site_pattern} = \$resultList[\$i]->getSitePattern
 		  if \$resultList[\$i]->getSitePattern;
-		\$hash{old_start} = \$resultList[\$i]->getOldStart
+		\$object{old_start} = \$resultList[\$i]->getOldStart
 		  if \$resultList[\$i]->getOldStart;
-		\$hash{position_shift} = \$resultList[\$i]->getPositionShift
+		\$object{position_shift} = \$resultList[\$i]->getPositionShift
 		  if \$resultList[\$i]->getPositionShift;
-		\$hash{new_start} = \$resultList[\$i]->getNewStart
+		\$object{new_start} = \$resultList[\$i]->getNewStart
 		  if \$resultList[\$i]->getNewStart;
 
-		push \@list, \\\%hash;
+		push \@list, \\\%object;
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, \$hash{offset} );
 }
 
 =head2
@@ -4868,27 +5140,28 @@ sub alienhunterSearch_GET {
 		}
 	}
 
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->alienhunter_search( \\\%hash ) };
-
+	my \$result = \$c->model('SearchDatabaseRepository')->alienhunter_search( \\\%hash );
+	my \@resultList = \@{ \$result->{list} };
+	
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		my \%hash = (
+		my \%object = (
 			id     => \$resultList[\$i]->getID,
 			contig => \$resultList[\$i]->getContig,
 			start  => \$resultList[\$i]->getStart,
 			end    => \$resultList[\$i]->getEnd,
 		);
 
-		\$hash{length} = \$resultList[\$i]->getLength
+		\$object{length} = \$resultList[\$i]->getLength
 		  if \$resultList[\$i]->getLength;
-		\$hash{score} = \$resultList[\$i]->getScore
+		\$object{score} = \$resultList[\$i]->getScore
 		  if \$resultList[\$i]->getScore;
-		\$hash{threshold} = \$resultList[\$i]->getThreshold
+		\$object{threshold} = \$resultList[\$i]->getThreshold
 		  if \$resultList[\$i]->getThreshold;
 
-		push \@list, \\\%hash;
+		push \@list, \\\%object;
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, \$hash{offset} );
 }
 
 =head2
@@ -5022,7 +5295,7 @@ sub gene_GET {
 	my ( 
 		\$self,            \$c,             \$pipeline,     \$geneID,
 		\$geneDescription, \$noDescription, \$individually, \$featureId,
-		\$pageSize,        \$offset )
+		\$pageSize,        \$offset, \$contig )
 	  = \@_;
 	if ( !\$geneID and defined \$c->request->param("geneID") ) {
 		\$geneID = \$c->request->param("geneID");
@@ -5045,12 +5318,15 @@ sub gene_GET {
 	if ( !\$offset and defined \$c->request->param("offset") ) {
 		\$offset = \$c->request->param("offset");
 	}
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
 	my \$pagedResponse = \$searchDBClient->getGene( \$c->config->{pipeline_id},
 		\$geneID, \$geneDescription,
-		\$noDescription, \$individually, \$featureId, \$pageSize, \$offset );
+		\$noDescription, \$individually, \$featureId, \$pageSize, \$offset, \$contig );
 	standardStatusOk(
 		\$self, \$c, \$pagedResponse->{response}, \$pagedResponse->{"total"},
 		\$pageSize, \$offset
@@ -5209,11 +5485,10 @@ sub tandemRepeatsSearch_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$response = \$searchDBClient->getTandemRepeats( \\\%hash ); 
 	standardStatusOk(
 		\$self, \$c,
-		\$searchDBClient->getTandemRepeats(
-			\\\%hash
-		)->{response}
+		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
 	);
 }
 
@@ -5232,11 +5507,10 @@ sub ncRNASearch_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$response = \$searchDBClient->getncRNA( \\\%hash );
 	standardStatusOk(
 		\$self, \$c,
-		\$searchDBClient->getncRNA(
-			\\\%hash
-		)->{response}
+		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
 	);
 }
 
@@ -5256,11 +5530,10 @@ sub transcriptionalTerminatorSearch_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$response = \$searchDBClient->getTranscriptionalTerminator( \\\%hash );
 	standardStatusOk(
 		\$self, \$c,
-		\$searchDBClient->getTranscriptionalTerminator(
-			\\\%hash
-		)->{response}
+		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
 	);
 }
 
@@ -5280,11 +5553,10 @@ sub rbsSearch_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$response = \$searchDBClient->getRBSSearch( \\\%hash );
 	standardStatusOk(
 		\$self, \$c,
-		\$searchDBClient->getRBSSearch(
-			\\\%hash
-		)->{response}
+		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
 	);
 }
 
@@ -5303,11 +5575,10 @@ sub alienhunterSearch_GET {
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$response = \$searchDBClient->getAlienHunter( \\\%hash );
 	standardStatusOk(
 		\$self, \$c,
-		\$searchDBClient->getAlienHunter(
-			\\\%hash
-		)->{response}
+		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
 	);
 }
 
@@ -5948,7 +6219,7 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 		)->single->get_column(qw/filepath/)
 	);
 
-	open( my \$FILEHANDLER, "<", \$filepath );
+	open( my \$FILEHANDLER, "<", dirname(__FILE__) . "/../../../root/" . \$filepath );
 	binmode \$FILEHANDLER;
 	my \$file;
 
@@ -6325,6 +6596,15 @@ CONTENTABOUTINDEX
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
+                                	<div class="form-group">
+                                    	<label>Contig: </label>
+                                      	<select name="contig">
+                                      		<option></option>
+                                      		[% FOREACH sequence IN sequences %]
+                                      			<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                      		[% END %]
+                                    	</select>
+                                    </div>
                                     <div class="form-group">
                                         <div class="checkbox">
                                             [% FOREACH text IN texts %]
@@ -6929,6 +7209,15 @@ CONTENTINDEXHOME
                                      <div id="geneIdentifier" class="tab-pane fade active in">
                                          <h4></h4>
                                          <form id="formGeneIdentifier">
+                                         	<div class="form-group">
+                                         		<label>Contig: </label>
+                                         		<select name="contig">
+                                         			<option></option>
+                                         			[% FOREACH sequence IN sequences %]
+                                         				<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                         			[% END %]
+                                         		</select>
+                                         	</div>
                                              <div class="form-group">
                                                  [% FOREACH text IN texts %]
                                                      [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
@@ -6945,6 +7234,15 @@ CONTENTINDEXHOME
                                       <div id="geneDescription" class="tab-pane fade">
                                           <h4></h4>
                                           <form id="formGeneDescription">
+                                          	<div class="form-group">
+                                         		<label>Contig: </label>
+                                         		<select name="contig">
+                                         			<option></option>
+                                         			[% FOREACH sequence IN sequences %]
+                                         				<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                         			[% END %]
+                                         		</select>
+                                         	</div>
                                               <div class="form-group">
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
@@ -6993,6 +7291,15 @@ CONTENTINDEXHOME
                          <div id="collapseTwo" class="panel-collapse collapse">
                              <div class="panel-body">
                                  <form id="formAnalysesProteinCodingGenes">
+                                 	<div class="form-group">
+                                        <label>Contig: </label>
+                                        <select name="contig">
+                                        	<option></option>
+                                        		[% FOREACH sequence IN sequences %]
+                                        			<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                        		[% END %]
+                                        	</select>
+                                    </div>
                                  	[% IF blast %]
                                       <div class="form-group">
                                           [% FOREACH text IN texts %]
@@ -8797,18 +9104,9 @@ sub readJSON {
 	{
 		my $tag   = $1;
 		my $value = $2;
-		if ( $tag =~ /^files-/ ) {
-			$tag =~ s/files-//g;
-			$sql .= <<SQL;
-			INSERT INTO FILES(tag, filepath) VALUES ("$tag", "$value");
-SQL
-
-		}
-		else {
-			$sql .= <<SQL;
+		$sql .= <<SQL;
 			INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
 SQL
-		}
 	}
 	close($FILEHANDLER);
 	return $sql;
