@@ -23,16 +23,10 @@ http://127.0.0.1:3000
 TODO:
 -
 
--	Global analyses:
--	Go mapping: expansible tree
--	KEGG pathways: link errado
-
--	Criar pagina de erro geral
 
 Dev:
 -
--       Adicionar opção de selecionar contig em pesquisas de gene
--		Preparar SearchDatabase do website, search-database.js e site-client.js para searchGene
+
 
 Done:
 -
@@ -102,3 +96,9 @@ Done:
 -       Arquivos das análises de DNA
 -       tRNA: Adicionar link do arquivo
 -       Arquivos das analises estão linkados no SQLite, criar função para acesso e link para baixar 
+-       Adicionar opção de selecionar contig em pesquisas de gene
+-	Preparar SearchDatabase do website, search-database.js e site-client.js para searchGene
+-       Global analyses:
+-       Go mapping: expansible tree
+-       KEGG pathways: link errado
+-       Criar pagina de erro geral

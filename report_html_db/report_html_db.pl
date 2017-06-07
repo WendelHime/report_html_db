@@ -936,7 +936,10 @@ while ( $sequence_object->read() ) {
 		print $SEQUENCES "$sequence\n";
 	}
 	print FASTAOUT ">$name\n";
-	print FASTAOUT $bases;
+	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
+		my $sequence = substr( $bases, $i, 60 );
+		print FASTAOUT "$sequence\n";
+	}
 	close(FASTAOUT);
 
 #	my @logs = @{ $sequence_object->get_logs_hash() };
@@ -1183,6 +1186,7 @@ while ( $sequence_object->read() ) {
 			$fasta_header_evidence =~ s/>//g;
 			$fasta_header_evidence =~ s/\|/_/g;
 			$fasta_header_evidence =~ s/__/_/g;
+			print $LOG "\n[1186]\tFastaHeaderEvidence\t-\t$fasta_header_evidence\n";
 			my $html_file = $fasta_header_evidence . ".html";
 			my $txt_file  = $fasta_header_evidence . ".txt";
 			my $png_file  = $fasta_header_evidence . ".png";
@@ -2497,6 +2501,11 @@ sub tRNA_search {
 	  . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value=? and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
 	push \@args, \$hash->{pipeline};
 	my \$anticodon = "";
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
 
 	if ( \$hash->{'tRNAaa'} ne "" ) {
 		\$query .= "and pt.value = ?";
@@ -2575,6 +2584,11 @@ sub trf_search {
 	my \$query =
 "where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value=? ";
 	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
 
 	if ( \$hash->{'TRFrepSeq'} !~ /^\\s*\$/ ) {
 		\$hash->{'TRFrepSeq'} =~ s/\\s+//g;
@@ -2709,6 +2723,11 @@ sub ncRNA_search {
 	my \$query =
 "where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value=? and cpp.name='target_description' ";
 	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
 
 	if ( \$hash->{'ncRNAtargetID'} !~ /^\\s*\$/ ) {
 		\$hash->{'ncRNAtargetID'} =~ s/\\s+//g;
@@ -2850,6 +2869,11 @@ sub transcriptional_terminator_search {
 	my \$query =
 "where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? and cppConfidence.name = 'confidence' AND cppHairpinScore.name = 'hairpin' AND cppTailScore.name = 'tail' ";
 	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
 
 	my \$search_field;
 	my \$field;
@@ -2970,6 +2994,11 @@ sub rbs_search {
 "where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
 " and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift' ";
 	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
 
 	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
 		\$hash->{'RBSpattern'} =~ s/\\s*//g;
@@ -3074,6 +3103,11 @@ sub alienhunter_search {
 	my \$query =
 "where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? and cppLength.name = 'length' and cppScore.name = 'score' and cppThreshold.name = 'threshold' ";
 	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
 
 	my \$search_field;
 	my \$field;
@@ -4152,11 +4186,11 @@ sub searchContig_GET {
 	open( my \$FILEHANDLER,
 		"<", dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
 
-	for my \$line (<\$FILEHANDLER>) {
-		if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
-			\$data .= \$line;
-		}
-	}
+	my \$content = do { local \$/; <\$FILEHANDLER> };
+
+	my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
+	\$data = join("\\n", \@lines);
+	
 	close(\$FILEHANDLER);
 
 	if ( \$start && \$end ) {
@@ -4170,11 +4204,8 @@ sub searchContig_GET {
 		\$data = formatSequence( reverseComplement(\$data) );
 		\$c->stash->{hadReverseComplement} = 1;
 	}
-	my \$result = "";
-	for ( my \$i = 0 ; \$i < length(\$data) ; \$i += 60 ) {
-		my \$line = substr( \$data, \$i, 60 );
-		\$result .= "\$line<br />";
-	}
+	my \$result = \$data;
+	
 
 	my \@list = ();
 	my \%hash = ();
@@ -6270,17 +6301,57 @@ Standard 404 error page
 
 sub default : Path {
 	my ( \$self, \$c ) = \@_;
-	\$c->response->body('Page not found');
+	\$c->response->body('Oops, page not found');
 	\$c->response->status(404);
 }
 
-=head2 end
+=head2 renderView
 
 Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') { }
+sub renderView : ActionClass('RenderView') { }
+
+sub end : Private {
+	my ( \$self, \$c ) = \@_;
+
+	if ( scalar \@{ \$c->error } ) {
+		\$c->stash->{errors}   = \$c->error;
+		for my \$error ( \@{ \$c->error } ) {
+			\$c->log->error(\$error);
+		}
+		\$c->stash(
+			texts => [
+				encodingCorrection(
+					\$c->model('Basic::Text')->search(
+						{
+							-or => [
+								tag => { 'like', 'header%' },
+								tag => 'menu',
+								tag => 'footer',
+							]
+						}
+					)
+				)
+			]
+		);
+		\$c->stash->{hadGlobal}         = 1;
+		\$c->stash->{hadSearchDatabase} = 1;
+		\$c->stash->{template} = 'website/errors.tt';
+		\$c->forward('website::View::TT');
+		\$c->clear_errors;
+	}
+
+	return 1 if \$c->response->status =~ /^3\\d\\d\$/;
+	return 1 if \$c->response->body;
+
+	unless ( \$c->response->content_type ) {
+		\$c->response->content_type('text/html; charset=utf-8');
+	}
+
+	\$c->forward('website::View::TT');
+}
 
 =head1 AUTHOR
 
@@ -6323,11 +6394,12 @@ foreach my $filepathComponent (@filepathsComponents) {
 			  if !-e "$standard_dir/$html_dir/root/";
 			if ( $1 ne '_dir' ) {
 				my $directory = $1;
+				print $LOG "\n[6356]\tDirectory:-\t$directory\n";
 				if ( $1 !~ m/report/g ) {
-`ln -s $filepath/$standard_dir/$directory $standard_dir/$html_dir/root/` if !-e "$standard_dir/$html_dir/root/$directory";
+`ln -s $filepath/$standard_dir/$directory $standard_dir/$html_dir/root/` if (!(-e "$standard_dir/$html_dir/root/$directory"));
 				}
 				else {
-					`ln -s $directory $standard_dir/$html_dir/root/` if !-e "$standard_dir/$html_dir/root/$directory";
+					`ln -s $directory $standard_dir/$html_dir/root/` if (!(-e "$standard_dir/$html_dir/root/$directory"));
 				}
 			}
 		}
@@ -7723,6 +7795,15 @@ CONTENTINDEXHOME
 				<div id="trna" class="tab-pane fade">
 					<form id="trna-form">
 						<div class="form-group">
+							<label>Contig: </label>
+							<select name="contig">
+								<option></option>
+								[% FOREACH sequence IN sequences %]
+                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                [% END %]
+                            </select>
+                        </div>
+						<div class="form-group">
 							[% FOREACH text IN texts %]
 							[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid' %]
 							<label>[% text.value %]</label>
@@ -7768,6 +7849,15 @@ CONTENTINDEXHOME
 						[% END %]
 						[% END %]
 					</div>
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                               [% END %]
+                        </select>
+                    </div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-contain-sequence-repetition-unit' %]
@@ -7825,6 +7915,15 @@ CONTENTINDEXHOME
 			[% IF infernal %]
 			<div id="otherNonCodingRNAs" class="tab-pane fade">
 				<form id="otherNonCodingRNAs-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                               [% END %]
+                           </select>
+                       </div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
@@ -7896,6 +7995,15 @@ CONTENTINDEXHOME
 			<div id="ribosomalBindingSites" class="tab-pane fade">
 				<form id="ribosomalBindingSites-form">
 					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
+					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
 						<label>[% text.value %]</label>
@@ -7936,6 +8044,15 @@ CONTENTINDEXHOME
 			[% IF transterm %]
 			<div id="transcriptionalTerminators" class="tab-pane fade">
 				<form id="transcriptionalTerminators-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
@@ -7996,6 +8113,15 @@ CONTENTINDEXHOME
 			[% IF alienhunter %]
 			<div id="horizontalGeneTransfers" class="tab-pane fade">
 				<form id="horizontalGeneTransfers-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]
@@ -8161,10 +8287,14 @@ CONTENTINDEXSEARCHDATABASE
 			)</a>
 		</div>
 	</div>
-	<div id="[% sequence.id %]" class="panel-collapse collapse">
+	<div id="[% sequence.id %]" class="panel-collapse collapse in">
 		<div class="panel-body">
 			<div class="sequence">
-				[% contig %]
+				<div class="row">
+					<div class="col-md-6">
+						[% contig %]
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -9055,6 +9185,33 @@ my $wrapper = <<WRAPPER;
 </html>
 WRAPPER
 writeFile( "$html_dir/root/$lowCaseName/_layout.tt", $wrapper );
+
+my $errorPage = <<ERROR;
+<!DOCTYPE html>
+<div class="content-wrapper">
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-9">
+    			<div class="row">
+		    		<div class="col-md-12">
+		    			<h2>Oops, we're having some troubles.</h2><br />
+		    		</div>
+		    	</div>
+		    	<div class="row">
+		    		<div class="col-md-12">
+		    			<p>Please, comeback later.</p>
+		    		</div>
+		    	</div>
+    		</div>
+    		<div class="col-md-3">
+    			<img src="/assets/img/platypuslogo.png" style="width:800;height:600px;" />
+    		</div>
+    	</div>
+    </div>
+</div>
+ERROR
+
+writeFile( "$html_dir/root/$lowCaseName/errors.tt", $errorPage );
 
 print $LOG "\nEditing root file\n";
 writeFile( "$html_dir/lib/$html_dir/Controller/Root.pm", $rootContent );
