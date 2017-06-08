@@ -2941,7 +2941,7 @@ sub transcriptional_terminator_search {
 			start  			=> \$rows[\$i][1],
 			end    			=> \$rows[\$i][2],
 			confidence    	=> \$rows[\$i][3],
-			hairping_score  	=> \$rows[\$i][4],
+			hairpin_score  	=> \$rows[\$i][4],
 			tail_score    	=> \$rows[\$i][5],
 			feature_id		=> \$rows[\$i][6],
 		);
@@ -4076,15 +4076,50 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
 		|| \$hash{name} =~ /annotation\\_orthology/
 		|| \$hash{name} =~ /annotation\\_tcdb/ )
 	{
-		my \$directory = \$hash{filepath};
-		\$directory =~ s/\\/([\\w\\s\\-_]+\.[\\w\\s\\-_.]+)//;
-		\$content =~ s/src="/src="\\/\$directory\\//igm;
+		my \$image = \$hash{filepath};
+		\$image =~ s/\\.html/\\.png/g;
+		open( \$FILEHANDLER,
+			"<", \$image );
+		my \$contentImage = do { local(\$/); <\$FILEHANDLER> };
+		close(\$FILEHANDLER);
+		use MIME::Base64;
+		\$contentImage = MIME::Base64::encode_base64(\$contentImage);
+		\$content =~ s/\$_/<img src="data:image\\/png;base64,\$contentImage/ foreach (\$content =~ /(<img src="[\\.\\w\\s\\-]*)"/img);
 	}
 	elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
 		my \$directory = \$hash{filepath};
-		\$directory =~ s/\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_.]+)//;
-		\$content =~ s/src="resources/src="\\/\$directory\\/resources/igm;
-		\$content =~ s/href="resources/href="\\/\$directory\\/resources/g;
+		\$directory =~ s/\\/([\\w\\s\\-_\\.]+)\\.html//g;
+		foreach (\$content =~ /<img src="([\\.\\w\\s\\-\\/]*)"/img) {
+			open( \$FILEHANDLER,
+				"<", \$directory . "/" . \$_ );
+			my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+			close(\$FILEHANDLER);
+			use MIME::Base64;
+			\$contentFile = MIME::Base64::encode_base64(\$contentFile);
+			\$content =~ s/<img src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
+		}
+		while (\$content =~ /<link([\\w\\s="]*)href="([\\.\\w\\s\\-\\/]*)"/img) {
+			open( \$FILEHANDLER,
+				"<", \$directory . "/" . \$2 );
+			my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+			close(\$FILEHANDLER);
+			use MIME::Base64;
+			\$contentFile = MIME::Base64::encode_base64(\$contentFile);
+			if (\$1) {
+				\$content =~ s/<link\$1href="\$2/<link \$1 href="data:text\\/css;base64,\$contentFile/;
+			} else {
+				\$content =~ s/<link href="\$2/<link href="data:text\\/css;base64,\$contentFile/;
+			}
+		}
+		foreach (\$content =~ /<script src="([\\.\\w\\s\\-\\/]*)"/img) {
+			open( \$FILEHANDLER,
+				"<", \$directory . "/" . \$_ );
+			my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+			close(\$FILEHANDLER);
+			use MIME::Base64;
+			\$contentFile = MIME::Base64::encode_base64(\$contentFile);
+			\$content =~ s/<script src="\$_/<script src="data:text\\/javascript;base64,\$contentFile/;
+		}
 	}
 
 	\$c->response->body(\$content);
@@ -5084,19 +5119,7 @@ sub transcriptionalTerminatorSearch_GET {
 	  \@{ \$result->{list} };
 
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		my \%object = (
-			contig => \$resultList[\$i]->getContig,
-			start  => \$resultList[\$i]->getStart,
-			end    => \$resultList[\$i]->getEnd,
-		);
-
-		\$object{confidence} = \$resultList[\$i]->getConfidence
-		  if \$resultList[\$i]->getConfidence;
-		\$object{hairpin_score} = \$resultList[\$i]->getHairpinScore
-		  if \$resultList[\$i]->getHairpinScore;
-		\$object{tail_score} = \$resultList[\$i]->getTailScore
-		  if \$resultList[\$i]->getTailScore;
-		push \@list, \\\%object;
+		push \@list, \$resultList[\$i]->pack();
 	}
 
 	standardStatusOk( \$self, \$c, \\\@list, \$result->{total},  \$hash{pageSize}, 
