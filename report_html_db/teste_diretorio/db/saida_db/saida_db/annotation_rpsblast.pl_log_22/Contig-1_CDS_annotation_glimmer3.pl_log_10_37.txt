@@ -1,0 +1,380 @@
+Query= Contig-1_CDS_annotation_glimmer3.pl_log_10_37
+
+Length=101
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|181574  PRK08881, rpsN, 30S ribosomal protein S14; Reviewed   167     2e-54
+gnl|CDD|214354  CHL00074, rps14, ribosomal protein S14                101     1e-28
+gnl|CDD|223277  COG0199, RpsN, Ribosomal protein S14 [Translation...  92.7    2e-25
+gnl|CDD|249718  pfam00253, Ribosomal_S14, Ribosomal protein S14p/...  79.9    1e-20
+gnl|CDD|180742  PRK06911, rpsN, 30S ribosomal protein S14; Reviewed   72.8    2e-17
+gnl|CDD|181216  PRK08061, rpsN, 30S ribosomal protein S14; Reviewed   67.2    9e-16
+gnl|CDD|257221  pfam12685, SpoIIIAH, SpoIIIAH-like protein. Stage...  34.2    0.004
+gnl|CDD|131352  TIGR02299, HpaE, 5-carboxymethyl-2-hydroxymuconat...  30.5    0.12 
+gnl|CDD|236500  PRK09405, aceE, pyruvate dehydrogenase subunit E1...  29.3    0.31 
+gnl|CDD|233117  TIGR00759, aceE, pyruvate dehydrogenase E1 compon...  29.3    0.31 
+gnl|CDD|187791  cd09660, Csx1_III-U, CRISPR/Cas system-associated...  27.4    1.2  
+gnl|CDD|240415  PTZ00429, PTZ00429, beta-adaptin; Provisional         27.2    1.6  
+gnl|CDD|222833  PHA01751, PHA01751, hypothetical protein              25.7    4.8  
+gnl|CDD|176249  cd08289, MDR_yhfp_like, Yhfp putative quinone oxi...  25.4    6.2  
+gnl|CDD|235944  PRK07135, dnaE, DNA polymerase III DnaE; Validated    25.4    6.4  
+gnl|CDD|271319  cd15457, NADAR, Escherichia coli swarming motilit...  25.3    6.8  
+gnl|CDD|253437  pfam05879, RHD3, Root hair defective 3 GTP-bindin...  25.5    7.9  
+gnl|CDD|257262  pfam12737, Mating_C, C-terminal domain of homeodo...  25.1    8.4  
+gnl|CDD|140212  PTZ00185, PTZ00185, ATPase alpha subunit; Provisi...  25.0    9.5  
+gnl|CDD|185518  PTZ00218, PTZ00218, 40S ribosomal protein S29; Pr...  23.5    9.7  
+
+
+>gnl|CDD|181574 PRK08881, rpsN, 30S ribosomal protein S14; Reviewed.
+Length=101
+
+ Score = 167 bits (426),  Expect = 2e-54, Method: Composition-based stats.
+ Identities = 68/101 (67%), Positives = 79/101 (78%), Gaps = 0/101 (0%)
+
+Query  1    MAKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQ  60
+            MAK+S+ AR+ KR KL  K+  KR ELKA+ISD N SDEER+ A LKLQ LPR+SSP+R 
+Sbjct  1    MAKKSMIAREKKRKKLVAKYAAKRAELKAIISDPNLSDEERYEARLKLQKLPRNSSPTRL  60
+
+Query  61   RNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW  101
+            RNRC  TGRP  + RKFGLSRIK+RE A RGEIPG+ KASW
+Sbjct  61   RNRCELTGRPRGYYRKFGLSRIKLRELAHRGEIPGVVKASW  101
+
+
+>gnl|CDD|214354 CHL00074, rps14, ribosomal protein S14.
+Length=100
+
+ Score = 101 bits (255),  Expect = 1e-28, Method: Composition-based stats.
+ Identities = 50/101 (50%), Positives = 64/101 (63%), Gaps = 1/101 (1%)
+
+Query  1    MAKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQ  60
+            MAK+SL  R+ KR KL +K+  KR  LK  I  V+ S  E+W    KLQ+LPR+S+P+R 
+Sbjct  1    MAKKSLIQREKKRQKLVQKYHLKRRSLKKEIKKVS-SLSEKWEIHGKLQSLPRNSAPTRL  59
+
+Query  61   RNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW  101
+             NRC  TGRP    R FGLSR  +RE A    +PG+ K+SW
+Sbjct  60   HNRCFLTGRPRGNYRDFGLSRHVLREMAHACLLPGVTKSSW  100
+
+
+>gnl|CDD|223277 COG0199, RpsN, Ribosomal protein S14 [Translation, ribosomal 
+structure and biogenesis].
+Length=61
+
+ Score = 92.7 bits (231),  Expect = 2e-25, Method: Composition-based stats.
+ Identities = 39/61 (64%), Positives = 44/61 (72%), Gaps = 0/61 (0%)
+
+Query  41   RWNAVLKLQTLPRDSSPSRQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKAS  100
+            R  A LKL+ LPR  SP R RNRCR+ GRP   +RKFGL RI  RE A +GEIPG+KKAS
+Sbjct  1    RAMAKLKLKALPRPKSPGRGRNRCRRCGRPRGVIRKFGLCRICFRELAHKGEIPGVKKAS  60
+
+Query  101  W  101
+            W
+Sbjct  61   W  61
+
+
+>gnl|CDD|249718 pfam00253, Ribosomal_S14, Ribosomal protein S14p/S29e.  This 
+family includes both ribosomal S14 from prokaryotes and S29 
+from eukaryotes.
+Length=53
+
+ Score = 79.9 bits (198),  Expect = 1e-20, Method: Composition-based stats.
+ Identities = 35/53 (66%), Positives = 39/53 (74%), Gaps = 0/53 (0%)
+
+Query  46  LKLQTLPRDSSPSRQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKK  98
+           LKL  LPR+SSP+R RNRC  TGRP   +RKFGLSRI  RE A  G IPG+KK
+Sbjct  1   LKLSKLPRNSSPTRGRNRCVLTGRPRGVIRKFGLSRICFRELAHDGLIPGVKK  53
+
+
+>gnl|CDD|180742 PRK06911, rpsN, 30S ribosomal protein S14; Reviewed.
+Length=100
+
+ Score = 72.8 bits (178),  Expect = 2e-17, Method: Composition-based stats.
+ Identities = 49/103 (48%), Positives = 66/103 (64%), Gaps = 5/103 (5%)
+
+Query  1    MAKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEER--WNAVLKLQTLPRDSSPS  58
+            MAK+S+  R+ KRAKL EK+  +R ELK +I    +SD+ +    +  KL  LP +S+P 
+Sbjct  1    MAKKSMLMRESKRAKLVEKYRQRRNELKQLIK---SSDDFQVIMESQAKLAKLPVNSNPV  57
+
+Query  59   RQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW  101
+            R   RC+Q GRPHA  RKF L RI +R+  M G IPG +K+SW
+Sbjct  58   RYVTRCKQCGRPHAVYRKFNLCRICLRQQLMVGNIPGGRKSSW  100
+
+
+>gnl|CDD|181216 PRK08061, rpsN, 30S ribosomal protein S14; Reviewed.
+Length=61
+
+ Score = 67.2 bits (165),  Expect = 9e-16, Method: Composition-based stats.
+ Identities = 26/43 (60%), Positives = 31/43 (72%), Gaps = 0/43 (0%)
+
+Query  59   RQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW  101
+            R   RC + GRPH+  RKFGL RI  RE A +G+IPG+KKASW
+Sbjct  19   RAYTRCERCGRPHSVYRKFGLCRICFRELAYKGQIPGVKKASW  61
+
+
+>gnl|CDD|257221 pfam12685, SpoIIIAH, SpoIIIAH-like protein.  Stage III sporulation 
+protein AH (SpoIIIAH) is a protein that is involved in 
+forespore engulfment. It forms a channel with SpoIIIAH that 
+is open on the forespore end and closed (or gated) on the mother 
+cell end. This allows sigma-E-directed gene expression 
+in the mother-cell compartment of the sporangium to trigger 
+the activation of sigma-G forespore-specific gene expression 
+by a pathway of intercellular signaling. This family of proteins 
+is found in bacteria, archaea and eukaryotes and so must 
+have a wider function that in sporulation. Proteins in this 
+family are typically between 174 and 223 amino acids in 
+length.
+Length=182
+
+ Score = 34.2 bits (79),  Expect = 0.004, Method: Composition-based stats.
+ Identities = 17/43 (40%), Positives = 22/43 (51%), Gaps = 7/43 (16%)
+
+Query  9    RDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTL  51
+            R+ KR+K  E        LK +I + NAS EE+  A  KL  L
+Sbjct  81   REQKRSKQIE-------TLKEIIDNENASAEEKKEAQDKLLEL  116
+
+
+>gnl|CDD|131352 TIGR02299, HpaE, 5-carboxymethyl-2-hydroxymuconate semialdehyde 
+dehydrogenase.  This model represents the dehydrogenase responsible 
+for the conversion of 5-carboxymethyl-2-hydroxymuconate 
+semialdehyde to 5-carboxymethyl-2-hydroxymuconate (a 
+tricarboxylic acid). This is the step in the degradation of 
+4-hydroxyphenylacetic acid via homoprotocatechuate following 
+the oxidative opening of the aromatic ring.
+Length=488
+
+ Score = 30.5 bits (69),  Expect = 0.12, Method: Composition-based stats.
+ Identities = 20/70 (29%), Positives = 28/70 (40%), Gaps = 10/70 (14%)
+
+Query  8   ARDVKRA-KLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQRNRCRQ  66
+           A DV RA K A++ F +  ELKA          ER   + K+  L    +       C  
+Sbjct  37  AADVDRAAKAAKEAFKRWAELKAA---------ERKRYLHKIADLIEQHADEIAVLECLD  87
+
+Query  67  TGRPHAFLRK  76
+            G+P    R+
+Sbjct  88  CGQPLRQTRQ  97
+
+
+>gnl|CDD|236500 PRK09405, aceE, pyruvate dehydrogenase subunit E1; Reviewed.
+Length=891
+
+ Score = 29.3 bits (67),  Expect = 0.31, Method: Composition-based stats.
+ Identities = 16/40 (40%), Positives = 25/40 (63%), Gaps = 4/40 (10%)
+
+Query  4    QSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWN  43
+            Q+ KA+D   A + E FF K  E KA+++D+  SD++ W 
+Sbjct  326  QTYKAKD--GAYVREHFFGKYPETKALVADM--SDDDIWA  361
+
+
+>gnl|CDD|233117 TIGR00759, aceE, pyruvate dehydrogenase E1 component, homodimeric 
+type.  Most members of this family are pyruvate dehydrogenase 
+complex, E1 component. Note: this family was classified 
+as subfamily rather than equivalog because it includes a 
+counterexample from Pseudomonas putida, MdeB, that is active 
+as an E1 component of an alpha-ketoglutarate dehydrogenase 
+complex rather than a pyruvate dehydrogase complex. The second 
+pyruvate dehydrogenase complex E1 protein from Alcaligenes 
+eutrophus, PdhE, complements an aceE mutant of E. coli but 
+is not part of a pyruvate dehydrogenase complex operon, is 
+more similar to the Pseudomonas putida MdeB than to E. coli 
+AceE, and may have also have a different primary specificity.
+Length=885
+
+ Score = 29.3 bits (66),  Expect = 0.31, Method: Composition-based stats.
+ Identities = 16/40 (40%), Positives = 25/40 (63%), Gaps = 4/40 (10%)
+
+Query  4    QSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWN  43
+            Q+ KA+D   A + E FF +  ELKA+++D+  SD + W 
+Sbjct  320  QTYKAKD--GAYVREHFFNRTPELKALVADM--SDADIWA  355
+
+
+>gnl|CDD|187791 cd09660, Csx1_III-U, CRISPR/Cas system-associated protein Csx1. 
+ CRISPR (Clustered Regularly Interspaced Short Palindromic 
+Repeats) and associated Cas proteins comprise a system for 
+heritable host defense by prokaryotic cells against phage and 
+other foreign DNA; Protein of this family often fused to 
+HTH domain; Some proteins could have an additional fusion with 
+RecB-family nuclease domain; Core domain appears to have 
+a Rossmann-like fold; loosely associated with CRISPR/Cas systems; 
+also known as MJ1666 family.
+Length=394
+
+ Score = 27.4 bits (61),  Expect = 1.2, Method: Composition-based stats.
+ Identities = 16/55 (29%), Positives = 22/55 (40%), Gaps = 0/55 (0%)
+
+Query  15   KLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQRNRCRQTGR  69
+            KLAE FF K    + +I +     E+  N   K + L R  S   +R       R
+Sbjct  304  KLAETFFDKIEVTRVIIENEVDKIEKGQNWSEKSELLARIYSEIMERKISGFDKR  358
+
+
+>gnl|CDD|240415 PTZ00429, PTZ00429, beta-adaptin; Provisional.
+Length=746
+
+ Score = 27.2 bits (60),  Expect = 1.6, Method: Composition-based stats.
+ Identities = 17/54 (31%), Positives = 27/54 (50%), Gaps = 6/54 (11%)
+
+Query  9   RDVKRAKLAEKFF--TKRVELKAVISDVNASDEERWNAVLKL----QTLPRDSS  56
+           R ++  K   K+F  T+R E   + +D+N +D  R  A +K      T+ RD S
+Sbjct  14  RKLEETKTGSKYFAQTRRGEGAELQNDLNGTDSYRKKAAVKRIIANMTMGRDVS  67
+
+
+>gnl|CDD|222833 PHA01751, PHA01751, hypothetical protein.
+Length=110
+
+ Score = 25.7 bits (56),  Expect = 4.8, Method: Composition-based stats.
+ Identities = 13/29 (45%), Positives = 17/29 (59%), Gaps = 3/29 (10%)
+
+Query  73  FLRKFGLSRI---KVREAAMRGEIPGLKK  98
+           F   FG+ RI   K+RE   RG+I GL +
+Sbjct  7   FQNIFGVVRIAIDKIRELEQRGQIYGLSR  35
+
+
+>gnl|CDD|176249 cd08289, MDR_yhfp_like, Yhfp putative quinone oxidoreductases. 
+ yhfp putative quinone oxidoreductases (QOR). QOR catalyzes 
+the conversion of a quinone  + NAD(P)H to a hydroquinone + 
+NAD(P)+. Quinones are cyclic diones derived from aromatic compounds. 
+Membrane bound QOR actin the respiratory chains of 
+bacteria and mitochondria, while soluble QOR acts to protect 
+from toxic quinones (e.g. DT-diaphorase) or as a soluble eye-lens 
+protein in some vertebrates (e.g. zeta-crystalin). QOR 
+reduces quinones through a semi-quinone intermediate via 
+a NAD(P)H-dependent single electron transfer. QOR is a member 
+of the medium chain dehydrogenase/reductase family, but lacks 
+the zinc-binding sites of the prototypical alcohol dehydrogenases 
+of this group.  NAD(P)(H)-dependent oxidoreductases 
+are the major enzymes in the interconversion of alcohols and 
+aldehydes, or ketones.  Alcohol dehydrogenase in the liver 
+converts ethanol and NAD+ to acetaldehyde and NADH, while 
+in yeast and some other microorganisms ADH catalyzes the conversion 
+acetaldehyde to ethanol in alcoholic fermentation.  
+ADH is a member of the medium chain alcohol dehydrogenase family 
+(MDR), which has a NAD(P)(H)-binding domain in a Rossmann 
+fold of a beta-alpha form.  The NAD(H)-binding region is 
+comprised of 2 structurally similar halves, each of which contacts 
+a mononucleotide.  A GxGxxG motif after the first mononucleotide 
+contact half allows the close contact of the coenzyme 
+with the ADH backbone.  The N-terminal catalytic domain 
+has a distant homology to GroES.  These proteins typically 
+form dimers (typically higher plants, mammals) or tetramers 
+(yeast, bacteria), and have 2 tightly bound zinc atoms per 
+subunit, a catalytic zinc at the active site, and a structural 
+zinc in a lobe of the catalytic domain.  NAD(H) binding occurs 
+in the cleft between the catalytic and coenzyme-binding 
+domains at the active site, and coenzyme binding induces a 
+conformational closing of this cleft. Coenzyme binding typically 
+precedes and contributes to substrate binding. In human 
+ADH catalysis, the zinc ion helps coordinate the alcohol, 
+followed by deprotonation of a histidine, the ribose of NAD, 
+a serine, then the alcohol, which allows the transfer of a 
+hydride to NAD+, creating NADH and a zinc-bound aldehyde or 
+ketone. In yeast and some bacteria, the active site zinc binds 
+an aldehyde, polarizing it, and leading to the reverse reaction.
+Length=326
+
+ Score = 25.4 bits (56),  Expect = 6.2, Method: Composition-based stats.
+ Identities = 11/37 (30%), Positives = 16/37 (43%), Gaps = 2/37 (5%)
+
+Query  67   TGR--PHAFLRKFGLSRIKVREAAMRGEIPGLKKASW  101
+            TG+     +L+K G   +  RE      I  L+K  W
+Sbjct  178  TGKADAADYLKKLGAKEVIPREELQEESIKPLEKQRW  214
+
+
+>gnl|CDD|235944 PRK07135, dnaE, DNA polymerase III DnaE; Validated.
+Length=973
+
+ Score = 25.4 bits (56),  Expect = 6.4, Method: Composition-based stats.
+ Identities = 10/41 (24%), Positives = 19/41 (46%), Gaps = 0/41 (0%)
+
+Query  16   LAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSS  56
+            L E +   +   + +IS  +   ++ +    KL+ LPR S 
+Sbjct  400  LEEAYDKNKSFFRELISKGDPIYKKLYKIAKKLEGLPRQSG  440
+
+
+>gnl|CDD|271319 cd15457, NADAR, Escherichia coli swarming motility protein YbiA 
+and related proteins.  This family of uncharacterized domains 
+was initially classified as Domain of Unknown Function 
+(DUF1768). It contains members such as the E. coli swarming 
+motility protein YbiA. Mutations in YbiA cause defects in Escherichia 
+coli swarming, but not necessarily in motility. More 
+recently, this family has been predicted to be involved in 
+NAD-utilizing pathways, likely to act on ADP-ribose derivatives, 
+and has been named the NADAR (NAD and ADP-ribose) superfamily.
+Length=148
+
+ Score = 25.3 bits (56),  Expect = 6.8, Method: Composition-based stats.
+ Identities = 12/44 (27%), Positives = 17/44 (39%), Gaps = 2/44 (5%)
+
+Query  4   QSLKARDVKRAKLAEKFFTKRV--ELKAVISDVNASDEERWNAV  45
+           Q+ KA      ++AEK    +   E K +   V   D   W  V
+Sbjct  38  QAQKALLFGDPEIAEKILAAKTPKEAKKLGRKVRGFDRPDWEEV  81
+
+
+>gnl|CDD|253437 pfam05879, RHD3, Root hair defective 3 GTP-binding protein (RHD3). 
+ This family consists of several eukaryotic root hair 
+defective 3 like GTP-binding proteins. It has been speculated 
+that the RHD3 protein is a member of a novel class of GTP-binding 
+proteins that is widespread in eukaryotes and required 
+for regulated cell enlargement. The family also contains 
+the homologous yeast synthetic enhancement of YOP1 (SEY1) protein 
+which is involved in membrane trafficking.
+Length=743
+
+ Score = 25.5 bits (56),  Expect = 7.9, Method: Composition-based stats.
+ Identities = 13/46 (28%), Positives = 23/46 (50%), Gaps = 2/46 (4%)
+
+Query  5    SLKARDVKRAKLAEKFFTK-RVEL-KAVISDVNASDEERWNAVLKL  48
+            S + R  +  +L  ++  K    L + V   +N  ++E W+ VLKL
+Sbjct  415  SARLRKEELKELTNRYEKKLVSALSEPVELLLNKLNKETWDTVLKL  460
+
+
+>gnl|CDD|257262 pfam12737, Mating_C, C-terminal domain of homeodomain 1.  Mating 
+in fungi is controlled by the loci that determine the mating 
+type of an individual, and only individuals with differing 
+mating types can mate. Basidiomycete fungi have evolved 
+a unique mating system, termed tetrapolar or bifactorial incompatibility, 
+in which mating type is determined by two unlinked 
+loci; compatibility at both loci is required for mating 
+to occur. The multi-allelic tetrapolar mating system is considered 
+to be a novel innovation that could have only evolved 
+once, and is thus unique to the mushroom fungi. This domain 
+is C-terminal to the homeodomain transcription factor region.
+Length=418
+
+ Score = 25.1 bits (55),  Expect = 8.4, Method: Composition-based stats.
+ Identities = 11/39 (28%), Positives = 14/39 (36%), Gaps = 7/39 (18%)
+
+Query  44   AVLKLQTLPRDSSPSRQRNRCRQTG-------RPHAFLR  75
+              L     P D++PS +R R    G       RP    R
+Sbjct  168  PSLSPPHTPTDTAPSGKRKRRLSDGFQLPAPKRPQTSSR  206
+
+
+>gnl|CDD|140212 PTZ00185, PTZ00185, ATPase alpha subunit; Provisional.
+Length=574
+
+ Score = 25.0 bits (54),  Expect = 9.5, Method: Composition-based stats.
+ Identities = 13/35 (37%), Positives = 15/35 (43%), Gaps = 0/35 (0%)
+
+Query  63   RCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLK  97
+            RC    R H  LR +G  R     AA   E  GL+
+Sbjct  236  RCSNVARIHRLLRSYGALRYTTVMAATAAEPAGLQ  270
+
+
+>gnl|CDD|185518 PTZ00218, PTZ00218, 40S ribosomal protein S29; Provisional.
+Length=54
+
+ Score = 23.5 bits (51),  Expect = 9.7, Method: Composition-based stats.
+ Identities = 19/53 (36%), Positives = 23/53 (43%), Gaps = 9/53 (17%)
+
+Query  49  QTLPRDSSP-SRQRNRCRQTGRPHAFLRKFGLS--RIKVREAAMRGEIPGLKK  98
+            T PR     SRQ   CR     H  +RK+GL+  R   RE     E+ G  K
+Sbjct  6   NTHPRTYGKGSRQ---CRVCSNRHGLIRKYGLNVCRQCFRE---NAELIGFHK  52
+
+
+
+Lambda      K        H        a         alpha
+   0.319    0.130    0.373    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 280264312

@@ -1,0 +1,8 @@
+FT   repeat_region   1505..1525
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Mreps:2.5"
+FT                   /note="Mreps parameters are  -fasta  -from 1 -win 10000"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CAGCCAGTTC(2.1)"
+FT                   /color=000 200 000
+

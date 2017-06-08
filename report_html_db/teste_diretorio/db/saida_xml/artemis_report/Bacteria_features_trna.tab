@@ -1,0 +1,55 @@
+FT   tRNA            complement(18910..18838)
+FT                   /locus_tag="Bact_38"
+FT                   /note="Bact_38"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_log_5_12"
+FT                   /gene="tRNA-Thr(GGT)"
+FT                   /product="Threonine (GGT) transfer RNA"
+FT                   /anticodon=(pos:18877..18875,aa:Thr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 81.23"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(15152..15080)
+FT                   /locus_tag="Bact_31"
+FT                   /note="Bact_31"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_log_5_13"
+FT                   /gene="tRNA-Thr(TGT)"
+FT                   /product="Threonine (TGT) transfer RNA"
+FT                   /anticodon=(pos:15119..15117,aa:Thr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 82.45"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(15060..14979)
+FT                   /locus_tag="Bact_30"
+FT                   /note="Bact_30"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_log_5_14"
+FT                   /gene="tRNA-Tyr(GTA)"
+FT                   /product="Tyrosine (GTA) transfer RNA"
+FT                   /anticodon=(pos:15026..15024,aa:Tyr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 57.88"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(14875..14804)
+FT                   /locus_tag="Bact_29"
+FT                   /note="Bact_29"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_log_5_15"
+FT                   /gene="tRNA-Gly(TCC)"
+FT                   /product="Glycine (TCC) transfer RNA"
+FT                   /anticodon=(pos:14842..14840,aa:Gly)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 65.97"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(14794..14722)
+FT                   /locus_tag="Bact_28"
+FT                   /note="Bact_28"
+FT                   /note="internal name: Bacteria_tRNAscan_annotation_trna.pl_log_5_16"
+FT                   /gene="tRNA-Thr(GGT)"
+FT                   /product="Threonine (GGT) transfer RNA"
+FT                   /anticodon=(pos:14761..14759,aa:Thr)
+FT                   /inference="profile:tRNAscan-SE:1.3"
+FT                   /note="score is 82.49"
+FT                   /color=255 000 000
+

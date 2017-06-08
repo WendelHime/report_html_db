@@ -1,0 +1,283 @@
+Query= Contig-1_CDS_annotation_glimmer3.pl_log_10_60
+
+Length=90
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|235278  PRK04311, PRK04311, selenocysteine synthase; Prov...  31.7    0.035
+gnl|CDD|179661  PRK03846, PRK03846, adenylylsulfate kinase; Provi...  27.6    0.67 
+gnl|CDD|239994  cd04622, CBS_pair_9, The CBS domain, named after ...  27.5    0.67 
+gnl|CDD|114453  pfam05728, UPF0227, Uncharacterized protein famil...  27.8    0.73 
+gnl|CDD|213325  cd12117, A_NRPS_Srf_like, The adenylation domain ...  27.5    0.76 
+gnl|CDD|187573  cd05263, MupV_like_SDR_e, Pseudomonas fluorescens...  26.9    1.5  
+gnl|CDD|129547  TIGR00455, apsK, adenylylsulfate kinase (apsK). T...  26.3    2.4  
+gnl|CDD|271004  cd14102, STKc_PIM3, Catalytic domain of the Serin...  25.7    3.5  
+gnl|CDD|183058  PRK11251, PRK11251, DNA-binding transcriptional a...  25.0    5.6  
+gnl|CDD|253419  pfam05845, PhnH, Bacterial phosphonate metabolizm...  24.8    6.3  
+gnl|CDD|237840  PRK14866, PRK14866, hypothetical protein; Provisi...  25.0    6.7  
+gnl|CDD|234381  TIGR03888, nitrile_beta, nitrile hydratase, beta ...  24.7    7.2  
+
+
+>gnl|CDD|235278 PRK04311, PRK04311, selenocysteine synthase; Provisional.
+Length=464
+
+ Score = 31.7 bits (73),  Expect = 0.035, Method: Composition-based stats.
+ Identities = 14/47 (30%), Positives = 20/47 (43%), Gaps = 1/47 (2%)
+
+Query  30  ALRQVLHGCRQLVLWNVGLSPATSATLILCCQRVKAGTQRRL-PVIN  75
+           A+R+VL   R+ +     L     A       R+ A  +  L PVIN
+Sbjct  37  AVREVLDEAREGIRNGQTLPLDLEALAAEVEARLAARARPSLRPVIN  83
+
+
+>gnl|CDD|179661 PRK03846, PRK03846, adenylylsulfate kinase; Provisional.
+Length=198
+
+ Score = 27.6 bits (62),  Expect = 0.67, Method: Composition-based stats.
+ Identities = 12/27 (44%), Positives = 18/27 (67%), Gaps = 0/27 (0%)
+
+Query  30  ALRQVLHGCRQLVLWNVGLSPATSATL  56
+           A R+ LHG + +VLW  GLS +  +T+
+Sbjct  14  AQREQLHGHKGVVLWFTGLSGSGKSTV  40
+
+
+>gnl|CDD|239994 cd04622, CBS_pair_9, The CBS domain, named after human CBS, is 
+a small domain originally identified in cystathionine beta-synthase 
+and is subsequently found in a wide range of different 
+proteins. CBS domains usually occur in tandem repeats. 
+They associate to form a so-called Bateman domain or a CBS pair 
+based on crystallographic studies in bacteria.  The CBS 
+pair was used as a basis for this cd hierarchy since the human 
+CBS proteins can adopt the typical core structure and form 
+an intramolecular CBS pair.  The interface between the two 
+CBS domains forms a cleft that is a potential ligand binding 
+site. The CBS pair coexists with a variety of other functional 
+domains and this has been used to help in its classification 
+here.  It has been proposed that the CBS domain may play 
+a regulatory role, although its exact function is unknown. 
+Mutations of conserved residues within this domain are associated 
+with a variety of human hereditary diseases, including 
+congenital myotonia, idiopathic generalized epilepsy, hypercalciuric 
+nephrolithiasis, and classic Bartter syndrome (CLC 
+chloride channel family members), Wolff-Parkinson-White syndrome 
+(gamma 2 subunit of AMP-activated protein kinase), retinitis 
+pigmentosa (IMP dehydrogenase-1), and homocystinuria 
+(cystathionine beta-synthase).
+Length=113
+
+ Score = 27.5 bits (62),  Expect = 0.67, Method: Composition-based stats.
+ Identities = 8/33 (24%), Positives = 15/33 (45%), Gaps = 2/33 (6%)
+
+Query  53   SATLILCCQRVKAGTQRRLPVINRRK--VGMTS  83
+               +    + ++    RRLPV++     VG+ S
+Sbjct  74   DDDVDEAARLMREHQVRRLPVVDDDGRLVGIVS  106
+
+
+>gnl|CDD|114453 pfam05728, UPF0227, Uncharacterized protein family (UPF0227). 
+ Despite being classed as uncharacterized proteins, the members 
+of this family are almost certainly enzymes that are distantly 
+related to the pfam00561.
+Length=187
+
+ Score = 27.8 bits (62),  Expect = 0.73, Method: Composition-based stats.
+ Identities = 6/36 (17%), Positives = 13/36 (36%), Gaps = 3/36 (8%)
+
+Query  7    QREEPYLLLTSREDLRDEVVPSGALRQVLHGCRQLV  42
+            +  +  L+L  +    DEV+             ++V
+Sbjct  132  KNPDRCLVLLQKG---DEVLDYRRAAAHYRPYYEIV  164
+
+
+>gnl|CDD|213325 cd12117, A_NRPS_Srf_like, The adenylation domain of nonribosomal 
+peptide synthetases (NRPS), including Bacillus subtilis 
+termination module Surfactin (SrfA-C).  The adenylation (A) 
+domain of NRPS recognizes a specific amino acid or hydroxy acid 
+and activates it as an (amino) acyl adenylate by hydrolysis 
+of ATP. The activated acyl moiety then forms a thioester 
+to the enzyme-bound cofactor phosphopantetheine of a peptidyl 
+carrier protein domain. NRPSs are large multifunctional enzymes 
+which synthesize many therapeutically useful peptides 
+in bacteria and fungi via a template-directed, nucleic acid 
+independent nonribosomal mechanism. These natural products 
+include antibiotics, immunosuppressants, plant and animal toxins, 
+and enzyme inhibitors. NRPS has a distinct modular structure 
+in which each module is responsible for the recognition, 
+activation, and, in some cases, modification of a single 
+amino acid residue of the final peptide product. The modules 
+can be subdivided into domains that catalyze specific biochemical 
+reactions. This family includes the adenylation domain 
+of the Bacillus subtilis termination module (Surfactin domain, 
+SrfA-C) which recognizes a specific amino acid building 
+block, which is then activated and transferred to the terminal 
+thiol of the 4'-phosphopantetheine (Ppan) arm of the downstream 
+peptidyl carrier protein (PCP) domain.
+Length=474
+
+ Score = 27.5 bits (62),  Expect = 0.76, Method: Composition-based stats.
+ Identities = 21/83 (25%), Positives = 31/83 (37%), Gaps = 16/83 (19%)
+
+Query  1    MW-----FNSMQREEPYLLLTSREDLRD-----EVVPSGALRQVLHGCRQLVLWNVGLSP  50
+            +W     FN +  E+P  L      LR      +V+    +R+VL  C  L L N G  P
+Sbjct  221  LWLTAALFNQLVDEDPEALAG----LRQLLVGGDVLSPAHVRRVLAACPGLRLIN-GYGP  275
+
+Query  51   ATSATLILCCQRVKAGTQRRLPV  73
+             T  T    C  +    +    +
+Sbjct  276  -TENTTFSTCHVITRLDEAADSI  297
+
+
+>gnl|CDD|187573 cd05263, MupV_like_SDR_e, Pseudomonas fluorescens MupV-like, 
+extended (e) SDRs.  This subgroup of extended SDR family domains 
+have the characteristic active site tetrad and a well-conserved 
+NAD(P)-binding motif. This subgroup is not well characterized, 
+its members are annotated as having a variety of 
+putative functions. One characterized member is Pseudomonas 
+fluorescens MupV a protein  involved in the biosynthesis of 
+Mupirocin, a polyketide-derived antibiotic. Extended SDRs are 
+distinct from classical SDRs. In addition to the Rossmann 
+fold (alpha/beta folding pattern with a central beta-sheet) 
+core region typical of all SDRs, extended SDRs have a less 
+conserved C-terminal extension of approximately 100 amino acids. 
+Extended SDRs are a diverse collection of proteins, and 
+include isomerases, epimerases, oxidoreductases, and lyases; 
+they typically have a TGXXGXXG cofactor binding motif. SDRs 
+are a functionally diverse family of oxidoreductases that 
+have a single domain with a structurally conserved Rossmann 
+fold, an NAD(P)(H)-binding region, and a structurally diverse 
+C-terminal region. Sequence identity between different SDR 
+enzymes is typically in the 15-30% range; they catalyze a wide 
+range of activities including the metabolism of steroids, 
+cofactors, carbohydrates, lipids, aromatic compounds, and 
+amino acids, and act in redox sensing. Classical SDRs have an 
+TGXXX[AG]XG cofactor binding motif and a YXXXK active site 
+motif, with the Tyr residue of the active site motif serving 
+as a critical catalytic residue (Tyr-151, human 15-hydroxyprostaglandin 
+dehydrogenase numbering). In addition to the Tyr 
+and Lys, there is often an upstream Ser and/or an Asn, contributing 
+to the active site; while substrate binding is in 
+the C-terminal region, which determines specificity. The standard 
+reaction mechanism is a 4-pro-S hydride transfer and 
+proton relay involving the conserved Tyr and Lys, a water molecule 
+stabilized by Asn, and nicotinamide. Atypical SDRs generally 
+lack the catalytic residues characteristic of the SDRs, 
+and their glycine-rich NAD(P)-binding motif is often different 
+from the forms normally seen in classical or extended 
+SDRs. Complex (multidomain) SDRs such as ketoreductase domains 
+of fatty acid synthase have a GGXGXXG NAD(P)-binding motif 
+and an altered active site motif (YXXXN). Fungal type ketoacyl 
+reductases have a TGXXXGX(1-2)G NAD(P)-binding motif.
+Length=293
+
+ Score = 26.9 bits (60),  Expect = 1.5, Method: Composition-based stats.
+ Identities = 11/49 (22%), Positives = 17/49 (35%), Gaps = 1/49 (2%)
+
+Query  16  TSREDLRDEVVPSGALRQVLHGCRQ-LVLWNVGLSPATSATLILCCQRV  63
+            S  +  + +  +G     +      L   N+GLS A S  L      V
+Sbjct  32  ESLGEAHERIEEAGLEADRVRVLEGDLTQPNLGLSAAASRELAGKVDHV  80
+
+
+>gnl|CDD|129547 TIGR00455, apsK, adenylylsulfate kinase (apsK).  This protein, 
+adenylylsulfate kinase, is often found as a fusion protein 
+with sulfate adenylyltransferase. Important residue (active 
+site in E.coli) is residue 100 of the seed alignment [Central 
+intermediary metabolism, Sulfur metabolism].
+Length=184
+
+ Score = 26.3 bits (58),  Expect = 2.4, Method: Composition-based stats.
+ Identities = 11/25 (44%), Positives = 17/25 (68%), Gaps = 0/25 (0%)
+
+Query  32  RQVLHGCRQLVLWNVGLSPATSATL  56
+           RQ L+G R +V+W  GLS +  +T+
+Sbjct  10  RQALNGHRGVVIWLTGLSGSGKSTI  34
+
+
+>gnl|CDD|271004 cd14102, STKc_PIM3, Catalytic domain of the Serine/Threonine 
+kinase, Proviral Integration Moloney virus (PIM) kinase 3.  
+STKs catalyze the transfer of the gamma-phosphoryl group from 
+ATP to serine/threonine residues on protein substrates. The 
+PIM gene locus was discovered as a result of the cloning of 
+retroviral intergration sites in murine Moloney leukemia virus, 
+leading to the identification of PIM kinases. They are 
+constitutively active STKs with a broad range of cellular targets 
+and are overexpressed in many haematopoietic malignancies 
+and solid cancers. Vertebrates contain three distinct PIM 
+kinase genes (PIM1-3). PIM3 can inhibit apoptosis and promote 
+cell survival and protein translation, therefore, it can 
+enhance the proliferation of normal and cancer cells. Mice 
+deficient with PIM3 show minimal effects, suggesting that PIM3 
+msy not be essential. Since its expression is enhanced in 
+several cancers, it may make a good molecular target for cancer 
+drugs. The PIM3 subfamily is part of a larger superfamily 
+that includes the catalytic domains of other protein STKs, 
+protein tyrosine kinases, RIO kinases, aminoglycoside phosphotransferase, 
+choline kinase, and phosphoinositide 3-kinase.
+Length=253
+
+ Score = 25.7 bits (56),  Expect = 3.5, Method: Composition-based stats.
+ Identities = 14/38 (37%), Positives = 21/38 (55%), Gaps = 3/38 (8%)
+
+Query  22   RDEVVPSGAL---RQVLHGCRQLVLWNVGLSPATSATL  56
+            +DE +  G L   R+V   C+QL+ W + L P+   TL
+Sbjct  207  QDEEILRGRLYFRRRVSPECQQLIKWCLSLRPSDRPTL  244
+
+
+>gnl|CDD|183058 PRK11251, PRK11251, DNA-binding transcriptional activator OsmE; 
+Provisional.
+Length=109
+
+ Score = 25.0 bits (55),  Expect = 5.6, Method: Composition-based stats.
+ Identities = 10/32 (31%), Positives = 12/32 (38%), Gaps = 0/32 (0%)
+
+Query  51  ATSATLILCCQRVKAGTQRRLPVINRRKVGMT  82
+           A    L  C    +   Q   PV+   K GMT
+Sbjct  10  AVLTMLAGCTAYDRNPVQFVEPVVKDVKKGMT  41
+
+
+>gnl|CDD|253419 pfam05845, PhnH, Bacterial phosphonate metabolizm protein (PhnH). 
+ This family consists of several bacterial PhnH sequences 
+which are known to be involved in phosphonate metabolizm.
+Length=192
+
+ Score = 24.8 bits (55),  Expect = 6.3, Method: Composition-based stats.
+ Identities = 9/23 (39%), Positives = 11/23 (48%), Gaps = 0/23 (0%)
+
+Query  49   SPATSATLILCCQRVKAGTQRRL  71
+             P  SATLI+    +  G   RL
+Sbjct  114  YPDRSATLIVQVPSLAGGPPLRL  136
+
+
+>gnl|CDD|237840 PRK14866, PRK14866, hypothetical protein; Provisional.
+Length=451
+
+ Score = 25.0 bits (55),  Expect = 6.7, Method: Composition-based stats.
+ Identities = 6/10 (60%), Positives = 7/10 (70%), Gaps = 0/10 (0%)
+
+Query  79   VGMTSSHHGP  88
+            V M  +HHGP
+Sbjct  133  VSMECTHHGP  142
+
+
+>gnl|CDD|234381 TIGR03888, nitrile_beta, nitrile hydratase, beta subunit.  Members 
+of this protein family are the beta subunit of nitrile 
+hydratase. The alpha subunit is represented by model TIGR01323. 
+While nitrile hydratase is given the specific EC number 
+4.2.1.84, nitriles are a class of compounds, and one genome 
+may carry more than one nitrile hydratase. The enzyme occurs 
+in both non-heme iron and non-corrin cobalt forms [Energy 
+metabolism, Amino acids and amines].
+Length=223
+
+ Score = 24.7 bits (54),  Expect = 7.2, Method: Composition-based stats.
+ Identities = 11/34 (32%), Positives = 14/34 (41%), Gaps = 5/34 (15%)
+
+Query  61   QRVKA-----GTQRRLPVINRRKVGMTSSHHGPY  89
+             RV+          RLP   R KVG+    HG +
+Sbjct  140  DRVRVRNEYPAGHTRLPAYVRGKVGVVEHRHGEH  173
+
+
+
+Lambda      K        H        a         alpha
+   0.323    0.135    0.425    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 287423994

@@ -1,0 +1,82 @@
+********************************************************************************
+Bacteria
+~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~
+
+Use of the prediction function for PROTOZOA
+
+
+None potential GPI-modification site was found.
+Among all positions checked, sequence position  492 had the best score.
+
+
+Total Score.................................................:  -58.35 (PValue = 2.148057e-01)
+Components of the Score Function:
+Profile Score...............................................:  -10.57
+Term  0  Contents and Windows of DE in Region [-11..1]......:    0.00
+Term  1  Hydrophilicity of N-terminal Region [-11..1].......:   -0.00
+Term  2  Penalty for low Profile Score in Region [0..2].....:    0.00
+Term  3  Volume Limitation [-1..+2].........................:    0.00
+Term  4  Volume Compensation (-1, 0, 1).....................:    0.00
+Term  5  Volume Compensation (-1, 1)........................:    0.00
+Term  6  Backbone Flexibility [-1..2].......................:    0.00
+Term  7  Propeptide Length..................................:    0.00
+Term  8  Hydrophilicity of Spacer Region [3..8].............:    0.00
+Term  9  Volume Limitation [3..8]...........................:    0.00
+Term 10  Penalty for charged AAs in Spacer Region [3..10]...:    0.00
+Term 11  Backbone Flexibility [3..8].... ...................:    0.00
+Term 12  Penalty for low Profile Score in Region [10..end]..:  -12.00
+Term 13  Hydrophobicity of Tail [10..end]...................:   -4.83
+Term 14  Hydrophobicity of Tail [26..end]...................:   -6.95
+Term 15  Even Distribution of Hydrophobicity [9..end].......:  -12.00
+Term 16  Penalty for polar Windows in Region [10..end]......:    0.00
+Term 17  Penalty for SGC-Windows in Region [10..end]........:    0.00
+Term 18  LVI Contents [10..end].............................:  -12.00
+Term 19  Penalty for FYHW - Sections in Region [10..end]....:    0.00
+Term 20  Penalty for Windows with small Volume [10..end]....:   -0.00
+ Profile independent Score...................................:  -35.78
+
+
+
+
+
+********************************************************************************
+Bacteria2
+~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~
+
+Use of the prediction function for PROTOZOA
+
+
+None potential GPI-modification site was found.
+Among all positions checked, sequence position  492 had the best score.
+
+
+Total Score.................................................:  -58.35 (PValue = 2.148057e-01)
+Components of the Score Function:
+Profile Score...............................................:  -10.57
+Term  0  Contents and Windows of DE in Region [-11..1]......:    0.00
+Term  1  Hydrophilicity of N-terminal Region [-11..1].......:   -0.00
+Term  2  Penalty for low Profile Score in Region [0..2].....:    0.00
+Term  3  Volume Limitation [-1..+2].........................:    0.00
+Term  4  Volume Compensation (-1, 0, 1).....................:    0.00
+Term  5  Volume Compensation (-1, 1)........................:    0.00
+Term  6  Backbone Flexibility [-1..2].......................:    0.00
+Term  7  Propeptide Length..................................:    0.00
+Term  8  Hydrophilicity of Spacer Region [3..8].............:    0.00
+Term  9  Volume Limitation [3..8]...........................:    0.00
+Term 10  Penalty for charged AAs in Spacer Region [3..10]...:    0.00
+Term 11  Backbone Flexibility [3..8].... ...................:    0.00
+Term 12  Penalty for low Profile Score in Region [10..end]..:  -12.00
+Term 13  Hydrophobicity of Tail [10..end]...................:   -4.83
+Term 14  Hydrophobicity of Tail [26..end]...................:   -6.95
+Term 15  Even Distribution of Hydrophobicity [9..end].......:  -12.00
+Term 16  Penalty for polar Windows in Region [10..end]......:    0.00
+Term 17  Penalty for SGC-Windows in Region [10..end]........:    0.00
+Term 18  LVI Contents [10..end].............................:  -12.00
+Term 19  Penalty for FYHW - Sections in Region [10..end]....:    0.00
+Term 20  Penalty for Windows with small Volume [10..end]....:   -0.00
+ Profile independent Score...................................:  -35.78
+
+
+
+
+

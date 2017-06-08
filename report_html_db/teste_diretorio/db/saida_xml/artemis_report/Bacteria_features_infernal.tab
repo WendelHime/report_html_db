@@ -1,0 +1,11 @@
+FT   ncRNA           complement(864..751)
+FT                   /locus_tag="Bact_03"
+FT                   /label="Alpha_RBS"
+FT                   /note="Bact_03"
+FT                   /note="internal name: Bacteria_RNA_scan_annotation_infernal.pl_log_7_18"
+FT                   /ncRNA_class="other"
+FT                   /product="Alpha operon ribosome binding site"
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00140, Rfam type: Cis-reg;, score is 105.8, e-value is 1.7e-25, bias is 0.5"
+FT                   /color=123 234 255
+

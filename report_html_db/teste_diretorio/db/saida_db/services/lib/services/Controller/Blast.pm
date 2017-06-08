@@ -52,11 +52,11 @@ sub search_POST {
 	print $FILEHANDLER $hash{SEQUENCE};
 	close($FILEHANDLER);
 
-	$hash{DATALIB} = "saida_db/services/root/seq/Bacteria"
+	$hash{DATALIB} = $c->config->{annotations_dir} . "/services/root/seq/Sequences"
 	  if ( $hash{DATALIB} eq "PMN_genome_1" );
-	$hash{DATALIB} = "saida_db/services/root/orfs_nt/Bacteria"
+	$hash{DATALIB} = $c->config->{annotations_dir} . "/services/root/orfs_nt/Sequences_NT"
 	  if ( $hash{DATALIB} eq "PMN_genes_1" );
-	$hash{DATALIB} = "saida_db/services/root/orfs_aa/Bacteria"
+	$hash{DATALIB} = $c->config->{annotations_dir} . "/services/root/orfs_aa/Sequences_AA"
 	  if ( $hash{DATALIB} eq "PMN_prot_1" );
 	my $content = "";
 	if ( exists $hash{PROGRAM} ) {
@@ -73,10 +73,10 @@ sub search_POST {
 					$hash{QUERY_TO},           $hash{FILTER},
 					$hash{EXPECT},             $hash{MAT_PARAM},
 					$hash{UNGAPPED_ALIGNMENT}, $hash{GENETIC_CODE},
-					$hash{DB_GENETIC_CODE},    $hash{OOF_ALIGN},
+					$hash{DB_GENETIC_CODE},    
 					$hash{OTHER_ADVANCED},     $hash{OVERVIEW},
 					$hash{ALIGNMENT_VIEW},     $hash{DESCRIPTIONS},
-					$hash{ALIGNMENTS},         $hash{COLOR_SCHEMA}
+					$hash{ALIGNMENTS}
 				)
 			};
 			$content = join( "", @response );

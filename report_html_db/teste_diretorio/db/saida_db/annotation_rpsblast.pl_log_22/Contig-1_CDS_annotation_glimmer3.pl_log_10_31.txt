@@ -1,0 +1,405 @@
+Query= Contig-1_CDS_annotation_glimmer3.pl_log_10_31
+
+Length=144
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|235523  PRK05592, rplO, 50S ribosomal protein L15; Reviewed   227     2e-76
+gnl|CDD|233260  TIGR01071, rplO_bact, ribosomal protein L15, bact...  179     1e-57
+gnl|CDD|223278  COG0200, RplO, Ribosomal protein L15 [Translation...  156     1e-48
+gnl|CDD|250160  pfam00828, Ribosomal_L18e, Ribosomal protein L18e...  91.1    1e-23
+gnl|CDD|235799  PRK06419, rpl15p, 50S ribosomal protein L15P; Rev...  36.7    0.001
+gnl|CDD|235196  PRK04005, PRK04005, 50S ribosomal protein L18e; P...  35.2    0.002
+gnl|CDD|224641  COG1727, RPL18A, Ribosomal protein L18E [Translat...  34.6    0.005
+gnl|CDD|236941  PRK11634, PRK11634, ATP-dependent RNA helicase De...  29.0    1.0  
+gnl|CDD|253458  pfam05918, API5, Apoptosis inhibitory protein 5 (...  28.9    1.3  
+gnl|CDD|173502  PTZ00266, PTZ00266, NIMA-related protein kinase; ...  27.8    3.2  
+gnl|CDD|240291  PTZ00146, PTZ00146, fibrillarin; Provisional          27.4    3.3  
+gnl|CDD|254259  pfam07523, Big_3, Bacterial Ig-like domain (group...  25.7    3.6  
+gnl|CDD|233843  TIGR02390, RNA_pol_rpoA1, DNA-directed RNA polyme...  27.0    5.1  
+gnl|CDD|235510  PRK05573, rplU, 50S ribosomal protein L21; Validated  25.8    5.1  
+gnl|CDD|177867  PLN02221, PLN02221, asparaginyl-tRNA synthetase       26.9    5.4  
+gnl|CDD|214582  smart00245, TSPc, tail specific protease. tail sp...  26.4    6.1  
+gnl|CDD|201461  pfam00829, Ribosomal_L21p, Ribosomal prokaryotic ...  25.6    6.9  
+gnl|CDD|234299  TIGR03661, T1SS_VCA0849, type I secretion C-termi...  25.4    7.7  
+gnl|CDD|116340  pfam07726, AAA_3, ATPase family associated with v...  25.6    8.1  
+gnl|CDD|260114  cd13940, ILEI_FAM3C, Interleukin-like EMT inducer...  25.7    9.1  
+gnl|CDD|215359  PLN02667, PLN02667, inositol polyphosphate multik...  25.8    9.2  
+gnl|CDD|176645  cd05282, ETR_like, 2-enoyl thioester reductase-li...  26.1    9.6  
+
+
+>gnl|CDD|235523 PRK05592, rplO, 50S ribosomal protein L15; Reviewed.
+Length=146
+
+ Score = 227 bits (581),  Expect = 2e-76, Method: Composition-based stats.
+ Identities = 87/145 (60%), Positives = 105/145 (72%), Gaps = 1/145 (1%)
+
+Query  1    MRLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRR  60
+            M+LN L PA GS+ A KRVGRGIGSGLGKT GRGHKGQK+RSGGGVR GFEGGQMPLYRR
+Sbjct  1    MKLNELKPAPGSRKARKRVGRGIGSGLGKTAGRGHKGQKARSGGGVRPGFEGGQMPLYRR  60
+
+Query  61   LPKFGFTSRKAMVTAEVRLSDFAA-VEGDIIDLNALKAANVVGTQIEFAKVILSGEINRA  119
+            LPK GFT+      A V L D     EG  + L ALKAA ++   I+  KV+ +GE+ + 
+Sbjct  61   LPKRGFTNIFRKEYAVVNLGDLNKFEEGTEVTLEALKAAGLIRKNIKGVKVLGNGELTKK  120
+
+Query  120  VTVRGLRVTKGARAAIEAAGGKIEE  144
+            +TV+  + +K A+ AIEAAGGK+EE
+Sbjct  121  LTVKAHKFSKSAKEAIEAAGGKVEE  145
+
+
+>gnl|CDD|233260 TIGR01071, rplO_bact, ribosomal protein L15, bacterial/organelle. 
+ [Protein synthesis, Ribosomal proteins: synthesis and 
+modification].
+Length=145
+
+ Score = 179 bits (455),  Expect = 1e-57, Method: Composition-based stats.
+ Identities = 83/145 (57%), Positives = 105/145 (72%), Gaps = 3/145 (2%)
+
+Query  2    RLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRL  61
+            +LN L PA+G+K   KRVGRGIGSGLGKT GRGHKGQK+RSGG VRRGFEGGQMPLYRRL
+Sbjct  1    KLNELKPAKGAKKRRKRVGRGIGSGLGKTSGRGHKGQKARSGGKVRRGFEGGQMPLYRRL  60
+
+Query  62   PKFGF-TSRKAMVTAEVRLSDFAAV--EGDIIDLNALKAANVVGTQIEFAKVILSGEINR  118
+            PK GF   R     AEV L   A +   G+++ L  LK   ++  +I+F KV+ +G++ +
+Sbjct  61   PKRGFSNKRFKKEYAEVNLGKLAKLFPNGEVVTLETLKEKGLITKKIKFVKVLGNGKLTK  120
+
+Query  119  AVTVRGLRVTKGARAAIEAAGGKIE  143
+             +TV+  RV+K A+AAIEAAGG +E
+Sbjct  121  PLTVKAHRVSKSAKAAIEAAGGSVE  145
+
+
+>gnl|CDD|223278 COG0200, RplO, Ribosomal protein L15 [Translation, ribosomal 
+structure and biogenesis].
+Length=152
+
+ Score = 156 bits (397),  Expect = 1e-48, Method: Composition-based stats.
+ Identities = 85/150 (57%), Positives = 102/150 (68%), Gaps = 6/150 (4%)
+
+Query  1    MRLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGG-VRRGFEGGQMPLYR  59
+            MRLN L PA GSK   KRVGRGIGSGLGKTGGRGHKGQK+RSG   VR GFEGGQMPLYR
+Sbjct  1    MRLNDLKPARGSKKTRKRVGRGIGSGLGKTGGRGHKGQKARSGHKWVRPGFEGGQMPLYR  60
+
+Query  60   RLPKFGFTS--RKAMVTAEVRLSDFA--AVEGDIIDLNALKAANVVGTQIEFAKVILSGE  115
+            RLPK GFT+   K +  A V L   A    EG+ + L +LKAA V+    +  KV+ +G+
+Sbjct  61   RLPKRGFTNSKFKKVEYAVVNLGKLAELLPEGEEVTLASLKAAGVIRKLKDLVKVLGNGK  120
+
+Query  116  INRAVTVRGL-RVTKGARAAIEAAGGKIEE  144
+            + +AV V+   + +K A   IEAAGGK+E 
+Sbjct  121  LTKAVPVKVKAKASKSAIEKIEAAGGKVEL  150
+
+
+>gnl|CDD|250160 pfam00828, Ribosomal_L18e, Ribosomal protein L18e/L15.  This 
+family includes eukaryotic L18 as well as prokaryotic L15.
+Length=122
+
+ Score = 91.1 bits (227),  Expect = 1e-23, Method: Composition-based stats.
+ Identities = 47/118 (40%), Positives = 63/118 (53%), Gaps = 3/118 (3%)
+
+Query  28   GKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRLPKFGFTSRKAMVT--AEVRLSDFAAV  85
+            GKT GRG KG + R+GG     FEGGQ+PLYRRL K GF            V LS     
+Sbjct  4    GKTRGRGRKGGRGRAGGQKH-HFEGGQVPLYRRLGKRGFRKLFKSRKNRPPVNLSKLDRK  62
+
+Query  86   EGDIIDLNALKAANVVGTQIEFAKVILSGEINRAVTVRGLRVTKGARAAIEAAGGKIE  143
+                 +    +   VVGT  +  KV+ +GE+ + +TV+ L+ +K AR  IE AGG++ 
+Sbjct  63   MLKDGEEVDGETLVVVGTVTDDVKVLGNGELTKPLTVKALKFSKSAREKIEKAGGEVI  120
+
+
+>gnl|CDD|235799 PRK06419, rpl15p, 50S ribosomal protein L15P; Reviewed.
+Length=148
+
+ Score = 36.7 bits (86),  Expect = 0.001, Method: Composition-based stats.
+ Identities = 15/65 (23%), Positives = 30/65 (46%), Gaps = 8/65 (12%)
+
+Query  80   SDFAAVEGDIIDLNALKAANVVGTQIEFAKVILSGEINRAVTVRGLRVTKGARAAIEAAG  139
+               A  E   I ++         T++ + KV+  G++ R + ++    ++ A   IEAAG
+Sbjct  88   EGKAEEEDGKIVVDL--------TELGYDKVLGGGKVTRPLVIKADAFSEKAIEKIEAAG  139
+
+Query  140  GKIEE  144
+            G++  
+Sbjct  140  GEVVL  144
+
+
+>gnl|CDD|235196 PRK04005, PRK04005, 50S ribosomal protein L18e; Provisional.
+Length=111
+
+ Score = 35.2 bits (82),  Expect = 0.002, Method: Composition-based stats.
+ Identities = 30/76 (39%), Positives = 38/76 (50%), Gaps = 21/76 (28%)
+
+Query  75   AEVRLSDFA--AVEGDIIDLNALKAANVV-GTQIEFAKVILSGEINRAVTVRGLRVTKGA  131
+            AEV LS     A EGD +         VV G      KV+ SG+++  VTV  L  ++ A
+Sbjct  36   AEVNLSKINRYAKEGDTV---------VVPG------KVLGSGKLDHKVTVAALSFSETA  80
+
+Query  132  RAAIEAAGGK---IEE  144
+            +  IE AGGK   IEE
+Sbjct  81   KEKIEEAGGKALTIEE  96
+
+
+>gnl|CDD|224641 COG1727, RPL18A, Ribosomal protein L18E [Translation, ribosomal 
+structure and biogenesis].
+Length=122
+
+ Score = 34.6 bits (80),  Expect = 0.005, Method: Composition-based stats.
+ Identities = 16/35 (46%), Positives = 23/35 (66%), Gaps = 0/35 (0%)
+
+Query  108  AKVILSGEINRAVTVRGLRVTKGARAAIEAAGGKI  142
+             KV+  G++++ VTV  LR +K AR  IE AGG+ 
+Sbjct  68   GKVLGDGKLDKKVTVAALRFSKTAREKIEEAGGEC  102
+
+
+>gnl|CDD|236941 PRK11634, PRK11634, ATP-dependent RNA helicase DeaD; Provisional.
+Length=629
+
+ Score = 29.0 bits (65),  Expect = 1.0, Method: Composition-based stats.
+ Identities = 15/52 (29%), Positives = 21/52 (40%), Gaps = 0/52 (0%)
+
+Query  1    MRLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEG  52
+            M +  L  A+      +R G     G  + GGR   G++   G G  R F G
+Sbjct  555  MNMQLLGDAQPHTGGERRGGGRGFGGERREGGRNFSGERREGGRGDGRRFSG  606
+
+
+>gnl|CDD|253458 pfam05918, API5, Apoptosis inhibitory protein 5 (API5).  This 
+family consists of apoptosis inhibitory protein 5 (API5) sequences 
+from several organisms. Apoptosis or programmed cell 
+death is a physiological form of cell death that occurs in 
+embryonic development and organ formation. It is characterized 
+by biochemical and morphological changes such as DNA fragmentation 
+and cell volume shrinkage. API5 is an anti apoptosis 
+gene located in human chromosome 11, whose expression prevents 
+the programmed cell death that occurs upon the deprivation 
+of growth factors.
+Length=543
+
+ Score = 28.9 bits (64),  Expect = 1.3, Method: Composition-based stats.
+ Identities = 15/40 (38%), Positives = 18/40 (45%), Gaps = 2/40 (5%)
+
+Query  15   APKRVGRGIGSGLGKTGGRGH-KGQKSRSGGGVRRGFEGG  53
+              K  G GI       GGRG  +G+    GGG  RG+  G
+Sbjct  503  VNKS-GEGISKVGQSYGGRGRTRGRGRGGGGGRGRGYNRG  541
+
+
+>gnl|CDD|173502 PTZ00266, PTZ00266, NIMA-related protein kinase; Provisional.
+Length=1021
+
+ Score = 27.8 bits (61),  Expect = 3.2, Method: Composition-based stats.
+ Identities = 15/46 (33%), Positives = 23/46 (50%), Gaps = 5/46 (11%)
+
+Query  8    PAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGG  53
+            P +G       VG G+G+G+G + GR H G +S     ++    GG
+Sbjct  543  PGDGPG-----VGAGVGAGVGTSDGRNHSGVRSGIHCSIQSSARGG  583
+
+
+>gnl|CDD|240291 PTZ00146, PTZ00146, fibrillarin; Provisional.
+Length=293
+
+ Score = 27.4 bits (61),  Expect = 3.3, Method: Composition-based stats.
+ Identities = 13/35 (37%), Positives = 15/35 (43%), Gaps = 0/35 (0%)
+
+Query  20  GRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQ  54
+           G G G G G   G G  G +   G G  RG   G+
+Sbjct  3   GGGFGGGRGGGRGGGGGGGRGGGGRGGGRGGGRGR  37
+
+
+ Score = 26.6 bits (59),  Expect = 5.4, Method: Composition-based stats.
+ Identities = 16/34 (47%), Positives = 18/34 (53%), Gaps = 0/34 (0%)
+
+Query  20  GRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGG  53
+           G G   G G+ GGRG    + R GGG  RG  GG
+Sbjct  18  GGGGRGGGGRGGGRGGGRGRGRGGGGGGRGGGGG  51
+
+
+ Score = 25.8 bits (57),  Expect = 8.9, Method: Composition-based stats.
+ Identities = 18/34 (53%), Positives = 19/34 (56%), Gaps = 0/34 (0%)
+
+Query  20  GRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGG  53
+           GRG G G G  GGRG  G+    GGG  RG  GG
+Sbjct  9   GRGGGRGGGGGGGRGGGGRGGGRGGGRGRGRGGG  42
+
+
+>gnl|CDD|254259 pfam07523, Big_3, Bacterial Ig-like domain (group 3).  This family 
+consists of bacterial domains with an Ig-like fold. Members 
+of this family are found in a variety of bacterial surface 
+proteins.
+Length=66
+
+ Score = 25.7 bits (57),  Expect = 3.6, Method: Composition-based stats.
+ Identities = 13/51 (25%), Positives = 21/51 (41%), Gaps = 8/51 (16%)
+
+Query  87   GDIIDLNALK--AANVVGTQIEFAKVILSGEIN------RAVTVRGLRVTK  129
+            GD  D       A +  G  ++F+ V +SG ++        VT     V+K
+Sbjct  10   GDSWDAEDNFVSATDKDGKTVDFSDVTVSGTVDTTKAGTYEVTYTYDGVSK  60
+
+
+>gnl|CDD|233843 TIGR02390, RNA_pol_rpoA1, DNA-directed RNA polymerase subunit 
+A'.  This family consists of the archaeal A' subunit of the 
+DNA-directed RNA polymerase. The example from Methanocaldococcus 
+jannaschii contains an intein.
+Length=867
+
+ Score = 27.0 bits (60),  Expect = 5.1, Method: Composition-based stats.
+ Identities = 16/49 (33%), Positives = 21/49 (43%), Gaps = 16/49 (33%)
+
+Query  27   LGKTGGRGHK----------GQKSRSGGGVRRGFEGGQMPLYRRLPKFG  65
+            + +TG RG            GQ+S  GG +RRG+        R LP F 
+Sbjct  723  MARTGARGSLLNITQMAAMVGQQSVRGGRIRRGYRN------RTLPHFK  765
+
+
+>gnl|CDD|235510 PRK05573, rplU, 50S ribosomal protein L21; Validated.
+Length=103
+
+ Score = 25.8 bits (58),  Expect = 5.1, Method: Composition-based stats.
+ Identities = 17/47 (36%), Positives = 23/47 (49%), Gaps = 6/47 (13%)
+
+Query  86   EGDIIDLNALKAANVVGTQIEFAKVILSGEINRAV----TVRGLRVT  128
+            EGD+I +  L A   VG  +EF +V+L G           V G +VT
+Sbjct  16   EGDVIKVEKLDAE--VGDTVEFDEVLLVGGGEEVKIGAPYVEGAKVT  60
+
+
+>gnl|CDD|177867 PLN02221, PLN02221, asparaginyl-tRNA synthetase.
+Length=572
+
+ Score = 26.9 bits (59),  Expect = 5.4, Method: Composition-based stats.
+ Identities = 13/24 (54%), Positives = 15/24 (63%), Gaps = 0/24 (0%)
+
+Query  31  GGRGHKGQKSRSGGGVRRGFEGGQ  54
+           GG G  GQK R GG V+ G E G+
+Sbjct  44  GGAGLAGQKVRIGGWVKTGREQGK  67
+
+
+>gnl|CDD|214582 smart00245, TSPc, tail specific protease.  tail specific protease.
+Length=192
+
+ Score = 26.4 bits (59),  Expect = 6.1, Method: Composition-based stats.
+ Identities = 13/44 (30%), Positives = 20/44 (45%), Gaps = 1/44 (2%)
+
+Query  49  GFEGGQMPLYRRLPKFGFTSRKAMVTAEVRLSDFAAVEGDIIDL  92
+           G+       Y R+P+F   +   +  A  +L     VEG I+DL
+Sbjct  23  GYLRFGFIGYIRIPEFSEHTSNLVEKAWKKLEKT-NVEGLILDL  65
+
+
+>gnl|CDD|201461 pfam00829, Ribosomal_L21p, Ribosomal prokaryotic L21 protein. 
+ 
+Length=96
+
+ Score = 25.6 bits (57),  Expect = 6.9, Method: Composition-based stats.
+ Identities = 15/30 (50%), Positives = 19/30 (63%), Gaps = 2/30 (7%)
+
+Query  86   EGDIIDLNALKAANVVGTQIEFAKVILSGE  115
+            EGD+I +  L A   VG +IEF KV+L G 
+Sbjct  16   EGDVIFVEKLDAE--VGDKIEFDKVLLVGG  43
+
+
+>gnl|CDD|234299 TIGR03661, T1SS_VCA0849, type I secretion C-terminal target domain 
+(VC_A0849 subclass).  This model represents a C-terminal 
+domain associated with secretion by type 1 secretion systems 
+(T1SS). Members of this subclass do not include the RtxA 
+toxin of Vibrio cholerae and its homologs, although the two 
+classes of proteins share large size, occurrence in genomes 
+with T1SS, regions with long tandem repeats, and regions with 
+the glycine-rich repeat modeled by pfam00353 [Cellular processes, 
+Pathogenesis].
+Length=89
+
+ Score = 25.4 bits (56),  Expect = 7.7, Method: Composition-based stats.
+ Identities = 12/36 (33%), Positives = 17/36 (47%), Gaps = 2/36 (6%)
+
+Query  81   DFAAVEGDIIDLNA-LKAANVVGTQIE-FAKVILSG  114
+            DF   EGD +DL+  L   NV    ++ +     SG
+Sbjct  5    DFKLAEGDKLDLSDLLSGENVDSANLDNYLDFSTSG  40
+
+
+>gnl|CDD|116340 pfam07726, AAA_3, ATPase family associated with various cellular 
+activities (AAA).  This Pfam entry includes some of the 
+AAA proteins not detected by the pfam00004 model.
+Length=131
+
+ Score = 25.6 bits (57),  Expect = 8.1, Method: Composition-based stats.
+ Identities = 9/13 (69%), Positives = 11/13 (85%), Gaps = 0/13 (0%)
+
+Query  107  FAKVILSGEINRA  119
+            FA V+L+ EINRA
+Sbjct  62   FANVLLADEINRA  74
+
+
+>gnl|CDD|260114 cd13940, ILEI_FAM3C, Interleukin-like EMT inducer.  The secreted 
+factor FAM3C or ILEI (InterLeukin-like Emt Inducer) has 
+been identifed as a protein involved in the epithelial-mesenchymal 
+transition (EMT) and in processes associated with metastasis 
+formation and the progression of cancer. The protein 
+had initially been predicted to be a member of the four-helical 
+cytokine family, hence the FAM3C designation. ILEI has 
+been found to be widely expressed, and to be involved in retinal 
+development.
+Length=171
+
+ Score = 25.7 bits (57),  Expect = 9.1, Method: Composition-based stats.
+ Identities = 12/22 (55%), Positives = 16/22 (73%), Gaps = 1/22 (5%)
+
+Query  97   AANVVGTQIEF-AKVILSGEIN  117
+            AANVVG +I F  K+I+S  +N
+Sbjct  25   AANVVGPKICFEGKIIMSSVLN  46
+
+
+>gnl|CDD|215359 PLN02667, PLN02667, inositol polyphosphate multikinase.
+Length=286
+
+ Score = 25.8 bits (57),  Expect = 9.2, Method: Composition-based stats.
+ Identities = 16/49 (33%), Positives = 21/49 (43%), Gaps = 5/49 (10%)
+
+Query  73   VTAEVRLSDFAAV--EGDIIDLNALKAANVVGTQIEFAKVILSGEINRA  119
+               EV+L DFA V     +ID N L     +   I+F   IL+     A
+Sbjct  236  SRVEVKLVDFAHVLDGNGVIDHNFLGGLCSL---IKFISEILTSPDESA  281
+
+
+>gnl|CDD|176645 cd05282, ETR_like, 2-enoyl thioester reductase-like.  2-enoyl 
+thioester reductase (ETR) catalyzes the NADPH-dependent conversion 
+of trans-2-enoyl acyl carrier protein/coenzyme A (ACP/CoA) 
+to acyl-(ACP/CoA) in fatty acid synthesis. 2-enoyl thioester 
+reductase activity has been linked in Candida tropicalis 
+as essential in maintaining mitiochondrial respiratory 
+function. This ETR family is a part of the medium chain dehydrogenase/reductase 
+family, but lack the zinc coordination sites 
+characteristic of the alcohol dehydrogenases in this family. 
+NAD(P)(H)-dependent oxidoreductases are the major enzymes 
+in the interconversion of alcohols and aldehydes, or ketones. 
+ Alcohol dehydrogenase in the liver converts ethanol and 
+NAD+ to acetaldehyde and NADH, while in yeast and some other 
+microorganisms ADH catalyzes the conversion acetaldehyde 
+to ethanol in alcoholic fermentation.   ADH is a member of 
+the medium chain alcohol dehydrogenase family (MDR), which has 
+a NAD(P)(H)-binding domain in a Rossmann fold of a beta-alpha 
+form.  The NAD(H)-binding region is comprised of 2 structurally 
+similar halves, each of which contacts a mononucleotide. 
+ The N-terminal catalytic domain has a distant homology 
+ to GroES.  These proteins typically form dimers (typically 
+higher plants, mammals) or tetramers (yeast, bacteria), and 
+have 2 tightly bound zinc atoms per subunit, a catalytic zinc 
+at the active site and a structural zinc in a lobe of the 
+catalytic domain.  NAD(H) binding occurs in the cleft between 
+the catalytic and coenzyme-binding domains at the active 
+site, and coenzyme binding induces a conformational closing 
+of this cleft. Coenzyme binding typically precedes and contributes 
+to substrate binding.  Candida tropicalis enoyl thioester 
+reductase (Etr1p) catalyzes the NADPH-dependent reduction 
+of trans-2-enoyl thioesters in mitochondrial fatty acid 
+synthesis. Etr1p forms homodimers with each subunit containing 
+a nucleotide-binding Rossmann fold domain and a catalytic 
+domain.
+Length=323
+
+ Score = 26.1 bits (58),  Expect = 9.6, Method: Composition-based stats.
+ Identities = 12/32 (38%), Positives = 17/32 (53%), Gaps = 0/32 (0%)
+
+Query  110  VILSGEINRAVTVRGLRVTKGARAAIEAAGGK  141
+            VI S   + A  V+      GAR A++A GG+
+Sbjct  187  VIDSSPEDLAQRVKEATGGAGARLALDAVGGE  218
+
+
+
+Lambda      K        H        a         alpha
+   0.317    0.136    0.379    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 406722008

@@ -1,0 +1,757 @@
+Query= Bacteria_CDS_annotation_glimmer3.pl_log_10_57
+
+Length=344
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|234593  PRK00046, murB, UDP-N-acetylenolpyruvoylglucosami...  564     0.0   
+gnl|CDD|232859  TIGR00179, murB, UDP-N-acetylenolpyruvoylglucosam...  340     7e-116
+gnl|CDD|223882  COG0812, MurB, UDP-N-acetylmuramate dehydrogenase...  339     4e-115
+gnl|CDD|237552  PRK13903, murB, UDP-N-acetylenolpyruvoylglucosami...  224     1e-69 
+gnl|CDD|237553  PRK13905, murB, UDP-N-acetylenolpyruvoylglucosami...  176     5e-52 
+gnl|CDD|251582  pfam02873, MurB_C, UDP-N-acetylenolpyruvoylglucos...  131     5e-37 
+gnl|CDD|173112  PRK14649, PRK14649, UDP-N-acetylenolpyruvoylgluco...  121     2e-31 
+gnl|CDD|237778  PRK14653, PRK14653, UDP-N-acetylenolpyruvoylgluco...  106     3e-26 
+gnl|CDD|171497  PRK12436, PRK12436, UDP-N-acetylenolpyruvoylgluco...  98.2    3e-23 
+gnl|CDD|184386  PRK13906, murB, UDP-N-acetylenolpyruvoylglucosami...  91.0    6e-21 
+gnl|CDD|250709  pfam01565, FAD_binding_4, FAD binding domain. Thi...  87.7    7e-21 
+gnl|CDD|237777  PRK14652, PRK14652, UDP-N-acetylenolpyruvoylgluco...  89.2    2e-20 
+gnl|CDD|173113  PRK14650, PRK14650, UDP-N-acetylenolpyruvoylgluco...  89.1    3e-20 
+gnl|CDD|237776  PRK14651, PRK14651, UDP-N-acetylenolpyruvoylgluco...  74.5    3e-15 
+gnl|CDD|184384  PRK13904, murB, UDP-N-acetylenolpyruvoylglucosami...  70.0    9e-14 
+gnl|CDD|173111  PRK14648, PRK14648, UDP-N-acetylenolpyruvoylgluco...  70.1    2e-13 
+gnl|CDD|226549  COG4063, MtrA, Tetrahydromethanopterin S-methyltr...  32.1    0.34  
+gnl|CDD|130181  TIGR01111, mtrA, N5-methyltetrahydromethanopterin...  30.9    0.84  
+gnl|CDD|112998  pfam04208, MtrA, Tetrahydromethanopterin S-methyl...  30.1    1.1   
+gnl|CDD|172537  PRK14045, PRK14045, 1-aminocyclopropane-1-carboxy...  30.6    1.2   
+gnl|CDD|215502  PLN02929, PLN02929, NADH kinase                       30.0    1.7   
+gnl|CDD|251842  pfam03272, Enhancin, Viral enhancin protein           29.3    4.4   
+gnl|CDD|183099  PRK11361, PRK11361, acetoacetate metabolism regul...  29.0    4.6   
+gnl|CDD|234191  TIGR03377, glycerol3P_GlpA, glycerol-3-phosphate ...  28.8    4.7   
+gnl|CDD|130916  TIGR01857, FGAM-synthase, phosphoribosylformylgly...  28.7    5.9   
+gnl|CDD|238680  cd01384, MYSc_type_XI, Myosin motor domain, plant...  28.5    7.0   
+gnl|CDD|271404  cd11555, SLC-NCS1sbd_u1, uncharacterized nucleoba...  28.3    7.8   
+gnl|CDD|215237  PLN02433, PLN02433, uroporphyrinogen decarboxylase    28.0    8.4   
+gnl|CDD|225197  COG2315, MmcQ, Uncharacterized protein conserved ...  26.9    9.3   
+
+
+>gnl|CDD|234593 PRK00046, murB, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=334
+
+ Score = 564 bits (1455),  Expect = 0.0, Method: Composition-based stats.
+ Identities = 198/329 (60%), Positives = 245/329 (74%), Gaps = 1/329 (0%)
+
+Query  1    MLSLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGT  60
+              SLK  NTFG+ A A+ L  AES E LL     A++   P L+LGGGSNVLFT +F+GT
+Sbjct  6    NHSLKPLNTFGIDARARHLVEAESEEQLLEALADARAAGLPVLVLGGGSNVLFTEDFDGT  65
+
+Query  61   VILNRIMGIQ-QRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQ  119
+            V+LNRI GI+   E D++W+LHVGAGENWH LV  +L+  + GLENLALIPG VGAAPIQ
+Sbjct  66   VLLNRIKGIEVLSEDDDAWYLHVGAGENWHDLVLWTLQQGMPGLENLALIPGTVGAAPIQ  125
+
+Query  120  NIGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLL  179
+            NIGAYG+E +DVC+YV+ L+L TGE  RLS  EC+FGYRDS+FK++Y   ++I +VG  L
+Sbjct  126  NIGAYGVELKDVCDYVEALDLATGEFVRLSAAECRFGYRDSIFKHEYPDRYAITAVGFRL  185
+
+Query  180  KKNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEV  239
+             K WQP+L+YGDL R   D VT Q +FD++CA+R SKLPDP + GNAGSFFKNP+VS E 
+Sbjct  186  PKQWQPVLDYGDLARLDPDTVTAQDVFDAVCAIRRSKLPDPKVLGNAGSFFKNPVVSAEQ  245
+
+Query  240  AAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATG  299
+               +   YPD P YP  +G  KLAAGWLI+ C LKG++IGGA+VH +QALVL+N  NATG
+Sbjct  246  FEALLAQYPDIPHYPQADGSVKLAAGWLIDQCGLKGFQIGGAAVHEKQALVLVNYGNATG  305
+
+Query  300  KDVVSLAAYIRQQVISKFGVLLEPEVRFI  328
+             DV++LA +I+Q V  KFGV LEPE RFI
+Sbjct  306  ADVLALARHIQQDVREKFGVELEPEPRFI  334
+
+
+>gnl|CDD|232859 TIGR00179, murB, UDP-N-acetylenolpyruvoylglucosamine reductase. 
+ This model describes MurB, UDP-N-acetylenolpyruvoylglucosamine 
+reductase, which is also called UDP-N-acetylmuramate 
+dehydrogenase. It is part of the pathway for the biosynthesis 
+of the UDP-N-acetylmuramoyl-pentapeptide that is a precursor 
+of bacterial peptidoglycan [Cell envelope, Biosynthesis and 
+degradation of murein sacculus and peptidoglycan].
+Length=284
+
+ Score = 340 bits (875),  Expect = 7e-116, Method: Composition-based stats.
+ Identities = 143/326 (44%), Positives = 189/326 (58%), Gaps = 42/326 (13%)
+
+Query  4    LKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVIL  63
+            L EF T+ +   A+ +   ES E L+ +   AK E QP L+LG GSN+L   +  G VI+
+Sbjct  1    LAEFTTYKIGGNARHIVCPESIEQLVNVLDNAKEEDQPLLILGEGSNLLILDDGRGGVII  60
+
+Query  64   NRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGA  123
+            N   GI   E DE  ++HVG GENWHKLV  +LKN + GLE LA IPG VG A I N GA
+Sbjct  61   NLGKGIDI-EDDEGEYVHVGGGENWHKLVKYALKNGLSGLEFLAGIPGTVGGAVIMNAGA  119
+
+Query  124  YGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNW  183
+            YG+E  +V  Y  +  L TG+   L+  +  FGYR S+F++KY        VGL+LK  +
+Sbjct  120  YGVEISEVLVYATI-LLATGKTEWLTNEQLGFGYRTSIFQHKY--------VGLVLKAEF  170
+
+Query  184  QPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKI  243
+            Q  L +G  TR   + +T QQ+F+ +C MRTS  PDP    NAGSFFKNP          
+Sbjct  171  QLTLGFG--TRLDPETITAQQVFNKVCRMRTSHYPDP----NAGSFFKNP----------  214
+
+Query  244  RENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVV  303
+                  SP +          AG LIE C LKGY+IGGA+V  + A  L+N +NA  +DV+
+Sbjct  215  ------SPNH----------AGRLIEECGLKGYQIGGAAVSKQHANFLVNIDNAKSEDVL  258
+
+Query  304  SLAAYIRQQVISKFGVLLEPEVRFIG  329
+             L  +++ +V  K+G+LLEPEV+ IG
+Sbjct  259  DLIEHVKAEVGEKYGILLEPEVKIIG  284
+
+
+>gnl|CDD|223882 COG0812, MurB, UDP-N-acetylmuramate dehydrogenase [Cell envelope 
+biogenesis, outer membrane].
+Length=291
+
+ Score = 339 bits (872),  Expect = 4e-115, Method: Composition-based stats.
+ Identities = 128/332 (39%), Positives = 164/332 (49%), Gaps = 49/332 (15%)
+
+Query  3    SLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVI  62
+             LK + TF +   A+ L      E L    + AK+E  P L+LGGGSN+L      G V+
+Sbjct  8    PLKRYTTFRIGGPAEVLVEPRDIEELKAALKYAKAEDLPVLILGGGSNLLVRDGGIGGVV  67
+
+Query  63   LNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIG  122
+            +            +   +  GAG  WH LV  +L+N + GLE LA IPG VG A I N G
+Sbjct  68   IKLGKLNFIEIEGDDGLIEAGAGAPWHDLVRFALENGLSGLEFLAGIPGSVGGAVIMNAG  127
+
+Query  123  AYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKN  182
+            AYG+E  DV   V+VL+   GE   LS  E  FGYR S FK +Y     ++SV   L K 
+Sbjct  128  AYGVEISDVLVSVEVLDR-DGEVRWLSAEELGFGYRTSPFKKEY---LVVLSVEFKLTKG  183
+
+Query  183  WQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSK-LPDPVITGNAGSFFKNPIVSEEVAA  241
+                               P+ I  ++CA+R  + L  P+   +AGSFFKNP+       
+Sbjct  184  ------------------DPEDILAAMCAIRRRRELKQPIDLPSAGSFFKNPVGD-----  220
+
+Query  242  KIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKD  301
+                                  AGWLIE   LKGYRIGGA V  + A  LIN  NAT KD
+Sbjct  221  ---------------------FAGWLIEEAGLKGYRIGGAQVSEKHANFLINTGNATAKD  259
+
+Query  302  VVSLAAYIRQQVISKFGVLLEPEVRFIGSKGE  333
+            V+ L  ++RQ+V+ KFG+ LEPEV+ IG  GE
+Sbjct  260  VLDLIEHVRQRVLEKFGIELEPEVKIIGESGE  291
+
+
+>gnl|CDD|237552 PRK13903, murB, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=363
+
+ Score = 224 bits (574),  Expect = 1e-69, Method: Composition-based stats.
+ Identities = 119/351 (34%), Positives = 169/351 (48%), Gaps = 30/351 (9%)
+
+Query  1    MLSLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFT-ANFEG  59
+             + L    T  +   A+RL    S E L+   ++  +  +P L+LGGGSN++     F+G
+Sbjct  18   DVPLAPLTTLRVGGPARRLVTCTSTEELVAAVRELDAAGEPLLVLGGGSNLVIADDGFDG  77
+
+Query  60   TVILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQ  119
+            TV+     G+          +   AG  W  +V R+++  + GLE L+ IPG  GA P+Q
+Sbjct  78   TVVRVATRGVTVDCGGGL--VRAEAGAVWDDVVARTVEAGLGGLECLSGIPGSAGATPVQ  135
+
+Query  120  NIGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISV--GL  177
+            N+GAYG E  D    V +L+  TGE   +   +  FGYR SV   K+     ++ V   L
+Sbjct  136  NVGAYGQEVSDTITRVRLLDRRTGEVRWVPAADLGFGYRTSVL--KHSDRAVVLEVEFQL  193
+
+Query  178  LLKKNWQPILNYGDLTRF----SKDNVTPQQIFDSICAMRTSK---L----PDPVITGNA  226
+                   P L YG+L R       + V P  + +++ A+R  K   L     D   T +A
+Sbjct  194  DPSGLSAP-LRYGELARALGVEPGERVPPAAVREAVLALRAGKGMVLDPADHD---TWSA  249
+
+Query  227  GSFFKNPIVSEEVAAKIRE-----NYPDSPQYPYMNGMFKLAAGWLIEHCNL-KGYRIGG  280
+            GSFF NP+VS  VA ++            P+YP  +G  KL+A WLIE     KGY  GG
+Sbjct  250  GSFFTNPVVSPAVAERLAARVAERLGDPVPRYPAGDGGVKLSAAWLIERAGFGKGYPGGG  309
+
+Query  281  ASVHL--RQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEVRFIG  329
+            A   L  +  L L N+  AT  D+V+LA  +R  V   FGV L PE   +G
+Sbjct  310  APARLSTKHTLALTNRGGATTADLVALAREVRDGVRDAFGVTLVPEPVLVG  360
+
+
+>gnl|CDD|237553 PRK13905, murB, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=298
+
+ Score = 176 bits (450),  Expect = 5e-52, Method: Composition-based stats.
+ Identities = 107/331 (32%), Positives = 142/331 (43%), Gaps = 56/331 (17%)
+
+Query  3    SLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFT-ANFEGTV  61
+             L  + +F +   A  L      E L    +  K    P  +LG GSN+L       G V
+Sbjct  18   PLARYTSFRVGGPADYLVEPADIEDLQEFLKLLKENNIPVTVLGNGSNLLVRDGGIRGVV  77
+
+Query  62   I-LNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQN  120
+            I L + +   + E +    +  GAG    KL   + +  + GLE  A IPG VG A   N
+Sbjct  78   IRLGKGLNEIEVEGN---RITAGAGAPLIKLARFAAEAGLSGLEFAAGIPGTVGGAVFMN  134
+
+Query  121  IGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLK  180
+             GAYG E  DV E V+VL+   GE   LS  E  FGYR S  +   +    ++S    L+
+Sbjct  135  AGAYGGETADVLESVEVLD-RDGEIKTLSNEELGFGYRHSALQ---EEGLIVLSATFQLE  190
+
+Query  181  KNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLP--DPVITGNAGSFFKNPIVSEE  238
+                     GD     K+ +  +   D + A R +  P   P    +AGS FKNP     
+Sbjct  191  P--------GD-----KEEI--KARMDELLARREATQPLEYP----SAGSVFKNP-----  226
+
+Query  239  VAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENAT  298
+                    +                AG LIE   LKGYRIGGA V  + A  +IN   AT
+Sbjct  227  ------PGH---------------FAGKLIEEAGLKGYRIGGAQVSEKHANFIINTGGAT  265
+
+Query  299  GKDVVSLAAYIRQQVISKFGVLLEPEVRFIG  329
+              D+  L  ++++ V  KFGV LE EVR IG
+Sbjct  266  AADIEDLIEHVQKTVKEKFGVELEWEVRIIG  296
+
+
+>gnl|CDD|251582 pfam02873, MurB_C, UDP-N-acetylenolpyruvoylglucosamine reductase, 
+C-terminal domain.  Members of this family are UDP-N-acetylenolpyruvoylglucosamine 
+reductase enzymes EC:1.1.1.158. 
+This enzyme is involved in the biosynthesis of peptidoglycan.
+Length=103
+
+ Score = 131 bits (331),  Expect = 5e-37, Method: Composition-based stats.
+ Identities = 53/129 (41%), Positives = 66/129 (51%), Gaps = 27/129 (21%)
+
+Query  202  PQQIFDSICAMRTSK-LPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMF  260
+            PQQI  ++  +R ++    P    NAGS FKNP                           
+Sbjct  1    PQQILKAMKKIRQTRKSTQPYKFPNAGSTFKNPEGF------------------------  36
+
+Query  261  KLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVL  320
+              AAGWLIE   LKGY+IGGA V  + A  +IN  NAT +DVV L  ++RQ V  KFG+ 
+Sbjct  37   --AAGWLIEEAGLKGYQIGGAQVSEKHANFIINTGNATAEDVVDLIRHVRQTVFEKFGIW  94
+
+Query  321  LEPEVRFIG  329
+            LEPEV+ IG
+Sbjct  95   LEPEVKIIG  103
+
+
+>gnl|CDD|173112 PRK14649, PRK14649, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=295
+
+ Score = 121 bits (304),  Expect = 2e-31, Method: Composition-based stats.
+ Identities = 86/307 (28%), Positives = 122/307 (40%), Gaps = 41/307 (13%)
+
+Query  24   SAESLLTLWQKAKSEKQPALLLGGGSNVLFT-ANFEGTVILNRIMGIQQRETDESWHLHV  82
+            + +  +     A+  + P   LGGGSN+L     F+G V   R    +  E  ++  + V
+Sbjct  29   TPDEAIAAAAWAEQRQLPLFWLGGGSNLLVRDEGFDGLVARYRGQRWELHEHGDTAEVWV  88
+
+Query  83   GAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLET  142
+             AG        R       GLE    +PG +G A   N G YG +   V     +L L  
+Sbjct  89   EAGAPMAGTARRLAAQGWAGLEWAEGLPGTIGGAIYGNAGCYGGDTATVLIRAWLL-LNG  147
+
+Query  143  GEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTP  202
+             E    SV +  +GYR SV K        + + G+  +    P++          D    
+Sbjct  148  SECVEWSVHDFAYGYRTSVLKQ-------LRADGITWR---PPLVLAARFRLHRDDPTAL  197
+
+Query  203  QQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKL  262
+                ++I A R  K P      + GS FKNP              P              
+Sbjct  198  AARMEAIAAERKQKTP---AGSSCGSVFKNP--------------PGD------------  228
+
+Query  263  AAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLE  322
+            +AG LIE   LKG RIG A +  R A  +IN   A   D++ L    R +V+++FG+ LE
+Sbjct  229  SAGRLIEAAGLKGTRIGDAEIATRHANYIINLGGARAADILRLIDLARTRVLAQFGIELE  288
+
+Query  323  PEVRFIG  329
+             EVR IG
+Sbjct  289  LEVRIIG  295
+
+
+>gnl|CDD|237778 PRK14653, PRK14653, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=297
+
+ Score = 106 bits (266),  Expect = 3e-26, Method: Composition-based stats.
+ Identities = 82/285 (29%), Positives = 119/285 (42%), Gaps = 54/285 (19%)
+
+Query  44   LLGGGSNVLFTANFEGTVIL--NRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIY  101
+            +LG G+NVL        V++   R+  I     D    +   +G +  KL   + KN + 
+Sbjct  61   ILGNGTNVLPKDEPMDFVVVSTERLDDI---FVDND-KIICESGLSLKKLCLVAAKNGLS  116
+
+Query  102  GLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLETGEKT-RLSVGECQFGYRDS  160
+            G EN   IPG VG A   N GAYG E  +    V   +   G+K  RL   E +F YR+S
+Sbjct  117  GFENAYGIPGSVGGAVYMNAGAYGWETAENIVEVVAYD---GKKIIRLGKNEIKFSYRNS  173
+
+Query  161  VFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDP  220
+            +FK   + +  I+ V   LKK       Y  +    K  V  Q                P
+Sbjct  174  IFKE--EKDLIILRVTFKLKKG-NKNEIYNLMLETMKKRVEKQ----------------P  214
+
+Query  221  VITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGG  280
+            +   +AGS FK P          R+++                 G  IE   LKG+ IGG
+Sbjct  215  LEFPSAGSVFKRP----------RKDF---------------YVGSAIEKLGLKGFSIGG  249
+
+Query  281  ASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEV  325
+            A +  + A  +IN  NA  +DV+ L  Y++ ++   + V LE E+
+Sbjct  250  AQISEKHAGFIINYNNAKAEDVLKLIEYVKDKIYENYNVELETEI  294
+
+
+>gnl|CDD|171497 PRK12436, PRK12436, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=305
+
+ Score = 98.2 bits (244),  Expect = 3e-23, Method: Composition-based stats.
+ Identities = 92/294 (31%), Positives = 122/294 (41%), Gaps = 59/294 (20%)
+
+Query  41   PALLLGGGSNVLFT-ANFEG-TVILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKN  98
+            P   LG GSNV+       G TV L  I G+    T     +    G     +   +L +
+Sbjct  62   PVTFLGNGSNVIIKDGGIRGITVSLIHITGVTVTGTT----IVAQCGAAIIDVSRIALDH  117
+
+Query  99   QIYGLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYR  158
+             + GLE    IPG VG A   N GAYG E   V     V+    GE   L+    +FGYR
+Sbjct  118  NLTGLEFACGIPGSVGGALYMNAGAYGGEISFVLTEAVVMT-GDGELRTLTKEAFEFGYR  176
+
+Query  159  DSVFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTPQQI---FDSICAMRTS  215
+             SVF N    NH II                    RF  +    ++I    D +   R S
+Sbjct  177  KSVFAN----NHYIILEA-----------------RFELEEGVYEEIKAKMDDLTFKRES  215
+
+Query  216  KLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKG  275
+            K   P+   + GS FK P              P++             AG LI+   L+G
+Sbjct  216  K--QPLEYPSCGSVFKRP--------------PNN------------FAGKLIQESGLQG  247
+
+Query  276  YRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEVRFIG  329
+             RIGG  V L+ A  ++N +N T +D + L  ++++ V  KFGV LE EVR IG
+Sbjct  248  KRIGGVEVSLKHAGFMVNVDNGTAQDYIDLIHFVQKTVEEKFGVKLEREVRIIG  301
+
+
+>gnl|CDD|184386 PRK13906, murB, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=307
+
+ Score = 91.0 bits (226),  Expect = 6e-21, Method: Composition-based stats.
+ Identities = 85/300 (28%), Positives = 126/300 (42%), Gaps = 59/300 (20%)
+
+Query  35   AKSEKQPALLLGGGSNVLF-TANFEGTVI----LNRIMGIQQRETDESWHLHVGAGENWH  89
+            A   + P   LG GSN++       G VI    L+ I       +D++  +  G+G    
+Sbjct  56   AYQNEIPVTYLGNGSNIIIREGGIRGIVISLLSLDHI-----EVSDDA--IIAGSGAAII  108
+
+Query  90   KLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLETGEKTRLS  149
+             +   +    + GLE    IPG +G A   N GAYG E +D  +Y   +N E G   +L+
+Sbjct  109  DVSRVARDYALTGLEFACGIPGSIGGAVYMNAGAYGGEVKDCIDYALCVN-EQGSLIKLT  167
+
+Query  150  VGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTPQQIFDSI  209
+              E +  YR+S+ + ++        V L       P    G +T         Q   D +
+Sbjct  168  TKELELDYRNSIIQKEH-------LVVLEAAFTLAP----GKMTEI-------QAKMDDL  209
+
+Query  210  CAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIE  269
+               R SK   P+   + GS F+ P                        G F   AG LI+
+Sbjct  210  TERRESK--QPLEYPSCGSVFQRP-----------------------PGHF---AGKLIQ  241
+
+Query  270  HCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEVRFIG  329
+              NL+G+RIGG  V  + A  ++N +N T  D  +L  Y+++ V  KFG+ L  EVR IG
+Sbjct  242  DSNLQGHRIGGVEVSTKHAGFMVNVDNGTATDYENLIHYVQKTVKEKFGIELNREVRIIG  301
+
+
+>gnl|CDD|250709 pfam01565, FAD_binding_4, FAD binding domain.  This family consists 
+of various enzymes that use FAD as a co-factor, most 
+of the enzymes are similar to oxygen oxidoreductase. One of 
+the enzymes Vanillyl-alcohol oxidase (VAO) has a solved structure, 
+the alignment includes the FAD binding site, called the 
+PP-loop, between residues 99-110. The FAD molecule is covalently 
+bound in the known structure, however the residue that 
+links to the FAD is not in the alignment. VAO catalyses the 
+oxidation of a wide variety of substrates, ranging form aromatic 
+amines to 4-alkylphenols. Other members of this family 
+include D-lactate dehydrogenase, this enzyme catalyses the 
+conversion of D-lactate to pyruvate using FAD as a co-factor; 
+mitomycin radical oxidase, this enzyme oxidizes the reduced 
+form of mitomycins and is involved in mitomycin resistance. 
+This family includes MurB an UDP-N-acetylenolpyruvoylglucosamine 
+reductase enzyme EC:1.1.1.158. This enzyme is involved 
+in the biosynthesis of peptidoglycan.
+Length=139
+
+ Score = 87.7 bits (218),  Expect = 7e-21, Method: Composition-based stats.
+ Identities = 47/144 (33%), Positives = 62/144 (43%), Gaps = 15/144 (10%)
+
+Query  16   AKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVL-FTANFEGTVI----LNRIMGIQ  70
+               +   ES E +  + + A     P L+ GGGS++L       G V+    LN I+ I 
+Sbjct  1    PAAVVRPESEEEVAAIVRLANENGLPVLVRGGGSSLLGDAVLTGGVVLDLSRLNGILEID  60
+
+Query  71   QRETDESWHLHVGAGENWHKLVCR-SLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEF-  128
+                 E     V AG     LV   + K  + GLE  + IPG VG A   N G YG E  
+Sbjct  61   ----PEDGTATVEAGVTLGDLVRALAAKGLLLGLEPGSGIPGTVGGAIATNGGGYGSERY  116
+
+Query  129  ---RDVCEYVDVLNLETGEKTRLS  149
+               RD    ++V+ L  GE  RLS
+Sbjct  117  GLTRDNVLSLEVV-LADGEVVRLS  139
+
+
+>gnl|CDD|237777 PRK14652, PRK14652, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=302
+
+ Score = 89.2 bits (221),  Expect = 2e-20, Method: Composition-based stats.
+ Identities = 79/307 (26%), Positives = 121/307 (39%), Gaps = 52/307 (17%)
+
+Query  24   SAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVILNRIMGIQQRETDESWHLHVG  83
+              ++L  L +  +    P  +LGGG+N L        V+L          TD    L +G
+Sbjct  44   DPDALSALLRAVRELGVPLSILGGGANTLVADAGVRGVVLRLPQDFPGESTDGG-RLVLG  102
+
+Query  84   AGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLE-T  142
+            AG    +L  R+  + + G+E LA IPG +G A   N G    E +DV   V++   +  
+Sbjct  103  AGAPISRLPARAHAHGLVGMEFLAGIPGTLGGAVAMNAGTKLGEMKDVVTAVELATADGA  162
+
+Query  143  GEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTP  202
+            G     ++G   + YR      +      I  V + L+         GD+          
+Sbjct  163  GFVPAAALG---YAYRTC----RLPPGAVITRVEVRLRP--------GDV-------AAS  200
+
+Query  203  QQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKL  262
+            + +  +    R  +   P+     GS F NP                        G +  
+Sbjct  201  EALMRADRERR--RRTQPLDRPTFGSTFTNP-----------------------PGDY--  233
+
+Query  263  AAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLE  322
+             AG L+E   LKG+R+GGA      A  + N   AT +DV++L    R +V  +FG+ LE
+Sbjct  234  -AGRLVEAVGLKGHRVGGAIWSPVHANFVTNLGGATARDVLALVRLARARVKERFGIALE  292
+
+Query  323  PEVRFIG  329
+             EVR +G
+Sbjct  293  TEVRLLG  299
+
+
+>gnl|CDD|173113 PRK14650, PRK14650, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=302
+
+ Score = 89.1 bits (221),  Expect = 3e-20, Method: Composition-based stats.
+ Identities = 90/339 (27%), Positives = 142/339 (42%), Gaps = 66/339 (19%)
+
+Query  3    SLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFE----  58
+            +L  + T+ +   +K     ++ +    +++ A  EK    +LGGGSN+L     E    
+Sbjct  20   NLANYTTYKIGGISKLFLTPKTIKDAEHIFKAAIEEKIKIFILGGGSNILINDEEEIDFP  79
+
+Query  59   --GTVILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAA  116
+               T  LN+I     +   E        G N+  L   +L+N++ GLE +  +PG +G A
+Sbjct  80   IIYTGHLNKIEIHDNQIVAE-------CGTNFEDLCKFALQNELSGLEFIYGLPGTLGGA  132
+
+Query  117  PIQNIGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVG  176
+               N   +G E  ++ + +  ++ E G+       + +F Y+ S F+NK   N  I+   
+Sbjct  133  IWMNARCFGNEISEILDKITFID-EKGKTICKKFKKEEFKYKISPFQNK---NTFILKAT  188
+
+Query  177  LLL----KKNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKN  232
+            L L    KK+ + I+      R +K +     +F S                 +GS FKN
+Sbjct  189  LNLKKGNKKHIEEIMKQNKQIRINKGHY----LFPS-----------------SGSTFKN  227
+
+Query  233  PIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLI  292
+                                    N  F    G +IE C LKG  IGGA+V       +I
+Sbjct  228  ------------------------NKAFLKPTGQIIEECKLKGLSIGGATVSHYHGNFII  263
+
+Query  293  NQENATGKDVVSLAAYIRQQVISKFGVLLEPEVRFIGSK  331
+            N  NAT KD+ +L   ++ +V  K G LLE EV +IG  
+Sbjct  264  NINNATSKDIKTLIEKVKTEVQIKTGFLLEEEVLYIGFN  302
+
+
+>gnl|CDD|237776 PRK14651, PRK14651, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=273
+
+ Score = 74.5 bits (183),  Expect = 3e-15, Method: Composition-based stats.
+ Identities = 89/325 (27%), Positives = 129/325 (40%), Gaps = 70/325 (22%)
+
+Query  2    LSLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFT-ANFEGT  60
+            + L  + T G+   A+ L   E+ E L      A++ + P  +LGGGSN+L + A     
+Sbjct  7    VPLARYTTLGVGGPAE-LWTVETHEQL------AEATEAPYRVLGGGSNLLVSDAGVPER  59
+
+Query  61   VILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQN  120
+            VI  R+ G       + W   VG G     LV R+ +  + GLE L  IP  VG A   N
+Sbjct  60   VI--RLGGEFAEWDLDGW---VGGGVPLPGLVRRAARLGLSGLEGLVGIPAQVGGAVKMN  114
+
+Query  121  IGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLK  180
+             G    E  D    V++++   G   + S  E  FGYR S         H +  V L L+
+Sbjct  115  AGTRFGEMADALHTVEIVH--DGGFHQYSPDELGFGYRHSGLPPG----HVVTRVRLKLR  168
+
+Query  181  KNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVA  240
+             +                  TP+ +   +  +  ++   P    +AG  FKNP       
+Sbjct  169  PS------------------TPEAVLAKMALVDAARKGQPKKK-SAGCAFKNP-------  202
+
+Query  241  AKIRENYP-DSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATG  299
+                   P DS             AG LI+   LKG R+G A +       ++N   AT 
+Sbjct  203  -------PGDS-------------AGRLIDEAGLKGTRVGDAMISPEHGNFIVNLGGATA  242
+
+Query  300  KDVVSLAAYIRQQVISKFGVLLEPE  324
+             DV +L   +R +V    G+ LE E
+Sbjct  243  ADVHALLRRVRARV----GLPLELE  263
+
+
+>gnl|CDD|184384 PRK13904, murB, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=257
+
+ Score = 70.0 bits (172),  Expect = 9e-14, Method: Composition-based stats.
+ Identities = 68/288 (24%), Positives = 110/288 (38%), Gaps = 75/288 (26%)
+
+Query  44   LLGGGSNVLFTANFEGTVILNR-IMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYG  102
+            ++GG +N+L + N +   IL +    I+         L +G      K+   + KN + G
+Sbjct  36   IIGGANNLLISPNPKNLAILGKNFDYIKIDGE----CLEIGGATKSGKIFNYAKKNNLGG  91
+
+Query  103  LENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDS--  160
+             E L  +PG +G     N G    E  +  E +       G   +    +  FGYR S  
+Sbjct  92   FEFLGKLPGTLGGLVKMNAGLKEYEISNNLESICTNG---GWIEK---EDIGFGYRSSGI  145
+
+Query  161  ---VFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKL  217
+               + + ++K                     +G    F ++      + ++  +MR ++ 
+Sbjct  146  NGVILEARFK-------------------KTHG----FDEE------LLEAFKSMRKNQP  176
+
+Query  218  PDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYR  277
+              P    + GS FKNP                        G +   AG LIE   LKGY 
+Sbjct  177  KGP----SFGSCFKNP-----------------------KGDY---AGRLIEAVGLKGYC  206
+
+Query  278  IGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEV  325
+             GGA      A  L+N   AT +D + L    +++V+ +FG+ LE EV
+Sbjct  207  KGGAGFSEEHANFLVNLGGATFEDALDLIELAKKRVLEEFGINLEEEV  254
+
+
+>gnl|CDD|173111 PRK14648, PRK14648, UDP-N-acetylenolpyruvoylglucosamine reductase; 
+Provisional.
+Length=354
+
+ Score = 70.1 bits (171),  Expect = 2e-13, Method: Composition-based stats.
+ Identities = 98/368 (27%), Positives = 137/368 (37%), Gaps = 85/368 (23%)
+
+Query  4    LKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGT---  60
+            L E  +F +   A+      S   L  L ++A+  + P  L+GGGSNVL     EG    
+Sbjct  18   LAERCSFRIGGAAQFWAEPRSCTQLRALIEEAQRARIPLSLIGGGSNVLIAD--EGVPGL  75
+
+Query  61   -VILNRIMGIQ-QRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPI  118
+             + L R   +  Q + D S  +H GAG     L+     + + GLE  A +PG VG A  
+Sbjct  76   MLSLRRFRSLHTQTQRDGSVLVHAGAGLPVAALLAFCAHHALRGLETFAGLPGSVGGAAY  135
+
+Query  119  QNIGAYGIEFRDVCEYVDVLNL-----------ETGEKTRLSVGEC--------------  153
+             N   YG    D       L L           E  +  +   GEC              
+Sbjct  136  MNARCYGRAIADCFHSARTLVLHPVRSRAKELPEVRKNAQDKRGECLGLDGGPFTCSSFQ  195
+
+Query  154  -------QFGYRDSVFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTPQQIF  206
+                    +GY+ S F++ +         G+ L    + IL+     R +  N  P QI 
+Sbjct  196  TVFARAGDWGYKRSPFQSPH---------GVELHAGRRLILSL--CVRLTPGN--PAQIR  242
+
+Query  207  DSICAMRTSKLPDPVITG-----NAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFK  261
+              +      K+ D +  G     +AGS FKN                        N  F 
+Sbjct  243  KHM----QEKIADRISKGQFRFPSAGSAFKN------------------------NPAFG  274
+
+Query  262  LAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLL  321
+              +G LIE   L+G   G A V      ++IN  NAT   V +L   +RQ+V    GV L
+Sbjct  275  KPSGILIEEAGLRGTSCGAAQVAPWHGNLIINTGNATAHQVRTLLRVVRQRVFETHGVWL  334
+
+Query  322  EPEVRFIG  329
+            E E+ F G
+Sbjct  335  EREIIFSG  342
+
+
+>gnl|CDD|226549 COG4063, MtrA, Tetrahydromethanopterin S-methyltransferase, subunit 
+A [Coenzyme metabolism].
+Length=238
+
+ Score = 32.1 bits (73),  Expect = 0.34, Method: Composition-based stats.
+ Identities = 17/47 (36%), Positives = 26/47 (55%), Gaps = 2/47 (4%)
+
+Query  109  IPGCVGAAP-IQNIGAYGIE-FRDVCEYVDVLNLETGEKTRLSVGEC  153
+            I G  GA P I+NI    +E F+   E VD++++E  ++    V EC
+Sbjct  104  IIGATGAIPYIENIPDEAVERFQQQVELVDLIDVEDPDEITAKVEEC  150
+
+
+>gnl|CDD|130181 TIGR01111, mtrA, N5-methyltetrahydromethanopterin:coenzyme M 
+methyltransferase subunit A.  This model describes N5-methyltetrahydromethanopterin: 
+coenzyme M methyltransferase subunit 
+A in methanogenic archaea. This methyltranferase is a membrane-associated 
+enzyme complex that uses methyl-transfer reaction 
+to drive sodium-ion pump. Archaea have evolved energy-yielding 
+pathways marked by one-carbon biochemistry featuring 
+novel cofactors and enzymes. This transferase (encoded by 
+subunit A) is involved in the transfer of 'methyl' group from 
+N5-methyltetrahydromethanopterin to coenzyme M. In an accompanying 
+reaction, methane is produced by two-electron reduction 
+of methyl-coenzyme M by another enzyme, methyl-coenzyme 
+M reductase [Transport and binding proteins, Cations and iron 
+carrying compounds].
+Length=238
+
+ Score = 30.9 bits (70),  Expect = 0.84, Method: Composition-based stats.
+ Identities = 15/47 (32%), Positives = 26/47 (55%), Gaps = 2/47 (4%)
+
+Query  109  IPGCVGAAP-IQNIGAYGIE-FRDVCEYVDVLNLETGEKTRLSVGEC  153
+            I G +GA P ++NI    +E F++  E V+++++E        V EC
+Sbjct  105  IIGALGAIPYLENINEEAVERFQEQIEVVNLIDVEDMGAITSKVKEC  151
+
+
+>gnl|CDD|112998 pfam04208, MtrA, Tetrahydromethanopterin S-methyltransferase, 
+subunit A.  The N5-methyltetrahydromethanopterin: coenzyme 
+M (EC:2.1.1.86) of Methanosarcina mazei Go1 is a membrane-associated, 
+corrinoid-containing protein that uses a transmethylation 
+reaction to drive an energy-conserving sodium ion pump.
+Length=176
+
+ Score = 30.1 bits (68),  Expect = 1.1, Method: Composition-based stats.
+ Identities = 17/47 (36%), Positives = 26/47 (55%), Gaps = 2/47 (4%)
+
+Query  109  IPGCVGAAP-IQNIGAYGIE-FRDVCEYVDVLNLETGEKTRLSVGEC  153
+            I G  GA P I+NI    +E F+   E VD++++E  ++    V EC
+Sbjct  101  IIGAEGAIPYIENIPEEAVERFQQQVELVDLIDVEDLDEITKKVREC  147
+
+
+>gnl|CDD|172537 PRK14045, PRK14045, 1-aminocyclopropane-1-carboxylate deaminase; 
+Provisional.
+Length=329
+
+ Score = 30.6 bits (69),  Expect = 1.2, Method: Composition-based stats.
+ Identities = 22/68 (32%), Positives = 35/68 (51%), Gaps = 11/68 (16%)
+
+Query  57   FEGTVILNRIMGIQQR--ETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVG  114
+             +G  +L++IMGI+ R  E  +S+ L   A E     V   LK +  G +   + PG  G
+Sbjct  108  LKGNYLLDKIMGIETRVYEAKDSFELMKYAEE-----VAEELKGE--GRKPYIIPPG--G  158
+
+Query  115  AAPIQNIG  122
+            A+P+  +G
+Sbjct  159  ASPVGTLG  166
+
+
+>gnl|CDD|215502 PLN02929, PLN02929, NADH kinase.
+Length=301
+
+ Score = 30.0 bits (68),  Expect = 1.7, Method: Composition-based stats.
+ Identities = 9/30 (30%), Positives = 16/30 (53%), Gaps = 1/30 (3%)
+
+Query  233  PIVSEEVAAKIRE-NYPDSPQYPYMNGMFK  261
+            P++S ++   +RE   P  P    M+G +K
+Sbjct  220  PLLSRDLQYMVREPISPGHPPKSLMHGFYK  249
+
+
+>gnl|CDD|251842 pfam03272, Enhancin, Viral enhancin protein.  
+Length=775
+
+ Score = 29.3 bits (66),  Expect = 4.4, Method: Composition-based stats.
+ Identities = 10/42 (24%), Positives = 16/42 (38%), Gaps = 3/42 (7%)
+
+Query  229  FFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEH  270
+            F +N     EV   I     D  QY +M    +    W+ ++
+Sbjct  252  FTRNHTYLIEVWNNI---LADRYQYDWMTPAERQTDAWIYDN  290
+
+
+>gnl|CDD|183099 PRK11361, PRK11361, acetoacetate metabolism regulatory protein 
+AtoC; Provisional.
+Length=457
+
+ Score = 29.0 bits (65),  Expect = 4.6, Method: Composition-based stats.
+ Identities = 12/26 (46%), Positives = 19/26 (73%), Gaps = 0/26 (0%)
+
+Query  281  ASVHLRQALVLINQENATGKDVVSLA  306
+            A + L QA VLI+ E+ TGK++++ A
+Sbjct  160  AKIALSQASVLISGESGTGKELIARA  185
+
+
+>gnl|CDD|234191 TIGR03377, glycerol3P_GlpA, glycerol-3-phosphate dehydrogenase, 
+anaerobic, A subunit.  Members of this protein family are 
+the A subunit, product of the glpA gene, of a three-subunit, 
+membrane-anchored, FAD-dependent anaerobic glycerol-3-phosphate 
+dehydrogenase [Energy metabolism, Anaerobic].
+Length=516
+
+ Score = 28.8 bits (65),  Expect = 4.7, Method: Composition-based stats.
+ Identities = 27/104 (26%), Positives = 42/104 (40%), Gaps = 16/104 (15%)
+
+Query  127  EFRDVCEYVDVLNLET-GEKTRLSVGECQFG---YRDSVFKNKYKTNHSIISVGLL---L  179
+            E       +DV NL     +TRL +G CQ     YR +   ++        S  LL   L
+Sbjct  419  EVEYAIRELDVNNLVDLRRRTRLGMGTCQGEFCAYRAAGLLSREGLIDPEQSTELLREFL  478
+
+Query  180  KKNW---QPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDP  220
+            ++ W   +PIL +GD  R ++       I+  +  +    LP  
+Sbjct  479  EERWKGIRPIL-WGDALREAELT---YWIYQGLFGL--EHLPAD  516
+
+
+>gnl|CDD|130916 TIGR01857, FGAM-synthase, phosphoribosylformylglycinamidine synthase, 
+clade II.  This model represents a single-molecule 
+form of phosphoribosylformylglycinamidine synthase, also called 
+FGAM synthase, an enzyme of purine de novo biosynthesis. 
+This model represents a second clade of these enzymes found 
+in Clostridia, Bifidobacteria and Streptococcus species. This 
+enzyme performs the fourth step in IMP biosynthesis (the 
+precursor of all purines) from PRPP [Purines, pyrimidines, nucleosides, 
+and nucleotides, Purine ribonucleotide biosynthesis].
+Length=1239
+
+ Score = 28.7 bits (64),  Expect = 5.9, Method: Composition-based stats.
+ Identities = 10/53 (19%), Positives = 17/53 (32%), Gaps = 5/53 (9%)
+
+Query  228  SFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWL-----IEHCNLKG  275
+             F     V + + AK+ +     P+         L   WL     +   + KG
+Sbjct  598  RFLDTNGVRQVIDAKVVDKDVKLPEERQKTSAETLEEDWLKVLSDLNVASQKG  650
+
+
+>gnl|CDD|238680 cd01384, MYSc_type_XI, Myosin motor domain, plant-specific type 
+XI myosin, involved in organelle transport. This catalytic 
+(head) domain has ATPase activity and belongs to the larger 
+group of P-loop NTPases. Myosins are actin-dependent molecular 
+motors that play important roles in muscle contraction, 
+cell motility, and organelle transport. The head domain is 
+a molecular motor, which utilizes ATP hydrolysis to generate 
+directed movement toward the plus end along actin filaments. 
+A cyclical interaction between myosin and actin provides the 
+driving force. Rates of ATP hydrolysis and consequently the 
+speed of movement along actin filaments vary widely, from 
+about 0.04 micrometer per second for myosin I to 4.5 micrometer 
+per second for myosin II in skeletal muscle. Myosin II 
+moves in discrete steps about 5-10 nm long and generates 1-5 
+piconewtons of force. Upon ATP binding, the myosin head dissociates 
+from an actin filament. ATP hydrolysis causes the head 
+to pivot and associate with a new actin subunit. The release 
+of Pi causes the head to pivot and move the filament (power 
+stroke). Release of ADP completes the cycle.
+Length=674
+
+ Score = 28.5 bits (64),  Expect = 7.0, Method: Composition-based stats.
+ Identities = 11/26 (42%), Positives = 15/26 (58%), Gaps = 0/26 (0%)
+
+Query  261  KLAAGWLIEHCNLKGYRIGGASVHLR  286
+            K A   +++   LKGY+IG   V LR
+Sbjct  634  KAACKKILDKMGLKGYQIGKTKVFLR  659
+
+
+>gnl|CDD|271404 cd11555, SLC-NCS1sbd_u1, uncharacterized nucleobase-cation-symport-1 
+(NCS1) transporter subfamily; solute-binding domain. 
+ NCS1s are essential components of salvage pathways for nucleobases 
+and related metabolites; their known substrates include 
+allantoin, uracil, thiamine, and nicotinamide riboside. 
+NCS1s belong to a superfamily which also contains the solute 
+carrier 5 family sodium/glucose transporters (SLC5s), and 
+solute carrier 6 family neurotransmitter transporters (SLC6s).
+Length=461
+
+ Score = 28.3 bits (64),  Expect = 7.8, Method: Composition-based stats.
+ Identities = 7/14 (50%), Positives = 12/14 (86%), Gaps = 0/14 (0%)
+
+Query  185  PILNYGDLTRFSKD  198
+            P+LN+GD +R++K 
+Sbjct  232  PMLNFGDFSRYAKS  245
+
+
+>gnl|CDD|215237 PLN02433, PLN02433, uroporphyrinogen decarboxylase.
+Length=345
+
+ Score = 28.0 bits (63),  Expect = 8.4, Method: Composition-based stats.
+ Identities = 20/102 (20%), Positives = 32/102 (31%), Gaps = 39/102 (38%)
+
+Query  204  QIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLA  263
+            QIFDS        L        +  +       E++  +++  +PD P            
+Sbjct  197  QIFDSWAGH----LSPVDFEEFSKPY------LEKIVDEVKARHPDVP------------  234
+
+Query  264  AGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSL  305
+               LI + N  G               L+ +   TG DV+ L
+Sbjct  235  ---LILYANGSGG--------------LLERLAGTGVDVIGL  259
+
+
+>gnl|CDD|225197 COG2315, MmcQ, Uncharacterized protein conserved in bacteria 
+[Function unknown].
+Length=118
+
+ Score = 26.9 bits (60),  Expect = 9.3, Method: Composition-based stats.
+ Identities = 10/47 (21%), Positives = 15/47 (32%), Gaps = 9/47 (19%)
+
+Query  211  AMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMN  257
+            A+       P+I        K    S E    +R+  P      +MN
+Sbjct  37   ALIGEVEGRPLIN------LK---CSPEKFELLRQQQPGIRPAYHMN  74
+
+
+
+Lambda      K        H        a         alpha
+   0.319    0.137    0.410    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 1671851178

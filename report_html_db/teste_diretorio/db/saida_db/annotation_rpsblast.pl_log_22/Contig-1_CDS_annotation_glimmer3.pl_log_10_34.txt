@@ -1,0 +1,450 @@
+Query= Contig-1_CDS_annotation_glimmer3.pl_log_10_34
+
+Length=117
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|235524  PRK05593, rplR, 50S ribosomal protein L18; Reviewed   158     2e-50
+gnl|CDD|223334  COG0256, RplR, Ribosomal protein L18 [Translation...  137     4e-42
+gnl|CDD|213499  TIGR00060, L18_bact, ribosomal protein L18, bacte...  136     8e-42
+gnl|CDD|238246  cd00432, Ribosomal_L18_L5e, Ribosomal L18/L5e: L1...  133     2e-40
+gnl|CDD|250185  pfam00861, Ribosomal_L18p, Ribosomal L18p/L5e fam...  124     4e-37
+gnl|CDD|214373  CHL00139, rpl18, ribosomal protein L18; Validated     119     5e-35
+gnl|CDD|240235  PTZ00032, PTZ00032, 60S ribosomal protein L18; Pr...  72.6    2e-16
+gnl|CDD|236294  PRK08569, rpl18p, 50S ribosomal protein L18P; Rev...  51.1    5e-09
+gnl|CDD|240254  PTZ00069, PTZ00069, 60S ribosomal protein L5; Pro...  31.2    0.10 
+gnl|CDD|223259  COG0181, HemC, Porphobilinogen deaminase [Coenzym...  28.3    0.88 
+gnl|CDD|178782  PLN03244, PLN03244, alpha-amylase; Provisional        28.0    1.4  
+gnl|CDD|235647  PRK05928, hemD, uroporphyrinogen-III synthase; Re...  27.2    1.9  
+gnl|CDD|187773  cd09642, Cas8c_I-C, CRISPR/Cas system-associated ...  27.4    2.1  
+gnl|CDD|212682  cd11732, HSP105-110_like_NBD, Nucleotide-binding ...  27.3    2.5  
+gnl|CDD|258751  pfam14613, DUF4449, Protein of unknown function (...  26.1    4.2  
+gnl|CDD|182710  PRK10765, PRK10765, nitroreductase A; Provisional     26.5    4.3  
+gnl|CDD|270394  cd13676, PBP2_TRAP_DctP2_like, Substrate-binding ...  26.0    5.3  
+gnl|CDD|235608  PRK05786, fabG, 3-ketoacyl-(acyl-carrier-protein)...  26.3    5.3  
+gnl|CDD|233604  TIGR01863, cas_Csd1, CRISPR-associated protein Ca...  26.2    5.3  
+gnl|CDD|223287  COG0209, NrdA, Ribonucleotide reductase, alpha su...  26.2    5.6  
+gnl|CDD|223222  COG0144, Sun, tRNA and rRNA cytosine-C5-methylase...  26.2    5.9  
+gnl|CDD|236091  PRK07768, PRK07768, long-chain-fatty-acid--CoA li...  25.7    8.2  
+gnl|CDD|183772  PRK12823, benD, 1,6-dihydroxycyclohexa-2,4-diene-...  25.7    8.5  
+gnl|CDD|250238  pfam00933, Glyco_hydro_3, Glycosyl hydrolase fami...  25.3    8.8  
+
+
+>gnl|CDD|235524 PRK05593, rplR, 50S ribosomal protein L18; Reviewed.
+Length=117
+
+ Score = 158 bits (403),  Expect = 2e-50, Method: Composition-based stats.
+ Identities = 61/93 (66%), Positives = 70/93 (75%), Gaps = 1/93 (1%)
+
+Query  25   RLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGKVIAERALE  84
+            RL V R+ RHIYAQVI     +TL +AST EK +   LK  GNKEAA  VGK+IAERA  
+Sbjct  26   RLSVFRSNRHIYAQVIDDVKGKTLASASTLEKDVRAGLK-GGNKEAAKKVGKLIAERAKA  84
+
+Query  85   KGIKDVSFDRSGFQYHGRVQALADAAREAGLQF  117
+            KGIK V FDR G++YHGRV+ALADAAREAGL+F
+Sbjct  85   KGIKQVVFDRGGYKYHGRVKALADAAREAGLKF  117
+
+
+>gnl|CDD|223334 COG0256, RplR, Ribosomal protein L18 [Translation, ribosomal 
+structure and biogenesis].
+Length=125
+
+ Score = 137 bits (348),  Expect = 4e-42, Method: Composition-based stats.
+ Identities = 58/100 (58%), Positives = 69/100 (69%), Gaps = 2/100 (2%)
+
+Query  20   ELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLK--YTGNKEAAAAVGKV  77
+              G  RLVV R+ RHIYAQ+I      TL +AST  K + +  K    GN EAA  VGK+
+Sbjct  26   TSGRPRLVVRRSNRHIYAQIIDDVKGGTLASASTLSKELRKYGKKGGGGNTEAAYLVGKL  85
+
+Query  78   IAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF  117
+            IAERAL KGI++V FDR G++YHGRV ALAD AREAGL+F
+Sbjct  86   IAERALAKGIEEVVFDRGGYKYHGRVAALADGAREAGLEF  125
+
+
+>gnl|CDD|213499 TIGR00060, L18_bact, ribosomal protein L18, bacterial type.  
+The archaeal and eukaryotic type rpL18 is not detectable under 
+this model [Protein synthesis, Ribosomal proteins: synthesis 
+and modification].
+Length=114
+
+ Score = 136 bits (345),  Expect = 8e-42, Method: Composition-based stats.
+ Identities = 77/118 (65%), Positives = 88/118 (75%), Gaps = 7/118 (6%)
+
+Query  3    KKAARIRRATRARRKLQELG---ATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAIN  59
+            KK+ARIRR  R RRKL+E G     RLVV R+ RHIYAQVI  + SE L +AST EK   
+Sbjct  1    KKSARIRRHKRIRRKLRETGEANRPRLVVFRSNRHIYAQVIDDSKSEVLASASTLEKK--  58
+
+Query  60   EQLKYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF  117
+              LKYTGNK+AA  VGK++AER  EKGIKDV FDR G++YHGRV ALA+AAREAGL F
+Sbjct  59   --LKYTGNKDAAKKVGKLVAERLKEKGIKDVVFDRGGYKYHGRVAALAEAAREAGLNF  114
+
+
+>gnl|CDD|238246 cd00432, Ribosomal_L18_L5e, Ribosomal L18/L5e:  L18 (L5e) is 
+a ribosomal protein found in the central protuberance (CP) of 
+the large subunit. L18 binds 5S rRNA and induces a conformational 
+change that stimulates the binding of L5 to 5S rRNA. 
+Association of 5S rRNA with 23S rRNA depends on the binding 
+of L18 and L5 to 5S rRNA. L18/L5e is generally described as 
+L18 in prokaryotes and archaea, and as L5e (or L5) in eukaryotes. 
+In bacteria, the CP proteins L5, L18, and L25 are required 
+for the ribosome to incorporate 5S rRNA into the large 
+subunit, one of the last steps in ribosome assembly. In archaea, 
+both L18 and L5 bind 5S rRNA; in eukaryotes, only the 
+L18 homolog (L5e) binds 5S rRNA but a homolog to L5 is also 
+identified.
+Length=103
+
+ Score = 133 bits (336),  Expect = 2e-40, Method: Composition-based stats.
+ Identities = 55/99 (56%), Positives = 70/99 (71%), Gaps = 0/99 (0%)
+
+Query  17   KLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGK  76
+            +L      RLVV ++ +HIYAQ+I  +G +TLV+AST E AI   L    N EAA  VG+
+Sbjct  5    RLGTQERPRLVVRKSNKHIYAQIIDDSGDKTLVSASTLELAIKGVLGSGNNVEAAYLVGR  64
+
+Query  77   VIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGL  115
+            ++A+RALEKGIK V FDR G++YHGRV+ALA  ARE GL
+Sbjct  65   LLAKRALEKGIKKVVFDRGGYRYHGRVKALAKGAREGGL  103
+
+
+>gnl|CDD|250185 pfam00861, Ribosomal_L18p, Ribosomal L18p/L5e family.  This family 
+includes ribosomal proteins from the large subunit. This 
+family includes L18 from bacteria and L5 from eukaryotes. 
+It has been shown that the amino terminal 93 amino acids of 
+rat Rpl5 are necessary and sufficient to bind 5S rRNA in vitro. 
+Suggesting that the entire family has a function in rRNA 
+binding.
+Length=119
+
+ Score = 124 bits (314),  Expect = 4e-37, Method: Composition-based stats.
+ Identities = 50/103 (49%), Positives = 61/103 (59%), Gaps = 2/103 (2%)
+
+Query  17   KLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQ--LKYTGNKEAAAAV  74
+                    RLVV R+ +HIYAQ+I      TLV+AST  K + +        N  AA  V
+Sbjct  17   LKGTAERPRLVVRRSNKHIYAQIIDDTKGGTLVSASTLSKELKKYGLKGGGNNTAAAYLV  76
+
+Query  75   GKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF  117
+            G ++A+RAL+KGI  V FDR G+ YHGRV ALA  AREAGL F
+Sbjct  77   GLLLAKRALKKGIAVVVFDRGGYTYHGRVFALAKGAREAGLNF  119
+
+
+>gnl|CDD|214373 CHL00139, rpl18, ribosomal protein L18; Validated.
+Length=109
+
+ Score = 119 bits (300),  Expect = 5e-35, Method: Composition-based stats.
+ Identities = 48/93 (52%), Positives = 64/93 (69%), Gaps = 0/93 (0%)
+
+Query  25   RLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGKVIAERALE  84
+            RL V R+ +HIYAQ+I     +TLVA ST E  +   L  T   +A+  VG+ +A+++L+
+Sbjct  17   RLSVFRSNKHIYAQIIDDTNGKTLVACSTLEPDVKSSLSSTSTCDASKLVGQKLAKKSLK  76
+
+Query  85   KGIKDVSFDRSGFQYHGRVQALADAAREAGLQF  117
+            KGI  V FDR G  YHGR++ALA+AAREAGLQF
+Sbjct  77   KGITKVVFDRGGKLYHGRIKALAEAAREAGLQF  109
+
+
+>gnl|CDD|240235 PTZ00032, PTZ00032, 60S ribosomal protein L18; Provisional.
+Length=211
+
+ Score = 72.6 bits (178),  Expect = 2e-16, Method: Composition-based stats.
+ Identities = 35/105 (33%), Positives = 52/105 (50%), Gaps = 12/105 (11%)
+
+Query  25   RLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNK------------EAAA  72
+            RL +  T   +YA ++       L  + T  K ++        K            +AA 
+Sbjct  107  RLTLKNTNNQMYATIVDDYTRHVLCFSCTNFKYLSHIFGTYPTKTTNRVRNNGGTIKAAY  166
+
+Query  73   AVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF  117
+             +GK+I  +AL KGI  V FDR+ ++Y G+V+ALA+ AR  GLQF
+Sbjct  167  ELGKLIGRKALSKGISKVRFDRAHYKYAGKVEALAEGARAVGLQF  211
+
+
+>gnl|CDD|236294 PRK08569, rpl18p, 50S ribosomal protein L18P; Reviewed.
+Length=193
+
+ Score = 51.1 bits (123),  Expect = 5e-09, Method: Composition-based stats.
+ Identities = 37/108 (34%), Positives = 52/108 (48%), Gaps = 14/108 (13%)
+
+Query  17   KLQELGATRLVVHRTPRHIYAQVI--APNGSETLVAASTTEKAINEQLKY-----TGNKE  69
+            KL   G  RLVV +T +H+ AQ++   P G  TL +A + E A     KY     TGN  
+Sbjct  26   KLLLSGKPRLVVRKTNKHVIAQIVKYDPKGDRTLASAHSRELA-----KYGWKGDTGNTP  80
+
+Query  70   AAAAVGKVIAERALEKGIKDVSFD--RSGFQYHGRVQALADAAREAGL  115
+            AA   G +  ++AL+ G+++   D          RV A    A +AGL
+Sbjct  81   AAYLTGLLAGKKALKAGVEEAVLDIGLHRPTKGSRVFAALKGAIDAGL  128
+
+
+>gnl|CDD|240254 PTZ00069, PTZ00069, 60S ribosomal protein L5; Provisional.
+Length=300
+
+ Score = 31.2 bits (71),  Expect = 0.10, Method: Composition-based stats.
+ Identities = 23/69 (33%), Positives = 31/69 (45%), Gaps = 14/69 (20%)
+
+Query  25   RLVVHRTPRHIYAQVIAPN--GSETLVAASTTEKAINEQLKYTG------NKEAAAAVGK  76
+            RLVV  T + I  Q++     G + L AA + E      L   G      N  AA A G 
+Sbjct  50   RLVVRITNKDIICQIVYATIVGDKVLAAAYSHE------LPRFGIPVGLTNYAAAYATGL  103
+
+Query  77   VIAERALEK  85
+            ++A R L+K
+Sbjct  104  LLARRLLKK  112
+
+
+>gnl|CDD|223259 COG0181, HemC, Porphobilinogen deaminase [Coenzyme metabolism].
+Length=307
+
+ Score = 28.3 bits (64),  Expect = 0.88, Method: Composition-based stats.
+ Identities = 18/56 (32%), Positives = 28/56 (50%), Gaps = 12/56 (21%)
+
+Query  34   HIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGKVIAERALEKGIKD  89
+             + A V +P+GS+ + A            +  G+ E A  +GK +AE  LEKG K+
+Sbjct  257  RLRALVGSPDGSQIIKA------------EIRGDAEDAEELGKELAEELLEKGAKE  300
+
+
+>gnl|CDD|178782 PLN03244, PLN03244, alpha-amylase; Provisional.
+Length=872
+
+ Score = 28.0 bits (62),  Expect = 1.4, Method: Composition-based stats.
+ Identities = 17/52 (33%), Positives = 22/52 (42%), Gaps = 8/52 (15%)
+
+Query  20   ELGATRLVVHR--TPRHIYAQVIAPNGSETLVA------ASTTEKAINEQLK  63
+            E G  R + +R      +Y Q+  PNG ET         A T  KA  E+ K
+Sbjct  224  EPGEDRFIKNRFEVAAKLYEQIFGPNGPETEEELEDIPDAETRYKAWKEEHK  275
+
+
+>gnl|CDD|235647 PRK05928, hemD, uroporphyrinogen-III synthase; Reviewed.
+Length=249
+
+ Score = 27.2 bits (61),  Expect = 1.9, Method: Composition-based stats.
+ Identities = 8/20 (40%), Positives = 11/20 (55%), Gaps = 0/20 (0%)
+
+Query  71   AAAVGKVIAERALEKGIKDV  90
+            A  +G+  AE   E GIK +
+Sbjct  210  AVVIGERTAEALRELGIKVI  229
+
+
+>gnl|CDD|187773 cd09642, Cas8c_I-C, CRISPR/Cas system-associated protein Cas8c. 
+ CRISPR (Clustered Regularly Interspaced Short Palindromic 
+Repeats) and associated Cas proteins comprise a system for 
+heritable host defense by prokaryotic cells against phage and 
+other foreign DNA; Large proteins, some contain Zn-finger 
+domain; signature gene for I-C subtype; also known as Csd1 
+family.
+Length=574
+
+ Score = 27.4 bits (61),  Expect = 2.1, Method: Composition-based stats.
+ Identities = 9/20 (45%), Positives = 13/20 (65%), Gaps = 0/20 (0%)
+
+Query  86   GIKDVSFDRSGFQYHGRVQA  105
+            G K VSF+ S F+ +G+ Q 
+Sbjct  210  GAKLVSFNNSAFESYGKEQG  229
+
+
+>gnl|CDD|212682 cd11732, HSP105-110_like_NBD, Nucleotide-binding domain of 105/110 
+kDa heat shock proteins including HSPA4, HYOU1, and similar 
+proteins.  This subfamily include the human proteins, 
+HSPA4 (also known as 70-kDa heat shock protein 4, APG-2, HS24/P52, 
+hsp70 RY, and HSPH2; the human HSPA4 gene maps to 5q31.1), 
+HSPA4L (also known as 70-kDa heat shock protein 4-like, 
+APG-1, HSPH3, and OSP94; the human HSPA4L gene maps to 4q28), 
+and HSPH1 (also known as heat shock 105kDa/110kDa protein 
+1, HSP105; HSP105A; HSP105B; NY-CO-25; the human HSPH1 gene 
+maps to 13q12.3), HYOU1 (also known as human hypoxia up-regulated 
+1, GRP170; HSP12A; ORP150; GRP-170; ORP-150; the human 
+HYOU1 gene maps to11q23.1-q23.3), Saccharomyces cerevisiae 
+Sse1p, Sse2p, and Lhs1p, and a sea urchin sperm receptor. 
+It belongs to the 105/110 kDa heat shock protein (HSP105/110) 
+subfamily of the HSP70-like family, and includes proteins 
+believed to function generally as co-chaperones of HSP70 chaperones, 
+acting as nucleotide exchange factors (NEFs), to remove 
+ADP from their HSP70 chaperone partners during the ATP 
+hydrolysis cycle. HSP70 chaperones assist in protein folding 
+and assembly, and can direct incompetent "client" proteins 
+towards degradation. Like HSP70 chaperones, HSP105/110s have 
+an N-terminal nucleotide-binding domain (NBD) and a C-terminal 
+substrate-binding domain (SBD). For HSP70 chaperones, the 
+nucleotide sits in a deep cleft formed between the two lobes 
+of the NBD. The two subdomains of each lobe change conformation 
+between ATP-bound, ADP-bound, and nucleotide-free states. 
+ATP binding opens up the substrate-binding site; substrate-binding 
+increases the rate of ATP hydrolysis. HSP70 chaperone 
+activity is also regulated by J-domain proteins.
+Length=377
+
+ Score = 27.3 bits (60),  Expect = 2.5, Method: Composition-based stats.
+ Identities = 16/66 (24%), Positives = 28/66 (42%), Gaps = 2/66 (3%)
+
+Query  53   TTEKAINEQLKYTGNKEAAAAVGKV--IAERALEKGIKDVSFDRSGFQYHGRVQALADAA  110
+               +   E+  ++  + AA  + KV    ++  +  I DV      +    +   +ADAA
+Sbjct  98   AEVRFAGEKHVFSATQLAAMFIDKVKDTVKQDTKANITDVCIAVPPWYTEEQRYNIADAA  157
+
+Query  111  REAGLQ  116
+            R AGL 
+Sbjct  158  RIAGLN  163
+
+
+>gnl|CDD|258751 pfam14613, DUF4449, Protein of unknown function (DUF4449).  This 
+is a fungal DUF of unknown function.
+Length=164
+
+ Score = 26.1 bits (58),  Expect = 4.2, Method: Composition-based stats.
+ Identities = 12/35 (34%), Positives = 18/35 (51%), Gaps = 2/35 (6%)
+
+Query  80   ERALEKGIKD--VSFDRSGFQYHGRVQALADAARE  112
+            ++ALEK I+D     D   ++ H   Q   +AAR 
+Sbjct  36   QKALEKQIRDAFEKLDAFAYEIHQEAQRAKEAARS  70
+
+
+>gnl|CDD|182710 PRK10765, PRK10765, nitroreductase A; Provisional.
+Length=240
+
+ Score = 26.5 bits (59),  Expect = 4.3, Method: Composition-based stats.
+ Identities = 19/64 (30%), Positives = 30/64 (47%), Gaps = 19/64 (30%)
+
+Query  29  HRTPRHIYAQVIAPNGSETLV----AAST------------TEKAINEQL-KYTGNKE--  69
+           HR+ RH   + I+    E ++    AAS+            T+KA+ E L + TG ++  
+Sbjct  11  HRSIRHFTDEPISEAQREAIINAARAASSSSFLQCSSIIRITDKALREALVELTGGQKYV  70
+
+Query  70  AAAA  73
+           A AA
+Sbjct  71  AQAA  74
+
+
+>gnl|CDD|270394 cd13676, PBP2_TRAP_DctP2_like, Substrate-binding component of 
+Tripartite ATP-independent Periplasmic transporter DctP2 and 
+related proteins;  the type 2 periplasmic-binding protein 
+fold.  This subgroup includes TRAP transporter DctP2 and its 
+similar proteins. TRAP transporters are a large family of solute 
+transporters ubiquitously found in bacteria and archaea. 
+They are comprised of a periplasmic substrate-binding protein 
+(SBP; often called the P subunit) and two unequally sized 
+integral membrane components: a large transmembrane subunit 
+involved in the translocation process (the M subunit) and 
+a smaller membrane of unknown function (the Q subunit). The 
+driving force of TRAP transporters is provided by electrochemical 
+ion gradients (either protons or sodium ions) across 
+the cytoplasmic membrane, rather than ATP hydrolysis. This substrate-binding 
+domain belongs to the type 2 periplasmic binding 
+fold protein superfamily (PBP2). The PBP2 proteins are 
+typically comprised of two globular subdomains connected by 
+a flexible hinge and bind their ligand in the cleft between 
+these domains in a manner resembling a Venus flytrap.
+Length=297
+
+ Score = 26.0 bits (58),  Expect = 5.3, Method: Composition-based stats.
+ Identities = 12/36 (33%), Positives = 22/36 (61%), Gaps = 5/36 (14%)
+
+Query  67   NKEAAAAV-----GKVIAERALEKGIKDVSFDRSGF  97
+            ++EAA  V     G+ +AE   +KG+K +++  +GF
+Sbjct  86   SREAAYKVLDGELGQELAELMEKKGLKGLAYWENGF  121
+
+
+>gnl|CDD|235608 PRK05786, fabG, 3-ketoacyl-(acyl-carrier-protein) reductase; 
+Provisional.
+Length=238
+
+ Score = 26.3 bits (58),  Expect = 5.3, Method: Composition-based stats.
+ Identities = 17/61 (28%), Positives = 28/61 (46%), Gaps = 6/61 (10%)
+
+Query  34   HIYA-----QVIAPNGSETLVAA-STTEKAINEQLKYTGNKEAAAAVGKVIAERALEKGI  87
+             +YA     + +    S  LV++ S   KA  +QL Y   K   A   +++A   L +GI
+Sbjct  114  PLYAVNASLRFLKEGSSIVLVSSMSGIYKASPDQLSYAVAKAGLAKAVEILASELLGRGI  173
+
+Query  88   K  88
+            +
+Sbjct  174  R  174
+
+
+>gnl|CDD|233604 TIGR01863, cas_Csd1, CRISPR-associated protein Cas8c/Csd1, subtype 
+I-C/DVULG.  CRISPR loci appear to be mobile elements with 
+a wide host range. This model represents a protein that 
+tends to be found near CRISPR repeats of the DVULG subtype of 
+CRISPR/Cas locus. We designate this family Csd1 (CRISPR/Cas 
+Subtype DVULG protein 1). The species range for this subtype, 
+so far, is exclusively bacterial and mesophilic, although 
+CRISPR loci in general are particularly common among archaea 
+and thermophilic bacteria. In a few species (Xanthomonas 
+axonopodis pv. citri str. 306 and Streptococcus mutans UA159), 
+homology to this protein family is split across two tandem 
+genes; the trusted cutoff to this family is set low enough 
+to capture at least the longer of the two [Mobile and extrachromosomal 
+element functions, Other].
+Length=584
+
+ Score = 26.2 bits (58),  Expect = 5.3, Method: Composition-based stats.
+ Identities = 11/30 (37%), Positives = 16/30 (53%), Gaps = 0/30 (0%)
+
+Query  76   KVIAERALEKGIKDVSFDRSGFQYHGRVQA  105
+            K+    A   G K VSF+ S F+ +G+ Q 
+Sbjct  204  KIKGVGAQASGAKLVSFNNSAFESYGKEQG  233
+
+
+>gnl|CDD|223287 COG0209, NrdA, Ribonucleotide reductase, alpha subunit [Nucleotide 
+transport and metabolism].
+Length=651
+
+ Score = 26.2 bits (58),  Expect = 5.6, Method: Composition-based stats.
+ Identities = 9/22 (41%), Positives = 14/22 (64%), Gaps = 0/22 (0%)
+
+Query  33   RHIYAQVIAPNGSETLVAASTT  54
+            R+ Y   IAP GS + +A +T+
+Sbjct  518  RNSYLTAIAPTGSISYIAGTTS  539
+
+
+>gnl|CDD|223222 COG0144, Sun, tRNA and rRNA cytosine-C5-methylases [Translation, 
+ribosomal structure and biogenesis].
+Length=355
+
+ Score = 26.2 bits (58),  Expect = 5.9, Method: Composition-based stats.
+ Identities = 13/49 (27%), Positives = 22/49 (45%), Gaps = 6/49 (12%)
+
+Query  70   AAAAVGKV--IAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQ  116
+             AA  GK   +AE    +G   V+ D S      R++ L +  +  G++
+Sbjct  164  CAAPGGKTTHLAELMENEGAIVVAVDVSP----KRLKRLRENLKRLGVR  208
+
+
+>gnl|CDD|236091 PRK07768, PRK07768, long-chain-fatty-acid--CoA ligase; Validated.
+Length=545
+
+ Score = 25.7 bits (57),  Expect = 8.2, Method: Composition-based stats.
+ Identities = 17/62 (27%), Positives = 23/62 (37%), Gaps = 9/62 (15%)
+
+Query  63   KYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQY---------HGRVQALADAAREA  113
+            KY G   AA      +  R L +  K  +FD S  ++            V+ L DA    
+Sbjct  244  KYRGTMTAAPNFAYALLARRLRRQAKPGAFDLSSLRFALNGAEPIDPADVEDLLDAGARF  303
+
+Query  114  GL  115
+            GL
+Sbjct  304  GL  305
+
+
+>gnl|CDD|183772 PRK12823, benD, 1,6-dihydroxycyclohexa-2,4-diene-1-carboxylate 
+dehydrogenase; Provisional.
+Length=260
+
+ Score = 25.7 bits (57),  Expect = 8.5, Method: Composition-based stats.
+ Identities = 16/45 (36%), Positives = 22/45 (49%), Gaps = 5/45 (11%)
+
+Query  70   AAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAG  114
+            AA  +G+ +A RA  +G + V  DRS       V  +A   R AG
+Sbjct  16   AAQGIGRGVALRAAAEGARVVLVDRSEL-----VHEVAAELRAAG  55
+
+
+>gnl|CDD|250238 pfam00933, Glyco_hydro_3, Glycosyl hydrolase family 3 N terminal 
+domain.  
+Length=296
+
+ Score = 25.3 bits (56),  Expect = 8.8, Method: Composition-based stats.
+ Identities = 12/28 (43%), Positives = 15/28 (54%), Gaps = 1/28 (4%)
+
+Query  65   TGNKEAAAAVGKVIAERALEKGIKDVSF  92
+            T +++ A  VG  I E A  KGI DV  
+Sbjct  79   TWDRDLAYEVGVAIGEEARAKGI-DVIL  105
+
+
+
+Lambda      K        H        a         alpha
+   0.317    0.129    0.346    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 282542841

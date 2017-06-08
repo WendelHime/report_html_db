@@ -122,6 +122,15 @@
                                      <div id="geneIdentifier" class="tab-pane fade active in">
                                          <h4></h4>
                                          <form id="formGeneIdentifier">
+                                         	<div class="form-group">
+                                         		<label>Contig: </label>
+                                         		<select name="contig">
+                                         			<option></option>
+                                         			[% FOREACH sequence IN sequences %]
+                                         				<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                         			[% END %]
+                                         		</select>
+                                         	</div>
                                              <div class="form-group">
                                                  [% FOREACH text IN texts %]
                                                      [% IF text.tag.search('search-database-gene-ids-descriptions-gene-id') %]
@@ -138,6 +147,15 @@
                                       <div id="geneDescription" class="tab-pane fade">
                                           <h4></h4>
                                           <form id="formGeneDescription">
+                                          	<div class="form-group">
+                                         		<label>Contig: </label>
+                                         		<select name="contig">
+                                         			<option></option>
+                                         			[% FOREACH sequence IN sequences %]
+                                         				<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                         			[% END %]
+                                         		</select>
+                                         	</div>
                                               <div class="form-group">
                                                   [% FOREACH text IN texts %]
                                                       [% IF text.tag.search('search-database-gene-ids-descriptions-gene-description') %]
@@ -186,6 +204,15 @@
                          <div id="collapseTwo" class="panel-collapse collapse">
                              <div class="panel-body">
                                  <form id="formAnalysesProteinCodingGenes">
+                                 	<div class="form-group">
+                                        <label>Contig: </label>
+                                        <select name="contig">
+                                        	<option></option>
+                                        		[% FOREACH sequence IN sequences %]
+                                        			<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                        		[% END %]
+                                        	</select>
+                                    </div>
                                  	[% IF blast %]
                                       <div class="form-group">
                                           [% FOREACH text IN texts %]
@@ -609,6 +636,15 @@
 				<div id="trna" class="tab-pane fade">
 					<form id="trna-form">
 						<div class="form-group">
+							<label>Contig: </label>
+							<select name="contig">
+								<option></option>
+								[% FOREACH sequence IN sequences %]
+                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                                [% END %]
+                            </select>
+                        </div>
+						<div class="form-group">
 							[% FOREACH text IN texts %]
 							[% IF text.tag == 'search-database-dna-based-analyses-get-by-amino-acid' %]
 							<label>[% text.value %]</label>
@@ -654,6 +690,15 @@
 						[% END %]
 						[% END %]
 					</div>
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                               [% END %]
+                        </select>
+                    </div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-contain-sequence-repetition-unit' %]
@@ -711,6 +756,15 @@
 			[% IF infernal %]
 			<div id="otherNonCodingRNAs" class="tab-pane fade">
 				<form id="otherNonCodingRNAs-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                               [% END %]
+                           </select>
+                       </div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-search-ncrna-by-target-identifier' %]
@@ -782,6 +836,15 @@
 			<div id="ribosomalBindingSites" class="tab-pane fade">
 				<form id="ribosomalBindingSites-form">
 					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
+					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-ribosomal-binding' %]
 						<label>[% text.value %]</label>
@@ -822,6 +885,15 @@
 			[% IF transterm %]
 			<div id="transcriptionalTerminators" class="tab-pane fade">
 				<form id="transcriptionalTerminators-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-transcriptional-terminators-confidence-score' %]
@@ -882,6 +954,15 @@
 			[% IF alienhunter %]
 			<div id="horizontalGeneTransfers" class="tab-pane fade">
 				<form id="horizontalGeneTransfers-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option></option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
 					<div class="form-group">
 						[% FOREACH text IN texts %]
 						[% IF text.tag == 'search-database-dna-based-analyses-predicted-alienhunter' %]

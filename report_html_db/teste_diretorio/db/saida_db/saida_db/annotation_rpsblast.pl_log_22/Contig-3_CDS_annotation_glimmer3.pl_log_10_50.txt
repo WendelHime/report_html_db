@@ -1,0 +1,335 @@
+Query= Contig-3_CDS_annotation_glimmer3.pl_log_10_50
+
+Length=103
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|179076  PRK00596, rpsJ, 30S ribosomal protein S10; Reviewed   206     9e-70
+gnl|CDD|130121  TIGR01049, rpsJ_bact, ribosomal protein S10, bact...  173     1e-56
+gnl|CDD|223129  COG0051, RpsJ, Ribosomal protein S10 [Translation...  172     5e-56
+gnl|CDD|249781  pfam00338, Ribosomal_S10, Ribosomal protein S10p/...  152     2e-48
+gnl|CDD|177057  CHL00135, rps10, ribosomal protein S10; Validated     137     1e-42
+gnl|CDD|183392  PRK12271, rps10p, 30S ribosomal protein S10P; Rev...  79.6    4e-20
+gnl|CDD|130118  TIGR01046, S10_Arc_S20_Euk, ribosomal protein S10...  71.7    4e-17
+gnl|CDD|173336  PTZ00039, PTZ00039, 40S ribosomal protein S20; Pr...  52.9    5e-10
+gnl|CDD|239118  cd02652, nuc_hydro_2, NH_2: A subgroup of nucleos...  26.7    2.1  
+gnl|CDD|252119  pfam03717, PBP_dimer, Penicillin-binding Protein ...  25.8    4.8  
+gnl|CDD|227123  COG4784, COG4784, Putative Zn-dependent protease ...  25.6    6.4  
+gnl|CDD|152398  pfam11963, DUF3477, Protein of unknown function (...  25.3    7.0  
+gnl|CDD|253830  pfam06626, DUF1152, Protein of unknown function (...  25.3    7.0  
+gnl|CDD|131338  TIGR02285, TIGR02285, conserved hypothetical prot...  25.5    7.1  
+gnl|CDD|237973  PRK15488, PRK15488, thiosulfate reductase PhsA; P...  25.4    7.4  
+gnl|CDD|173952  cd08193, HVD, 5-hydroxyvalerate dehydrogenase (HV...  25.2    9.2  
+gnl|CDD|239018  cd02067, B12-binding, B12 binding domain (B12-BD)...  24.8    9.3  
+gnl|CDD|177753  PLN00149, PLN00149, potassium transporter; Provis...  25.2    9.4  
+
+
+>gnl|CDD|179076 PRK00596, rpsJ, 30S ribosomal protein S10; Reviewed.
+Length=102
+
+ Score = 206 bits (528),  Expect = 9e-70, Method: Composition-based stats.
+ Identities = 83/102 (81%), Positives = 94/102 (92%), Gaps = 0/102 (0%)
+
+Query  1    MQNQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKD  60
+            M  Q+IRIRLKAFDHRL+DQS  +IVETAKRTGAQVRGPIPLPT+KERFTVL SPHVNKD
+Sbjct  1    MAKQKIRIRLKAFDHRLLDQSAKKIVETAKRTGAQVRGPIPLPTKKERFTVLRSPHVNKD  60
+
+Query  61   ARDQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL  102
+            +R+Q+EIRTHKRL+DIV+PT KTVDALM+LDL AGVDV+I L
+Sbjct  61   SREQFEIRTHKRLIDIVDPTPKTVDALMKLDLPAGVDVEIKL  102
+
+
+>gnl|CDD|130121 TIGR01049, rpsJ_bact, ribosomal protein S10, bacterial/organelle. 
+ This model describes bacterial 30S ribosomal protein S10. 
+In species that have a transcription antitermination complex, 
+or N utilization substance, with NusA, NusB, NusG, and 
+NusE, this ribosomal protein is responsible for NusE activity. 
+Included in the family are one member each from Saccharomyces 
+cerevisiae and Schizosaccharomyces pombe. These proteins 
+lack an N-terminal mitochondrial transit peptide but contain 
+additional sequence C-terminal to the ribosomal S10 protein 
+region [Protein synthesis, Ribosomal proteins: synthesis 
+and modification].
+Length=99
+
+ Score = 173 bits (440),  Expect = 1e-56, Method: Composition-based stats.
+ Identities = 74/99 (75%), Positives = 93/99 (94%), Gaps = 0/99 (0%)
+
+Query  4    QRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARD  63
+            Q+IRI+LK++DHRL+DQST +IVETAKRTGAQV+GPIPLPT+KER+TVL SPHVNKD+R+
+Sbjct  1    QKIRIKLKSYDHRLLDQSTKKIVETAKRTGAQVKGPIPLPTKKERYTVLRSPHVNKDSRE  60
+
+Query  64   QYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL  102
+            Q+EIRTHKRL+DI++P  KT+DALM+LDL AGVD++I L
+Sbjct  61   QFEIRTHKRLIDIIDPNPKTIDALMKLDLPAGVDIEIKL  99
+
+
+>gnl|CDD|223129 COG0051, RpsJ, Ribosomal protein S10 [Translation, ribosomal 
+structure and biogenesis].
+Length=104
+
+ Score = 172 bits (437),  Expect = 5e-56, Method: Composition-based stats.
+ Identities = 76/102 (75%), Positives = 90/102 (88%), Gaps = 0/102 (0%)
+
+Query  1    MQNQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKD  60
+            M+ Q+IRIRLK+FDHRL+DQ   EIVETAKRTGA V+GPIPLPT++ER TVL SPH  KD
+Sbjct  1    MKKQKIRIRLKSFDHRLLDQVCREIVETAKRTGADVKGPIPLPTKRERVTVLRSPHGEKD  60
+
+Query  61   ARDQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL  102
+            +R+Q+E+RTHKRL+DIV+PT KTVDALMRLDL AGVDV+I L
+Sbjct  61   SREQFEMRTHKRLIDIVDPTPKTVDALMRLDLPAGVDVEIKL  102
+
+
+>gnl|CDD|249781 pfam00338, Ribosomal_S10, Ribosomal protein S10p/S20e.  This 
+family includes small ribosomal subunit S10 from prokaryotes 
+and S20 from eukaryotes.
+Length=97
+
+ Score = 152 bits (387),  Expect = 2e-48, Method: Composition-based stats.
+ Identities = 56/97 (58%), Positives = 76/97 (78%), Gaps = 0/97 (0%)
+
+Query  6    IRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQY  65
+            IRI+LK++DH+L++     IVE AKR G +V GPIPLPT++ R TVL SPHV+K +R+Q+
+Sbjct  1    IRIKLKSYDHKLLESYVKFIVEAAKRLGIKVSGPIPLPTKRLRVTVLRSPHVDKKSREQF  60
+
+Query  66   EIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL  102
+            E+RTHKRL+DI + T +TVD L+ +DL  GVDV+I L
+Sbjct  61   EMRTHKRLIDIYDATPETVDQLLYIDLPEGVDVEIKL  97
+
+
+>gnl|CDD|177057 CHL00135, rps10, ribosomal protein S10; Validated.
+Length=101
+
+ Score = 137 bits (347),  Expect = 1e-42, Method: Composition-based stats.
+ Identities = 53/98 (54%), Positives = 77/98 (79%), Gaps = 0/98 (0%)
+
+Query  1    MQNQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKD  60
+            M N +IRI+LK+F+H L++ S  +I++TA RT A   GPIPLPT++  + VL SPHV+KD
+Sbjct  4    MTNAKIRIKLKSFNHELLNSSCKKIIDTASRTNATAVGPIPLPTKRRIYCVLRSPHVDKD  63
+
+Query  61   ARDQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDV  98
+            +R+ +EIRTHKR++DI  P+ +T+D+LM+LDL  GVD+
+Sbjct  64   SREHFEIRTHKRIIDIYYPSSETIDSLMKLDLPPGVDI  101
+
+
+>gnl|CDD|183392 PRK12271, rps10p, 30S ribosomal protein S10P; Reviewed.
+Length=102
+
+ Score = 79.6 bits (197),  Expect = 4e-20, Method: Composition-based stats.
+ Identities = 37/100 (37%), Positives = 58/100 (58%), Gaps = 2/100 (2%)
+
+Query  4    QRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDAR-  62
+            Q+ RIRL + +   +D+   +I E A++TG  + GPIPLPT++       SP     A  
+Sbjct  2    QKARIRLSSTNPEDLDEVCDQIKEIAEKTGVDMSGPIPLPTKRLVVPTRKSPDGEGTATW  61
+
+Query  63   DQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL  102
+            D +E+R HKRL+DI +  E+ +  LMR+ +   V ++I L
+Sbjct  62   DHWEMRIHKRLIDI-DADERALRQLMRIRVPEDVQIEIEL  100
+
+
+>gnl|CDD|130118 TIGR01046, S10_Arc_S20_Euk, ribosomal protein S10(archaeal)/S20(eukaryotic). 
+ This model describes the archaeal ribosomal 
+protein and its equivalents in eukaryotes [Protein synthesis, 
+Ribosomal proteins: synthesis and modification].
+Length=99
+
+ Score = 71.7 bits (176),  Expect = 4e-17, Method: Composition-based stats.
+ Identities = 34/100 (34%), Positives = 62/100 (62%), Gaps = 2/100 (2%)
+
+Query  4    QRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDAR-  62
+             + RI+L + + R +++  A+I   A++TG ++ GP+PLPT++ R     SP        
+Sbjct  1    HKARIKLTSTNVRSLEKVCAQIKRIAEKTGVRMSGPVPLPTKRLRVPTRKSPDGEGSKTW  60
+
+Query  63   DQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL  102
+            D++E+R HKRL+DI E  E+ +  +MR+ +   V+++I+L
+Sbjct  61   DRWEMRIHKRLIDI-EADERALRQIMRISVPEDVEIEITL  99
+
+
+>gnl|CDD|173336 PTZ00039, PTZ00039, 40S ribosomal protein S20; Provisional.
+Length=115
+
+ Score = 52.9 bits (127),  Expect = 5e-10, Method: Composition-based stats.
+ Identities = 27/99 (27%), Positives = 57/99 (58%), Gaps = 2/99 (2%)
+
+Query  5    RIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISP-HVNKDARD  63
+            +IRI L + + + I++  A+I+  AK    +V GP+ +P +  R T   SP     +  D
+Sbjct  18   KIRITLTSKNLKSIEKVCADIITGAKEKNLKVTGPVRMPVKTLRITTRKSPCGEGTNTWD  77
+
+Query  64   QYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISL  102
+            ++E+R +KR++D+   ++  V  +  +++  GV+V++ +
+Sbjct  78   RFEMRIYKRVIDLYSSSD-VVTQITSINIDPGVEVEVII  115
+
+
+>gnl|CDD|239118 cd02652, nuc_hydro_2, NH_2: A subgroup of nucleoside hydrolases. 
+This group contains eukaryotic and bacterial proteins similar 
+to nucleoside hydrolases. Nucleoside hydrolases cleave 
+the N-glycosidic bond in nucleosides generating ribose and 
+the respective base. These enzymes vary in their substrate specificity. 
+ .
+Length=293
+
+ Score = 26.7 bits (59),  Expect = 2.1, Method: Composition-based stats.
+ Identities = 12/60 (20%), Positives = 17/60 (28%), Gaps = 9/60 (15%)
+
+Query  13   FDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYEIRTHKR  72
+                        IV +    G  V  P  L         +I+   N      Y  R+H+R
+Sbjct  178  AGRAQHLGIPVRIVWSGYELGEAVSYPHVL---------VIAHPFNTPVFAAYWPRSHRR  228
+
+
+>gnl|CDD|252119 pfam03717, PBP_dimer, Penicillin-binding Protein dimerization 
+domain.  This domain is found at the N terminus of Class B 
+High Molecular Weight Penicillin-Binding Proteins. Its function 
+has not been precisely defined, but is strongly implicated 
+in PBP polymerization. The domain forms a largely disordered 
+'sugar tongs' structure.
+Length=166
+
+ Score = 25.8 bits (57),  Expect = 4.8, Method: Composition-based stats.
+ Identities = 12/58 (21%), Positives = 21/58 (36%), Gaps = 9/58 (16%)
+
+Query  36  VRGPI------PLPTRKERFTVLISPHVNKDARDQYEIRTHKRLVDIVEPTEKTVDAL  87
+            RG I       L T    +++ + P   KD +D       K+L  ++       + L
+Sbjct  4   PRGEILDRNGRVLATNVPVYSLTVDPSQVKDKKDLETA---KKLAKLLGIDSIDPEEL  58
+
+
+>gnl|CDD|227123 COG4784, COG4784, Putative Zn-dependent protease [General function 
+prediction only].
+Length=479
+
+ Score = 25.6 bits (56),  Expect = 6.4, Method: Composition-based stats.
+ Identities = 14/57 (25%), Positives = 22/57 (39%), Gaps = 6/57 (11%)
+
+Query  2   QNQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVN  58
+           Q+ RI   L  +     D     +V    R    +      P +  R T+L SP++N
+Sbjct  49  QHPRI---LATYGGEYRDPKLERMVA---RIVGALTAVSENPQQTYRITILNSPNIN  99
+
+
+>gnl|CDD|152398 pfam11963, DUF3477, Protein of unknown function (DUF3477).  This 
+family of proteins is functionally uncharacterized. This 
+protein is found in viruses. Proteins in this family are typically 
+between 246 to 7162 amino acids in length. This protein 
+is found associated with pfam08716, pfam01661, pfam05409, 
+pfam08717, pfam01831, pfam08715, pfam08710.
+Length=355
+
+ Score = 25.3 bits (55),  Expect = 7.0, Method: Composition-based stats.
+ Identities = 15/63 (24%), Positives = 25/63 (40%), Gaps = 7/63 (11%)
+
+Query  29   AKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYEIRTHK----RLVDIV-EPTEKT  83
+               T   ++   P+      F V+++ HV +D R    +R         +  V +PTE  
+Sbjct  273  GDYTLQDMKQLQPVWLANLDFDVVVAWHVVRDPR--AVMRLQTIATICGIAYVAQPTEDV  330
+
+Query  84   VDA  86
+            VD 
+Sbjct  331  VDG  333
+
+
+>gnl|CDD|253830 pfam06626, DUF1152, Protein of unknown function (DUF1152).  This 
+family consists of several hypothetical archaeal proteins 
+of unknown function.
+Length=297
+
+ Score = 25.3 bits (56),  Expect = 7.0, Method: Composition-based stats.
+ Identities = 17/82 (21%), Positives = 23/82 (28%), Gaps = 19/82 (23%)
+
+Query  38   GPIPLPTRKERFTVLISPHVNKDARDQYEIRTHKR-----------------LVDIVEPT  80
+            GPIPL   +      +   +       Y IR  +R                 LVD     
+Sbjct  45   GPIPLDELRG--VERLGEGLGIANPRSYAIRGGRRVKPQAVRVARALGKSVYLVDPYGGV  102
+
+Query  81   EKTVDALMRLDLAAGVDVQISL  102
+                  L       G+DV I +
+Sbjct  103  SGLARGLKEFAEKEGIDVIIGV  124
+
+
+>gnl|CDD|131338 TIGR02285, TIGR02285, conserved hypothetical protein.  Members 
+of this family are found in several Proteobacteria, including 
+Pseudomonas putida KT2440, Bdellovibrio bacteriovorus HD100 
+(three members), Aeromonas hydrophila, and Chromobacterium 
+violaceum ATCC 12472. The function is unknown [Hypothetical 
+proteins, Conserved].
+Length=268
+
+ Score = 25.5 bits (56),  Expect = 7.1, Method: Composition-based stats.
+ Identities = 22/100 (22%), Positives = 38/100 (38%), Gaps = 22/100 (22%)
+
+Query  4    QRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARD  63
+            Q IR  L  ++HR +  S A  ++  +     V     L T +               R+
+Sbjct  48   QEIRRALPQYEHRFVRVSFARSLKELQG-KGGVCTVNLLRTPE---------------RE  91
+
+Query  64   QYEIRTHKRL----VDIVEPTEKTVDALMRLDLAAGVDVQ  99
+            ++ I +   L    V +V   E T  A +R +    VD++
+Sbjct  92   KFLIFSDPTLRALPVGLVLRKELT--AGVRDEQDGDVDLK  129
+
+
+>gnl|CDD|237973 PRK15488, PRK15488, thiosulfate reductase PhsA; Provisional.
+Length=759
+
+ Score = 25.4 bits (56),  Expect = 7.4, Method: Composition-based stats.
+ Identities = 9/22 (41%), Positives = 11/22 (50%), Gaps = 0/22 (0%)
+
+Query  80   TEKTVDALMRLDLAAGVDVQIS  101
+                V AL +LDL    DV +S
+Sbjct  447  RADVVKALKKLDLVVVCDVYLS  468
+
+
+>gnl|CDD|173952 cd08193, HVD, 5-hydroxyvalerate dehydrogenase (HVD) catalyzes 
+the oxidation of 5-hydroxyvalerate to 5-oxovalerate with NAD+ 
+as cofactor.  5-hydroxyvalerate dehydrogenase (HVD) is an 
+iron-containing (type III) NAD-dependent alcohol dehydrogenase. 
+It plays a role in the cyclopentanol metabolism biochemical 
+pathway. It catalyzes the oxidation of 5-hydroxyvalerate 
+to 5-oxovalerate with NAD+ as cofactor. This cyclopentanol 
+(cpn) degradation pathway is present in some bacteria which 
+can use cyclopentanol as sole carbon source. In Comamonas sp. 
+strain NCIMB 9872, this enzyme is encoded by the CpnD gene.
+Length=376
+
+ Score = 25.2 bits (56),  Expect = 9.2, Method: Composition-based stats.
+ Identities = 10/26 (38%), Positives = 13/26 (50%), Gaps = 0/26 (0%)
+
+Query  78   EPTEKTVDALMRLDLAAGVDVQISLG  103
+            +P E  V+A +    AAG D  I  G
+Sbjct  66   DPPEAVVEAAVEAARAAGADGVIGFG  91
+
+
+>gnl|CDD|239018 cd02067, B12-binding, B12 binding domain (B12-BD). This domain 
+binds different cobalamid derivates, like B12 (adenosylcobamide) 
+or methylcobalamin or methyl-Co(III) 5-hydroxybenzimidazolylcobamide, 
+it is found in several enzymes, such as glutamate 
+mutase, methionine synthase and methylmalonyl-CoA mutase. 
+Cobalamin undergoes a conformational change on binding 
+the protein; the dimethylbenzimidazole group, which is coordinated 
+to the cobalt in the free cofactor, moves away from the 
+corrin and is replaced by a histidine contributed by the 
+protein. The sequence Asp-X-His-X-X-Gly, which contains this 
+histidine ligand, is conserved in many cobalamin-binding proteins.
+Length=119
+
+ Score = 24.8 bits (55),  Expect = 9.3, Method: Composition-based stats.
+ Identities = 8/19 (42%), Positives = 9/19 (47%), Gaps = 0/19 (0%)
+
+Query  18  IDQSTAEIVETAKRTGAQV  36
+           +D    EIVE AK   A  
+Sbjct  35  VDVPPEEIVEAAKEEDADA  53
+
+
+>gnl|CDD|177753 PLN00149, PLN00149, potassium transporter; Provisional.
+Length=779
+
+ Score = 25.2 bits (55),  Expect = 9.4, Method: Composition-based stats.
+ Identities = 9/26 (35%), Positives = 17/26 (65%), Gaps = 0/26 (0%)
+
+Query  39   PIPLPTRKERFTVLISPHVNKDARDQ  64
+            P+  P ++ RF V  SP +++ AR++
+Sbjct  685  PVSRPKKRVRFVVPESPKIDRGAREE  710
+
+
+
+Lambda      K        H        a         alpha
+   0.321    0.136    0.375    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 286873755

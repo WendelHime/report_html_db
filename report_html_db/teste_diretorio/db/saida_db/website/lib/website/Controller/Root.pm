@@ -78,14 +78,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 	
 	$c->stash(
 		sequences => [
-			$c->model('Basic::Sequence')->search({
-				
-			}, {
-				order_by => {
-					-asc => [qw/ name /]
-				},
-				group_by => [ qw/ name / ]
-			})
+			$c->model('Basic::Sequence')->all
 		]
 	);
 	
@@ -317,7 +310,7 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 		)->single->get_column(qw/filepath/)
 	);
 
-	open( my $FILEHANDLER, "<", $filepath );
+	open( my $FILEHANDLER, "<", dirname(__FILE__) . "/../../../root/" . $filepath );
 	binmode $FILEHANDLER;
 	my $file;
 
@@ -368,17 +361,57 @@ Standard 404 error page
 
 sub default : Path {
 	my ( $self, $c ) = @_;
-	$c->response->body('Page not found');
+	$c->response->body('Oops, page not found');
 	$c->response->status(404);
 }
 
-=head2 end
+=head2 renderView
 
 Attempt to render a view, if needed.
 
 =cut
 
-sub end : ActionClass('RenderView') { }
+sub renderView : ActionClass('RenderView') { }
+
+sub end : Private {
+	my ( $self, $c ) = @_;
+
+	if ( scalar @{ $c->error } ) {
+		$c->stash->{errors}   = $c->error;
+		for my $error ( @{ $c->error } ) {
+			$c->log->error($error);
+		}
+		$c->stash(
+			texts => [
+				encodingCorrection(
+					$c->model('Basic::Text')->search(
+						{
+							-or => [
+								tag => { 'like', 'header%' },
+								tag => 'menu',
+								tag => 'footer',
+							]
+						}
+					)
+				)
+			]
+		);
+		$c->stash->{hadGlobal}         = 1;
+		$c->stash->{hadSearchDatabase} = 1;
+		$c->stash->{template} = 'website/errors.tt';
+		$c->forward('website::View::TT');
+		$c->clear_errors;
+	}
+
+	return 1 if $c->response->status =~ /^3\d\d$/;
+	return 1 if $c->response->body;
+
+	unless ( $c->response->content_type ) {
+		$c->response->content_type('text/html; charset=utf-8');
+	}
+
+	$c->forward('website::View::TT');
+}
 
 =head1 AUTHOR
 

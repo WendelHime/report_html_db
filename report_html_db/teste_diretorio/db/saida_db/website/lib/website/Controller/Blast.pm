@@ -71,11 +71,6 @@ sub search_POST {
 	{
 		$databaseGeneticCode = $c->request->param("DB_GENETIC_CODE");
 	}
-	if ( !$frameShiftPenality
-		and defined $c->request->param("OOF_ALIGN") )
-	{
-		$frameShiftPenality = $c->request->param("OOF_ALIGN");
-	}
 	if ( !$otherAdvanced and defined $c->request->param("OTHER_ADVANCED") ) {
 		$otherAdvanced = $c->request->param("OTHER_ADVANCED");
 	}
@@ -92,9 +87,6 @@ sub search_POST {
 	}
 	if ( !$alignments and defined $c->request->param("ALIGNMENTS") ) {
 		$alignments = $c->request->param("ALIGNMENTS");
-	}
-	if ( !$colorSchema and defined $c->request->param("COLOR_SCHEMA") ) {
-		$colorSchema = $c->request->param("COLOR_SCHEMA");
 	}
 
 	my %hash = ();

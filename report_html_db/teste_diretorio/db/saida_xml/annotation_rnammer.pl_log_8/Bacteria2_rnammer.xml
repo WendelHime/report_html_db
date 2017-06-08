@@ -1,0 +1,9 @@
+<?xml version='1.0'?>
+<output>
+	<predictionTitle>Prediction of ribosomal RNA</predictionTitle>
+	<predictor>RNAmmer-1.2</predictor>
+	<reference>Lagesen K, Hallin PF, Rodland EA, Staerfeldt HH, Rognes T, Ussery DW. RNAmmer: consistent and rapid annotation of ribosomal RNA genes.2007;35(9):3100-8. Epub 2007 Apr 22</reference>
+<predictionDate>2017-03-07</predictionDate>
+	<entries>
+	</entries>
+</output>

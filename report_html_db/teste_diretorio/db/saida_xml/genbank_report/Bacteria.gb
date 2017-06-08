@@ -1,0 +1,1489 @@
+FEATURES             Location/Qualifiers
+     repeat_region   1505..1525
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 42"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CAGCCAGTTC(2.1)"
+     repeat_region   1799..1812
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="ATGGCCG(2.0)"
+     repeat_region   7236..7252
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 34"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="TTACCT(2.8)"
+     repeat_region   10914..10926
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="ACCTTT(2.2)"
+     repeat_region   13159..13172
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GATGAAT(2.0)"
+     repeat_region   17706..17721
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 32"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="AGATGCAC(2.0)"
+     repeat_region   18561..18576
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 32"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="TACTCAA(2.3)"
+     repeat_region   1505..1525
+                     /inference="ab initio prediction:Mreps:2.5"
+                     /note="Mreps parameters are  -fasta  -from 1 -win 10000"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CAGCCAGTTC"
+     repeat_region   3695..3706
+                     /inference="ab initio prediction:Mreps:2.5"
+                     /note="Mreps parameters are  -fasta  -from 1 -win 10000"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GCT"
+     repeat_region   7236..7252
+                     /inference="ab initio prediction:Mreps:2.5"
+                     /note="Mreps parameters are  -fasta  -from 1 -win 10000"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="TTACCT"
+     repeat_region   18561..18576
+                     /inference="ab initio prediction:Mreps:2.5"
+                     /note="Mreps parameters are  -fasta  -from 1 -win 10000"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="TACTCAA"
+     gene            complement(18838..18910)
+                     /locus_tag="Bact_38"
+                     /gene="trnThr"
+     tRNA            complement(18838..18910)
+                     /product="tRNA-Thr"
+                     /note="tRNAscan-SE score is 81.23"
+                     /inference="profile:tRNAscan-SE:1.3"
+     gene            complement(15080..15152)
+                     /locus_tag="Bact_31"
+                     /gene="trnThr2"
+     tRNA            complement(15080..15152)
+                     /product="tRNA-Thr"
+                     /note="tRNAscan-SE score is 82.45"
+                     /inference="profile:tRNAscan-SE:1.3"
+     gene            complement(14979..15060)
+                     /locus_tag="Bact_30"
+                     /gene="trnTyr"
+     tRNA            complement(14979..15060)
+                     /product="tRNA-Tyr"
+                     /note="tRNAscan-SE score is 57.88"
+                     /inference="profile:tRNAscan-SE:1.3"
+     gene            complement(14804..14875)
+                     /locus_tag="Bact_29"
+                     /gene="trnGly"
+     tRNA            complement(14804..14875)
+                     /product="tRNA-Gly"
+                     /note="tRNAscan-SE score is 65.97"
+                     /inference="profile:tRNAscan-SE:1.3"
+     gene            complement(14722..14794)
+                     /locus_tag="Bact_28"
+                     /gene="trnThr3"
+     tRNA            complement(14722..14794)
+                     /product="tRNA-Thr"
+                     /note="tRNAscan-SE score is 82.49"
+                     /inference="profile:tRNAscan-SE:1.3"
+     misc_feature    15000..23419
+                     /note="AlienHunter score is 72.252, threshold is 43.592"
+                     /inference="ab initio prediction:AlienHunter:1.7"
+     gene            complement(864..751)
+                     /locus_tag="Bact_03"
+     ncRNA           complement(864..751)
+                     /locus_tag="Bact_03"
+                     /ncRNA_class="other"
+                     /product="Alpha operon ribosome binding site"
+                     /db_xref="RFAM:RF00140"
+                     /note="Rfam type: Cis-reg;"
+                     /inference="ab initio prediction:cmscan:1.1.1"
+     gene            complement(18810..18696)
+                     /locus_tag="Bact_37"
+     rRNA            complement(18810..18696)
+                     /product="5S rRNA"
+                     /note="RNAMMER score is 87.8"
+                     /inference="ab initio prediction:RNAmmer:1.2"
+     gene            complement(21873..18963)
+                     /locus_tag="Bact_39"
+     rRNA            complement(21873..18963)
+                     /product="23S rRNA"
+                     /note="RNAMMER score is 3651.1"
+                     /inference="ab initio prediction:RNAmmer:1.2"
+     gene            complement(23419..21945)
+                     /locus_tag="Bact_41"
+     rRNA            complement(23419..21945)
+                     /product="16S rRNA"
+                     /note="RNAMMER score is 1775.9"
+                     /inference="ab initio prediction:RNAmmer:1.2"
+     terminator      6604..6622
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     terminator      10586..10598
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     terminator      11068..11078
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     terminator      11872..11895
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     terminator      18659..18678
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     terminator      20578..20594
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     gene            complement(22..411)
+                     /locus_tag="Bact_01"
+     CDS             complement(22..411)
+                     /product="MULTISPECIES: 30S ribosomal protein S11 [Enterobacteriaceae]"
+                     /protein_id="gnl|USP|Bact_01"
+                     /translation="MAKAPIRARKRVRKQVSDGVAHIHASFNNTIVTITDRQGNALGWATAGGSGFRGSRKSTPFAAQVAAERCAEAVKEYGIKNLEVMVKGPGPGRESTIRALNAAGFRITNITDVTPIPHNGCRPPKKRRV"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00411.14"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_002919257.1"
+                     /inference="similar to AA sequence:INSD:WP_006657026.1"
+                     /db_xref="CDD:PRK05309"
+                     /db_xref="CDD:COG0100"
+                     /db_xref="InterPro:IPR001971"
+                     /db_xref="InterPro:IPR019981"
+                     /db_xref="InterPro:IPR018102"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="KEGG:K02948"
+                     /note="                     Potential anchor cleavage site predicted by DGPI 2.04 (score=1.026) detected by w, w+2 rule; at residue 101"
+     gene            complement(427..783)
+                     /locus_tag="Bact_02"
+     CDS             complement(427..783)
+                     /product="MULTISPECIES: 30S ribosomal protein S13 [Photorhabdus]"
+                     /protein_id="gnl|USP|Bact_02"
+                     /translation="VARIAGINIPDQKHTVIALTSIYGIGKTRSQAICAAAGIAEHVKISELSEEQIDKLRDEVAKYVVEGDLRREVTLSIKRLMDLGTYRGLRHRRGLPVRGQRTKTNARTRKGPRKPIKK"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF05833.6"
+                     /inference="protein motif:Pfam:PF00416.17"
+                     /inference="similar to AA sequence:INSD:WP_011148774.1"
+                     /inference="similar to AA sequence:INSD:EYU13806.1"
+                     /db_xref="CDD:PRK05179"
+                     /db_xref="CDD:TIGR03631"
+                     /db_xref="InterPro:IPR001892"
+                     /db_xref="InterPro:IPR027437"
+                     /db_xref="InterPro:IPR010979"
+                     /db_xref="InterPro:IPR018269"
+                     /db_xref="InterPro:IPR019980"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003723 - RNA binding "
+                     /GO_function="GO:0003676 - nucleic acid binding "
+                     /GO_function="GO:0003723 - structural constituent of ribosome (GO:0003735)"
+                     /db_xref="eggNOG:bactNOG92580"
+                     /db_xref="eggNOG:gproNOG13280"
+                     /db_xref="eggNOG:COG0099"
+                     /db_xref="eggNOG:proNOG42873"
+                     /db_xref="KEGG:K02952"
+     gene            complement(1082..2413)
+                     /locus_tag="Bact_04"
+     CDS             complement(1082..2413)
+                     /product="MULTISPECIES: preprotein translocase subunit SecY [Photorhabdus]"
+                     /protein_id="gnl|USP|Bact_04"
+                     /translation="MAKQPGLDFQSAKGGLGELKRRLLFVIGALIVFRIGSFIPIPGIDATVLAKLLEQQRGTIIEMFNMFSGGALSRASIFALGIMPYISASIIIQLLTVVHPTLAEIKKEGEAGRRKISQYTRYGTLVLAIFQSIGIATGLPNMPGMQGLVINPGFAFYFTAVVSLVTGTMFLMWLGEQITERGIGNGISIIIFAGIVAGLPPAIGHTIEQARQGDLHFLLLLLVAVLVFAVTFFVVFMERGQRRIVVNYAKRQQGRRVYAAQSTHLPLKVNMAGVIPAIFASSIILFPGTIASWFGGGTGWNWLTTISMYLQPGQPLYVLLYASAIIFFCFFYTALVFNPRETADNLKKSGAFVPGIRPGEQTAKYIDKVMTRLTLVGAMYITFICLIPEFMRDAMKVPFYFGGTSLLIVVVVIMDFMAQVQTLMMSSQYESALKKANLKGYNR"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00344.15"
+                     /inference="similar to AA sequence:TCDB:P0AGA2"
+                     /note="Transporter Class: 3 Primary Active Transporters, Subclass: 3.A P-P-bond-hydrolysis-driven transporters, Family: 3.A.5 The General Secretory Pathway (Sec) Family"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="10 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:WP_011148775.1"
+                     /inference="similar to AA sequence:INSD:EYU13808.1"
+                     /db_xref="CDD:PRK09204"
+                     /db_xref="CDD:COG0201"
+                     /db_xref="InterPro:IPR002208"
+                     /db_xref="InterPro:IPR026593"
+                     /db_xref="InterPro:IPR030659"
+                     /db_xref="InterPro:IPR023201"
+                     /GO_component="GO:0016020 - membrane "
+                     /GO_process="GO:0015031 - protein transport "
+                     /db_xref="eggNOG:bactNOG01136"
+                     /db_xref="eggNOG:gproNOG01035"
+                     /db_xref="eggNOG:COG0201"
+                     /db_xref="eggNOG:proNOG00697"
+                     /db_xref="KEGG:K03076"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(2421..2855)
+                     /locus_tag="Bact_05"
+     CDS             complement(2421..2855)
+                     /product="50S ribosomal protein L15 [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_05"
+                     /translation="MRLNTLSPAEGSKHAPKRVGRGIGSGLGKTGGRGHKGQKSRSGGGVRRGFEGGQMPLYRRLPKFGFTSRKAMVTAEVRLSDFAAVEGDIIDLNALKAANVVGTQIEFAKVILSGEINRAVTVRGLRVTKGARAAIEAAGGKIEE"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00828.14"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_011148776.1"
+                     /inference="similar to AA sequence:INSD:EYU13809.1"
+                     /db_xref="CDD:PRK05592"
+                     /db_xref="CDD:TIGR01071"
+                     /db_xref="InterPro:IPR030878"
+                     /db_xref="InterPro:IPR021131"
+                     /db_xref="InterPro:IPR005749"
+                     /db_xref="InterPro:IPR001196"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0015934 - large ribosomal subunit "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG238709"
+                     /db_xref="eggNOG:gproNOG13538"
+                     /db_xref="eggNOG:COG0200"
+                     /db_xref="eggNOG:proNOG103125"
+                     /db_xref="KEGG:K02876"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.11399999) detected by w, w+2 rule; at residue 117"
+     gene            complement(2859..3038)
+                     /locus_tag="Bact_06"
+     CDS             complement(2859..3038)
+                     /product="LSU ribosomal protein L30P"
+                     /protein_id="gnl|USP|Bact_06"
+                     /translation="MAKTIKITQIRSSIGRLPKHKATLVGLGLRRIGHTVEREDTPAIRGMINLVSYMVKVEE"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00327.15"
+                     /inference="similar to AA sequence:INSD:EYU13810.1"
+                     /inference="similar to AA sequence:INSD:WP_015836270.1"
+                     /db_xref="CDD:PRK05611"
+                     /db_xref="CDD:cd01658"
+                     /db_xref="InterPro:IPR016082"
+                     /db_xref="InterPro:IPR005996"
+                     /db_xref="InterPro:IPR018038"
+                     /GO_component="GO:0015934 - large ribosomal subunit "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG138680"
+                     /db_xref="eggNOG:gproNOG22346"
+                     /db_xref="eggNOG:COG1841"
+                     /db_xref="eggNOG:proNOG62107"
+                     /db_xref="KEGG:K02907"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(3044..3544)
+                     /locus_tag="Bact_07"
+     CDS             complement(3044..3544)
+                     /product="30S ribosomal protein S5 [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_07"
+                     /translation="MAHIEKQAGELQEKLIAVNRVSKTVKGGRIFSFTALTVVGDGNGRVGFGYGKAREVPAAIQKAMEKARRNMKTVALNSGTLYHPVKGAHTGSRVFMQPAHEGTGIIAGGAMRAVLEVAGVRNVLAKTYGSTNPINVVRATLDALDSMKSPEMVAAKRGKSVEEILG"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00333.15"
+                     /inference="protein motif:Pfam:PF03719.10"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_011148778.1"
+                     /inference="similar to AA sequence:INSD:CDG16005.1"
+                     /db_xref="CDD:PRK00550"
+                     /db_xref="CDD:COG0098"
+                     /db_xref="InterPro:IPR018192"
+                     /db_xref="InterPro:IPR005324"
+                     /db_xref="InterPro:IPR005712"
+                     /db_xref="InterPro:IPR013810"
+                     /db_xref="InterPro:IPR014720"
+                     /db_xref="InterPro:IPR014721"
+                     /db_xref="InterPro:IPR020568"
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_component="GO:0015935 - small ribosomal subunit "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003723 - RNA binding "
+                     /GO_function="GO:0003723 - structural constituent of ribosome (GO:0003735)"
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG52253"
+                     /db_xref="eggNOG:gproNOG02182"
+                     /db_xref="eggNOG:COG0098"
+                     /db_xref="eggNOG:proNOG01789"
+                     /db_xref="KEGG:K02988"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.37699997) detected by w, w+2 rule; at residue 145"
+     gene            complement(3559..3912)
+                     /locus_tag="Bact_08"
+     CDS             complement(3559..3912)
+                     /product="MULTISPECIES: 50S ribosomal protein L18 [Photorhabdus]"
+                     /protein_id="gnl|USP|Bact_08"
+                     /translation="MDKKAARIRRATRARRKLQELGATRLVVHRTPRHIYAQVIAPNGSETLVAASTTEKAINEQLKYTGNKEAAAAVGKVIAERALEKGIKDVSFDRSGFQYHGRVQALADAAREAGLQF"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00861.17"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_011148779.1"
+                     /inference="similar to AA sequence:INSD:CDL84387.1"
+                     /db_xref="CDD:PRK05593"
+                     /db_xref="CDD:COG0256"
+                     /db_xref="InterPro:IPR004389"
+                     /db_xref="InterPro:IPR005484"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG115214"
+                     /db_xref="eggNOG:gproNOG16022"
+                     /db_xref="eggNOG:COG0256"
+                     /db_xref="eggNOG:proNOG52589"
+                     /db_xref="KEGG:K02881"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.10399999) detected by w, w+2 rule; at residue 89"
+     gene            complement(3922..4455)
+                     /locus_tag="Bact_09"
+     CDS             complement(3922..4455)
+                     /product="50S ribosomal protein L6 [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_09"
+                     /translation="MSRVAKAPVVIPAGVEVKLDGQVISIKGKNGELSRTIHSAVEVKHADNQLTFAPRDGYVDGWAQAGTTRSLLNAMVIGVTEGFTKKLQLVGVGYRAAVKGNAINMSLGFSHPVDHELPAGITAECPSQTEIVLKGADKQVIGQVAAELRAYRRPEPYKGKGVRYADEVVRIKEAKKK"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00347.18"
+                     /inference="similar to AA sequence:INSD:WP_011148780.1"
+                     /inference="similar to AA sequence:INSD:EYU13813.1"
+                     /db_xref="CDD:PRK05498"
+                     /db_xref="CDD:TIGR03654"
+                     /db_xref="InterPro:IPR020040"
+                     /db_xref="InterPro:IPR000702"
+                     /db_xref="InterPro:IPR019906"
+                     /db_xref="InterPro:IPR002358"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - rRNA binding (GO:0019843)"
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG51268"
+                     /db_xref="eggNOG:gproNOG03385"
+                     /db_xref="eggNOG:COG0097"
+                     /db_xref="eggNOG:proNOG08152"
+                     /db_xref="KEGG:K02933"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(4470..4763)
+                     /locus_tag="Bact_10"
+     CDS             complement(4470..4763)
+                     /product="30S ribosomal protein S8 [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_10"
+                     /translation="VAIAKVLKEEGYIEDYKIEGDTKPELELVLKYFQGKAVVESIQRVSRPSLRIYKKKDELPQVMAGLGIAVVSTSKGVMTDRAARQAGLGGEILCYVA"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00410.14"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_011148781.1"
+                     /inference="similar to AA sequence:INSD:WP_015836273.1"
+                     /db_xref="CDD:PRK00136"
+                     /db_xref="CDD:pfam00410"
+                     /db_xref="InterPro:IPR000630"
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG71342"
+                     /db_xref="eggNOG:gproNOG13373"
+                     /db_xref="eggNOG:COG0096"
+                     /db_xref="eggNOG:proNOG34076"
+                     /db_xref="KEGG:K02994"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.172) detected by w, w+2 rule; at residue 72"
+     gene            complement(4896..5201)
+                     /locus_tag="Bact_11"
+     CDS             complement(4896..5201)
+                     /product="30S ribosomal protein S14 [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_11"
+                     /translation="MAKQSLKARDVKRAKLAEKFFTKRVELKAVISDVNASDEERWNAVLKLQTLPRDSSPSRQRNRCRQTGRPHAFLRKFGLSRIKVREAAMRGEIPGLKKASW"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00253.16"
+                     /inference="similar to AA sequence:INSD:WP_011148782.1"
+                     /inference="similar to AA sequence:INSD:EYU13815.1"
+                     /db_xref="CDD:PRK08881"
+                     /db_xref="CDD:CHL00074"
+                     /db_xref="InterPro:IPR023036"
+                     /db_xref="InterPro:IPR018271"
+                     /db_xref="InterPro:IPR001209"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG138078"
+                     /db_xref="eggNOG:gproNOG16292"
+                     /db_xref="eggNOG:COG0199"
+                     /db_xref="eggNOG:proNOG54109"
+                     /db_xref="KEGG:K02954"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(5214..5642)
+                     /locus_tag="Bact_12"
+     CDS             complement(5214..5642)
+                     /product="50S ribosomal protein L5 [Providencia alcalifaciens]"
+                     /protein_id="gnl|USP|Bact_12"
+                     /translation="MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMWEFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITITTTAKSDDEGRALLAAFNFPFRK"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00281.14"
+                     /inference="protein motif:Pfam:PF00673.16"
+                     /inference="similar to AA sequence:INSD:WP_006657019.1"
+                     /inference="similar to AA sequence:INSD:WP_011095504.1"
+                     /db_xref="CDD:PRK00010"
+                     /db_xref="CDD:COG0094"
+                     /db_xref="InterPro:IPR020930"
+                     /db_xref="InterPro:IPR022803"
+                     /db_xref="InterPro:IPR002132"
+                     /db_xref="InterPro:IPR031310"
+                     /db_xref="InterPro:IPR020929"
+                     /db_xref="InterPro:IPR031309"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG02081"
+                     /db_xref="eggNOG:gproNOG00494"
+                     /db_xref="eggNOG:COG0094"
+                     /db_xref="eggNOG:proNOG00969"
+                     /db_xref="KEGG:K02931"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(5768..6082)
+                     /locus_tag="Bact_13"
+     CDS             complement(5768..6082)
+                     /product="LSU ribosomal protein L24P"
+                     /protein_id="gnl|USP|Bact_13"
+                     /translation="MAAKIRRDDEVIVLTGKDKGKRGKVKQVLSTGKVIVEGINLVKKHQKPVPALNQPGGIVEKEAAIQVSNVAIFNAATGKADRVGFRFEDGKKVRFFKSNSETIK"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00467.24"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:EYU13817.1"
+                     /inference="similar to AA sequence:INSD:WP_011148784.1"
+                     /db_xref="CDD:PRK00004"
+                     /db_xref="CDD:TIGR01079"
+                     /db_xref="InterPro:IPR008991"
+                     /db_xref="InterPro:IPR014722"
+                     /db_xref="InterPro:IPR005824"
+                     /db_xref="InterPro:IPR003256"
+                     /db_xref="InterPro:IPR005825"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG115633"
+                     /db_xref="eggNOG:gproNOG19256"
+                     /db_xref="eggNOG:COG0198"
+                     /db_xref="eggNOG:proNOG53295"
+                     /db_xref="KEGG:K02895"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=1.026) detected by w, w+2 rule; at residue 74"
+     gene            complement(6093..6464)
+                     /locus_tag="Bact_14"
+     CDS             complement(6093..6464)
+                     /product="LSU ribosomal protein L14P"
+                     /protein_id="gnl|USP|Bact_14"
+                     /translation="MIQEQTMLNVADNSGARRVMCIKVLGGSHRRYAHVGDIIKVTIKEAIPRGKVKKGDVLKAVVVRTKKGVRRPDGSVIRFDGNACVLLNNTSEQVIGTRIFGPVTRELRNEKFMKIISLAPEVL"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF07902.6"
+                     /inference="protein motif:Pfam:PF00238.14"
+                     /inference="similar to AA sequence:INSD:EYU13818.1"
+                     /inference="similar to AA sequence:INSD:WP_015836277.1"
+                     /db_xref="CDD:PRK05483"
+                     /db_xref="CDD:COG0093"
+                     /db_xref="InterPro:IPR000218"
+                     /db_xref="InterPro:IPR019972"
+                     /db_xref="InterPro:IPR005745"
+                     /GO_component="GO:0015934 - large ribosomal subunit "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG71726"
+                     /db_xref="eggNOG:gproNOG12827"
+                     /db_xref="eggNOG:COG0093"
+                     /db_xref="eggNOG:proNOG32865"
+                     /db_xref="KEGG:K02874"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(6643..6897)
+                     /locus_tag="Bact_15"
+     CDS             complement(6643..6897)
+                     /product="MULTISPECIES: 30S ribosomal protein S17 [Photorhabdus]"
+                     /protein_id="gnl|USP|Bact_15"
+                     /translation="MTDKIRTLQGRVVSDKMEKSIVVAIERKVKHPLYGKFIKRTTKLHVHDENNECGIGDVVEIRETRPLSKTKSWTLVRVVEKAIL"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00366.15"
+                     /inference="similar to AA sequence:INSD:WP_011148786.1"
+                     /inference="similar to AA sequence:INSD:WP_010847485.1"
+                     /db_xref="CDD:PRK05610"
+                     /db_xref="CDD:TIGR03635"
+                     /db_xref="InterPro:IPR000266"
+                     /db_xref="InterPro:IPR019984"
+                     /db_xref="InterPro:IPR012340"
+                     /db_xref="InterPro:IPR019979"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG115456"
+                     /db_xref="eggNOG:gproNOG18859"
+                     /db_xref="eggNOG:COG0186"
+                     /db_xref="eggNOG:proNOG51710"
+                     /db_xref="KEGG:K02961"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(6897..7088)
+                     /locus_tag="Bact_16"
+     CDS             complement(6897..7088)
+                     /product="50S ribosomal protein L29 [Xenorhabdus nematophila]"
+                     /protein_id="gnl|USP|Bact_16"
+                     /translation="MKAQELREKSVEELNTELLNLLREQFNLRMQAASGQLQQSHLLKQVRRNIARVKTLLTEKAGA"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF06984.8"
+                     /inference="protein motif:Pfam:PF00831.18"
+                     /inference="similar to AA sequence:INSD:WP_010847484.1"
+                     /inference="similar to AA sequence:INSD:WP_012990490.1"
+                     /db_xref="CDD:PRK00306"
+                     /db_xref="CDD:pfam00831"
+                     /db_xref="InterPro:IPR001854"
+                     /db_xref="InterPro:IPR018254"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG249655"
+                     /db_xref="eggNOG:gproNOG22262"
+                     /db_xref="eggNOG:COG0255"
+                     /db_xref="eggNOG:proNOG105076"
+                     /db_xref="KEGG:K02904"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(7088..7498)
+                     /locus_tag="Bact_17"
+     CDS             complement(7088..7498)
+                     /product="50S ribosomal protein L16 [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_17"
+                     /translation="MLQPKRTKFRKMHKGRNRGLAAGADVSFGTFGLKAVGRGRLTARQIEAARRAMTRAIKRQGKIWIRVFPDKPITEKPLEVRMGKGKGNVEYWVALIQPGKVLYEMDGVPEELAREAFKLAAAKLPIKTTFVTKTVM"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00252.13"
+                     /inference="similar to AA sequence:INSD:WP_011148788.1"
+                     /inference="similar to AA sequence:INSD:WP_012990491.1"
+                     /db_xref="CDD:PRK09203"
+                     /db_xref="CDD:TIGR01164"
+                     /db_xref="InterPro:IPR020798"
+                     /db_xref="InterPro:IPR016180"
+                     /db_xref="InterPro:IPR000114"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - rRNA binding (GO:0019843)"
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG51563"
+                     /db_xref="eggNOG:gproNOG10406"
+                     /db_xref="eggNOG:COG0197"
+                     /db_xref="eggNOG:proNOG33157"
+                     /db_xref="KEGG:K02878"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(7511..8212)
+                     /locus_tag="Bact_18"
+     CDS             complement(7511..8212)
+                     /product="MULTISPECIES: 30S ribosomal protein S3 [Photorhabdus]"
+                     /protein_id="gnl|USP|Bact_18"
+                     /translation="MGQKVHPNGIRLGIVKPWNSTWYANTKEFADNLDSDFKVRQYLNKELAKASISRIVIERPAKSIRVTIHTARPGIVIGKKGEDVEKLRKTVAEIAGVPAQINISEVRKPELDAKLVADSITSQLERRVMFRRAMKRAVQNAMRLGAKGIKVEVSGRLGGAEIARTEWYREGRVPLHTLRADIDYNTSEAHTTYGVLGVKVWIFKGEILGGMAAVEQAEKPAAQPKKQQRKGRK"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF07650.12"
+                     /inference="protein motif:Pfam:PF13083.1"
+                     /inference="protein motif:Pfam:PF00189.15"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_015836279.1"
+                     /inference="similar to AA sequence:INSD:WP_012990492.1"
+                     /db_xref="CDD:PRK00310"
+                     /db_xref="CDD:TIGR01009"
+                     /db_xref="InterPro:IPR004044"
+                     /db_xref="InterPro:IPR018280"
+                     /db_xref="InterPro:IPR004088"
+                     /db_xref="InterPro:IPR009019"
+                     /db_xref="InterPro:IPR005704"
+                     /db_xref="InterPro:IPR004087"
+                     /db_xref="InterPro:IPR015946"
+                     /db_xref="InterPro:IPR001351"
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_component="GO:0015935 - small ribosomal subunit "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003723 - RNA binding "
+                     /GO_function="GO:0003676 - nucleic acid binding "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG01409"
+                     /db_xref="eggNOG:gproNOG01456"
+                     /db_xref="eggNOG:COG0092"
+                     /db_xref="eggNOG:proNOG01256"
+                     /db_xref="KEGG:K02982"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.24000001) detected by w, w+2 rule; at residue 209"
+     gene            complement(8215..8562)
+                     /locus_tag="Bact_19"
+     CDS             complement(8215..8562)
+                     /product="MULTISPECIES: 50S ribosomal protein L22 [Photorhabdus]"
+                     /protein_id="gnl|USP|Bact_19"
+                     /translation="METIAKHRHARSSAQKVRLVADLIRGKKVSQALETLTYTNKKAAGLVKKVLESAIANAEHNDGADIDDLKVTKIFVDEGPTMKRIMPRAKGRADRILKRSSHITVVVSDRWDSGD"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00237.14"
+                     /inference="similar to AA sequence:INSD:WP_011148790.1"
+                     /inference="similar to AA sequence:INSD:WP_010847481.1"
+                     /db_xref="CDD:PRK00565"
+                     /db_xref="CDD:COG0091"
+                     /db_xref="InterPro:IPR001063"
+                     /db_xref="InterPro:IPR005727"
+                     /db_xref="InterPro:IPR018260"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0015934 - large ribosomal subunit "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG115628"
+                     /db_xref="eggNOG:gproNOG15655"
+                     /db_xref="eggNOG:COG0091"
+                     /db_xref="eggNOG:proNOG41935"
+                     /db_xref="KEGG:K02890"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(8577..8855)
+                     /locus_tag="Bact_20"
+     CDS             complement(8577..8855)
+                     /product="MULTISPECIES: 30S ribosomal protein S19 [Enterobacteriaceae]"
+                     /protein_id="gnl|USP|Bact_20"
+                     /translation="MPRSLKKGPFIDLHLLKKVEKAVESGDKKPIKTWSRRSTIFPNMIGLTIAVHNGRQHVPVFVSDEMVGHKLGEFAPTRTYRGHAADKKAKKR"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00203.16"
+                     /inference="similar to AA sequence:INSD:WP_011148791.1"
+                     /inference="similar to AA sequence:INSD:WP_029095678.1"
+                     /db_xref="CDD:PRK00357"
+                     /db_xref="CDD:COG0185"
+                     /db_xref="InterPro:IPR020934"
+                     /db_xref="InterPro:IPR023575"
+                     /db_xref="InterPro:IPR002222"
+                     /db_xref="InterPro:IPR005732"
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_component="GO:0015935 - small ribosomal subunit "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003723 - RNA binding "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:COG0185"
+                     /db_xref="KEGG:K02965"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(8870..9694)
+                     /locus_tag="Bact_21"
+     CDS             complement(8870..9694)
+                     /product="LSU ribosomal protein L2P"
+                     /protein_id="gnl|USP|Bact_21"
+                     /translation="MAIVKCKPTSPGRRHVVKVVNPELHKGKPYAPLLEKSSKTGGRNNNGRITTRHIGGGHKQHYRLIDFKRNKDGIPAVVERLEYDPNRSANIALVLYKDGERRYILAPKGLKAGDQIQSGADAAIKTGNALPMRNIPVGSTVHNVEMKPGKGGQLARSAGAYVQIVARDGSYVTLRLRSGEMRKVLSDCRATLGEVGNAEHMLRVLGKAGASRWRGIRPTVRGTAMNPVDHPHGGGEGRNFGKHPVTPWGVQTKGKKTRSNKRTDQFIVRRRTKK"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00181.18"
+                     /inference="protein motif:Pfam:PF03947.13"
+                     /inference="similar to AA sequence:INSD:EYU13825.1"
+                     /inference="similar to AA sequence:INSD:WP_021322795.1"
+                     /db_xref="CDD:PRK09374"
+                     /db_xref="CDD:TIGR01171"
+                     /db_xref="InterPro:IPR002171"
+                     /db_xref="InterPro:IPR022666"
+                     /db_xref="InterPro:IPR022669"
+                     /db_xref="InterPro:IPR014726"
+                     /db_xref="InterPro:IPR022671"
+                     /db_xref="InterPro:IPR012340"
+                     /db_xref="InterPro:IPR008991"
+                     /db_xref="InterPro:IPR005880"
+                     /db_xref="InterPro:IPR014722"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0015934 - large ribosomal subunit "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003723 - RNA binding "
+                     /GO_function="GO:0003723 - structural constituent of ribosome (GO:0003735)"
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /GO_function="GO:0003723 - transferase activity (GO:0016740)"
+                     /db_xref="eggNOG:bactNOG01046"
+                     /db_xref="eggNOG:gproNOG01004"
+                     /db_xref="eggNOG:COG0090"
+                     /db_xref="eggNOG:proNOG00729"
+                     /db_xref="KEGG:K02886"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(9701..10618)
+                     /locus_tag="Bact_22"
+     CDS             complement(9701..10618)
+                     /product="LSU ribosomal protein L4P"
+                     /protein_id="gnl|USP|Bact_22"
+                     /translation="MELVMKDAQGALTVSETTFGRDFNEALVHQVVVAYAAGARQGTRAQKTRAEVSGSGKKPWRQKGTGRARSGSIKSPIWRSGGVTFAAKPQDHSQKVNKKMYRGALKSILSELVRQDRLIVVEKFSVEAPKTKLLVQKLKEMALEDVLIITHEVDENLFLAARNLYKVDVRDVAGIDPVSLIAFDKVVMTADAVKQVEEMLAWSVKNVCWKYCARRTYLKKLLQRWKRATPSFSKLQKTRLKQKSKLLCRNFLKSKLKVLTLCWLKAKLNATVSVLVVVATGKKLTSHWRKARIWTSSVVQSKPEE"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00573.17"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:EYU13827.1"
+                     /inference="similar to AA sequence:INSD:WP_011148794.1"
+                     /db_xref="CDD:PRK05319"
+                     /db_xref="CDD:TIGR03953"
+                     /db_xref="InterPro:IPR023574"
+                     /db_xref="InterPro:IPR013005"
+                     /db_xref="InterPro:IPR002136"
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG18413"
+                     /db_xref="eggNOG:gproNOG00881"
+                     /db_xref="eggNOG:COG0088"
+                     /db_xref="eggNOG:proNOG00678"
+                     /db_xref="KEGG:K02926"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.13679999) detected by w, w+2 rule; at residue 269"
+     gene            complement(10635..11264)
+                     /locus_tag="Bact_23"
+     CDS             complement(10635..11264)
+                     /product="LSU ribosomal protein L3P"
+                     /protein_id="gnl|USP|Bact_23"
+                     /translation="MIGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRINKPEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAGTVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRVDAERNLLLVKGAVPGATGGNLIVKPAVKA"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00297.17"
+                     /inference="similar to AA sequence:INSD:EYU13828.1"
+                     /inference="similar to AA sequence:INSD:ETS29480.1"
+                     /db_xref="CDD:PRK00001"
+                     /db_xref="CDD:TIGR03625"
+                     /db_xref="InterPro:IPR019926"
+                     /db_xref="InterPro:IPR019927"
+                     /db_xref="InterPro:IPR000597"
+                     /db_xref="InterPro:IPR009000"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="eggNOG:bactNOG06623"
+                     /db_xref="eggNOG:gproNOG00879"
+                     /db_xref="eggNOG:COG0087"
+                     /db_xref="eggNOG:proNOG06274"
+                     /db_xref="KEGG:K02906"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(11297..11608)
+                     /locus_tag="Bact_24"
+     CDS             complement(11297..11608)
+                     /product="MULTISPECIES: 30S ribosomal protein S10 [Haemophilus]"
+                     /protein_id="gnl|USP|Bact_24"
+                     /translation="MQNQRIRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYEIRTHKRLVDIVEPTEKTVDALMRLDLAAGVDVQISLG"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00338.17"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_005625908.1"
+                     /inference="similar to AA sequence:INSD:WP_005690383.1"
+                     /db_xref="CDD:PRK00596"
+                     /db_xref="CDD:TIGR01049"
+                     /db_xref="InterPro:IPR001848"
+                     /db_xref="InterPro:IPR027486"
+                     /db_xref="InterPro:IPR018268"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_component="GO:0005840 - ribosome "
+                     /GO_process="GO:0006412 - translation "
+                     /GO_function="GO:0003723 - RNA binding "
+                     /GO_function="GO:0003723 - structural constituent of ribosome (GO:0003735)"
+                     /GO_function="GO:0003735 - structural constituent of ribosome "
+                     /db_xref="KEGG:K02946"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.14039999) detected by w, w+2 rule; at residue 85"
+     gene            complement(11903..12379)
+                     /locus_tag="Bact_25"
+     CDS             complement(11903..12379)
+                     /product="bacterioferritin"
+                     /protein_id="gnl|USP|Bact_25"
+                     /translation="MKGDKKMIAHLNKLLGNELVAINQYFLHARMFKNWGLTRLNDKEYHESIDEMKHADRYIERILFLEGIPNLQDLGKLNIGEDIEEMLKSDLQLELQGARDLKEAIAYADSIHDYVSRDLMIDILDEEEEHIDWLETQFELIERMGIQNYTQAQILEGE"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00210.19"
+                     /inference="similar to AA sequence:INSD:EYU13830.1"
+                     /inference="similar to AA sequence:INSD:WP_011148796.1"
+                     /db_xref="CDD:PRK10635"
+                     /db_xref="CDD:cd00907"
+                     /db_xref="InterPro:IPR012347"
+                     /db_xref="InterPro:IPR009078"
+                     /db_xref="InterPro:IPR009040"
+                     /db_xref="InterPro:IPR002024"
+                     /db_xref="InterPro:IPR008331"
+                     /GO_process="GO:0006826 - cellular iron ion homeostasis (GO:0006879)"
+                     /GO_process="GO:0006879 - cellular iron ion homeostasis "
+                     /GO_process="GO:0006826 - iron ion transport "
+                     /GO_function="GO:0008199 - ferric iron binding "
+                     /db_xref="eggNOG:bactNOG72054"
+                     /db_xref="eggNOG:gproNOG10598"
+                     /db_xref="eggNOG:COG2193"
+                     /db_xref="eggNOG:proNOG34754"
+                     /db_xref="KEGG:K03594"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(12453..12659)
+                     /locus_tag="Bact_26"
+     CDS             complement(12453..12659)
+                     /product="bacterioferritin-associated ferredoxin [Photorhabdus temperata]"
+                     /protein_id="gnl|USP|Bact_26"
+                     /translation="VLFMYVCLCNAVSDKTIRNAVRQHHIHSIRELKRIVPVGRDCGKCIRQARELINEEIAQLPKIDNVAW"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF04324.10"
+                     /inference="similar to AA sequence:INSD:WP_021322800.1"
+                     /inference="similar to AA sequence:INSD:EYU13831.1"
+                     /db_xref="CDD:PRK10509"
+                     /db_xref="CDD:COG2906"
+                     /db_xref="InterPro:IPR007419"
+                     /db_xref="eggNOG:bactNOG139460"
+                     /db_xref="eggNOG:gproNOG22830"
+                     /db_xref="eggNOG:COG2906"
+                     /db_xref="eggNOG:proNOG61982"
+                     /db_xref="KEGG:K02192"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(13422..14606)
+                     /locus_tag="Bact_27"
+     CDS             complement(13422..14606)
+                     /product="elongation factor Tu [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_27"
+                     /translation="MSKEKFERTKPHVNVGTIGHVDHGKTTLTAAITTVLAKTYGGNARAFDQIDNAPEEKARGITISTSHVEYDTPSRHYAHVDCPGHADYVKNMITGAAQMDGAILVVAATDGPMPQTREHILLGRQVGVPYIIVFLNKCDMVDDEELLELVEMEVRELLSQYDFPGDDTPVIRGSALKALEGDAEWESKILELAEALDSYIPEPERAIDQPFLLPIEDVFSISGRGTVVTGRVERGIVKVGEEVEIVGIKDTTKTTCTGVEMFRKLLDEGRAGENVGVLLRGTKRDEIERGQVLAKPGSIKPHTTFESEVYILSKDEGGRHTPFFKGYRPQFYFRTTDVTGTIELPEGVEMVMPGDNIQMKVTLIAPIAMDQGLRFAIREGGRTVGAGVVAKIIA"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF00009.22"
+                     /inference="protein motif:Pfam:PF03144.20"
+                     /inference="protein motif:Pfam:PF03143.12"
+                     /inference="protein motif:Pfam:PF01926.18"
+                     /inference="similar to AA sequence:INSD:WP_011148798.1"
+                     /inference="similar to AA sequence:INSD:EYU13832.1"
+                     /db_xref="CDD:PRK00049"
+                     /db_xref="CDD:PRK12735"
+                     /db_xref="InterPro:IPR004161"
+                     /db_xref="InterPro:IPR000795"
+                     /db_xref="InterPro:IPR033720"
+                     /db_xref="InterPro:IPR009001"
+                     /db_xref="InterPro:IPR027417"
+                     /db_xref="InterPro:IPR005225"
+                     /db_xref="InterPro:IPR004160"
+                     /db_xref="InterPro:IPR004541"
+                     /db_xref="InterPro:IPR031157"
+                     /db_xref="InterPro:IPR009000"
+                     /GO_component="GO:0005622 - intracellular "
+                     /GO_process="GO:0006414 - translational elongation "
+                     /GO_function="GO:0003746 - GTP binding (GO:0005525)"
+                     /GO_function="GO:0003924 - GTP binding (GO:0005525)"
+                     /GO_function="GO:0005525 - GTP binding "
+                     /GO_function="GO:0003924 - GTPase activity "
+                     /GO_function="GO:0003746 - translation elongation factor activity "
+                     /db_xref="eggNOG:bactNOG01161"
+                     /db_xref="eggNOG:gproNOG00577"
+                     /db_xref="eggNOG:COG0050"
+                     /db_xref="eggNOG:proNOG00432"
+                     /db_xref="KEGG:K02358"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            15145..15345
+                     /locus_tag="Bact_32"
+     CDS             15145..15345
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Bact_32"
+                     /translation="MPASSAAHSRQCERTMQQKNRHLWSFGHKTLILIQLAVFFNIFRSNNRQKSLTTIEELITVPDKTW"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="1 probable transmembrane helix predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM"
+     gene            15379..16533
+                     /locus_tag="Bact_33"
+     CDS             15379..16533
+                     /product="pantothenate kinase"
+                     /protein_id="gnl|USP|Bact_33"
+                     /translation="MINKQLKLTLSKATQFFTLLHSLQKKPIKIQKSLRLPLISRYHAIYFLPGTGCLLQLVQPAQTGRCWFMNKKEPFLATPYLQFNREQWATLRDSVPLTLTKEELIDLKGINEEISLEEVVEIYLPLSRLLNFYISSNLRRQAVLEQFLGTDGQKVPYVIGIAGSVAVGKSTTARLLQALLSRWPEHRSVELITTDGFLHSNNVLNERGLMKKKGFPQSYDMHSLVKFVSDIKSGSKQVSAPVYSHLTYDIVPNEQKFIKQPDILILEGLNVLQSGMDYPHDPHHVFVSDFVDFSIYVDAPEKLLKSWYISRFLKFRQGAFSDPDSYFHSYSKLSEEEAINTASDIWQEINGLNLRQNILPTRERASLIMTKGTNHTIESVRLRK"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF13207.1"
+                     /inference="protein motif:Pfam:PF13238.1"
+                     /inference="protein motif:Pfam:PF00485.13"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:EYU13834.1"
+                     /inference="similar to AA sequence:INSD:WP_011148799.1"
+                     /db_xref="CDD:PRK05439"
+                     /db_xref="CDD:TIGR00554"
+                     /db_xref="InterPro:IPR006083"
+                     /db_xref="InterPro:IPR004566"
+                     /db_xref="InterPro:IPR027417"
+                     /GO_component="GO:0005737 - cytoplasm "
+                     /GO_process="GO:0015937 - coenzyme A biosynthetic process "
+                     /GO_process="GO:0008152 - metabolic process "
+                     /GO_function="GO:0004594 - ATP binding (GO:0005524)"
+                     /GO_function="GO:0005524 - ATP binding "
+                     /GO_function="GO:0005524 - kinase activity (GO:0016301)"
+                     /GO_function="GO:0004594 - pantothenate kinase activity "
+                     /db_xref="eggNOG:bactNOG01788"
+                     /db_xref="eggNOG:gproNOG01860"
+                     /db_xref="eggNOG:COG1072"
+                     /db_xref="eggNOG:proNOG01614"
+                     /db_xref="KEGG:K00867"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.22799999) detected by w, w+2 rule; at residue 350"
+     gene            complement(16578..17522)
+                     /locus_tag="Bact_34"
+     CDS             complement(16578..17522)
+                     /product="birA, biotin-(acetyl-CoA-carboxylase) ligase"
+                     /protein_id="gnl|USP|Bact_34"
+                     /translation="VPLQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGYSLVEPMQLLDESTIFQYLPQDRITVLPVIDSTNQYLLERLSELKSGDACVAEYQYAGRGRRGRKWVSPFGKNLYLSMYWRLEQGPAAAIGLSLVVGIVIAEVLHRFGADRIRVKWPNDLYLDDKKLAGILVELIGKTGDAAQVVIGAGINISMDHKDEESINQQWINLLQAGIEVDRNKLAVEIILDLRKALIQFENEGLSSFVSRWFELDNFMDRPVKLIIGSQEVYGIARGINQQGALLLDQNGVITPYIGGEISLRGC"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF02237.12"
+                     /inference="protein motif:Pfam:PF03099.14"
+                     /inference="protein motif:Pfam:PF08279.7"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:EYU13835.1"
+                     /inference="similar to AA sequence:INSD:WP_011148800.1"
+                     /db_xref="CDD:PRK11886"
+                     /db_xref="CDD:COG0340"
+                     /db_xref="InterPro:IPR011991"
+                     /db_xref="InterPro:IPR008988"
+                     /db_xref="InterPro:IPR004409"
+                     /db_xref="InterPro:IPR004143"
+                     /db_xref="InterPro:IPR013196"
+                     /db_xref="InterPro:IPR030855"
+                     /db_xref="InterPro:IPR003142"
+                     /db_xref="InterPro:IPR004408"
+                     /GO_process="GO:0006355 - DNA-dependent "
+                     /GO_process="GO:0006464 - cellular protein modification process "
+                     /GO_process="GO:0006355 - regulation of transcription"
+                     /GO_function="GO:0004077 - biotin-[acetyl-CoA-carboxylase] ligase activity "
+                     /db_xref="eggNOG:bactNOG10718"
+                     /db_xref="eggNOG:gproNOG03177"
+                     /db_xref="eggNOG:COG0340"
+                     /db_xref="eggNOG:COG1654"
+                     /db_xref="eggNOG:proNOG10151"
+                     /db_xref="KEGG:K03524"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.1296) detected by w, w+2 rule; at residue 291"
+     gene            complement(17525..18559)
+                     /locus_tag="Bact_35"
+     CDS             complement(17525..18559)
+                     /product="UDP-N-acetylenolpyruvoylglucosamine reductase [Photorhabdus luminescens]"
+                     /protein_id="gnl|USP|Bact_35"
+                     /translation="MLSLKEFNTFGLSAYAKRLDIAESAESLLTLWQKAKSEKQPALLLGGGSNVLFTANFEGTVILNRIMGIQQRETDESWHLHVGAGENWHKLVCRSLKNQIYGLENLALIPGCVGAAPIQNIGAYGIEFRDVCEYVDVLNLETGEKTRLSVGECQFGYRDSVFKNKYKTNHSIISVGLLLKKNWQPILNYGDLTRFSKDNVTPQQIFDSICAMRTSKLPDPVITGNAGSFFKNPIVSEEVAAKIRENYPDSPQYPYMNGMFKLAAGWLIEHCNLKGYRIGGASVHLRQALVLINQENATGKDVVSLAAYIRQQVISKFGVLLEPEVRFIGSKGEIDAVECISWKI"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Pfam:PF01565.18"
+                     /inference="protein motif:Pfam:PF02873.11"
+                     /inference="similar to AA sequence:INSD:WP_011148801.1"
+                     /inference="similar to AA sequence:INSD:WP_021326384.1"
+                     /db_xref="CDD:PRK00046"
+                     /db_xref="CDD:TIGR00179"
+                     /db_xref="InterPro:IPR011601"
+                     /db_xref="InterPro:IPR016166"
+                     /db_xref="InterPro:IPR016169"
+                     /db_xref="InterPro:IPR006094"
+                     /db_xref="InterPro:IPR003170"
+                     /db_xref="InterPro:IPR016167"
+                     /GO_process="GO:0055114 - oxidation-reduction process "
+                     /GO_function="GO:0008762 - UDP-N-acetylmuramate dehydrogenase activity "
+                     /GO_function="GO:0003824 - acting on CH-OH group of donors (GO:0016614)"
+                     /GO_function="GO:0003824 - catalytic activity "
+                     /GO_function="GO:0003824 - flavin adenine dinucleotide binding (GO:0050660)"
+                     /GO_function="GO:0016491 - flavin adenine dinucleotide binding (GO:0050660)"
+                     /GO_function="GO:0050660 - flavin adenine dinucleotide binding "
+                     /GO_function="GO:0016491 - oxidoreductase activity "
+                     /GO_function="GO:0003824 - oxidoreductase activity"
+                     /db_xref="eggNOG:bactNOG228537"
+                     /db_xref="eggNOG:gproNOG01719"
+                     /db_xref="eggNOG:COG0812"
+                     /db_xref="KEGG:K00075"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM"
+     gene            complement(18630..18776)
+                     /locus_tag="Bact_36"
+     CDS             complement(18630..18776)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Bact_36"
+                     /translation="MPNSAVKRRSADGSVGSPHVRVGNCQTLFWDKKAIQKGGLFAFNKKLT"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_020437913.1"
+                     /inference="similar to AA sequence:INSD:WP_020437521.1"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.52) detected by w, w+2 rule; at residue 12"
+     gene            complement(20682..20840)
+                     /locus_tag="Bact_40"
+     CDS             complement(20682..20840)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Bact_40"
+                     /translation="MWEGPDSQDVGLEAAIIERKRNSSLVESACAEDVTGLNHAPKLRQRHVGVVG"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_023019833.1"
+                     /inference="similar to AA sequence:INSD:WP_005325849.1"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=1.1019999) detected by w, w+2 rule; at residue 22"
+     gene            complement(22262..22534)
+                     /locus_tag="Bact_42"
+     CDS             complement(22262..22534)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Bact_42"
+                     /translation="MWFNSMQREEPYLLLTSREDLRDEVVPSGALRQVLHGCRQLVLWNVGLSPATSATLILCCQRVKAGTQRRLPVINRRKVGMTSSHHGPYE"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:WP_001348234.1"
+                     /inference="similar to AA sequence:INSD:EYA21976.1"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=0.30960003) detected by w, w+2 rule; at residue 53"
+     gene            complement(22610..22879)
+                     /locus_tag="Bact_43"
+     CDS             complement(22610..22879)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Bact_43"
+                     /translation="VKSPGSTWEWHLRLVGWSLVEGGRIPCVAVKCVEMWRNTGGEGGPLDEDWRSGAKAWGANRIRYPGSPRCKRCRFGGCGLELWLPKLTR"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:DGPI:2.04"
+                     /inference="similar to AA sequence:INSD:ETJ19329.1"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM;                      Potential anchor cleavage site predicted by DGPI 2.04 (score=2.5800002) detected by w, w+2 rule; at residue 52"
+     gene            22980..23141
+                     /locus_tag="Bact_44"
+     CDS             22980..23141
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Bact_44"
+                     /translation="VLLLRVTSKFNSVQAEPFLPAESTLQPEGLLHTRGMAASGLRPLCNIPHCCLP"
+                     /transl_table=4
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:WP_001335214.1"
+                     /inference="similar to AA sequence:INSD:KFV20713.1"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM"
+     RBS             complement(421..425)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(790..794)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(2862..2866)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(3551..3555)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(3937..3941)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(4462..4466)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(4872..4876)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(5209..5213)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(5761..5765)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(6089..6093)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(6472..6476)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(6906..6910)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(7507..7511)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(8220..8224)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(8569..8573)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(8863..8867)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(9704..9708)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(10625..10629)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(11274..11278)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(11649..11653)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(12386..12390)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(17563..17567)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(18580..18584)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(18819..18823)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(20847..20851)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(22541..22545)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             22968..22972
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+ORIGIN
+        1 aacctaaaaa agtaaacgct attaaacgcg acgtttttta ggtggacgac aaccgttatg 
+       61 agggatcgga gtcacatcag taatgttagt aatgcggaaa cctgccgcat ttaacgctcg 
+      121 aatagttgac tcgcggccag gaccaggtcc tttaaccata acttccaggt tcttaattcc 
+      181 gtattctttc actgcttcgg cacagcgctc tgctgcaacc tgagctgcaa acggagtaga 
+      241 tttacgagaa ccacggaaac cggaaccacc ggcagttgcc caacccaggg cgttaccctg 
+      301 acggtcagta atggtcacga tggtgttgtt gaaagaagca tggatatgag ccacaccgtc 
+      361 agagacttgc tttcttacac gcttacgtgc acgaataggt gcttttgcca ttatacaata 
+      421 ccccgattat ttcttgatcg gcttacgtgg acccttacgg gtacgtgcat tggtcttagt 
+      481 acgctggccg cgaacaggta gaccacgacg gtgacgtaaa ccacgataag taccaagatc 
+      541 catcagacgt ttgatgctca gggttacttc acgacgcaaa tcgccttcta caacgtattt 
+      601 agcaacttcg tcacgcagct tatcaatttg ctcttcagac agctcgctga tcttaacatg 
+      661 ttcagcaata cccgccgccg cacaaatggc ttgggagcga gttttaccaa ttccgtaaat 
+      721 cgatgttaaa gcgattacag tatgtttttg atcaggaatg ttaatgcctg ctatacgggc 
+      781 cactatgcac tcctaagtta tttatttacc gcaacatcat tctgaaaagc ccgttttcag 
+      841 gatactcaaa caatgttgct gtgatataaa aaagattggc tggctaattt agccagctca 
+      901 aaccgacttt gcaagaaaaa tatgctattt tattagcctt ggcgttgttt atgcttaggc 
+      961 tctgcactac aaatcacacg aacgacaccg ttacgcttaa cgattttgca gttgcggcat 
+     1021 aatttcttga cggaagcacg aactttcatt tttactctcc gtaacttctc aagcaaacca 
+     1081 attaacggtt ataaccttta agatttgctt tcttcaatgc agactcatac tgacttgaca 
+     1141 tcatcagagt ttgcacttga gccataaagt ccatgatgac tacaactacg ataagtagcg 
+     1201 aagtaccgcc aaaataaaat ggcaccttca tcgcgtcacg catgaactcc gggattaagc 
+     1261 agataaaagt aatatacatc gcgccaacta aagttaggcg tgtcattact ttatcaatgt 
+     1321 acttggctgt ttgctctccc ggacgaattc ctggtacaaa tgcaccggac ttcttcaggt 
+     1381 tatctgctgt ttctctcggg ttgaaaacca acgcagtata gaaaaaacag aagaagatga 
+     1441 ttgcagacgc gtagagtaac acataaagcg gttgcccagg ctgcaagtac attgaaatag 
+     1501 tagtcagcca gttccagcca gttcctcccc cgaaccaaga agctatggta ccagggaaca 
+     1561 gaataatgct ggaagcaaaa attgcaggga taaccccagc catattcact ttcaacggta 
+     1621 aatgtgtgct ctgtgcagca taaactcggc gaccctgttg acgtttcgca tagttaacaa 
+     1681 cgatacgtcg ctgaccacgc tccatgaaaa caacgaagaa agttactgca aacactaaca 
+     1741 ctgcaaccaa cagcaacagg aggaagtgca gatcgccttg ccgagcttgc tcaatggtat 
+     1801 ggccgatggc cggcggcaaa cccgcaacaa taccagcaaa gattatgata gagataccgt 
+     1861 ttccaatacc acgttcagta atctgttcac ccagccacat taggaacata gtcccagtaa 
+     1921 ctaggctcac aacagccgtg aagtagaaag caaaccctgg attgatcacc agcccttgca 
+     1981 ttcctggcat attcggcaaa ccagtagcaa taccgattga ctggaatata gccagcacta 
+     2041 aagtaccata gcgagtatac tggctaatct tacgacgacc agcttcccct tccttcttaa 
+     2101 tctctgccaa cgttggatga accaccgtca acaactgaat aataatagac gcagaaatat 
+     2161 acggcattat ccccagtgca aagatagaag cacgactcaa agcaccacca gagaacatgt 
+     2221 taaacatttc aatgatggtg cccctttgct gttcgagcaa tttggcaagc acagtggcat 
+     2281 caataccagg gataggaata aaagaaccaa tgcggaaaac aattaacgcg ccaataacaa 
+     2341 acaacagcct acgtttcagc tcgcccagtc cacctttagc actttgaaaa tctaatcctg 
+     2401 gttgtttagc catctgttac ttattcctca attttaccgc cagcagcttc gattgcagca 
+     2461 cgagcgcctt tagtaacacg aaggccacgc acagttactg cacgattgat ttcaccagaa 
+     2521 agaataactt tcgcgaattc aatttgagtg ccaacaacat tagcggcttt caatgcattc 
+     2581 agatcgataa tatcgccttc aacggcagca aaatcagaca aacgaacttc tgctgtaacc 
+     2641 atcgccttac gtgaagtaaa accaaatttt ggcaaacgac ggtataaagg catctgacca 
+     2701 ccttcaaaac cgcgacgtac gccaccacca gaacgagact tctggccttt gtgaccacgg 
+     2761 ccaccggttt tacccaggcc agaaccaata ccacgaccta cacgtttagg cgcatgcttg 
+     2821 gaaccttcag ccggagacag agtatttaag cgcatctgtt actcctcaac tttaaccata 
+     2881 taggaaacca agttgatcat accacgtata gcaggagtat cttcacgctc tactgtatga 
+     2941 ccgatacggc gcagacctaa accaaccaaa gttgccttat gtttaggcag acggccgatt 
+     3001 gaactgcgaa tctgtgttat tttaatagtc ttagccatgg tcattacccc agaatttctt 
+     3061 cgacggattt accacgctta gctgcgacca tttctggaga cttcatgctg tctaaagcat 
+     3121 ccagagttgc acgaaccaca ttaatagggt tagtggaacc ataggtttta gccagtacgt 
+     3181 tacgaacacc agccacttcc aaaacagcac gcatagcacc gcctgcgatg ataccagtac 
+     3241 cttcgtgagc aggctgcatg aacacacggg aaccagtgtg tgcacctttt actgggtgat 
+     3301 acaaagtgcc gctgttcagt gcgacggttt tcatattgcg acgggctttt tccatcgctt 
+     3361 tctggattgc tgccggaact tcgcgtgctt tgccgtagcc aaaaccaacg cgaccattac 
+     3421 catcacctac aacagtcagt gcggtaaagc tgaaaatccg gccacctttt acggttttag 
+     3481 atacgcgatt taccgcaatc agcttttcct gcagttcgcc agcttgtttt tcgatgtgag 
+     3541 ccatcttaca cctctacctt agaactgaag gccagcttca cgggcagcat ctgccagtgc 
+     3601 ctggactcga ccatgatatt ggaaaccaga acggtcaaag gatacatctt taataccttt 
+     3661 ttccagagca cgttcagcaa ttaccttgcc aaccgctgct gctgcttctt tatttccagt 
+     3721 gtatttcagt tgctcattga tagctttttc tgtagtagaa gctgccacca aagtttcaga 
+     3781 accgtttggt gctataacct gcgcatatat atggcgaggg gtacgatgta ccaccaggcg 
+     3841 agttgcaccc agttcctgga gcttgcggcg tgcgcgggtc gcacgacgga tacgagctgc 
+     3901 tttcttatcc atagtgttac cttacttctt cttagcctct ttgatacgca cgacttcgtc 
+     3961 ggcgtaacga acacccttac ctttataagg ctcaggacga cgataggcac gcaattctgc 
+     4021 cgcaacctga ccgattacct gtttatcagc accctttagt acgatttcag tttgtgacgg 
+     4081 acattctgca gtaatgcctg ctggcagttc gtggtcaact ggatgtgaga agcccagaga 
+     4141 catgttgata gcattgcctt tgactgctgc acgataacca acacctacca attgaagctt 
+     4201 cttagtgaag ccttcggtaa caccgataac catagcattc agcaaagaac gagttgtacc 
+     4261 cgcctgtgcc caaccatcaa cataaccatc gcgtggagcg aaagtcagtt gattatctgc 
+     4321 atgcttaact tcaactgcgc tgtggattgt acgacttagc tcgccgtttt tacccttaat 
+     4381 cgaaataacc tgaccgtcga gttttacctc tacgccggca ggaataacga cgggtgcttt 
+     4441 tgcaacacga gacattcttt cctcccgaat taagctacgt agcagagaat ctcgccacca 
+     4501 agaccagctt ggcgagctgc acgatcagtc attacacctt tagaggtaga aacaacagcg 
+     4561 atacccaaac cagccataac ttgtggcagc tcatcttttt tcttatagat gcgcagactt 
+     4621 ggacggctta cacgctgaat actttctaca acagccttac cctggaagta tttcagtact 
+     4681 aattccagct ctggcttggt gtcgccttca attttataat cttcaatata accttcttcc 
+     4741 ttcagcacct tggcaattgc cactttcagc ttggaggaag gcatggtgac cgcaacttta 
+     4801 ttcgcggcct gaccgttacg gatacgggtc agcatatccg cgatgggatc ttgcatgctc 
+     4861 atctgtcttt actcccgtga ttcaattggt gacaattacc agctagcctt tttaaggccc 
+     4921 ggaatttcac cgcgcatggc ggcttcacgg actttaatac ggctcaaccc aaacttccgc 
+     4981 aaaaacgcat gcggacgacc agtttggcga cagcggttac gctgacgaga agggctggaa 
+     5041 tcacgtggca atgtttgcag cttaagaaca gcattccaac gctcttcatc agatgcattc 
+     5101 acatcagaaa tgacagcctt caattccacg cgtttagtga agaatttttc agctaatttc 
+     5161 gcacgtttta catcacgtgc tttcaatgat tgcttagcca tgaataccct gccttacttg 
+     5221 cggaacggga agttaaaagc agccaacagt gcgcggcctt catcatcaga tttcgcagtt 
+     5281 gtggtgatag taatatccag accacgaaca cgatccactt tatcataatc gatttcaggg 
+     5341 aagatgattt gctcacgtac acccatgctg taattgccac gaccatcaaa tgacttagca 
+     5401 gacaaaccgc ggaagtcacg aatacgaggt acagcaatag aaatcaggcg ctcaagaaac 
+     5461 tcccacatac gttcaccacg cagggtcact ttacagccga ttggatagcc ctgacggatt 
+     5521 ttgaagcctg caactgattt gcgtgctttg gtgatcaatg gtttttgacc agagattgct 
+     5581 gccagatccg ctgccgcatt atccagcagt ttcttatcag caatcgcttc accaacaccc 
+     5641 atgttcaggg tgatcttctc gacccgaggg acttgcatga cagaattgta gtcaaactga 
+     5701 gtcatcagtt tttggactac ctcgtctttg tagtaatcat gcagtttcgc catcgtatta 
+     5761 ctccaaatta cttgatagtt tcgctgttag atttaaagaa acgaactttt tttccgtctt 
+     5821 caaatctaaa acctacacgg tcagccttac cggttgccgc attgaagatc gcaacgtttg 
+     5881 aaacctgaat tgcagcttct ttttcaacga tgccacctgg ctggttcaga gccggaacag 
+     5941 gcttctgatg ctttttaacc aagttgatac cttcaacaat gactttccca gtagaaagaa 
+     6001 cctgttttac tttaccgcgc ttacctttat cttttccagt caacacgata acttcgtcat 
+     6061 cacgacggat tttcgctgcc attgtccgct ccttagagta cttctggtgc cagggagata 
+     6121 attttcatga acttttcatt acgaagttca cgagttaccg gcccaaaaat acgcgtaccg 
+     6181 ataacttgct cacttgtgtt gtttaacaac acgcaagcat tgccatcgaa gcgaatgaca 
+     6241 gaaccgtcag ggcgacgaac acccttcttg gtgcgcacca ctaccgcttt caggacatca 
+     6301 ccttttttca ctttaccacg aggaattgct tccttgatgg tgacttttat gatgtcgccg 
+     6361 acgtgtgcat agcgacggtg cgagccaccc agaaccttga tacacattac gcgacgtgca 
+     6421 ccggagttgt cggccacgtt cagcatagtc tgttcttgga tcattttagt gctccgctaa 
+     6481 atgtcaacta ctactgagcc acttcactac tataatttaa tatgaagagg ccgttcagat 
+     6541 accccatatc atgagggcgc ggcattataa caccacatct cagatataga tagaaaaaat 
+     6601 aaacggctca tcgcctgagc cgtttactct attcgagcca gcttacagaa tcgctttctc 
+     6661 tacaacgcga actaaagtcc aagatttagt tttggacagt ggacgggttt cgcggatttc 
+     6721 caccacatca ccgatgccac attcattgtt ctcgtcatgt acatgcagtt tagtcgtacg 
+     6781 tttgatgaat ttaccataca gagggtgttt caccttacgc tcaatagcaa caacaataga 
+     6841 tttctccatt ttgtcactta caacacgacc ttgcaaagta cggattttat cggtcattac 
+     6901 gcacccgcct tctcagtcaa taaagtctta acgcgtgcga tattacgacg cacttgtttc 
+     6961 aacagatgag actgttgtag ctggccactt gcagcctgca tgcgcaggtt aaattgttca 
+     7021 cgcagcaaat tcagcagctc agtgttcagc tcttcaacgc ttttttcgcg cagctcttgt 
+     7081 gctttcatta catcaccgtc ttagttacaa aggtggtctt gataggcagt ttcgctgctg 
+     7141 ccagcttgaa tgcttcacga gccagctctt caggcacacc gtccatttca taaaggactt 
+     7201 taccaggctg gatcaaggca acccaatatt ctacgttacc tttaccttta cccatacgca 
+     7261 cttcgagtgg cttttcagtg ataggtttat ctggaaatac acgtatccag attttacctt 
+     7321 gacgtttaat tgcacgagtc atagcacggc gtgccgcttc aatctgacgt gccgtcagac 
+     7381 ggccacggcc cacagctttc agaccgaaag tgccgaagct aacatccgca cctgctgcca 
+     7441 ggccacggtt acggcctttg tgcattttac ggaatttcgt acgctttggt tgtaacatca 
+     7501 gcgactctcc ttacttgcgg cctttacgct gctgcttttt cggttgcgca gccggttttt 
+     7561 ccgcctgttc aacagcagcc ataccaccca agatctcacc tttgaagatc cataccttaa 
+     7621 cgccgagtac accataagtg gtgtgcgctt ctgaagtgtt gtagtcgata tctgcacgca 
+     7681 gtgtgtgcaa cggtacacga ccttcacgat accattcagt acgcgcgatt tcagcaccgc 
+     7741 ccaaacggcc actgacttcc actttaatgc ctttagcgcc caaacgcatc gcattttgaa 
+     7801 ctgcacgctt catagcgcga cggaacataa cacgacgttc tagctgtgaa gtaatactgt 
+     7861 cagcaaccag tttcgcgtcc agttcgggct tacgcacttc agagatatta atttgcgcag 
+     7921 gaacaccagc gatttccgct acagttttac gcaatttttc tacgtcttca cctttcttac 
+     7981 cgattacgat acctgggcga gcagtgtgaa tagttacacg aatactttta gcaggacgtt 
+     8041 caataacaat gcgtgaaata gacgcttttg ccagttcttt attcaagtac tggcgaactt 
+     8101 taaaatcgct gtctaggttg tcagcgaatt ctttagtatt cgcataccaa gtagagttcc 
+     8161 aaggtttgac aatacccagg cgaataccat taggatgtac tttctgaccc attgctagtc 
+     8221 tccagagtct cagcgatcgg acacaaccac agtaatgtgg ctgctgcgct tcaggatgcg 
+     8281 atctgcacga ccttttgcac gaggcataat acgcttcatg gtcgggcctt cgtctacgaa 
+     8341 aatcttcgtg accttcagat catcaatgtc agcaccatcg ttgtgttctg cattagcaat 
+     8401 agcagactca agtactttct tcactaaacc agcagctttc ttattggtat aggtcagagt 
+     8461 ttccagagct tgcgacactt tcttaccgcg aatcaggtca gctacaaggc gaaccttctg 
+     8521 agcagaagaa cgagcgtggc gatgtttagc gatagtttcc atctcttcct cctaccttag 
+     8581 cgctttttag cctttttatc ggccgcatgg ccgcgataag tacgggtcgg cgcgaattca 
+     8641 cctagtttat gaccaaccat ttcgtcggaa acaaaaactg gtacatgctg acgaccatta 
+     8701 tggacagcga tggtcaaacc gatcatgtta ggaaagatcg ttgaacgacg ggaccaagtc 
+     8761 ttgataggct ttttgtctcc gctttccacc gctttctcta ccttcttcag caagtgcagg 
+     8821 tcaataaatg gacctttctt gagagaacgt ggcatggttt atcctctaat tattttttag 
+     8881 tacggcgacg tacgatgaac tgatcagtac gtttattact acgggtcttc ttacctttag 
+     8941 tttgaacacc ccaaggagtt acaggatgct taccaaagtt acgaccttca ccaccaccat 
+     9001 gagggtgatc taccgggttc atcgccgtac cacgaacggt aggacgaatg ccacgccagc 
+     9061 gacttgcacc agctttaccc agaacgcgta gcatatgttc tgcattacca acttcaccta 
+     9121 aggtggcgcg gcaatcagac agaactttac gcatttcacc agaacgcaga cgcaaagtta 
+     9181 cataagaacc atcacgggca acgatctgaa cgtatgcacc agcggaacga gccaattgac 
+     9241 cacctttacc cggcttcatt tctacgttat gcacggtaga accaacaggg atattgcgca 
+     9301 ttggcaatgc gttaccagtt ttgatagctg cgtcagcacc agattggatc tgatcaccag 
+     9361 ctttcagccc cttaggtgca aggatataac gacgctcacc atctttatac agaaccaggg 
+     9421 cgatattcgc tgaacggttt ggatcatatt ccaaacgctc aactacagca gggataccat 
+     9481 ctttattacg tttaaagtca atcaaacgat agtgctgctt gtggccacca ccaatgtgac 
+     9541 gagtggtaat acggccattg ttgttacgac caccggtttt gctgcttttt tccagcaatg 
+     9601 gagcataagg tttaccctta tgcagctcag ggttaaccac tttaacaacg tggcgacggc 
+     9661 ccggagacgt aggtttacat ttaacaattg ccattgttct ttactcctcc ggcttactct 
+     9721 gcaccaccga tgaagtccat attctggcct tccttcagtg tgacgtaagc ttttttccag 
+     9781 tcgctacgac gaccaatacg ctgaccgtgg cgtttagttt tgcctttaac cagcaaagtg 
+     9841 ttaacacctt caacttcgac ttcaaaaagt ttctgcacag cagctttgat ttctgcttta 
+     9901 gtcgcgtctt ttgcaacttt gagaacgatg gtgttgctct tttccatcgc tgtagaagct 
+     9961 ttttcagata cgtgcggcgc gcgcagtact ttcagcagac gttcttcacg gatcatgcca 
+    10021 gcatctcctc aacttgcttc acagcatcag cagtcataac cactttatca aaggcgatta 
+    10081 agctaactgg atcaatacca gctacatcac gaacatcaac cttgtacagg ttgcgagctg 
+    10141 ctaagaataa attctcatca acttcatgag tgataatcag cacatcttcc agagccatct 
+    10201 ctttcagttt ctgaaccaga agcttggttt taggagcttc tacagaaaac ttctcgacaa 
+    10261 cgatcaaacg atcttgacgt accaattcag ataggatgct ttttaaagca ccacggtaca 
+    10321 ttttcttatt aactttttga ctgtggtcct gtggtttagc tgcaaaagtt acaccaccag 
+    10381 agcgccaaat tgggctctta atagaaccag aacgtgcacg gccagtgcct ttctgacgcc 
+    10441 acggtttctt acctgaacca gaaacttcag cacgggtttt ctgagcacga gtaccttgac 
+    10501 gtgcaccagc tgcgtaagca acaactactt gatgcacaag cgcttcattg aaatcacgcc 
+    10561 cgaaggtagt ttcggaaaca gtcagcgcgc cttgcgcgtc tttcattacc aattccattc 
+    10621 ctatctcctc gacgttacgc cttgacagcc ggttttacga tcaggttgcc gccagttgca 
+    10681 cctgggacag cacctttgac cagcagcagg ttgcgctcag cgtcaacacg tactacatct 
+    10741 aggctttgaa cagttacacg ttcattaccc agttggcctg ccattttctt gcctttaaat 
+    10801 accttgcccg gagtttggtt ctgaccaata gaacccggaa cacgatgaga caaagagtta 
+    10861 ccgtggctag catcttgggt acggaagttc cagcgcttaa cagtaccagc aaaaccttta 
+    10921 cctttagatg taccagtaac gtcgactttc ttaacgtcag cgaaaatctc aacgctaatg 
+    10981 ttttgaccta cagcatattc ttcgccttca gacagacgga attcacgtag gatacggcca 
+    11041 gcttcaacgc cagctttagc gaaatggcct gcttcaggtt tgtttatacg gttagctttt 
+    11101 ttgctaccag tagtaacctg aattgcacga taaccatcac tatccagatc tttaacctga 
+    11161 gtgactcggt tatcttcaat ttcgataaca gttacaggga tagaaacgcc atcttcagtg 
+    11221 aagatacgag tcatacccac ttttttaccg actaaaccaa tcattgtttc aacctctcaa 
+    11281 tcgttcaatg acctgattaa cccaggctga tctgcacgtc tacaccggca gccagatcca 
+    11341 gacgcatcag agcatcaacg gttttctcgg ttggctcaac gatgtcaacc agacgcttat 
+    11401 gagtgcgaat ttcgtactga tcacgcgcat ctttattaac atgcggagaa attagaacgg 
+    11461 taaaacgctc tttacgagtc ggtagcggga tcggaccacg aacctgcgca ccagtacgct 
+    11521 tagcggtctc gacaatttcc gcagttgatt gatcgatcaa acgatgatca aatgctttca 
+    11581 ggcgaatacg gattctttgg ttctgcatga gaccagagct ccaactattt tataaacgta 
+    11641 aataattact cctcgtaccc atttcgattg acgggagagt gtaatcgttc aatatataac 
+    11701 ccccacatcg ggagtatttt aaatggcagc aaagcaatac tgcacattta tactggttaa 
+    11761 caaaccagac ttacacgtag gtaaggtggc gtattatacg caaatcaatt aacaaagcaa 
+    11821 gatacagatg aagatctgtt cagagtagag ttaaaggagc atgaaacaag atgccctaac 
+    11881 ttaacagata gggcatttgt aactattctc cttcaaggat ctgtgcttga gtgtaatttt 
+    11941 gaatccccat acgttcaatt agttcaaatt gagtttctaa ccaatcaatg tgctcttctt 
+    12001 cctcatctag gatatcgatc atcaaatcac gactaacata gtcatgaatc gaatcagcat 
+    12061 aagcaattgc ttctttcaaa tctctcgctc cttgcaattc gagctgcaag tcagatttga 
+    12121 gcatttcttc aatatcttct ccgatattaa gctttcccaa atcctgcaaa ttaggaattc 
+    12181 cttcaagaaa aagaatacgt tcaatgtacc tatcggcatg cttcatttca tcgatagatt 
+    12241 catgatattc cttatcatta aggcgggtaa ggccccagtt tttgaacatc cgggcgtgta 
+    12301 gaaaatactg attaattgca acaagctcat ttccaagaag tttgttcaaa tgagcaatca 
+    12361 tttttttatc acctttcata gtttactcct ccgcttccag tacttaaagt gtagtaccta 
+    12421 ttcagcagag tagtagtaaa cttatccctt ttttatcaag caacgttatc tatcttaggc 
+    12481 agctgtgcaa tctcctcatt aataagctct ctggcttggc gtatgcattt gccacaatca 
+    12541 cggcctacag gcacaatacg ttttagttct ctaatagagt gaatatgatg ttgacgcacc 
+    12601 gcattacgta ttgttttgtc acttaccgca ttacataggc agacatacat aaataacact 
+    12661 ctctggtaca cattatagcg catattaaat aataatgagt ctcatttcaa taatcattcg 
+    12721 cattttaatt ttctaattca agtttttcca aatacccttt taactttgtc aaatagagat 
+    12781 agttatctca tttctgtaac atactgacta ggaagaattt ttatccctct tgggagcttt 
+    12841 cttgaactta tttcatccta aaactatctc ctacctcaca tcagcaattt gctccagaac 
+    12901 tgatagttag acagcacaat ccacttaaga tattacggga tacagaattc acacatttag 
+    12961 ttatacgaaa acaagcatgc tatatcgtaa ccttttcggt gatctcttct ctttttgtta 
+    13021 gagcatacca acagaggcag aacaagcatg agttagatat tactacctat atataaaaga 
+    13081 aaagatgact catctaagtt tgaaaacaaa tacttattcg ggaaaatcac gagttggtta 
+    13141 ccgctaacgc attctatcga tgaatgatga atatatatac tctagaagag taggtagaac 
+    13201 agctagataa cgatgacacc actagaaaca agcagccaaa atcaaagaat taagacacta 
+    13261 agagataaca taatggggta gttcatacag ggaatttaag gaagggtgat atcaattaaa 
+    13321 atattaacta acagacacct agtgcaacac aaccaggtgt ctgttctaaa acaagccaaa 
+    13381 atacaaactt gtcctaaggt taggtactta attattagct attaagcaat aattttagca 
+    13441 acaacaccag caccgacagt acggccacct tcacggatag cgaagcgcag accctggtcc 
+    13501 attgcgattg gcgcaatcag ggtgactttc atctgaatgt tatcacctgg catcaccatt 
+    13561 tccacgcctt ctggcagctc gattgtgccg gttacgtcag ttgtacggaa gtagaactgt 
+    13621 ggacggtagc ctttgaagaa tggcgtgtga cggccgcctt cgtctttgct cagaatataa 
+    13681 acttctgatt cgaaagtggt gtgtggcttg attgaacctg gttttgccag tacctgacca 
+    13741 cgttcgattt cgtcacgttt ggtaccacgc agcagaacac ccacgttctc acccgcacgg 
+    13801 ccttcgtcca gcagtttgcg gaacatttct acgccagtac aagtggtttt agtcgtgtct 
+    13861 ttgataccca cgatttcaac ttcttcaccc actttaacaa taccgcgctc tacacgacca 
+    13921 gtaactacag taccacgacc tgaaatagag aatacgtctt cgattggcag caggaatggc 
+    13981 tggtcgattg cacgctctgg ttctgggatg tagctatcca gcgcttccgc cagttccagg 
+    14041 attttgcttt cccactcagc atcgccttcc agcgctttca gcgcggaacc gcggataact 
+    14101 ggggtatcgt cgcctgggaa atcgtactga gacagcagct cacgcacttc catctcaacc 
+    14161 agttccagca gctcttcgtc gtctaccatg tcacatttgt tcaggaacac gatgatgtaa 
+    14221 ggaacgccta cctgacgacc taacaggatg tgctcacgag tctgtggcat tgggccgtca 
+    14281 gtcgcagcaa ctaccaggat tgcgccgtcc atctgagccg cgccggtgat catgtttttc 
+    14341 acatagtcag cgtggcctgg gcagtcaacg tgcgcatagt ggcggcttgg ggtatcgtat 
+    14401 tctacgtgag aagtagagat ggtgatacca cgcgcttttt cttctggcgc gttatcgatt 
+    14461 tggtcgaatg cgcgagcgtt accaccgtag gttttagcca gtacagtagt gatggcagca 
+    14521 gtcagggtag ttttaccgtg gtcaacgtgg ccgatagtac caacgttaac gtgcggtttt 
+    14581 gtacgttcaa acttttcttt agacatttag attgtccctc taagacacgg aatcggtggt 
+    14641 tccaccacat caaccaagca attgctcgtt ggatatcgct tacaggaata aaatcgggag 
+    14701 acaaggacat tagggaagtg gtgctgatag gcagattcga actgccgacc tcacccttac 
+    14761 caagggtgtg ctctaccaac tgagctatat cagcacatct tggagcgggc agcgggaatc 
+    14821 gaacccgcat catcagcttg gaaggctgag gtaatagcca ttatacgatg cccgcattga 
+    14881 actcggctac ctgactttaa tcagctgtac gttggtctcg atatgctttt cctctagtaa 
+    14941 gtactaaagg gataccaaga ctaagtctga ttctttggtg gtgggggaag gattcgaacc 
+    15001 ttcgaagtct gtgacggcag atttacagtc tgctcccttt ggccgctcgg gaaccccacc 
+    15061 ttttccaaat ttttaatggt gccggcacca agaatcgaac tcgggaccta ctgattacaa 
+    15121 gtcagttgct ctaccaactg agctatgccg gcatcaagtg ctgcgcattc taggcagtgt 
+    15181 gagcgcacta tgcaacaaaa aaatcgccac ctttgatcat tcggtcataa aacgctcatt 
+    15241 cttattcaat tagctgtttt tttcaatata tttagatcaa ataatagaca aaaatcattg 
+    15301 acaactatcg aggaactgat cacagtgccc gataaaactt gataggtcac ttcattttac 
+    15361 gtcatttaaa tttccatcat gataaataaa cagctaaagc taacattaag taaagcaact 
+    15421 caatttttta cgcttctgca ttccttgcaa aaaaaaccga taaaaataca aaaaagccta 
+    15481 cgcctgccgc tcatcagtcg atatcatgca atttattttt tgccgggtac aggttgttta 
+    15541 ttgcaacttg tccaacctgc acaaacaggc agatgttggt ttatgaataa aaaagaacct 
+    15601 tttttggcta ctccatattt gcaattcaat cgtgaacaat gggcaacctt acgcgattca 
+    15661 gttccactga cactaacaaa agaagaatta attgatttaa aaggaattaa tgaagaaatt 
+    15721 tctttagaag aagttgttga gatttacctt cctttgtccc gcttacttaa tttttatatt 
+    15781 agttcaaatt tacgtcgtca agcagtgctc gaacaatttc taggtactga tggacaaaaa 
+    15841 gttccttacg tcataggaat tgctggtagt gtcgctgttg gtaaaagtac tactgcacgt 
+    15901 ctattgcaag ccctgctgag tcgttggcct gaacacagaa gtgtagaatt aattactaca 
+    15961 gatggctttc tacattctaa caacgtgctg aatgaacgtg gactaatgaa aaagaaaggg 
+    16021 ttcccacaat catatgatat gcatagctta gtaaaatttg tatctgacat taaatcaggc 
+    16081 tccaaacaag tatccgcacc cgtctactct catcttacct atgatatcgt accaaatgag 
+    16141 caaaaattca ttaaacaacc agacattttg attctagagg gtttaaatgt attacaaagc 
+    16201 ggtatggatt atccccatga tccacaccat gtttttgtct ctgattttgt tgatttttct 
+    16261 atctatgtag atgcaccaga aaaattactc aagagttggt atatcagtcg tttcttaaaa 
+    16321 ttccgccaag gcgccttttc cgatccggat tcttattttc acagctattc caagctatca 
+    16381 gaagaagaag ccataaatac tgcatctgac atctggcaag agatcaatgg actgaatttg 
+    16441 cgacaaaata ttttaccaac tcgagaacgc gcaagtctaa tcatgacaaa aggtactaat 
+    16501 cacactattg aaagcgtaag gctgcgtaag taaaagtagt ttccgaaccc ggaagacatt 
+    16561 atctcttccg gtcattgcta acaacctctt aaagaaatct ccccaccgat atatggggtt 
+    16621 ataacaccgt tctgatcaag taacaaagca ccttgctggt taatacccct agctatacca 
+    16681 tacacttcct gactaccaat aattaatttc accggtctat ccataaaatt atctaactca 
+    16741 aaccaccgag aaacaaatga agacaaacct tcattttcaa actgaattaa agccttcctt 
+    16801 agatcaagta ttatttctac agccaattta ttacgatcaa cttcaatgcc tgcctgcaac 
+    16861 aaattaatcc attgctgatt aatagattct tcatccttat gatccattga aatatttata 
+    16921 cccgcaccta tcacaacctg agcagcatca ccagtctttc ctattaattc aactaagatt 
+    16981 cccgctaatt tcttatcatc aagatataaa tcatttggcc attttaccct aattctatca 
+    17041 gctccaaatc gatgtaatac ttcagcaata acaatgccaa caaccagact caatccgatt 
+    17101 gcagcagcag gtccttgttc aaggcgccaa tacatagata aataaagatt ttttccaaag 
+    17161 ggcgaaaccc atttccttcc acgccgccct ctgccagcat actgatactc tgcaacacaa 
+    17221 gcatcccctg atttcaattc agataaacgt tcaagcaagt actgattagt cgaatcaata 
+    17281 actggcaaaa cagttatacg atcctgaggt aagtattgaa aaatagtaga ttcatcaagt 
+    17341 aattgcatag gttccacaag gctatagccc ttgccaggag ttgtttctag ttcaattccc 
+    17401 cattcacgaa ttgtctgtat atgtttatta atcccagctc tactcattcc taaatcttgc 
+    17461 cccaactgtt ggccagaatg aacgtcaccg tcagacaaaa tcttaatcaa ctgtaatggc 
+    17521 acggttatat ctttcatgaa atacattcca cagcatcaat ttcgccttta gaaccaataa 
+    17581 aacgaacctc aggttcaagt aacacaccaa acttacttat cacttgctgg cgaatgtagg 
+    17641 cagccaatga gactacatcc ttgcctgtag cattttcctg atttatcaat actagagctt 
+    17701 gtctaagatg cacagatgca cctccaatgc gataaccttt taaattacaa tgttcaatga 
+    17761 gccaacctgc cgctaattta aacatcccat tcatgtaagg atattgggga ctatcagggt 
+    17821 aattttctct aatctttgcc gcaacttcct cactgacaat tgggtttttg aagaaactcc 
+    17881 ctgcgtttcc tgttattaca ggatcaggca atttactggt gcgcattgca catattgaat 
+    17941 caaaaatctg ctgaggagtt acattatctt tcgaaaacct agttaagtca ccatagttca 
+    18001 atatcggctg ccaattcttt ttcaacaata atcctacgga gataatagaa tgatttgtct 
+    18061 tatatttatt cttaaaaaca ctatcccgat atccaaactg acattcacca acactaaggc 
+    18121 gcgttttttc cccagtttct aaattaagaa catctacata ttcacacaca tctctaaatt 
+    18181 caatgccata tgcaccaata ttttgaatcg gtgccgcgcc aacgcaacca ggaatcaaag 
+    18241 ccaagttttc taacccatag atttgatttt taagagaacg gcagactaat ttatgccaat 
+    18301 tttctcctgc ccctacatgt aaatgccacg attcatctgt ctcccgctgt tgaatcccca 
+    18361 taattctatt cagaatcaca gttccttcaa aatttgcagt aaataagaca ttactacctc 
+    18421 caccaagtaa taatgcaggt tgtttttcac ttttggcttt ctgccataaa gttaataaag 
+    18481 actcggcaga ttcagctata tctaaacgtt tagcgtaagc tgataaccca aaggtattaa 
+    18541 actctttaag agaaagcatt tactcaatac tcaataaaac tacttaataa gtagtttatc 
+    18601 agctataggc gtggaaaaca gttggaaaac taagttagtt ttttattaaa tgcaaaaagg 
+    18661 ccacccttct ggatggcctt tttgtctcaa aataaagtct ggcagttccc tactctcaca 
+    18721 tggggagacc ccacactacc atcggcgcta cggcgtttca ctgctgagtt cggcatgggg 
+    18781 tcaggtggga ccgccgcgct atcgctgcca gacaaattct cttatacgtt atcatggtgc 
+    18841 tgatacccag attcgaactg gggacctcac ccttaccaag ggtgtgctct accaactgag 
+    18901 ccatatcagc aatggttgcc caaactcact gttggcgcac gccaaaacac cttcggcgtt 
+    18961 gtaaggttaa gcctctcggt tcattagtac tggtcagctc aatgcatcgc tgcacttaca 
+    19021 cacccagcct atccacgtct tcgtcttaaa cgttccttcc gtgaccttaa agtcaaggga 
+    19081 agactcatct caaggcaagt ttcccgctta gatgctttca gcggttatct ctcccgcact 
+    19141 tagctaccgg gcgatgccat tggcatgaca acccgtacac cagcggtgcg tccactccgg 
+    19201 tcctctcgta ctaggagcag cccctttcaa tcttcctgcg cccacggcag atagggaccg 
+    19261 aactgtctca cgacgttcta aacccagctc gcgtaccact ttaaatggcg aacagccata 
+    19321 cccttgggac ctacttcagc cccaggatgt gatgagccga catcgaggtg ccaaacaccg 
+    19381 ccgtcgatat gaactcttgg gcggtatcag cctgttatcc ccggagtacc ttttatccgt 
+    19441 tgagcgatgg cccttccatg cagaaccacc ggatcactaa gacctacttt cgtacctgct 
+    19501 cgaaccgtca ctctcgcagt taagctggct tatgcctttg cactaacctc acgatgtccg 
+    19561 accgtgatta gccaaccttc gtgctcctcc gttacgcttt gggaggagac cgccccagtc 
+    19621 aaactacccg ccagacactg tcctcggccc ggatgacggg cctaagtgag aacatcgaac 
+    19681 attcaagggt ggtatttcaa ggatggctcc atgcagactg gcgtccgcac ttccaagcct 
+    19741 cccacctatc ctacacatca aggctccatg ttcagtgtca agctatagta aaggttcacg 
+    19801 gggtctttcc gtcttgccgc ggggacactg catcttcaca gcgagttcaa tttcactgag 
+    19861 tctcgggtgg agacagcctg gccatcatta cgccattcgt gcaggtcgga acttacccga 
+    19921 caaggaattt cgctacctta ggaccgttat agttacggcc gccgtttact ggggcttcga 
+    19981 tcaagagcgt cgccttaacg gctaacccca tcaattaacc ttccagcacc gggcaggcgt 
+    20041 cacaccgtat acgtccactt acgtgttggc acagtgctgt gtttttaata aacagttgca 
+    20101 gccagctggt ctctgcgact ggcttcggct ccgggagtca atcccttcac ctaacgccag 
+    20161 cgtgccttct cccgaagtta cggcaccatt ttgcctagtt ccttcacccg agttctctca 
+    20221 agcgcctgag tattctctac ctgaccacct gtgtcggttt ggggtacgat tgtctgtgac 
+    20281 ctggtgctta gaggcttttc ctggaagccg ggcatcaacc acttcaccgc cgtagcggct 
+    20341 cgtcatcacg cctcagtgtt cacagaagag cggatttgcc tgctcttccc acctacacgc 
+    20401 ttaaaccggg acgaccgtcg cccggatggc ctagccttct ccgtcccccc ttcgcagtca 
+    20461 ccttcagtac aggaatatta acctgtttcc catcagctac gccgttcggc ctcgccttag 
+    20521 gggtcgactc accctgcccc gattaacgtt ggacaggaac ccttggtctt ccggcgagcg 
+    20581 ggtttttcac ccgctttatc gttacttatg tcagcattcg cacttctgat acctccagca 
+    20641 ggcctcacgg cgccgccttc accggcttac agaacgctcc cctacccaac aacacctaca 
+    20701 tgtcgctgcc gcagcttcgg tgcatggttt agccccgtta catcttccgc gcaggccgac 
+    20761 tcgaccagtg agctattacg ctttctttca atgatggctg cttctaagcc aacatcctgg 
+    20821 ctgtctgggc cttcccacat cgtttcccac ttaaccatga cttcgggacc ttagctggcg 
+    20881 gtctgggttg tttccctctt cacgacggac gttagcaccc gccgtgtgtc tcccgtgatg 
+    20941 acattcttcg gtattcgcag tttgcatcgg gttggtaagc cgggatggcc ccctagccga 
+    21001 aacagtgctc tacccccgaa gatgaactca cgaggcgcta cctaaatagc tttcggggag 
+    21061 aaccagctat ctcccggttt gattggcctt tcacccccag ccacaagtca tccgctaatt 
+    21121 tttcaacatt agtcggttcg gtcctccagt tagtgttacc caaccttcaa cctgcccatg 
+    21181 gctagctcac cgggtttcgg gtctataccc tgcaactcat tcgcccagtt aagactcggt 
+    21241 ttccctgcgg ctcccctatt cggttaacct tgctacagaa tataagtcgc tgacccatta 
+    21301 tacaaaaggt acgcagtcac cctgattcat caaggctccc actgcttgta cgtacacggt 
+    21361 ttcaggttct ctttcactcc cctcgccggg gttcttttcg cctttccctc acggtactgg 
+    21421 ttcactatcg gtcagtcagg agtatttagc cttggaggat ggtcccccca tccttcagac 
+    21481 aggatttctc gtgtcccgcc ttactcgtcg aactcacaac cacgccatct tcgagtacgg 
+    21541 ggctgtcacc ctctctcgcc ggcctttcca gaccgttcct ctgatgctgt ggctgatgct 
+    21601 ggttctgggc tcctccccgt tcgctcgccg ctactggggg aatctcggtt gatttctttt 
+    21661 cctcggggta ctgagatgtt tcagttcccc cggttcgcct cattaaccta tggattcagt 
+    21721 taatgatagt gcaacgcatt gcactgggtt tccccattcg gacatcgccg gctataacgc 
+    21781 ttcatatcag cttaccgacg cttttcgcag attagcacgt ccttcatcgc ctctgactgc 
+    21841 ctaggcatcc accgtgtacg cttagtcgct taacctcaca acccgaaact gtctcggatc 
+    21901 agacaatctg tgtgagcact tcacttctcg tatctcaggt aaggaggtga tccaaccgca 
+    21961 ggttccccta cggttacctt gttacgactt caccccagtc atgagccaca aagtggtcag 
+    22021 cgccctcctt gcggttaagc taccgacttc ttttgcaacc cactcccatg gtgtgacggg 
+    22081 cggtgtgtac aaggcccggg aacgtattca ccgtagcatg ctgatctacg attactagcg 
+    22141 attccgactt catggagtcg agttgcagac tccaatccgg actacgacag actttgtgtg 
+    22201 ttccgcttgc tctcgcgagg tcgcttcact ttgtatccgc cattgtagca cgtgtgtagc 
+    22261 cctactcgta agggccatga tgacttgacg tcatccccac cttcctccgg tttatcaccg 
+    22321 gcagtctcct ttgagttccc gcctttacgc gctggcaaca aaggataagg gttgcgctcg 
+    22381 ttgcgggact taacccaaca tttcacaaca cgagctgacg acagccatgc agcacctgtc 
+    22441 tcagagctcc cgaaggcaca acctcatctc tgaggtcttc tctggatgtc aagagtaggt 
+    22501 aaggttcttc gcgttgcatc gaattaaacc acatgctcca ccgcttgtgc gggcccccgt 
+    22561 caattcattt gagttttaac cttgcggccg tactccccag gcggtcgatt taacgcgtta 
+    22621 gcttcggaag ccacagttca agaccgcaac ctccaaatcg acatcgttta cagcgtggac 
+    22681 taccagggta tctaatcctg tttgctcccc acgctttcgc acctgagcgt cagtcttcgt 
+    22741 ccagggggcc gccttcgcca ccggtattcc tccacatctc tacgcatttc accgctacac 
+    22801 atggaattct acccccctct acgagactcc agccaaccag tcttagatgc cattcccagg 
+    22861 ttgagcccgg ggatttcaca tctaacttaa ttgaccgcct gcgtgcgctt tacgcccagt 
+    22921 cattccgatt aacgcttgca ccctccgtat taccgcggct gctggcacgg agttagccgg 
+    22981 tgcttcttct gcgggtaacg tcaaaattca actctgttca agctgaaccc ttcctccccg 
+    23041 ctgaaagtac tttacaaccc gaaggccttc ttcatacacg cggcatggct gcatcaggct 
+    23101 tgcgcccatt gtgcaatatt ccccactgct gcctcccgta ggagtctggg ccgtgtctca 
+    23161 gtcccagtgt ggctggtcat cctctcagac cagctaggga tcgtcgccta ggtaggcctt 
+    23221 taccctacct actagctaat cccatctggg ttcatccgac ggcgtgaggc cctttcaggt 
+    23281 cccccacttt ggtctcgcga cattatgcgg tattagccac cgtttccagt ggttatcccc 
+    23341 cgccctcggg cagatcccca gacattactc acccgtccgc cgctcgtcag caaaagcgca 
+    23401 agcgctttcc tgttaccgc 
+//

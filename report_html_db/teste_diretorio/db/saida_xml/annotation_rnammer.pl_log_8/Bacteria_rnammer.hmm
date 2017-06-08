@@ -1,0 +1,562 @@
+hmmsearch - search a sequence database with a profile HMM
+HMMER 2.3.2 (Oct 2003)
+Copyright (C) 1992-2003 HHMI/Washington University School of Medicine
+Freely distributed under the GNU General Public License (GPL)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HMM file:                   /usr/local/genome/rnammer/lib/bac.tsu.rnammer.hmm [bac.tsu.rnammer.degap]
+Sequence database:          ./100000009468906175.final_search.1.fsa
+per-sequence score cutoff:  >= 0.0
+per-domain score cutoff:    >= 0.0
+per-sequence Eval cutoff:   <= 1e-05     
+per-domain Eval cutoff:     <=      1e-05
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query HMM: bac.tsu.rnammer.degap||
+  [HMM has been calibrated; E-values are empirical estimates]
+
+Scores for complete sequences (score includes all domains):
+Sequence Description                                    Score    E-value  N 
+-------- -----------                                    -----    ------- ---
+1                                                        87.8    3.8e-27   1
+
+Parsed for domains:
+Sequence Domain  seq-f seq-t    hmm-f hmm-t      score  E-value
+-------- ------- ----- -----    ----- -----      -----  -------
+1          1/1     133   247 ..     1   101 []    87.8  3.8e-27
+
+Alignments of top-scoring domains:
+1: domain 1 of 1, from 133 to 247: score 87.8, E = 3.8e-27
+                   *->tggtggccatagcg.g.tggaaaacaCgtccgatcCCaTccCGAaCt
+                      tgg+ gc atagcg g+ gg   +caC  c+ga cCCaT cCGAaCt
+           1   133    TGGCAGCGATAGCGcGgCGGT-CCCAC--CTGACCCCATGCCGAACT 176  
+
+                   cgga.GttAAgc.cc.tagcGccgAtgAgTAct...............Gg
+                   c+g++Gt AA+c cc tagcGccgAtg gTA+t+++++++ +     +G 
+           1   177 CAGCaGTGAAACgCCgTAGCGCCGATG-GTAGTgtggggtctccccatGT 225  
+
+                   gAgagtaGgtcggctgccggagct<-*
+                   gAgagtaGg  + ctgcc+g +ct   
+           1   226 GAGAGTAGGGAA-CTGCCAG-ACT    247  
+
+
+Histogram of all scores:
+score    obs    exp  (one = represents 1 sequences)
+-----    ---    ---
+   87      1      0|=                                                          
+
+
+% Statistical details of theoretical EVD fit:
+              mu =   -49.9172
+          lambda =     0.2087
+chi-sq statistic =     0.0000
+  P(chi-square)  =          0
+
+Total sequences searched: 1
+
+Whole sequence top hits:
+tophits_s report:
+     Total hits:           1
+     Satisfying E cutoff:  1
+     Total memory:         20K
+
+Domain top hits:
+tophits_s report:
+     Total hits:           1
+     Satisfying E cutoff:  1
+     Total memory:         21K
+hmmsearch - search a sequence database with a profile HMM
+HMMER 2.3.2 (Oct 2003)
+Copyright (C) 1992-2003 HHMI/Washington University School of Medicine
+Freely distributed under the GNU General Public License (GPL)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HMM file:                   /usr/local/genome/rnammer/lib/bac.lsu.rnammer.hmm [bac.lsu.rnammer.degap]
+Sequence database:          ./100000002839824725.final_search.1.fsa
+per-sequence score cutoff:  >= 0.0
+per-domain score cutoff:    >= 0.0
+per-sequence Eval cutoff:   <= 1e-05     
+per-domain Eval cutoff:     <=      1e-05
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query HMM: bac.lsu.rnammer.degap||
+  [HMM has been calibrated; E-values are empirical estimates]
+
+Scores for complete sequences (score includes all domains):
+Sequence Description                                    Score    E-value  N 
+-------- -----------                                    -----    ------- ---
+1                                                      3651.1          0   1
+
+Parsed for domains:
+Sequence Domain  seq-f seq-t    hmm-f hmm-t      score  E-value
+-------- ------- ----- -----    ----- -----      -----  -------
+1          1/1    1547  4457 ..     1  2790 []  3651.1        0
+
+Alignments of top-scoring domains:
+1: domain 1 of 1, from 1547 to 4457: score 3651.1, E = 0
+                   *->tcaagtta.taag.gcatatggtggatgccttggca.taagaggcga
+                      t+aag++a+taag+g+a+a+ggtggatgcct ggca t+agaggcga
+           1  1547    TTAAGCGAcTAAGcGTACACGGTGGATGCCTAGGCAgTCAGAGGCGA 1593 
+
+                   tgaaggacgtga.aa.ctgCgatAagcttcggggagctgcaaacaagc.t
+                   tgaaggacgtg +aa ctgCga+Aagc tcgg  agctg +a  aagc+t
+           1  1594 TGAAGGACGTGCtAAtCTGCGAAAAGCGTCGGTAAGCTGATATGAAGCgT 1643 
+
+                   ttgatccggagaT.tCcgAATg............................
+                   t  a ccgg gaT+tCcgAATg   +++   + +  +++   ++  + ++
+           1  1644 TATAGCCGGCGATgTCCGAATGgggaaacccagtgcaatgcgttgcacta 1693 
+
+                   ..........................aggcgaAcc.gggGAAcTGAAacA
+                   + +++++ + +++  +++  +++++ aggcgaAcc gggGAAcTGAAacA
+           1  1694 tcattaactgaatccataggttaatgAGGCGAACCgGGGGAACTGAAACA 1743 
+
+                   TCTaAgTAccc.gAGGAaaagAaAtcaAccgagAttcccttaGTAGtGgc
+                   TCT+AgTAccc+gAGGAaaagAaAtcaAccgagAttccc  aGTAG+Ggc
+           1  1744 TCTCAGTACCCcGAGGAAAAGAAATCAACCGAGATTCCCCCAGTAGCGGC 1793 
+
+                   GAgCGAAaggggaa.AGcccaaAaCcggggTtgtaggacctaaattatgg
+                   GAgCGAA+gggga +AGccca             ++   c   at     
+           1  1794 GAGCGAACGGGGAGgAGCCCA-------------GAAC-CAGCAT----- 1824 
+
+                   gcgggcgataggagttacaaattaaaatgttagcagAAtgatctggaaag
+                                      a + a a+  t ag  gAA+g+tctggaaag
+           1  1825 ------------------CAGCCACAGCATCAGAGGAACGGTCTGGAAAG 1856 
+
+                   gtcgctgccatagaggGTgAtAgcCccGTAattttacgaaaattgtaaat
+                   g+cg  gc a agaggGTgA AgcCccGTA    ++cgaa at g     
+           1  1857 GCCG--GCGAGAGAGGGTGACAGCCCCGTA----CTCGAAGATGGCG--- 1897 
+
+                   ttatctcccccctttagatgggaatcctgAGTAgggcgggaCaCGtGaaA
+                    t   t              g+ +  ++gAGTA ggcgggaCaCG GaaA
+           1  1898 -TGGTTGT----------GAGT-TCGACGAGTAAGGCGGGACACGAGAAA 1935 
+
+                   tcctgtctGAAt.ctgggggGgACCAtcctccAAGgCTAAaTACTcct.a
+                   tcctgtctGAA  +tgggggG ACCAtcctccAAGgCTAAaTACTcct a
+           1  1936 TCCTGTCTGAAGgATGGGGGG-ACCATCCTCCAAGGCTAAATACTCCTgA 1984 
+
+                   .tgACCGATAGtGaAccAGTACcGTGAgGGAAaGgtGAAAag.AcCccgg
+                    tgACCGATAGtGaAccAGTACcGTGAgGGAAaGg GAAAag+AcCccgg
+           1  1985 cTGACCGATAGTGAACCAGTACCGTGAGGGAAAGGCGAAAAGaACCCCGG 2034 
+
+                   ggaggGGAaGTGAAAtAGaacCTGAAAccgtatgC.TAcAAgcagTcggA
+                   +gaggGGA GTGAAA AGaacCTGAAAccgt+t C TAcAAgcagT ggA
+           1  2035 CGAGGGGA-GTGAAAGAGAACCTGAAACCGTGTACgTACAAGCAGTGGGA 2083 
+
+                   Gcc............ggTgAcggcgTaCcTTTTGtAtaAtGggcCagcGA
+                   Gcc++  +   +   ggTgAc+gcgTaCcTTTTGtAtaAtGgg+CagcGA
+           1  2084 GCCttgatgaatcagGGTGACTGCGTACCTTTTGTATAATGGGTCAGCGA 2133 
+
+                   gTTa.g.t.tgtaGCaAGgTTAAg......gcGgAGcCg.AGcGAAAgCg
+                   +TTa+ +t+tgtaGCaAGgTTAA+  ++++g GgAGcCg+AG GAAA+Cg
+           1  2134 CTTAtAtTcTGTAGCAAGGTTAACcgaataGGGGAGCCGcAGGGAAACCG 2183 
+
+                   AGTctgAAtaGgGCG...tAGTt.ca.g.t.tatGACcCGAAaCcgagtG
+                   AGTct+AA  GgGCG+++ AGTt+ca+g+t ta GACcCGAAaCc +gtG
+           1  2184 AGTCTTAACTGGGCGaatGAGTTgCAgGgTaTA-GACCCGAAACCCGGTG 2232 
+
+                   AtCTAtccATGgcCAGGtTGAAggt.gggTAA.Act.acTGgAGGaCCGA
+                   A CTA ccATGg+CAGGtTGAAggt+gggTAA+Act acTGgAGGaCCGA
+           1  2233 AGCTAGCCATGGGCAGGTTGAAGGTtGGGTAAcACTaACTGGAGGACCGA 2282 
+
+                   ACccact.atGtTgaAAaat.agggGATGAgtTGtGg.TaGggGtGAAAg
+                   ACc+act+atGtTgaAAaat+ag+gGATGA+tTGtGg T GggGtGAAAg
+           1  2283 ACCGACTaATGTTGAAAAATtAGCGGATGACTTGTGGcTGGGGGTGAAAG 2332 
+
+                   gCcAAtCaAactcgGagATAgCTgGTTCTCccCGAAAtctaTTtAGGtag
+                   gCcAAtCaAac+ gGagATAgCTgGTTCTCccCGAAA+ctaTTtAGGtag
+           1  2333 GCCAATCAAACCGGGAGATAGCTGGTTCTCCCCGAAAGCTATTTAGGTAG 2382 
+
+                   aGccTcg.gtatttta.ta.tgggGGTAgAGCACTGtatgggctagGGgg
+                   +GccTcg+g +t t+a+++++gggGGTAgAGCACTGt+t ggctagGGgg
+           1  2383 CGCCTCGtGAGT-TCAtCTtCGGGGGTAGAGCACTGTTTCGGCTAGGGGG 2431 
+
+                   cctcataccaggctTACcaAacc.aa.cAAACTccGAATaccggtgagtg
+                   cc  at+cc ggctTACcaA+cc a +cAAACT cGAATaccg++ga   
+           1  2432 CC--ATCCC-GGCTTACCAACCCgATgCAAACTGCGAATACCGAAGA--A 2476 
+
+                   ta..agc.cgGgAGacAgaC.gcGgGtGaTAAggTcCgt.GTcgAgAGGG
+                   t+++a+c+cgGgAGacA+aC+gcGgGtG+TAA+gTcCgt+GT++AgAGGG
+           1  2477 TGtcATCaCGGGAGACACACgGCGGGTGCTAACGTCCGTcGTGAAGAGGG 2526 
+
+                   aAAcAaCCCaGAcCgccagcTAAGGtCCCaAAgtctt.gcTaAGTGggAA
+                   aAAcAaCCCaGAcCgccagcTAAGGtCCC AAgtc t+g+TaAGTGggAA
+           1  2527 AAACAACCCAGACCGCCAGCTAAGGTCCCGAAGTCATgGTTAAGTGGGAA 2576 
+
+                   AgGAtgTgggaa.gCt.agACAaccAggAgGTtGGCTTAGAAGCAGCCAt
+                   A+GAtgTgggaa+gC++agACA+ccAggA+GTtGGCTTAGAAGCAGCCAt
+           1  2577 ACGATGTGGGAAgGCCcAGACAGCCAGGATGTTGGCTTAGAAGCAGCCAT 2626 
+
+                   CcTTtAAAGAaaGCGTAAtAGCTCAcTggTCgAatAGtggtcctgcgCcg
+                   C+TT AAAGAaaGCGTAAtAGCTCAcTggTCgA   Gt+g cctgcgC+g
+           1  2627 CATTGAAAGAAAGCGTAATAGCTCACTGGTCGA---GTCGGCCTGCGCGG 2673 
+
+                   AaaATgTAaCGGGGCTcAAgc.aa.caCCGAAgctgcGgatgtgccacat
+                   Aa+ATgTAaCGGGGCT AA+c+a++caCCGAAgctgcGg+ g+g+ca+  
+           1  2674 AAGATGTAACGGGGCT-AAACcATgCACCGAAGCTGCGGCAGCGACAT-- 2720 
+
+                   ttcgtcctgatt..........tGGTAGggGAGCgTtctgtaagttgccg
+                             +t +++++++++ GGTAGggGAGCgTtctgtaa   gccg
+           1  2721 ----------GTaggtgttgttGGGTAGGGGAGCGTTCTGTAA---GCCG 2757 
+
+                   gtGAAGgt.gtaccgtaAgg.gtgcTGGAggtatcagaAGTGaGaATGct
+                   gtGAAGg+ g  ccgt+Agg +tgcTGGAggtatcagaAGTG+GaATGct
+           1  2758 GTGAAGGCgGCGCCGTGAGGcCTGCTGGAGGTATCAGAAGTGCGAATGCT 2807 
+
+                   GgcATgAGTAgCgataaagaggGTGAgAatCcc.ctCgCCGaAagaccAA
+                   G+cAT+AGTA+Cgataaag+ggGTGA+Aa+Ccc+ctCgCCG AagaccAA
+           1  2808 GACATAAGTAACGATAAAGCGGGTGAAAAACCCgCTCGCCGGAAGACCAA 2857 
+
+                   GGtTTcCtgggcaAcGcTaaTC.gc.caGgGTtAGtCGggcCCTAAGgcg
+                   GG+TTcCtg+ caAcG+TaaTC+g +caGgGT AGtCG +cCCTAAGgcg
+           1  2858 GGGTTCCTGTCCAACGTTAATCgGGgCAGGGTGAGTCGACCCCTAAGGCG 2907 
+
+                   AGGccGAaAggCGTAgtcGATGGgaAacaGgTtaAtATTcCtgtaCc.gt
+                   AGGccGAa ggCGTAg  GATGGgaAacaGgTtaAtATTcCtgtaC+   
+           1  2908 AGGCCGAACGGCGTAGCTGATGGGAAACAGGTTAATATTCCTGTACTgAA 2957 
+
+                   tataattcgcatttcgagagcgatGgggtGacgcagaagg.taggt.a.c
+                     t a+t            gcga+Gggg+Gacg+agaagg+tagg+ a+c
+           1  2958 GGTGACT------------GCGAAGGGGGGACGGAGAAGGcTAGGCcAtC 2995 
+
+                   c.gcgatttgatgGaagtattgc.ggtgttaagca.gtataggctagggt
+                   c+g+    +ga gG+ gt   +c+ggt ttaagc++gt  agg   gg  
+           1  2996 CgGG----CGACGGTCGT---CCcGGT-TTAAGCGtGT--AGGTG-GGAA 3034 
+
+                   .a.taGgcAAAtagacCggt.ta.......aggctgAgatgtgatgacga
+                    a++aGgcAAAt   cC g++ ++++ + +a+ ctgAg +gtgatgacga
+           1  3035 gAgCAGGCAAAT---CC-GCtCTtctgtgaACACTGAGGCGTGATGACGA 3080 
+
+                   gc.a.......agcgAAgagtc.cttgatgccatgcttcCaaGAAAagcc
+                   gc+  ++    +g+gAAg  t  +t gatgcc  gcttcCa+GAAAagcc
+           1  3081 GCcGctacggcGGTGAAG--TGgTT-GATGCCCGGCTTCCAGGAAAAGCC 3127 
+
+                   tCtagTA.gcgtcaagatggg.aattactgacCGTACCgcAAACCGACAC
+                   tC   TA+gc+ ca     gg+ a ++   a CGTACC+cAAACCGACAC
+           1  3128 TC---TAaGCACCA-----GGtCACAGACAATCGTACCCCAAACCGACAC 3169 
+
+                   AGGTggtcagGtaGAgaAtaCtaAGGcGcttGaGagAActctggtgAAGG
+                   AGGTggtcagGtaGAgaAtaCt AGGcGcttGaGagAActc ggtgAAGG
+           1  3170 AGGTGGTCAGGTAGAGAATACTCAGGCGCTTGAGAGAACTCGGGTGAAGG 3219 
+
+                   AACTcGGCAAAaTg.c.cCGTAAcTTcgggAgAAGg.g.gCc........
+                   AACT+GGCAAAaTg++ cCGTAAcTTcgggAgAAGg ++gC+++ +++ +
+           1  3220 AACTAGGCAAAATGgTgCCGTAACTTCGGGAGAAGGcAcGCTggcgttag 3269 
+
+                   ..............................gGtcgcAgagaacaGgtgg.
+                   +++  +++ +++  +   ++ +  +  +  +GtcgcAgaga+caG tgg+
+           1  3270 gtgaagggattgactcccggagccgaagccAGTCGCAGAGACCAGCTGGc 3319 
+
+                   aggCgACTGTTTAttAAAAACACAGcaCtcTGCaAAc.cGtAAg.gGAcG
+                   +g C+ACTGTTTAttAAAAACACAGcaCt TGC AAc cGtAAg+gGAcG
+           1  3320 TG-CAACTGTTTATTAAAAACACAGCACTGTGCCAACaCGTAAGtGGACG 3368 
+
+                   TATAgGGtgTGACgCCTGCCCgGTGCtgGaAGGTTAAgaggag.ggTtAg
+                   TATA+GGtgTGACgCCTGCCCgGTGCtgGaAGGTTAA++g++g+ggTtAg
+           1  3369 TATACGGTGTGACGCCTGCCCGGTGCTGGAAGGTTAATTGATGgGGTTAG 3418 
+
+                   cctcatctatgcaaggggggcgAAGct.tgaAttgAAGCCCcaGTaAACG
+                   cc         +aa    ggcgA Gct+t++At+gAAGCCCcaGTaAACG
+           1  3419 CCG-------TTAA----GGCGACGCTcTTGATCGAAGCCCCAGTAAACG 3457 
+
+                   GCGGccGTAACTATAACggTCCtAAGGTAGCGAAATTCCTTGTCGGGTAA
+                   GCGGccGTAACTATAACggTCCtAAGGTAGCGAAATTCCTTGTCGGGTAA
+           1  3458 GCGGCCGTAACTATAACGGTCCTAAGGTAGCGAAATTCCTTGTCGGGTAA 3507 
+
+                   GTTCCGACCtGCACGAAtGGcGTAAcGAtttccgcaCTGTCTCcacca.a
+                   GTTCCGACCtGCACGAAtGGcGTAA+GAt++cc+ +CTGTCTCcacc++a
+           1  3508 GTTCCGACCTGCACGAATGGCGTAATGATGGCCAGGCTGTCTCCACCCgA 3557 
+
+                   gactCaGtGAAATTgaAgTacc.GTgAAGATGC.gggTacccgCggcaaG
+                   gactCaGtGAAATTgaA+T++c+GTgAAGATGC+g+gT cccgCggcaaG
+           1  3558 GACTCAGTGAAATTGAACTCGCtGTGAAGATGCaGTGTCCCCGCGGCAAG 3607 
+
+                   ACGgAAAGACCCCgTGaAcCTTtACTatAgctTggcAtTGaa.tttggt.
+                   ACGgAAAGACCCCgTGaAcCTTtACTatAgctTg+cA+TGaa++t g+ +
+           1  3608 ACGGAAAGACCCCGTGAACCTTTACTATAGCTTGACACTGAAcATGGAGc 3657 
+
+                   c.tttTGTgtAGgATAGgTgGgAGactttGAagc.gggacGccAGttt.g
+                   c+t +TGTgtAGgATAGgTgGgAG+ctt GAag+  ggacGccAGt t++
+           1  3658 CtTGATGTGTAGGATAGGTGGGAGGCTTGGAAGTgCGGACGCCAGTCTgC 3707 
+
+                   gtGgAGtCatcctgTGaaATACcAccCTtgt.tttttgga.tTCTAAc.t
+                   +tGgAG+Catcct TGaaATACcAccCTtg++t tt g+++tTCT Ac t
+           1  3708 ATGGAGCCATCCT-TGAAATACCACCCTTGAaTGTTCGATgTTCTCACtT 3756 
+
+                   .gg.ccgttaAtCcgggtc.gggAcagTGtctGgtgGGtAGTTTgACTGG
+                   +gg+ccg t AtCcggg c+ ggAcagTGtctGg+gGGtAGTTTgACTGG
+           1  3757 aGGcCCG-TCATCCGGGCCgAGGACAGTGTCTGGCGGGTAGTTTGACTGG 3805 
+
+                   GGCGGTcgCCTCCtAAAgaGTAACGGAGGcGc.CaAaGGTtccCTcAg.a
+                   GGCGGTc+CCTCC+AAAg GTAACGGAGG+Gc+C+AaGGTt +CT A +a
+           1  3806 GGCGGTCTCCTCCCAAAGCGTAACGGAGGAGCaCGAAGGTTGGCTAATcA 3855 
+
+                   cGgTcGGaaAtCgt.cgtagAGtgcAAagGcAtAAGggaGCtTgACTGcg
+                   cGgTcGGa AtCgt+ g + AGtgcAAagGcAtAAG++aGCtT ACTGcg
+           1  3856 CGGTCGGACATCGTgAGGTTAGTGCAAAGGCATAAGCCAGCTTAACTGCG 3905 
+
+                   AGac.gACaagtCgAgCAGgtaCGAAAGtaGGtctTAGTGATCCGgtggt
+                   AGa +gAC   tCgAgCAGgtaCGAAAGtaGGtctTAGTGATCCGgtggt
+           1  3906 AGAGtGACGGTTCGAGCAGGTACGAAAGTAGGTCTTAGTGATCCGGTGGT 3955 
+
+                   tctgttaTGGAAggGccaTCGCTcAACGgATAAAAGgTACtCcGGGGATA
+                   tctg +aTGGAAggGccaTCGCTcAACGgATAAAAGgTACtCcGGGGATA
+           1  3956 TCTG-CATGGAAGGGCCATCGCTCAACGGATAAAAGGTACTCCGGGGATA 4004 
+
+                   ACAGGCTgATctcgcCCAAGAGTtCAtATCGACGgcgggGTTTGGCACCT
+                   ACAGGCTgAT++cgcCCAAGAGTtCAtATCGACGgcgg+GTTTGGCACCT
+           1  4005 ACAGGCTGATACCGCCCAAGAGTTCATATCGACGGCGGTGTTTGGCACCT 4054 
+
+                   CGATGTCGGCTCaTCgCATCCTGGgGCTGgAGtaGGTcCCAAGGGTttGG
+                   CGATGTCGGCTCaTC+CATCCTGGgGCTG+AGtaGGTcCCAAGGGT+tGG
+           1  4055 CGATGTCGGCTCATCACATCCTGGGGCTGAAGTAGGTCCCAAGGGTATGG 4104 
+
+                   CTGTTcgccaattaaagcggtacgcgagctgggttcagaacgtcgtgaga
+                   CTGTTcgcca+ttaaag+ggtacgcgagctgggtt+agaacgtcgtgaga
+           1  4105 CTGTTCGCCATTTAAAGTGGTACGCGAGCTGGGTTTAGAACGTCGTGAGA 4154 
+
+                   cagttcggtccctatctgccgtgggcgtaggaaa.ttgagaggagtctgt
+                   cagttcggtccctatctgccgtgggcg+aggaa  ttga agg+g ctg+
+           1  4155 CAGTTCGGTCCCTATCTGCCGTGGGCGCAGGAAGaTTGAAAGGGG-CTGC 4203 
+
+                   ccctagtacgagaggaccgggatggacg.acctctggtgtaccagttgtc
+                   +cctagtacgagaggaccgg++tggacg+acc ctggtgtac +gttgtc
+           1  4204 TCCTAGTACGAGAGGACCGGAGTGGACGcACCGCTGGTGTACGGGTTGTC 4253 
+
+                   .tgccaagggcatcgctgggtagctatgt.cggaagggataaccgctgaa
+                   +tgccaa+ggcatcgc+ ggtagcta gt cgg ag gataaccgctgaa
+           1  4254 aTGCCAATGGCATCGCCCGGTAGCTAAGTgCGGGAGAGATAACCGCTGAA 4303 
+
+                   agcatctaagcgggaagccc.cctcaagatgag.tttccc..........
+                   agcatctaagcgggaa+c+++cct  agatgag  ttccc++   +++  
+           1  4304 AGCATCTAAGCGGGAAACTTgCCTTGAGATGAGtCTTCCCttgactttaa 4353 
+
+                   .........agg.ccct.g.agac.ac.aggttgataggccggatgtgga
+                     +      agg  c+t+ +agac+a +a+gt gataggc+gg+tgtg+a
+           1  4354 ggtcacggaAGGaACGTtTaAGACgAAgACGTGGATAGGCTGGGTGTGTA 4403 
+
+                   agcgcagtaatgcgtg.agctgaccggtactaatag.ccg.agggcttga
+                   ag+gcag++atgc t++agctgacc+gtactaat + ccg+ +ggctt+a
+           1  4404 AGTGCAGCGATGCATTgAGCTGACCAGTACTAATGAaCCGaGAGGCTTAA 4453 
+
+                   cc.t<-*
+                   cc+t   
+           1  4454 CCtT    4457 
+
+
+Histogram of all scores:
+score    obs    exp  (one = represents 1 sequences)
+-----    ---    ---
+ 3651      1      0|=                                                          
+
+
+% Statistical details of theoretical EVD fit:
+              mu = -3405.2083
+          lambda =     0.0058
+chi-sq statistic =     0.0000
+  P(chi-square)  =          0
+
+Total sequences searched: 1
+
+Whole sequence top hits:
+tophits_s report:
+     Total hits:           1
+     Satisfying E cutoff:  1
+     Total memory:         20K
+
+Domain top hits:
+tophits_s report:
+     Total hits:           1
+     Satisfying E cutoff:  1
+     Total memory:         30K
+hmmsearch - search a sequence database with a profile HMM
+HMMER 2.3.2 (Oct 2003)
+Copyright (C) 1992-2003 HHMI/Washington University School of Medicine
+Freely distributed under the GNU General Public License (GPL)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+HMM file:                   /usr/local/genome/rnammer/lib/bac.ssu.rnammer.hmm [bac.ssu.rnammer.degap]
+Sequence database:          ./100000000188279213.final_search.1.fsa
+per-sequence score cutoff:  >= 0.0
+per-domain score cutoff:    >= 0.0
+per-sequence Eval cutoff:   <= 1e-05     
+per-domain Eval cutoff:     <=      1e-05
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query HMM: bac.ssu.rnammer.degap||
+  [HMM has been calibrated; E-values are empirical estimates]
+
+Scores for complete sequences (score includes all domains):
+Sequence Description                                    Score    E-value  N 
+-------- -----------                                    -----    ------- ---
+1                                                      1775.9          0   1
+
+Parsed for domains:
+Sequence Domain  seq-f seq-t    hmm-f hmm-t      score  E-value
+-------- ------- ----- -----    ----- -----      -----  -------
+1          1/1       1  1475 [.     1  1645 []  1775.9        0
+
+Alignments of top-scoring domains:
+1: domain 1 of 1, from 1 to 1475: score 1775.9, E = 0
+                   *->agaggtttgatcctggctcaggatgAACGCTtgggGCGGcgtGCggg
+                          gt   a          gga  A CGCT    GCG   t     
+           1     1    GCG-GTAACA----------GGA-AAGCGCT---TGCGCTTTTG--- 29   
+
+                   ctTaAcACATGC.GCGgAacCGGGTGAGTAAcgaCgTgggttaaAccTgC
+                   c T Ac    GC+GCGgA  CGGGTGAGTAA+g   Tggg    A+cTgC
+           1    30 C-TGACG--AGCgGCGGA--CGGGTGAGTAATG-TCTGGG---GATCTGC 70   
+
+                   CctttagtgggGgAtAacacttgGAAAacgggtgcTAATaCcgcAT....
+                   Cc    g gggGgAtAac+ +tgGAAA cgg++gcTAATaCcgcAT+++ 
+           1    71 CCGAGGGCGGGGGATAACCACTGGAAA-CGGTGGCTAATACCGCATaatg 119  
+
+                   ..................................................
+                   +    + +  +++ +     +  + +++     + +     +   ++ ++
+           1   120 tcgcgagaccaaagtgggggacctgaaagggcctcacgccgtcggatgaa 169  
+
+                   .ccgcGtccgATtAGcTaGTTGGTggGGTAAtGGCctACCAAGgCcgaaa
+                    cc+  t +gATtAGcTaGT GGT+gGGTAA+GGCctACC AGgC g  a
+           1   170 cCCAGATGGGATTAGCTAGTAGGTAGGGTAAAGGCCTACCTAGGC-G--A 216  
+
+                   cGAtgggTcttAgCcGgtcTGAGAGGatGatCgGcCACAcTGGgaACTGA
+                   cGAt++ T   AgC+GgtcTGAGAGGatGa+C+GcCACAcTGGg ACTGA
+           1   217 CGATCCCT---AGCTGGTCTGAGAGGATGACCAGCCACACTGGG-ACTGA 262  
+
+                   GACACGGcCCAgAaCTCCTACGGGAGGCAGCAGTgGGGAATaTTgcaCAA
+                   GACACGGcCCAgA CTCCTACGGGAGGCAGCAGTgGGGAATaTTgcaCAA
+           1   263 GACACGGCCCAGA-CTCCTACGGGAGGCAGCAGTGGGGAATATTGCACAA 311  
+
+                   TGGgcGaAAgcCTGAtgcAGCaAacGcCCGCGTtGagtcGAagGAaGGcc
+                   TGGgcG+AAgcCTGAtgcAGC+A +G CCGCGT G++t GAa GAaGGcc
+           1   312 TGGGCGCAAGCCTGATGCAGCCA-TG-CCGCGT-GTAT-GAA-GAAGGCC 356  
+
+                   ctcTTcGgaGgTtGTAAAgctCTtTtattagggAaACGAAagggcTTtat
+                      TTcG  GgTtGTAAAg+ CTtT+a + gggA   GAA+gg+   t +
+           1   357 ---TTCG--GGTTGTAAAGTACTTTCAGCGGGGAG--GAAGGGT---TCA 396  
+
+                   GggttgtcTTCtaatacgATGTTcAgcgttttgtcttTGACGgTAcctga
+                    g tt       aa          Ag gtt +  +ttTGACG TAcc g+
+           1   397 -GCTT------GAAC---------AGAGTTGAA-TTTTGACGTTACCCGC 429  
+
+                   agAacCgAAGcccCGGCTAAcTacGTGCCAGCAGCCGCGGTAAtACgtAg
+                   agAa  gAAGc+cCGGCTAAcT+cGTGCCAGCAGCCGCGGTAAtACg+Ag
+           1   430 AGAA--GAAGCACCGGCTAACTCCGTGCCAGCAGCCGCGGTAATACGGAG 477  
+
+                   GgggCaAGCGTTatcCGGAaTtAcTGGGcGTAAAGcGcgcGtAGGcgACt
+                   Gg+gCaAGCGTTa +CGGAaT AcTGGGcGTAAAGcGc+cG+AGGcg   
+           1   478 GGTGCAAGCGTTAATCGGAATGACTGGGCGTAAAGCGCACGCAGGCG--- 524  
+
+                   GtttgtttaaGtcagatGTgAAAgccccggGgcCTcAAacCctgggaact
+                   Gt++  ttaaGt agatGTgAAA+ccccggG  CTcAA  Cctgggaa  
+           1   525 GTCAA-TTAAGTTAGATGTGAAATCCCCGGG--CTCAA--CCTGGGAATG 569  
+
+                   GCatttgaaACtggtaggCCGttTaGAGtgcgggAGaGGagagtgGAAtT
+                   GCat t a ACtggt+ggC    T GAGt + g+AGaGG g+gt GAAtT
+           1   570 GCATCTAAGACTGGTTGGC----TGGAGTCTCGTAGAGGGGGGTAGAATT 615  
+
+                   cctgGTGTAGcgggGTgaAATgCGtAGAtAT.aggAgGAAcACCagtgGC
+                   cc+ GTGTAGcg  GTgaAATgCGtAGA AT +ggAgGAA+ACC+gtgGC
+           1   616 CCATGTGTAGCG--GTGAAATGCGTAGAGATgTGGAGGAATACCGGTGGC 663  
+
+                   GAAgccgGCggctctCTgGaccgtttaCTGACgCTgAgGcgCGAAAGCgt
+                   GAAg   GCggc+c CTgGac ++  aCTGACgCT AgG+gCGAAAGCgt
+           1   664 GAAG---GCGGCCCCCTGGACGAAG-ACTGACGCTCAGGTGCGAAAGCGT 709  
+
+                   GGGgAGCaAACaGGATTAGATACCCtGGTAGTCCacGCCcgTAAACGaTG
+                   GGGgAGCaAACaGGATTAGATACCCtGGTAGTCCacGC  gTAAACGaTG
+           1   710 GGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGC-TGTAAACGATG 758  
+
+                   agtaCTaggtG.....................tgccgcAgcaGcttAACc
+                      a T gg G ++    + ++    + +   t ccg A   Gc tAAC 
+           1   759 TCGATTTGGAGgttgcggtcttgaactgtggcTTCCGAA---GC-TAAC- 803  
+
+                   gGCaatTAAGtactCCgCCTGGGggAGTACGgcCGCAAgGgtTaAAACTC
+                    GC  tTAA t   CCgCCTGGG gAGTACGgcCGCAA GgtTaAAACTC
+           1   804 -GCG-TTAAATCGACCGCCTGGG-GAGTACGGCCGCAA-GGTTAAAACTC 849  
+
+                   AAAgGAATtGACGGGGgCCCGCACAAGCgGtGGAgcATGTGGtTTAATTC
+                   AAA GAATtGACGGGGgCCCGCACAAGCgGtGGAgcATGTGGtTTAATTC
+           1   850 AAATGAATTGACGGGGGCCCGCACAAGCGGTGGAGCATGTGGTTTAATTC 899  
+
+                   GAagcaACGCGaAgAaACCTtTACCagggcTTGAcCATccgcagggtaga
+                   GA+gcaACGCGaAgA ACCT TACC++++cTTGA CATc  cag+g    
+           1   900 GATGCAACGCGAAGA-ACCT-TACCTACTCTTGA-CATC--CAGAG---- 940  
+
+                   agaaagcctctacgGAgAtgggggtgttggatatccccgcacTGgattcg
+                     a ag c+++a  GAgAtg gg+tg       t+cc         ttcg
+           1   941 --A-AGACCTCA--GAGATGAGGTTG-------TGCC---------TTCG 969  
+
+                   acgAAgggGagtgcggggaccatcggagACAGGTGcTGgCATGGcTGTCG
+                                  gg++c  tc gagACAGGTGcTG CATGGcTGTCG
+           1   970 ---------------GGAGC--TCTGAGACAGGTGCTG-CATGGCTGTCG 1001 
+
+                   TCAGCTCGTGtcGTGAGaTGTTGGGTTAAGTCCcgcAACGAGCGCAACCC
+                   TCAGCTCGTGt GTGA aTGTTGGGTTAAGTCCcgcAACGAGCGCAACCC
+           1  1002 TCAGCTCGTGTTGTGAAATGTTGGGTTAAGTCCCGCAACGAGCGCAACCC 1051 
+
+                   tctgtccttaGaTTgCcAgCagggttcaCCAAAGttaggAGAAggtgTaa
+                   t t+tcctt G TTgCcAgC  +g          t+a+            
+           1  1052 T-TATCCTTTG-TTGCCAGCG-CG----------TAAA------------ 1076 
+
+                   GtgaGGaagttGgGcACTctagggagACTGCCggtGacAAaccGGaAGGA
+                           g  GgG ACTc a+ggagACTGCCggtGa+AAaccGG AGGA
+           1  1077 --------GGCGGGAACTCAAAGGAGACTGCCGGTGATAAACCGG-AGGA 1117 
+
+                   AGGtGgGGAtGACGTCAAgTCaTCATGcCCcTTAtGtcctGGgGCtaCAC
+                   AGGtGgGGAtGACGTCAAgTCaTCATG+CCcTTA+G+ ++GG GCtaCAC
+           1  1118 AGGTGGGGATGACGTCAAGTCATCATGGCCCTTACGAGTAGG-GCTACAC 1166 
+
+                   ACgTgcTACAATGGccggtACAaaGgGgttttttttaaGCgAaacccgGc
+                   ACgTgcTACAATGGc g tACAaaG G         aaGCgA + c  Gc
+           1  1167 ACGTGCTACAATGGCGGATACAAAGTG---------AAGCGACCTC--GC 1205 
+
+                   gAggtggaGCgaAtgaCtccacaaaAAAgccggtCtcAGTtCGGATtGca
+                   gAg   +aGCg A   C c    a AAAg c gtC  AGT CGGATtG a
+           1  1206 GAGAGCAAGCGGAA--CAC----ACAAAGTCTGTCGTAGTCCGGATTGGA 1249 
+
+                   gtCTGcAACTCGact.CaTGAAGtcGGAaTCGCTAGTAATCGcggaTCAG
+                   gtCTGcAACTCGact+CaTGAAGtcGGAaTCGCTAGTAATCG +gaTCAG
+           1  1250 GTCTGCAACTCGACTcCATGAAGTCGGAATCGCTAGTAATCGTAGATCAG 1299 
+
+                   caaactgccgCGGTGAATaCGTTgCcCGgGccTTGTACaCACCGCcCGTC
+                   ca   tgc+ CGGTGAATaCGTT CcCGgGccTTGTACaCACCGCcCGTC
+           1  1300 CA---TGCTACGGTGAATACGTT-CCCGGGCCTTGTACACACCGCCCGTC 1345 
+
+                   AcacCAtgggAGttggta.cacccgAagtcggtgagcccataaacccggC
+                   AcacCAtgggAGt ggt+ ca   gAagtcggt+ gc   taa cc    
+           1  1346 ACACCATGGGAGTGGGTTgCAAAAGAAGTCGGTA-GCT--TAA-CC---- 1387 
+
+                   ACatAcaaaaaggtgtaagAgaAAgttaatttggtgtccgggagggacgc
+                                 g+aa                      ggaggg    
+           1  1388 --------------GCAA----------------------GGAGGGC--- 1398 
+
+                   gccgcc.aaggtgggattgatggGactggggtgaagtcgtaacaaggtag
+                   gc+g+c+a+  tg g++t atg  actggggtgaagtcgtaacaaggta+
+           1  1399 GCTGACcACTTTGTGGCTCATG--ACTGGGGTGAAGTCGTAACAAGGTAA 1446 
+
+                   ccgtatcggaaggtgcggctggatcacct<-*
+                   ccgta +ggaa++tgcgg tggatcacct   
+           1  1447 CCGTAGGGGAACCTGCGGTTGGATCACCT    1475 
+
+
+Histogram of all scores:
+score    obs    exp  (one = represents 1 sequences)
+-----    ---    ---
+ 1775      1      0|=                                                          
+
+
+% Statistical details of theoretical EVD fit:
+              mu = -1218.2880
+          lambda =     0.0095
+chi-sq statistic =     0.0000
+  P(chi-square)  =          0
+
+Total sequences searched: 1
+
+Whole sequence top hits:
+tophits_s report:
+     Total hits:           1
+     Satisfying E cutoff:  1
+     Total memory:         20K
+
+Domain top hits:
+tophits_s report:
+     Total hits:           1
+     Satisfying E cutoff:  1
+     Total memory:         26K

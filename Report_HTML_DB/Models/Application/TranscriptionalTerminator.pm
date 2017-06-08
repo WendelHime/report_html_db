@@ -13,7 +13,7 @@ has contig         	=> ( is => 'ro', isa => 'Str' );
 has start          	=> ( is => 'ro', isa => 'Str' );
 has end            	=> ( is => 'ro', isa => 'Str' );
 has confidence     	=> ( is => 'ro', isa => 'Str' );
-has hairping_score 	=> ( is => 'ro', isa => 'Str' );
+has hairpin_score 	=> ( is => 'ro', isa => 'Str' );
 has tail_score     	=> ( is => 'ro', isa => 'Str' );
 has feature_id		=> ( is => 'ro', isa => 'Str' );
 

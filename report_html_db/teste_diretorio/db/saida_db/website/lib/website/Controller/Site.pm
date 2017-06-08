@@ -198,8 +198,8 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
 
 	use File::Basename;
 	open( my $FILEHANDLER,
-		"<", dirname(__FILE__) . "/../../../root/" . $hash{filepath} );
-	my $content = do { local($/); <$FILEHANDLER> };
+		"<", $hash{filepath} );
+	my $content = do { local($/); <$FILEHANDLER> };;
 	close($FILEHANDLER);
 	
 	if (   $hash{name} =~ /annotation\_blast/
@@ -207,20 +207,102 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
 		|| $hash{name} =~ /annotation\_orthology/
 		|| $hash{name} =~ /annotation\_tcdb/ )
 	{
-		my $directory = $hash{filepath};
-		$directory =~ s/\/([\w\s\-_]+.[\w\s\-_.]+)//;
-		$content =~ s/src="/src="\/$directory\//igm;
+		my $image = $hash{filepath};
+		$image =~ s/\.html/\.png/g;
+		open( $FILEHANDLER,
+			"<", $image );
+		my $contentImage = do { local($/); <$FILEHANDLER> };
+		close($FILEHANDLER);
+		use MIME::Base64;
+		$contentImage = MIME::Base64::encode_base64($contentImage);
+		$content =~ s/$_/<img src="data:image\/png;base64,$contentImage/ foreach ($content =~ /(<img src="[\.\w\s\-]*)"/img);
 	}
 	elsif ( $hash{name} =~ /annotation\_interpro/ ) {
 		my $directory = $hash{filepath};
-		$directory =~ s/\/([\w\s\-_]+\.[\w\s\-_.]+)//;
-		$content =~ s/src="resources/src="\/$directory\/resources/igm;
-		$content =~ s/href="resources/href="\/$directory\/resources/g;
+		$directory =~ s/\/([\w\s\-_\.]+)\.html//g;
+		foreach ($content =~ /<img src="([\.\w\s\-\/]*)"/img) {
+			open( $FILEHANDLER,
+				"<", $directory . "/" . $_ );
+			my $contentFile = do { local($/); <$FILEHANDLER> };
+			close($FILEHANDLER);
+			use MIME::Base64;
+			$contentFile = MIME::Base64::encode_base64($contentFile);
+			$content =~ s/<img src="$_/<img src="data:image\/png;base64,$contentFile/;
+		}
+		while ($content =~ /<link([\w\s="]*)href="([\.\w\s\-\/]*)"/img) {
+			open( $FILEHANDLER,
+				"<", $directory . "/" . $2 );
+			my $contentFile = do { local($/); <$FILEHANDLER> };
+			close($FILEHANDLER);
+			use MIME::Base64;
+			$contentFile = MIME::Base64::encode_base64($contentFile);
+			if ($1) {
+				$content =~ s/<link$1href="$2/<link $1 href="data:text\/css;base64,$contentFile/;
+			} else {
+				$content =~ s/<link href="$2/<link href="data:text\/css;base64,$contentFile/;
+			}
+		}
+		foreach ($content =~ /<script src="([\.\w\s\-\/]*)"/img) {
+			open( $FILEHANDLER,
+				"<", $directory . "/" . $_ );
+			my $contentFile = do { local($/); <$FILEHANDLER> };
+			close($FILEHANDLER);
+			use MIME::Base64;
+			$contentFile = MIME::Base64::encode_base64($contentFile);
+			$content =~ s/<script src="$_/<script src="data:text\/javascript;base64,$contentFile/;
+		}
 	}
 
 	$c->response->body($content);
 	
 }
+
+sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : CaptureArgs(2) {
+	my ($self, $c, $contig, $type) = @_;
+	if ( !$type and defined $c->request->param("type") ) {
+		$type = $c->request->param("type");
+	}
+	if ( !$contig and defined $c->request->param("contig") ) {
+		$contig = $c->request->param("contig");
+	}
+	my $name = "";
+	if($type eq "rna") {
+		$name = "infernal";
+	} elsif($type eq "rrna_prediction") {
+		$name = "rnammer";
+	} elsif($type =~ "trna") {
+		$name = "trna";
+	}
+	
+	my $filepath = (
+		$c->model('Basic::Component')->search(
+			{
+				name 		=> {  "like", "%".$name."%"},
+				filepath 	=> { "like", "%".$contig."%"}
+			},
+			{
+				columns => qw/filepath/,
+				rows    => 1
+			}
+		)->single->get_column(qw/filepath/)
+	);
+	open( my $FILEHANDLER, "<", $filepath );
+	binmode $FILEHANDLER;
+	my $file;
+
+	local $/ = \10240;
+	while (<$FILEHANDLER>) {
+		$file .= $_;
+	}
+	$c->response->body($file);
+	$c->response->headers->content_type('application/x-download');
+	my $filename = "";
+	$filename = $_ foreach ($filepath =~ /\/([\w\s\-_]+\.[\w\s\-_]+)/g);
+	$c->response->body($file);
+	$c->response->header('Content-Disposition' => 'attachment; filename='.$filename);
+	close $FILEHANDLER;
+}
+	 
 
 =head2
 
@@ -270,11 +352,11 @@ sub searchContig_GET {
 	open( my $FILEHANDLER,
 		"<", dirname(__FILE__) . "/../../../root/" . $sequence->filepath );
 
-	for my $line (<$FILEHANDLER>) {
-		if ( !( $line =~ /^>\w+\n$/g ) ) {
-			$data .= $line;
-		}
-	}
+	my $content = do { local $/; <$FILEHANDLER> };
+
+	my @lines = $content =~ /^(\w+)\n*$/mg;
+	$data = join("\n", @lines);
+	
 	close($FILEHANDLER);
 
 	if ( $start && $end ) {
@@ -288,11 +370,8 @@ sub searchContig_GET {
 		$data = formatSequence( reverseComplement($data) );
 		$c->stash->{hadReverseComplement} = 1;
 	}
-	my $result = "";
-	for ( my $i = 0 ; $i < length($data) ; $i += 60 ) {
-		my $line = substr( $data, $i, 60 );
-		$result .= "$line<br />";
-	}
+	my $result = $data;
+	
 
 	my @list = ();
 	my %hash = ();

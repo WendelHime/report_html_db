@@ -19,15 +19,26 @@ var totalValues = 10;
 function verifyPagedResponse(acientID, actualID, values) {
     var status = false;
     var numberOfPages = 0;
-    if(totalValues < 10  ) {
+    if(totalValues <= 10  ) {
         numberOfPages = 1;
     } else {
-        numberOfPages = Math.round((values  + pageSize - 1) / pageSize);
+    	var number = (values / pageSize);
+    	if(Math.round(number) - number > 0) {
+    		numberOfPages = Math.round(number);
+    	} else {
+    		numberOfPages = Math.round(number + 1);
+    	}
+//    	var number = (values  + pageSize - 1) / pageSize;
+//    	if(Math.round(number) - number > 0) {
+//    		numberOfPages = Math.round(number);
+//    	} else {
+//    		numberOfPages = Math.trunc(number);
+//    	}
     }
     $("#numberPage").attr("max", numberOfPages);
     $("#totalNumberPages").text(numberOfPages);
-    if(acientID == actualID) {
-        if ( (totalValues - offset) < pageSize ) {
+    if(acientID == actualID) { 
+        if ( (totalValues - offset) <= pageSize && ($("#numberPage").val() == $("#totalNumberPages").text())) {
             $("#more").attr("disabled", "disabled");
             $("#last").attr("disabled", "disabled");
             
@@ -43,10 +54,15 @@ function verifyPagedResponse(acientID, actualID, values) {
             $("#less").removeAttr("disabled");
             $("#begin").removeAttr("disabled");
         }
+        if(offset < 10 && $("#numberPage").val() > $("#totalNumberPages").text()) {
+        	$("#numberPage").val(1);
+        	$("#more").attr("disabled", "disabled");
+            $("#last").attr("disabled", "disabled");
+        }
         status = true;
     } else {
         offset = 1;
-        if ( (totalValues - offset) < pageSize ) {
+        if ( (totalValues - offset) <= pageSize && ($("#numberPage").val() == $("#totalNumberPages").text()) ) {
             $("#more").attr("disabled", "disabled");
             $("#last").attr("disabled", "disabled");
         } else {
@@ -80,7 +96,6 @@ $("#back").click(function() {
 	offset = 1;
 	totalValues = 10;
 	$("#searchPanel").show();
-	$("#numberPage").val(1);
 	$("#back").hide();
 	$(".pagination-section").hide();
 	$(".result").remove();
@@ -116,7 +131,7 @@ $("#less").click(function() {
 });
 
 $("#last").click(function() {
-    offset = parseInt(totalValues  / pageSize) * 10;
+    offset = (totalValues - 10);
     $("#numberPage").val($("#totalNumberPages").text());
     $(".result").remove();
     $(idForm).submit();
@@ -202,7 +217,8 @@ $(function() {
                 else {
                     $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
                 }
-			} else {
+			}
+			else {
                 $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
             }
 			return false;
@@ -219,9 +235,9 @@ $(function() {
 			$(".errors").remove();
 			var pagedResponse = trnaSearch($(this).serialize(), pageSize, offset).responseJSON;
 			var tRNAList = pagedResponse.response;
+			totalValues = pagedResponse.total;
 			if(tRNAList.length > 0) {
-				totalValues = pagedResponse.total;
-	            if(!verifyPagedResponse(idForm, "#trna-form", totalValues)) 
+				if(!verifyPagedResponse(idForm, "#trna-form", totalValues)) 
 	                idForm = "#trna-form";
 				var featuresIDs = "";
 	            for(i = 0; i < tRNAList.length; i++) {
@@ -233,11 +249,12 @@ $(function() {
 	                contentGeneData(data);
 	            }
 	            else {
-	                $("#trna-form").append("<div class='alert alert-danger errors'>Oops, not found any tRNA</div>");
+	                $("#trna-form").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
 	            }
-			} else {
-				$("#trna-form").append("<div class='alert alert-danger errors'>Oops, not found any tRNA</div>");
 			}
+			else {
+                $("#trna-form").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
+            }
 			return false;
 		}
 	);
@@ -250,7 +267,11 @@ $(function() {
 	$("#tandemRepeats-form").submit(
 		function() {
 			$(".errors").remove();
-			var tandemRepeatsList = tandemRepeatsSearch($(this).serialize()).responseJSON.response;
+			var pagedResponse  = tandemRepeatsSearch($(this).serialize(), pageSize, offset).responseJSON;
+			var tandemRepeatsList = pagedResponse.response;
+			totalValues = pagedResponse.total;
+			if(!verifyPagedResponse(idForm, "#tandemRepeats-form", totalValues)) 
+                idForm = "#tandemRepeats-form";
 			if(tandemRepeatsList.length > 0) {
 				$("#searchPanel").hide();
 				$("#back").show();
@@ -263,33 +284,23 @@ $(function() {
 							"			<th>Repeat length</th>"+
 							"			<th>Copy number</th>"+
 							"			<th>Repeat sequence</th>"+
-							"			<th>Sequence</th>"+
 							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
 				for(i = 0; i < tandemRepeatsList.length; i++) {
 					html += "		<tr>" +
-							"			<td>"+tandemRepeatsList[i].contig+"</td>" +
+							"			<td><a href='/DownloadFileByContigAndType?contig="+tandemRepeatsList[i].contig+"&type=trf'>"+tandemRepeatsList[i].contig+"</a></td>" +
 							"			<td>"+tandemRepeatsList[i].start+"</td>" +
 							"			<td>"+tandemRepeatsList[i].end+"</td>" +
 							"			<td>"+tandemRepeatsList[i].length+"</td>" +
 							"			<td>"+tandemRepeatsList[i].copy_number+"</td>" +
 							"			<td>"+tandemRepeatsList[i].sequence+"</td>" +
-							"			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+
 							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
 				$("#searchPanel").parent().append(html);
-				for(i = 0; i < tandemRepeatsList.length; i++) {
-					$("#sequence-"+i).click(
-							{
-								feature_id : tandemRepeatsList[i].feature_id, 
-								start : tandemRepeatsList[i].start, 
-								end : tandemRepeatsList[i].end 
-							}, 
-								searchContigWorkAround);
-				}
+				$(".pagination-section").show();
 			}
 			else {
 				$("#tandemRepeats-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
@@ -306,7 +317,11 @@ $(function() {
 	$("#otherNonCodingRNAs-form").submit(
 		function() {
 			$(".errors").remove();
-			var nonCodingRNAList = ncRNASearch($(this).serialize()).responseJSON.response;
+			var pagedResponse = ncRNASearch($(this).serialize(), pageSize, offset).responseJSON;
+			var nonCodingRNAList = pagedResponse.response;
+			totalValues = pagedResponse.total;
+            if(!verifyPagedResponse(idForm, "#otherNonCodingRNAs-form", totalValues)) 
+                idForm = "#otherNonCodingRNAs-form";
 			if(nonCodingRNAList.length > 0) {
 				var featuresIDs = "";
 				for(i = 0; i < nonCodingRNAList.length; i++) {
@@ -335,7 +350,11 @@ $(function() {
 	$("#transcriptionalTerminators-form").submit(
 		function() {
 			$(".errors").remove();
-			var transcriptionalTerminatorList = transcriptionalTerminatorSearch($(this).serialize()).responseJSON.response;
+			var pagedResponse  = transcriptionalTerminatorSearch($(this).serialize(), pageSize, offset).responseJSON;
+			var transcriptionalTerminatorList = pagedResponse.response;
+			totalValues = pagedResponse.total;
+			if(!verifyPagedResponse(idForm, "#transcriptionalTerminators-form", totalValues)) 
+                idForm = "#transcriptionalTerminators-form";
 			if(transcriptionalTerminatorList.length > 0) {
 				$("#searchPanel").hide();
 				$("#back").show();
@@ -348,33 +367,23 @@ $(function() {
 							"			<th>Confidence</th>"+
 							"			<th>Hairpin score</th>"+
 							"			<th>Tail score</th>"+
-							"			<th>Sequence</th>"+
 							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
 				for(i = 0; i < transcriptionalTerminatorList.length; i++) {
 					html += "		<tr>" +
-							"			<td>"+transcriptionalTerminatorList[i].contig+"</td>" +
+							"			<td><a href='/DownloadFileByContigAndType?contig="+transcriptionalTerminatorList[i].contig+"&type=transterm'>"+transcriptionalTerminatorList[i].contig+"</a></td>" +
 							"			<td>"+transcriptionalTerminatorList[i].start+"</td>" +
 							"			<td>"+transcriptionalTerminatorList[i].end+"</td>"+
-							"			<td>"+transcriptionalTerminatorList[i].confidence+"</td>"+
-							"			<td>"+transcriptionalTerminatorList[i].hairping_score+"</td>"+
+							"			<td>"+transcriptionalTerminatorList[i].confidence+"</td>" +
+							"			<td>"+transcriptionalTerminatorList[i].hairpin_score+"</td>"+
 							"			<td>"+transcriptionalTerminatorList[i].tail_score+"</td>"+
-							"			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+
 							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
 				$("#searchPanel").parent().append(html);
-				for(i = 0; i < transcriptionalTerminatorList.length; i++) {
-					$("#sequence-"+i).click(
-							{
-								feature_id : transcriptionalTerminatorList[i].feature_id, 
-								start : transcriptionalTerminatorList[i].start, 
-								end : transcriptionalTerminatorList[i].end 
-							}, 
-								searchContigWorkAround);
-				}
+				$(".pagination-section").show();
 			}
 			else {
 				$("#transcriptionalTerminators-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
@@ -384,14 +393,6 @@ $(function() {
 	);
 });
 
-function searchContigWorkAround (event) {
-	$(".result").remove();
-	$("[name='contig']").val(event.data.feature_id);
-	$("[name='contigStart']").val(event.data.start);
-	$("[name='contigEnd']").val(event.data.end);
-	$("#formSearchContig").submit();
-}
-
 /**
  * Add function to submit form
  */
@@ -399,8 +400,11 @@ $(function() {
 	$("#ribosomalBindingSites-form").submit(
 		function() {
 			$(".errors").remove();
-			var rbsList = rbsSearch($(this).serialize()).responseJSON.response;
-			//&& ($("[name='RBSpattern']").val() !== "" || $("[name='RBSshift']")[0].checked !== false || $("[name='RBSnewcodon']")[0].checked !== false)
+			var pagedResponse  = rbsSearch($(this).serialize(), pageSize, offset).responseJSON;
+			var rbsList = pagedResponse.response;
+			totalValues = pagedResponse.total;
+			if(!verifyPagedResponse(idForm, "#ribosomalBindingSites-form", totalValues)) 
+                idForm = "#ribosomalBindingSites-form";
 			if(rbsList.length > 0) {
 				$("#searchPanel").hide();
 				$("#back").show();
@@ -412,42 +416,26 @@ $(function() {
 							"			<th>End coordinate</th>"+
 							"			<th>Position shift</th>"+
 							"			<th>Site pattern</th>"+
-							"			<th>Old start</th>";
-				if("new_start" in rbsList[0]) {
-					html +=
-						"			<th>New start</th>";
-				}
-				html +=		"		<th>Sequence</th>"
+							"			<th>Old start</th>"+
+							"			<th>New start</th>"+
 							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
 				for(i = 0; i < rbsList.length; i++) {
 					html += "		<tr>" +
-							"			<td>"+rbsList[i].contig+"</td>" +
+							"			<td><a href='/DownloadFileByContigAndType?contig="+rbsList[i].contig+"&type=rbsfinder'>"+rbsList[i].contig+"</a></td>" +
 							"			<td>"+rbsList[i].start+"</td>" +
-							"			<td>"+rbsList[i].end+"</td>" +
-							"			<td>"+rbsList[i].position_shift+"</td>"+
+							"			<td>"+rbsList[i].end+"</td>"+
+							"			<td>"+rbsList[i].position_shift+"</td>" +
 							"			<td>"+rbsList[i].site_pattern+"</td>"+
-							"			<td>"+rbsList[i].old_start+"</td>";
-					if("new_start" in rbsList[0]) {
-						html += 							
-							"			<td>"+rbsList[i].new_start+"</td>";
-					}
-					html += "			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+ 
+							"			<td>"+rbsList[i].old_start+"</td>" +
+							"			<td>"+rbsList[i].new_start+"</td>" +
 							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
 				$("#searchPanel").parent().append(html);
-				for(i = 0; i < rbsList.length; i++) {
-					$("#sequence-"+i).click(
-							{
-								feature_id : rbsList[i].feature_id, 
-								start : rbsList[i].start, 
-								end : rbsList[i].end 
-							}, 
-								searchContigWorkAround);
-				}
+				$(".pagination-section").show();
 			} else {
 				$("#ribosomalBindingSites-form").append("<div class='alert alert-danger errors'>Oops, not found anything like that</div>");
 			}
@@ -463,7 +451,11 @@ $(function() {
 	$("#horizontalGeneTransfers-form").submit(
 		function() {
 			$(".errors").remove();
-			var alienhunterList = alienhunterSearch($(this).serialize()).responseJSON.response;
+			var pagedResponse  = alienhunterSearch($(this).serialize(), pageSize, offset).responseJSON;
+			var alienhunterList = pagedResponse.response;
+			totalValues = pagedResponse.total;
+			if(!verifyPagedResponse(idForm, "#horizontalGeneTransfers-form", totalValues)) 
+                idForm = "#horizontalGeneTransfers-form";
 			if(alienhunterList.length > 0) {
 				$("#searchPanel").hide();
 				$("#back").show();
@@ -474,43 +466,33 @@ $(function() {
 							"			<th>Contig</th>"+
 							"			<th>Start coordinate</th>"+
 							"			<th>End coordinate</th>"+
-							"			<th>Length</th>"+
 							"			<th>Score</th>"+
+							"			<th>Length</th>"+
 							"			<th>Threshold</th>"+
-							"			<th>Sequence</th>"+
 							"		</tr>" +
 							"	</thead>" +
 							"	<tbody>";
 				for(var i = 0; i < alienhunterList.length; i++) {
 					html += "		<tr>" +
 							"			<td><a id='horizontal-transference-"+alienhunterList[i].id+"' href='#'>"+alienhunterList[i].id+"</a></td>" +
-							"			<td>"+alienhunterList[i].contig+"</td>" +
+							"			<td><a href='/DownloadFileByContigAndType?contig="+alienhunterList[i].contig+"&type=alienhunter'>"+alienhunterList[i].contig+"</a></td>" +
 							"			<td>"+alienhunterList[i].start+"</td>" +
 							"			<td>"+alienhunterList[i].end+"</td>"+
-							"			<td>"+alienhunterList[i].length+"</td>"+
 							"			<td>"+alienhunterList[i].score+"</td>"+
+							"			<td>"+alienhunterList[i].length+"</td>"+
 							"			<td>"+alienhunterList[i].threshold+"</td>"+
-							"			<td><button class='btn btn-info' id='sequence-"+i+"'>Sequence</button></td>"+
 							"		</tr>";
 				}
 				html += "	</tbody>" +
 						"</table>";
 				$("#searchPanel").parent().append(html);
+				$(".pagination-section").show();
 				for(var i = 0; i < alienhunterList.length; i++) {
 					var result = alienhunterList[i];
 					$("#horizontal-transference-"+result.id).click(function() {
 						$(".result").remove();
 						contentGeneData(getGeneByPosition(result.start, result.end).responseJSON.response);
 					});
-				}
-				for(i = 0; i < alienhunterList.length; i++) {
-					$("#sequence-"+i).click(
-							{
-								feature_id : alienhunterList[i].feature_id, 
-								start : alienhunterList[i].start, 
-								end : alienhunterList[i].end 
-							}, 
-								searchContigWorkAround);
 				}
 			}
 			else {
@@ -567,7 +549,11 @@ function dealDataResults(href, featureName, data) {
 		data = data[0];
 		var htmlContent = getHTMLContent("website/search-database/geneBasics.tt").responseJSON.response;
 		htmlContent = htmlContent.replace("[% result.type %]", data.type);
-		htmlContent = htmlContent.replace("[% result.uniquename %]", data.uniquename);
+		if(data.type != "CDS") {
+			htmlContent = htmlContent.replace("[% result.uniquename %]", "<a href='/DownloadFileByContigAndType?contig="+data.uniquename+"&type="+data.type.replace("_scan", "").toLowerCase()+"'>" + data.uniquename + "</a>");
+		} else {
+			htmlContent = htmlContent.replace("[% result.uniquename %]", data.uniquename);
+		}
 		htmlContent = htmlContent.replace("[% result.fstart %]", data.fstart);
 		htmlContent = htmlContent.replace("[% result.fend %]", data.fend);
 		htmlContent = htmlContent.replace("[% result.length %]", (data.fend - data.fstart + 1));

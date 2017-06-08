@@ -1,0 +1,56 @@
+# hmmscan :: search sequence(s) against a profile database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query sequence file:             saida_db/hmmer_dir/temp_motif_hmmer_input_838
+# target HMM database:             /home/aferreira/POSDOC/TESTE_MOD_OUT/DBPFAM/Pfam-A.hmm
+# per-dom hits tabular output:     saida_db/hmmer_dir/temp_motif_hmmer_output_tbl_838
+# profile reporting threshold:     score >= 0.1
+# number of worker threads:        20
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       Contig-3_CDS_annotation_glimmer3.pl_log_10_50  [L=103]
+Scores for complete sequence (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Model         Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------      -----------
+    1.7e-39  133.4   0.1    1.9e-39  133.3   0.1    1.0  1  Ribosomal_S10  Ribosomal protein S10p/S20e
+
+
+Domain annotation for each model (and alignments):
+>> Ribosomal_S10  Ribosomal protein S10p/S20e
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  133.3   0.1   1.4e-43   1.9e-39       1      96 [.       6     101 ..       6     102 .. 0.99
+
+  Alignments for each domain:
+  == domain 1  score: 133.3 bits;  conditional E-value: 1.4e-43
+                                                    EEEEEEES-HHHHHHHHHHHHHHHHTST-EEE-EEE-S-EEEEEEEE-S--S-SSSEEEEEEEE CS
+                                  Ribosomal_S10   1 iriklkSydhkllekavkqiieaakrlglkvsgpiplPtkrkrvtvlrsphvdkksreqfeirt 64 
+                                                    iri+lk++dh+l+++++++i+e+akr+g++v+gpiplPt+++r+tvl sphv+k+ r+q+eirt
+  Contig-3_CDS_annotation_glimmer3.pl_log_10_50   6 IRIRLKAFDHRLIDQSTAEIVETAKRTGAQVRGPIPLPTRKERFTVLISPHVNKDARDQYEIRT 69 
+                                                    8*************************************************************** PP
+
+                                                    EEEEEEESCE-HHHHHHHCHS------EEEEE CS
+                                  Ribosomal_S10  65 hkrlidipnatpktvdallkirlpegVeveik 96 
+                                                    hkrl+di+++t+ktvdal++++l +gV+v+i+
+  Contig-3_CDS_annotation_glimmer3.pl_log_10_50  70 HKRLVDIVEPTEKTVDALMRLDLAAGVDVQIS 101
+                                                    *****************************996 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query sequence(s):                         1  (103 residues searched)
+Target model(s):                       13672  (2396357 nodes)
+Passed MSV filter:                       381  (0.0278672); expected 273.4 (0.02)
+Passed bias filter:                      318  (0.0232592); expected 273.4 (0.02)
+Passed Vit filter:                        25  (0.00182855); expected 13.7 (0.001)
+Passed Fwd filter:                         1  (7.31422e-05); expected 0.1 (1e-05)
+Initial search space (Z):              13672  [actual number of targets]
+Domain search space  (domZ):               1  [number of targets reported over threshold]
+# CPU time: 0.20u 0.14s 00:00:00.34 Elapsed: 00:00:00.22
+# Mc/sec: 1121.93
+//
+[ok]

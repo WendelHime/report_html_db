@@ -1,0 +1,334 @@
+Query= Contig-3_CDS_annotation_glimmer3.pl_log_10_38
+
+Length=142
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|178791  PRK00010, rplE, 50S ribosomal protein L5; Validated   288     4e-100
+gnl|CDD|223172  COG0094, RplE, Ribosomal protein L5 [Translation,...  246     1e-83 
+gnl|CDD|214356  CHL00078, rpl5, ribosomal protein L5                  221     7e-74 
+gnl|CDD|250045  pfam00673, Ribosomal_L5_C, ribosomal L5P family C...  182     2e-59 
+gnl|CDD|235259  PRK04219, rpl5p, 50S ribosomal protein L5P; Reviewed  97.2    2e-25 
+gnl|CDD|185485  PTZ00156, PTZ00156, 60S ribosomal protein L11; Pr...  55.4    2e-10 
+gnl|CDD|109342  pfam00281, Ribosomal_L5, Ribosomal protein L5         48.1    2e-08 
+gnl|CDD|188463  TIGR03948, butyr_acet_CoA, butyryl-CoA:acetate Co...  29.8    0.55  
+gnl|CDD|257666  pfam13336, AcetylCoA_hyd_C, Acetyl-CoA hydrolase/...  27.8    1.8   
+gnl|CDD|143472  cd06559, Endonuclease_V, Endonuclease_V, a DNA re...  27.5    2.2   
+gnl|CDD|172967  PRK14495, PRK14495, putative molybdopterin-guanin...  27.7    2.6   
+gnl|CDD|234481  TIGR04141, TIGR04141, sporadically distributed pr...  27.6    2.7   
+gnl|CDD|223481  COG0404, GcvT, Glycine cleavage system T protein ...  27.2    4.1   
+gnl|CDD|227376  COG5043, MRS6, Vacuolar protein sorting-associate...  27.2    4.3   
+gnl|CDD|215595  PLN03130, PLN03130, ABC transporter C family memb...  27.0    4.8   
+gnl|CDD|215460  PLN02855, PLN02855, Bifunctional selenocysteine l...  26.6    6.3   
+gnl|CDD|215640  PLN03232, PLN03232, ABC transporter C family memb...  26.5    6.5   
+gnl|CDD|270436  cd13718, PBP2_iGluR_NMDA_Nr2, The ligand-binding ...  26.1    7.5   
+
+
+>gnl|CDD|178791 PRK00010, rplE, 50S ribosomal protein L5; Validated.
+Length=179
+
+ Score = 288 bits (740),  Expect = 4e-100, Method: Composition-based stats.
+ Identities = 108/142 (76%), Positives = 132/142 (93%), Gaps = 0/142 (0%)
+
+Query  1    MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMW  60
+            MGVGEA+ADKKLL+NA  DL  I+GQKP++TKA+KS+AGFK+R+G PIGCKVTLRGERM+
+Sbjct  38   MGVGEAVADKKLLENAVEDLTLITGQKPVVTKAKKSIAGFKLREGMPIGCKVTLRGERMY  97
+
+Query  61   EFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT  120
+            EFL+RLI+IA+PR+RDFRGLS KSFDGRGNY++G++EQIIFPEIDYDK+D++RG+DITI 
+Sbjct  98   EFLDRLINIALPRVRDFRGLSPKSFDGRGNYTLGIKEQIIFPEIDYDKIDKIRGMDITIV  157
+
+Query  121  TTAKSDDEGRALLAAFNFPFRK  142
+            TTAK+D+E RALL AF FPFRK
+Sbjct  158  TTAKTDEEARALLKAFGFPFRK  179
+
+
+>gnl|CDD|223172 COG0094, RplE, Ribosomal protein L5 [Translation, ribosomal structure 
+and biogenesis].
+Length=180
+
+ Score = 246 bits (630),  Expect = 1e-83, Method: Composition-based stats.
+ Identities = 104/142 (73%), Positives = 122/142 (86%), Gaps = 0/142 (0%)
+
+Query  1    MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMW  60
+            MGVGEA AD K L+ AA DL  I+GQKP+ITKA+KS+AGFKIR+G PIG KVTLRGERM+
+Sbjct  38   MGVGEAAADGKRLEKAAKDLELITGQKPVITKAKKSIAGFKIREGMPIGVKVTLRGERMY  97
+
+Query  61   EFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT  120
+            EFL+RL++IA+PR+RDFRGLS KSFDGRGNYS G++EQIIFPEIDYD +  +RG+DITI 
+Sbjct  98   EFLDRLLNIALPRVRDFRGLSPKSFDGRGNYSFGIKEQIIFPEIDYDPIIGIRGMDITIV  157
+
+Query  121  TTAKSDDEGRALLAAFNFPFRK  142
+            TTAK D E RALL+AF  PFRK
+Sbjct  158  TTAKGDVEARALLSAFGIPFRK  179
+
+
+>gnl|CDD|214356 CHL00078, rpl5, ribosomal protein L5.
+Length=181
+
+ Score = 221 bits (566),  Expect = 7e-74, Method: Composition-based stats.
+ Identities = 82/140 (59%), Positives = 118/140 (84%), Gaps = 0/140 (0%)
+
+Query  2    GVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMWE  61
+            G+GEA  + K+L+++  +L  I+GQKP+IT+A+K++AGFKIR+  P+G  VTLRG++M+ 
+Sbjct  40   GLGEASQNSKILESSIKELTIITGQKPIITRAKKAIAGFKIREKMPVGVSVTLRGDKMYA  99
+
+Query  62   FLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITITT  121
+            FL+RLI++A+PRIRDF+GLS KSFDG GNY++G++EQ++FPEIDYDK+D++RG+DI+I T
+Sbjct  100  FLDRLINLALPRIRDFQGLSPKSFDGHGNYNLGLKEQLMFPEIDYDKIDQIRGMDISIVT  159
+
+Query  122  TAKSDDEGRALLAAFNFPFR  141
+            TAK+D EG ALL     PF+
+Sbjct  160  TAKTDQEGLALLKELGMPFK  179
+
+
+>gnl|CDD|250045 pfam00673, Ribosomal_L5_C, ribosomal L5P family C-terminus.  
+This region is found associated with pfam00281.
+Length=95
+
+ Score = 182 bits (464),  Expect = 2e-59, Method: Composition-based stats.
+ Identities = 66/95 (69%), Positives = 78/95 (82%), Gaps = 0/95 (0%)
+
+Query  47   PIGCKVTLRGERMWEFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDY  106
+            PIGCKVTLRGE+M+EFL+RLI++A+PRIRDFRGLS KSFDGRGNYS G++E IIFPEI Y
+Sbjct  1    PIGCKVTLRGEKMYEFLDRLINVALPRIRDFRGLSPKSFDGRGNYSFGIKEHIIFPEIKY  60
+
+Query  107  DKVDRVRGLDITITTTAKSDDEGRALLAAFNFPFR  141
+            D +  + G+DITI TTAK+D E RALL     PF 
+Sbjct  61   DPIIGIFGMDITIVTTAKTDKEARALLKELGMPFF  95
+
+
+>gnl|CDD|235259 PRK04219, rpl5p, 50S ribosomal protein L5P; Reviewed.
+Length=177
+
+ Score = 97.2 bits (243),  Expect = 2e-25, Method: Composition-based stats.
+ Identities = 43/98 (44%), Positives = 60/98 (61%), Gaps = 6/98 (6%)
+
+Query  23   ISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMWEFLERLISIAVPRIRDFRGLSA  82
+            ++GQKP+ T+A+K++  F IR+G PIG KVTLRGE+  EFL+  +          R L A
+Sbjct  43   LTGQKPVRTRAKKTIPDFGIRKGEPIGVKVTLRGEKAEEFLKTALEAV-----GNR-LKA  96
+
+Query  83   KSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITIT  120
+             SFD  GN S G+ E I FP + YD    + G+D+ +T
+Sbjct  97   SSFDETGNVSFGIEEHIDFPGVKYDPEIGIFGMDVCVT  134
+
+
+>gnl|CDD|185485 PTZ00156, PTZ00156, 60S ribosomal protein L11; Provisional.
+Length=172
+
+ Score = 55.4 bits (134),  Expect = 2e-10, Method: Composition-based stats.
+ Identities = 29/77 (38%), Positives = 48/77 (62%), Gaps = 6/77 (8%)
+
+Query  23   ISGQKPLITKARKSVAGFKIRQGYPIGCKVTLRGERMWEFLERLISIAVPRIRDFRGLSA  82
+            ++GQKP+ +KAR +V  F IR+   I C VT+RG++  E LER +     ++++F  L  
+Sbjct  39   LTGQKPVFSKARYTVRSFGIRRNEKIACHVTVRGDKAEEILERGL-----KVKEFE-LKK  92
+
+Query  83   KSFDGRGNYSMGVREQI  99
+            ++F   GN+  G++E I
+Sbjct  93   RNFSDTGNFGFGIQEHI  109
+
+
+>gnl|CDD|109342 pfam00281, Ribosomal_L5, Ribosomal protein L5.  
+Length=56
+
+ Score = 48.1 bits (115),  Expect = 2e-08, Method: Composition-based stats.
+ Identities = 29/43 (67%), Positives = 35/43 (81%), Gaps = 1/43 (2%)
+
+Query  1   MGVGEAIADKKLLDNAAADLAAISGQKPLITKARKSVAGFKIR  43
+           MGVGEA  D K+L+ AA +L  ISGQKP+ITKA+KS+A FKIR
+Sbjct  15  MGVGEA-GDNKILEKAALELEEISGQKPIITKAKKSIASFKIR  56
+
+
+>gnl|CDD|188463 TIGR03948, butyr_acet_CoA, butyryl-CoA:acetate CoA-transferase. 
+ This enzyme represents one of at least two mechanisms for 
+reclaiming CoA from butyryl-CoA at the end of butyrate biosynthesis 
+(an important process performed by some colonic bacteria), 
+namely transfer of CoA to acetate. An alternate mechanism 
+transfers the butyrate onto inorganic phosphate, after 
+which butyrate kinase transfers the phosphate onto ADP, creating 
+ATP [Energy metabolism, Fermentation].
+Length=445
+
+ Score = 29.8 bits (67),  Expect = 0.55, Method: Composition-based stats.
+ Identities = 14/26 (54%), Positives = 16/26 (62%), Gaps = 0/26 (0%)
+
+Query  51   KVTLRGERMWEFLERLISIAVPRIRD  76
+            KV L+G   W+  E LISIA P  RD
+Sbjct  403  KVNLKGLSTWQKAEALISIAHPDFRD  428
+
+
+>gnl|CDD|257666 pfam13336, AcetylCoA_hyd_C, Acetyl-CoA hydrolase/transferase 
+C-terminal domain.  This family contains several enzymes which 
+take part in pathways involving acetyl-CoA. Acetyl-CoA hydrolase 
+EC:3.1.2.1 catalyses the formation of acetate from acetyl-CoA, 
+CoA transferase (CAT1) EC:2.8.3.- produces succinyl-CoA, 
+and acetate-CoA transferase EC:2.8.3.8 utilizes acyl-CoA 
+and acetate to form acetyl-CoA.
+Length=154
+
+ Score = 27.8 bits (63),  Expect = 1.8, Method: Composition-based stats.
+ Identities = 13/23 (57%), Positives = 15/23 (65%), Gaps = 0/23 (0%)
+
+Query  54   LRGERMWEFLERLISIAVPRIRD  76
+            LRG+ + E  E LISIA P  RD
+Sbjct  126  LRGKSLRERAEALISIAHPDFRD  148
+
+
+>gnl|CDD|143472 cd06559, Endonuclease_V, Endonuclease_V, a DNA repair enzyme 
+that initiates repair of nitrosative deaminated purine bases. 
+ Endonuclease_V (EndoV) is an enzyme that can initiate repair 
+of all possible deaminated DNA bases.  EndoV cleaves the 
+DNA strand containing lesions at the second phosphodiester 
+bond 3' to the lesion using Mg2+ as a cofactor.  EndoV homologs 
+are conserved throughout all domains of life from bacteria 
+to humans. EndoV is encoded by the nfi gene and nfi null 
+mutant mice have a phenotype prone to cancer. The ability of 
+endonuclease V to recognize mismatches and abnormal replicative 
+DNA structures suggests that the enzyme plays an important 
+role in DNA metabolism. The details of downstream processing 
+for the EndoV pathway remain unknown.
+Length=208
+
+ Score = 27.5 bits (62),  Expect = 2.2, Method: Composition-based stats.
+ Identities = 8/44 (18%), Positives = 20/44 (45%), Gaps = 3/44 (7%)
+
+Query  96   REQIIFPEIDYDKVDRVRGLDITITTTAKSDDEGRALLAAFNFP  139
+             ++++  ++   +V  V G+D+   +  K  D   A     ++P
+Sbjct  12   AKKVVLEDLGPGEVRLVAGVDV---SYKKDGDLAVAAAVVLDYP  52
+
+
+>gnl|CDD|172967 PRK14495, PRK14495, putative molybdopterin-guanine dinucleotide 
+biosynthesis protein MobB/unknown domain fusion protein; 
+Provisional.
+Length=452
+
+ Score = 27.7 bits (61),  Expect = 2.6, Method: Composition-based stats.
+ Identities = 15/42 (36%), Positives = 22/42 (52%), Gaps = 4/42 (10%)
+
+Query  30   ITKARKSVAGFKIRQGYPIGCKVTLRGE----RMWEFLERLI  67
+            +T  R+ +AGF    GYP G    L G+     +W++LE  I
+Sbjct  224  LTAGRRVLAGFDFPFGYPEGFAPRLTGQAFAPALWDWLEARI  265
+
+
+>gnl|CDD|234481 TIGR04141, TIGR04141, sporadically distributed protein, TIGR04141 
+family.  This model describes a sporadically distributed 
+conserved hypothetical protein in which complete members average 
+over 500 amino acids in length, although matching sequences 
+frequently are truncated or broken into tandem ORFs. 
+Regular co-clustering with known markers of mobility (integrases, 
+transposases, phage proteins, restriction enzymes, etc.) 
+suggests this family also is part of the mobilome. The function 
+is unknown.
+Length=516
+
+ Score = 27.6 bits (62),  Expect = 2.7, Method: Composition-based stats.
+ Identities = 19/76 (25%), Positives = 31/76 (41%), Gaps = 12/76 (16%)
+
+Query  64   ERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDK-VDRVRGLDITIT-T  121
+            +  I +AVP I D+   S   F GRG  +         P++D +  ++ + G    IT  
+Sbjct  238  DERIWLAVPEIVDYEDASGFKFTGRGGRAA------THPDLDLEDYLEYLGGKGAGITIE  291
+
+Query  122  TAKSDDEGRALLAAFN  137
+              K       + A F+
+Sbjct  292  ALKRG----RIHACFD  303
+
+
+>gnl|CDD|223481 COG0404, GcvT, Glycine cleavage system T protein (aminomethyltransferase) 
+[Amino acid transport and metabolism].
+Length=379
+
+ Score = 27.2 bits (61),  Expect = 4.1, Method: Composition-based stats.
+ Identities = 9/30 (30%), Positives = 16/30 (53%), Gaps = 0/30 (0%)
+
+Query  51  KVTLRGERMWEFLERLISIAVPRIRDFRGL  80
+           KV + G     FL+RL++  V +++  R  
+Sbjct  58  KVEVSGPDAAAFLQRLLTNDVSKLKPGRAR  87
+
+
+>gnl|CDD|227376 COG5043, MRS6, Vacuolar protein sorting-associated protein [Intracellular 
+trafficking and secretion].
+Length=2552
+
+ Score = 27.2 bits (60),  Expect = 4.3, Method: Composition-based stats.
+ Identities = 17/77 (22%), Positives = 28/77 (36%), Gaps = 0/77 (0%)
+
+Query  66    LISIAVPRIRDFRGLSAKSFDGRGNYSMGVREQIIFPEIDYDKVDRVRGLDITITTTAKS  125
+               SIA  RI D   +    F     YS      ++   ++YD   R+  L + I     +
+Sbjct  1353  EFSIASFRIEDVNPIKDVVFLDVIEYSTNTHNLLVNGCLEYDSQGRLLNLVLDIDKMFLN  1412
+
+Query  126   DDEGRALLAAFNFPFRK  142
+              D   ++ + F    R 
+Sbjct  1413  LDYLYSIWSIFVHWLRA  1429
+
+
+>gnl|CDD|215595 PLN03130, PLN03130, ABC transporter C family member; Provisional.
+Length=1622
+
+ Score = 27.0 bits (60),  Expect = 4.8, Method: Composition-based stats.
+ Identities = 15/39 (38%), Positives = 22/39 (56%), Gaps = 1/39 (3%)
+
+Query  59    MWEFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVRE  97
+             +WE LER     V R R+  GL A+  +   N+S+G R+
+Sbjct  1344  LWESLERAHLKDVIR-RNSLGLDAEVSEAGENFSVGQRQ  1381
+
+
+>gnl|CDD|215460 PLN02855, PLN02855, Bifunctional selenocysteine lyase/cysteine 
+desulfurase.
+Length=424
+
+ Score = 26.6 bits (59),  Expect = 6.3, Method: Composition-based stats.
+ Identities = 13/32 (41%), Positives = 17/32 (53%), Gaps = 2/32 (6%)
+
+Query  106  YDKVDRVRGLDITITTTAKSDDEGRALLAAFN  137
+            Y+K+  V G  + I     S+  GRA L AFN
+Sbjct  322  YEKLSSVPG--VRIYGPKPSEGVGRAALCAFN  351
+
+
+>gnl|CDD|215640 PLN03232, PLN03232, ABC transporter C family member; Provisional.
+Length=1495
+
+ Score = 26.5 bits (58),  Expect = 6.5, Method: Composition-based stats.
+ Identities = 15/39 (38%), Positives = 21/39 (54%), Gaps = 1/39 (3%)
+
+Query  59    MWEFLERLISIAVPRIRDFRGLSAKSFDGRGNYSMGVRE  97
+             +WE LER     V     F GL A+  +G  N+S+G R+
+Sbjct  1341  LWEALERAHIKDVIDRNPF-GLDAEVSEGGENFSVGQRQ  1378
+
+
+>gnl|CDD|270436 cd13718, PBP2_iGluR_NMDA_Nr2, The ligand-binding domain of the 
+NR2 subunit of ionotropic NMDA (N-methyl-D-aspartate) glutamate 
+receptors, a member of the type 2 periplasmic binding 
+fold protein superfamily.  This group contains the ligand-binding 
+domain of the NR2 subunit of NMDA receptor family. The 
+ionotropic N-methyl-d-asparate (NMDA) subtype of glutamate 
+receptors serves critical functions in neuronal development, 
+functioning, and degeneration in the mammalian central nervous 
+system. The functional NMDA receptor is a heterotetramer 
+composed of two NR1 and two NR2 (A, B, C, and D) or of NR3 
+(A and B) subunits. The receptor controls a cation channel that 
+is highly permeable to monovalent ions and calcium and exhibits 
+voltage-dependent inhibition by magnesium. Dual agonists, 
+glutamate and glycine, are required for efficient activation 
+of the NMDA receptor. Among NMDA receptor subtypes, the 
+NR2B subunit containing receptors appear particularly important 
+for pain perception; thus NR2B-selective antagonists 
+may be useful in the treatment of chronic pain.
+Length=283
+
+ Score = 26.1 bits (58),  Expect = 7.5, Method: Composition-based stats.
+ Identities = 11/24 (46%), Positives = 13/24 (54%), Gaps = 0/24 (0%)
+
+Query  62   FLERLISIAVPRIRDFRGLSAKSF  85
+            F+E  IS+ V R     GLS K F
+Sbjct  128  FVETGISVMVARSNQVSGLSDKKF  151
+
+
+
+Lambda      K        H        a         alpha
+   0.323    0.140    0.404    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 392196222

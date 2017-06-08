@@ -168,11 +168,12 @@ function trnaSearch(serializedForm, pageSize, offset) {
  *            serialized form
  * @returns XMLHttpRequest
  */
-function tandemRepeatsSearch(serializedForm) {
+function tandemRepeatsSearch(serializedForm, pageSize, offset) {
 	return $.ajax({
 		type : "GET",
 		dataType : "json",
-		url : "/SearchDatabase/tandemRepeatsSearch?" + serializedForm,
+		url : "/SearchDatabase/tandemRepeatsSearch?" + serializedForm + "&pageSize="
+		+ pageSize + "&offset=" + offset,
 		async : false,
 		cache : false
 	});
@@ -185,11 +186,12 @@ function tandemRepeatsSearch(serializedForm) {
  *            serialized form
  * @returns XmlHttpRequest
  */
-function ncRNASearch(serializedForm) {
+function ncRNASearch(serializedForm, pageSize, offset) {
 	return $.ajax({
 		type : "GET",
 		dataType : "json",
-		url : "/SearchDatabase/ncRNASearch?" + serializedForm,
+		url : "/SearchDatabase/ncRNASearch?" + serializedForm + "&pageSize="
+		+ pageSize + "&offset=" + offset,
 		async : false,
 		cache : false
 	});
@@ -202,12 +204,12 @@ function ncRNASearch(serializedForm) {
  *            serialized form
  * @returns XmlHttpRequest
  */
-function transcriptionalTerminatorSearch(serializedForm) {
+function transcriptionalTerminatorSearch(serializedForm, pageSize, offset) {
 	return $.ajax({
 		type : "GET",
 		dataType : "json",
-		url : "/SearchDatabase/transcriptionalTerminatorSearch?"
-				+ serializedForm,
+		url : "/SearchDatabase/transcriptionalTerminatorSearch?" + serializedForm + "&pageSize="
+		+ pageSize + "&offset=" + offset,
 		async : false,
 		cache : false
 	});
@@ -220,11 +222,12 @@ function transcriptionalTerminatorSearch(serializedForm) {
  *            serialized form
  * @returns XmlHttpRequest
  */
-function rbsSearch(serializedForm) {
+function rbsSearch(serializedForm, pageSize, offset) {
 	return $.ajax({
 		type : "GET",
 		dataType : "json",
-		url : "/SearchDatabase/rbsSearch?" + serializedForm,
+		url : "/SearchDatabase/rbsSearch?" + serializedForm + "&pageSize="
+		+ pageSize + "&offset=" + offset,
 		async : false,
 		cache : false
 	});
@@ -237,11 +240,12 @@ function rbsSearch(serializedForm) {
  *            serialized form
  * @returns XmlHttpRequest
  */
-function alienhunterSearch(serializedForm) {
+function alienhunterSearch(serializedForm, pageSize, offset) {
 	return $.ajax({
 		type : "GET",
 		dataType : "json",
-		url : "/SearchDatabase/alienhunterSearch?" + serializedForm,
+		url : "/SearchDatabase/alienhunterSearch?" + serializedForm + "&pageSize="
+		+ pageSize + "&offset=" + offset,
 		async : false,
 		cache : false
 	});

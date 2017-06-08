@@ -5,7 +5,7 @@ use warnings;
 use parent 'Catalyst::Model::DBI';
 
 __PACKAGE__->config(
-	dsn      => "dbi:Pg:dbname=testedb;host=localhost",
+	dsn      => "dbi:Pg:dbname=minibacteria_contigs;host=localhost",
 	user     => "chadouser",
 	password => "egene_chado",
 	options  => {},
@@ -35,8 +35,16 @@ sub analyses_CDS {
 	  . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
 	  . "join featureprop pd on (r.subject_id = pd.feature_id) "
 	  . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
-	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?)";
+	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ";
 	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ) ";
+		push @args, $hash->{contig};
+	} else {
+		$query .= " ) ";
+	}
+	
 	my $connector = "1";
 
 	my $query_gene     = "";
@@ -465,7 +473,9 @@ sub analyses_CDS {
 		my $counter = scalar @args;
 		if($counter > $quantityParameters) {
 			while(scalar @args > $quantityParameters) {
-				print STDERR "\nARGS:\t".$_."\n" foreach (@args);
+				print STDERR "
+ARGS:	".$_."
+" foreach (@args);
 				shift @args;
 #				delete $args[$counter-1];
 #				$counter--;
@@ -559,6 +569,11 @@ sub tRNA_search {
 	  . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value=? and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
 	push @args, $hash->{pipeline};
 	my $anticodon = "";
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
 
 	if ( $hash->{'tRNAaa'} ne "" ) {
 		$query .= "and pt.value = ?";
@@ -568,6 +583,22 @@ sub tRNA_search {
 		$anticodon = reverseComplement( $hash->{'tRNAcd'} );
 		$query .= "and pa.value = ?";
 		push @args, $anticodon;
+	}
+	
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
 	}
 
 	my $sth = $dbh->prepare($query);
@@ -604,7 +635,7 @@ sub trf_search {
 	my @args      = ();
 	my $connector = "";
 	my $select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence, fl.feature_id ";
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence, fl.feature_id, COUNT(*) OVER() AS total ";
 	my $join = "from feature_relationship r
                  join featureloc l on (r.subject_id = l.feature_id)
                  join feature fl on (fl.feature_id = l.srcfeature_id)
@@ -621,6 +652,11 @@ sub trf_search {
 	my $query =
 "where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value=? ";
 	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
 
 	if ( $hash->{'TRFrepSeq'} !~ /^\s*$/ ) {
 		$hash->{'TRFrepSeq'} =~ s/\s+//g;
@@ -686,13 +722,30 @@ sub trf_search {
 	}
 
 	$query = $select . $join . $query;
+	
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
+	}
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-
+	my %hash = ();
+	
 	use Report_HTML_DB::Models::Application::TRFSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $result = Report_HTML_DB::Models::Application::TRFSearch->new(
@@ -705,9 +758,11 @@ sub trf_search {
 			feature_id	=> $rows[$i][6],
 		);
 		push @list, $result;
+		$hash{total} = $rows[$i][7];
 	}
 
-	return \@list;
+	$hash{list} = \@list;
+	return \%hash;
 }
 
 =head2
@@ -721,7 +776,7 @@ sub ncRNA_search {
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $select =
-"select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description";
+"select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description, COUNT(*) OVER() AS total ";
 	my $join = " from feature_relationship r 
                 join featureloc lc on (r.subject_id = lc.feature_id)
                 join feature fl on (fl.feature_id = lc.srcfeature_id)
@@ -736,6 +791,11 @@ sub ncRNA_search {
 	my $query =
 "where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value=? and cpp.name='target_description' ";
 	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
 
 	if ( $hash->{'ncRNAtargetID'} !~ /^\s*$/ ) {
 		$hash->{'ncRNAtargetID'} =~ s/\s+//g;
@@ -801,13 +861,29 @@ sub ncRNA_search {
 	}
 
 	$query = $select . $join . $query;
+	
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
+	}
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-
+	my %hash = ();
 	use Report_HTML_DB::Models::Application::NcRNASearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
 		my $result = Report_HTML_DB::Models::Application::NcRNASearch->new(
@@ -816,17 +892,18 @@ sub ncRNA_search {
 			start        => $rows[$i][3],
 			end          => $rows[$i][2],
 			description  => $rows[$i][4],
-			target_ID    => $rows[$i][5] ? $rows[$i][5] !~ '' : '',
-			evalue       => $rows[$i][5] ? $rows[$i][5] !~ '' : '',
-			target_name  => $rows[$i][5] ? $rows[$i][5] !~ '' : '',
-			target_class => $rows[$i][5] ? $rows[$i][5] !~ '' : '',
-			target_type  => $rows[$i][5] ? $rows[$i][5] !~ '' : ''
+			target_ID    => $rows[$i][6] ? $rows[$i][6] !~ '' : '',
+			evalue       => $rows[$i][6] ? $rows[$i][6] !~ '' : '',
+			target_name  => $rows[$i][6] ? $rows[$i][6] !~ '' : '',
+			target_class => $rows[$i][6] ? $rows[$i][6] !~ '' : '',
+			target_type  => $rows[$i][6] ? $rows[$i][6] !~ '' : ''
 
 		);
 		push @list, $result;
+		$hash{total} = $rows[$i][5];
 	}
-
-	return \@list;
+	$hash{list} = \@list;
+	return \%hash;
 }
 
 =head2
@@ -840,7 +917,7 @@ sub transcriptional_terminator_search {
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppConfidence.value AS confidence, ppHairpinScore.value AS hairpin_score, ppTailScore.value AS tail_score, fl.feature_id ";
+"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppConfidence.value AS confidence, ppHairpinScore.value AS hairpin_score, ppTailScore.value AS tail_score, fl.feature_id, COUNT(*) OVER() AS total ";
 	
 	my $join = " from feature_relationship r
                  join featureloc lc on (r.subject_id = lc.feature_id)
@@ -860,6 +937,11 @@ sub transcriptional_terminator_search {
 	my $query =
 "where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? and cppConfidence.name = 'confidence' AND cppHairpinScore.name = 'hairpin' AND cppTailScore.name = 'tail' ";
 	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
 
 	my $search_field;
 	my $field;
@@ -897,11 +979,27 @@ sub transcriptional_terminator_search {
 
 	$query = $select . $join . $query;
 
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
+	}
+
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
-
+	my %hash = ();
 	my @list    = ();
 	my @columns = @{ $sth->{NAME} };
 	use Report_HTML_DB::Models::Application::TranscriptionalTerminator;
@@ -911,14 +1009,15 @@ sub transcriptional_terminator_search {
 			start  			=> $rows[$i][1],
 			end    			=> $rows[$i][2],
 			confidence    	=> $rows[$i][3],
-			hairping_score  => $rows[$i][4],
+			hairpin_score  	=> $rows[$i][4],
 			tail_score    	=> $rows[$i][5],
 			feature_id		=> $rows[$i][6],
 		);
 		push @list, $result;
+		$hash{total} = $rows[$i][7];
 	}
-
-	return \@list;
+	$hash{list} = \@list;
+	return \%hash;
 }
 
 =head2
@@ -927,14 +1026,13 @@ Method used to return ribosomal binding sites data from database
 
 =cut
 
-#TODO: Criar modelo RBS
 sub rbs_search {
 	my ( $self, $hash ) = @_;
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $select =
 "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, fl.feature_id, ppSitePattern.value AS site_pattern, ppPositionShift.value AS position_shift, ".
-	" ppOldStart.value AS old_start ";
+	" ppOldStart.value AS old_start, COUNT(*) OVER() AS total ";
 
 #	if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
 #		$select .= " AS site_pattern";
@@ -964,6 +1062,11 @@ sub rbs_search {
 "where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
 " and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift' ";
 	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
 
 	if ( $hash->{'RBSpattern'} !~ /^\s*$/ ) {
 		$hash->{'RBSpattern'} =~ s/\s*//g;
@@ -992,13 +1095,28 @@ sub rbs_search {
 	}
 
 	$query = $select . $join . $query;
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
+	}
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-
+	my %hash = ();
 	my @columns = @{ $sth->{NAME} };
 	use Report_HTML_DB::Models::Application::RBSSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
@@ -1012,14 +1130,14 @@ sub rbs_search {
 			old_start		=> $rows[$i][6]
 		);
 
-		if ( $columns[7] eq "new_start" ) {
-			$result->setNewStart( $rows[$i][7] );
+		if ( $columns[8] eq "new_start" ) {
+			$result->setNewStart( $rows[$i][8] );
 		}
-
+		$hash{total} = $rows[$i][7];
 		push @list, $result;
 	}
-
-	return \@list;
+	$hash{list} = \@list;
+	return \%hash;
 }
 
 =head2
@@ -1033,7 +1151,7 @@ sub alienhunter_search {
 	my $dbh  = $self->dbh;
 	my @args = ();
 	my $select =
-"select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppLength.value AS length, ppScore.value AS score, ppThreshold.value AS threshold, fl.feature_id ";
+"select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppLength.value AS length, ppScore.value AS score, ppThreshold.value AS threshold, fl.feature_id, COUNT(*) OVER() AS total ";
 
 	my $join = " from feature_relationship r
                 join featureloc lc on (r.subject_id = lc.feature_id) 
@@ -1053,6 +1171,11 @@ sub alienhunter_search {
 	my $query =
 "where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? and cppLength.name = 'length' and cppScore.name = 'score' and cppThreshold.name = 'threshold' ";
 	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
 
 	my $search_field;
 	my $field;
@@ -1089,13 +1212,29 @@ sub alienhunter_search {
 	push @args, ($search_field - 1) if $search_field;
 
 	$query = $select . $join . $query;
+	
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
+	}
 
 	my $sth = $dbh->prepare($query);
 	print STDERR $query;
 	$sth->execute(@args);
 	my @rows = @{ $sth->fetchall_arrayref() };
 	my @list = ();
-
+	my %hash = ();
 	my @columns = @{ $sth->{NAME} };
 	use Report_HTML_DB::Models::Application::AlienHunterSearch;
 	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
@@ -1110,10 +1249,11 @@ sub alienhunter_search {
 			feature_id	=> $rows[$i][7],
 		);
 
+		$hash{total} = $rows[$i][8];
 		push @list, $result;
 	}
-
-	return \@list;
+	$hash{list} = \@list;
+	return \%hash;
 }
 
 =head2
@@ -1158,6 +1298,11 @@ sub searchGene {
 	my $where =
 "WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = ? ";
 	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$where .= " AND featureloc_features_2.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
 
 	my $connector = "";
 	if ( exists $hash->{featureId} && $hash->{featureId} ) {
@@ -1652,7 +1797,7 @@ and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
 					push @values, $2;
 				}
 			}  else {
-				while ($response =~ /(?:\w+)\|(\w+\.*\w*)\|([\w\ \:\[\]\<\>\.\-\+\*\(\)\&\%\$\#\@\!\/]*)$/g) {
+				while ($response =~ /(?:\w+)\|(\w+\.*\w*)\|([\w\ \:\[\]\<\>\.\-\+\*\(\)\&\\%\$\#\@\!\/]*)$/g) {
 					push @values, $1;
 					push @values, $2;
 				}

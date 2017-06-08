@@ -1,0 +1,13 @@
+
+*******************************************************************************
+Seq: Contig-2
+
+Start: 1505   End: 1525   Period_size: 10    Copy_number: 2.1
+Consensus_size: 10    Percent_matches: 100    Percent_indels: 0    Score: 42
+A: 19    C: 42    G: 19    T: 19    Entropy: 1.89
+Consensus_pattern: CAGCCAGTTC
+
+Start: 1799   End: 1812   Period_size: 7    Copy_number: 2.0
+Consensus_size: 7    Percent_matches: 100    Percent_indels: 0    Score: 28
+A: 14    C: 28    G: 42    T: 14    Entropy: 1.84
+Consensus_pattern: ATGGCCG

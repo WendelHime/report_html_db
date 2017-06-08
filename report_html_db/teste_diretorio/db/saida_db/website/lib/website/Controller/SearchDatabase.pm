@@ -26,7 +26,7 @@ sub gene_GET {
 	my ( 
 		$self,            $c,             $pipeline,     $geneID,
 		$geneDescription, $noDescription, $individually, $featureId,
-		$pageSize,        $offset )
+		$pageSize,        $offset, $contig )
 	  = @_;
 	if ( !$geneID and defined $c->request->param("geneID") ) {
 		$geneID = $c->request->param("geneID");
@@ -49,12 +49,15 @@ sub gene_GET {
 	if ( !$offset and defined $c->request->param("offset") ) {
 		$offset = $c->request->param("offset");
 	}
+	if ( !$contig and defined $c->request->param("contig") ) {
+		$contig = $c->request->param("contig");
+	}
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
 	my $pagedResponse = $searchDBClient->getGene( $c->config->{pipeline_id},
 		$geneID, $geneDescription,
-		$noDescription, $individually, $featureId, $pageSize, $offset );
+		$noDescription, $individually, $featureId, $pageSize, $offset, $contig );
 	standardStatusOk(
 		$self, $c, $pagedResponse->{response}, $pagedResponse->{"total"},
 		$pageSize, $offset
@@ -213,11 +216,10 @@ sub tandemRepeatsSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
+	my $response = $searchDBClient->getTandemRepeats( \%hash ); 
 	standardStatusOk(
 		$self, $c,
-		$searchDBClient->getTandemRepeats(
-			\%hash
-		)->{response}
+		$response->{response}, $response->{total}, $hash{pageSize}, $hash{offset}
 	);
 }
 
@@ -236,11 +238,10 @@ sub ncRNASearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
+	my $response = $searchDBClient->getncRNA( \%hash );
 	standardStatusOk(
 		$self, $c,
-		$searchDBClient->getncRNA(
-			\%hash
-		)->{response}
+		$response->{response}, $response->{total}, $hash{pageSize}, $hash{offset}
 	);
 }
 
@@ -260,11 +261,10 @@ sub transcriptionalTerminatorSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
+	my $response = $searchDBClient->getTranscriptionalTerminator( \%hash );
 	standardStatusOk(
 		$self, $c,
-		$searchDBClient->getTranscriptionalTerminator(
-			\%hash
-		)->{response}
+		$response->{response}, $response->{total}, $hash{pageSize}, $hash{offset}
 	);
 }
 
@@ -284,11 +284,10 @@ sub rbsSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
+	my $response = $searchDBClient->getRBSSearch( \%hash );
 	standardStatusOk(
 		$self, $c,
-		$searchDBClient->getRBSSearch(
-			\%hash
-		)->{response}
+		$response->{response}, $response->{total}, $hash{pageSize}, $hash{offset}
 	);
 }
 
@@ -307,11 +306,10 @@ sub alienhunterSearch_GET {
 	my $searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => $c->config->{rest_endpoint} );
+	my $response = $searchDBClient->getAlienHunter( \%hash );
 	standardStatusOk(
 		$self, $c,
-		$searchDBClient->getAlienHunter(
-			\%hash
-		)->{response}
+		$response->{response}, $response->{total}, $hash{pageSize}, $hash{offset}
 	);
 }
 

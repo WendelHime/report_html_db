@@ -49,7 +49,7 @@ sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(6) :
 sub searchGene_GET {
 	my ( $self, 	$c, 	$pipeline, 	$geneID, 
 		$geneDescription, 	$noDescription, $individually,	$featureId,
-		$pageSize,        $offset )
+		$pageSize,        $offset, $contig )
 	  = @_;
 
 	if ( !$pipeline and defined $c->request->param("pipeline") ) {
@@ -76,6 +76,9 @@ sub searchGene_GET {
 	if ( !$offset and defined $c->request->param("offset") ) {
 		$offset = $c->request->param("offset");
 	}
+	if ( !$contig and defined $c->request->param("contig") ) {
+		$contig = $c->request->param("contig");
+	}
 
 	my @list = ();
 	my %hash = ();
@@ -87,6 +90,7 @@ sub searchGene_GET {
 	$hash{individually}    = $individually;
 	$hash{pageSize}        = $pageSize;
 	$hash{offset}          = $offset;
+	$hash{contig}		    = $contig if $contig;
 
 	my $result     = $c->model('SearchDatabaseRepository')->searchGene( \%hash );
 	my @resultList = @{ $result->{list} };
@@ -520,13 +524,14 @@ sub tandemRepeatsSearch_GET {
 			$hash{$key} = $c->request->params->{$key};
 		}
 	}
-
-	my @resultList = @{ $c->model('SearchDatabaseRepository')->trf_search( \%hash ) };
+	my $result = $c->model('SearchDatabaseRepository')->trf_search( \%hash );
+	my @resultList = @{ $result->{list} };
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
 	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@list, $result->{total}, $hash{pageSize}, 
+		$hash{offset} );
 }
 
 =head2
@@ -550,13 +555,15 @@ sub ncRNASearch_GET {
 		}
 	}
 
-	my @resultList = @{ $c->model('SearchDatabaseRepository')->ncRNA_search( \%hash ) };
+	my $result = $c->model('SearchDatabaseRepository')->ncRNA_search( \%hash );
+	my @resultList = @{ $result->{list} };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
 	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@list, $result->{total}, $hash{pageSize}, 
+		$hash{offset} );
 }
 
 =head2
@@ -581,14 +588,16 @@ sub transcriptionalTerminatorSearch_GET {
 		}
 	}
 
+	my $result = $c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \%hash );
 	my @resultList =
-	  @{ $c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \%hash ) };
+	  @{ $result->{list} };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
 		push @list, $resultList[$i]->pack();
 	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@list, $result->{total},  $hash{pageSize}, 
+		$hash{offset} );
 }
 
 =head2
@@ -613,13 +622,29 @@ sub rbsSearch_GET {
 		}
 	}
 
-	my @resultList = @{ $c->model('SearchDatabaseRepository')->rbs_search( \%hash ) };
+	my $result = $c->model('SearchDatabaseRepository')->rbs_search( \%hash );
+	my @resultList = @{ $result->{list} };
 
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list, $resultList[$i]->pack();
+		my %object = (
+			contig => $resultList[$i]->getContig,
+			start  => $resultList[$i]->getStart,
+			end    => $resultList[$i]->getEnd,
+		);
+
+		$object{site_pattern} = $resultList[$i]->getSitePattern
+		  if $resultList[$i]->getSitePattern;
+		$object{old_start} = $resultList[$i]->getOldStart
+		  if $resultList[$i]->getOldStart;
+		$object{position_shift} = $resultList[$i]->getPositionShift
+		  if $resultList[$i]->getPositionShift;
+		$object{new_start} = $resultList[$i]->getNewStart
+		  if $resultList[$i]->getNewStart;
+
+		push @list, \%object;
 	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@list, $result->{total}, $hash{pageSize}, $hash{offset} );
 }
 
 =head2
@@ -643,13 +668,28 @@ sub alienhunterSearch_GET {
 		}
 	}
 
-	my @resultList = @{ $c->model('SearchDatabaseRepository')->alienhunter_search( \%hash ) };
-
+	my $result = $c->model('SearchDatabaseRepository')->alienhunter_search( \%hash );
+	my @resultList = @{ $result->{list} };
+	
 	for ( my $i = 0 ; $i < scalar @resultList ; $i++ ) {
-		push @list, $resultList[$i]->pack();
+		my %object = (
+			id     => $resultList[$i]->getID,
+			contig => $resultList[$i]->getContig,
+			start  => $resultList[$i]->getStart,
+			end    => $resultList[$i]->getEnd,
+		);
+
+		$object{length} = $resultList[$i]->getLength
+		  if $resultList[$i]->getLength;
+		$object{score} = $resultList[$i]->getScore
+		  if $resultList[$i]->getScore;
+		$object{threshold} = $resultList[$i]->getThreshold
+		  if $resultList[$i]->getThreshold;
+
+		push @list, \%object;
 	}
 
-	standardStatusOk( $self, $c, \@list );
+	standardStatusOk( $self, $c, \@list, $result->{total}, $hash{pageSize}, $hash{offset} );
 }
 
 =head2

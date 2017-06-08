@@ -1,0 +1,426 @@
+Query= Contig-1_CDS_annotation_glimmer3.pl_log_10_49
+
+Length=209
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|234564  PRK00001, rplC, 50S ribosomal protein L3; Validated   370     8e-131
+gnl|CDD|234285  TIGR03625, L3_bact, 50S ribosomal protein L3, bac...  364     9e-129
+gnl|CDD|223165  COG0087, RplC, Ribosomal protein L3 [Translation,...  327     1e-113
+gnl|CDD|144036  pfam00297, Ribosomal_L3, Ribosomal protein L3         236     5e-78 
+gnl|CDD|177065  CHL00143, rpl3, ribosomal protein L3; Validated       228     5e-75 
+gnl|CDD|234286  TIGR03626, L3_arch, archaeal ribosomal protein L3...  83.5    4e-19 
+gnl|CDD|235260  PRK04231, rpl3p, 50S ribosomal protein L3P; Reviewed  71.0    1e-14 
+gnl|CDD|240267  PTZ00103, PTZ00103, 60S ribosomal protein L3; Pro...  37.4    0.004 
+gnl|CDD|233988  TIGR02734, crtI_fam, phytoene desaturase. Phytoen...  30.3    0.77  
+gnl|CDD|215230  PLN02418, PLN02418, delta-1-pyrroline-5-carboxyla...  30.1    0.91  
+gnl|CDD|215569  PLN03089, PLN03089, hypothetical protein; Provisi...  29.5    1.2   
+gnl|CDD|223976  COG1047, SlpA, FKBP-type peptidyl-prolyl cis-tran...  28.0    3.1   
+gnl|CDD|251982  pfam03471, CorC_HlyC, Transporter associated doma...  26.3    3.8   
+gnl|CDD|185697  cd09020, D-hex-6-P-epi_like, D-hexose-6-phosphate...  27.6    4.9   
+gnl|CDD|176910  cd08901, SRPBCC_CalC_Aha1-like_8, Putative hydrop...  26.9    5.6   
+gnl|CDD|106901  PHA00280, PHA00280, putative NHN endonuclease         26.7    6.8   
+gnl|CDD|187636  cd08931, SDR_c9, classical (c) SDR, subgroup 9. T...  26.6    9.3   
+gnl|CDD|130164  TIGR01092, P5CS, delta l-pyrroline-5-carboxylate ...  27.2    9.4   
+
+
+>gnl|CDD|234564 PRK00001, rplC, 50S ribosomal protein L3; Validated.
+Length=210
+
+ Score = 370 bits (953),  Expect = 8e-131, Method: Composition-based stats.
+ Identities = 151/209 (72%), Positives = 171/209 (82%), Gaps = 2/209 (1%)
+
+Query  1    MIGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRI  60
+            M G++GKKVGMT+IFTEDG SIPVTVIE   N VTQVK ++ DGY A+Q+  G KK  R+
+Sbjct  2    MKGILGKKVGMTQIFTEDGESIPVTVIEAGPNVVTQVKTVEKDGYNAVQLGFGDKKEKRV  61
+
+Query  61   NKPEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAG  120
+            NKPEAGHFAKAGVE  R LREFR+ E  EY VGQ I+V+IF   +KVDVTGTSKGKGFAG
+Sbjct  62   NKPEAGHFAKAGVEPKRHLREFRVVE--EYEVGQEITVDIFEAGQKVDVTGTSKGKGFAG  119
+
+Query  121  TVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRV  180
+             +KR NF    ASHGNS SHR PGSIG  QTPG+VFKGKKMAG +GNERVTVQ+L+VV+V
+Sbjct  120  VIKRHNFSGGPASHGNSRSHRRPGSIGARQTPGRVFKGKKMAGHMGNERVTVQNLEVVKV  179
+
+Query  181  DAERNLLLVKGAVPGATGGNLIVKPAVKA  209
+            DAERNLLLVKGAVPGA GG +I+KPAVKA
+Sbjct  180  DAERNLLLVKGAVPGAKGGLVIIKPAVKA  208
+
+
+>gnl|CDD|234285 TIGR03625, L3_bact, 50S ribosomal protein L3, bacterial.  This 
+model describes bacterial (and mitochondrial and chloroplast) 
+class of ribosomal protein L3. A separate model describes 
+the archaeal form, where both belong to Pfam family pfam00297. 
+The name is phrased to meet the needs of bacterial genome 
+annotation. Organellar forms typically will have transit 
+peptides, N-terminal to the region modeled here.
+Length=202
+
+ Score = 364 bits (938),  Expect = 9e-129, Method: Composition-based stats.
+ Identities = 141/202 (70%), Positives = 165/202 (82%), Gaps = 0/202 (0%)
+
+Query  3    GLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRINK  62
+            GL+GKKVGMT+IFTEDG ++PVTVIE+  N VTQVK ++ DGY A+Q+  G KK  R+NK
+Sbjct  1    GLLGKKVGMTQIFTEDGKAVPVTVIEVGPNVVTQVKTVEKDGYSAVQLGFGEKKEKRVNK  60
+
+Query  63   PEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAGTV  122
+            PEAGHFAKAGVE  R LREFR+ + E Y VG  I+V+IF   +KVDVTGTSKGKGFAG +
+Sbjct  61   PEAGHFAKAGVEPKRHLREFRVDDLEGYEVGDEITVDIFEAGQKVDVTGTSKGKGFAGVM  120
+
+Query  123  KRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRVDA  182
+            KR NF    ASHGNS SHR PGSIGQ QTPG+VFKGKKMAG +GNERVTVQ+L+VV+VDA
+Sbjct  121  KRHNFSGGPASHGNSKSHRAPGSIGQRQTPGRVFKGKKMAGHMGNERVTVQNLEVVKVDA  180
+
+Query  183  ERNLLLVKGAVPGATGGNLIVK  204
+            ERNLLLVKGAVPGA G  +++K
+Sbjct  181  ERNLLLVKGAVPGAKGSLVLIK  202
+
+
+>gnl|CDD|223165 COG0087, RplC, Ribosomal protein L3 [Translation, ribosomal structure 
+and biogenesis].
+Length=218
+
+ Score = 327 bits (840),  Expect = 1e-113, Method: Composition-based stats.
+ Identities = 132/212 (62%), Positives = 165/212 (78%), Gaps = 3/212 (1%)
+
+Query  1    MIGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRI  60
+            M+G +G KVGMT +F E G+S+PVTVIE+  N V QVK  ++DGYRA+QV  G +KA R+
+Sbjct  1    MLGFLGYKVGMTHVFDERGISVPVTVIEVPPNVVVQVKTYETDGYRAVQVGAGDRKAKRV  60
+
+Query  61   NKPEAGHFAKAGVEAGRILREFRLSEG---EEYAVGQNISVEIFADVKKVDVTGTSKGKG  117
+            NKP  GHFAKAGV+  R L EFR+  G   E++ VGQ I+V++F + + VDVTG +KGKG
+Sbjct  61   NKPLVGHFAKAGVKPKRHLAEFRVGGGDVAEKFEVGQEITVDVFKEGELVDVTGVTKGKG  120
+
+Query  118  FAGTVKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDV  177
+            F G +KRW F+   ASHG+SLSHR PGSIGQ QTPG+VFKGKKMAG +GNERVTVQ+L+V
+Sbjct  121  FQGVMKRWGFKGGPASHGSSLSHRRPGSIGQRQTPGRVFKGKKMAGHMGNERVTVQNLEV  180
+
+Query  178  VRVDAERNLLLVKGAVPGATGGNLIVKPAVKA  209
+            V+VD E NL+LVKGAVPGA    ++V+PAVKA
+Sbjct  181  VKVDVENNLILVKGAVPGAKKRLVVVRPAVKA  212
+
+
+>gnl|CDD|144036 pfam00297, Ribosomal_L3, Ribosomal protein L3.  
+Length=199
+
+ Score = 236 bits (603),  Expect = 5e-78, Method: Composition-based stats.
+ Identities = 98/201 (49%), Positives = 124/201 (62%), Gaps = 6/201 (3%)
+
+Query  8    KVGMTRIFTED-GVSIPVTVIEIEDNRVTQVKDLD--SDGYRAIQVTTGSKKANRINKPE  64
+            K GMT IFTE  GV  PVTVIE+    V QVK  +  +DGY+AIQV   S K  R+ K  
+Sbjct  1    KAGMTHIFTEKKGVLEPVTVIEVPPMVVVQVKTYEETNDGYKAIQVGLESIKKYRVVKRV  60
+
+Query  65   AGHFAKAGVEAGRILREFRLSEGEEYAVGQNISV-EIFADVKKVDVTGTSKGKGFAGTVK  123
+             GH  K G      + EFR++ GEE+  GQ I+V ++F + + VDVTG +KGKGF G +K
+Sbjct  61   LGHTQKRGTPPKAHVMEFRVNGGEEFEPGQTIAVSDVFREGEYVDVTGVTKGKGFQGVMK  120
+
+Query  124  RWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRVDAE  183
+            RW F+     HG    HR PGSIG    PG+VF G KMAGQ+GN   T Q+L + R+D E
+Sbjct  121  RWGFKRLPRKHGRGY-HRKPGSIGA-WHPGRVFPGVKMAGQMGNHHRTEQNLKIYRIDQE  178
+
+Query  184  RNLLLVKGAVPGATGGNLIVK  204
+             NLLLVKG+VPG     + ++
+Sbjct  179  NNLLLVKGSVPGPKKRLVTIR  199
+
+
+>gnl|CDD|177065 CHL00143, rpl3, ribosomal protein L3; Validated.
+Length=207
+
+ Score = 228 bits (584),  Expect = 5e-75, Method: Composition-based stats.
+ Identities = 97/205 (47%), Positives = 143/205 (70%), Gaps = 1/205 (0%)
+
+Query  2    IGLVGKKVGMTRIFTEDGVSIPVTVIEIEDNRVTQVKDLDSDGYRAIQVTTGSKKANRIN  61
+            IGL+G K+GMT+IF E G +IPVT++++    +TQ+K L +DGY AIQ+        ++ 
+Sbjct  3    IGLLGTKIGMTQIFDETGNAIPVTILKVGPCVITQIKTLTTDGYNAIQIGYKQVSTKKLT  62
+
+Query  62   KPEAGHFAKAGVEAGRILREFRLSEGEEYAVGQNISVEIFADVKKVDVTGTSKGKGFAGT  121
+            KP+ GH  K+ V   + L+EFR+   EE+ VGQ ++V+ F+  + V+V+G S GKGFAG 
+Sbjct  63   KPQLGHLQKSNVPPLKYLKEFRVKSSEEFEVGQPLTVDAFSVGQLVNVSGKSIGKGFAGL  122
+
+Query  122  VKRWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLGNERVTVQSLDVVRVD  181
+             KR NF     +HG S +HR PGSIG   TPG+V+ GKKMAG+LGN++VT+++L +++VD
+Sbjct  123  QKRHNFSRGPMTHG-SKNHRAPGSIGAGTTPGRVYPGKKMAGRLGNKKVTIKNLKILKVD  181
+
+Query  182  AERNLLLVKGAVPGATGGNLIVKPA  206
+            +E NLL++KG+VPG  G  L + P+
+Sbjct  182  SENNLLVLKGSVPGKPGNLLSISPS  206
+
+
+>gnl|CDD|234286 TIGR03626, L3_arch, archaeal ribosomal protein L3.  This model 
+describes exclusively the archaeal class of ribosomal protein 
+L3. A separate model (TIGR03625) describes the bacterial/organelle 
+form, and both belong to Pfam family pfam00297. Eukaryotic 
+proteins are excluded from this model [Protein synthesis, 
+Ribosomal proteins: synthesis and modification].
+Length=330
+
+ Score = 83.5 bits (207),  Expect = 4e-19, Method: Composition-based stats.
+ Identities = 67/283 (24%), Positives = 109/283 (39%), Gaps = 79/283 (28%)
+
+Query  1    MIGLVGKKVGMTRIFTEDG----------VSIPVTVIEIEDNRVTQVK--DLDSDGYRAI  48
+            + G  G K GMT +   D           +S+PVTV+E    RV  ++    D  G + +
+Sbjct  35   LQGFAGYKAGMTHVIMVDDRKNSPTEGKEISVPVTVLEAPPLRVAAIRAYGKDPYGLKVL  94
+
+Query  49   QVTTGSKKAN--------RINKPEAGHFAKA----------GVEAGRIL-----------  79
+                    AN        +I  P+     +             +  R++           
+Sbjct  95   ----TEVWANNLDKELSRKITLPKNYDVEEKLEKIEELLENDADDVRLIVHTQPKLVTGV  150
+
+Query  80   -------REFRLSEGE-----EYA---VGQNISV-EIFADVKKVDVTGTSKGKGFAGTVK  123
+                    E R+  G      EYA   +G+ ISV ++F + + VDV   +KGKGF G VK
+Sbjct  151  PKKKPEIMEIRIGGGSVEERFEYALSILGKEISVSDVFKEGQLVDVIAVTKGKGFQGVVK  210
+
+Query  124  RWNFRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLG-------NERVTVQSLD  176
+            RW  +     H      R  G++G   TP +V      AGQ+G       N+R+     D
+Sbjct  211  RWGVKLLPRKHKRRKGGRHIGTLGP-WTPSRVRWTVPQAGQMGYHQRTEYNKRILKIGED  269
+
+Query  177  VVRVDAE----------RNLLLVKGAVPGATGGNLIVKPAVKA  209
+               +  +           + +L+KG+VPG +   + ++ A++ 
+Sbjct  270  GDEITPKGGFVNYGLVRNDYVLIKGSVPGPSKRLIRLRDAIRP  312
+
+
+>gnl|CDD|235260 PRK04231, rpl3p, 50S ribosomal protein L3P; Reviewed.
+Length=337
+
+ Score = 71.0 bits (175),  Expect = 1e-14, Method: Composition-based stats.
+ Identities = 70/284 (25%), Positives = 111/284 (39%), Gaps = 80/284 (28%)
+
+Query  1    MIGLVGKKVGMTRIFTEDG----------VSIPVTVIEIEDNRVTQVK--DLDSDGYRAI  48
+            ++G  G K GMT +   D           + +PVTV+E    RV  ++  + D  G + +
+Sbjct  39   LLGFAGYKAGMTHVIMIDDRPNSPTEGKEIFVPVTVLETPPMRVAAIRAYEKDPYGLKVL  98
+
+Query  49   -QVTTGSKKAN---RINKPEAGHFAKAG------VEAGRI--------------------  78
+             +V           RI  P+     KA       +E G+I                    
+Sbjct  99   TEVWAEDLDKELERRITLPKKDEKKKAFEKLLKLLEEGKIVDVRVIVHTQPKLVTGVPKK  158
+
+Query  79   ---LREFRLSEGE-----EYA---VGQNISV-EIFADVKKVDVTGTSKGKGFAGTVKRWN  126
+               + E R+  G      EYA   +G+ IS+ ++F + + VDV   +KGKGF G VKRW 
+Sbjct  159  KPEIMEIRIGGGSVEERLEYAKELLGKEISISDVFKEGQLVDVIAVTKGKGFQGVVKRWG  218
+
+Query  127  FRTQDASHGNSLSHRVPGSIGQNQTPGKVFKGKKMAGQLG-------NERVTVQSLDVVR  179
+             +     H      R  G++G    P +V      AGQ+G       N+R+    L +  
+Sbjct  219  VKLLPRKHKRRGGSRHIGTLGP-WNPSRVMWTVPQAGQMGFHQRTEYNKRI----LKIGD  273
+
+Query  180  VDAERN--------------LLLVKGAVPGATGGNLIVKPAVKA  209
+               E                 +L+KG+VPG     + ++PA++ 
+Sbjct  274  DGDEITPKGGFLHYGLVRNDYVLIKGSVPGPAKRLIRLRPAIRP  317
+
+
+>gnl|CDD|240267 PTZ00103, PTZ00103, 60S ribosomal protein L3; Provisional.
+Length=390
+
+ Score = 37.4 bits (87),  Expect = 0.004, Method: Composition-based stats.
+ Identities = 15/41 (37%), Positives = 24/41 (59%), Gaps = 4/41 (10%)
+
+Query  89   EYAVG---QNISVE-IFADVKKVDVTGTSKGKGFAGTVKRW  125
+            ++A     + + V+ +F   + +DV G +KG GF G VKRW
+Sbjct  192  DFAKSLLEKEVPVDSVFQQNEMIDVIGVTKGHGFEGVVKRW  232
+
+
+>gnl|CDD|233988 TIGR02734, crtI_fam, phytoene desaturase.  Phytoene is converted 
+to lycopene by desaturation at four (two symmetrical pairs 
+of) sites. This is achieved by two enzymes (crtP and crtQ) 
+in cyanobacteria (Gloeobacter being an exception) and plants, 
+but by a single enzyme in most other bacteria and in fungi. 
+This single enzyme is called the bacterial-type phytoene 
+desaturase, or CrtI. Most members of this family, part of the 
+larger Pfam family pfam01593, which also contains amino oxidases, 
+are CrtI itself; it is likely that all members act 
+on either phytoene or on related compounds such as dehydrosqualene, 
+for carotenoid biosynthesis [Biosynthesis of cofactors, 
+prosthetic groups, and carriers, Other].
+Length=502
+
+ Score = 30.3 bits (69),  Expect = 0.77, Method: Composition-based stats.
+ Identities = 11/42 (26%), Positives = 16/42 (38%), Gaps = 4/42 (10%)
+
+Query  10   GMTRIFTEDGVSI----PVTVIEIEDNRVTQVKDLDSDGYRA  47
+             M ++  + G  +     V  IE E  R T V   D +   A
+Sbjct  224  AMAKLAEDLGGELRLNAEVIRIETEGGRATAVHLADGERLDA  265
+
+
+>gnl|CDD|215230 PLN02418, PLN02418, delta-1-pyrroline-5-carboxylate synthase.
+Length=718
+
+ Score = 30.1 bits (68),  Expect = 0.91, Method: Composition-based stats.
+ Identities = 16/57 (28%), Positives = 26/57 (46%), Gaps = 15/57 (26%)
+
+Query  36   QVKDLDSDGYRAIQVTTGS--------KKANRIN-------KPEAGHFAKAGVEAGR  77
+            Q+K+L+SDGY  I V++G+        +    +N       KP+     KA    G+
+Sbjct  45   QIKELNSDGYEVILVSSGAVGVGRQRLRYRRLVNSSFADLQKPQMELDGKACAAVGQ  101
+
+
+>gnl|CDD|215569 PLN03089, PLN03089, hypothetical protein; Provisional.
+Length=373
+
+ Score = 29.5 bits (67),  Expect = 1.2, Method: Composition-based stats.
+ Identities = 24/82 (29%), Positives = 33/82 (40%), Gaps = 23/82 (28%)
+
+Query  67   HFA----KAGVE--AGR---ILREFRLSEGEEY----AVG-------QNISVEIFADVKK  106
+            HF+    K  VE  +G+   I +  R   G+ Y     VG        ++ VE FA    
+Sbjct  247  HFSVPEGKRAVELVSGKESAIAQVVRTVPGKSYNLSFTVGDANNGCHGSMMVEAFAGKDT  306
+
+Query  107  VDVTGTSKGKGFAGTVKRWNFR  128
+              V   S+GK   G  KR + R
+Sbjct  307  QKVPYESQGK---GGFKRASLR  325
+
+
+>gnl|CDD|223976 COG1047, SlpA, FKBP-type peptidyl-prolyl cis-trans isomerases 
+2 [Posttranslational modification, protein turnover, chaperones].
+Length=174
+
+ Score = 28.0 bits (63),  Expect = 3.1, Method: Composition-based stats.
+ Identities = 10/28 (36%), Positives = 13/28 (46%), Gaps = 0/28 (0%)
+
+Query  8    KVGMTRIFTEDGVSIPVTVIEIEDNRVT  35
+            +VGM          IP  V E+  +RVT
+Sbjct  92   EVGMEVEAEGGDGEIPGVVTEVSGDRVT  119
+
+
+>gnl|CDD|251982 pfam03471, CorC_HlyC, Transporter associated domain.  This small 
+domain is found in a family of proteins with the pfam01595 
+domain and two CBS domains with this domain found at the 
+C-terminus of the proteins, the domain is also found at the 
+C terminus of some Na+/H+ antiporters. This domain is also found 
+in CorC that is involved in Magnesium and cobalt efflux. 
+The function of this domain is uncertain but might be involved 
+in modulating transport of ion substrates.
+Length=81
+
+ Score = 26.3 bits (59),  Expect = 3.8, Method: Composition-based stats.
+ Identities = 8/31 (26%), Positives = 16/31 (52%), Gaps = 2/31 (6%)
+
+Query  8   KVGMTRIFTEDGVSIPVTVIEIEDNRVTQVK  38
+           +VG        G+    TV+E++  R+ +V+
+Sbjct  48  EVGDKVEVELGGLRF--TVLEVDGRRIKKVR  76
+
+
+>gnl|CDD|185697 cd09020, D-hex-6-P-epi_like, D-hexose-6-phosphate epimerase-like. 
+ D-Hexose-6-phosphate epimerase Ymr099c from Saccharomyces 
+cerevisiae belongs to the large superfamily of aldose-1-epimerases. 
+Its active site is very similar to the catalytic 
+site of galactose mutarotase, the best studied member of the 
+superfamily. It also contains the conserved glutamate and 
+histidine residues that have been shown in galactose mutarotase 
+to be critical for catalysis, the glutamate serving as the 
+active site base to initiate the reaction by removing the 
+proton from the C-1 hydroxyl group of the sugar substrate, 
+and the histidine as the active site acid to protonate the C-5 
+ring oxygen. In addition Ymr099c contains 2 conserved arginine 
+residues which are involved in phosphate binding, and 
+exhibits hexose-6-phosphate mutarotase activity on glucose-6-P, 
+galactose-6-P and mannose-6-P.
+Length=269
+
+ Score = 27.6 bits (62),  Expect = 4.9, Method: Composition-based stats.
+ Identities = 9/25 (36%), Positives = 13/25 (52%), Gaps = 0/25 (0%)
+
+Query  73   VEAGRILREFRLSEGEEYAVGQNIS  97
+            VEA  +     L+ GE + + Q IS
+Sbjct  245  VEAANVADPVTLAPGESHTLSQTIS  269
+
+
+>gnl|CDD|176910 cd08901, SRPBCC_CalC_Aha1-like_8, Putative hydrophobic ligand-binding 
+SRPBCC domain of an uncharacterized subgroup of CalC- 
+and Aha1-like proteins.  SRPBCC (START/RHO_alpha_C/PITP/Bet_v1/CoxG/CalC) 
+domain of a functionally uncharacterized subgroup 
+of CalC- and Aha1-like proteins. This group shows similarity 
+to the SRPBCC domains of Micromonospora echinospora 
+CalC (a protein which confers resistance to enediynes) and human 
+Aha1 (one of several co-chaperones which regulate the dimeric 
+chaperone Hsp90), and belongs to the SRPBCC domain superfamily 
+of proteins that bind hydrophobic ligands. SRPBCC 
+domains have a deep hydrophobic ligand-binding pocket and they 
+bind diverse ligands.
+Length=136
+
+ Score = 26.9 bits (60),  Expect = 5.6, Method: Composition-based stats.
+ Identities = 13/28 (46%), Positives = 17/28 (61%), Gaps = 2/28 (7%)
+
+Query  6   GKKVGMTRIFTEDGVSIPVTVIEIEDNR  33
+           GK V  T  +   G S+PV V+EIE N+
+Sbjct  40  GKTV--TWDWEMYGASVPVNVLEIEPNK  65
+
+
+>gnl|CDD|106901 PHA00280, PHA00280, putative NHN endonuclease.
+Length=121
+
+ Score = 26.7 bits (58),  Expect = 6.8, Method: Composition-based stats.
+ Identities = 7/21 (33%), Positives = 9/21 (43%), Gaps = 0/21 (0%)
+
+Query  121  TVKRWNFRTQDASHGNSLSHR  141
+             V  W +RT+   HG     R
+Sbjct  101  EVVAWIYRTRRELHGQFARFR  121
+
+
+>gnl|CDD|187636 cd08931, SDR_c9, classical (c) SDR, subgroup 9.  This subgroup 
+has the canonical active site tetrad and NAD-binding motif 
+of the classical SDRs. SDRs are a functionally diverse family 
+of oxidoreductases that have a single domain with a structurally 
+conserved Rossmann fold (alpha/beta folding pattern 
+with a central beta-sheet), an NAD(P)(H)-binding region, and 
+a structurally diverse C-terminal region. Classical SDRs are 
+typically about 250 residues long, while extended SDRs are 
+approximately 350 residues. Sequence identity between different 
+SDR enzymes are typically in the 15-30% range, but the 
+enzymes share the Rossmann fold NAD-binding motif and characteristic 
+NAD-binding and catalytic sequence patterns. These 
+enzymes catalyze a wide range of activities including the metabolism 
+of steroids, cofactors, carbohydrates, lipids, aromatic 
+compounds, and amino acids, and act in redox sensing. Classical 
+SDRs have an TGXXX[AG]XG cofactor binding motif and 
+a YXXXK active site motif, with the Tyr residue of the active 
+site motif serving as a critical catalytic residue (Tyr-151, 
+human 15-hydroxyprostaglandin dehydrogenase (15-PGDH) numbering). 
+In addition to the Tyr and Lys, there is often an 
+upstream Ser (Ser-138, 15-PGDH numbering) and/or an Asn (Asn-107, 
+15-PGDH numbering) contributing to the active site; while 
+substrate binding is in the C-terminal region, which determines 
+specificity. The standard reaction mechanism is a 4-pro-S 
+hydride transfer and proton relay involving the conserved 
+Tyr and Lys, a water molecule stabilized by Asn, and nicotinamide. 
+Extended SDRs have additional elements in the C-terminal 
+region, and typically have a TGXXGXXG cofactor binding 
+motif. Complex (multidomain) SDRs such as ketoreductase domains 
+of fatty acid synthase have a GGXGXXG NAD(P)-binding 
+motif and an altered active site motif (YXXXN). Fungal type 
+ketoacyl reductases have a TGXXXGX(1-2)G NAD(P)-binding motif. 
+Some atypical SDRs have lost catalytic activity and/or have 
+an unusual NAD(P)-binding motif and missing or unusual active 
+site residues. Reactions catalyzed within the SDR family 
+include isomerization, decarboxylation, epimerization, C=N 
+bond reduction, dehydratase activity, dehalogenation, Enoyl-CoA 
+reduction, and carbonyl-alcohol oxidoreduction.
+Length=227
+
+ Score = 26.6 bits (59),  Expect = 9.3, Method: Composition-based stats.
+ Identities = 15/43 (35%), Positives = 18/43 (42%), Gaps = 3/43 (7%)
+
+Query  159  KKMAGQLGNERVTVQSLDVVRVDAERNLLLVKGAVPGATGGNL  201
+              +A +LG E V   +LDV    A    L        ATGG L
+Sbjct  38   AALAAELGAENVVAGALDVTDRAAWAAAL---ADFAAATGGRL  77
+
+
+>gnl|CDD|130164 TIGR01092, P5CS, delta l-pyrroline-5-carboxylate synthetase. 
+ This protein contains a glutamate 5-kinase (ProB, EC 2.7.2.11) 
+region followed by a gamma-glutamyl phosphate reductase 
+(ProA, EC 1.2.1.41) region [Amino acid biosynthesis, Glutamate 
+family].
+Length=715
+
+ Score = 27.2 bits (60),  Expect = 9.4, Method: Composition-based stats.
+ Identities = 10/26 (38%), Positives = 15/26 (58%), Gaps = 0/26 (0%)
+
+Query  34  VTQVKDLDSDGYRAIQVTTGSKKANR  59
+             Q+ +L+SDG   I VT+G+    R
+Sbjct  35  CEQLSELNSDGREVILVTSGAVAFGR  60
+
+
+
+Lambda      K        H        a         alpha
+   0.314    0.134    0.372    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 815424088

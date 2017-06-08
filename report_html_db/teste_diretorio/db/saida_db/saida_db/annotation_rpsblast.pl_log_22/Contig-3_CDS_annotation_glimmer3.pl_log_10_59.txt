@@ -1,0 +1,230 @@
+Query= Contig-3_CDS_annotation_glimmer3.pl_log_10_59
+
+Length=52
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+gnl|CDD|223175  COG0097, RplF, Ribosomal protein L6P/L9E [Transla...  27.5    0.29 
+gnl|CDD|131341  TIGR02288, PaaN_2, phenylacetic acid degradation ...  25.6    1.4  
+gnl|CDD|239903  cd04456, S1_IF1A_like, S1_IF1A_like: Translation ...  24.8    1.5  
+gnl|CDD|235496  PRK05518, rpl6p, 50S ribosomal protein L6P; Reviewed  24.8    2.2  
+gnl|CDD|182318  PRK10225, PRK10225, DNA-binding transcriptional r...  24.6    2.9  
+gnl|CDD|234296  TIGR03653, arch_L6P, archaeal ribosomal protein L...  24.2    3.6  
+gnl|CDD|215621  PLN03188, PLN03188, kinesin-12 family protein; Pr...  24.1    4.4  
+gnl|CDD|233445  TIGR01511, ATPase-IB1_Cu, copper-(or silver)-tran...  23.8    5.6  
+gnl|CDD|233186  TIGR00920, 2A060605, 3-hydroxy-3-methylglutaryl-c...  23.7    6.9  
+gnl|CDD|147617  pfam05535, Chromadorea_ALT, Chromadorea ALT prote...  22.8    8.5  
+gnl|CDD|171535  PRK12485, PRK12485, bifunctional 3,4-dihydroxy-2-...  23.4    9.1  
+
+
+>gnl|CDD|223175 COG0097, RplF, Ribosomal protein L6P/L9E [Translation, ribosomal 
+structure and biogenesis].
+Length=178
+
+ Score = 27.5 bits (62),  Expect = 0.29, Method: Composition-based stats.
+ Identities = 9/19 (47%), Positives = 10/19 (53%), Gaps = 0/19 (0%)
+
+Query  3    EGPDSQDVGLEAAIIERKR  21
+            EG D + VG  AA I   R
+Sbjct  134  EGIDKELVGQVAANIRAAR  152
+
+
+>gnl|CDD|131341 TIGR02288, PaaN_2, phenylacetic acid degradation protein paaN. 
+ This enzyme is proposed to act in the ring-opening step of 
+phenylacetic acid degradation which follows ligation of the 
+acid with coenzyme A (by PaaF) and hydroxylation by a multicomponent 
+non-heme iron hydroxylase complex (PaaGHIJK). Gene 
+symbols have been standardized in. This enzyme is related 
+to aldehyde dehydrogenases and has a domain which is a member 
+of the pfam00171 family. This family includes sequences from 
+Burkholderia, Bordetella, Streptomyces. Other PaaN enzymes 
+are represented by a separate model, TIGR02278.
+Length=551
+
+ Score = 25.6 bits (56),  Expect = 1.4, Method: Composition-based stats.
+ Identities = 15/49 (31%), Positives = 23/49 (47%), Gaps = 1/49 (2%)
+
+Query  4    GPDSQDVGLEAAIIERKRNSSLVESACAEDVTGLNHAPKLRQRHVGVVG  52
+            GP +QD GLEA     +  S + E+A  E   G  + P   ++   +V 
+Sbjct  146  GPHAQDRGLEAVAYAYREMSRIPETAVWEKPQG-KNDPLKLKKRFTIVP  193
+
+
+>gnl|CDD|239903 cd04456, S1_IF1A_like, S1_IF1A_like: Translation initiation factor 
+IF1A-like, S1-like RNA-binding domain. IF1A is also referred 
+to as eIF1A in eukaryotes and aIF1A in archaea. S1-like 
+RNA-binding domains are found in a wide variety of RNA-associated 
+proteins. IF1A is essential for translation initiation. 
+eIF1A acts synergistically with eIF1 to mediate assembly 
+of ribosomal initiation complexes at the initiation codon 
+and maintain the accuracy of this process by recognizing and 
+destabilizing aberrant preinitiation complexes from the mRNA. 
+Without eIF1A and eIF1, 43S ribosomal preinitiation complexes 
+can bind to the cap-proximal region, but are unable to 
+reach the initiation codon. eIF1a also enhances the formation 
+of 5'-terminal complexes in the presence of other translation 
+initiation factors. This protein family is only found in 
+eukaryotes and archaea.
+Length=78
+
+ Score = 24.8 bits (54),  Expect = 1.5, Method: Composition-based stats.
+ Identities = 9/35 (26%), Positives = 15/35 (43%), Gaps = 1/35 (3%)
+
+Query  13  EAAIIERKRNSSLVESACAEDVTGLNHAP-KLRQR  46
+           +   + R   ++  E  CA+    L   P KLR+ 
+Sbjct  2   QIVRVLRMLGNNRHEVECADGQRRLVSIPGKLRKN  36
+
+
+>gnl|CDD|235496 PRK05518, rpl6p, 50S ribosomal protein L6P; Reviewed.
+Length=180
+
+ Score = 24.8 bits (55),  Expect = 2.2, Method: Composition-based stats.
+ Identities = 10/17 (59%), Positives = 12/17 (71%), Gaps = 0/17 (0%)
+
+Query  3    EGPDSQDVGLEAAIIER  19
+            EG D +DVG  AA IE+
+Sbjct  139  EGIDKEDVGQTAANIEQ  155
+
+
+>gnl|CDD|182318 PRK10225, PRK10225, DNA-binding transcriptional repressor UxuR; 
+Provisional.
+Length=257
+
+ Score = 24.6 bits (53),  Expect = 2.9, Method: Composition-based stats.
+ Identities = 10/25 (40%), Positives = 12/25 (48%), Gaps = 0/25 (0%)
+
+Query  3    EGPDSQDVGLEAAIIERKRNSSLVE  27
+               +S D+    AI E   NS LVE
+Sbjct  142  GSSESGDMQFHLAIAEATHNSMLVE  166
+
+
+>gnl|CDD|234296 TIGR03653, arch_L6P, archaeal ribosomal protein L6P.  Members 
+of this protein family are the archaeal ribosomal protein L6P. 
+The top-scoring proteins not selected by this model are 
+eukaryotic cytosolic ribosomal protein L9. Bacterial ribosomal 
+protein L6 scores lower and is described by a distinct model 
+[Protein synthesis, Ribosomal proteins: synthesis and modification].
+Length=170
+
+ Score = 24.2 bits (53),  Expect = 3.6, Method: Composition-based stats.
+ Identities = 9/18 (50%), Positives = 11/18 (61%), Gaps = 0/18 (0%)
+
+Query  3    EGPDSQDVGLEAAIIERK  20
+             G D +DVG  AA IE+ 
+Sbjct  133  TGIDKEDVGQTAANIEQA  150
+
+
+>gnl|CDD|215621 PLN03188, PLN03188, kinesin-12 family protein; Provisional.
+Length=1320
+
+ Score = 24.1 bits (52),  Expect = 4.4, Method: Composition-based stats.
+ Identities = 11/32 (34%), Positives = 17/32 (53%), Gaps = 0/32 (0%)
+
+Query  3    EGPDSQDVGLEAAIIERKRNSSLVESACAEDV  34
+            +G +  DV +E AI E++    +    CAE V
+Sbjct  560  QGSEDTDVDMEEAISEQEEKHEITIVDCAEPV  591
+
+
+>gnl|CDD|233445 TIGR01511, ATPase-IB1_Cu, copper-(or silver)-translocating P-type 
+ATPase.  This model describes the P-type ATPase primarily 
+responsible for translocating copper ions accross biological 
+membranes. These transporters are found in prokaryotes and 
+eukaryotes. This model encompasses those species which pump 
+copper ions out of cells or organelles (efflux pumps such 
+as CopA of Escherichia coli ) as well as those which pump the 
+ion into cells or organelles either for the purpose of supporting 
+life in extremely low-copper environments (for example 
+CopA of Enterococcus hirae ) or for the specific delivery 
+of copper to a biological complex for which it is a necessary 
+component (for example FixI of Bradyrhizobium japonicum, 
+or CtaA and PacS of Synechocystis). The substrate specificity 
+of these transporters may, to a varying degree, include silver 
+ions (for example, CopA from Archaeoglobus fulgidus). 
+Copper transporters from this family are well known as the genes 
+which are mutated in two human disorders of copper metabolism, 
+Wilson's and Menkes' diseases. The sequences contributing 
+to the seed of this model are all experimentally characterized. 
+The copper P-type ATPases have been characterized 
+as Type IB based on a phylogenetic analysis which combines the 
+copper-translocating ATPases with the cadmium-translocating 
+species. This model and that describing the cadmium-ATPases 
+(TIGR01512) are well separated, and thus we further type 
+the copper-ATPases as IB1 (and the cadmium-ATPases as IB2). 
+Several sequences which have not been characterized experimentally 
+fall just below the cutoffs for both of these models. 
+A sequence from Enterococcus faecalis scores very high against 
+this model, but yet is annotated as an "H+/K+ exchanging 
+ATPase". BLAST of this sequence does not hit anything else 
+annotated in this way. This error may come from the characterization 
+paper published in 1987. Accession GP|7415611 from 
+Saccharomyces cerevisiae appears to be mis-annotated as a cadmium 
+resistance protein. Accession OMNI|NTL01HS00542 from Halobacterium 
+which scores above trusted for this model is annotated 
+as "molybdenum-binding protein" although no evidence 
+can be found for this classification [Cellular processes, Detoxification, 
+Transport and binding proteins, Cations and iron 
+carrying compounds].
+Length=572
+
+ Score = 23.8 bits (52),  Expect = 5.6, Method: Composition-based stats.
+ Identities = 8/16 (50%), Positives = 10/16 (63%), Gaps = 0/16 (0%)
+
+Query  36   GLNHAPKLRQRHVGVV  51
+            G+N AP L Q  VG+ 
+Sbjct  485  GINDAPALAQADVGIA  500
+
+
+>gnl|CDD|233186 TIGR00920, 2A060605, 3-hydroxy-3-methylglutaryl-coenzyme A reductase. 
+ [Transport and binding proteins, Carbohydrates, organic 
+alcohols, and acids].
+Length=889
+
+ Score = 23.7 bits (51),  Expect = 6.9, Method: Composition-based stats.
+ Identities = 13/34 (38%), Positives = 16/34 (47%), Gaps = 6/34 (18%)
+
+Query  19   RKRNSSLVESACAEDVTGLNHAPKLRQRHVGVVG  52
+            +  + SLV  AC E+V G    P      VGV G
+Sbjct  515  KNYDYSLVMGACCENVIGYMPVP------VGVAG  542
+
+
+>gnl|CDD|147617 pfam05535, Chromadorea_ALT, Chromadorea ALT protein.  This family 
+consists of several ALT protein homologues found in nematodes. 
+Lymphatic filariasis is a major tropical disease caused 
+by the mosquito borne nematodes Brugia and Wuchereria. About 
+120 million people are infected and at risk of lymphatic 
+pathology such as acute lymphangitis and elephantiasis. Expression 
+of alt-1 and alt-2 is initiated midway through development 
+in the mosquito, peaking in the infective larva and 
+declining sharply following entry into the host. ALT-1 and the 
+closely related ALT-2 have been found to be strong candidates 
+for a future vaccine against human filariasis.
+Length=80
+
+ Score = 22.8 bits (49),  Expect = 8.5, Method: Composition-based stats.
+ Identities = 9/25 (36%), Positives = 12/25 (48%), Gaps = 0/25 (0%)
+
+Query  9   DVGLEAAIIERKRNSSLVESACAED  33
+           +  L + +IERK    L  S CA  
+Sbjct  50  ESKLHSCVIERKNGGKLEYSYCAPR  74
+
+
+>gnl|CDD|171535 PRK12485, PRK12485, bifunctional 3,4-dihydroxy-2-butanone 4-phosphate 
+synthase/GTP cyclohydrolase II-like protein; Provisional.
+Length=369
+
+ Score = 23.4 bits (50),  Expect = 9.1, Method: Composition-based stats.
+ Identities = 13/41 (32%), Positives = 20/41 (49%), Gaps = 0/41 (0%)
+
+Query  11   GLEAAIIERKRNSSLVESACAEDVTGLNHAPKLRQRHVGVV  51
+            G+ AA   R   +++  +A  ED+    H   LR R  GV+
+Sbjct  98   GISAADRARTVAAAVAPNARPEDLVQPGHIFPLRAREGGVL  138
+
+
+
+Lambda      K        H        a         alpha
+   0.314    0.131    0.385    0.792     4.96 
+
+Gapped
+Lambda      K        H        a         alpha    sigma
+   0.267   0.0410    0.140     1.90     42.6     43.6 
+
+Effective search space used: 287002604

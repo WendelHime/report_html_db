@@ -1,0 +1,103 @@
+# hmmscan :: search sequence(s) against a profile database
+# HMMER 3.1b2 (February 2015); http://hmmer.org/
+# Copyright (C) 2015 Howard Hughes Medical Institute.
+# Freely distributed under the GNU General Public License (GPLv3).
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query sequence file:             saida_xml/hmmer_dir/temp_motif_hmmer_input_865
+# target HMM database:             /home/aferreira/POSDOC/TESTE_MOD_OUT/DBPFAM/Pfam-A.hmm
+# per-dom hits tabular output:     saida_xml/hmmer_dir/temp_motif_hmmer_output_tbl_865
+# profile reporting threshold:     score >= 0.1
+# number of worker threads:        20
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       Bacteria_CDS_annotation_glimmer3.pl_log_10_56  [L=314]
+Scores for complete sequence (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Model         Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------      -----------
+    2.9e-20   72.4   0.0    4.4e-20   71.8   0.0    1.3  1  BPL_LplA_LipB  Biotin/lipoate A/B protein ligase family
+    8.5e-13   47.6   0.1    1.8e-12   46.5   0.1    1.5  1  HTH_11         HTH domain
+    1.3e-08   34.3   0.1    2.9e-08   33.1   0.1    1.7  1  BPL_C          Biotin protein ligase C terminal domain
+  ------ inclusion threshold ------
+       0.14   12.3   0.0       0.32   11.1   0.0    1.7  1  Mga            Mga helix-turn-helix domain
+
+
+Domain annotation for each model (and alignments):
+>> BPL_LplA_LipB  Biotin/lipoate A/B protein ligase family
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   71.8   0.0   1.3e-23   4.4e-20       3     125 .]      80     203 ..      78     203 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 71.8 bits;  conditional E-value: 1.3e-23
+                                                    SSBSHH....HHHCHHCHHHHCTEEEESEB----....-EEEB-TT.BBEEEEEEE-TSS.HCC CS
+                                  BPL_LplA_LipB   3 rrqkst....keevnleeleeggvvvarrqtgGr....rvwhspgg.nlaysllllpelksfkl 57 
+                                                    ++++st        +l+el++g+++va++q +Gr    r+w+sp g nl++s+ ++ e+    +
+  Bacteria_CDS_annotation_glimmer3.pl_log_10_56  80 PVIDSTnqylL--ERLSELKSGDACVAEYQYAGRgrrgRKWVSPFGkNLYLSMYWRLEQ---GP 138
+                                                    56777765442..47899**************************************887...55 PP
+
+                                                    CCGGGHHHHHHHHHHHHH.EEE.CCTCGG--EETTTEEEETTEEEE--EEEEET.....CEEEE CS
+                                  BPL_LplA_LipB  58 sdleayvlllvlavlealgelgpgetgipvkikwpnDllvngkKiaGilvesrr.gatlhhltl 120
+                                                      +  ++l++++ ++e+l+++g      ++++kwpnDl++++kK+aGilve  +  + + ++++
+  Bacteria_CDS_annotation_glimmer3.pl_log_10_56 139 AAAIGLSLVVGIVIAEVLHRFG----ADRIRVKWPNDLYLDDKKLAGILVELIGkTGDAAQVVI 198
+                                                    667777999999999***5555....7888899******************988899******* PP
+
+                                                    -SS-B CS
+                                  BPL_LplA_LipB 121 gvgin 125
+                                                    g gin
+  Bacteria_CDS_annotation_glimmer3.pl_log_10_56 199 GAGIN 203
+                                                    ****9 PP
+
+>> HTH_11  HTH domain
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   46.5   0.1   5.3e-16   1.8e-12       4      54 ..       4      53 ..       3      54 .. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 46.5 bits;  conditional E-value: 5.3e-16
+                                         HTH_11  4 qilelLlqarep.vsgeeLAeeLnVSrrtirrdIkaLeelgvpIeskpgrGY 54
+                                                   q++++L  ++++  sg++L + L++Sr+ i ++I++++e+g+++e++pg+GY
+  Bacteria_CDS_annotation_glimmer3.pl_log_10_56  4 QLIKIL--SDGDvHSGQQLGQDLGMSRAGINKHIQTIREWGIELETTPGKGY 53
+                                                   788999..55555*************************************** PP
+
+>> BPL_C  Biotin protein ligase C terminal domain
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   33.1   0.1   8.5e-12   2.9e-08       4      48 .]     269     312 ..     266     312 .. 0.94
+
+  Alignments for each domain:
+  == domain 1  score: 33.1 bits;  conditional E-value: 8.5e-12
+                                                    --EEEE----EE---EEEE-----EEEE----.EEEE-S-SCEEE CS
+                                          BPL_C   4 qrVtltdeggkveGiavGIDddGrLllklldglqpdinsGdislr 48 
+                                                    ++V+l+ + ++v Gia+GI  +G+Lll++++  + + ++G+islr
+  Bacteria_CDS_annotation_glimmer3.pl_log_10_56 269 RPVKLIIGSQEVYGIARGINQQGALLLDQNGV-ITPYIGGEISLR 312
+                                                    89*************************99776.**********98 PP
+
+>> Mga  Mga helix-turn-helix domain
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 ?   11.1   0.0   9.3e-05      0.32      19      57 ..       3      41 ..       1      51 [. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 11.1 bits;  conditional E-value: 9.3e-05
+                                            Mga 19 yqllkflfeeeevsleelaqelyiSestlyrkikklnkl 57
+                                                   +ql+k l   + +s ++l q+l++S++ ++++i+ + ++
+  Bacteria_CDS_annotation_glimmer3.pl_log_10_56  3 LQLIKILSDGDVHSGQQLGQDLGMSRAGINKHIQTIREW 41
+                                                   8999*****************************988764 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query sequence(s):                         1  (314 residues searched)
+Target model(s):                       13672  (2396357 nodes)
+Passed MSV filter:                       395  (0.0288912); expected 273.4 (0.02)
+Passed bias filter:                      373  (0.027282); expected 273.4 (0.02)
+Passed Vit filter:                        42  (0.00307197); expected 13.7 (0.001)
+Passed Fwd filter:                         4  (0.000292569); expected 0.1 (1e-05)
+Initial search space (Z):              13672  [actual number of targets]
+Domain search space  (domZ):               4  [number of targets reported over threshold]
+# CPU time: 0.27u 0.12s 00:00:00.39 Elapsed: 00:00:00.22
+# Mc/sec: 3420.25
+//
+[ok]
