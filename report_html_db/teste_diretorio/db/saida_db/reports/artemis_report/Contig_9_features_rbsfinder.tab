@@ -1,0 +1,564 @@
+FT   RBS             complement(1192..1196)
+FT                   /note="RBS_1192"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=144, New start codon=GTG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             1491..1495
+FT                   /note="RBS_1491"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             3007..3011
+FT                   /note="RBS_3007"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=-18, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             4374..4378
+FT                   /note="RBS_4374"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=93, New start codon=GTG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(6293..6297)
+FT                   /note="RBS_6293"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=117, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             6452..6456
+FT                   /note="RBS_6452"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             7677..7681
+FT                   /note="RBS_7677"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             8903..8907
+FT                   /note="RBS_8903"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             9917..9921
+FT                   /note="RBS_9917"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=48, New start codon=GTG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             11463..11467
+FT                   /note="RBS_11463"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGCG, Position shift=102, New start codon=GTG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(14595..14599)
+FT                   /note="RBS_14595"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=-219, New start codon=GTG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(15415..15419)
+FT                   /note="RBS_15415"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=TGGGG, Position shift=-12, New start codon=TTG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             15425..15429
+FT                   /note="RBS_15425"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             17106..17110
+FT                   /note="RBS_17106"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             18455..18459
+FT                   /note="RBS_18455"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=99, New start codon=GTG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(22317..22321)
+FT                   /note="RBS_22317"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(24039..24043)
+FT                   /note="RBS_24039"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=177, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             25490..25494
+FT                   /note="RBS_25490"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=TGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(25419..25423)
+FT                   /note="RBS_25419"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             26937..26941
+FT                   /note="RBS_26937"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=-66, New start codon=GTG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(30278..30282)
+FT                   /note="RBS_30278"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(31050..31054)
+FT                   /note="RBS_31050"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGTG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(31895..31899)
+FT                   /note="RBS_31895"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(33262..33266)
+FT                   /note="RBS_33262"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(34538..34542)
+FT                   /note="RBS_34538"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(35508..35512)
+FT                   /note="RBS_35508"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(36247..36251)
+FT                   /note="RBS_36247"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=ACGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(37654..37658)
+FT                   /note="RBS_37654"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=-39, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             37797..37801
+FT                   /note="RBS_37797"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             38428..38432
+FT                   /note="RBS_38428"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(40831..40835)
+FT                   /note="RBS_40831"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(41639..41643)
+FT                   /note="RBS_41639"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGTAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             43087..43091
+FT                   /note="RBS_43087"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(44700..44704)
+FT                   /note="RBS_44700"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GCGAG, Position shift=30, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             44747..44751
+FT                   /note="RBS_44747"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             46811..46815
+FT                   /note="RBS_46811"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=201, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(48016..48020)
+FT                   /note="RBS_48016"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=-1485, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(49132..49136)
+FT                   /note="RBS_49132"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(51963..51967)
+FT                   /note="RBS_51963"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(52826..52830)
+FT                   /note="RBS_52826"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGTG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             53070..53074
+FT                   /note="RBS_53070"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGTG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             54068..54072
+FT                   /note="RBS_54068"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(55844..55848)
+FT                   /note="RBS_55844"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGGG, Position shift=12, New start codon=GTG, Old start codon=TTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(56107..56111)
+FT                   /note="RBS_56107"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGCAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(56573..56577)
+FT                   /note="RBS_56573"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGTG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(59386..59390)
+FT                   /note="RBS_59386"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(60164..60168)
+FT                   /note="RBS_60164"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGGG, Position shift=-12, New start codon=ATG, Old start codon=TTG"
+FT                   /color=125 125 255
+
+FT   RBS             60112..60116
+FT                   /note="RBS_60112"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGTG, Position shift=-75, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             61387..61391
+FT                   /note="RBS_61387"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(64600..64604)
+FT                   /note="RBS_64600"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(65517..65521)
+FT                   /note="RBS_65517"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(66542..66546)
+FT                   /note="RBS_66542"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             67689..67693
+FT                   /note="RBS_67689"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             68612..68616
+FT                   /note="RBS_68612"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(70045..70049)
+FT                   /note="RBS_70045"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGTG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(71018..71022)
+FT                   /note="RBS_71018"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=ACGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(72463..72467)
+FT                   /note="RBS_72463"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             72641..72645
+FT                   /note="RBS_72641"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             74893..74897
+FT                   /note="RBS_74893"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGTG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(74852..74856)
+FT                   /note="RBS_74852"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             76650..76654
+FT                   /note="RBS_76650"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=TGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(76162..76166)
+FT                   /note="RBS_76162"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(78430..78434)
+FT                   /note="RBS_78430"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGCGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(79357..79361)
+FT                   /note="RBS_79357"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(80541..80545)
+FT                   /note="RBS_80541"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGAG, Position shift=-114, New start codon=ATG, Old start codon=TTG"
+FT                   /color=125 125 255
+
+FT   RBS             80610..80614
+FT                   /note="RBS_80610"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             81541..81545
+FT                   /note="RBS_81541"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             82589..82593
+FT                   /note="RBS_82589"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGCAG, Position shift=-15, New start codon=GTG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             84049..84053
+FT                   /note="RBS_84049"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=ACGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(86374..86378)
+FT                   /note="RBS_86374"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGCGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             86719..86723
+FT                   /note="RBS_86719"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGCG, Position shift=24, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(86694..86698)
+FT                   /note="RBS_86694"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(88120..88124)
+FT                   /note="RBS_88120"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(89825..89829)
+FT                   /note="RBS_89825"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGGG, Position shift=-60, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             89838..89842
+FT                   /note="RBS_89838"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=ACGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(89322..89326)
+FT                   /note="RBS_89322"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(92427..92431)
+FT                   /note="RBS_92427"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(93960..93964)
+FT                   /note="RBS_93960"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             95482..95486
+FT                   /note="RBS_95482"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=129, New start codon=GTG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(95223..95227)
+FT                   /note="RBS_95223"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CCGAG, Position shift=-30, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(98468..98472)
+FT                   /note="RBS_98468"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             98527..98531
+FT                   /note="RBS_98527"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGCAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             100350..100354
+FT                   /note="RBS_100350"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             102107..102111
+FT                   /note="RBS_102107"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             102815..102819
+FT                   /note="RBS_102815"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             104319..104323
+FT                   /note="RBS_104319"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGCG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             105794..105798
+FT                   /note="RBS_105794"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=-24, New start codon=ATG, Old start codon=ATG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(108104..108108)
+FT                   /note="RBS_108104"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GCGGG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             108136..108140
+FT                   /note="RBS_108136"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGTG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             109009..109013
+FT                   /note="RBS_109009"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             110480..110484
+FT                   /note="RBS_110480"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=AGGAG, Position shift=24, New start codon=GTG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(112129..112133)
+FT                   /note="RBS_112129"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGGGG, Position shift=99, New start codon=ATG, Old start codon=GTG"
+FT                   /color=125 125 255
+
+FT   RBS             complement(113851..113855)
+FT                   /note="RBS_113851"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=GGTAG, Position shift=0"
+FT                   /color=125 125 255
+
+FT   RBS             complement(116706..116710)
+FT                   /note="RBS_116706"
+FT                   /inference="ab initio prediction:RBSfinder:12-19-2001"
+FT                   /note="Pattern=CGGGG, Position shift=0"
+FT                   /color=125 125 255
+

@@ -1,10 +1,10 @@
 
 
-Building a new DB, current time: 06/08/2017 16:28:55
+Building a new DB, current time: 06/20/2017 12:34:28
 New DB name:   /home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/website/root/seq/Sequences
 New DB title:  Sequences
 Sequence type: Nucleotide
 Keep Linkouts: T
 Keep MBits: T
 Maximum file size: 1000000000B
-Adding sequences from FASTA; added 4 sequences in 0.00101399 seconds.
+Adding sequences from FASTA; added 3 sequences in 0.000908136 seconds.

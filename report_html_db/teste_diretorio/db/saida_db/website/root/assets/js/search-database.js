@@ -218,9 +218,6 @@ $(function() {
                     $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
                 }
 			}
-			else {
-                $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Oops, not found any gene</div>");
-            }
 			return false;
 		}
 	);

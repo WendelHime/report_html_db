@@ -13,6 +13,21 @@ This class have the objective to represent the layer of access between any appli
 
 has rest_endpoint => ( is => 'ro', isa => 'Str' );
 
+sub getPipeline {
+	my ( $self ) = @_;
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/GetPipeline",
+		\%{
+			{
+				"" => ""
+			}
+		},
+		"GET"
+	);
+	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+}
+
 sub getFeatureID {
 	my ( $self, $uniquename ) = @_;
 	my $response = makeRequest(

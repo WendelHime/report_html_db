@@ -23,7 +23,7 @@ Root where will have the main pages
 =head1 METHODS
 
 =cut 
-my $feature_id;
+
 
 =head2 globalAnalyses
 
@@ -71,10 +71,24 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 				]
 	}))]);
 	my $searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => $c->config->{rest_endpoint});
-	$feature_id = $searchDBClient->getFeatureID($c->config->{uniquename})->getResponse();
-	$c->stash(
-		targetClass => $searchDBClient->getTargetClass($c->config->{pipeline_id})->getResponse()  
-	);
+	
+	if(!$c->config->{pipeline_id}) {
+		my $response = $searchDBClient->getPipeline()->getResponse()->{pipeline_id};
+		use File::Basename;
+		open( my $FILEHANDLER,
+			">>", dirname(__FILE__) . "/../../../website.conf");
+		print $FILEHANDLER "
+pipeline_id $response
+";
+		close($FILEHANDLER);
+		$c->stash(
+			targetClass => $searchDBClient->getTargetClass($response)->getResponse()  
+		);
+	} else {
+		$c->stash(
+			targetClass => $searchDBClient->getTargetClass($c->config->{pipeline_id})->getResponse()  
+		);
+	}
 	
 	$c->stash(
 		sequences => [

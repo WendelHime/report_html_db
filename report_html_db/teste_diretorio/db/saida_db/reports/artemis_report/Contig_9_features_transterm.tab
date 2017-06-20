@@ -1,0 +1,66 @@
+FT   terminator      4160..4194
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_4160"
+FT                   /note="hairpin sequence= CCGTCTCCGCACGAA CGACGAGACCCCCGC CCCGC GCGGGGGTCTCTTCG TTCGTGCCGGGCTCG, confidence = 88, hairpin score = -21.5, tail score = -3.14564, observation = opp_overlap 4160, overlap 4164"
+FT                   /color=100 100 100
+
+FT   terminator      4164..4190
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_4164"
+FT                   /note="hairpin sequence= CTCCGCACGAACGAC GAGACCCCCGC CCCGC GCGGGGGTCTC TTCGTTCGTGCCGGG, confidence = 90, hairpin score = -19.5, tail score = -3.39895, observation = opp_overlap 4160, overlap 4160"
+FT                   /color=100 100 100
+
+FT   terminator      26932..26975
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_26932"
+FT                   /note="hairpin sequence= CTGCTGATGCGGTGA CGGACGGGAGGTGCGGTGCC AGCT GGCACCGCGCCTCCCGTCCG TCTCCTGGTCACCGG, confidence = 100, hairpin score = -36.2, tail score = -2.82516"
+FT                   /color=100 100 100
+
+FT   terminator      27984..28016
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_27984"
+FT                   /note="hairpin sequence= TCGAGCGCACATCTG AGAAGGCCCCGTCGC ACT GCGACGGGGCCTTCG TCGTTCCCCCGGGCC, confidence = 89, hairpin score = -23.5, tail score = -2.70932, observation = opp_overlap 27988, overlap 27988"
+FT                   /color=100 100 100
+
+FT   terminator      27988..28012
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_27988"
+FT                   /note="hairpin sequence= GCGCACATCTGAGAA GGCCCCGTCGC ACT GCGACGGGGCC TTCGTCGTTCCCCCG, confidence = 95, hairpin score = -22.9, tail score = -3.27298, observation = opp_overlap 27988, overlap 27984"
+FT                   /color=100 100 100
+
+FT   terminator      48067..48116
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_48067"
+FT                   /note="hairpin sequence= CCGTCGGATCGAACC AGGATCCCGACGTCGAACCACGCG CCG CGGGTGGTTCGACGTCGG-ATCCG TGGTTCGGAGCGTCC, confidence = 93, hairpin score = -24.5, tail score = -2.71364, observation = gap 1, opp_overlap 48065 48068, overlap 48085"
+FT                   /color=100 100 100
+
+FT   terminator      69061..69110
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_69061"
+FT                   /note="hairpin sequence= TCTCGAACGACCACA CGACGGACGGGAGGCGCGGTACC AGCC GGCACCGCGCCTCCCGTCCGTCG TGTGGTGGCGTCAGC, confidence = 100, hairpin score = -39.5, tail score = -2.79796, observation = opp_overlap 69061 69056"
+FT                   /color=100 100 100
+
+FT   terminator      74224..74255
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_74224"
+FT                   /note="hairpin sequence= TCAAGTGAGCACGGA GGGCGTCGGTCCGC GCGA GCGGACCGGCGCCC TTCGCTCGTGCCCGG, confidence = 100, hairpin score = -25.2, tail score = -3.09516, observation = opp_overlap 74217"
+FT                   /color=100 100 100
+
+FT   terminator      93993..94045
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_93993"
+FT                   /note="hairpin sequence= GCGTGCGCGCGGGTG GAGAC-GGACCGGAGGCGCGGTGCG GGGC CGCACCGCGCCTCCAGTCCTGTGGA TGGTTGCGACTACTT, confidence = 77, hairpin score = -18.4, tail score = -2.72839, observation = gap 1, overlap 94001"
+FT                   /color=100 100 100
+
+FT   terminator      94001..94036
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_94001"
+FT                   /note="hairpin sequence= GCGGGTGGAGACGGA CCGGAGGCGCGGTGCG GGGC CGCACCGCGCCTCCAG TCCTGTGGATGGTTG, confidence = 100, hairpin score = -26.2, tail score = -2.6574, observation = overlap 93993"
+FT                   /color=100 100 100
+
+FT   terminator      106627..106677
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_106627"
+FT                   /note="hairpin sequence= ATCGGCGACCTCGGC CTGGCCGACCTCGGCGGCGGGGTC GAG GGCTTCGCGGCCGAGGGCGAGCAG TTCCTCGGCGGCCTG, confidence = 78, hairpin score = -17.4, tail score = -3.14344"
+FT                   /color=100 100 100
+

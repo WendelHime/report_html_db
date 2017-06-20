@@ -10,7 +10,7 @@ PIPELINE= Report HTML da Bactéria do curso
 PHASE= Upload DB
 program = upload_db.pl
 #----------------------------------------------------------------------------------
-ids_file = saida_db/saida_db.ids
+ids_file = saida_db/upload_continuacao.ids
 #===================================================================================
                               # _||_ #
                               # \  / #
@@ -21,9 +21,7 @@ program = report_html_db.pl
 #===================================================================================
 html_dir=TESTE4
 organism_name=Bacteria do curso
-uniquename=Bacteria
 type_target_class_id=81525
-pipeline=4528
 fasta_dir = seq
 aa_fasta_dir = orfs_aa
 nt_fasta_dir = orfs_nt

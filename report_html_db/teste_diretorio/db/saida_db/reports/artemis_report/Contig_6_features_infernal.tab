@@ -1,0 +1,11 @@
+FT   ncRNA           62395..62470
+FT                   /locus_tag="Csp_2167"
+FT                   /label="tmRNA"
+FT                   /note="Csp_2167"
+FT                   /note="internal name: Contig_6_RNA_scan_annotation_infernal.pl_log_5_142"
+FT                   /ncRNA_class="other"
+FT                   /product=""
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00023, Rfam type: Gene;, score is 29.7, e-value is 3.1e-07, bias is 0.4"
+FT                   /color=123 234 255
+

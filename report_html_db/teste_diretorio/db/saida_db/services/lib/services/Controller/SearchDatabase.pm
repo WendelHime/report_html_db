@@ -37,6 +37,13 @@ sub getFeatureID_GET {
 		$c->model('SearchDatabaseRepository')->get_feature_id($uniquename));
 }
 
+sub getPipeline : Path("/SearchDatabase/GetPipeline") : CaptureArgs(0) : ActionClass('REST') { }
+
+sub getPipeline_GET {
+	my ( $self, $c ) = @_;
+	return standardStatusOk( $self, $c, $c->model('SearchDatabaseRepository')->getPipeline() );
+}
+
 =head2 searchGene
 
 Method used to search on database genes

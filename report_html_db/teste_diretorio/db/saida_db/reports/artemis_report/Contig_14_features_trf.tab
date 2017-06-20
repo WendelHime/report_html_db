@@ -1,0 +1,401 @@
+FT   repeat_region   43719..43797
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 158
+FT                   number of repeat unit copies is 3.3
+FT                   repeat unit size is 24"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_range=43719..43742
+FT                   /color=000 255 000
+
+FT   repeat_region   43775..43821
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 94
+FT                   number of repeat unit copies is 2.0
+FT                   repeat unit size is 24"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_range=43775..43798
+FT                   /color=000 255 000
+
+FT   repeat_region   43809..43822
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GGTCGGC(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   43829..43869
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 82
+FT                   number of repeat unit copies is 3.4
+FT                   repeat unit size is 12"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_range=43829..43840
+FT                   /color=000 255 000
+
+FT   repeat_region   43877..43905
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 58
+FT                   number of repeat unit copies is 2.4
+FT                   repeat unit size is 12"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_range=43877..43888
+FT                   /color=000 255 000
+
+FT   repeat_region   44261..44273
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GGGTCC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   2074..2086
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="TCGCGA(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   2363..2381
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 38"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGACGAGCC(2.1)"
+FT                   /color=000 255 000
+
+FT   repeat_region   3213..3225
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGTGCT(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   3566..3581
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 32"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CAGGAC(2.7)"
+FT                   /color=000 255 000
+
+FT   repeat_region   3565..3642
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 156
+FT                   number of repeat unit copies is 2.4
+FT                   repeat unit size is 33"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_range=3565..3597
+FT                   /color=000 255 000
+
+FT   repeat_region   3599..3614
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 32"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CAGGAC(2.7)"
+FT                   /color=000 255 000
+
+FT   repeat_region   5481..5494
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGCCCGG(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   8897..8910
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGTCAC(2.3)"
+FT                   /color=000 255 000
+
+FT   repeat_region   9282..9294
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CTGACG(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   11050..11068
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 38"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="AGGACG(3.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   11500..11513
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GGCGCG(2.3)"
+FT                   /color=000 255 000
+
+FT   repeat_region   11591..11606
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 32"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGGACGA(2.3)"
+FT                   /color=000 255 000
+
+FT   repeat_region   11608..11623
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 32"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GCGCTGGG(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   11614..11627
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GGGCGCT(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   11684..11696
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGCGAC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   17561..17573
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GCCCGG(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   20219..20237
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 38"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="ACGGCATCG(2.1)"
+FT                   /color=000 255 000
+
+FT   repeat_region   20947..20962
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 32"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GGTCGACG(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   22386..22400
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 30"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="TCGACG(2.5)"
+FT                   /color=000 255 000
+
+FT   repeat_region   23346..23359
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CCGCTCG(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   23946..23962
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 34"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGAGGC(2.8)"
+FT                   /color=000 255 000
+
+FT   repeat_region   24389..24401
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GCATCG(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   24664..24676
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GCCACC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   26485..26497
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GGCCTC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   27196..27208
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="ACCGGC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   28298..28310
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CCGAGC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   30181..30193
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="TCGCGT(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   30758..30771
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GTGAGG(2.3)"
+FT                   /color=000 255 000
+
+FT   repeat_region   32218..32230
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GCGCCC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   32718..32731
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="TGCGCCG(2.0)"
+FT                   /color=000 255 000
+
+FT   repeat_region   32747..32760
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGGCTG(2.3)"
+FT                   /color=000 255 000
+
+FT   repeat_region   33478..33491
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 28"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="CGAGCC(2.3)"
+FT                   /color=000 255 000
+
+FT   repeat_region   35552..35564
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GCCGGC(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   41105..41125
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 42"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GCAGGTCGAC(2.1)"
+FT                   /color=000 255 000
+
+FT   repeat_region   41995..42007
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 26"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_seq="GACGGA(2.2)"
+FT                   /color=000 255 000
+
+FT   repeat_region   43622..43665
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 88
+FT                   number of repeat unit copies is 3.7
+FT                   repeat unit size is 12"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_range=43622..43633
+FT                   /color=000 255 000
+
+FT   repeat_region   43649..43713
+FT                   /label="repeat_region"
+FT                   /inference="ab initio prediction:Tandem Repeats Finder:4"
+FT                   /note="TRF parameters are  2 1000 1000 80 10 25 100
+FT                   TRF score is 130
+FT                   number of repeat unit copies is 2.7
+FT                   repeat unit size is 24"
+FT                   /rpt_type=TANDEM
+FT                   /rpt_unit_range=43649..43672
+FT                   /color=000 255 000
+

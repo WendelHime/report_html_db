@@ -1,0 +1,40 @@
+FT   rRNA            complement(916381..914872)
+FT                   /locus_tag="Csp_0826"
+FT                   /label="16S"
+FT                   /note="Csp_0826"
+FT                   /product=""
+FT                   /note="internal name: Contig_1_rRNA_prediction_annotation_rnammer.pl_log_6_902"
+FT                   /inference="ab initio prediction:RNAmmer:1.2"
+FT                   /note="score is 1955.4"
+FT                   /color=254 234 255
+
+FT   rRNA            complement(914452..911326)
+FT                   /locus_tag="Csp_0825"
+FT                   /label="23S"
+FT                   /note="Csp_0825"
+FT                   /product=""
+FT                   /note="internal name: Contig_1_rRNA_prediction_annotation_rnammer.pl_log_6_901"
+FT                   /inference="ab initio prediction:RNAmmer:1.2"
+FT                   /note="score is 3335.9"
+FT                   /color=254 234 255
+
+FT   rRNA            complement(911185..911070)
+FT                   /locus_tag="Csp_0824"
+FT                   /label="5S"
+FT                   /note="Csp_0824"
+FT                   /product=""
+FT                   /note="internal name: Contig_1_rRNA_prediction_annotation_rnammer.pl_log_6_900"
+FT                   /inference="ab initio prediction:RNAmmer:1.2"
+FT                   /note="score is 100.0"
+FT                   /color=254 234 255
+
+FT   rRNA            111..226
+FT                   /locus_tag="Csp_0001"
+FT                   /label="5S"
+FT                   /note="Csp_0001"
+FT                   /product=""
+FT                   /note="internal name: Contig_1_rRNA_prediction_annotation_rnammer.pl_log_6_899"
+FT                   /inference="ab initio prediction:RNAmmer:1.2"
+FT                   /note="score is 100.0"
+FT                   /color=254 234 255
+

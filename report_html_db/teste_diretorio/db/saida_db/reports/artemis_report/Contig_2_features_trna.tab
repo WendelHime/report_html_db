@@ -1,0 +1,88 @@
+FT   tRNA            89862..89932
+FT                   /locus_tag="Csp_0953"
+FT                   /note="Csp_0953"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_349"
+FT                   /gene="tRNA-Gly(TCC)"
+FT                   /product=""
+FT                   /anticodon=(pos:89894..89896,aa:Gly)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 72.76"
+FT                   /color=255 000 000
+
+FT   tRNA            147751..147823
+FT                   /locus_tag="Csp_1011"
+FT                   /note="Csp_1011"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_350"
+FT                   /gene="tRNA-His(GTG)"
+FT                   /product=""
+FT                   /anticodon=(pos:147784..147786,aa:His)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 69.26"
+FT                   /color=255 000 000
+
+FT   tRNA            208313..208393
+FT                   /locus_tag="Csp_1057"
+FT                   /note="Csp_1057"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_351"
+FT                   /gene="tRNA-Leu(TAG)"
+FT                   /product=""
+FT                   /anticodon=(pos:208347..208349,aa:Leu)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 60.73"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(353062..352989)
+FT                   /locus_tag="Csp_1191"
+FT                   /note="Csp_1191"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_352"
+FT                   /gene="tRNA-Leu(TAA)"
+FT                   /product=""
+FT                   /anticodon=(pos:353028..353026,aa:Leu)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 59.54"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(228612..228539)
+FT                   /locus_tag="Csp_1072"
+FT                   /note="Csp_1072"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_353"
+FT                   /gene="tRNA-Met(CAT)"
+FT                   /product=""
+FT                   /anticodon=(pos:228578..228576,aa:Met)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 72.03"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(140465..140393)
+FT                   /locus_tag="Csp_1001"
+FT                   /note="Csp_1001"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_354"
+FT                   /gene="tRNA-Arg(TCT)"
+FT                   /product=""
+FT                   /anticodon=(pos:140432..140430,aa:Arg)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 66.78"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(89427..89354)
+FT                   /locus_tag="Csp_0951"
+FT                   /note="Csp_0951"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_355"
+FT                   /gene="tRNA-Pro(TGG)"
+FT                   /product=""
+FT                   /anticodon=(pos:89393..89391,aa:Pro)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 80.50"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(43536..43464)
+FT                   /locus_tag="Csp_0914"
+FT                   /note="Csp_0914"
+FT                   /note="internal name: Contig_2_tRNAscan_annotation_trna.pl_log_3_356"
+FT                   /gene="tRNA-Ala(GGC)"
+FT                   /product=""
+FT                   /anticodon=(pos:43503..43501,aa:Ala)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 72.16"
+FT                   /color=255 000 000
+

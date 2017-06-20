@@ -1,0 +1,18 @@
+FT   misc_feature    1..5000
+FT                   /note="alien_1"
+FT                   /inference="ab initio prediction:AlienHunter:1.7"
+FT                   /note="score is 100.000, threshold is 50.610"
+FT                   /color=152 152 152
+
+FT   misc_feature    13806..24564
+FT                   /note="alien_13806"
+FT                   /inference="ab initio prediction:AlienHunter:1.7"
+FT                   /note="score is 72.433, threshold is 50.610"
+FT                   /color=152 152 152
+
+FT   misc_feature    27500..32500
+FT                   /note="alien_27500"
+FT                   /inference="ab initio prediction:AlienHunter:1.7"
+FT                   /note="score is 50.653, threshold is 50.610"
+FT                   /color=152 152 152
+

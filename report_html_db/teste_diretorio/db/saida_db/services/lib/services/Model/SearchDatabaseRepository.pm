@@ -13,6 +13,34 @@ __PACKAGE__->config(
 
 =head2
 
+Method used to get pipeline from database
+
+=cut
+
+sub getPipeline {
+	my ( $self ) = @_;
+	my $dbh = $self->dbh;
+	my $query = "select distinct p.value as value
+        	from feature_relationship r
+        	join featureloc l on (r.subject_id = l.feature_id)
+        	join featureprop p on (p.feature_id = l.srcfeature_id)
+        	join cvterm cp on (p.type_id = cp.cvterm_id)
+        	WHERE cp.name='pipeline_id';";
+	my $sth = $dbh->prepare($query);
+        print STDERR $query;
+        $sth->execute();
+        my @rows = @{ $sth->fetchall_arrayref() };
+        my %returnedHash = ();
+
+        for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
+                $returnedHash{pipeline_id} = $rows[$i][0];
+        }
+
+        return \%returnedHash;
+}
+
+=head2
+
 Method used to realize search based on parameters received by form of analyses of protein-coding genes
 
 =cut

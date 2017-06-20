@@ -1,0 +1,22 @@
+FT   ncRNA           complement(66245..66188)
+FT                   /locus_tag="Csp_2865"
+FT                   /label="msiK"
+FT                   /note="Csp_2865"
+FT                   /note="internal name: Contig_11_RNA_scan_annotation_infernal.pl_log_5_87"
+FT                   /ncRNA_class="other"
+FT                   /product=""
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01747, Rfam type: Cis-reg;, score is 56.0, e-value is 1.6e-11, bias is 0.6"
+FT                   /color=123 234 255
+
+FT   ncRNA           30472..30557
+FT                   /locus_tag="Csp_2832"
+FT                   /label="pfl"
+FT                   /note="Csp_2832"
+FT                   /note="internal name: Contig_11_RNA_scan_annotation_infernal.pl_log_5_88"
+FT                   /ncRNA_class="other"
+FT                   /product=""
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01750, Rfam type: Cis-reg;, score is 50.9, e-value is 4.8e-06, bias is 4.5"
+FT                   /color=123 234 255
+

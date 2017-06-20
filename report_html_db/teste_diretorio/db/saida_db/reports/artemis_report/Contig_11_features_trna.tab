@@ -1,0 +1,33 @@
+FT   tRNA            93282..93353
+FT                   /locus_tag="Csp_2890"
+FT                   /note="Csp_2890"
+FT                   /note="internal name: Contig_11_tRNAscan_annotation_trna.pl_log_3_81"
+FT                   /gene="tRNA-Arg(CCT)"
+FT                   /product=""
+FT                   /anticodon=(pos:93314..93316,aa:Arg)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 61.84"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(73590..73518)
+FT                   /locus_tag="Csp_2871"
+FT                   /note="Csp_2871"
+FT                   /note="internal name: Contig_11_tRNAscan_annotation_trna.pl_log_3_82"
+FT                   /gene="tRNA-Thr(TGT)"
+FT                   /product=""
+FT                   /anticodon=(pos:73557..73555,aa:Thr)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 76.89"
+FT                   /color=255 000 000
+
+FT   tRNA            complement(38880..38808)
+FT                   /locus_tag="Csp_2840"
+FT                   /note="Csp_2840"
+FT                   /note="internal name: Contig_11_tRNAscan_annotation_trna.pl_log_3_83"
+FT                   /gene="tRNA-Lys(TTT)"
+FT                   /product=""
+FT                   /anticodon=(pos:38847..38845,aa:Lys)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 75.60"
+FT                   /color=255 000 000
+

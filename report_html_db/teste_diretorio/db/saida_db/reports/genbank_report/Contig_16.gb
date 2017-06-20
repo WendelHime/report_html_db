@@ -1,0 +1,1417 @@
+FEATURES             Location/Qualifiers
+     repeat_region   1389..1401
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CTCGGT(2.2)"
+     repeat_region   3147..3159
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GTCGAG(2.2)"
+     repeat_region   7729..7743
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 30"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGATGT(2.5)"
+     repeat_region   7866..7881
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 32"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GCCGAC(2.7)"
+     repeat_region   8059..8071
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="TCGGGC(2.2)"
+     repeat_region   10344..10361
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 36"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GCACGGCCC(2.0)"
+     repeat_region   10739..10752
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGGTGT(2.3)"
+     repeat_region   10750..10762
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="TCGAGC(2.2)"
+     repeat_region   11026..11044
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 38"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GTGCCCTGC(2.1)"
+     repeat_region   11354..11371
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 36"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GCAGCCACG(2.0)"
+     repeat_region   11764..11786
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are 2 1000 1000 80 10 25 100
+                     TRF score is 46
+                     number of repeat unit copies is 1.9
+                     repeat unit size is 12"
+                     /rpt_type=TANDEM
+                     /rpt_unit_range=11764..11775
+     repeat_region   11917..11930
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="ACCACCC(2.0)"
+     repeat_region   13665..13679
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 30"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGCCGA(2.5)"
+     repeat_region   14877..14890
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="TCGCGT(2.3)"
+     repeat_region   16732..16749
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 36"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GCCGCGCA(2.2)"
+     repeat_region   17212..17228
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 34"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CCGGTC(2.8)"
+     repeat_region   17901..17913
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GGCGGT(2.2)"
+     repeat_region   20406..20418
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GGCGCC(2.2)"
+     repeat_region   21040..21053
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CCGGTGT(2.0)"
+     repeat_region   21358..21375
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 36"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGAGGTTGT(2.0)"
+     repeat_region   21438..21450
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GTCGTG(2.2)"
+     repeat_region   21490..21507
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 36"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GGTCGTCGG(2.0)"
+     repeat_region   23264..23276
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CCTCGG(2.2)"
+     repeat_region   24200..24228
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are 2 1000 1000 80 10 25 100
+                     TRF score is 58
+                     number of repeat unit copies is 1.9
+                     repeat unit size is 15"
+                     /rpt_type=TANDEM
+                     /rpt_unit_range=24200..24214
+     repeat_region   24230..24242
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGTCGC(2.2)"
+     repeat_region   24273..24285
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="ACCCGG(2.2)"
+     repeat_region   25766..25779
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGGGGAC(2.0)"
+     repeat_region   26056..26072
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 34"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GCCGCGCC(2.1)"
+     repeat_region   27012..27026
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 30"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GGGGCGC(2.1)"
+     repeat_region   29182..29198
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 34"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="ACGACGCA(2.1)"
+     repeat_region   30186..30204
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 38"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGACCAGAT(2.1)"
+     repeat_region   31120..31133
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="AGCCCCG(2.0)"
+     repeat_region   31927..31940
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGACCG(2.3)"
+     repeat_region   32178..32196
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 38"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="CGGTGGCGGC(1.9)"
+     repeat_region   32174..32186
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 26"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GTGGCG(2.2)"
+     repeat_region   33074..33087
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GGGGTCG(2.0)"
+     repeat_region   33961..33974
+                     /inference="ab initio prediction:TandemRepeatsFinder:4"
+                     /note="TRF parameters are  2 1000 1000 80 10 25 100
+                     TRF score is 28"
+                     /rpt_type=TANDEM
+                     /rpt_unit_seq="GTCCGGT(2.0)"
+     misc_feature    10964..19224
+                     /note="AlienHunter score is 77.884, threshold is 53.378"
+                     /inference="ab initio prediction:AlienHunter:1.7"
+     misc_feature    22284..27313
+                     /note="AlienHunter score is 100.000, threshold is 53.378"
+                     /inference="ab initio prediction:AlienHunter:1.7"
+     terminator      5162..5205
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     terminator      6437..6494
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     terminator      24411..24460
+                     /inference="ab initio prediction:TransTermHP:2.08"
+     gene            complement(645..6212)
+                     /locus_tag="Csp_3096"
+     CDS             complement(645..6212)
+                     /product="WP_069713562.1 glutamate synthase large subunit"
+                     /protein_id="gnl|USP|Csp_3096"
+                     /translation="VNPSSFGLHDPARESSDCGVGFITRLDGTASHDVIVRGDEALCAIPHRGGKSAEGVGDGAGVSIDLSVEFFSAITGETLRAGHFGVANCFVPSDADERADAERVVTAAIEHEGLVLLLVRDVPVDHSVARPEAEQYQLPIVQWVFRAPEHWTRTEVDAAANRALLAVEAASYTRATEERAPHAALYPLSLSARTQVLKGRLNSGEVIGYFTDLRDPRHSVRTLYFHTRFSTNTEPHPTMAQPFRLMAHNGELNTDRKNRLSDDASARARTRSIVRPPGQSDSSRLDQTLQSRVFDDGLDIVEAVVTLMPPAWENDRTLTPAVRDMLEYHSLYEEKNDGPAAVIFSDGDVVGARLDRLGLRPLRTTQTAEYLMVASESGQVTFAPDEVVHRGRIEAGGMLVVDHRTGSVLRTREALEALAARRPYGELLDAARVELDALPAPAYDRGTDTLGYDGDLSLAGRYVAYSLNQESFRFMLDPMLANGSERISAMGYGTAINALSDTEGGMAKYFSQRFAQVTNPPLDSIREADGMSMRVALGAKLEAHGGDAATTPTRQIVVQSPVLGHLDMVRLRDQTVVPLERFAMLYVPVPDDEHANADAVRSAVTALCDAVEAFARTSGGIAVLTDRAVSSTHAPLPVILAVAAVNQRLIETGLRLRLSVVAESGQLPSSHHVATALGFGASAVYSLSARLRAEQQYPADAAPAGERTATDLALARFRKAAEKALAKTMGRVGLCTAESYIGGEFFEPNYLDTGDDLFARVFPHMQAPVGGVGFTRIAQAATEWHERARSVQTEAQVPLLGLFKERSDGAGHSFGVASVRGFGGMTEERPAFERSGDSEALRLLTLGQLDDAFGITDTAYRNTGYDRLSDAEIDAHRITPGYVTFLQTTHDERSRRPAALRDVLALPADVTGTDEAEDFARELGRFSTSGNASITVRGLSGSRPSDDGDQPGGPVRFRLELTSTGTTGARRHRALADGLALLHPGQVDVDSVDDDQVTLRATGSAVALLTLLVSAPASLDLDAVQPAHEITRTLASGAMSHGALVATAHEAVAHGTNMVGGMSNSGEGGEHHSRYGTIRGSRIKQFASGRFGIWAGYLADPMLEELEIKIGQGAKPGEGGQLPAPKVTVDIAAARGGTPGVELISPPPHHDTYSIEDLAQLIHDCKAARVRVVVKLVSSEGIGTIAVGVAKAGADVINVAGNTGGTGAAAVTSLKYAGRSAEIGVAEVHQALVANGLRQKVTLRCSGAHQTGSDVVTSALLGGDSFEFGTTALMMLGCVMAKNCNVKCPAGLTTNAEAFEGDPRALAQYLLNIAHDVRQILARLGLHSLREARGRTDLLQLLDHPSSVGRLDVRNLLAQVPEKVVTDPEYLEKDYRTDDALIERVRAALVDGHEHTLVVDGVHLGNADKSVGGQLGIDVERILNHELRGVDLSAHPAVATDDRGRRRLVDGAVTIRTSGSAGQSYGVFTNDGVTLEHTGTANDGVGKSQSGGRIVVRAPGGGSAERGGNVLVGNFALFGATGGRTFVEGEAGDRFAVRNSGASAVVEGLGDFGCEYMTGGAVLNLGGFGKGLGNGMSGGFLYQYDPSGEVVDRASTDSLLVFPVTETERGAFHEAAARLLLEWHLEATGSALAARLLAEWETVREHVFVGMPRALLLTQDADAILAAATRPELLDELASSVATDKLRAFKTDYRDQRTVLDGRAPALGDQGEDTFSLLSSYTVLGVAQDVARERVPGAAAGDPRLSEAVRNLVLTEDFQVKQRVVKYLRGTLDAFADDELATLIAVKRLDDAKRAFAQRNNRSSDAPGTTGWIMHQNAKNDGRRRAARFDELLATAALEDIARRAVPATAEAVTA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070291592"
+                     /inference="similar to AA sequence:INSD:970462354"
+                     /db_xref="CDD:PRK11750"
+                     /db_xref="CDD:cd00713"
+                     /db_xref="InterPro:IPR002489"
+                     /db_xref="InterPro:IPR002932"
+                     /db_xref="InterPro:IPR029055"
+                     /db_xref="InterPro:IPR013785"
+                     /db_xref="InterPro:IPR006982"
+                     /db_xref="InterPro:IPR017932"
+                     /GO_process="GO:0006537 - glutamate biosynthetic process "
+                     /GO_process="GO:0008152 - metabolic process "
+                     /GO_process="GO:0006807 - nitrogen compound metabolic process "
+                     /GO_process="GO:0006537 - oxidation-reduction process (GO:0055114)"
+                     /GO_process="GO:0006807 - oxidation-reduction process (GO:0055114)"
+                     /GO_process="GO:0008152 - oxidation-reduction process (GO:0055114)"
+                     /GO_function="GO:0015930 - acting on the CH-NH2 group of donors (GO:0016638)"
+                     /GO_function="GO:0003824 - catalytic activity "
+                     /GO_function="GO:0015930 - glutamate synthase activity "
+                     /GO_function="GO:0016491 - oxidoreductase activity "
+                     /GO_function="GO:0015930 - oxidoreductase activity"
+                     /db_xref="eggNOG:actNOG27797"
+                     /db_xref="eggNOG:bactNOG232951"
+                     /db_xref="eggNOG:COG0069"
+                     /db_xref="eggNOG:COG0070"
+                     /db_xref="eggNOG:COG0067"
+                     /db_xref="KEGG:K00265"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM"
+     gene            complement(6509..7861)
+                     /locus_tag="Csp_3097"
+     CDS             complement(6509..7861)
+                     /product="OEI67198.1 sugar translocase"
+                     /protein_id="gnl|USP|Csp_3097"
+                     /translation="VSASNRGRTTRFLAAPQAAAAGRIGALPNLVGMTHADQTLDIDIVVPCHDEQDTLAAHVRRLHRFCSESLQHSWRITIADNASTDDTARIADDLAAMLPEVHAVHLPRKGRGRALKAVWNDSPARVLVYVDEDLSTDLAALEPLVAPLLSGHSDVAIGTRLAGSSRVVRGGKREFISRSYNLLLRTTMGVSFSDAQCGFKAVTRETADHLLPLCEDDAWFFDTELLVLAEHAGLRIHEVPVDWVDDIDSSVHIASTATEDLKGMWRVSRGLATGRIPIAPVYDAIGRRPFTTPHVGILGQVLRFGAIGVLSTVAFALLYALFRPAVGAQTADFLALLVTAIGNTALNRRFTFGVRGRAGAGRHHVQGLVVFGIAWAITSGSLVLLHATTPGATHGAEVLVLTAANLVATGVRFVLFKAWVFRTRRRPVLVRPGDTPAPLPAALPVDERAA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="4 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059304"
+                     /inference="similar to AA sequence:INSD:1070291608"
+                     /db_xref="CDD:cd04188"
+                     /db_xref="CDD:cd04179"
+                     /db_xref="InterPro:IPR001173"
+                     /db_xref="InterPro:IPR029044"
+                     /db_xref="InterPro:IPR007267"
+                     /GO_component="GO:0016021 - integral to membrane "
+                     /GO_process="GO:0000271 - polysaccharide biosynthetic process "
+                     /GO_process="GO:0000271 - transport (GO:0006810)"
+                     /db_xref="eggNOG:actNOG02771"
+                     /db_xref="eggNOG:COG0463"
+                     /note="                     4 probable transmembrane helices predicted by TMHMM"
+     gene            complement(7890..8108)
+                     /locus_tag="Csp_3098"
+     CDS             complement(7890..8108)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3098"
+                     /translation="VVEVPAFEDDRPQPEPEPPAAAPELVAATRFAQSSHAVPTIRRTQLRAGLWIAGVPIAALAVIAVVQVLLGD"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="1 probable transmembrane helix predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059305"
+                     /inference="similar to AA sequence:INSD:1070291593"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM"
+     gene            complement(8186..9754)
+                     /locus_tag="Csp_3099"
+     CDS             complement(8186..9754)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3099"
+                     /translation="VSRPDRASRASPSIRIPSLRWRVVAAVALLLVATNVVVGAVTVVAYRGYLIGRLDAELATAAGRTPGGDDPGGVPSGPPPGSSGSEDPDNRFIGAPGQAADTVVAILRDGDAVLAGYTDSAGEQHRLTASQRAVLADVTPDADPATVTLGALGTYRAQAVTRGGDVFVTALPLGDLQASIVRLVVLVGGVTLLGLVLAAWVLALTVRRSLRPLERVAAVASDVTALDLERGDPDIPVRVAPADLTANREVGQVGTALNRLLGHVTRALTVRRDAERGMRTFVADASHELRTPIATVRAYADLSRSSDDVDDLHRNAERIGTAAVRMGDLVEELLLLARLDATALASGPAPVREDVDLTALVVEATVDARTTAPDHRWVLQIADDHPLEVSGDTVQVRRVVTNLLANARAHTPAGTTVVVSLQEVPGDDGALVRLVVANDGPPIEADVLPTLFDRFTRGTASRSREHGTSGLGLAIVRAVATAHGGTVRVVSEPGRTAFTVDLPAAPGRADGYAAVTDGRGTR"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="2 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059306"
+                     /inference="similar to AA sequence:INSD:1070291609"
+                     /db_xref="CDD:COG0642"
+                     /db_xref="CDD:TIGR02966"
+                     /db_xref="InterPro:IPR003594"
+                     /db_xref="InterPro:IPR003660"
+                     /db_xref="InterPro:IPR003661"
+                     /db_xref="InterPro:IPR004358"
+                     /db_xref="InterPro:IPR005467"
+                     /GO_component="GO:0016021 - integral to membrane "
+                     /GO_process="GO:0016310 - phosphorylation "
+                     /GO_process="GO:0007165 - signal transduction "
+                     /GO_function="GO:0000155 - phosphorelay sensor kinase activity "
+                     /GO_function="GO:0004871 - signal transducer activity "
+                     /GO_function="GO:0016772 - transferase activity"
+                     /GO_function="GO:0016772 - transferring phosphorus-containing groups "
+                     /db_xref="eggNOG:actNOG02321"
+                     /db_xref="eggNOG:bactNOG00052"
+                     /db_xref="eggNOG:NOG03936"
+                     /db_xref="KEGG:K02484"
+                     /note="                     2 probable transmembrane helices predicted by TMHMM"
+     gene            complement(9751..10515)
+                     /locus_tag="Csp_3100"
+     CDS             complement(9751..10515)
+                     /product="OEI67201.1 two-component system response regulator"
+                     /protein_id="gnl|USP|Csp_3100"
+                     /translation="VTGDGDTAAARLRGMSDRPLLRADGTPARVLVVDDEHALAEAVALAFAGDGWAVRAVHRGRDVLFAAREFQPDVVVLDVMLPDIDGFEVLDRLRDARDDVRVLFLTARDAPEDRLAGLTGGGDDYLTKPFGIEELLVRARILARTTARVAPHGGSVGLVVGDLTVDEDARTATRGGEPLDLTPTEYELLRHLARNQNRVLSRDQLLANVWGMDFGAASNLVDMYVSYLRKKLDVGREPMLQTVRGAGYVLRPVP"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059307"
+                     /inference="similar to AA sequence:INSD:1070291594"
+                     /db_xref="CDD:COG0745"
+                     /db_xref="CDD:TIGR02154"
+                     /db_xref="InterPro:IPR001789"
+                     /db_xref="InterPro:IPR001867"
+                     /db_xref="InterPro:IPR011006"
+                     /db_xref="InterPro:IPR016032"
+                     /db_xref="InterPro:IPR011991"
+                     /GO_process="GO:0000160 - DNA-dependent (GO:0006355)"
+                     /GO_process="GO:0006355 - DNA-dependent "
+                     /GO_process="GO:0000160 - phosphorelay signal transduction system "
+                     /GO_process="GO:0000160 - regulation of transcription"
+                     /GO_process="GO:0006355 - regulation of transcription"
+                     /GO_function="GO:0003677 - DNA binding "
+                     /db_xref="eggNOG:actNOG02494"
+                     /db_xref="eggNOG:bactNOG01391"
+                     /db_xref="eggNOG:NOG06547"
+                     /db_xref="KEGG:K02483"
+                     /note="                     2 probable transmembrane helices predicted by TMHMM"
+     gene            complement(10512..12686)
+                     /locus_tag="Csp_3101"
+     CDS             complement(10512..12686)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3101"
+                     /translation="VTDRRDRAHTGAPTRRRAVPRLFLGERTDARWLRPAFWLLLVVTAVVYLWDLSVSGYANTFYAAAVQAGTKSWEAFFFGSLDSSNFITVDKPPASLWVMVLSARLFGFSSTSLLLPQALMAVASVALVWGTVRRTLARLGATTANVGALLAGFVVAATPAAALMFRFDNPDALLVLLMTAGAYCTVRALPKGSWRWIALAGVALGFAFLTKMLQGLLVLPAFGLVYLFAARTTWGKRAIGLGIAAVSLVAAAGWWVVAVALWPAESRPYIGGSTDNTVLDLVFGYNGLGRIFGGSGNGGGGGGTGGGTAGSSFGGSTGLNRLFSSEMGLEISWLLPAALVALVLGLVVVGRRHLADPARAGLVLWGGWLLVTGLVFSYMSGTIHPYYTVALAPAIAGLVGTGGALLWHARERITGRLGLAAMIGATASWSWCLLNENASWLPWLRWVVLAGGLLAAAAIVVGSVPSLRKLVTIGVLAGTLFGLTGTTSYALATTTVAHSGSIPSVGPAGSGSGGTGGFPGGGGQPGGTTGPGGSAGGSGDGGFPGGGPQGTQGTQQDGTEQDGTGQGQGSDGQPPTGSAPEGATGEAPAVPDDATSADGSGTSLPTGGGTGGATTSSALTKLLAASDAKWSAAVNGSQSAAQLELDTDTAVMAIGGWSSDPAPTLAEFQAWVAAGDIGYYVSSGSGGGMRGGSSTASAIQEWVAANYESTTVGGQTVYDLGASE"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="12 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059308"
+                     /inference="similar to AA sequence:INSD:1032528041"
+                     /db_xref="CDD:pfam13231"
+                     /db_xref="CDD:COG1807"
+                     /note="                     11 probable transmembrane helices predicted by TMHMM"
+     gene            complement(12772..14547)
+                     /locus_tag="Csp_3102"
+     CDS             complement(12772..14547)
+                     /product="WP_069713565.1 glycoside hydrolase"
+                     /protein_id="gnl|USP|Csp_3102"
+                     /translation="VIRRDWIDLSGPWSFRHDDDDAGTDAGWAAGVPSPRTITVPFPPESAASGIGDPEFHPVVWYSRTIGHDELVQAGHGADRPRVLLHFGAVDHRARVWIDGRFVGEHEGGHTPFTFDVTALLAETPDGADHVLVVRAEDDPDDVTQPRGKQDWHEEAHAIWYRRTTGIWQPVWLEAVPTTAIDALRWTPASPASTALSVRFRGRVPAGARLRVALRFDERDEDLGTTEWDATASRPTLEVTVPVARQRNGQAEDELTWSPETPRLLDAVLTLVDASGAVLDVVASYLGMRSVGVGGGRFLLNRQPYPVRSVLDQAFWPESHLAAPHPLAHRQEVELIKALGFNAARMHQKIEDPRFLYWADRLGLMVWGEAPAAYEFSPTAVRRLTAEWTAAVERDASHPSIVTWVPFNESWGIQHVVSDPAQQAYARALVDLTRALDPSRPVIGNDGWEQQDTDVVTIHDYEGDGAVLADTYRDDAARTRALEGLAPSGHPQFVGGAVDRGQPVMLTEFGGVRYQAAGRRTEGWGYTAAVDGDDWVARITALYDGVRASTFLAGSCWTQLTDTMQETNGLLHADRTPKVPIEQIRRAVTGS"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070291595"
+                     /inference="similar to AA sequence:INSD:1070059309"
+                     /db_xref="CDD:PRK10150"
+                     /db_xref="CDD:COG3250"
+                     /db_xref="InterPro:IPR017853"
+                     /db_xref="InterPro:IPR013781"
+                     /db_xref="InterPro:IPR008979"
+                     /db_xref="InterPro:IPR013812"
+                     /db_xref="InterPro:IPR006102"
+                     /db_xref="InterPro:IPR006103"
+                     /db_xref="InterPro:IPR006104"
+                     /GO_process="GO:0005975 - carbohydrate metabolic process "
+                     /GO_function="GO:0004553 - hydrolase activity"
+                     /GO_function="GO:0004553 - hydrolyzing O-glycosyl compounds "
+                     /db_xref="eggNOG:actNOG03015"
+                     /db_xref="eggNOG:bactNOG228297"
+                     /db_xref="eggNOG:COG3250"
+                     /note="                     11 probable transmembrane helices predicted by TMHMM"
+     gene            14687..15712
+                     /locus_tag="Csp_3103"
+     CDS             14687..15712
+                     /product="OEI67204.1 LacI family transcriptional regulator"
+                     /protein_id="gnl|USP|Csp_3103"
+                     /translation="VGRVTLQDVAEHAGVSMKTVSNVVRGYRHVSDAMRARVQTSVDALGYRPNVTGRSLATGRTNMLAFAFPDLRRPYFAELAHVFSEVCAARGYQLLLEETAGAPGGELSAVRGREAGVVDGVVIHPQVLTPTEIDHARGDTAVVFLGEDVRPDGADLVAIDNVRAAAEAVAHLAALGRRRIGFLGHEVGEQSRTSAFRTEGYRDGLSEAGLPVDPSLMVARAVGDARGAEEAFGRALDDGLRIDGLLCRDDLAAVGALRAMRLRGLEAPRDVAVVGWDAIGLAASLVPSLTSVAPDTVALAEAALDRLQERIEGRPGEGRAVTVGHRLLVGESAPYPDGSVD"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059310"
+                     /inference="similar to AA sequence:INSD:1070291611"
+                     /db_xref="CDD:COG1609"
+                     /db_xref="CDD:cd06267"
+                     /db_xref="InterPro:IPR010982"
+                     /db_xref="InterPro:IPR000843"
+                     /db_xref="InterPro:IPR028082"
+                     /GO_process="GO:0006355 - DNA-dependent "
+                     /GO_process="GO:0006355 - regulation of transcription"
+                     /GO_function="GO:0003677 - DNA binding "
+                     /db_xref="eggNOG:bactNOG07837"
+                     /db_xref="eggNOG:NOG03150"
+                     /note="                     11 probable transmembrane helices predicted by TMHMM"
+     gene            complement(15688..16485)
+                     /locus_tag="Csp_3104"
+     CDS             complement(15688..16485)
+                     /product="WP_069713566.1 phosphoserine phosphatase"
+                     /protein_id="gnl|USP|Csp_3104"
+                     /translation="VADEQADTPVLAFFDVDNTLVHGASAFHLVRGLRAARLITLRDIVSAGWKHARFKVRGENDRHLAAAQTRGLEVITGITVADMAALSDDVWTRHTEPSVWPETAALAREHLAKGHQVWLVTATPTFLAEVIARSLGLTGALGSVFEVEDGAYTGRLDGAFLHGEHKAVAARALLARTGADPAHCWAYSDSRHDIPLLSLVGNPVVVNPDQGLAAHARAAGWPTMRLQRASIREARRRVRREAPEASSRHGGPTTVRGDQSTEPSG"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070291596"
+                     /inference="similar to AA sequence:INSD:1054894545"
+                     /db_xref="CDD:TIGR01490"
+                     /db_xref="CDD:COG0560"
+                     /db_xref="InterPro:IPR023214"
+                     /db_xref="InterPro:IPR006383"
+                     /db_xref="InterPro:IPR006385"
+                     /GO_process="GO:0008152 - metabolic process "
+                     /GO_function="GO:0016791 - phosphatase activity "
+                     /db_xref="eggNOG:actNOG05352"
+                     /db_xref="eggNOG:bactNOG56096"
+                     /db_xref="eggNOG:COG0560"
+                     /note="                     11 probable transmembrane helices predicted by TMHMM"
+     gene            complement(16495..16761)
+                     /locus_tag="Csp_3105"
+     CDS             complement(16495..16761)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3105"
+                     /translation="VTAAAARLRGSGDGGCTSCDIARVDRHVRCRTMHAHRVRAHRATSHASIDTRNVADRAGRQPDRQPDHPGSPTRPAARPPVAARSPVA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059312"
+                     /note="                     11 probable transmembrane helices predicted by TMHMM"
+     gene            complement(16758..19169)
+                     /locus_tag="Csp_3106"
+     CDS             complement(16758..19169)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3106"
+                     /translation="VHSPTDGPLPTIRPFPGSDPVADGDAVVQGDHWRITVLCDGLFRIEWSDDGGFEDRASTFAVRRRLPVPEYTVVRRGDGVEVTTDRATLRYDGRPFSATGLVVETSGADANRWRWGQEPRDLGGTGRTLDDVDGRMPLESGVLARDGIVALDDSDSFLFEDDGWVGSRVPGRRDVHVFAYGRDYDEALRAFHAVSGPPTRLPRWALGNWWSRYHPYSDESYTALLDRFAEERLPFSVAVVDMDWHRVDSVPPRFGNGWTGYSWEPSLFPDPPAFLAELHRRGMRTTLNLHPADGVRAFEDAYPAMAAATGIDPDTEQTVAFDPTDPVFLRAYFEHLHRPLEEQGVDFWWIDWQQGRTSGIPGVDPLWVLNHFHLLDSARDGGAGMTFSRYAGPGSHRYAVGFSGDAVVSWASLAFQPEFTATAANVGYPWWSHDIGGHTRGVRDDELATRWVQFGVFSPIMRLHSANNPFIRKEPWLFPAEPRAAMGEALRFRHRLVPYLHTMNHRAAAGTALVRPVYHLEPHRDEAYRVPNEYAFGSELLVAPIVEPRDPVTLRGRARAWLPPGTWTDVFTGTTYAGDRFVDLHRGLDTIPVLLRAGGILPLAAPDESDATVNPAALEVLVAPGAPGTFTLVEDREEQTGSSTGGSTGTGTGAGPDGGVCRTTLTWDHDAAVFRIDPAEGDLGSVPLRRRWRVTFLGAPAAGQEVDAVSADRFSVDLDVATDAGAVLTLAGAPTTGVDARDAARELLEGAQAGNAEKLTAWEVVDRDAPRADRIAELETVGLPGSLRSALVELLGSVHPGER"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059313"
+                     /inference="similar to AA sequence:INSD:1070291612"
+                     /db_xref="CDD:cd06595"
+                     /db_xref="CDD:pfam01055"
+                     /db_xref="InterPro:IPR013785"
+                     /db_xref="InterPro:IPR017853"
+                     /db_xref="InterPro:IPR000322"
+                     /GO_process="GO:0005975 - carbohydrate metabolic process "
+                     /GO_function="GO:0003824 - catalytic activity "
+                     /GO_function="GO:0004553 - hydrolase activity"
+                     /GO_function="GO:0004553 - hydrolyzing O-glycosyl compounds "
+                     /db_xref="eggNOG:actNOG05537"
+                     /db_xref="eggNOG:bactNOG230692"
+                     /db_xref="eggNOG:COG1501"
+                     /note="                     11 probable transmembrane helices predicted by TMHMM"
+     gene            complement(19225..20121)
+                     /locus_tag="Csp_3107"
+     CDS             complement(19225..20121)
+                     /product="WP_069713567.1 ABC transporter permease"
+                     /protein_id="gnl|USP|Csp_3107"
+                     /translation="MSAIDTRSPATAAARTTPDQPRRRRLGRVDVPLTIVLAIASLTVLVPLYVTVAMAFKTSAQAVDGNALSLPFPFNPASFAEAWTLTRFPVSFSVSLGVAALTVVATLLLSSLASYAIVRNWHRRFFRWSFVYLLAAMFLPFPVVALPQIKFTAMISLDSPVGVAILHAMFQLSFSVLLYSAFLRSIPVELEESARIDGASTWQIFWRVILPLLGPMNATVGIFAFLASWNDFMMPSLITADPGLQTLPVVQNIFQSQFGTNYNVAFASYLMAMAPTIVVYLFAQRWVISGVTQGAVKS"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="6 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070291597"
+                     /inference="similar to AA sequence:INSD:1098637587"
+                     /db_xref="CDD:COG0395"
+                     /db_xref="CDD:COG3833"
+                     /db_xref="InterPro:IPR000515"
+                     /GO_component="GO:0016020 - membrane "
+                     /GO_process="GO:0006810 - transport "
+                     /db_xref="eggNOG:actNOG04662"
+                     /db_xref="eggNOG:bactNOG10869"
+                     /db_xref="eggNOG:COG0395"
+                     /db_xref="KEGG:K10119"
+                     /note="                     6 probable transmembrane helices predicted by TMHMM"
+     gene            complement(21128..22264)
+                     /locus_tag="Csp_3109"
+     CDS             complement(21128..22264)
+                     /product="WP_069713568.1 carbohydrate-binding protein"
+                     /protein_id="gnl|USP|Csp_3109"
+                     /translation="VIAYFDDLLRRFEREHRGLRVVHDSTTAIAPQFVRGEPADVGCFNDNLELARYIERGVLRDLGDLPSAGRVRKSIDGLTNQYATFEDRTSVLPFSLAAAGVIYNKRIFAEQDLPVPTTWSEFVDVCTALSKTDVTPVYATDRDTWTLWQGLFDYSVGSLVDTGAFFRKMKALGTDVGPDAEVSFERDFAVPMERAKTISTFFNPDHATRSYADGNLAFGQGKVAMYLQGPWALSQIALVDPELPVGTFALPVSDDPDDRQARVNIDLGLWIPTTTTHLDEARELVEFLMQPDVINAYNLDNLAFATTEDAAPQTDERVAGLQQYVDSGDFYQGAGTFIPTSIPLGNYLQTAIRSGDFESMLRRLDTDWRRLAGRSATV"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070291598"
+                     /inference="similar to AA sequence:INSD:1070059315"
+                     /db_xref="CDD:cd13585"
+                     /db_xref="CDD:cd14748"
+                     /db_xref="InterPro:IPR006059"
+                     /db_xref="InterPro:IPR006061"
+                     /GO_process="GO:0006810 - transport "
+                     /GO_function="GO:0005215 - transporter activity "
+                     /db_xref="eggNOG:actNOG05830"
+                     /db_xref="eggNOG:bactNOG238164"
+                     /db_xref="eggNOG:NOG02408"
+                     /db_xref="KEGG:K10117"
+                     /note="                     6 probable transmembrane helices predicted by TMHMM"
+     gene            complement(20118..21014)
+                     /locus_tag="Csp_3108"
+     CDS             complement(20118..21014)
+                     /product="OEI67210.1 sugar ABC transporter permease"
+                     /protein_id="gnl|USP|Csp_3108"
+                     /translation="VASRVHRRVGSLRRTEGVYYLFLVPALVLFTAFVVAPACVGVFYSFTDYLGFGQWHFLGLENYRALVSDPAILGSYGFTLGFAVVTVIVTQVIALALAIALTKRVRFASGLRAVFVIPMVVSGIIVAYVFNFLFSNTLPALATSVGFGPLEQSILGDPDLAWLAIVIVSAWQTIPGALLVYTAGLTSIPTDVYEASSLDGAGAWKQLRSITLPLIGGFIVINTVLGVKGYLGAYDVIVGLTNGGPGSATSSVAMTIFTGFTSGDYAYQMANATVFFVITVLISVLQLAVTRGRNLRLA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="6 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059316"
+                     /inference="similar to AA sequence:INSD:1070291613"
+                     /db_xref="CDD:COG1175"
+                     /db_xref="CDD:PRK10561"
+                     /db_xref="InterPro:IPR000515"
+                     /GO_component="GO:0016020 - membrane "
+                     /GO_process="GO:0006810 - transport "
+                     /db_xref="eggNOG:actNOG05948"
+                     /db_xref="eggNOG:bactNOG08450"
+                     /db_xref="eggNOG:COG1175"
+                     /db_xref="KEGG:K10118"
+                     /note="                     6 probable transmembrane helices predicted by TMHMM"
+     gene            complement(22539..23351)
+                     /locus_tag="Csp_3110"
+     CDS             complement(22539..23351)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3110"
+                     /translation="VPEIHVKTFREPDEATAEAAGLAWLAEAEETGGTRIARVLDHPEPTVLHLERIRDGSPTKAQAERFGRSLARTHAAGAAHWGAPSPGFPTRGGLRMGRSRTPFTSAADAPATWGAFFAEYRIRDFVQRIVDRGGFDAAEAAVFDRVADRLEDGTLGSPQPALVDDAPARIHGDLWAGNVLWPTDASEPTGAVLIDATPHGGHAETDLALLALFGLPRLETVLAGYDAESRLADGWQERVELHQLAPLLLHVFLFGGSYTEHALRAARRYA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059317"
+                     /inference="similar to AA sequence:INSD:970470425"
+                     /db_xref="CDD:COG3001"
+                     /db_xref="CDD:pfam03881"
+                     /db_xref="InterPro:IPR016477"
+                     /db_xref="InterPro:IPR011009"
+                     /db_xref="eggNOG:actNOG12630"
+                     /db_xref="eggNOG:COG3001"
+                     /note="                     6 probable transmembrane helices predicted by TMHMM"
+     gene            complement(23385..24077)
+                     /locus_tag="Csp_3111"
+     CDS             complement(23385..24077)
+                     /product="OEI67212.1 LuxR family transcriptional regulator"
+                     /protein_id="gnl|USP|Csp_3111"
+                     /translation="VDGVTAPVRVVLVDDDHLVRAGLRLLLSGGDGIEVVGEAGDGLEAEDVIAAAAPDVVLMDIRMPRCDGLVATERELRRRPELAVLVLTTFQDDELVLGALHRGARGFLLKDTPPHELVEAVRAVADGRSILSPSVLDRVIAVAAGNGSGPGAGATPTDGAHERRLLATLTERETEVALAVAAGASNAQIAADLFVTLATVKTHVGHVYEKFGVDNRVQLALVVHAARRGA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059318"
+                     /inference="similar to AA sequence:INSD:1070291614"
+                     /db_xref="CDD:COG2197"
+                     /db_xref="CDD:PRK10651"
+                     /db_xref="InterPro:IPR016032"
+                     /db_xref="InterPro:IPR000792"
+                     /db_xref="InterPro:IPR001789"
+                     /db_xref="InterPro:IPR011006"
+                     /db_xref="InterPro:IPR011991"
+                     /GO_process="GO:0006355 - DNA-dependent "
+                     /GO_process="GO:0000160 - phosphorelay signal transduction system "
+                     /GO_process="GO:0006355 - regulation of transcription"
+                     /GO_function="GO:0003677 - DNA binding "
+                     /db_xref="eggNOG:actNOG12407"
+                     /db_xref="eggNOG:bactNOG79394"
+                     /db_xref="eggNOG:COG2197"
+                     /note="                     6 probable transmembrane helices predicted by TMHMM"
+     gene            complement(24065..25276)
+                     /locus_tag="Csp_3112"
+     CDS             complement(24065..25276)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3112"
+                     /translation="VPVASRVWAETWRLVVVVLVGLFLFATVWSTTEVDTISDSRLGAHLLVDFAVGVVAVVLVPFRHRAPLLVGVLVVAASTVSTLAAGAAALALVSLVTRRRPLEIAIGSAALVAATLAGEDLFPEQEPTPLWQVAIAAVVCTALLVAVGIAIGQRRALLDGLRERAALLERDQQLREDRAREQERAHLAREMHDVLGHRLSLVALHAGALEYRGRSLSPEETVEAAGVVRAEAHSALTELRDVLGVLRDPADATTGTAPPQPTLRDLPALLDEARRSGADVTATTAPASADAPDAVGRHAYRVVQEGLTNARRHAAGQPVTVTVDVVHGPALRVRVTNPTAHRAEQATATPDAATSDAATPDAAPAGHGLRGLAERARLLGGSFSAGRDASGTHVVEAVLPWTA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="5 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070291599"
+                     /inference="similar to AA sequence:INSD:1070059319"
+                     /db_xref="CDD:COG4585"
+                     /db_xref="CDD:pfam07730"
+                     /db_xref="InterPro:IPR011712"
+                     /db_xref="InterPro:IPR003594"
+                     /GO_component="GO:0016021 - integral to membrane "
+                     /GO_process="GO:0000160 - phosphorelay signal transduction system "
+                     /GO_function="GO:0000155 - phosphorelay sensor kinase activity "
+                     /GO_function="GO:0000155 - protein dimerization activity (GO:0046983)"
+                     /db_xref="eggNOG:actNOG10008"
+                     /db_xref="eggNOG:bactNOG61288"
+                     /db_xref="eggNOG:NOG33873"
+                     /note="                     4 probable transmembrane helices predicted by TMHMM"
+     gene            complement(25374..26180)
+                     /locus_tag="Csp_3113"
+     CDS             complement(25374..26180)
+                     /product="WP_069713570.1 LysR family transcriptional regulator"
+                     /protein_id="gnl|USP|Csp_3113"
+                     /translation="VDAGSFTGAAAALGVGQSAVSHAVAGLEREVGGPVVRRGGAAVVTPLGERMLAHARSVVASVDALEAVVRPATARGTVRLAAVPTVCQGLLPRLRELWAVTLPDVDVQVYEGDDDEMAEWLEAGTVDAAVLVDPSPVPDGGVVVARDEMGAVVRRDHPLAGTASMSLDDLHEDGLVAGGGGCEHQIERMHELAGQPFRWAHRVREMSTMFGMIQRGEGVSIVPSLGRVMLPDDLVMLPVEPRYVRTLVLSGPASRPWHPLAQALVDAV"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070291600"
+                     /inference="similar to AA sequence:INSD:1070059320"
+                     /db_xref="CDD:cd05466"
+                     /db_xref="CDD:cd08440"
+                     /db_xref="InterPro:IPR011991"
+                     /db_xref="InterPro:IPR000847"
+                     /db_xref="InterPro:IPR005119"
+                     /GO_process="GO:0006355 - DNA-dependent "
+                     /GO_process="GO:0006355 - regulation of transcription"
+                     /GO_function="GO:0003700 - sequence-specific DNA binding transcription factor activity "
+                     /db_xref="eggNOG:actNOG03673"
+                     /db_xref="eggNOG:bactNOG236665"
+                     /db_xref="eggNOG:NOG63450"
+                     /note="                     4 probable transmembrane helices predicted by TMHMM"
+     gene            26294..27226
+                     /locus_tag="Csp_3114"
+     CDS             26294..27226
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3114"
+                     /translation="VNALLYVLVALTWGSSFFFAKIGLEGLAPQQVATVRTVLGALTLVVVLLATRRRWPRERRVWGHLFVVAVFLNAVPSSLMAWAEQTVPSGLASIYNATTPIMTLLALAVLVPSERLSRRQLGGVVLGIAGVLVLVGPWDLVGDPAVLATVPGQVALLGMTASYGIGLAWLRRFGVGSGQDPTTVATVQLTLAALLMLLVAPVIATGPVDLDWRIVAAMVALGAVGTGLAYAWNTRLVGAWGAGRASTVTYLTPVVGVALGVLVLGEPLRWNEPVGGLVVLLGIALASGVLRGRRRVVPSVAATDPAVRTR"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="Signal peptide and 9 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070291616"
+                     /inference="similar to AA sequence:INSD:1070059321"
+                     /db_xref="CDD:pfam00892"
+                     /db_xref="InterPro:IPR000620"
+                     /GO_component="GO:0016021 - integral to membrane "
+                     /GO_component="GO:0016020 - membrane "
+                     /db_xref="eggNOG:actNOG12664"
+                     /db_xref="eggNOG:bactNOG79481"
+                     /db_xref="eggNOG:NOG42134"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(27213..28061)
+                     /locus_tag="Csp_3115"
+     CDS             complement(27213..28061)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3115"
+                     /translation="VRWGDSGLDAAQVAFVERVLPGSVVVTDDSWGLLDTRVLHVRSSHGDHTVKACGPDNTHFPRELLAHRSWTGELVRHGDTAPLTHADVEARVLVIDRIPGRLALGTDDETSSDLHRQAGRILRRFHDQTAITDPDHLAVETAKALRLLDAPHRIDPATVRRVRSLLRSAEPHPVTVVPTHGDWHPRNWIVHEDRLHVIDFGRFALRPAATDLTRLAVLYWERKPRLEQAFIEGYGDDPREADDWRWLQLREAVGTAVWAFAVGDPAFEAQGQRMLRAALSAF"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059322"
+                     /inference="similar to AA sequence:INSD:1070291617"
+                     /db_xref="CDD:pfam01636"
+                     /db_xref="CDD:cd05155"
+                     /db_xref="InterPro:IPR011009"
+                     /db_xref="InterPro:IPR002575"
+                     /db_xref="eggNOG:actNOG10844"
+                     /db_xref="eggNOG:bactNOG65299"
+                     /db_xref="eggNOG:NOG37435"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(28091..28846)
+                     /locus_tag="Csp_3116"
+     CDS             complement(28091..28846)
+                     /product="OEI67217.1 glyoxalase"
+                     /protein_id="gnl|USP|Csp_3116"
+                     /translation="VRRTGEHLRELADTGAVPDTRTTDRVTVLHRDEERPGRSTQVVGRLVGTCPLDLVVRGRPPVPPRRDLGRVRPDDLLGGRLVRVRDHDRQHEESVGRCDDGGVDDLTEPALVPELLVRDLDRSIAFWCGLCGFAVRYDRPQERFAYLVRGTAHVMLEQAGVGRNWLTGPLDAPLGRGVNFQVAVPDSAALARRLTAAGIPLFTEPETTWYDVGDEQAGVHQFLVQDPDGYLLRFQSSIGRRPAGSASTPTP"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059323"
+                     /inference="similar to AA sequence:INSD:1070291601"
+                     /db_xref="CDD:cd08349"
+                     /db_xref="CDD:cd06587"
+                     /db_xref="InterPro:IPR029068"
+                     /db_xref="InterPro:IPR004360"
+                     /db_xref="eggNOG:bactNOG139863"
+                     /db_xref="eggNOG:COG0346"
+                     /db_xref="eggNOG:proNOG53142"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(28978..29115)
+                     /locus_tag="Csp_3117"
+     CDS             complement(28978..29115)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3117"
+                     /translation="VRRPDERPRRNGRPTAGRPYRAQSTRRFSYHRSEYGSSLNGSTRP"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059324"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            29332..30651
+                     /locus_tag="Csp_3118"
+     CDS             29332..30651
+                     /product="OEI67219.1 aldehyde dismutase"
+                     /protein_id="gnl|USP|Csp_3118"
+                     /translation="VALRRPALLRADGPHTRRPHPRVSPPPTIEEDHMASNHAVAYQGPGKVEVIETEYPTFELKDGPGVNPANVGRKVNHGAILRTVATNICGSDQHMVRGRTTAPTDLVLGHEITGEVVEVGSDVEFIKVGDIVSVPFNIACGRCRNCKERKTGICLNVNPDRPGSAYGYVDMGGWVGGQAEYVLVPYADWNLLKFPDRDQALEKILDLAMLSDIFPTGFHGAVTAGVEVGSTVYVAGAGPVGLAAATGAMLLGASVVIVGDMNADRLAQARTFGCETVDLTKGDPADQIDQILGEPLVDCGIDAVGFEAKGHGSGSGHEAPATVLNSLMDVTAAGGALGIPGLYVTGDPGGVDEAAQKGALSLSLGTGWAKSLSFTTGQCPVMKYNRQLMMAILHDRTSIAKNVNAKPIGLDEAPRGYEEFDKGAATKYVLNPNGLIPAA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="similar to AA sequence:INSD:1070059325"
+                     /inference="similar to AA sequence:INSD:1070291603"
+                     /db_xref="CDD:TIGR02819"
+                     /db_xref="CDD:cd08282"
+                     /db_xref="InterPro:IPR014184"
+                     /db_xref="InterPro:IPR011032"
+                     /db_xref="InterPro:IPR002328"
+                     /db_xref="InterPro:IPR016040"
+                     /db_xref="InterPro:IPR013149"
+                     /db_xref="InterPro:IPR013154"
+                     /GO_process="GO:0055114 - oxidation-reduction process "
+                     /GO_function="GO:0008270 - oxidoreductase activity (GO:0016491)"
+                     /GO_function="GO:0016491 - oxidoreductase activity "
+                     /GO_function="GO:0008270 - zinc ion binding "
+                     /db_xref="eggNOG:actNOG03240"
+                     /db_xref="eggNOG:bactNOG05414"
+                     /db_xref="eggNOG:COG1063"
+                     /db_xref="KEGG:K00148"
+                     /note="                     10 probable transmembrane helices predicted by TMHMM"
+     gene            complement(30988..31800)
+                     /locus_tag="Csp_3120"
+     CDS             complement(30988..31800)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3120"
+                     /translation="VTVGPGCDDANSRRRVEGRRVSLTPVSVRVRHWPRTLDISVLHSSTCSRKLRTEPARCRPGKDDSMRLELHHTTILASAATVAIAASAVVASPATASARTPAEPPRLAERTVQALYDATDPRTHVFDGGAARASGVEAGLVDDYATGFAATGGSVRGATVDSARLSSLRAAGDVRACSGRTRSDYTGAQLNVYLSSCNTNRLLAVIGGGTGVVGTIAGILAPTGLGAAAAGALAGVLAVAGAFLGVCAAKGRGTVIHNIPPSTITWCNSQ"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="2 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059326"
+                     /inference="similar to AA sequence:INSD:1070291605"
+                     /note="                     3 probable transmembrane helices predicted by TMHMM"
+     gene            31802..32596
+                     /locus_tag="Csp_3121"
+     CDS             31802..32596
+                     /product="OEI67221.1 1,4-dihydroxy-2-naphthoate prenyltransferase"
+                     /protein_id="gnl|USP|Csp_3121"
+                     /translation="VTVLAAVIAAAVGHPWWLVAVVALAVVAGQLSIGLANDWIDADRDRAVGRSDKPVARGLVAVSTVRTAAFVTAAVAVVVSLFLGPVAALAHVVLVAAGWAYDAGLKRTVWSVAPFVVAFGLLPVVAVAAGGGAWPTWWAIATGAVFGVAIHCTNVLPDLLDDAATGVRGFPHRLGLRGAGTLAFAALVVAAALVLGGQLGGDDPARGAGVVLAVVGAAVVVVLAVVGIRLVFAGRPTRALFRLVIASSLVLVVELGVAGARLVA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="8 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059327"
+                     /inference="similar to AA sequence:INSD:1070291606"
+                     /db_xref="CDD:cd13956"
+                     /db_xref="InterPro:IPR000537"
+                     /GO_component="GO:0016021 - integral to membrane "
+                     /GO_function="GO:0004659 - prenyltransferase activity "
+                     /db_xref="eggNOG:actNOG16280"
+                     /db_xref="eggNOG:bactNOG98096"
+                     /db_xref="eggNOG:NOG53182"
+                     /note="                     7 probable transmembrane helices predicted by TMHMM"
+     gene            complement(30731..31003)
+                     /locus_tag="Csp_3119"
+     CDS             complement(30731..31003)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3119"
+                     /translation="VQLAVTTGRERGHRDGYLVTLLAVLIGAGAGAALSLAAVAGWALPADDPLSLRLARTSVALAAVPVVCAAALIVVTARRNRGGPVDGSGR"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:Phobius:1.01"
+                     /note="2 probable transmembrane helices predicted by Phobius "
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070059328"
+                     /inference="similar to AA sequence:INSD:1070291604"
+                     /note="                     2 probable transmembrane helices predicted by TMHMM"
+     gene            complement(32684..33856)
+                     /locus_tag="Csp_3122"
+     CDS             complement(32684..33856)
+                     /product="hypothetical protein"
+                     /protein_id="gnl|USP|Csp_3122"
+                     /translation="VTTERVDVLVVGGGPVGLFAAALLAARGVRVAVWERRDAPPVGSRAIGIHPPSLDAFAAVGLDTAVLAEAVLVRTGVARSRGRTLGTLSFDRASATHPYVATLDQHRTETLLRKRLAPGVLRTGTSVTGLDRQRTHVRAHGTGPGGEPVAVEAAFVVGADGARSAVRDLLGVGTTGRDYRDRYVMGDFADPEPADARSAALVDVGPDGVVESFPLPHGRRRYVALVPEDVAPAAAGGAPDPATAARLAAIVAERTGATPDPATCTMTSGFRVRRRAATRVGVGRVVLVGDAAHEISPIGGQGMNLGWLDVADLAPVLADAVASGSAGPWPGYARRRQRAARRAGRQAEANMALGRPTGALGASGREALLRAVLALPTAEGLAGVYAMRWA"
+                     /transl_table=11
+                     /inference="ab initio prediction:Glimmer3:3.02"
+                     /inference="protein motif:TMHMM:2.0"
+                     /inference="similar to AA sequence:INSD:1070291607"
+                     /inference="similar to AA sequence:INSD:970470633"
+                     /db_xref="CDD:PRK06183"
+                     /db_xref="CDD:COG0654"
+                     /db_xref="InterPro:IPR023753"
+                     /db_xref="InterPro:IPR002938"
+                     /GO_process="GO:0055114 - oxidation-reduction process "
+                     /GO_function="GO:0071949 - FAD binding "
+                     /GO_function="GO:0016491 - oxidoreductase activity "
+                     /db_xref="eggNOG:bactNOG235288"
+                     /db_xref="eggNOG:deiNOG02341"
+                     /db_xref="eggNOG:COG0654"
+                     /note="                     1 probable transmembrane helix predicted by TMHMM"
+     RBS             complement(7877..7881)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(8124..8128)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(9780..9784)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(10523..10527)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(12726..12730)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(14636..14640)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             14715..14719
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(16780..16784)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(22265..22269)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(23262..23266)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(24086..24090)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             26204..26208
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(28084..28088)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(28871..28875)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(29138..29142)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             29282..29286
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(31825..31829)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+     RBS             complement(31049..31053)
+                     /inference="ab initio prediction:RBSfinder:12-19-2001"
+ORIGIN
+        1 gctcgcgccc gccccgccgg tcacggccgt accggtggcg cccgacccca cgggcgctcc 
+       61 ggtcgcgccc gcctcggcgg ccaggcggtc gaggacggcg gcgctccaca gcgcggccgg 
+      121 gtcctcgtag tcgacgtcgc agtcgacacg gtcgtggacc cgtgtcgcgc cgagctgctc 
+      181 gaggcgcagg tcgagcagct tgcccgcctg gcagaactcg tcgtagctcg tgtcgccgag 
+      241 cccgaggacc gcgtaccgca ggccctcgag ccgcggcacg gtggtggctt gcagggcctc 
+      301 ccagaacagg ccggcgttgt cgggcatctc gccctcgccg tacgtcgagg tcacgacgag 
+      361 cacgtgcgac atgcccgcga gctgctccgg cgagacggcg tcgagcgggg tggcccgacc 
+      421 gccgagcccg cgtgcccggg cgccggcgac gaggtcctcg gcgaggagct ccgcgttgcc 
+      481 cgtctgggtg ccgaagagca cgtcgacggt cgtcgtcgga gcgggcgacg cggaccgacg 
+      541 ccccgcggcg gcgatgcccg cgaggaaccc ggcgagccag gactcctgcg cggcggagaa 
+      601 cggtgcgtcg accgggatga gcgacccgga gggcggcagg ttcgtcatgc cgtcaccgcc 
+      661 tcggccgtcg ccggcacggc gcggcgtgcg atgtcctcga gggccgccgt cgcgaggagt 
+      721 tcgtcgaacc gggcggcacg tcggcggccg tcgttcttgg cgttctggtg catgatccac 
+      781 cccgtggtgc cgggtgcgtc cgagctgcgg ttgttccgct gcgcgaacgc ccgcttggcg 
+      841 tcgtcgagcc gcttgacggc gatgagggtc gcgagctcgt cgtcggcgaa ggcgtcgagc 
+      901 gtgccgcgga ggtacttcac gacgcgctgc ttcacctgga agtcctcggt cagcacgagg 
+      961 ttccgcaccg cctcgctgag ccgggggtcg cccgccgcgg cgccgggcac gcgctcgcgt 
+     1021 gcgacgtcct gggcgacgcc gagcaccgtg tacgacgaca gcagcgagaa cgtgtcctcg 
+     1081 ccctggtcgc ccagcgccgg ggcacgcccg tcgagcaccg tgcgctggtc gcggtagtcc 
+     1141 gtcttgaacg cgcggagctt gtccgtggcg acggaggacg cgagctcgtc gaggagctcc 
+     1201 ggccgggtcg ccgcggcgag gatggcgtcg gcgtcctggg tgagcaggag cgcgcgcggc 
+     1261 atgccgacga acacgtgctc gcggaccgtc tcccactcgg cgagcagacg cgccgcgagt 
+     1321 gcggagccgg tggcctcgag gtgccactcg agcagcagcc gcgcggccgc ctcgtggaag 
+     1381 gcgccgcgct cggtctcggt caccgggaac accaggagcg agtcggtgct cgcccggtcg 
+     1441 accacctcgc ccgacgggtc gtactggtac aggaacccgc cggacatccc gttgccgagg 
+     1501 cccttgccga agccgccgag gttgaggacc gcgccgcccg tcatgtactc gcagccgaag 
+     1561 tcgccgaggc cctcgacgac cgcgctcgcg ccggagttgc gcaccgcgaa ccggtcgccc 
+     1621 gcctcgccct cgacgaacgt gcgaccaccg gtcgcgccga acagcgcgaa gttgccgacg 
+     1681 aggacgttcc cgccccgctc ggcgctgccg ccgcccggcg cacggacgac gatgcggccg 
+     1741 ccggactggc tcttgccgac accgtcgttc gcggtgcccg tgtgctcgag ggtgacgccg 
+     1801 tcgttcgtga agacgccgta ggactgcccg gcggacccgc tcgtgcggat cgtgaccgcg 
+     1861 ccgtcgacca ggcgtcgccg accccggtcg tcggtggcga cggccgggtg tgcggacagg 
+     1921 tcgacgccgc gcagctcgtg gttgaggatc cgctcgacgt cgatgccgag ctgcccgccg 
+     1981 accgacttgt ccgcgttgcc gaggtgcacg ccgtcgacga cgagcgtgtg ctcgtggccg 
+     2041 tcgacgaggg cggcgcgcac ccgctcgatc agggcgtcgt cggtccggta gtccttctcg 
+     2101 aggtactccg ggtcggtcac gaccttctcc ggcacctgcg cgagcaggtt ccggacgtcg 
+     2161 agccggccga cgctcgacgg gtggtcgagc agctggagca ggtcggtgcg gccgcgtgcc 
+     2221 tcgcggaggg agtgcaggcc caggcgcgcg aggatctgcc ggacgtcgtg cgcgatgttg 
+     2281 agcaggtact gcgcgagggc acgggggtcg ccctcgaagg cctcggcgtt cgtggtgagg 
+     2341 cccgccgggc acttcacgtt gcagttcttc gccatgacgc agccgagcat catgagcgcg 
+     2401 gtggtgccga actcgaacga gtcgccgccg agcagcgcgc tcgtgacgac gtcggagccg 
+     2461 gtctggtgcg cgcccgagca gcggagcgtg accttctgcc ggaggccgtt cgcgacgagg 
+     2521 gcctggtgca cctcggccac cccgatctcg gcggagcggc cggcgtactt caggctcgtg 
+     2581 accgcggcgg caccggtgcc accggtgttg cccgcgacgt tgatgacgtc ggcaccggcc 
+     2641 ttcgcgacgc cgaccgcgat cgtgccgatg ccctcggagg acacgagctt cacgacgacc 
+     2701 cggacgcggg cggccttgca gtcgtggatg agctgcgcga ggtcctcgat cgagtacgtg 
+     2761 tcgtggtgcg gcggcgggga gatgagttcg acgcccggcg tgcccccacg ggccgcggcg 
+     2821 atgtcgaccg tcaccttcgg cgcggggagc tggccgccct cgccgggctt ggcgccctgg 
+     2881 ccgatcttga tctcgagctc ctcgagcatc gggtcggcga ggtagcccgc ccagatgccg 
+     2941 aaccggcccg acgcgaactg cttgatgcgg gagccgcgga tcgtgccgta gcgggagtgg 
+     3001 tgctcgccgc cctcgccgga gttcgacatg ccgccgacca tgttcgtgcc gtgcgccacg 
+     3061 gcctcgtgcg cggtggcgac cagggcgccg tggctcatcg cgccggaggc cagggtgcgg 
+     3121 gtgatctcgt gcgcgggctg gaccgcgtcg aggtcgaggc tcgccggggc gctgacgagc 
+     3181 agggtgagca gggcgaccgc ggaaccggtg gcgcggagcg tcacctggtc gtcgtcgacg 
+     3241 gagtcgacgt cgacctggcc cgggtgcagc agcgcgaggc cgtcggcgag ggcccggtga 
+     3301 cgccgtgcac cggtggtccc cgtcgacgtg agctctaggc ggaaccgcac cgggcctccc 
+     3361 ggctggtcgc cgtcgtccga cggacgcgag ccggacaggc cgcgcaccgt gatgctggcg 
+     3421 ttgccgctcg tcgagaagcg gccgagctcc cgggcgaagt cctcggcctc gtcggtgccg 
+     3481 gtgacgtcgg cgggcagcgc gaggacgtcg cggagtgccg cgggacggcg cgagcgctcg 
+     3541 tcgtgcgtgg tctgcaggaa cgtgacgtag cccggggtga tgcggtgcgc gtcgatctcg 
+     3601 gcgtcgctca gccggtcgta gccggtgttc cggtacgcgg tgtcggtgat gccgaaggcg 
+     3661 tcgtcgagct gcccgagggt gagcagccgc agggcctcgg agtccccgga gcgctcgaag 
+     3721 gccgggcgct cctcggtcat gccgccgaag ccgcggacgc tcgcgacgcc gaacgagtgg 
+     3781 ccggcgccgt cggagcgctc cttgaacaga ccgagcagcg ggacctgcgc ctcggtctgc 
+     3841 acggagcggg cgcgctcgtg ccactcggtc gccgcctggg cgatgcgggt gaagccgaca 
+     3901 ccgcccaccg gggcctgcat gtgtgggaag acccgggcga acaggtcgtc gccggtgtcg 
+     3961 aggtagttcg gctcgaagaa ctcgccgccg atgtagctct ccgcggtgca caggccgacg 
+     4021 cggcccatcg tcttggcgag ggccttctcg gcggccttgc ggaaccgtgc gagcgcgagg 
+     4081 tcggtcgcgg tgcgctcgcc ggcgggcgcg gcgtcggcgg ggtactgctg ctccgcgcgg 
+     4141 agccgtgccg acaggctgta cacggccgac gccccgaagc ccagggcggt cgccacgtgg 
+     4201 tgcgacgagg gcagctggcc ggactcggcg acgaccgaca gccgcaggcg cagtccggtc 
+     4261 tcgatgagcc gctggttgac ggcggccacg gcgaggatca ccggcagggg cgcgtgcgtc 
+     4321 gaggacaccg cgcggtcggt cagcaccgcg atgccgccgg aggtgcgggc gaaggcctcg 
+     4381 acggcgtcgc acagggccgt gaccgccgag cggacggcgt cggcgttcgc gtgctcgtcg 
+     4441 tcggggacgg gcacgtagag catggcgaag cgctcgagcg ggacgacggt ctggtcgcgc 
+     4501 aggcgcacca tgtcgaggtg cccgagcacg ggggactgca cgacgatctg ccgggtcggc 
+     4561 gtggtcgccg cgtccccgcc gtgcgcctcg agcttggcgc cgagtgccac acgcatcgac 
+     4621 atgccgtccg cctcgcggat cgagtcgagc ggcgggttcg tcacctgggc gaagcgctgc 
+     4681 gagaagtact tcgccatgcc gccctcggtg tcgctcaggg cgttgatcgc ggtgccgtag 
+     4741 cccatcgccg agatgcgctc ggagccgttc gcgagcatcg ggtcgagcat gaaccggaag 
+     4801 ctctcctggt tcagcgagta cgccacgtac cggccggcga gggacaggtc gccgtcgtag 
+     4861 ccgagggtgt ccgtgccccg gtcgtacgcc ggcgcgggca gggcgtcgag ctcgacgcgg 
+     4921 gcggcgtcga gcaactcgcc gtacggccgg cgtgcggcca gggcctcgag tgcctcgcgg 
+     4981 gtgcgcagga ccgagcccgt gcggtggtcg acgacgagca tgccgccggc ctcgatgcgg 
+     5041 ccgcggtgca cgacctcgtc cggcgcgaac gtcacctggc cggactccga cgccaccatg 
+     5101 aggtactcgg ccgtctgcgt cgtgcgcagg ggccgcagcc ccagtcggtc caggcgagcg 
+     5161 ccgacgacgt cgccgtcgct gaagatcacg gcggcgggtc cgtcgttctt ctcctcgtag 
+     5221 agcgagtggt actcgagcat gtcgcgcacg gccggcgtga gcgtgcggtc gttctcccac 
+     5281 gcgggcggca tgagggtgac gacggcctcg acgatgtcca gcccgtcgtc gaacacgcgg 
+     5341 ctctgcaggg tctggtcgag tcggctggag tccgactgcc cgggcggtcg gacgatgctc 
+     5401 cgcgtgcggg cacgggccga ggcgtcgtcg gacaggcggt tcttgcggtc cgtgttgagc 
+     5461 tcgccgttgt gcgccatcag gcggaacggc tgcgccatcg tcgggtgcgg ctcggtgttc 
+     5521 gtcgagaacc gggtgtggaa gtagagcgtg cggacggagt gccgcgggtc gcggaggtcg 
+     5581 gtgaagtacc cgatcacctc gccggagttg agccgtccct tgaggacctg cgtccgggcg 
+     5641 ctgagcgaga gcgggtacag ggcggcgtgc ggggcgcgct cctcggtggc gcgggtgtac 
+     5701 gaggccgcct cgaccgccag cagggcgcgg ttcgccgcgg cgtcgacctc ggtccgggtc 
+     5761 cagtgctcgg gggcccggaa cacccactgc acgatcggca gctggtactg ctcggcctcg 
+     5821 ggacgcgcga ccgagtggtc caccgggacg tcccggacga gcaggagcac gaggccctcg 
+     5881 tgctcgatcg ccgccgtcac gacccgctcg gcgtcggcgc gctcgtcggc gtccgagggc 
+     5941 acgaagcagt tcgcgacccc gaagtgtccg gcgcgcaggg tctcgccggt gatcgcgctg 
+     6001 aagaactcca ccgacaggtc gatgctcacg cccgcgccgt cgccgacgcc ctcagcggac 
+     6061 ttgccgccac ggtgggggat ggcgcagagc gcctcgtcgc cgcgcacgat cacgtcgtgg 
+     6121 gaggcggtgc cgtcgaggcg ggtgatgaag ccgacgccgc agtcgctcga ctcgcgggca 
+     6181 gggtcgtgga gaccgaagga tgaggggttc acgggcgggt ccagtggtgc ggtgcaggct 
+     6241 gcggacggcc agggctgcat cggtggagcg ctcgccgcgg gcagaccggt ggtggcagtc 
+     6301 gtggcccggt gggggtggtg cggtgagccg atgctacggc ttggtatacc gcgcgtgcaa 
+     6361 cagaccggcc ggacgggagg cgcgtggcgg cccggtcacg cgcctcccgt cctgcggtcg 
+     6421 cgcctgttcc gcaaaacgca acgcgggcgg ttgctcgcag cggtactccg ctgcgagcaa 
+     6481 ccgccgacct tgcgtttcgc gttggagctc aggccgcgcg ttcgtcgacc gggagcgcgg 
+     6541 ccgggagcgg cgcgggggtg tcgcccggac gcacgagcac gggacgccga cgcgtgcgga 
+     6601 acacccacgc cttgaacagg acgaaccgca cgcccgtcgc cacgaggttc gccgcggtga 
+     6661 gcaccaggac ctcggcgccg tgcgtcgccc ccggcgtggt cgcgtggagc aggacgagcg 
+     6721 acccggaggt gatcgcccag gcgatgccga agacgaccag cccctgcacg tggtggcgtc 
+     6781 ccgcgccggc acgaccccgc acgccgaacg tgaagcgacg gttgagggcg gtgttcccga 
+     6841 tcgccgtgac gagcagcgcg aggaagtccg cggtctgcgc accgaccgcc ggccggaaca 
+     6901 gggcgtagag cagggcgaac gccacggtcg acaggacgcc gatcgccccg aagcgcagca 
+     6961 cctgcccgag gatcccgacg tgcggcgtcg tgaacgggcg gcggccgatc gcgtcgtaca 
+     7021 ccggggcgat cgggatccgg ccggttgcca gcccgcggga gacgcgccac atgcccttga 
+     7081 ggtcctcggt cgccgtggac gcgatgtgta ccgaggagtc gatgtcgtcc acccagtcga 
+     7141 ccggcacctc gtggatgcgg agtccggcgt gctcggcgag cacgaggagc tcggtgtcga 
+     7201 agaaccaggc gtcgtcctcg cacaggggga gcaggtggtc ggcggtctcg cgcgtgacgg 
+     7261 ccttgaaccc gcactgcgcg tcggagaacg agacccccat cgtggtgcgg aggagcaggt 
+     7321 tgtacgagcg ggagatgaac tcgcgcttgc cgccgcggac cacccgcgag gaccccgcga 
+     7381 gccgggtgcc gatcgccacg tcggagtgtc cggagagcag gggtgcgacg aggggctcga 
+     7441 gtgcggcgag gtccgtcgac aggtcctcgt cgacgtagac gagcacccgg gcgggggagt 
+     7501 cgttccacac cgccttgagc gcccgccccc ggcccttgcg cggcaggtgc acggcgtgga 
+     7561 cctcgggcag catggccgcg aggtcgtcgg cgatccgggc ggtgtcgtcg gtggaggcgt 
+     7621 tgtcggcgat ggtgatccgc cacgagtgct gcaacgactc gctgcagaag cggtgcagcc 
+     7681 gccggacgtg ggcggcgagc gtgtcctgtt cgtcgtggca gggcacgacg atgtcgatgt 
+     7741 cgagggtctg gtccgcgtgc gtcatgccga ccaggttcgg cagcgccccg atgcgccccg 
+     7801 cagcagcagc ctgtggtgcc gctaagaagc gcgtcgtcct tccgcggttc gacgccgaca 
+     7861 ccgatgccga cgccgacgcc gtcgagcggt cagtcgccga gcaggacctg cacgacggcg 
+     7921 atgacggcga gggcggcgat cgggaccccc gcgatccaca gaccggcacg gagctgcgtc 
+     7981 cgccggatgg tcgggaccgc gtgcgacgac tgcgcgaacc gcgtcgccgc gacgagttcg 
+     8041 ggggcggccg ccggcggttc gggctcgggc tggggacggt cgtcctcgaa cgcggggacc 
+     8101 tcgaccacca ggtcctcggg ccgcgcccgt tccggcaggt gtccgtaccg ctgggctccg 
+     8161 ggcccctgtg ccccgtctcg cttcgtcatc gcgtcccccg tccgtcggtg accgcagcgt 
+     8221 acccgtcagc ccgtccgggg gccgccggca ggtcgaccgt gaacgccgtg cgcccgggct 
+     8281 ccgacaccac ccggaccgtc ccaccgtggg ccgtggcgac cgcgcggacg atcgccagcc 
+     8341 cgaggccgct cgtcccgtgc tcccgcgagc gcgatgcggt tccccgggtg aaccggtcga 
+     8401 agagcgtggg caggacgtcc gcctcgatcg gcggtccgtc gttcgccacg acgaggcgca 
+     8461 cgagcgctcc gtcgtcgccc ggcacctcct gcagcgagac gacgaccgtc gtccccgccg 
+     8521 gggtgtgcgc ccgggcgttg gcgagcaggt tcgtgacgac ccggcgcacc tgcaccgtgt 
+     8581 cgccggacac ctcgagcggg tggtcgtccg cgatctgcag gacccagcgg tggtcgggag 
+     8641 cggtcgtccg ggcgtcgacg gtcgcctcga cgacgagcgc cgtcaggtcg acgtcctcgc 
+     8701 ggaccggcgc cggacccgag gcgagcgcgg tggcgtcgag ccgggcgagc aggaggagct 
+     8761 cctcgacgag gtcccccatc cggaccgccg cggtgccgat gcgctcggcg ttccggtgca 
+     8821 ggtcgtcgac gtcgtcggac gaccgggaga ggtcggcgta ggcgcggacc gtggcgatcg 
+     8881 gcgtccggag ctcgtgggag gcgtcggcga cgaaggtccg catgccccgt tcggcgtcac 
+     8941 ggcggacggt gagcgcgcgg gtgacgtgcc cgagcagccg gttcagggcg gtgccgacct 
+     9001 gaccgacctc gcggttcgcc gtcaggtcgg cgggcgcgac gcggacgggg atgtcggggt 
+     9061 ccccgcgttc gaggtcgagt gcggtgacgt cggacgccac ggccgcgacc cgttcgagcg 
+     9121 gccggagcga ccgacggacc gtgagggcga gcacccacgc cgcgagcacg agcccgagca 
+     9181 gggtgacgcc gccgacgagc acgacgagcc ggacgatcga ggcctgcagg tcaccgagcg 
+     9241 gcagcgccgt cacgaacacg tcgccgccgc gggtgacggc ctgcgcacgg taggtcccga 
+     9301 gcgcgccgag cgtgaccgtc gcggggtccg cgtcaggggt cacgtcggcg agcacggcac 
+     9361 gctgcgacgc ggtcagccgg tgctgttcgc cggcgctgtc ggtgtacccg gcgaggacgg 
+     9421 cgtccccgtc gcgcaggatc gccacgacgg tgtcggccgc ctgcccgggc gccccgatga 
+     9481 agcggttgtc cgggtcctcg gatccggagg agccgggcgg tggccccgag ggcacaccgc 
+     9541 ccggatcgtc gccccccggc gtccgtccgg cggcggtcgc gagctctgcg tcgaggcggc 
+     9601 cgatcaggta cccgcggtac gcgaccacgg tcaccgcgcc gacgacgacg ttcgtcgcga 
+     9661 cgagcagcag ggcgaccgcg gcgacgaccc gccaccgcag cgacgggatg cggatcgacg 
+     9721 gggaggcgcg gctcgccctg tcgggacggc tcacggcacc ggccgcagca cgtacccggc 
+     9781 cccgcggacg gtctgcagca tcggctcgcg tccgacgtcg agcttcttcc gcaggtagga 
+     9841 cacgtacatg tcgacgaggt tcgaggcggc cccgaagtcc atgccccaga cgttggccag 
+     9901 cagctggtcg cgggagagca cccggttctg gttgcgggcg aggtgccgga ggagttcgta 
+     9961 ctcggtcggg gtcaggtcga gcggttcgcc gccgcgcgtg gccgtgcggg cgtcctcgtc 
+    10021 gaccgtcagg tcaccgacga cgagtccgac cgagccgccg tgcggcgcca cccgcgcggt 
+    10081 cgtccgagcg aggatccggg cccggacgag cagctcctcg atgccgaacg gcttcgtcag 
+    10141 gtagtcgtcc ccgccgcccg tgagcccggc gagccggtcc tcgggagcgt cccgcgcggt 
+    10201 gaggaacagg acccggacgt cgtcgcgggc gtcgcggagc cggtcgagca cctcgaagcc 
+    10261 gtcgatgtcc ggcagcatca cgtcgagcac gaccacgtcg ggctggaact cccgcgccgc 
+    10321 gaacagcacg tcgcgcccgc ggtgcacggc ccgcacggcc cacccgtcgc ccgcgaacgc 
+    10381 gagggcgacg gcctcggcga gcgcgtgctc gtcgtcgacg acgaggacac gggcgggcgt 
+    10441 gccgtcggcg cgcaggagcg gtcggtccga catgccccgg agcctagctg ccgccgtgtc 
+    10501 cccgtcgccg gtcactccga cgcacccagg tcgtagacgg tctggccgcc gacggtcgtc 
+    10561 gactcgtagt tcgcggcgac ccactcctgg atggcactcg cggtggagga ccctccgcgc 
+    10621 atgccgccgc cggaaccgga ggagacgtag tacccgatgt cgccggccgc gacccaggcc 
+    10681 tggaactcgg cgagcgtcgg cgcggggtcg ctcgaccagc cgccgatggc catcacggcg 
+    10741 gtgtcggtgt cgagctcgag ctgcgcggcg gactgcgagc cgttcaccgc ggcggaccac 
+    10801 ttcgcgtccg aggcggcgag cagcttcgtc agcgcggacg aggtcgtcgc gccgcccgtg 
+    10861 ccgccgccgg tcgggaggct cgtccccgag ccgtccgcgg aggtcgcgtc gtcgggcacc 
+    10921 gcgggcgcct caccggtcgc accctccggt gcggagccgg tcggcggctg gccgtcgctg 
+    10981 ccctggccct gcccggtgcc gtcctgttcg gtgccgtcct gctgggtgcc ctgcgtgccc 
+    11041 tgcgggccgc cgcccgggaa cccgccgtcc ccggaaccgc cggccgaccc gccggggccg 
+    11101 gtcgtgcctc ccggctggcc gccgccacca gggaacccgc ccgtcccgcc ggagccgctg 
+    11161 cccgccggac cgacgctcgg gatcgacccg gagtgcgcga cggtcgtcgt ggcgagggcg 
+    11221 taggacgtcg tgccggtcag cccgaacagc gtgccggcga ggacaccgat ggtgacgagc 
+    11281 ttccggaggg aggggacact gccgacgacg atcgccgcgg cggccaggag cccgccggcc 
+    11341 agcaccaccc accgcagcca cggcagccac gacgcgttct cgttcagcag gcaccagctc 
+    11401 caggacgccg tcgcgccgat catggccgcg aggccgaggc ggcccgtgat gcgctcgcgg 
+    11461 gcgtgccaga ggagggcacc accggtgccg accaggccgg cgatcgccgg ggcgagcgcc 
+    11521 acggtgtagt acgggtggat cgtgccggac atgtacgaga agaccagtcc ggtgacgagc 
+    11581 agccagccgc cccagagcac caggccggcg cgggcggggt cggcgaggtg ccgccggccg 
+    11641 acgaccacca ggccgagcac gagcgcgacg agtgccgcgg gcaggagcca cgagatctcg 
+    11701 aggcccatct ccgacgagaa cagccggttc agcccggtcg agccgccgaa ggacgagccc 
+    11761 gcggtgccgc cgcccgtgcc gccgccaccg ccgccgttgc ccgagccgcc gaagatccgg 
+    11821 ccgaggccgt tgtagccgaa caccaggtcg aggaccgtgt tgtcggtcga tccaccgatg 
+    11881 tacgggcggg actccgcggg ccagagcgcc acggcgacca cccaccaccc ggctgccgcc 
+    11941 accagggaga ccgcagcgat gccgaggccg atcgcgcgct tcccccacgt ggtgcgggcg 
+    12001 gcgaagaggt acacgaggcc gaaggccggc aggacgagca ggccctgcag catcttcgtc 
+    12061 aggaacgcga agccgagggc gacgccggcg agggcgatcc accgccagct gcccttcggc 
+    12121 agtgcccgga ccgtgcagta cgcgcccgcg gtcatgagca ggacgagcag cgcgtccggg 
+    12181 ttgtcgaacc ggaacatgag cgccgccgcc ggggtcgccg cgacgacgaa gccggcgagc 
+    12241 agcgcaccga cgttcgcggt cgtggctccg aggcgggcga gcgtccgtcg gacggtgccc 
+    12301 cacacgagcg cgaccgaggc gacggccatc agcgcctggg ggagcagcag gctggtcgac 
+    12361 gagaacccga acagccgagc cgacagcacc atcacccaga gcgacgccgg gggcttgtcg 
+    12421 acggtgatga agttcgacga gtcgagcgag ccgaagaaga acgcctccca cgacttcgtg 
+    12481 ccggcctgca cggcggcggc gtagaaggtg ttggcgtacc cggagacgct gaggtcccac 
+    12541 aggtacacga cggcggtgac gacgaggagc agccagaacg ccgggcggag ccaacgggcg 
+    12601 tcggtccgct caccgaggaa gagccggggg acggctcggc gacgcgtcgg cgctcccgtg 
+    12661 tgcgctcggt cgcgacggtc ggtcacgggg atcgggtacg tggtcatgac gctgagcatc 
+    12721 gccgtccccg gtcgaccgtt ccgatggacc gcctcggagc ttcctaagac gtcagctgcc 
+    12781 ggtcaccgcc cggcggatct gctcgatcgg gaccttcggg gtccggtccg cgtggagcag 
+    12841 gccgttcgtc tcctgcatcg tgtccgtcag ctgcgtccag cacgacccgg ccaggaacgt 
+    12901 gctcgcccgc accccgtcgt agagcgccgt gatccgcgcg acccagtcgt ccccgtcgac 
+    12961 cgccgccgtg tagccccagc cctcggtgcg ccggccggcg gcctggtacc ggacgccgcc 
+    13021 gaactcggtg agcatcaccg gctggccgcg gtcgacggcg ccgccgacga actgggggtg 
+    13081 cccggagggg gcgaggccct cgagggcgcg ggtgcgtgcc gcgtcgtcgc ggtaggtgtc 
+    13141 cgcgagcacg gcgccgtcgc cctcgtagtc gtggatcgtc acgacgtcgg tgtcctgctg 
+    13201 ctcccagccg tcgttcccga tcaccggccg ggacgggtcg agggcccggg tgaggtcgac 
+    13261 gagcgcccgc gcgtaggcct gctgcgcggg atccgagacg acgtgctgga tgccccacga 
+    13321 ctcgttgaac gggacccagg tgacgatcga cgggtgcgag gcgtcccgct cgacggcggc 
+    13381 ggtccactcc gcggtgagcc gacggacggc cgtgggggag aactcgtacg ccgcgggggc 
+    13441 ctcgccccag accatgaggc cgaggcggtc ggcccagtag aggaaccgcg ggtcctcgat 
+    13501 cttctggtgc atgcgtgcgg cgttgaagcc gagggccttg atcagctcga cctcctgccg 
+    13561 gtgcgcgagc gggtgcggtg cggcgaggtg cgactccggc cagaacgcct ggtcgagcac 
+    13621 gctgcgcacc gggtacggct gccggttgag caggaaccgg ccgccgccga cgccgacgct 
+    13681 gcgcatgccg aggtagctgg cgacgacgtc gagcacggcg ccggacgcgt cgaccagggt 
+    13741 gaggacggcg tcgaggagcc tcggggtctc cggcgaccac gtcagctcgt cctcggcctg 
+    13801 gccgttgcgc tgccgggcga ccggcacggt gacctcgagg gtcggacggc tggcggtggc 
+    13861 gtcccactcg gtcgtgccga ggtcctcgtc gcgctcgtcg aagcggaggg cgacccggag 
+    13921 ccgggcaccg gcgggcaccc ggccgcggaa gcggaccgac agtgccgtcg acgcggggga 
+    13981 ggcgggggtc caccggagtg cgtcgatcgc ggtggtgggc acggcctcca gccagaccgg 
+    14041 ctgccagatg cccgtcgtcc ggcggtacca gatcgcgtgg gcctcctcgt gccagtcctg 
+    14101 cttgccgcgg ggttgcgtga cgtcgtcggg gtcgtcctcg gcacggacga ccagcacgtg 
+    14161 gtcggccccg tcgggggtct cggcgagcag cgccgtcacg tcgaaggtga agggggtgtg 
+    14221 cccgccctcg tgctcgccga cgaaccggcc gtcgatccag accctggccc ggtggtcgac 
+    14281 cgcgccgaag tgcagcagga cacggggccg gtcggcgccg tgcccggcct gcacgagctc 
+    14341 gtcgtggccg atcgtccggc tgtaccagac gaccgggtgg aactccgggt cgccgatgcc 
+    14401 ggacgccgcc gactcgggcg ggaagggcac ggtgatggtg cgcggcgagg ggacccccgc 
+    14461 cgcccacccg gcatccgtcc cggcgtcatc gtcgtcgtgc cggaacgacc agggaccgct 
+    14521 gaggtcgatc cagtcccgac ggatcacctg cggcctgggg taccggccgt cctgccggct 
+    14581 ggcgaggggg acggcggcga cgtcggtgga ggacgcgggg gcgacgatgc tcatgctccg 
+    14641 gcaatttaca gcgctgtaaa cggatcgtca acgctacggt gggcgcgtgg gccgggtcac 
+    14701 gctgcaggac gtcgcggagc acgccggcgt ctcgatgaag accgtgtcga atgtcgtccg 
+    14761 tggctaccgg cacgtcagcg acgccatgcg ggcccgggtg cagacgtcgg tcgacgcgct 
+    14821 cggctaccga ccgaacgtga cggggcggag cctggccacc ggccgcacga acatgctcgc 
+    14881 gttcgcgttc cccgacctgc gtcggccgta cttcgccgag ctcgcgcacg tcttctcgga 
+    14941 ggtgtgcgcc gcacggggct accagctgct gctcgaggag accgccggcg cgccgggcgg 
+    15001 cgagctgtcc gccgtccgcg ggcgcgaggc gggggtcgtc gacggggtcg tcatccaccc 
+    15061 gcaggtgctc acgcccaccg agatcgacca cgcacggggc gacaccgcgg tcgtgttcct 
+    15121 cggcgaggac gtccggccgg acggcgcgga cctcgtcgcg atcgacaacg tgcgggccgc 
+    15181 ggccgaggcc gtcgcgcacc tcgcggccct cgggcgtcgc cggatcgggt tcctcggcca 
+    15241 cgaggtgggc gagcagtccc gcacctcggc cttccggacg gaggggtacc gcgacggtct 
+    15301 gtccgaggcc ggcctgcccg tcgacccgtc gctcatggtc gcgcgtgcgg tcggtgacgc 
+    15361 ccgcggggcg gaggaggcct tcggccgtgc cctcgacgac gggctccgga tcgacgggct 
+    15421 gctctgccgc gacgacctcg ccgccgtcgg ggcgctgcgg gcgatgcgcc tgcgggggct 
+    15481 cgaggcgccg cgcgacgtgg cggtggtcgg gtgggacgcc atcgggctgg ccgccagtct 
+    15541 ggtcccgagc ctgacctcgg tcgcgccgga cacggtcgcg ctcgccgagg ccgcgctcga 
+    15601 ccggctgcag gagcgcatcg agggacgccc gggcgagggg cgggcggtga cggtcggcca 
+    15661 ccggctgctg gtgggggaga gtgcgcccta cccggacggc tcggtcgact gatccccgcg 
+    15721 gaccgtcgtc gggccgccgt gccgtgacga cgcctccggg gcctcccgtc ggacccggcg 
+    15781 ccgggcctcc cggatgctcg cgcgctgcag tcgcatcgtc ggccaccccg ccgcccgcgc 
+    15841 gtgcgcggcg agcccctggt ccggattgac caccacgggg ttcccgacga gcgacagcag 
+    15901 ggggatgtcg tggcgggagt ccgagtacgc ccagcagtgc gcggggtccg cgccggtccg 
+    15961 tgccaggagc gcacgcgcgg cgaccgcctt gtgctccccg tgcaggaacg ccccgtcgag 
+    16021 gcgccccgtg taggcgccgt cctccacctc gaacacgctg cccagcgcgc cggtcaggcc 
+    16081 gaggctgcgt gcgatcacct cggccaggaa cgtcggtgtc gccgtcacga gccacacctg 
+    16141 gtggcccttc gcgaggtgct cccgcgcgag ggcggcggtc tccggccaca cggacggctc 
+    16201 ggtgtggcgg gtccagacgt cgtcggacag cgccgccatg tcggccaccg tgatgccggt 
+    16261 gatcacctcg agtccacggg tctgcgcggc ggccaggtgc cggtcgttct cgccgcggac 
+    16321 cttgaagcgg gcgtgcttcc agccggcgct gacgatgtcg cgcagggtga tgaggcgggc 
+    16381 ggcgcggagg ccgcgcacga ggtggaacgc gctcgcaccg tggacgaggg tgttgtccac 
+    16441 gtcgaagaac gcgaggaccg gggtgtccgc ctgctcgtcc gccaccggac caggctaggc 
+    16501 gacggggctg cgggccgcga ccggcggtcg ggctgccggc cgggtcgggc tgccggggtg 
+    16561 gtcgggctgc cggtcgggct ggcggccggc tcggtctgcg acgttccgcg tgtcgatcga 
+    16621 cgcgtgggat gtcgctcggt gcgcacgcac ccggtgcgcg tgcatcgtcc gacatcgcac 
+    16681 gtgtcgatcg acgcgtgcga tgtcgcacga cgtgcagccg ccgtcaccgc tgccgcgcag 
+    16741 ccgcgcagca gccgccgtca ccgctccccg gggtgcacgc tcccgagcag ctcgaccagg 
+    16801 gcgctccgca gcgacccggg cagcccgacg gtctcgagct cggcgatccg gtcggcgcgg 
+    16861 ggtgcgtcgc ggtcgacgac ctcccacgcg gtgagcttct ccgcgttgcc cgcctgggca 
+    16921 ccctcgagga gctcgcgtgc ggcgtcgcgg gcgtcgacac cggtggtggg cgccccggcg 
+    16981 agggtcagga ccgcgccggc gtccgtcgcg acgtccaggt cgaccgagaa ccggtcggcc 
+    17041 gacaccgcgt cgacctcctg cccggccgcg ggcgccccga ggaacgtgac gcgccaccga 
+    17101 cgccggagcg gcacgctgcc gaggtcgccc tcggccgggt cgatccggaa cacggcagcg 
+    17161 tcgtggtccc acgtgagcgt ggtccggcac acgccgccgt ccggccccgc accggtcccg 
+    17221 gtcccggtgc tgccgccggt gctgctgccg gtctgctcct cccggtcctc cacgagcgtg 
+    17281 aacgtgcccg gggcacccgg ggcgacgagc acctcgagcg cggcggggtt caccgtcgcg 
+    17341 tccgactcgt ccggcgccgc gagcggcagg atcccacccg cacggagcag cacggggatc 
+    17401 gtgtcgagcc cgcggtgcag gtcgacgaac cggtcgcccg cgtacgtcgt gcccgtgaag 
+    17461 acgtccgtcc acgtgcccgg cggcagccag gcccgggccc gcccccgcag cgtcaccggg 
+    17521 tcgcgcggct cgacgatcgg cgccacgagc agctccgacc cgaaggcgta ctcgttcggc 
+    17581 acccggtagg cctcgtcgcg gtgcggctcg aggtggtaca ccggccggac gagtgcggtg 
+    17641 cccgcggccg cgcggtggtt catcgtgtgc aggtagggca cgagccggtg acggaagcgc 
+    17701 agggcctcgc ccatcgcggc ccgcggctcc gcggggaaca gccacggctc cttgcggatg 
+    17761 aacgggttgt tcgcggagtg cagccgcatg atcggcgaga agaccccgaa ctgcacccag 
+    17821 cgggtggcga gctcgtcgtc gcgcaccccg cgggtgtggc cgccgatgtc gtggctccac 
+    17881 caggggtacc cgacgttcgc ggcggtggcg gtgaactcgg gctggaaagc gagggaggcc 
+    17941 cacgagacga cggcatcccc cgagaacccg accgcgtacc ggtggctgcc cggacccgcg 
+    18001 taccgcgaga aggtcatgcc ggccccgccg tcgcgcgccg agtcgagcag gtggaagtgg 
+    18061 ttgagcaccc agagcgggtc gacaccgggg atgccggagg tgcggccctg ctgccagtcg 
+    18121 atccaccaga agtcgacgcc ctgttcctcg aggggccggt gcaggtgctc gaagtacgcg 
+    18181 cggaggaaga ccgggtcggt ggggtcgaac gcgaccgtct gctcggtgtc ggggtcgatc 
+    18241 ccggtcgcgg ccgccatcgc cgggtaggcg tcctcgaagg cccgcacgcc gtcggcgggg 
+    18301 tgcaggttga gcgtggtccg catgccgcgt cggtgcagct cggccaggaa cgcgggcggg 
+    18361 tcggggaaga gcgacggctc ccacgagtac ccggtccagc cgttgccgaa ccgcggcggc 
+    18421 acggagtcga cgcggtgcca gtccatgtcg acgaccgcga ccgagaaggg caggcgttcc 
+    18481 tcggcgaacc ggtcgagcag cgccgtgtac gactcgtccg agtacgggtg gtagcggctc 
+    18541 caccagttcc cgagcgccca ccggggcagg cgggtcggcg gtcccgacac cgcgtggaac 
+    18601 gcgcggaggg cctcgtcgta gtcgcggccg tacgcgaaca cgtgcacgtc gcggcgaccc 
+    18661 ggcacgcggc tgccgaccca cccgtcgtcc tcgaacagga acgagtcgct gtcgtcgagc 
+    18721 gcgacgatcc cgtcgcgcgc caggacaccg gactcgagcg gcatccgccc gtccacgtcg 
+    18781 tcgagcgtcc tgccggtacc gccgaggtcg cggggctcct ggccccagcg ccaccggttc 
+    18841 gcgtccgctc ccgaggtctc gaccaccagc ccggtcgccg agaacggccg gccgtcgtac 
+    18901 cggagggtgg cccggtccgt ggtcacctcg accccgtcgc cccgccgcac gacggtgtac 
+    18961 tcgggcaccg gcaggcgccg tcgcaccgcg aaggtcgagg cgcggtcctc gaagccgccg 
+    19021 tcgtcgctcc actcgatgcg gaagagcccg tcgcacagca cggtgatccg ccagtggtcg 
+    19081 ccctgcacga cggcgtcgcc gtcggcgacc gggtcggaac ccgggaaggg gcggatggtg 
+    19141 ggcagggggc cgtcggtggg ggagtgcacg tcggttcggt cctgtctcgg ccgttccggc 
+    19201 cggtgtcggt gcgggaggct cgggtcagct cttgacggcg ccctgcgtca cgccgctgat 
+    19261 cacccagcgc tgcgcgaaca ggtagacgac gatcgtcggg gccatcgcca tgaggtacga 
+    19321 ggcgaacgcc acgttgtagt tcgtgccgaa ctggctctgg aagatgttct gcacgacggg 
+    19381 cagcgtctgc agcccggggt ccgcggtgat gagcgacggc atcatgaagt cgttccacga 
+    19441 ggcgaggaag gcgaagatgc cgacggtcgc gttcatcggt ccgagcagcg gcaggatgac 
+    19501 gcgccagaag atctgccacg tcgaggcacc gtcgatgcgt gcgctctcct cgagctcgac 
+    19561 cgggatcgag cgcaggaacg ccgagtagag cagcacgctg aacgacagtt ggaacatggc 
+    19621 gtgcaggatc gcgacgccga ccgggctgtc gagcgagatc atcgcggtga acttgatctg 
+    19681 cggcagggcg accaccggga acggcaggaa catcgccgcg agcaggtaga cgaaggacca 
+    19741 gcggaagaag cggcggtgcc agttccgcac gatcgcgtac gaggcgagcg agctgaggag 
+    19801 cagcgtcgcg acgacggtga gggcggcgac gccgagcgag accgagaacg acaccgggaa 
+    19861 gcgggtgagc gtccaggcct cggcgaagct ggcggggttg aacgggaacg gcagggacag 
+    19921 cgcgttgccg tcgacggcct gggcgctcgt cttgaacgcc atggcgacgg tgacgtagag 
+    19981 cgggaccagg acggtgaggg acgcgatcgc caggacgatc gtcagcggga cgtcgacgcg 
+    20041 accgagccgg cgtcggcggg gctggtcggg cgtggtgcgt gcggcggcgg tcgcggggga 
+    20101 ccgggtgtcg atggcgctca tgcgagtcgg aggttccttc cgcgggtcac tgcgagctgc 
+    20161 aggaccgaga tgaggacggt gatgacgaag aagacggtcg cgttcgccat ctggtaggcg 
+    20221 tagtcgccgc tcgtgaagcc cgtgaagatg gtcatcgcga cgctgctcgt cgccgagccc 
+    20281 ggtccgccgt tcgtcaggcc gacgatcacg tcgtaggcgc cgaggtagcc cttcacgccg 
+    20341 agcaccgtgt tgatgacgat gaagccgccg atcaggggca gcgtgatcga ccggagctgc 
+    20401 ttccaggcgc cggcgccgtc gagcgagctc gcttcgtaca cgtccgtcgg gatggaggtc 
+    20461 agccccgccg tgtagacgag cagggcaccc gggatcgtct gccacgccga gacgatgacg 
+    20521 atcgcgagcc aggcgaggtc cgggtcgccg aggatgctct gctcgagcgg gccgaagccg 
+    20581 accgaggtcg ccagggccgg cagggtgttc gagaacagga agttgaagac gtaggcgacg 
+    20641 atgatgccgg agacgaccat cgggatcacg aacacggcgc ggagcccgct cgcgaaccgc 
+    20701 acgcgcttcg tcagcgcgat ggccagtgcc agggcgatca cctgcgtgac gatcaccgtc 
+    20761 accacggcga agccgagggt gaagccgtac gagccgagga tcgccgggtc ggacacgagc 
+    20821 gcccggtagt tctcgagccc gaggaagtgc cactgcccga agccgaggta gtcggtgaag 
+    20881 ctgtagaaga cgccgacgca cgcgggggcg acgacgaacg ccgtgaacag cacgagggcg 
+    20941 ggcacgagga agaggtagta gacgccctcg gtgcggcgca gcgagccgac gcgtcggtgc 
+    21001 acgcgggacg ccacggtggc gggaccggga cggggtccac cggtgtccgg tgtgccgggg 
+    21061 gtcagcgggg tctggacggt catgagcgct cctggggtcc tggtcggcgg tgccggggtc 
+    21121 gcggcggtca gaccgtcgcc gaacgaccgg cgaggcgtcg ccagtcggtg tcgagccgcc 
+    21181 gcagcatcga ctcgaagtcg ccgctgcgga tcgccgtctg caggtagttg ccgaggggga 
+    21241 tggaggtggg gatgaaggtg ccggcgccct ggtagaagtc gccgctgtcg acgtactgct 
+    21301 gcaggccggc cacgcgctcg tccgtctggg gagccgcgtc ctcggtcgtc gcgaacgcga 
+    21361 ggttgtcgag gttgtaggcg ttgatgacgt cgggctgcat gaggaactcg acgagctccc 
+    21421 gcgcctcgtc gaggtgcgtc gtggtcgtgg ggatccacag cccgaggtcg atgttgacgc 
+    21481 gggcctgccg gtcgtcgggg tcgtcggaca ccggcagcgc gaaggtcccg acgggcagct 
+    21541 ctgggtcgac gagcgcgatc tggctgagcg cccacggtcc ctgcaggtac atcgcgacct 
+    21601 tgccctgtcc gaacgccagg ttgccgtcgg cgtaggagcg ggtcgcgtgg tccgggttga 
+    21661 agaacgtcga gatcgtcttc gcgcgctcca tcggcacggc gaagtcgcgc tcgaaggaga 
+    21721 cctcggcgtc gggcccgacg tccgtgccga gcgccttcat cttgcggaag aacgccccgg 
+    21781 tgtcgaccag gctgcccacc gagtagtcga acaggccctg ccacagcgtc caggtgtcgc 
+    21841 ggtcggtcgc gtacacgggg gtgacgtccg tcttcgagag tgccgtgcag acgtcgacga 
+    21901 actcgctcca ggtcgtcggg accgggaggt cctgctcggc gaagatccgc ttgttgtaga 
+    21961 tgacccccgc ggcggcgagc gagaagggca ggacgctggt gcggtcctcg aaggtcgcgt 
+    22021 actggttcgt caggccgtcg atgctcttcc ggaccctgcc cgccgagggc aggtcgccga 
+    22081 ggtcgcggag cacgccgcgc tcgatgtagc gggcgagctc gaggttgtcg ttgaagcagc 
+    22141 cgacgtccgc cggctcgccg cggacgaact gcggcgcgat ggcggtcgtg ctgtcgtgga 
+    22201 cgacccgcag gccacggtgc tcccgctcga accgtcggag gaggtcgtcg aagtaggcga 
+    22261 tcacctcctg cttctgctcg tagaagcgca gcgtcgtccc gcccgccgcc gcggcgcccg 
+    22321 aggacggcgc cgagcagccg gtgagcgcca gcgcaccgag gccgatcccg cccgcggcgc 
+    22381 ccgtgaggaa cccgcggcgg ctgagcgccg cacgtgccgt cgtcctgctg gtgaccatcg 
+    22441 ttgctccctc tcgcgctccg tcgcgctcgc tctgttttac agcgctgtaa acgcaaagtc 
+    22501 aacgggacga cgagcagtgc tcacgcgcag gacggtcctc aggcgtagcg gcgtgcagcg 
+    22561 cgcagtgcgt gctcggtgta cgagccgccg aacaggaaca cgtgcagcag cagcggcgcg 
+    22621 agctggtgga gctcgacgcg ctcctgccag ccgtccgcca accgcgactc ggcgtcgtac 
+    22681 ccggcgagca ccgtctcgag ccgggggagc ccgaacagtg ccagcagcgc gaggtcggtc 
+    22741 tcggcgtgcc cgccgtgcgg cgtcgcgtcg atgagcacgg cgccggtcgg ctccgaggcg 
+    22801 tccgtcggcc acagcacgtt gcccgcccag aggtcgccgt ggatccgcgc cggtgcgtca 
+    22861 tcgacgagcg cgggctgcgg cgagccgagg gtgccgtcct cgagtcggtc ggccacgcgg 
+    22921 tcgaacaccg cggcctcggc ggcgtcgaag ccaccgcggt cgacgatgcg ctgcacgaag 
+    22981 tcccggatgc ggtactcggc gaagaaggcg ccccaggtcg ccggtgcgtc ggcggcgctc 
+    23041 gtgaacggcg tccgcgaccg gcccatccgc aggcctccac gcgtcgggaa cccgggtgac 
+    23101 ggcgcacccc agtgggcggc accggccgcg tgggtccgtg cgagcgaccg tccgaagcgc 
+    23161 tcggcctggg ccttcgtcgg gctgccgtcc cggatgcgct cgaggtggag cacggtcggc 
+    23221 tccgggtggt cgagcacgcg ggcgatccgg gtgccgccgg tctcctcggc ctcggcgagc 
+    23281 caggccagtc cggcggcctc ggcggtcgcc tcgtcgggtt cgcggaacgt cttcacgtgg 
+    23341 atctcgggca cgtgcccatc ctgccgacgg cgctcgtcgg gcgttcaggc tccccggcgg 
+    23401 gcggcgtgca cgaccagggc gagctgcacc cggttgtcga cgccgaactt ctcgtacacg 
+    23461 tgcccgacgt gcgtcttcac ggtcgccagg gtcacgaaca ggtcggcggc gatctgcgcg 
+    23521 ttcgaggcgc ccgcggccac ggcgagcgcg acctcggtct cccgttcggt cagggtcgcc 
+    23581 aggagccgtc gttcgtgtgc gccgtcggtc ggggtcgcac cggcgcccgg cccggagccg 
+    23641 ttgccggcgg cgaccgcgat cacccggtcg agcacggacg gcgacaggat cgaccgtccg 
+    23701 tcggccacgg cccggaccgc ctcgacgagc tcgtgcggtg gcgtgtcctt gagcaggaac 
+    23761 ccgcgggctc cccggtgcag ggcgccgagc accagctcgt cgtcctggaa cgtggtcagc 
+    23821 accagcacgg cgagctccgg acgcctccgg agttcccgct cggtcgcgac caggccgtcg 
+    23881 caccggggca tgcggatgtc catcagcacg acgtccggtg cggccgcggc gatgacgtcc 
+    23941 tcggcctcca gcccgtcgcc ggcctcgccc acgacctcga tgccgtcgcc cccgctcagg 
+    24001 agcagtcgga gaccggcccg gacgaggtgg tcgtcgtcga ccaggacgac gcgcacgggg 
+    24061 gcggtcacgc cgtccacggg agcaccgcct cgacgacgtg cgtgccggat gcgtcccgac 
+    24121 ctgccgagaa ggacccgccg aggagcctcg cccgctcggc cagcccgcgc aggccgtgcc 
+    24181 ccgccggagc cgcgtcaggc gtcgccgcgt cggacgtcgc cgcgtcgggc gtcgccgtcg 
+    24241 cctgctcggc acggtgcgcc gtcgggttcg tcacccggac ccggagcgcc ggcccgtgca 
+    24301 cgacgtccac cgtgacggtg accggctgtc cggccgcgtg ccgccgggcg ttggtcaggc 
+    24361 cctcctgcac gacccggtac gcgtgtcggc cgacggcgtc cggtgcgtcg gcgctcgccg 
+    24421 gggccgtcgt cgccgtgacg tcggcgcccg agcggcgcgc ttcgtcgagc agcgccggca 
+    24481 ggtctcgcag cgtcggctgc gggggtgcgg tgcccgtcgt cgcgtcggcc gggtcacgca 
+    24541 ggacgccgag cacgtcgcgg agctcggtca gcgcggagtg cgcctcggca cggaccacgc 
+    24601 cggcggcctc gacggtctcc tcgggggaga gcgagcgacc gcggtactcg agcgccccgg 
+    24661 cgtgcagggc gacgagggag agccggtgcc cgagcacgtc gtgcatctcc cgggcgaggt 
+    24721 gtgcgcgctc ctgctcgcgg gcccggtcct cgcggagctg ctggtcccgc tcgagcaggg 
+    24781 cggcacgttc gcgcagcccg tccagcaggg cccgccgctg cccgatcgcg atgccgaccg 
+    24841 ccacgaggag cgcggtgcac acgacggccg cgatcgcgac ctgccagagc ggggtcggct 
+    24901 cctgctcggg gaacaggtcc tcgccggcca acgtcgcggc gacgagcgca gcgctgccga 
+    24961 tcgcgatctc cagcggccga cgccgggtca cgagcgacac gagggccagc gcggccgcac 
+    25021 cggccgcgag cgtcgacacg gtgctggcgg cgacgacgag cacgccgacg aggagcggtg 
+    25081 cccggtggcg gaacggtacg aggacgacgg cgacgacccc gacggcgaag tcgacgagca 
+    25141 ggtgcgcgcc gaggcggctg tcgctgatcg tgtcgacctc cgtggtcgac cagaccgtgg 
+    25201 cgaacaggaa cagcccgacg agcacgacga ccacgagtcg ccaggtctcg gcccagacgc 
+    25261 ggctcgcgac gggcacgggc gggcggagcg cggtcgtggt catgccctcg agcctaggaa 
+    25321 caccggggcc ggcgcggatc gtccgaaggt cgtaagaagc gaccggcgga ccgtcagacc 
+    25381 gcgtcgacca gtgcctgcgc cagcgggtgc cacggacgcg acgccggtcc gctcagcacc 
+    25441 agcgtccgca cgtaccgcgg ctcgacgggc agcatgacga ggtcgtccgg cagcatcacg 
+    25501 cgcccgagcg acggcacgat ggacaccccc tcgccgcgct ggatcatccc gaacatcgtg 
+    25561 ctcatctccc ggacccggtg cgcccaccgg aacggctgcc cggcgagctc gtgcatccgc 
+    25621 tcgatctggt gctcgcagcc accgccgccc gcgaccaggc cgtcctcgtg caggtcgtcc 
+    25681 aggctcatcg acgccgtccc cgcgagcggg tggtcccgcc ggacgaccgc acccatctcg 
+    25741 tcgcgcgcca ccacgacgcc gccgtcgggg accggggacg ggtccacgag cacggccgcg 
+    25801 tccacggtgc cggcctcgag ccactcggcc atctcgtcgt cgtcaccctc gtagacctgc 
+    25861 acgtcgacgt cgggcagcgt caccgcccac agctcgcgga gccgcggcag caggccctgg 
+    25921 cacaccgtgg ggacggcggc gaggcgcacg gtgccgcgcg ccgtggcggg ccgcaccacg 
+    25981 gcctccaggg cgtcgacgga ggcgaccacg ctgcgggcgt gcgccagcat gcgctcgccg 
+    26041 agcggggtga cgacggccgc gccgccgcgc cggacgacgg gtccgccgac ctcgcgctcc 
+    26101 agccccgcga cggcgtgcga gaccgccgac tgaccgacac cgagcgctgc ggcggccccg 
+    26161 gtgaaggagc cggcgtccac cgtggcgacg aacgcgcgga gctgggggac ggagagcgtc 
+    26221 atgcggctcc ttcatggggt catgcgggtc attcgttcga cacatgaccc ggcggtggtc 
+    26281 gatgctagcg ctcgtgaacg ccctcctcta cgtcctggtc gccctcacct ggggctcgag 
+    26341 cttcttcttc gcgaagatcg ggctcgaggg gctcgccccg cagcaggtcg ccaccgtccg 
+    26401 cacggtcctc ggagccctca cgctcgtcgt ggtgctgctc gcaacccgtc gacggtggcc 
+    26461 gcgcgagcgg cgcgtctggg ggcacctgtt cgtcgtcgcg gtgttcctca acgccgtccc 
+    26521 gtcctcgctc atggcgtggg ccgagcagac cgtgccgtcg ggcctggcga gcatctacaa 
+    26581 cgccacgacg ccgatcatga cgctcctcgc gctcgcggtg ctggtgccgt cggaacggct 
+    26641 cagccgccgc cagctcggcg gcgtcgtgct ggggatcgcg ggcgtcctcg tgctcgtcgg 
+    26701 tccgtgggac ctggtcggcg accccgccgt gctcgccacc gtccccggcc aggtcgcact 
+    26761 gctcggcatg accgcgtcct acggcatcgg actggcctgg ctccggcgct tcggcgtcgg 
+    26821 cagcgggcag gacccgacga cggtcgcgac ggtgcagctc accctggcgg cgctgctcat 
+    26881 gctgctggtc gcgccggtca tcgcgaccgg gccggtggac ctggactgga ggatcgtggc 
+    26941 cgcgatggtg gcgctcggtg cggtgggcac ggggctggcc tacgcgtgga acacgcgctt 
+    27001 ggtcggcgcg tggggcgcgg ggcgcgcttc gaccgtgacc tacctgacgc cggtggtcgg 
+    27061 ggtggcgctc ggggtcctcg tgctcgggga gccgctgcgg tggaacgagc ccgtgggtgg 
+    27121 gctggtggtg ctgctcggga tcgcgttggc gtccggggtg ctgcgcgggc gacggcgggt 
+    27181 cgtgccgtcc gtcgcggcga cggacccggc cgtcagaacg cgctgagggc agcccgcagc 
+    27241 atccgctggc cctgcgcctc gaacgccggg tcaccgacgg cgaacgccca cacggccgtc 
+    27301 cccaccgcct cccgcagttg cagccaccgc cagtcgtccg cctcgcgcgg atcgtcgccg 
+    27361 tagccctcga tgaacgcctg ttcgagccgc ggcttccgct cccagtacag gacggcgagc 
+    27421 cgggtgaggt ccgtcgccgc cgggcggagg gcgaagcgcc cgaagtcgat gacgtgcagg 
+    27481 cggtcctcgt gcacgatcca gttccggggg tgccagtcgc cgtgcgtcgg taccaccgtg 
+    27541 accgggtgcg gctcggccga ccggagcagg gaccggacgc gtcggaccgt ggcggggtcg 
+    27601 atccggtgcg gggcatcgag caggcggagc gccttcgcgg tctcgacggc caggtggtcc 
+    27661 gggtcggtga tcgccgtctg gtcgtggaac cgacggagga tccggcccgc ctgacgatgg 
+    27721 aggtccgacg acgtctcgtc gtcggtgccg agggcgaggc gaccggggat gcggtcgatg 
+    27781 acgaggacgc gggcctcgac gtcggcgtgc gtcagcggag cggtgtcgcc gtgccggacc 
+    27841 agctcgccgg tccacgagcg gtgggcgagc agttcgcggg ggaagtgcgt gttgtccggg 
+    27901 ccgcatgcct tcaccgtgtg gtcgccgtgg gagctccgga cgtgcagcac ccgggtgtcg 
+    27961 agcagacccc acgagtcgtc cgtcacgacc acagaaccgg gcagcacccg ctcgacgaac 
+    28021 gcgacctgcg ccgcgtccag tccgctgtca ccccaccgca cggcagcatc ttcgcaggtg 
+    28081 ccgccgccga tcacggtgtc ggcgtcgagg ccgatccggc gggtcgccgg ccgatcgagg 
+    28141 actggaagcg cagcaggtag ccgtccgggt cctgcacgag gaactggtgg acgcccgcct 
+    28201 gctcgtcgcc cacgtcgtac caggtcgtct cgggctccgt gaagagcggg atcccggccg 
+    28261 cggtgagccg tcgggcgagg gcggcgctgt ccgggacggc gacctggaag ttcacgccgc 
+    28321 ggcccagcgg ggcgtcgagc gggcccgtca gccagttgcg accgaccccg gcctgctcga 
+    28381 gcatcacgtg cgcggttccc cgcacgaggt aggcgaagcg ctcctgcggg cggtcgtacc 
+    28441 gtacggcgaa gccgcagagc ccgcaccaga aggcgatgct gcggtcgagg tcgcgcacga 
+    28501 gcagctcggg cacgagtgcc ggttcggtga ggtcgtccac cccgccatcg tcgcaccgtc 
+    28561 ctacgctctc ctcgtgctga cgatcgtgat cgcggacccg gacgagccgg ccgcccagga 
+    28621 ggtcatcagg gcgtacacga ccgaggtcgc gtcgcggtgg tacgggcggt cggccacgga 
+    28681 cgacgaggtc gagcgggcac gtgccgacga gccgtccgac gacctgcgtg gaacgaccgg 
+    28741 ggcgttcttc gtcgcgatgg aggacggtca cgcggtcggt tgtgcgggtg tccggtaccg 
+    28801 ctccggtgtc ggcgagctca cgaaggtgtt cacccgtccg acgcaccgtg gacggggagt 
+    28861 cggcacggtg ctgctcgaca ccgtcgaagc ggcgtgccga gcgcgcagga tcgacgtggt 
+    28921 ccggctcgac accagggcgg aactcgccga ggcgtgtgcg atgtacgagc gccgtggcta 
+    28981 cggacgcgtc gacccgttca acgacgagcc gtactcggac cggtggtacg agaagcgtct 
+    29041 cgtcgactgc gcccggtagg gacgccctgc ggtcggacgg ccgttcctcc gcggacgctc 
+    29101 atccggtcgt cgcacgcggt gcttgtcgcg tccgggtcgc cccggtacag tccgagcaac 
+    29161 cgccgacgca gacgggatcc cacgacgcaa cgacgcaagt gaggaccagg catggacgtg 
+    29221 tccaccagga cggggaccag ggttcgatcc gacccggtgc ccgacgccgc ctccgtcgtc 
+    29281 gaggagccgc accgcgggag cgccgtgagc ggagccgcgg tgtcctgagc ggtggccctc 
+    29341 cggcgtccgg cactgctgcg cgccgacggg ccacacaccc gacgcccgca cccgcgggtg 
+    29401 tcaccgccgc cgacgatcga ggaggatcac atggcgagca accacgcagt cgcgtaccag 
+    29461 ggaccgggga aggtcgaggt catcgagacc gagtacccga ccttcgaact caaggacgga 
+    29521 cccggcgtca acccggcgaa cgtcggacgc aaggtcaacc acggggcgat cctgcgcacc 
+    29581 gtggcgacga acatctgcgg cagcgaccag cacatggtcc gcgggcgcac gacggcaccg 
+    29641 accgacctcg tgctcgggca cgagatcacc ggcgaggtcg tcgaggtcgg gtcggacgtc 
+    29701 gagttcatca aggtcggcga catcgtctcc gtgcccttca acatcgcctg tggccgctgt 
+    29761 cgcaactgca aggagcgcaa gaccggcatc tgcctcaacg tcaacccgga ccgtccgggc 
+    29821 agcgcctacg gctacgtcga catgggcggc tgggtcggcg gccaggccga gtacgtgctc 
+    29881 gtgccgtacg ccgactggaa cctgctgaag ttcccggacc gcgaccaggc gctcgagaag 
+    29941 atcctcgacc tcgcgatgct gtcggacatc ttcccgaccg gcttccacgg cgcggtgacc 
+    30001 gccggcgtcg aggtcggctc gacggtctac gtcgcgggtg ccgggccggt cggtctcgct 
+    30061 gccgccaccg gtgcgatgct gctcggcgcg agcgtcgtca tcgtcggtga catgaacgcc 
+    30121 gaccggctcg cgcaggcccg gaccttcggc tgcgagaccg tcgacctgac gaagggcgac 
+    30181 ccggccgacc agatcgacca gatcctcggc gagccgctgg tcgactgcgg catcgacgcc 
+    30241 gtcggcttcg aggcgaaggg ccacggctcc ggctcgggcc acgaggcccc ggcgacggtg 
+    30301 ctcaactcgc tgatggacgt gacggcggcc ggtggtgccc tcggcatccc cgggctctac 
+    30361 gtcacgggtg acccgggcgg cgtcgacgag gccgcccaga agggtgcgct gtccctcagc 
+    30421 ctcggcaccg gttgggcgaa gtcgctgtcc ttcacgaccg gacagtgccc ggtgatgaag 
+    30481 tacaaccggc agctcatgat ggcgatcctg cacgaccgca cgagcatcgc gaagaacgtc 
+    30541 aacgcgaagc ccatcggcct cgacgaggcc ccgcgcggct acgaggagtt cgacaagggc 
+    30601 gcggcgacga agtacgtcct caacccgaac ggtctcatcc ccgcggcctg accaccgcag 
+    30661 cacaccggcc cgcgccccgt cgtctccgac gcggcgcggg ccgttcccgt cgtgctgctc 
+    30721 gatcgtgcga tcagcgcccg gagccgtcga ccggtccgcc gcggttcctc ctcgccgtga 
+    30781 ccacgatgag cgcggcggcg cagacgaccg ggaccgccgc aagtgcgacg ctcgtccgtg 
+    30841 ccagccggag ggacaggggg tcatccgcgg gcaacgccca tcccgcgacc gcggccaggg 
+    30901 agagggcggc accggccccc gccccgatga gcacggcgag caaagtgacg aggtacccgt 
+    30961 cgcggtggcc tctctcgcgt ccggtcgtca ctgcgagttg caccaggtga tggtcgacgg 
+    31021 tgggatgttg tggatgaccg tcccacgtcc cttcgcggcg cacacaccga ggaacgcacc 
+    31081 ggcgacggcg aggaccccgg cgagggcgcc tgcagcagca gccccgagcc ccgtgggtgc 
+    31141 gaggatgccg gcgatggtcc cgacgacgcc ggttccccct ccgatgaccg cgagcaaccg 
+    31201 gttcgtgttg caactgctca ggtagacgtt cagctgggcc ccggtgtagt cggagcgcgt 
+    31261 ccgaccggag cacgctcgga cgtcgcctgc cgcgcggagg gacgagagcc gtgcgctgtc 
+    31321 gaccgtagcg ccgcggacgg atccgccggt ggcggcgaaa cccgtggcgt agtcgtcgac 
+    31381 gagtccggcc tcgaccccgg aagcgcgcgc cgcgcccccg tcgaagacgt gcgtccgcgg 
+    31441 gtcggtcgcg tcgtacagcg cctgcacggt gcgttctgcc agccgcgggg gctcggccgg 
+    31501 tgtccgcgca gaggccgttg ccggcgaggc gaccaccgcg gatgcggcga tcgcgacggt 
+    31561 cgccgcgctg gcgaggatgg tggtgtggtg cagctcgagt cgcatcgagt cgtccttccc 
+    31621 gggtcggcac cgtgccggct ccgttcgaag cttccgtgag cacgtgctgg agtgcaacac 
+    31681 tgatatatcc agagttcggg gccaatgtcg aacccgtacg ctcacgggtg tgagcgacac 
+    31741 ccgacggccc tcgaccctcc gcctgctgtt cgcgtcgtcg caccccggcc cgaccgtcac 
+    31801 ggtgaccgtc ctcgccgccg tgatcgccgc cgccgtcggg cacccgtggt ggctcgtggc 
+    31861 cgtcgtcgca ctcgccgtcg tggccgggca gctctcgatc ggactggcga acgactggat 
+    31921 cgacgccgac cgcgaccgcg ccgtcggccg gagcgacaag ccggtcgccc gcgggctggt 
+    31981 cgcggtgtcg accgtccgga ccgcggcgtt cgtcaccgcg gcggtggcgg tcgtcgtgag 
+    32041 cctgttcctc ggcccggtcg ccgcactcgc gcacgtcgtg ctcgtggccg cggggtgggc 
+    32101 gtacgacgcc gggctgaagc ggacggtctg gtcggtcgcg cccttcgtcg tggcgttcgg 
+    32161 tctgctgccg gtcgtggcgg tggcggccgg tggcggtgcg tggccgacgt ggtgggcgat 
+    32221 cgccaccggc gcggtgttcg gcgtcgcgat ccactgcacc aacgtgctgc ccgacctgct 
+    32281 cgacgacgcg gccaccgggg tacggggctt cccgcaccgt ctggggctcc gcggtgccgg 
+    32341 cacgctcgcg ttcgcggcgc tcgtcgtggc cgccgccctg gtgctcggcg gtcagctggg 
+    32401 cggcgacgac ccggcacgag gggccggggt ggtgctcgcg gtcgtcgggg cggccgtggt 
+    32461 cgtcgtgctc gccgtggtcg gcatccggct cgtgttcgcc ggacggccca cccgggcact 
+    32521 gttccggctc gtcatcgcgt cctcgctcgt gctcgtcgtc gagctcggcg tggcgggcgc 
+    32581 ccgactcgtc gcctgacccc ggtcgacgcc cgcgacgacc gcccggaccg accgccggag 
+    32641 aacgcgaccc gatcgcccgc gcgacccgac cgcccgaccc ccctcaggcc cagcgcatgg 
+    32701 cgtagacgcc cgccagcccc tcggccgtcg ggagcgccag caccgcgcgg agcagcgcct 
+    32761 cccgccccga ggcgccgagg gctcccgtcg gccgaccgag cgccatgttc gcctcggcct 
+    32821 gtcgccccgc ccgccgcgct gcccgctggc gccgtcgtgc gtagcccggc cagggcccgg 
+    32881 cggaccccga ggcgaccgcg tcggcgagca ccggcgccag gtcggcgacg tcgagccacc 
+    32941 cgaggttcat gccctgcccg ccgatggggc tgatctcgtg cgcggcgtcg ccgacgagca 
+    33001 ccacgcggcc gacgccgacc cgtgtggcag cacggcgccg gacgcggaac ccgctcgtca 
+    33061 tcgtgcaggt cgcggggtcg ggggtcgcgc ccgtccgctc cgcgacgatc gcggcgagcc 
+    33121 gcgcggccgt cgccgggtcc ggtgcacctc cggccgccgc cggcgcgacg tcctccggca 
+    33181 cgagggcgac gtaccgtcgt cgaccgtggg gcagtgggaa cgactcgacc acgccgtccg 
+    33241 gcccgacgtc gacgagcgcc gccgagcggg cgtcggccgg ctccgggtcg gcgaagtcgc 
+    33301 ccatcacgta gcggtcgcgg tagtcccgcc cggtcgtgcc gacgccgagc aggtcgcgca 
+    33361 cggcgctccg ggcgccgtcg gcgccgacga cgaacgcggc ctcgaccgcg acgggctcgc 
+    33421 cgcccggtcc ggtgccgtgg gcgcggacgt gcgtccgctg ccggtccaga ccggtcacgc 
+    33481 tcgttccggt ccgcaggacg cccggcgcga gccgcttgcg caggagcgtc tcggtgcggt 
+    33541 gctggtcgag cgtggcgacg tacgggtgcg tcgccgacgc gcggtcgaac gacagcgtcc 
+    33601 cgagggttcg cccgcggctc cgggccacgc cggtccggac gagcacggcc tcggcgagca 
+    33661 ccgcggtgtc gagtccgacc gctgcgaagg cgtcgagcga cggtgggtgg atcccgatcg 
+    33721 cgcgcgagcc gacgggcggc gcgtcgcgcc gttcccagac ggcgacgcgg acgccccgcg 
+    33781 cggcgagcag tgcggcagcg aacaggccga cggggccacc gccgacgacg aggacgtcga 
+    33841 cgcgttccgt ggtcacgcag gcgagcctac ggaacggtca cgacgtccgg cccaggagac 
+    33901 gcaccagacc ggccgcccgt cggacgggag gcgcgtggcg ggccccgcca cgcgcctccc 
+    33961 gtccggtgtc cggtcggtga gcggatcggc gacccgctca cgggacccgt cgcgtcaggt 
+    34021 cgtggcggag tcgcgggccg cgcgggcggc ggccaccagg cgtcgcgcc 
+//

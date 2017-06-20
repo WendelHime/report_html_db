@@ -1,0 +1,60 @@
+FT   terminator      41642..41681
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_41642"
+FT                   /note="hairpin sequence= CGCTCGGCGCTGGGC CGCGGTCGTCGCGGCCGC GCTG GCGGCCGCGGTCGCCGCC TTCGTCGCCGCGCGC, confidence = 76, hairpin score = -17, tail score = -3.14132, observation = overlap 41649"
+FT                   /color=100 100 100
+
+FT   terminator      47796..47821
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_47796"
+FT                   /note="hairpin sequence= GTTCGGGCAGCAGGG CGAGGCGGACG GGGA CGTCGGCCTCG TTGTTCGCCACGACG, confidence = 80, hairpin score = -14.7, tail score = -3.61398"
+FT                   /color=100 100 100
+
+FT   terminator      52331..52364
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_52331"
+FT                   /note="hairpin sequence= CGTCGTGCGACGACC CGCTCGACGGCGCCG ACGA CGGTGCCGCCGGGCG CTTGGTGTCGGGAGC, confidence = 78, hairpin score = -19.5, tail score = -2.55351, observation = opp_overlap 52308, overlap 52330"
+FT                   /color=100 100 100
+
+FT   terminator      57691..57724
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_57691"
+FT                   /note="hairpin sequence= TCCAGCGCCACGATG CCGGCGCAGTTGACG AGCA CGTCGACGGCGCCGG TCTCGTCGACCACCG, confidence = 82, hairpin score = -20.3, tail score = -2.78384"
+FT                   /color=100 100 100
+
+FT   terminator      64772..64796
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_64772"
+FT                   /note="hairpin sequence= CCTGAGCTGACGCGA CGGGGCCGTC CCGAC GACGGCCCCG TCGTTCCGCAGGACG, confidence = 79, hairpin score = -18.6, tail score = -2.70932, observation = opp_overlap 64754"
+FT                   /color=100 100 100
+
+FT   terminator      69973..70027
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_69973"
+FT                   /note="hairpin sequence= TCACGTCTCGTCGAA CCACGATCCCGACGTCGAACCGGCCG CAC CGCGTGGTTCAACGTCGGGATCGTGG TTCGATTGCCCCGCG, confidence = 100, hairpin score = -28, tail score = -3.17075, observation = opp_overlap 69976"
+FT                   /color=100 100 100
+
+FT   terminator      76303..76352
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_76303"
+FT                   /note="hairpin sequence= CGGGTCGCGACCAGG AGACGGCCGGGAGGCGCGGTGCC AGCA GGCACCGCGCCTCCCGTCCGTCG TGTGGTCGCGGCTGT, confidence = 100, hairpin score = -35.1, tail score = -2.78935, observation = opp_overlap 76306, overlap 76306 76349"
+FT                   /color=100 100 100
+
+FT   terminator      76306..76349
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_76306"
+FT                   /note="hairpin sequence= GTCGCGACCAGGAGA CGGCCGGGAGGCGCGGTGCC AGCA GGCACCGCGCCTCCCGTCCG TCGTGTGGTCGCGGC, confidence = 100, hairpin score = -35.4, tail score = -2.66316, observation = opp_overlap 76306, overlap 76303"
+FT                   /color=100 100 100
+
+FT   terminator      76401..76445
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_76401"
+FT                   /note="hairpin sequence= GGGCGTGCCAGGCGA GAACGGGCGTACCTGGTCGG CCGGA TCGACCAGGTACGCCCGTTC TCGCTTCCCACCGCA, confidence = 100, hairpin score = -31, tail score = -2.52464, observation = opp_overlap 76404, overlap 76404"
+FT                   /color=100 100 100
+
+FT   terminator      76404..76442
+FT                   /inference="ab initio prediction:TransTermHP:2.08"
+FT                   /note="transterm_76404"
+FT                   /note="hairpin sequence= CGTGCCAGGCGAGAA CGGGCGTACCTGGTCGG CCGGA TCGACCAGGTACGCCCG TTCTCGCTTCCCACC, confidence = 100, hairpin score = -26.9, tail score = -3.41878, observation = opp_overlap 76404, overlap 76401"
+FT                   /color=100 100 100
+

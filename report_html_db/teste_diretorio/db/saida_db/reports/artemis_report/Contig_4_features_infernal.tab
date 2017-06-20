@@ -1,0 +1,22 @@
+FT   ncRNA           29347..29480
+FT                   /locus_tag="Csp_1559"
+FT                   /label="FMN"
+FT                   /note="Csp_1559"
+FT                   /note="internal name: Contig_4_RNA_scan_annotation_infernal.pl_log_5_350"
+FT                   /ncRNA_class="other"
+FT                   /product=""
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00050, Rfam type: Cis-reg;riboswitch;, score is 69.4, e-value is 7.6e-14, bias is 9.9"
+FT                   /color=123 234 255
+
+FT   ncRNA           123223..123319
+FT                   /locus_tag="Csp_1661"
+FT                   /label="Bacteria_small_SRP"
+FT                   /note="Csp_1661"
+FT                   /note="internal name: Contig_4_RNA_scan_annotation_infernal.pl_log_5_351"
+FT                   /ncRNA_class="other"
+FT                   /product=""
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF00169, Rfam type: Gene;, score is 52.1, e-value is 5.2e-09, bias is 4.0"
+FT                   /color=123 234 255
+

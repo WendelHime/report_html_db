@@ -108,7 +108,7 @@ my $standard_dir;
 #my $GFF_dir="";
 #my $GFF_selected_dir="";
 my $type_target_class_id = 0;
-my $pipeline             = 0;
+#my $pipeline             = 0;
 my $aa_fasta_dir         = "";
 
 my $nt_fasta_dir = "";
@@ -187,7 +187,7 @@ my $html_file;
 my $banner;
 my $tcdb_file = "";
 my $ko_file;
-my $uniquename;
+#my $uniquename;
 my $annotation_dir;
 
 #
@@ -202,8 +202,7 @@ $config = $module->config;
 #
 #check if any mandatory argument is missing
 #
-if (   !exists( $config->{"organism_name"} )
-	|| !exists( $config->{"uniquename"} ) )
+if (   !exists( $config->{"organism_name"} ) )
 {
 	$missingArgument = 1;
 	print "Missing mandatory configuration argument:organism_name\n";
@@ -249,9 +248,9 @@ if ( defined( $config->{"aa_orf_file"} ) ) {
 if ( defined( $config->{"type_target_class_id"} ) ) {
 	$type_target_class_id = $config->{"type_target_class_id"};
 }
-if ( defined( $config->{"pipeline"} ) ) {
-	$pipeline = $config->{"pipeline"};
-}
+#if ( defined( $config->{"pipeline"} ) ) {
+#	$pipeline = $config->{"pipeline"};
+#}
 
 #componentes do Jota
 if ( defined( $config->{"alienhunter_output_file"} ) ) {
@@ -330,9 +329,9 @@ if ( defined( $config->{"TCDB_file"} ) ) {
 if ( defined( $config->{"ko_file"} ) ) {
 	$ko_file = $config->{"ko_file"};
 }
-if ( defined( $config->{"uniquename"} ) ) {
-	$uniquename = $config->{"uniquename"};
-}
+#if ( defined( $config->{"uniquename"} ) ) {
+#	$uniquename = $config->{"uniquename"};
+#}
 if ( defined( $config->{"filepath_log"} ) ) {
 	$filepath_log = $config->{"filepath_log"};
 }
@@ -900,6 +899,7 @@ while ( $sequence_object->read() ) {
 
 	#	print STDERR "N de conc: $n\n";
 	my $bases = $sequence_object->current_sequence();
+	print $LOG "\nCurrent Sequence:\t$bases\n";
 	my $name  = $sequence_object->sequence_name();
 	$dbName     = $sequence_object->{dbname};
 	$dbHost     = $sequence_object->{host};
@@ -1767,12 +1767,9 @@ if ( -e $databaseFilepath ) {
 
 #add resources to the config file
 open( $fileHandler, ">>", "$html_dir/website.conf" );
-print $fileHandler "\npipeline_id "
-  . $pipeline
-  . "\ntarget_class_id "
+print $fileHandler "\ntarget_class_id "
   . $type_target_class_id
-  . "\nuniquename "
-  . $uniquename . "\n";
+  . "\n";
 close($fileHandler);
 
 open($fileHandler, ">>", "$services_dir/services.conf");
@@ -1944,6 +1941,34 @@ __PACKAGE__->config(
 	password => "$dbPassword",
 	options  => {},
 );
+
+=head2
+
+Method used to get pipeline from database
+
+=cut
+
+sub getPipeline {
+	my ( \$self ) = \@_;
+	my \$dbh = \$self->dbh;
+	my \$query = "select distinct p.value as value
+        	from feature_relationship r
+        	join featureloc l on (r.subject_id = l.feature_id)
+        	join featureprop p on (p.feature_id = l.srcfeature_id)
+        	join cvterm cp on (p.type_id = cp.cvterm_id)
+        	WHERE cp.name='pipeline_id';";
+	my \$sth = \$dbh->prepare(\$query);
+        print STDERR \$query;
+        \$sth->execute();
+        my \@rows = \@{ \$sth->fetchall_arrayref() };
+        my \%returnedHash = ();
+
+        for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+                \$returnedHash{pipeline_id} = \$rows[\$i][0];
+        }
+
+        return \\\%returnedHash;
+}
 
 =head2
 
@@ -4563,6 +4588,13 @@ sub getFeatureID_GET {
 		\$c->model('SearchDatabaseRepository')->get_feature_id(\$uniquename));
 }
 
+sub getPipeline : Path("/SearchDatabase/GetPipeline") : CaptureArgs(0) : ActionClass('REST') { }
+
+sub getPipeline_GET {
+	my ( \$self, \$c ) = \@_;
+	return standardStatusOk( \$self, \$c, \$c->model('SearchDatabaseRepository')->getPipeline() );
+}
+
 =head2 searchGene
 
 Method used to search on database genes
@@ -5967,7 +5999,7 @@ Root where will have the main pages
 =head1 METHODS
 
 =cut 
-my \$feature_id;
+
 ROOT
 
 #my @controllers = (
@@ -6028,10 +6060,22 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 				]
 	}))]);
 	my \$searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => \$c->config->{rest_endpoint});
-	\$feature_id = \$searchDBClient->getFeatureID(\$c->config->{uniquename})->getResponse();
-	\$c->stash(
-		targetClass => \$searchDBClient->getTargetClass(\$c->config->{pipeline_id})->getResponse()  
-	);
+	
+	if(!\$c->config->{pipeline_id}) {
+		my \$response = \$searchDBClient->getPipeline()->getResponse()->{pipeline_id};
+		use File::Basename;
+		open( my \$FILEHANDLER,
+			">>", dirname(__FILE__) . "/../../../website.conf");
+		print \$FILEHANDLER "\npipeline_id \$response\n";
+		close(\$FILEHANDLER);
+		\$c->stash(
+			targetClass => \$searchDBClient->getTargetClass(\$response)->getResponse()  
+		);
+	} else {
+		\$c->stash(
+			targetClass => \$searchDBClient->getTargetClass(\$c->config->{pipeline_id})->getResponse()  
+		);
+	}
 	
 	\$c->stash(
 		sequences => [

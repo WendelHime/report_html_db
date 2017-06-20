@@ -1,0 +1,33 @@
+FT   tRNA            62286..62359
+FT                   /locus_tag="Csp_2165"
+FT                   /note="Csp_2165"
+FT                   /note="internal name: Contig_6_tRNAscan_annotation_trna.pl_log_3_134"
+FT                   /gene="tRNA-Ile(GAT)"
+FT                   /product=""
+FT                   /anticodon=(pos:62320..62322,aa:Ile)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 81.83"
+FT                   /color=255 000 000
+
+FT   tRNA            62395..62467
+FT                   /locus_tag="Csp_2166"
+FT                   /note="Csp_2166"
+FT                   /note="internal name: Contig_6_tRNAscan_annotation_trna.pl_log_3_135"
+FT                   /gene="tRNA-Ala(TGC)"
+FT                   /product=""
+FT                   /anticodon=(pos:62428..62430,aa:Ala)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 81.62"
+FT                   /color=255 000 000
+
+FT   tRNA            75948..76031
+FT                   /locus_tag="Csp_2180"
+FT                   /note="Csp_2180"
+FT                   /note="internal name: Contig_6_tRNAscan_annotation_trna.pl_log_3_136"
+FT                   /gene="tRNA-Leu(CAG)"
+FT                   /product=""
+FT                   /anticodon=(pos:75982..75984,aa:Leu)
+FT                   /inference="profile:tRNAscan-SE:1.23"
+FT                   /note="score is 62.41"
+FT                   /color=255 000 000
+

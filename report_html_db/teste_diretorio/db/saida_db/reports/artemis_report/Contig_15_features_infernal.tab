@@ -1,0 +1,11 @@
+FT   ncRNA           complement(35068..35004)
+FT                   /locus_tag="Csp_3095"
+FT                   /label="Actino-pnp"
+FT                   /note="Csp_3095"
+FT                   /note="internal name: Contig_15_RNA_scan_annotation_infernal.pl_log_5_42"
+FT                   /ncRNA_class="other"
+FT                   /product=""
+FT                   /inference="ab initio prediction:cmscan:1.1.1"
+FT                   /note="target_id=RF01688, Rfam type: Cis-reg;, score is 39.6, e-value is 8.2e-06, bias is 1.8"
+FT                   /color=123 234 255
+
