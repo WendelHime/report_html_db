@@ -1,0 +1,221 @@
+[debug] Debug messages enabled
+[debug] Statistics enabled
+[debug] Loaded Config "/home/wendelhlc/git/report_html_db/report_html_db/teste_database/upload_xml/curtobacterium/website/website.conf"
+Cannot determine desired terminal width, using default of 80 columns
+[debug] Loaded plugins:
+.----------------------------------------------------------------------------.
+| Catalyst::Plugin::ConfigLoader  0.34                                       |
+'----------------------------------------------------------------------------'
+
+[debug] Loaded PSGI Middleware:
+.----------------------------------------------------------------------------.
+| Catalyst::Middleware::Stash                                                |
+| Plack::Middleware::HTTPExceptions                                          |
+| Plack::Middleware::RemoveRedundantBody  0.04                               |
+| Plack::Middleware::FixMissingBodyInRedirect  0.12                          |
+| Plack::Middleware::ContentLength                                           |
+| Plack::Middleware::MethodOverride  0.15                                    |
+| Plack::Middleware::Head                                                    |
+'----------------------------------------------------------------------------'
+
+[debug] Loaded Request Data Handlers:
+.----------------------------------------------------------------------------.
+| application/x-www-form-urlencoded                                          |
+| application/json                                                           |
+'----------------------------------------------------------------------------'
+
+[debug] Loaded dispatcher "Catalyst::Dispatcher"
+[debug] Loaded engine "Catalyst::Engine"
+[debug] Found home "/home/wendelhlc/git/report_html_db/report_html_db/teste_database/upload_xml/curtobacterium/website"
+[debug] Loaded components:
+.-----------------------------------------------------------------+----------.
+| Class                                                           | Type     |
++-----------------------------------------------------------------+----------+
+| website::Controller::Blast                                      | instance |
+| website::Controller::Root                                       | instance |
+| website::Controller::SearchDatabase                             | instance |
+| website::Controller::Site                                       | instance |
+| website::Model::BaseResponse                                    | instance |
+| website::Model::Basic                                           | instance |
+| website::Model::Basic::Component                                | class    |
+| website::Model::Basic::File                                     | class    |
+| website::Model::Basic::Sequence                                 | class    |
+| website::Model::Basic::Text                                     | class    |
+| website::Model::BlastClient                                     | instance |
+| website::Model::Feature                                         | instance |
+| website::Model::PagedResponse                                   | instance |
+| website::Model::SearchDBClient                                  | instance |
+| website::Model::Subevidence                                     | instance |
+| website::Model::TRFSearch                                       | instance |
+| website::Model::TRNASearch                                      | instance |
+| website::View::TT                                               | instance |
+'-----------------------------------------------------------------+----------'
+
+[debug] Loaded Private actions:
+.----------------------+--------------------------------------+--------------.
+| Private              | Class                                | Method       |
++----------------------+--------------------------------------+--------------+
+| /default             | website::Controller::Root            | default      |
+| /blast               | website::Controller::Root            | blast        |
+| /help                | website::Controller::Root            | help         |
+| /index               | website::Controller::Root            | index        |
+| /reports             | website::Controller::Root            | reports      |
+| /downloads           | website::Controller::Root            | downloads    |
+| /about               | website::Controller::Root            | about        |
+| /downloadFile        | website::Controller::Root            | downloadFile |
+| /end                 | website::Controller::Root            | end          |
+| /globalAnalyses      | website::Controller::Root            | globalAnaly- |
+|                      |                                      | ses          |
+| /renderView          | website::Controller::Root            | renderView   |
+| /searchDatabase      | website::Controller::Root            | searchDatab- |
+|                      |                                      | ase          |
+| /searchdatabase/gen- | website::Controller::SearchDatabase  | gene_basics  |
+| e_basics             |                                      |              |
+| /searchdatabase/end  | website::Controller::SearchDatabase  | end          |
+| /searchdatabase/sub- | website::Controller::SearchDatabase  | subEvidences |
+| Evidences            |                                      |              |
+| /searchdatabase/beg- | website::Controller::SearchDatabase  | begin        |
+| in                   |                                      |              |
+| /searchdatabase/get- | website::Controller::SearchDatabase  | getSimilari- |
+| SimilarityEvidenceP- |                                      | tyEvidenceP- |
+| roperties            |                                      | roperties    |
+| /searchdatabase/ali- | website::Controller::SearchDatabase  | alienhunter- |
+| enhunterSearch       |                                      | Search       |
+| /searchdatabase/ncR- | website::Controller::SearchDatabase  | ncRNASearch  |
+| NASearch             |                                      |              |
+| /searchdatabase/sub- | website::Controller::SearchDatabase  | subsequence  |
+| sequence             |                                      |              |
+| /searchdatabase/ana- | website::Controller::SearchDatabase  | analysesCDS  |
+| lysesCDS             |                                      |              |
+| /searchdatabase/rbs- | website::Controller::SearchDatabase  | rbsSearch    |
+| Search               |                                      |              |
+| /searchdatabase/gen- | website::Controller::SearchDatabase  | geneByPosit- |
+| eByPosition          |                                      | ion          |
+| /searchdatabase/ncR- | website::Controller::SearchDatabase  | ncRNA_desc   |
+| NA_desc              |                                      |              |
+| /searchdatabase/trn- | website::Controller::SearchDatabase  | trnaSearch   |
+| aSearch              |                                      |              |
+| /searchdatabase/get- | website::Controller::SearchDatabase  | getInterval- |
+| IntervalEvidencePro- |                                      | EvidencePro- |
+| perties              |                                      | perties      |
+| /searchdatabase/tra- | website::Controller::SearchDatabase  | transcripti- |
+| nscriptionalTermina- |                                      | onalTermina- |
+| torSearch            |                                      | torSearch    |
+| /searchdatabase/tan- | website::Controller::SearchDatabase  | tandemRepea- |
+| demRepeatsSearch     |                                      | tsSearch     |
+| /searchdatabase/gene | website::Controller::SearchDatabase  | gene         |
+| /blast/search        | website::Controller::Blast           | search       |
+| /blast/begin         | website::Controller::Blast           | begin        |
+| /blast/end           | website::Controller::Blast           | end          |
+| /site/getViewResult- | website::Controller::Site            | getViewResu- |
+| ByComponentID        |                                      | ltByCompone- |
+|                      |                                      | ntID         |
+| /site/end            | website::Controller::Site            | end          |
+| /site/begin          | website::Controller::Site            | begin        |
+| /site/getComponents  | website::Controller::Site            | getComponen- |
+|                      |                                      | ts           |
+| /site/getHTMLContent | website::Controller::Site            | getHTMLCont- |
+|                      |                                      | ent          |
+| /site/downloadFileB- | website::Controller::Site            | downloadFil- |
+| yContigAndType       |                                      | eByContigAn- |
+|                      |                                      | dType        |
+| /site/getFileByComp- | website::Controller::Site            | getFileByCo- |
+| onentID              |                                      | mponentID    |
+| /site/searchContig   | website::Controller::Site            | searchContig |
+'----------------------+--------------------------------------+--------------'
+
+[debug] Loaded Path actions:
+.-------------------------------------+--------------------------------------.
+| Path                                | Private                              |
++-------------------------------------+--------------------------------------+
+| /                                   | /index                               |
+| /...                                | /default                             |
+| /About/                             | /about                               |
+| /Blast/                             | /blast                               |
+| /Blast/search/...                   | /blast/search                        |
+| /Components/                        | /site/getComponents                  |
+| /Contig/...                         | /site/searchContig                   |
+| /DownloadFile/...                   | /downloadFile                        |
+| /DownloadFileByContigAndType/...    | /site/downloadFileByContigAndType    |
+| /Downloads/                         | /downloads                           |
+| /FileByComponentID/...              | /site/getFileByComponentID           |
+| /GetHTMLContent/...                 | /site/getHTMLContent                 |
+| /GlobalAnalyses/                    | /globalAnalyses                      |
+| /Help/                              | /help                                |
+| /SearchDatabase/                    | /searchDatabase                      |
+| /SearchDatabase/GetGene/...         | /searchdatabase/gene                 |
+| /SearchDatabase/GetGeneBasics/...   | /searchdatabase/gene_basics          |
+| /SearchDatabase/GetSubsequence/...  | /searchdatabase/subsequence          |
+| /SearchDatabase/SubEvidences/...    | /searchdatabase/subEvidences         |
+| /SearchDatabase/alienhunterSearch/- | /searchdatabase/alienhunterSearch    |
+| ...                                 |                                      |
+| /SearchDatabase/analysesCDS/...     | /searchdatabase/analysesCDS          |
+| /SearchDatabase/geneByPosition/...  | /searchdatabase/geneByPosition       |
+| /SearchDatabase/getIntervalEvidenc- | /searchdatabase/getIntervalEvidence- |
+| eProperties/...                     | Properties                           |
+| /SearchDatabase/getSimilarityEvide- | /searchdatabase/getSimilarityEviden- |
+| nceProperties/...                   | ceProperties                         |
+| /SearchDatabase/ncRNASearch/...     | /searchdatabase/ncRNASearch          |
+| /SearchDatabase/ncRNA_desc/...      | /searchdatabase/ncRNA_desc           |
+| /SearchDatabase/rbsSearch/...       | /searchdatabase/rbsSearch            |
+| /SearchDatabase/tandemRepeatsSearc- | /searchdatabase/tandemRepeatsSearch  |
+| h/...                               |                                      |
+| /SearchDatabase/transcriptionalTer- | /searchdatabase/transcriptionalTerm- |
+| minatorSearch/...                   | inatorSearch                         |
+| /SearchDatabase/trnaSearch/...      | /searchdatabase/trnaSearch           |
+| /ViewResultByComponentID/...        | /site/getViewResultByComponentID     |
+| /reports/...                        | /reports                             |
+'-------------------------------------+--------------------------------------'
+
+[info] website powered by Catalyst 5.90112
+HTTP::Server::PSGI: Accepting connections at http://0:3001/
+[info] *** Request 1 (0.067/s) [12267] [Thu Jun 22 17:06:03 2017] ***
+[debug] Path is "reports"
+[debug] Arguments are "kegg_report/pathway_figures/K00963-ko00040.html"
+[debug] "GET" request for "reports/kegg_report/pathway_figures/K00963-ko00040.html" from "127.0.0.1"
+[debug] Response Code: 200; Content-Type: unknown; Content-Length: unknown
+[info] Request took 0.018057s (55.380/s)
+.------------------------------------------------------------+-----------.
+| Action                                                     | Time      |
++------------------------------------------------------------+-----------+
+| /reports                                                   | 0.007100s |
+| /end                                                       | 0.000135s |
+'------------------------------------------------------------+-----------'
+
+[info] *** Request 2 (0.133/s) [12267] [Thu Jun 22 17:06:03 2017] ***
+[debug] Path is "/"
+[debug] Arguments are "css/kegg.css"
+[debug] "GET" request for "css/kegg.css" from "127.0.0.1"
+[debug] Response Code: 404; Content-Type: unknown; Content-Length: unknown
+[info] Request took 0.003201s (312.402/s)
+.------------------------------------------------------------+-----------.
+| Action                                                     | Time      |
++------------------------------------------------------------+-----------+
+| /default                                                   | 0.000136s |
+| /end                                                       | 0.000077s |
+'------------------------------------------------------------+-----------'
+
+[info] *** Request 3 (0.200/s) [12267] [Thu Jun 22 17:06:03 2017] ***
+[debug] Path is "/"
+[debug] Arguments are "js/dhtml.js"
+[debug] "GET" request for "js/dhtml.js" from "127.0.0.1"
+[debug] Response Code: 404; Content-Type: unknown; Content-Length: unknown
+[info] Request took 0.002684s (372.578/s)
+.------------------------------------------------------------+-----------.
+| Action                                                     | Time      |
++------------------------------------------------------------+-----------+
+| /default                                                   | 0.000106s |
+| /end                                                       | 0.000068s |
+'------------------------------------------------------------+-----------'
+
+[info] *** Request 4 (0.235/s) [12267] [Thu Jun 22 17:06:05 2017] ***
+[debug] Path is "SearchDatabase"
+[debug] "GET" request for "SearchDatabase" from "127.0.0.1"
+[debug] Rendering template "website/search-database/index.tt"
+[debug] Response Code: 200; Content-Type: text/html; charset=utf-8; Content-Length: unknown
+[info] Request took 17.935591s (0.056/s)
+.------------------------------------------------------------+-----------.
+| Action                                                     | Time      |
++------------------------------------------------------------+-----------+
+| /searchDatabase                                            | 1.043886s |
+| /end     

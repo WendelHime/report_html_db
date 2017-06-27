@@ -53,9 +53,9 @@ sub executeBlastSearch {
 		|| $blast eq "tblastx" );
 
 	$command .= " -ungapped " if $ungappedAlignment;
-	$command .= " -query_genetic_code \"$geneticCode\" "
+	$command .= " -query_gencode \"$geneticCode\" "
 	  if $geneticCode && $blast eq "blastx";
-	$command .= " -db_gen_code \"$databaseGeneticCode\" "
+	$command .= " -db_gencode \"$databaseGeneticCode\" "
 	  if $databaseGeneticCode
 	  && ( $blast eq "tblastn" || $blast eq "tblastx" );
 

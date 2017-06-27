@@ -486,7 +486,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-display-options-alignments-options", "100", ""),
         ("blast-display-options-alignments-options", "250", ""),
         ("blast-display-options-alignments-options", "500", ""),
-        ("blast-button", "Clear sequence", "onclick=""MainBlastForm.SEQUENCE.value = '';MainBlastForm.QUERY_FROM.value = '';MainBlastForm.QUERY_TO.value = '';MainBlastForm.SEQUENCE.focus();"" type=""button"" class='btn btn-default' "),
+        ("blast-button", "Clear sequence", "onclick=""this.form.reset();"" type=""button"" class='btn btn-default' "),
         ("blast-button", "Search", "type='submit' class='btn btn-primary' "),
         ("search-database-form-title", "Search based on sequences or annotations", ""),
         ("search-database-gene-ids-descriptions-title", "Protein-sequence and gene IDs", ""),
@@ -899,7 +899,7 @@ while ( $sequence_object->read() ) {
 
 	#	print STDERR "N de conc: $n\n";
 	my $bases = $sequence_object->current_sequence();
-	print $LOG "\nCurrent Sequence:\t$bases\n";
+	#print $LOG "\nCurrent Sequence:\t$bases\n";
 	my $name  = $sequence_object->sequence_name();
 	$dbName     = $sequence_object->{dbname};
 	$dbHost     = $sequence_object->{host};
@@ -1156,7 +1156,7 @@ while ( $sequence_object->read() ) {
 						$annotation_transterm = 1;
 					}
 					elsif ( $component_name eq "annotation_mreps" ) {
-						my $file = $component . "/" . $name . "_mreps.txt";
+						my $file = "$annotation_dir/" . $component . "/" . $name . "_mreps.txt";
 						$components{$component} = "$file";
 					}
 					elsif ( $component_name eq "annotation_string" ) {
@@ -1349,8 +1349,14 @@ while ( $sequence_object->read() ) {
 						}
 						elsif ( $component_name eq "annotation_phobius" ) {
 							$components{$component} = "$annotation_dir/$component/$png_file";
+							$annotation_phobius = 1;
 							$scriptSQL .=
 								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$png_file');\n";
+						}
+						elsif ( $component_name eq "annotation_signalP" ) {
+							$components{$component} = "$annotation_dir/$component/$png_file";
+                                                        $scriptSQL .=
+                                                                "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$png_file');\n";
 						}
 						elsif ( $component_name eq "annotation_rpsblast" ) {
 							$components{$component} = "$annotation_dir/$component/$txt_file";
@@ -3581,6 +3587,7 @@ sub subevidences {
 		'annotation_predgpi.pl'	=> 'PreDGPI',
 		'annotation_tmhmm.pl'     => 'TMHMM',
 		'annotation_hmmer.pl'	=> 'HMMER',
+		"annotation_signalP.pl" => 'SignalP',
 	);
 
 	my \@list = ();
@@ -4166,6 +4173,8 @@ sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : Capture
 		\$name = "rnammer";
 	} elsif(\$type =~ "trna") {
 		\$name = "trna";
+	} else {
+		\$name = \$type;
 	}
 	
 	my \$filepath = (
@@ -4758,13 +4767,16 @@ sub getSubsequence_GET {
 			  . \$sequenceName
 			  . ".fasta"
 		);
-		for my \$line (<\$FILEHANDLER>) {
-			if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
-				\$content .= \$line;
-			}
-		}
 
-		close(\$FILEHANDLER);
+		for my \$line (<\$FILEHANDLER>) {
+                        if ( \$line !~ /^>[\\w.-_]+\$/g )  {
+                                \$content .= \$line;
+                        }
+                }
+
+                close(\$FILEHANDLER);
+
+		\$content =~ s/\\n//g;
 
 		if ( \$start && \$end ) {
 			\$content = substr( \$content, \$start, ( \$end - ( \$start + 1 ) ) );
@@ -6349,13 +6361,38 @@ sub reports : Path("reports") : CaptureArgs(3) {
 		"<", dirname(__FILE__) . "/../../../root/" . \$filepath );
 	my \$content = "";
 	while ( my \$line = <\$FILEHANDLER> ) {
-		\$line =~ s/href="/href="\\/reports\\/\$type\\//
-		  if ( \$line =~ /href="/ && \$line !~ /href="http\\:\\/\\// );
+		#\$line =~ s/href="/href="\\/reports\\/\$type\\//
+		  #if ( \$line =~ /href="/ && \$line !~ /href="http\\:\\/\\// );
 		\$content .= \$line . "\\n";
 	}
 	close(\$FILEHANDLER);
-	\$content =~ s/src="/src="\\/\$type\\//igm;
-	\$content =~ s/HREF="/HREF="\\/\$type\\//g;
+	if(\$filepath =~ /\\.png/g) {
+                use MIME::Base64;
+                \$content = MIME::Base64::encode_base64(\$content);
+        } elsif(\$filepath =~ /\.html/g) {
+                if(!(\$filepath =~ m/pathway/)) {
+                        \$content =~ s/src="/src="\\/\$type\\//igm;
+                        \$content =~ s/HREF="/HREF="\\/\$type\\//g;
+                } else {
+                        foreach (\$content =~ /<img[\\w\\s"=]*src="([\\.\\w\\s\\-\\/]*)"/img) {
+                                if(\$_ =~ m/kegg.gif/) {
+                                        my \$imagePath = \$_;
+                                        \$imagePath =~ s/\\.\\.\\///;
+                                         open( \$FILEHANDLER,
+                                        "<", dirname(__FILE__) . "/../../../root/\$type/" . \$imagePath );
+                                } else {
+                                        open( \$FILEHANDLER,
+                                        "<", dirname(__FILE__) . "/../../../root/\$type/\$file" . "/" . \$_ );
+                                }
+                                my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+                                close(\$FILEHANDLER);
+                                use MIME::Base64;
+                                \$contentFile = MIME::Base64::encode_base64(\$contentFile);
+                                \$content =~ s/<img[\\w\\s"=]*src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
+                        }
+                        #\$content =~ s/HREF="/HREF="\/\$type/igm;
+                }
+        }
 	\$c->response->body(\$content);
 }
 
@@ -6451,7 +6488,7 @@ if ( $rootContent =~ /\{\{valorSearchSubtituir\}\}/g && $hadSearchDatabase ) {
 else {
 	$rootContent =~ s/\{\{valorSearchSubtituir\}\}/0/g;
 }
-
+my %hashDirectories = ();
 foreach my $filepathComponent (@filepathsComponents) {
 	if ($filepathComponent) {
 		print $LOG "\nFilepath component:\t" . $filepathComponent . "\n";
@@ -6463,10 +6500,22 @@ foreach my $filepathComponent (@filepathsComponents) {
 				my $directory = $1;
 				print $LOG "\n[6356]\tDirectory:-\t$directory\n";
 				if ( $1 !~ m/report/g ) {
-`ln -s $filepath/$standard_dir/$directory $standard_dir/$html_dir/root/` if (!(-e "$standard_dir/$html_dir/root/$directory"));
+`ln -f -s $directory $standard_dir/$html_dir/root/` if (!(-e "$standard_dir/$html_dir/root/$directory"));
 				}
 				else {
-					`ln -s $directory $standard_dir/$html_dir/root/` if (!(-e "$standard_dir/$html_dir/root/$directory"));
+					my $test = "";
+					$test = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+					unless(
+-d "$standard_dir/$html_dir/root/$test" && 
+-e "$standard_dir/$html_dir/root/$test" && 
+exists $hashDirectories{"$standard_dir/$html_dir/root/$test"} && 
+defined $hashDirectories{"$standard_dir/$html_dir/root/$test"} ) 
+					{
+						
+						`ln -f -s $directory $standard_dir/$html_dir/root/` if !$hashDirectories{"$standard_dir/$html_dir/root/$test"};
+						$hashDirectories{"$standard_dir/$html_dir/root/$test"} = 1;
+						
+					} else { print $LOG "\n[6481]Escapou do ln $test\n"; }
 				}
 			}
 		}
@@ -6707,7 +6756,7 @@ CONTENTABOUTINDEX
                                         <select class="form-control" name="DB_GENETIC_CODE">
                                             [% FOREACH text IN texts %]
                                                 [% IF text.tag == "blast-search-options-database-options" %]
-                                                    <option>[% text.value %]</option>
+                                                    <option [% text.details %]>[% text.value %]</option>
                                                 [% END %]
                                             [% END %]
                                         </select>
@@ -6738,7 +6787,7 @@ CONTENTABOUTINDEX
                                 	<div class="form-group">
                                     	<label>Contig: </label>
                                       	<select name="contig">
-                                      		<option></option>
+                                      		<option value="">All</option>
                                       		[% FOREACH sequence IN sequences %]
                                       			<option value="[% sequence.id %]">[% sequence.name %]</option>
                                       		[% END %]
@@ -7351,7 +7400,7 @@ CONTENTINDEXHOME
                                          	<div class="form-group">
                                          		<label>Contig: </label>
                                          		<select name="contig">
-                                         			<option></option>
+                                         			<option value="">All</option>
                                          			[% FOREACH sequence IN sequences %]
                                          				<option value="[% sequence.id %]">[% sequence.name %]</option>
                                          			[% END %]
@@ -7376,7 +7425,7 @@ CONTENTINDEXHOME
                                           	<div class="form-group">
                                          		<label>Contig: </label>
                                          		<select name="contig">
-                                         			<option></option>
+                                         			<option value="">All</option>
                                          			[% FOREACH sequence IN sequences %]
                                          				<option value="[% sequence.id %]">[% sequence.name %]</option>
                                          			[% END %]
@@ -7433,7 +7482,7 @@ CONTENTINDEXHOME
                                  	<div class="form-group">
                                         <label>Contig: </label>
                                         <select name="contig">
-                                        	<option></option>
+                                        	<option value="">All</option>
                                         		[% FOREACH sequence IN sequences %]
                                         			<option value="[% sequence.id %]">[% sequence.name %]</option>
                                         		[% END %]
@@ -7864,7 +7913,7 @@ CONTENTINDEXHOME
 						<div class="form-group">
 							<label>Contig: </label>
 							<select name="contig">
-								<option></option>
+								<option value="">All</option>
 								[% FOREACH sequence IN sequences %]
                                 	<option value="[% sequence.id %]">[% sequence.name %]</option>
                                 [% END %]
@@ -7919,7 +7968,7 @@ CONTENTINDEXHOME
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                                [% END %]
@@ -7985,7 +8034,7 @@ CONTENTINDEXHOME
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                                [% END %]
@@ -8064,7 +8113,7 @@ CONTENTINDEXHOME
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                             [% END %]
@@ -8114,7 +8163,7 @@ CONTENTINDEXHOME
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                             [% END %]
@@ -8183,7 +8232,7 @@ CONTENTINDEXHOME
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                             [% END %]
@@ -8265,8 +8314,11 @@ CONTENTSEARCHDATABASE
 <div class="content-wrapper">
     <div class="container">
     	<div class="row">
-    		<div class="col-md-12">
+    		<div class="col-md-1">
     			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
+    		</div>
+    		<div class="col-md-11">
+    			<span id="totalResults"></span>
     		</div>
     	</div>
         [% INCLUDE 'website/search-database/_forms.tt' %]
@@ -8388,6 +8440,50 @@ CONTENT
 </div>
 CONTENT
 		,
+		"signalPBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+        <div class="col-md-3">
+                <p>Start residue:</p>
+        </div>
+        <div class="col-md-9">
+                <p>[% result.start_residue %]</p>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-3">
+                <p>End residue:</p>
+        </div>
+        <div class="col-md-9">
+                <p>[% result.end_residue %]</p>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-3">
+                <p>Peptideo signal:</p>
+        </div>
+        <div class="col-md-9">
+                <p>[% result.pep_sig %]</p>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-3">
+                <p>Cutoff:</p>
+        </div>
+        <div class="col-md-9">
+                <p>[% result.cutoff %]</p>
+        </div>
+</div>
+<div class="row">
+        <div class="col-md-3">
+                <p>Score:</p>
+        </div>
+        <div class="col-md-9">
+                <p>[% result.score %]</p>
+        </div>
+</div>
+CONTENT
+		,
 		"evidences.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default">
@@ -8463,7 +8559,7 @@ CONTENT
 <!DOCTYPE html>
 <div class="row">
 	<div class="col-md-3">
-		<p>Gene type:</p>
+		<p>Gene predictor:</p>
 	</div>
 	<div class="col-md-9">
 		<p>[% result.type %]</p>
@@ -8773,7 +8869,11 @@ CONTENT
 		</div>
 	</div>
 	<div id="sequence-[% result.feature_id %]" class="panel-body collapse sequence">
-		[% result.sequence %]
+		<div class="row">
+			<div class="col-md-12">
+				[% result.sequence %]
+			</div>
+		</div>
 	</div>
 </div>
 CONTENT
@@ -8923,7 +9023,7 @@ CONTENT
 <!DOCTYPE html>
 <div class="row">
 	<div class="col-md-3">
-		Predicted TMHs
+		Predicted Transmembrane domains
 	</div>
 	<div class="col-md-9">
 		[% result.predicted_TMHs %]

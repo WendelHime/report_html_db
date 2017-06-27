@@ -22,11 +22,20 @@ http://127.0.0.1:3000
 
 TODO:
 -
+-	annotation_predgpi: 
+-        Dados gerais: start, end, strand
+-        Dados de regiões com resultados positivos: name, position, specificity, sequence 
+-	annotation_bigpi: 
+-        Dados gerais: start, end, strand
+-        Dados de regiões com resultados positivos: pvalue, position
+-	annotation_dgpi.pl: 
+-        Dados: start, end, strand, score, cleavage_site
+-	Onde estão os resultados do RNAmmer? Tem que fazer um formulário. 
+-	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita. 
 
 
 Dev:
 -
-
 
 Done:
 -
@@ -102,3 +111,17 @@ Done:
 -       Go mapping: expansible tree
 -       KEGG pathways: link errado
 -       Criar pagina de erro geral
+-	Corrigir report\_html\_db.pl, parte do script de download; Site.pm 275
+-	sequencia esta bugada, adicionar div col-md-12
+-       correção porra do numero da paginação não reseta
+-   "annotation\_signalP.pl" => 'SignalP' adicionar tudo do signalp
+-	Correção de global analyses, acesso a arquivos internos
+
+-	Opção tblastn não funciona (query proteína e o db é nucleotídica) e tblastx também não.
+-	Botão "Clear sequence" não funciona
+-	Tratar adequadamente qualquer caractere do cabeçalho de uma sequência FASTA
+-	TMHMM - Predicted TMHs  -> Predicted Transmembrane domains
+-	Contig: All (default)
+-	Gene type deve ser Gene predictor
+-	No resultado da busca, informar total de resultados. Ao lado do Back:   Found 49 results.
+-	Em tRNA, rever gene name. Aponta Gly???
