@@ -130,7 +130,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-display-options-alignments-options", "100", ""),
         ("blast-display-options-alignments-options", "250", ""),
         ("blast-display-options-alignments-options", "500", ""),
-        ("blast-button", "Clear sequence", "onclick=""MainBlastForm.SEQUENCE.value = '';MainBlastForm.QUERY_FROM.value = '';MainBlastForm.QUERY_TO.value = '';MainBlastForm.SEQUENCE.focus();"" type=""button"" class='btn btn-default' "),
+        ("blast-button", "Clear sequence", "onclick=""this.form.reset();"" type=""button"" class='btn btn-default' "),
         ("blast-button", "Search", "type='submit' class='btn btn-primary' "),
         ("search-database-form-title", "Search based on sequences or annotations", ""),
         ("search-database-gene-ids-descriptions-title", "Protein-sequence and gene IDs", ""),
@@ -2140,13 +2140,13 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 
 INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057189', 'annotation_trf.pl_log_2', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_trf.pl_log_2/Contig-1_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057213', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-1_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057213', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-1_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057215', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-1_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057215', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-1_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057217', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-1_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057217', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-1_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057219', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-1_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057219', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-1_mreps.txt');
 
 INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', '6057233', 'annotation_trna.pl_log_5', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_trna.pl_log_5/Contig-1_trna.txt');
 
@@ -3040,7 +3040,7 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 
 INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057193', 'annotation_trf.pl_log_2', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_trf.pl_log_2/Contig-2_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057221', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-2_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057221', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-2_mreps.txt');
 
 INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_infernal', '6057259', 'annotation_infernal.pl_log_7', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_infernal.pl_log_7/infernal.txt_Contig-2');
 
@@ -3128,13 +3128,13 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 
 INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trf', '6057207', 'annotation_trf.pl_log_2', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_trf.pl_log_2/Contig-3_trf.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057223', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-3_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057223', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-3_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057225', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-3_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057225', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-3_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057227', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-3_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057227', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-3_mreps.txt');
 
-INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057229', 'annotation_mreps.pl_log_4', 'annotation_mreps.pl_log_4/Contig-3_mreps.txt');
+INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_mreps', '6057229', 'annotation_mreps.pl_log_4', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_mreps.pl_log_4/Contig-3_mreps.txt');
 
 INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_trna', '6057243', 'annotation_trna.pl_log_5', '/home/wendelhlc/git/report_html_db/report_html_db/teste_diretorio/db/saida_db/annotation_trna.pl_log_5/Contig-3_trna.txt');
 
@@ -4408,6 +4408,8 @@ INSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('annotation_
 			INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mRNA surveillance pathway", "03015");
 			INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "mTOR signaling pathway", "04150");
 			INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "p53 signaling pathway", "04115");
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-analyses-protein-code-tab", "Phobius", "#phobius");
 				INSERT INTO TEXTS(tag, value, details) VALUES
 					("search-database-analyses-protein-code-tab", "RPSBlast", "#rpsblast");
 				INSERT INTO TEXTS(tag, value, details) VALUES 

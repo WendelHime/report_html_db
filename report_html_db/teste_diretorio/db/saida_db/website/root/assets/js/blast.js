@@ -36,6 +36,7 @@ $(function() {
 			// a[x.name] = x.value;
 			// return a;
 			// }, {})));
+			$("#SEQUENCE").val($("#SEQUENCE").val().replace(/[#%&{}\\<*?\/$!'":;@]/g, ""));
 			var form = document.getElementById("formBlast");
 			var formData = new FormData(form);
 			var baseResponse = postBlast(formData).done(function(baseResponse) {

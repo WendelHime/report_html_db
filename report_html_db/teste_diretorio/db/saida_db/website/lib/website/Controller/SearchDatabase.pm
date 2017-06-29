@@ -115,6 +115,30 @@ sub subsequence_GET {
 	);
 }
 
+sub getrRNASearch : Path("/SearchDatabase/rRNA_search") : CaptureArgs(1) : ActionClass('REST') { }
+
+sub getrRNASearch_GET {
+	my ( $self, $c ) = @_;
+	my %hash = ();
+	foreach my $key ( keys %{ $c->request->params } ) {
+		if ( $key && $key ne "0" ) {
+			$hash{$key} = $c->request->params->{$key};
+		}
+	}
+	$hash{pipeline} = $c->config->{pipeline_id};
+	
+	my $searchDBClient =
+	  Report_HTML_DB::Clients::SearchDBClient->new(
+		rest_endpoint => $c->config->{rest_endpoint} );
+		
+	my $response = $searchDBClient->getrRNASearch(\%hash);
+		
+	standardStatusOk(
+		$self, $c, $response->{response}, $response->{total},  
+		$hash{pageSize}, $hash{offset}
+	);
+} 
+
 sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) :
   ActionClass('REST') { }
   

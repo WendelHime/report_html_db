@@ -8,18 +8,18 @@
 	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
 		<div class="row">
 			<div class="col-md-3">
-				<p>Cleavage site:</p>
+				<p>Value:</p>
 			</div>
 			<div class="col-md-9">
-				<p>[% result.cleavage_site %]</p>
+				<p>[% result.pvalue %]</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3">
-				<p>Score:</p>
+				<p>Position:</p>
 			</div>
 			<div class="col-md-9">
-				<p>[% result.score %]</p>
+				<p>[% result.position %]</p>
 			</div>
 		</div>
 		<div class="row">

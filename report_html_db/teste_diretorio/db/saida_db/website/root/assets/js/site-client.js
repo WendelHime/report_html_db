@@ -98,6 +98,17 @@ function searchGene(serializedForm, pageSize, offset) {
 	});
 }
 
+function searchrRNA(serializedForm, pageSize, offset) {
+	return $.ajax({
+		type : "GET",
+		dataType : "json",
+		url : "/SearchDatabase/rRNA_search?" + serializedForm + "&pageSize="
+				+ pageSize + "&offset=" + offset,
+		async : false,
+		cache : false
+	});
+}
+
 /**
  * Method used to get feature by position
  * 

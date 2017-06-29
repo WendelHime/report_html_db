@@ -41,6 +41,42 @@ sub getPipeline {
 
 =head2
 
+Method used to get rRNAs availables in the sequence
+
+=cut
+
+sub getRibosomalRNAs {
+	my ( $self, $hash ) = @_;
+	my $dbh = $self->dbh;
+	my @args = ();
+	my $query = "select distinct pd.value AS name 
+from feature f 
+join feature_relationship r on (f.feature_id = r.object_id) 
+join cvterm cr on (r.type_id = cr.cvterm_id) 
+join featureprop ps on (r.subject_id = ps.feature_id) 
+join cvterm cs on (ps.type_id = cs.cvterm_id) 
+join featureprop pf on (f.feature_id = pf.feature_id) 
+join cvterm cf on (pf.type_id = cf.cvterm_id) 
+join featureloc l on (l.feature_id = f.feature_id) 
+join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+join cvterm cp on (pl.type_id = cp.cvterm_id) 
+join featureprop pd on (r.subject_id = pd.feature_id) 
+join cvterm cd on (pd.type_id = cd.cvterm_id) 
+where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ;";
+	push @args, $hash->{pipeline};
+	my $sth = $dbh->prepare($query);
+	print STDERR $query;
+	$sth->execute(@args);
+	my @rows = @{ $sth->fetchall_arrayref() };
+	my @list = ();
+    for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
+    	push @list, $rows[$i][0];
+	}
+	return \@list;
+}
+
+=head2
+
 Method used to realize search based on parameters received by form of analyses of protein-coding genes
 
 =cut
@@ -567,6 +603,74 @@ sub generate_clause {
 	}
 	$clause .= ")";
 	return $clause;
+}
+
+=head2
+
+Method used to realize search of rRNAs by contig and type
+
+=cut
+
+sub rRNA_search {
+	my ( $self, $hash ) = @_;
+	my $dbh  = $self->dbh;
+	my @args = ();
+	my $query = "select f.feature_id, COUNT(*) OVER() AS total
+from feature f 
+join feature_relationship r on (f.feature_id = r.object_id) 
+join cvterm cr on (r.type_id = cr.cvterm_id) 
+join featureprop ps on (r.subject_id = ps.feature_id) 
+join cvterm cs on (ps.type_id = cs.cvterm_id) 
+join featureprop pf on (f.feature_id = pf.feature_id) 
+join cvterm cf on (pf.type_id = cf.cvterm_id) 
+join featureloc l on (l.feature_id = f.feature_id) 
+join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+join cvterm cp on (pl.type_id = cp.cvterm_id) 
+join featureprop pd on (r.subject_id = pd.feature_id) 
+join cvterm cd on (pd.type_id = cd.cvterm_id) 
+where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?";
+	push @args, $hash->{pipeline};
+	
+	if(exists $hash->{contig} && $hash->{contig}) {
+		$query .= " and l.srcfeature_id = ? ";
+		push @args, $hash->{contig};
+	}
+	
+	if(exists $hash->{type} && $hash->{type}) {
+		$query .= " and pd.value=?";
+		push @args, $hash->{type};
+	}
+	
+	if (   exists $hash->{pageSize}
+		&& $hash->{pageSize}
+		&& exists $hash->{offset}
+		&& $hash->{offset} )
+	{
+		$query .= " LIMIT ? ";
+		push @args, $hash->{pageSize};
+		if ( $hash->{offset} == 1 ) {
+			$query .= " OFFSET 0 ";
+		}
+		else {
+			$query .= " OFFSET ? ";
+			push @args, $hash->{offset};
+		}
+	}
+	
+	my $sth = $dbh->prepare($query);
+	print STDERR $query;
+	$sth->execute(@args);
+	my @rows = @{ $sth->fetchall_arrayref() };
+	my %returnedHash = ();
+	my @list         = ();
+	for ( my $i = 0 ; $i < scalar @rows ; $i++ ) {
+		push @list, $rows[$i][0];
+		$returnedHash{total} = $rows[$i][1];
+	}
+	$returnedHash{"list"} = \@list;
+
+	return \%returnedHash;
+	
 }
 
 =head2
@@ -1652,6 +1756,7 @@ sub subevidences {
 		'annotation_predgpi.pl'	=> 'PreDGPI',
 		'annotation_tmhmm.pl'     => 'TMHMM',
 		'annotation_hmmer.pl'	=> 'HMMER',
+		"annotation_signalP.pl" => 'SignalP',
 	);
 
 	my @list = ();

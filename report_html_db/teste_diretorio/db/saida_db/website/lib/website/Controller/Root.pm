@@ -71,7 +71,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 				]
 	}))]);
 	my $searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => $c->config->{rest_endpoint});
-	
+	my $pipeline;
 	if(!$c->config->{pipeline_id}) {
 		my $response = $searchDBClient->getPipeline()->getResponse()->{pipeline_id};
 		use File::Basename;
@@ -81,14 +81,18 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 pipeline_id $response
 ";
 		close($FILEHANDLER);
-		$c->stash(
-			targetClass => $searchDBClient->getTargetClass($response)->getResponse()  
-		);
+		$pipeline = $response;
 	} else {
-		$c->stash(
-			targetClass => $searchDBClient->getTargetClass($c->config->{pipeline_id})->getResponse()  
-		);
+		$pipeline = $c->config->{pipeline_id};
 	}
+	
+	$c->stash(
+		targetClass => $searchDBClient->getTargetClass($pipeline)->getResponse()  
+	);
+	
+	$c->stash(
+		rRNAsAvailable => $searchDBClient->getRibosomalRNAs($pipeline)->getResponse()
+	);
 	
 	$c->stash(
 		sequences => [
@@ -356,13 +360,38 @@ sub reports : Path("reports") : CaptureArgs(3) {
 		"<", dirname(__FILE__) . "/../../../root/" . $filepath );
 	my $content = "";
 	while ( my $line = <$FILEHANDLER> ) {
-		$line =~ s/href="/href="\/reports\/$type\//
-		  if ( $line =~ /href="/ && $line !~ /href="http\:\/\// );
+		#$line =~ s/href="/href="\/reports\/$type\//
+		  #if ( $line =~ /href="/ && $line !~ /href="http\:\/\// );
 		$content .= $line . "\n";
 	}
 	close($FILEHANDLER);
-	$content =~ s/src="/src="\/$type\//igm;
-	$content =~ s/HREF="/HREF="\/$type\//g;
+	if($filepath =~ /\.png/g) {
+                use MIME::Base64;
+                $content = MIME::Base64::encode_base64($content);
+        } elsif($filepath =~ /.html/g) {
+                if(!($filepath =~ m/pathway/)) {
+                        $content =~ s/src="/src="\/$type\//igm;
+                        $content =~ s/HREF="/HREF="\/$type\//g;
+                } else {
+                        foreach ($content =~ /<img[\w\s"=]*src="([\.\w\s\-\/]*)"/img) {
+                                if($_ =~ m/kegg.gif/) {
+                                        my $imagePath = $_;
+                                        $imagePath =~ s/\.\.\///;
+                                         open( $FILEHANDLER,
+                                        "<", dirname(__FILE__) . "/../../../root/$type/" . $imagePath );
+                                } else {
+                                        open( $FILEHANDLER,
+                                        "<", dirname(__FILE__) . "/../../../root/$type/$file" . "/" . $_ );
+                                }
+                                my $contentFile = do { local($/); <$FILEHANDLER> };
+                                close($FILEHANDLER);
+                                use MIME::Base64;
+                                $contentFile = MIME::Base64::encode_base64($contentFile);
+                                $content =~ s/<img[\w\s"=]*src="$_/<img src="data:image\/png;base64,$contentFile/;
+                        }
+                        #$content =~ s/HREF="/HREF="/$type/igm;
+                }
+        }
 	$c->response->body($content);
 }
 

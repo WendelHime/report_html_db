@@ -29,6 +29,7 @@
                 		rbs = 0
                 		transterm = 0
                 		alienhunter = 0
+                		rnammer = 0
                 	%]
                 	
                 	[% FOREACH component IN components %]
@@ -48,7 +49,8 @@
                 			component.component.match('annotation_infernal.pl') OR 
                 			component.component.match('annotation_rbs.pl') OR 
                 			component.component.match('annotation_transterm.pl') OR 
-                			component.component.match('annotation_alienhunter.pl') %]
+                			component.component.match('annotation_alienhunter.pl') OR
+                			component.component.match('annotation_rnammer.pl') %]
                 			[% section_dna_based = 1 %]
                 		[% END %]
                 		[% IF component.component.match('annotation_blast.pl') %]
@@ -96,6 +98,9 @@
                 		[% IF component.component.match('annotation_alienhunter.pl') %]
                 			[% alienhunter = 1 %]
                 		[% END %]
+                		[% IF component.component.match('annotation_rnammer.pl') %]
+                			[% rnammer = 1 %]
+                		[% END %]
                     [% END %]
                     [% IF section_protein_coding %]
                      <div id="parentCollapseOne" class="panel panel-default">
@@ -125,7 +130,7 @@
                                          	<div class="form-group">
                                          		<label>Contig: </label>
                                          		<select name="contig">
-                                         			<option></option>
+                                         			<option value="">All</option>
                                          			[% FOREACH sequence IN sequences %]
                                          				<option value="[% sequence.id %]">[% sequence.name %]</option>
                                          			[% END %]
@@ -150,7 +155,7 @@
                                           	<div class="form-group">
                                          		<label>Contig: </label>
                                          		<select name="contig">
-                                         			<option></option>
+                                         			<option value="">All</option>
                                          			[% FOREACH sequence IN sequences %]
                                          				<option value="[% sequence.id %]">[% sequence.name %]</option>
                                          			[% END %]
@@ -207,7 +212,7 @@
                                  	<div class="form-group">
                                         <label>Contig: </label>
                                         <select name="contig">
-                                        	<option></option>
+                                        	<option value="">All</option>
                                         		[% FOREACH sequence IN sequences %]
                                         			<option value="[% sequence.id %]">[% sequence.name %]</option>
                                         		[% END %]
@@ -638,7 +643,7 @@
 						<div class="form-group">
 							<label>Contig: </label>
 							<select name="contig">
-								<option></option>
+								<option value="">All</option>
 								[% FOREACH sequence IN sequences %]
                                 	<option value="[% sequence.id %]">[% sequence.name %]</option>
                                 [% END %]
@@ -693,7 +698,7 @@
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                                [% END %]
@@ -759,7 +764,7 @@
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                                [% END %]
@@ -838,7 +843,7 @@
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                             [% END %]
@@ -888,7 +893,7 @@
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                             [% END %]
@@ -957,7 +962,7 @@
 					<div class="form-group">
 						<label>Contig: </label>
 						<select name="contig">
-							<option></option>
+							<option value="">All</option>
 							[% FOREACH sequence IN sequences %]
                                	<option value="[% sequence.id %]">[% sequence.name %]</option>
                             [% END %]
@@ -1008,6 +1013,37 @@
 						[% END %]
 						[% END %]
 					</div>
+					<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
+					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+				</form>
+			</div>
+			[% END %]
+			[% IF rnammer %]
+			<div id="rrna" class="tab-pane fade">
+				<form id="rRNA-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option value="">All</option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-get-by-rrna-type' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<select name="type">
+							<option value=""></option>
+							[% FOREACH rrna IN rRNAsAvailable %]
+                               	<option value="[% rrna %]">[% rrna %]</option>
+                            [% END %]
+                        </select>
+					</div>
+					
 					<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
 					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
 				</form>

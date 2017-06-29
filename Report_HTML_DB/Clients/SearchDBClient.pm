@@ -28,6 +28,30 @@ sub getPipeline {
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
+sub getRibosomalRNAs {
+	my ( $self, $pipeline ) = @_;
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/GetRibosomalRNAs",
+		\%{
+			{
+				"pipeline" => $pipeline
+			}
+		},
+		"GET"
+	);
+	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+}
+
+sub getrRNASearch {
+	my ( $self, $parameters ) = @_;
+	my $response = makeRequest(
+		$self->{rest_endpoint},
+		"/SearchDatabase/rRNA_search", $parameters,	"GET"
+	);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
+}
+
 sub getFeatureID {
 	my ( $self, $uniquename ) = @_;
 	my $response = makeRequest(

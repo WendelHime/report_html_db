@@ -2,8 +2,11 @@
 <div class="content-wrapper">
     <div class="container">
     	<div class="row">
-    		<div class="col-md-12">
+    		<div class="col-md-1">
     			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
+    		</div>
+    		<div class="col-md-11">
+    			<span id="totalResults"></span>
     		</div>
     	</div>
         [% INCLUDE 'website/search-database/_forms.tt' %]

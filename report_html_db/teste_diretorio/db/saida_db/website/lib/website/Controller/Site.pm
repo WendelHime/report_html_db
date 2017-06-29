@@ -272,6 +272,8 @@ sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : Capture
 		$name = "rnammer";
 	} elsif($type =~ "trna") {
 		$name = "trna";
+	} else {
+		$name = $type;
 	}
 	
 	my $filepath = (

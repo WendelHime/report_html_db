@@ -21,21 +21,14 @@ http://127.0.0.1:3000
 
 
 TODO:
--
--	annotation_predgpi: 
--        Dados gerais: start, end, strand
--        Dados de regiões com resultados positivos: name, position, specificity, sequence 
--	annotation_bigpi: 
--        Dados gerais: start, end, strand
--        Dados de regiões com resultados positivos: pvalue, position
--	annotation_dgpi.pl: 
--        Dados: start, end, strand, score, cleavage_site
--	Onde estão os resultados do RNAmmer? Tem que fazer um formulário. 
+- 
 -	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita. 
 
 
 Dev:
 -
+-	Onde estão os resultados do RNAmmer? Tem que fazer um formulário.
+-	Finalizar função rRNA_search
 
 Done:
 -
@@ -125,3 +118,11 @@ Done:
 -	Gene type deve ser Gene predictor
 -	No resultado da busca, informar total de resultados. Ao lado do Back:   Found 49 results.
 -	Em tRNA, rever gene name. Aponta Gly???
+-	annotation\_predgpi: 
+-        Dados gerais: start, end, strand
+-        Dados de regiões com resultados positivos: name, position, specificity, sequence 
+-	annotation\_bigpi: 
+-        Dados gerais: start, end, strand
+-        Dados de regiões com resultados positivos: pvalue, position
+-	annotation\_dgpi.pl: 
+-        Dados: start, end, strand, score, cleavage_site

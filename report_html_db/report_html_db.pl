@@ -878,6 +878,7 @@ my $annotation_rbs = 0;
 my $annotation_transterm = 0;
 my $annotation_phobius = 0;
 my $annotation_rpsblast = 0;
+my $annotation_rnammer = 0;
 
 open(my $SEQUENCES, ">", "$html_dir/root/Sequences.fasta");
 open(my $SEQUENCES_NT, ">", "$html_dir/root/Sequences_NT.fasta");
@@ -1145,6 +1146,7 @@ while ( $sequence_object->read() ) {
 					elsif ( $component_name eq "annotation_rnammer" ) {
 						my $file = $name . "_rnammer.gff";
 						$components{$component} = "$annotation_dir/$component/$file";
+						$annotation_rnammer = 1;
 					}
 					elsif ( $component_name eq "annotation_glimmer3" ) {
 						$components{$component} =
@@ -1600,6 +1602,13 @@ if($annotation_alienhunter) {
 			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
 SQL
 }
+if($annotation_rnammer) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES
+					("search-database-dna-based-analyses-tab", "Predicted rRNAs", "#rrna"), 
+					("search-database-dna-based-analyses-get-by-rrna-type", "Get rRNAs by type: ", "");
+SQL
+}
 if($annotation_trna) {
 	$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES 
@@ -1974,6 +1983,42 @@ sub getPipeline {
         }
 
         return \\\%returnedHash;
+}
+
+=head2
+
+Method used to get rRNAs availables in the sequence
+
+=cut
+
+sub getRibosomalRNAs {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh = \$self->dbh;
+	my \@args = ();
+	my \$query = "select distinct pd.value AS name 
+from feature f 
+join feature_relationship r on (f.feature_id = r.object_id) 
+join cvterm cr on (r.type_id = cr.cvterm_id) 
+join featureprop ps on (r.subject_id = ps.feature_id) 
+join cvterm cs on (ps.type_id = cs.cvterm_id) 
+join featureprop pf on (f.feature_id = pf.feature_id) 
+join cvterm cf on (pf.type_id = cf.cvterm_id) 
+join featureloc l on (l.feature_id = f.feature_id) 
+join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+join cvterm cp on (pl.type_id = cp.cvterm_id) 
+join featureprop pd on (r.subject_id = pd.feature_id) 
+join cvterm cd on (pd.type_id = cd.cvterm_id) 
+where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ;";
+	push \@args, \$hash->{pipeline};
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute(\@args);
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \@list = ();
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+    	push \@list, \$rows[\$i][0];
+	}
+	return \\\@list;
 }
 
 =head2
@@ -2502,6 +2547,74 @@ sub generate_clause {
 	}
 	\$clause .= ")";
 	return \$clause;
+}
+
+=head2
+
+Method used to realize search of rRNAs by contig and type
+
+=cut
+
+sub rRNA_search {
+	my ( \$self, \$hash ) = \@_;
+	my \$dbh  = \$self->dbh;
+	my \@args = ();
+	my \$query = "select f.feature_id, COUNT(*) OVER() AS total
+from feature f 
+join feature_relationship r on (f.feature_id = r.object_id) 
+join cvterm cr on (r.type_id = cr.cvterm_id) 
+join featureprop ps on (r.subject_id = ps.feature_id) 
+join cvterm cs on (ps.type_id = cs.cvterm_id) 
+join featureprop pf on (f.feature_id = pf.feature_id) 
+join cvterm cf on (pf.type_id = cf.cvterm_id) 
+join featureloc l on (l.feature_id = f.feature_id) 
+join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+join cvterm cp on (pl.type_id = cp.cvterm_id) 
+join featureprop pd on (r.subject_id = pd.feature_id) 
+join cvterm cd on (pd.type_id = cd.cvterm_id) 
+where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?";
+	push \@args, \$hash->{pipeline};
+	
+	if(exists \$hash->{contig} && \$hash->{contig}) {
+		\$query .= " and l.srcfeature_id = ? ";
+		push \@args, \$hash->{contig};
+	}
+	
+	if(exists \$hash->{type} && \$hash->{type}) {
+		\$query .= " and pd.value=?";
+		push \@args, \$hash->{type};
+	}
+	
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
+	
+	my \$sth = \$dbh->prepare(\$query);
+	print STDERR \$query;
+	\$sth->execute(\@args);
+	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \%returnedHash = ();
+	my \@list         = ();
+	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+		push \@list, \$rows[\$i][0];
+		\$returnedHash{total} = \$rows[\$i][1];
+	}
+	\$returnedHash{"list"} = \\\@list;
+
+	return \\\%returnedHash;
+	
 }
 
 =head2
@@ -4604,6 +4717,63 @@ sub getPipeline_GET {
 	return standardStatusOk( \$self, \$c, \$c->model('SearchDatabaseRepository')->getPipeline() );
 }
 
+sub getRibosomalRNAs : Path("/SearchDatabase/GetRibosomalRNAs") : CaptureArgs(1) : ActionClass('REST') { }
+
+sub getRibosomalRNAs_GET {
+	my (\$self, \$c, \$pipeline) = \@_;
+	
+	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+		\$pipeline = \$c->request->param("pipeline");
+	}
+	
+	my \%hash = ();
+	\$hash{pipeline}        = \$pipeline;
+
+	standardStatusOk( \$self, \$c, \$c->model('SearchDatabaseRepository')->getRibosomalRNAs( \\\%hash ) );
+}
+
+=head2
+
+Method used to realize search of rRNA
+
+=cut
+
+sub rRNA_search : Path("/SearchDatabase/rRNA_search") : CaptureArgs(5) : ActionClass('REST') { }
+
+sub rRNA_search_GET {
+	my (\$self, \$c, \$contig, \$type, \$pageSize, \$offset, \$pipeline) = \@_;
+	
+	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+		\$pipeline = \$c->request->param("pipeline");
+	}
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
+	if ( !\$type and defined \$c->request->param("type") ) {
+		\$type = \$c->request->param("type");
+	}
+	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+		\$pageSize = \$c->request->param("pageSize");
+	}
+	if ( !\$offset and defined \$c->request->param("offset") ) {
+		\$offset = \$c->request->param("offset");
+	}
+	
+	my \%hash = ();
+	
+	\$hash{pipeline} = \$pipeline;
+	\$hash{contig} = \$contig;
+	\$hash{type} = \$type;
+	\$hash{pageSize} = \$pageSize;
+	\$hash{offset} = \$offset;
+	
+	my \$result = \$c->model('SearchDatabaseRepository')->rRNA_search( \\\%hash );
+	
+	my \@resultList = \@{ \$result->{list} };
+
+	standardStatusOk( \$self, \$c, \\\@resultList, \$result->{total}, \$pageSize, \$offset );
+}
+
 =head2 searchGene
 
 Method used to search on database genes
@@ -5590,6 +5760,30 @@ sub tandemRepeatsSearch_GET {
 	);
 }
 
+sub getrRNASearch : Path("/SearchDatabase/rRNA_search") : CaptureArgs(1) : ActionClass('REST') { }
+
+sub getrRNASearch_GET {
+	my ( \$self, \$c ) = @_;
+	my \%hash = ();
+	foreach my \$key ( keys \%{ \$c->request->params } ) {
+		if ( \$key && \$key ne "0" ) {
+			\$hash{\$key} = \$c->request->params->{\$key};
+		}
+	}
+	\$hash{pipeline} = \$c->config->{pipeline_id};
+	
+	my \$searchDBClient =
+	  Report_HTML_DB::Clients::SearchDBClient->new(
+		rest_endpoint => \$c->config->{rest_endpoint} );
+		
+	my \$response = \$searchDBClient->getrRNASearch(\\\%hash);
+		
+	standardStatusOk(
+		\$self, \$c, \$response->{response}, \$response->{total},  
+		\$hash{pageSize}, \$hash{offset}
+	);
+}
+
 sub ncRNASearch : Path("/SearchDatabase/ncRNASearch") : CaptureArgs(7) :
   ActionClass('REST') { }
 
@@ -6072,6 +6266,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 				]
 	}))]);
 	my \$searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => \$c->config->{rest_endpoint});
+	my \$pipeline;
 	
 	if(!\$c->config->{pipeline_id}) {
 		my \$response = \$searchDBClient->getPipeline()->getResponse()->{pipeline_id};
@@ -6080,14 +6275,18 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 			">>", dirname(__FILE__) . "/../../../website.conf");
 		print \$FILEHANDLER "\npipeline_id \$response\n";
 		close(\$FILEHANDLER);
-		\$c->stash(
-			targetClass => \$searchDBClient->getTargetClass(\$response)->getResponse()  
-		);
+		\$pipeline = \$response;
 	} else {
-		\$c->stash(
-			targetClass => \$searchDBClient->getTargetClass(\$c->config->{pipeline_id})->getResponse()  
-		);
+		\$pipeline = \$c->config->{pipeline_id};
 	}
+	
+	\$c->stash(
+		targetClass => \$searchDBClient->getTargetClass(\$pipeline)->getResponse()  
+	);
+	
+	\$c->stash(
+		rRNAsAvailable => \$searchDBClient->getRibosomalRNAs(\$pipeline)->getResponse()
+	);
 	
 	\$c->stash(
 		sequences => [
@@ -7304,6 +7503,7 @@ CONTENTINDEXHOME
                 		rbs = 0
                 		transterm = 0
                 		alienhunter = 0
+                		rnammer = 0
                 	%]
                 	
                 	[% FOREACH component IN components %]
@@ -7323,7 +7523,8 @@ CONTENTINDEXHOME
                 			component.component.match('annotation_infernal.pl') OR 
                 			component.component.match('annotation_rbs.pl') OR 
                 			component.component.match('annotation_transterm.pl') OR 
-                			component.component.match('annotation_alienhunter.pl') %]
+                			component.component.match('annotation_alienhunter.pl') OR
+                			component.component.match('annotation_rnammer.pl') %]
                 			[% section_dna_based = 1 %]
                 		[% END %]
                 		[% IF component.component.match('annotation_blast.pl') %]
@@ -7370,6 +7571,9 @@ CONTENTINDEXHOME
                 		[% END %]
                 		[% IF component.component.match('annotation_alienhunter.pl') %]
                 			[% alienhunter = 1 %]
+                		[% END %]
+                		[% IF component.component.match('annotation_rnammer.pl') %]
+                			[% rnammer = 1 %]
                 		[% END %]
                     [% END %]
                     [% IF section_protein_coding %]
@@ -8288,6 +8492,37 @@ CONTENTINDEXHOME
 				</form>
 			</div>
 			[% END %]
+			[% IF rnammer %]
+			<div id="rrna" class="tab-pane fade">
+				<form id="rRNA-form">
+					<div class="form-group">
+						<label>Contig: </label>
+						<select name="contig">
+							<option value="">All</option>
+							[% FOREACH sequence IN sequences %]
+                               	<option value="[% sequence.id %]">[% sequence.name %]</option>
+                            [% END %]
+                        </select>
+					</div>
+					<div class="form-group">
+						[% FOREACH text IN texts %]
+						[% IF text.tag == 'search-database-dna-based-analyses-get-by-rrna-type' %]
+						<label>[% text.value %]</label>
+						[% END %]
+						[% END %]
+						<select name="type">
+							<option value=""></option>
+							[% FOREACH rrna IN rRNAsAvailable %]
+                               	<option value="[% rrna %]">[% rrna %]</option>
+                            [% END %]
+                        </select>
+					</div>
+					
+					<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
+					<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+				</form>
+			</div>
+			[% END %]
 			</div>
                              </div>
                              <div class="panel-footer">
@@ -8422,24 +8657,122 @@ CONTENT
 		,
 		"dgpiBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
-<div class="row">
-	<div class="col-md-3">
-		<p>Cleavage site:</p>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+		</div>
 	</div>
-	<div class="col-md-9">
-		<p>[% result.cleavage_site %]</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-md-3">
-		<p>Score:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.score %]</p>
+	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+		<div class="row">
+			<div class="col-md-3">
+				<p>Cleavage site:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.cleavage_site %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Score:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.score %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Start:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.start %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>End:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.end %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Strand:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.strand %]</p>
+			</div>
+		</div>
 	</div>
 </div>
 CONTENT
 		,
+		"bigpiBasicResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+		</div>
+	</div>
+	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+		<div class="row">
+			<div class="col-md-3">
+				<p>Value:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.pvalue %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Position:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.position %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Start:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.start %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>End:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.end %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Strand:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.strand %]</p>
+			</div>
+		</div>
+	</div>
+</div>
+CONTENT
+		,
+		"dgpiNoResult.tt" => <<CONTENT
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		<p>Result:</p>
+	</div>
+	<div class="col-md-9">
+		<p>[% result.result %]</p>
+	</div>
+</div>		
+CONTENT
+		,		
 		"signalPBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
@@ -8730,12 +9063,69 @@ CONTENT
 		,
 		"predgpiBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
-<div class="row">
-	<div class="col-md-3">
-		<p>Result:</p>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+		</div>
 	</div>
-	<div class="col-md-9">
-		<p>[% result.result %]</p>
+	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+		<div class="row">
+			<div class="col-md-3">
+				<p>Name:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.name %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Position:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.position %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Specificity:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.specificity %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Sequence:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.sequence %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Start:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.start %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>End:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.end %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Strand:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.strand %]</p>
+			</div>
+		</div>
 	</div>
 </div>
 CONTENT

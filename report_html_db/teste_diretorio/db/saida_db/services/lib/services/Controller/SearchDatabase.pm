@@ -44,6 +44,63 @@ sub getPipeline_GET {
 	return standardStatusOk( $self, $c, $c->model('SearchDatabaseRepository')->getPipeline() );
 }
 
+sub getRibosomalRNAs : Path("/SearchDatabase/GetRibosomalRNAs") : CaptureArgs(1) : ActionClass('REST') { }
+
+sub getRibosomalRNAs_GET {
+	my ($self, $c, $pipeline) = @_;
+	
+	if ( !$pipeline and defined $c->request->param("pipeline") ) {
+		$pipeline = $c->request->param("pipeline");
+	}
+	
+	my %hash = ();
+	$hash{pipeline}        = $pipeline;
+
+	standardStatusOk( $self, $c, $c->model('SearchDatabaseRepository')->getRibosomalRNAs( \%hash ) );
+}
+
+=head2
+
+Method used to realize search of rRNA
+
+=cut
+
+sub rRNA_search : Path("/SearchDatabase/rRNA_search") : CaptureArgs(5) : ActionClass('REST') { }
+
+sub rRNA_search_GET {
+	my ($self, $c, $contig, $type, $pageSize, $offset, $pipeline) = @_;
+	
+	if ( !$pipeline and defined $c->request->param("pipeline") ) {
+		$pipeline = $c->request->param("pipeline");
+	}
+	if ( !$contig and defined $c->request->param("contig") ) {
+		$contig = $c->request->param("contig");
+	}
+	if ( !$type and defined $c->request->param("type") ) {
+		$type = $c->request->param("type");
+	}
+	if ( !$pageSize and defined $c->request->param("pageSize") ) {
+		$pageSize = $c->request->param("pageSize");
+	}
+	if ( !$offset and defined $c->request->param("offset") ) {
+		$offset = $c->request->param("offset");
+	}
+	
+	my %hash = ();
+	
+	$hash{pipeline} = $pipeline;
+	$hash{contig} = $contig;
+	$hash{type} = $type;
+	$hash{pageSize} = $pageSize;
+	$hash{offset} = $offset;
+	
+	my $result = $c->model('SearchDatabaseRepository')->rRNA_search( \%hash );
+	
+	my @resultList = @{ $result->{list} };
+
+	standardStatusOk( $self, $c, \@resultList, $result->{total}, $pageSize, $offset );
+}
+
 =head2 searchGene
 
 Method used to search on database genes
@@ -207,13 +264,16 @@ sub getSubsequence_GET {
 			  . $sequenceName
 			  . ".fasta"
 		);
-		for my $line (<$FILEHANDLER>) {
-			if ( !( $line =~ /^>\w+\n$/g ) ) {
-				$content .= $line;
-			}
-		}
 
-		close($FILEHANDLER);
+		for my $line (<$FILEHANDLER>) {
+                        if ( $line !~ /^>[\w.-_]+$/g )  {
+                                $content .= $line;
+                        }
+                }
+
+                close($FILEHANDLER);
+
+		$content =~ s/\n//g;
 
 		if ( $start && $end ) {
 			$content = substr( $content, $start, ( $end - ( $start + 1 ) ) );

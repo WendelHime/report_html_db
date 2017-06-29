@@ -154,7 +154,7 @@
                                         <select class="form-control" name="DB_GENETIC_CODE">
                                             [% FOREACH text IN texts %]
                                                 [% IF text.tag == "blast-search-options-database-options" %]
-                                                    <option>[% text.value %]</option>
+                                                    <option [% text.details %]>[% text.value %]</option>
                                                 [% END %]
                                             [% END %]
                                         </select>
@@ -185,7 +185,7 @@
                                 	<div class="form-group">
                                     	<label>Contig: </label>
                                       	<select name="contig">
-                                      		<option></option>
+                                      		<option value="">All</option>
                                       		[% FOREACH sequence IN sequences %]
                                       			<option value="[% sequence.id %]">[% sequence.name %]</option>
                                       		[% END %]
