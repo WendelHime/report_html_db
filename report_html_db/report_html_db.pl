@@ -2173,13 +2173,13 @@ sub analyses_CDS {
 		}
 		elsif ( \$hash->{'tcdbSubclass'} ) {
 			\$query_TCDB .=
-			  "AND cpd.name = 'TCDB_subclass' AND lower(pd.value) = ?";
-			push \@args, lc( \$hash->{'tcdbSubclass'} );
+			  "AND cpd.name = 'TCDB_subclass' AND lower(pd.value) LIKE ?";
+			push \@args, "\%" . lc( \$hash->{'tcdbSubclass'} ) . "\%";
 		}
 		elsif ( \$hash->{'tcdbClass'} ) {
 			\$query_TCDB .=
-			  "AND cpd.name = 'TCDB_class' AND lower(pd.value) = ?";
-			push \@args, lc( \$hash->{'tcdbClass'} );
+			  "AND cpd.name = 'TCDB_class' AND lower(pd.value) LIKE ?";
+			push \@args, "\%" . lc( \$hash->{'tcdbClass'} ) . "\%";
 		}
 		elsif ( \$hash->{'tcdbDesc'} ) {
 			\$query_TCDB .=
@@ -3612,6 +3612,21 @@ sub geneByPosition {
 	push \@args, \$hash->{pipeline};
 	push \@args, \$hash->{start};
 	push \@args, \$hash->{end};
+	if (   exists \$hash->{pageSize}
+		&& \$hash->{pageSize}
+		&& exists \$hash->{offset}
+		&& \$hash->{offset} )
+	{
+		\$query .= " LIMIT ? ";
+		push \@args, \$hash->{pageSize};
+		if ( \$hash->{offset} == 1 ) {
+			\$query .= " OFFSET 0 ";
+		}
+		else {
+			\$query .= " OFFSET ? ";
+			push \@args, \$hash->{offset};
+		}
+	}
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
 	\$sth->execute(\@args);
@@ -5442,7 +5457,7 @@ sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
   CaptureArgs(3) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
-	my ( \$self, \$c, \$start, \$end, \$pipeline_id ) = \@_;
+	my ( \$self, \$c, \$start, \$end, \$pipeline_id, \$pageSize, \$offset ) = \@_;
 	if ( !\$start and defined \$c->request->param("start") ) {
 		\$start = \$c->request->param("start");
 	}
@@ -5452,24 +5467,33 @@ sub geneByPosition_GET {
 	if ( !\$pipeline_id and defined \$c->request->param("pipeline_id") ) {
 		\$pipeline_id = \$c->request->param("pipeline_id");
 	}
+	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+		\$pageSize = \$c->request->param("pageSize");
+	}
+	if ( !\$offset and defined \$c->request->param("offset") ) {
+		\$offset = \$c->request->param("offset");
+	}
 	my \@list = ();
 
 	my \%hash = ();
 	\$hash{pipeline} = \$pipeline_id;
 	\$hash{start}    = \$start;
 	\$hash{end}      = \$end;
+	\$hash{pageSize} = \$pageSize;
+	\$hash{offset}	 = \$offset;
 	my \@ids = \@{ \$c->model('SearchDatabaseRepository')->geneByPosition( \\\%hash ) };
 	my \$featureId = join( " ", \@ids );
 	\%hash            = ();
 	\$hash{pipeline}  = \$pipeline_id;
 	\$hash{featureId} = \$featureId;
 	
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash )->{list} };
+	my \$result = \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash );
+	my \@resultList = \@{ \$result->{list} };
 	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
 		push \@list, \$resultList[\$i]->pack();
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list );
+	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$pageSize, \$offset );
 }
 
 sub targetClass : Path("/SearchDatabase/targetClass") : CaptureArgs(1) : ActionClass('REST') { }
@@ -5760,10 +5784,10 @@ sub tandemRepeatsSearch_GET {
 	);
 }
 
-sub getrRNASearch : Path("/SearchDatabase/rRNA_search") : CaptureArgs(1) : ActionClass('REST') { }
+sub getrRNASearch : Path("/SearchDatabase/rRNA_search") : CaptureArgs(4) : ActionClass('REST') { }
 
 sub getrRNASearch_GET {
-	my ( \$self, \$c ) = @_;
+	my ( \$self, \$c ) = \@_;
 	my \%hash = ();
 	foreach my \$key ( keys \%{ \$c->request->params } ) {
 		if ( \$key && \$key ne "0" ) {
@@ -5878,21 +5902,27 @@ sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
   CaptureArgs(3) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
-	my ( \$self, \$c, \$start, \$end ) = \@_;
+	my ( \$self, \$c, \$start, \$end, \$pageSize, \$offset ) = \@_;
 	if ( !\$start and defined \$c->request->param("start") ) {
 		\$start = \$c->request->param("start");
 	}
 	if ( !\$end and defined \$c->request->param("end") ) {
 		\$end = \$c->request->param("end");
 	}
+	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+		\$pageSize = \$c->request->param("pageSize");
+	}
+	if ( !\$offset and defined \$c->request->param("offset") ) {
+		\$offset = \$c->request->param("offset");
+	}
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
+	my \$response = \$searchDBClient->getGeneByPosition(
+			\$start, \$end, \$c->config->{pipeline_id}, \$pageSize, \$offset
+		);
 	standardStatusOk(
-		\$self, \$c,
-		\$searchDBClient->getGeneByPosition(
-			\$start, \$end, \$c->config->{pipeline_id}
-		)->{response}
+		\$self, \$c, \$response->{response}, \$response->{total}, \$pageSize, \$offset
 	);
 }
 
@@ -9838,13 +9868,17 @@ sub readTCDBFile {
 	my $sql = "";
 	while ( my $line = <$FILEHANDLER> ) {
 		if ( $line =~ /^(\d\t[\w\/\s\-]*)[^\n]\v/gm ) {
+			my $change = $1;
+			$change =~ s/\t/\ /;
 			$sql .= <<SQL;
-			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "$1");
+			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "$change");
 SQL
 		}
 		elsif ( $line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/ ) {
+			my $change = $1;
+			$change =~ s/\t/\ /;
 			$sql .= <<SQL;
-			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "$1");
+			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "$change");
 SQL
 		}
 	}

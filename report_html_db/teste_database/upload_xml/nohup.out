@@ -6,13 +6,13 @@ preparing phase: Report HTML
 Creating curtobacterium_db database...
 createdb: database creation failed: ERROR:  database "curtobacterium_db" already exists
 curtobacterium_db exists!
-Pipeline group id is 480
-Qui Jun 22 15:39:44 BRT 2017
+Pipeline group id is 24649
+Qui Jun 29 15:12:37 BRT 2017
 
 DEBUG: Eliminating SequenceObjectDB: Process upload_db.pl terminated
-Qui Jun 22 15:39:45 BRT 2017
+Qui Jun 29 15:12:38 BRT 2017
 Dumping manual schema for website::Basic to directory /home/wendelhlc/git/report_html_db/report_html_db/teste_database/upload_xml/website/script/../lib ...
 Schema dump completed.
 DEBUG: Eliminating SequenceObjectDB: Process   terminated
-Qui Jun 22 15:53:25 BRT 2017
+Qui Jun 29 15:25:48 BRT 2017
 

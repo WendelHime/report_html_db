@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+		</div>
+	</div>
+	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+		<div class="row">
+			<div class="col-md-3">
+				<p>Value:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.pvalue %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Position:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.position %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Start:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.start %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>End:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.end %]</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<p>Strand:</p>
+			</div>
+			<div class="col-md-9">
+				<p>[% result.strand %]</p>
+			</div>
+		</div>
+	</div>
+</div>

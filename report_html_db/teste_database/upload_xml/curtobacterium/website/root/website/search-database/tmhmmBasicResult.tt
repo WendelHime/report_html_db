@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-md-3">
+		Predicted Transmembrane domains
+	</div>
+	<div class="col-md-9">
+		[% result.predicted_TMHs %]
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3">
+		Direction
+	</div>
+	<div class="col-md-9">
+		[% result.direction %]
+	</div>
+</div>

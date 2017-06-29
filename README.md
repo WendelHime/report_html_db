@@ -22,13 +22,11 @@ http://127.0.0.1:3000
 
 TODO:
 - 
--	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita. 
-
 
 Dev:
 -
--	Onde estão os resultados do RNAmmer? Tem que fazer um formulário.
--	Finalizar função rRNA_search
+-	Formulario TMHMM analyses
+-	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita.
 
 Done:
 -
@@ -126,3 +124,4 @@ Done:
 -        Dados de regiões com resultados positivos: pvalue, position
 -	annotation\_dgpi.pl: 
 -        Dados: start, end, strand, score, cleavage_site
+-	Onde estão os resultados do RNAmmer? Tem que fazer um formulário.

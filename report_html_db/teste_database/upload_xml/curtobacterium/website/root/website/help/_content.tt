@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel-group" id="accordion">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'help-questions-feedback' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="notice-board">
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag.search('help-questions-feedback-')  %]
+                                    [% IF text.tag.search('paragraphe')  %]
+                                        <p>[% text.value %]</p>
+                                    [% END %]
+                                [% END %]
+                            [% END %]
+                        
+                            <ul>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag.search('help-questions-feedback-')  %]
+                                        [% IF text.tag.search('list')  %]
+                                            <li>[% text.value %]</li>
+                                        [% END %]
+                                    [% END %]
+                                [% END %]
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'help-table-contents' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="notice-board">
+                            <ul>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag.search('help-table-contents-')  %]
+                                        <li><a data-toggle="collapse" data-parent="#accordion" class="collapsed" href="#[% text.details %]">[% text.value %]</a></li>
+                                    [% END %]
+                                [% END %]
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            [% counter = 1 %]
+            [% FOREACH text IN texts %]
+                [% IF text.tag == 'help-table-contents-'_ counter %]
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                [% id = text.details %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#[% id %]" class="collapsed">[% text.value %]</a>
+                            </h4>
+                        </div>
+                        <div id="[% id %]" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="notice-board">
+                                    [% counterTexts = 0 %]
+                                    [% FOREACH content IN texts %]
+                                        [% IF content.tag.search(id _"-"_ counterTexts) %]
+                                            [% IF content.tag == id _"-"_ counterTexts _"-title" %]
+                                                <h1 id="[% content.details %]" class="page-head-line">[% content.value %]</h1>
+                                            [% END %]
+                                            [% IF content.tag == id _"-"_ counterTexts _"-paragraph" %]
+                                                <p>[% content.value %]</p>
+                                            [% END %]
+                                            [% IF content.tag.search(id _"-"_ counterTexts _"-list-") %]
+                                                <ul>
+                                                    [% FOREACH item IN texts %]
+                                                        [% IF item.tag.search(id _"-"_ counterTexts _"-list-") %]
+                                                            <li>[% item.value %]</li>
+                                                        [% END %]
+                                                    [% END %]
+                                                </ul>
+                                            [% END %]
+                                            [% counterTexts = counterTexts + 1 %]
+                                        [% END %]
+                                    [% END %]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    [% counter = counter + 1 %]
+                 [% END %]
+             [% END %]
+
+        </div>
+    </div>
+</div>

@@ -259,7 +259,7 @@ sub getAlienHunter {
 }
 
 sub getGeneByPosition {
-	my ( $self, $start, $end, $pipeline ) = @_;
+	my ( $self, $start, $end, $pipeline, $pageSize, $offset ) = @_;
 	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/geneByPosition",
@@ -268,11 +268,13 @@ sub getGeneByPosition {
 				start       => $start,
 				end         => $end,
 				pipeline_id => $pipeline,
+				pageSize	=> $pageSize,
+				offset		=> $offset
 			}
 		},
 		"GET"
 	);
-	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
+	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
 }
 
 sub getTargetClass {
