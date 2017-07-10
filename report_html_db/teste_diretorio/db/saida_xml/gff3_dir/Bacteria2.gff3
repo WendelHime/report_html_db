@@ -1,9 +1,0 @@
-##gff-version 3
-##sequence-region Bacteria2 1 2220
-Bacteria2	cmscan	ncRNA	751	864	105.8	-	.	ID=Bact_46;Note=product:Alpha operon ribosome binding site;Dbxref=RF00140;
-Bacteria2	Glimmer3	gene	742	936	2.42	+	.	ID=Bact_45;Note=product:hypothetical protein;
-Bacteria2	Glimmer3	mRNA	742	936	.	+	.	ID=mRNA_Bact_45;Parent=Bact_45;
-Bacteria2	Glimmer3	CDS	742	936	.	+	0	ID=CDS_Bact_45;Parent=mRNA_Bact_45;
-Bacteria2	Glimmer3	gene	1082	2218	3.00	-	.	ID=Bact_47;Note=product:MULTISPECIES: preprotein translocase subunit SecY [Photorhabdus];Ontology_term=GO:0016020,GO:0015031;Dbxref=PFAM:PF00344.15,TCDB:3.A.5.1.1,INSD:WP_011148775.1,INSD:EYU13808.1,CDD:PRK09204,CDD:COG0201,InterPro:IPR026593,InterPro:IPR002208,InterPro:IPR023201,InterPro:IPR030659,eggNOG:bactNOG01136,eggNOG:gproNOG01035,eggNOG:COG0201,eggNOG:proNOG00697,KO:K03076;tcdb=Match: P0AGA2%2C Class: 3 Primary Active Transporters%2C Subclass: 3.A P-P-bond-hydrolysis-driven transporters%2C Family: 3.A.5 The General Secretory Pathway (Sec) Family;tmhmm=9 transmembrane helices;phobius=9 transmembrane helices;
-Bacteria2	Glimmer3	mRNA	1082	2218	.	-	.	ID=mRNA_Bact_47;Parent=Bact_47;
-Bacteria2	Glimmer3	CDS	1082	2218	.	-	0	ID=CDS_Bact_47;Parent=mRNA_Bact_47;

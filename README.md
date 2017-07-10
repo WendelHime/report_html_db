@@ -23,10 +23,39 @@ http://127.0.0.1:3000
 TODO:
 - 
 
+-	No painel "Protein-coding genes, incluir a caixa "match al terms"
+-	Busca por contig:
+-	Alterar painel: 
+-	Fica "Contig search results" e um botão do lado direito "Download FASTA" e... a sequência com formato FASTA
+
+\>Contig\_4 (4444-55555)
+
+GGGTGACGA TGCCGAGCAGCCCGAGGTGCAGGACGGCACCGTCGAAGCCCTCGTCGCCGCGCGCGACGG TGCGTCGCTCGCCGTCGCCACCGAGCACTTCGAAGGACCGCACCGCCGTGCTGAGCGAGC CGAGCCGGGTTCCGGAGCCGTGCGTCCCGGTGGCGATCGCGCCGCCGAGCGAGATGTGCG GGAGCGAACCCGTGTTGTGCAGGGCGACCCCGGCGGCGTCCAGGTCGGGCGCGACGACGC CGTACCGGGTGCCGGCGCCCATCGTCGCGGTGCCGGCGGCGGTGTCGACCACGAGGTCGG TGGGGATGCCGGTCAGGTCGA
+
+-	Eliminar espaços da sequência, fazer a formatação correta.
+
+-	Página de resultados de uma proteína
+
+-	Gene Predictor: programa que fez a predição (ex. Glimmer 3.01).
+
+-	KEGG  - adicionar no painel uma opção "View map" cujo link aponta para a via metabolica (kegg\_report/pathway\_figures/K00609-ko00240.html)
+
+-	Remover cor azul de links que não são links em paineis
+
+-	Alterar output (se tiver isso no banco)
+
+Outside the cytoplasm				1		503
+Transmembrane helix         		504		523
+Inside the cytoplasm				524		529
+Transmembrane helix		        	530		552
+Outside  the cytoplasm      		553		562
+
+-	Idem Phobius
+-	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita. 
+
 Dev:
 -
--	Formulario TMHMM analyses
--	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita.
+
 
 Done:
 -
@@ -125,3 +154,16 @@ Done:
 -	annotation\_dgpi.pl: 
 -        Dados: start, end, strand, score, cleavage_site
 -	Onde estão os resultados do RNAmmer? Tem que fazer um formulário.
+-	Formulario TMHMM e componentes GPI analyses
+-	Substituir painel "Protein-sequence and gene IDs" por "Gene IDs"
+-	No painel Gene IDs", remover opção "Gene description"
+-	Substituir "Predicted rRNAs" por rRNA
+-	Alterar nome do painel "Analyses of protein-coding genes" para "Protein-coding genes"
+-	incluir All (default) na combo box
+-	tRNA: Anticodon: TGG at 35-37 (89393-89391) não está incluso. Is psedugene - checar
+-	Contig\_1 ao invés de colocar o link no Contig\_1, escrever "Contig\_1 (result) e colocar o link no result.
+-	Tirar o link do Contig nos programas e incluir um link "Result" no painel. TRF e outros programas
+-	Other non-coding RNAs: (e.g. 1e-6 or; 0.000001) - aceitar ponto ou vírgula
+-	E-value
+-	Checar se inseriu errado no banco ou se report tá falhando.
+-	Search Database está muito lento

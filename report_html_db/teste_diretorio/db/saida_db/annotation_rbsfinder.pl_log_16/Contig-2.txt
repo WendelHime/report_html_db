@@ -1,4 +1,0 @@
-                NewStart     Stop      RibosomeBindingSite                                OldStart 
-    GeneID      Position    Position     Pattern Position     NewStartCodon    Shift   Codon Position
-Contig-2_CDS_annotation_glimmer3.pl_log_10_5           742         936         ---        0          ATG             0     ATG      742
-Contig-2_CDS_annotation_glimmer3.pl_log_10_6          2218        1082         ---        0          ATG             0     ATG     2218

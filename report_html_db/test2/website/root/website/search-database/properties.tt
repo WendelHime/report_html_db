@@ -1,9 +1,0 @@
-<!DOCTYPE html>
-<div class="row">
-	<div class="col-md-3">
-		[% result.key %]
-	</div>
-	<div class="col-md-9">
-		[% result.value %]
-	</div>
-</div>

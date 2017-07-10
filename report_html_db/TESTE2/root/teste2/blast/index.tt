@@ -1,6 +1,0 @@
-<!DOCTYPE html>
-<div class="content-wrapper">
-    <div class="container">	
-        [% INCLUDE 'teste2/blast/_forms.tt' %]
-    </div>
-</div>

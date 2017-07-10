@@ -1,6 +1,0 @@
-<!DOCTYPE html>
-<div class="content-wrapper">
-    <div class="container">
-        [% INCLUDE 'teste2/home/_panelInformation.tt' %]
-    </div>
-</div>
