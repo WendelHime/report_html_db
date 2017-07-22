@@ -22,20 +22,6 @@ http://127.0.0.1:3000
 
 TODO:
 - 
-
--	Busca por contig:
--	Alterar painel: 
--	Fica "Contig search results" e um botão do lado direito "Download FASTA" e... a sequência com formato FASTA
-
-\>Contig\_4 (4444-55555)
-
-GGGTGACGA TGCCGAGCAGCCCGAGGTGCAGGACGGCACCGTCGAAGCCCTCGTCGCCGCGCGCGACGG TGCGTCGCTCGCCGTCGCCACCGAGCACTTCGAAGGACCGCACCGCCGTGCTGAGCGAGC CGAGCCGGGTTCCGGAGCCGTGCGTCCCGGTGGCGATCGCGCCGCCGAGCGAGATGTGCG GGAGCGAACCCGTGTTGTGCAGGGCGACCCCGGCGGCGTCCAGGTCGGGCGCGACGACGC CGTACCGGGTGCCGGCGCCCATCGTCGCGGTGCCGGCGGCGGTGTCGACCACGAGGTCGG TGGGGATGCCGGTCAGGTCGA
-
--	Eliminar espaços da sequência, fazer a formatação correta.
--   BLAST:
--       Remover  parâmetro matrix
--       Refatorar campos advanced options 
-
 -	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita. 
 
 Dev:
@@ -167,3 +153,15 @@ Transmembrane helix		        	530		552
 Outside  the cytoplasm      		553		562
 
 -	Idem Phobius
+-	Busca por contig:
+-	Alterar painel: 
+-	Fica "Contig search results" e um botão do lado direito "Download FASTA" e... a sequência com formato FASTA
+
+\>Contig\_4 (4444-55555)
+
+GGGTGACGA TGCCGAGCAGCCCGAGGTGCAGGACGGCACCGTCGAAGCCCTCGTCGCCGCGCGCGACGG TGCGTCGCTCGCCGTCGCCACCGAGCACTTCGAAGGACCGCACCGCCGTGCTGAGCGAGC CGAGCCGGGTTCCGGAGCCGTGCGTCCCGGTGGCGATCGCGCCGCCGAGCGAGATGTGCG GGAGCGAACCCGTGTTGTGCAGGGCGACCCCGGCGGCGTCCAGGTCGGGCGCGACGACGC CGTACCGGGTGCCGGCGCCCATCGTCGCGGTGCCGGCGGCGGTGTCGACCACGAGGTCGG TGGGGATGCCGGTCAGGTCGA
+
+-	Eliminar espaços da sequência, fazer a formatação correta.
+-   BLAST:
+-       Remover  parâmetro matrix
+-       Refatorar campos advanced options  
