@@ -259,7 +259,7 @@ sub getAlienHunter {
 }
 
 sub getGeneByPosition {
-	my ( $self, $start, $end, $pipeline, $pageSize, $offset ) = @_;
+	my ( $self, $start, $end, $contig, $pipeline, $pageSize, $offset ) = @_;
 	my $response = makeRequest(
 		$self->{rest_endpoint},
 		"/SearchDatabase/geneByPosition",
@@ -267,6 +267,7 @@ sub getGeneByPosition {
 			{
 				start       => $start,
 				end         => $end,
+				contig	    => $contig,
 				pipeline_id => $pipeline,
 				pageSize	=> $pageSize,
 				offset		=> $offset

@@ -23,7 +23,6 @@ http://127.0.0.1:3000
 TODO:
 - 
 
--	No painel "Protein-coding genes, incluir a caixa "match al terms"
 -	Busca por contig:
 -	Alterar painel: 
 -	Fica "Contig search results" e um botão do lado direito "Download FASTA" e... a sequência com formato FASTA
@@ -33,29 +32,14 @@ TODO:
 GGGTGACGA TGCCGAGCAGCCCGAGGTGCAGGACGGCACCGTCGAAGCCCTCGTCGCCGCGCGCGACGG TGCGTCGCTCGCCGTCGCCACCGAGCACTTCGAAGGACCGCACCGCCGTGCTGAGCGAGC CGAGCCGGGTTCCGGAGCCGTGCGTCCCGGTGGCGATCGCGCCGCCGAGCGAGATGTGCG GGAGCGAACCCGTGTTGTGCAGGGCGACCCCGGCGGCGTCCAGGTCGGGCGCGACGACGC CGTACCGGGTGCCGGCGCCCATCGTCGCGGTGCCGGCGGCGGTGTCGACCACGAGGTCGG TGGGGATGCCGGTCAGGTCGA
 
 -	Eliminar espaços da sequência, fazer a formatação correta.
+-   BLAST:
+-       Remover  parâmetro matrix
+-       Refatorar campos advanced options 
 
--	Página de resultados de uma proteína
-
--	Gene Predictor: programa que fez a predição (ex. Glimmer 3.01).
-
--	KEGG  - adicionar no painel uma opção "View map" cujo link aponta para a via metabolica (kegg\_report/pathway\_figures/K00609-ko00240.html)
-
--	Remover cor azul de links que não são links em paineis
-
--	Alterar output (se tiver isso no banco)
-
-Outside the cytoplasm				1		503
-Transmembrane helix         		504		523
-Inside the cytoplasm				524		529
-Transmembrane helix		        	530		552
-Outside  the cytoplasm      		553		562
-
--	Idem Phobius
 -	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita. 
 
 Dev:
 -
-
 
 Done:
 -
@@ -167,3 +151,19 @@ Done:
 -	E-value
 -	Checar se inseriu errado no banco ou se report tá falhando.
 -	Search Database está muito lento
+-	KEGG  - adicionar no painel uma opção "View map" cujo link aponta para a via metabolica (kegg\_report/pathway\_figures/K00609-ko00240.html)
+-	Remover cor azul de links que não são links em paineis
+-	No painel "Protein-coding genes, incluir a caixa "match all terms"
+-	Página de resultados de uma proteína
+
+-	Gene Predictor: programa que fez a predição (ex. Glimmer 3.01).
+
+-	Alterar output (se tiver isso no banco)
+
+Outside the cytoplasm				1		503
+Transmembrane helix         		504		523
+Inside the cytoplasm				524		529
+Transmembrane helix		        	530		552
+Outside  the cytoplasm      		553		562
+
+-	Idem Phobius

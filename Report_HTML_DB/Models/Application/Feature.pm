@@ -15,6 +15,7 @@ has uniquename 	=> 	(is => 'ro', isa => 'Str');
 has type		=> 	(is => 'ro', isa => 'Str');
 has fstart		=>	(is => 'ro', isa => 'Int');
 has fend		=>	(is => 'ro', isa => 'Int');
+has predictor	=> (is => 'ro', isa => 'Str');
 
 sub setFeatureID {
 	my ($self, $feature_id) = @_;
@@ -80,6 +81,17 @@ sub setEnd {
 sub getEnd {
 	my ($self) = @_;
 	return $self->{fend};
+}
+
+sub setPredictor {
+        my ($self, $predictor) = @_;
+        $self->{predictor} = $predictor;
+        return $self->{predictor};
+}
+
+sub getPredictor {
+        my ($self) = @_;
+        return $self->{predictor};
 }
 
 1;

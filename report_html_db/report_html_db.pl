@@ -410,7 +410,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-search-options-sequence-title", "The query sequence is <a href='http://puma.icb.usp.br/blast/docs/filtered.html'>filtered</a> for low complexity regions by default.", ""),
         ("blast-search-options-filter-title", "Filter:", "http://puma.icb.usp.br/blast/docs/newoptions.html#filter"),
         ("blast-search-options-filter-options", "Low complexity", "value='L' checked=''"),
-        ("blast-search-options-filter-options", "Mask for lookup table only", "value='m'"),
         ("blast-search-options-expect", "<a href='http://puma.icb.usp.br/blast/docs/newoptions.html#expect'>Expect</a> (e.g. 1e-6)", ""),
         ("blast-search-options-matrix", "Matrix", "http://puma.icb.usp.br/blast/docs/matrix_info.html"),
         ("blast-search-options-matrix-options", "PAM30", "PAM30"),
@@ -466,12 +465,11 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-display-options-graphical-overview", "Graphical Overview", "http://puma.icb.usp.br/blast/docs/newoptions.html#graphical-overview"),
         ("blast-display-options-alignment-view-title", "Alignment view", "http://puma.icb.usp.br/blast/docs/options.html#alignmentviews"),
         ("blast-display-options-alignment-view-options", "Pairwise", "0"),
-        ("blast-display-options-alignment-view-options", "master-slave with identities", "1"),
-        ("blast-display-options-alignment-view-options", "master-slave without identities", "2"),
-        ("blast-display-options-alignment-view-options", "flat master-slave with identities", "3"),
-        ("blast-display-options-alignment-view-options", "flat master-slave without identities", "4"),
-        ("blast-display-options-alignment-view-options", "BLAST XML", "7"),
-        ("blast-display-options-alignment-view-options", "Hit Table", "9"),
+        ("blast-display-options-alignment-view-options", "query-anchored showing identities", "1"),
+        ("blast-display-options-alignment-view-options", "query-anchored no identities", "2"),
+        ("blast-display-options-alignment-view-options", "flat query-anchored, show identities", "3"),
+        ("blast-display-options-alignment-view-options", "flat query-anchored, no identities", "4"),
+        ("blast-display-options-alignment-view-options", "XML Blast output", "5"),
         ("blast-display-options-descriptions", "Descriptions", "http://puma.icb.usp.br/blast/docs/newoptions.html#descriptions"),
         ("blast-display-options-descriptions-options", "0", ""),
         ("blast-display-options-descriptions-options", "10", ""),
@@ -507,10 +505,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         
         ("search-database-dna-based-analyses-title", "DNA-based analyses", ""),
         ("search-database-dna-based-analyses-tab", "<a href='#contigs' data-toggle='tab'>Contigs</a>", "#contigs"),
-        ("search-database-dna-based-analyses-tab", "<a href='#tandemRepeats' data-toggle='tab'>Tandem repeats</a>", ""),
-        ("search-database-dna-based-analyses-tab", "<a href='#otherNonCodingRNAs' data-toggle='tab'>Other non-coding RNAs</a>", ""),
-        ("search-database-dna-based-analyses-tab", "<a href='#transcriptionalTerminators' data-toggle='tab'>Transcriptional terminators</a>", ""),
-        ("search-database-dna-based-analyses-tab", "<a href='#horizontalGeneTransfers' data-toggle='tab'>Horizontal gene transfers</a>", ""),
         ("search-database-dna-based-analyses-only-contig-title", "Get only contig: ", ""),
         ("search-database-dna-based-analyses-from-base", " from base ", ""),
         ("search-database-dna-based-analyses-to", " to ", ""),
@@ -839,12 +833,15 @@ foreach my $c ( sort @components_name ) {
 		|| $c eq "annotation_trna.pl"
 		|| $c eq "annotation_alienhunter.pl" )
 	{
-		$c =~ s/\.pl//g;
-		push @comp_dna, $c;
+		#$c =~ s/\.pl//;
+		$c =~ /\.pl/g;
+		my $name = $`;
+		push @comp_dna, $name;
 	}
 	else {
-		$c =~ s/\.pl//g;
-		push @comp_ev, $c;
+		#$c =~ s/\.pl//;
+		$c =~ /\.pl/g;
+		push @comp_ev, $`;
 	}
 }
 #
@@ -874,23 +871,35 @@ my $locus               = 0;
 
 if ( scalar @report_go_dir > 0 ) {
 	foreach my $path (@report_go_dir) {
-		$components{"report_go"} .= $path . ";";
+		if($path =~ /([\.\/\w]+)\//) {
+			my $directory = $1;
+			$components{"report_go"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);	
+		}
 		$scriptSQL .=
 "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('go', 'report_go', '$components{report_go}');\n";
+		$components{report_go} = $path;
 	}
 }
 if ( scalar @report_eggnog_dir > 0 ) {
 	foreach my $path (@report_eggnog_dir) {
-		$components{"report_eggnog"} .= $path . ";";
+		if($path =~ /([\.\/\w]+)\//) {
+                        my $directory = $1;
+                        $components{"report_eggnog"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+                }
 		$scriptSQL .=
 "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('eggnog', 'report_eggnog', '$components{report_eggnog}');\n";
+		$components{report_eggnog} = $path;
 	}
 }
 if ( scalar @report_pathways_dir > 0 ) {
 	foreach my $path (@report_pathways_dir) {
-		$components{"report_pathways"} .= $path . ";";
+		if($path =~ /([\.\/\w]+)\//) {
+                        my $directory = $1;
+                        $components{"report_pathways"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+                }
 		$scriptSQL .=
 "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'report_pathways', '$components{report_pathways}');\n";
+		$components{report_pathways} = $path;
 	}
 }
 if ( scalar @report_kegg_organism_dir > 0 ) {
@@ -919,6 +928,8 @@ my $annotation_dgpi = 0;
 my $annotation_predgpi = 0;
 my $annotation_bigpi = 0;
 my $annotation_tcdb = 0;
+my $annotation_infernal = 0;
+my $annotation_trf = 0;
 
 open(my $SEQUENCES, ">", "$html_dir/root/Sequences.fasta");
 open(my $SEQUENCES_NT, ">", "$html_dir/root/Sequences_NT.fasta");
@@ -1015,7 +1026,7 @@ while ( $sequence_object->read() ) {
 			  !$evidence->{log}{name}
 			  ? ( $component =~ /(annotation[_\w]+)/g )[0]
 			  : $evidence->{log}{name};
-			$component_name =~ s/.pl//g;
+			$component_name = $` if $component_name =~ /\.pl/g;
 			my $locus_tag;
 
 			if ( $conclusion->{locus_tag} ) {
@@ -1150,6 +1161,7 @@ while ( $sequence_object->read() ) {
 					if ( $component_name eq "annotation_trf" ) {
 						my $file = $name . "_trf.txt";
 						$components{$component} = "$annotation_dir/$component/$file";
+						$annotation_trf = 1;
 					}
 					elsif ( $component_name eq "annotation_trna" ) {
 						my $file = $name . "_trna.txt";
@@ -1164,6 +1176,7 @@ while ( $sequence_object->read() ) {
 					elsif ( $component_name eq "annotation_infernal" ) {
 						my $file = $infernal_output_file . "_" . $name;
 						$components{$component} = "$annotation_dir/$component/$file";
+						$annotation_infernal = 1;
 					}
 					elsif ( $component_name eq "annotation_skews" ) {
 						my $filestring = `ls $skews_dir`;
@@ -1575,6 +1588,12 @@ if($annotation_blast) {
 					("search-database-analyses-protein-code-tab", "<a href='#blast' data-toggle='tab'>BLAST"</a>, "");
 SQL
 }
+if($annotation_trf) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-tab", "<a href='#tandemRepeats' data-toggle='tab'>Tandem repeats</a>", "");
+SQL
+}
 if($annotation_interpro) {
 	$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES
@@ -1700,6 +1719,7 @@ SQL
 if ($annotation_transterm) {
 	$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-tab", "<a href='#transcriptionalTerminators' data-toggle='tab'>Transcriptional terminators</a>", ""),
 					("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
 			        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
 			        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
@@ -1718,9 +1738,16 @@ if($annotation_rbs) {
 			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
 SQL
 }
+if($annotation_infernal) {
+	$scriptSQL .= <<SQL;
+				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-tab", "<a href='#otherNonCodingRNAs' data-toggle='tab'>Other non-coding RNAs</a>", "");
+SQL
+}
 if($annotation_alienhunter) {
 	$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES 
+					("search-database-dna-based-analyses-tab", "<a href='#horizontalGeneTransfers' data-toggle='tab'>Horizontal gene transfers</a>", ""),
 					("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
 			        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
 			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
@@ -2223,6 +2250,85 @@ sub analyses_CDS {
 			  generate_clause( "?", "NOT", \$and, "lower(pd.value)" );
 			push \@args, "\%" . lc( \$hash->{noDesc} ) . "\%";
 		}
+		
+		if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
+		|| ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
+		{
+			my \@likesDescription   = ();
+			my \@likesNoDescription = ();
+			if ( \$hash->{geneDescription} ) {
+				while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
+					push \@likesDescription,
+					  generate_clause( "?", "", "",
+						"lower(pd.value)"
+					  );
+					push \@args, lc( "\%" . \$1 . "\%" );
+				}
+			}
+			if ( \$hash->{noDescription} ) {
+				while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
+					push \@likesNoDescription,
+					  generate_clause( "?", "NOT", "",
+						"lower(pd.value)"
+					  );
+					push \@args, lc( "\%" . \$1 . "\%" );
+				}
+			}
+	
+			if (    exists \$hash->{individually}
+				and \$hash->{individually}
+				and scalar(\@likesDescription) > 0 )
+			{
+				if ( scalar(\@likesNoDescription) > 0 ) {
+					foreach my \$like (\@likesDescription) {
+						\$query_gene .= " AND " . \$like;
+					}
+					foreach my \$notLike (\@likesNoDescription) {
+						\$query_gene .= " AND " . \$notLike;
+					}
+				}
+				else {
+					foreach my \$like (\@likesDescription) {
+						\$query_gene .= " AND " . \$like;
+					}
+				}
+			}
+			elsif ( scalar(\@likesDescription) > 0 ) {
+				my \$and = "";
+				if ( scalar(\@likesNoDescription) > 0 ) {
+					foreach my \$notLike (\@likesNoDescription) {
+						\$query_gene .= " AND " . \$notLike;
+					}
+					\$and = "1";
+				}
+				if (\$and) {
+					\$and = " AND ";
+				}
+				else {
+					\$and = " OR ";
+				}
+				\$query_gene .= " AND (";
+				my \$counter = 0;
+				foreach my \$like (\@likesDescription) {
+					if ( \$counter == 0 ) {
+						\$query_gene .= \$like;
+						\$counter++;
+					}
+					else {
+						\$query_gene .= \$and . \$like;
+					}
+				}
+				\$query_gene .= " ) ";
+			}
+			elsif ( scalar(\@likesDescription) <= 0
+				and scalar(\@likesNoDescription) > 0 )
+			{
+				foreach my \$like (\@likesNoDescription) {
+					\$query_gene .= " AND " . \$like;
+				}
+			}
+		}
+		
 		\$query_gene .= ")";
 		\$query_gene = \$connector . \$query_gene;
 		\$connector  = "1";
@@ -3902,24 +4008,34 @@ sub geneBasics {
 	my ( \$self, \$hash ) = \@_;
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
-	my \$query =
-"SELECT srcfeature.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, srcfeature.uniquename AS uniquename, featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS value "
-	  . "FROM feature me "
-	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
-	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
-	  . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
-	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
-	  . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
-	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id "
-	  . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
-	  . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
-	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
-	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
-	  . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
-	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
-	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-	  . "WHERE ( ( featureloc_featureprop.value = ? AND me.feature_id = ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' AND type_5.name = 'description' ) ) "
-	  . "GROUP BY srcfeature.feature_id, feature_relationship_props_subject_feature.value, feature_relationship_props_subject_feature_2.value, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value ";
+	my \$query = "
+	SELECT srcfeature.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, srcfeature.uniquename AS uniquename, 
+	featureloc_features_2.fstart AS	fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS value, a.program
+	FROM feature me
+	LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id    
+	LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id
+	LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id
+	LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id
+	LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id
+	LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id
+	LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id
+	LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id
+	LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id
+	LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id 
+	LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id
+	LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id
+	LEFT JOIN cvterm type_5 ON type_5.cvterm_id = feature_relationship_props_subject_feature_2.type_id
+	LEFT JOIN analysisfeature af ON (af.feature_id = me.feature_id)
+	LEFT JOIN analysis_relationship ar ON (ar.object_id = af.analysis_id)
+	LEFT JOIN analysis a ON (a.analysis_id = ar.subject_id)
+	WHERE ( ( featureloc_featureprop.value = ? AND me.feature_id = ? AND type.name =
+		'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND
+		type_4.name = 'pipeline_id' AND type_5.name = 'description' ) )
+	GROUP BY srcfeature.feature_id,
+		feature_relationship_props_subject_feature.value,
+		feature_relationship_props_subject_feature_2.value,
+		featureloc_features_2.fstart, featureloc_features_2.fend,
+		featureprops_2.value, a.program ";
 	push \@args, \$hash->{pipeline};
 	push \@args, \$hash->{feature_id};
 	my \$sth = \$dbh->prepare(\$query);
@@ -3936,7 +4052,8 @@ sub geneBasics {
 			uniquename => \$rows[\$i][2],
 			fstart     => \$rows[\$i][3],
 			fend       => \$rows[\$i][4],
-			type       => \$rows[\$i][5]
+			type       => \$rows[\$i][5],
+			predictor  => \$rows[\$i][6]
 		);
 		push \@list, \$feature;
 	}
@@ -3955,7 +4072,7 @@ sub geneByPosition {
 	my \$dbh  = \$self->dbh;
 	my \@args = ();
 	my \$query =
-	    "SELECT me.feature_id AS feature_id "
+	    "SELECT me.feature_id AS feature_id, COUNT(*) OVER() AS total "
 	  . "FROM feature me "
 	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
@@ -3967,12 +4084,14 @@ sub geneByPosition {
 	  . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
 	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
 	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
-	  . "WHERE ( ( featureloc_featureprop.value = ? AND featureloc_features_2.fstart >= ? AND featureloc_features_2.fend <= ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
+	  . "WHERE ( ( featureloc_featureprop.value = ? AND featureloc_features_2.fstart >= ? AND featureloc_features_2.fend <= ? AND featureloc_features_2.srcfeature_id = ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
 	  . "GROUP BY me.feature_id, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
 	  . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
 	push \@args, \$hash->{pipeline};
 	push \@args, \$hash->{start};
 	push \@args, \$hash->{end};
+	push \@args, \$hash->{contig};
+
 	if (   exists \$hash->{pageSize}
 		&& \$hash->{pageSize}
 		&& exists \$hash->{offset}
@@ -3992,16 +4111,17 @@ sub geneByPosition {
 	print STDERR \$query;
 	\$sth->execute(\@args);
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
+	my \%hash = ();
 	my \@list = ();
 
-	my \@columns = \@{ \$sth->{NAME} };
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		for ( my \$j = 0 ; \$j < scalar \@columns ; \$j++ ) {
-			push \@list, \$rows[\$i][\$j];
-		}
+		push \@list, \$rows[\$i][0];
+		\$hash{total} = \$rows[\$i][1];
 	}
+	
+	\$hash{list} = \\\@list;
 
-	return \\\@list;
+	return \\\%hash;
 }
 
 =head2
@@ -4077,6 +4197,7 @@ sub subevidences {
 		'annotation_tmhmm.pl'     => 'TMHMM',
 		'annotation_hmmer.pl'	=> 'HMMER',
 		"annotation_signalP.pl" => 'SignalP',
+		'annotation_bigpi.pl'   => 'BIGPI',
 	);
 
 	my \@list = ();
@@ -4110,7 +4231,13 @@ sub intervalEvidenceProperties {
 	my \$dbh = \$self->dbh;
 
 	my \$query =
-	  "SELECT key, key_value FROM get_interval_evidence_properties(?)";
+	  "select c.name, p.value, l.fstart, l.fend 
+	  from featureprop p 
+	  join cvterm c on (p.type_id = c.cvterm_id) 
+	  join feature_relationship r on (r.subject_id = p.feature_id) 
+	  join cvterm cr on (r.type_id = cr.cvterm_id) 
+	  join featureloc l on (r.subject_id = l.feature_id)
+	  where cr.name='interval' and r.object_id=? ORDER BY r.subject_id ASC;";
 
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
@@ -4118,28 +4245,26 @@ sub intervalEvidenceProperties {
 	my \@rows = \@{ \$sth->fetchall_arrayref() };
 
 	my \@list = ();
-
-	my \@listProperties = ();
-	my \%property       = ();
-	my \@columns        = \@{ \$sth->{NAME} };
+	my \%property = ();
+	
 	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 		my \%hash = ();
-		for ( my \$j = 0 ; \$j < scalar \@columns ; \$j++ ) {
-			\$hash{ \$columns[\$j] } = \$rows[\$i][\$j];
-		}
-		push \@list, \\\%hash;
-	}
-
-	for ( my \$i = 0 ; \$i < scalar \@list ; \$i++ ) {
-		my \$hash = \$list[\$i];
-		if ( !exists \$property{ \$hash->{key} } ) {
-			if ( \$hash->{key} eq "anticodon" ) {
-				\$property{ \$hash->{key} } = \$hash->{key_value};
-				\$property{codon} = reverseComplement( \$hash->{key_value} );
+		
+		\$hash{ key } = \$rows[\$i][0];
+		\$hash{ key_value } = \$rows[\$i][1];
+		\$hash{ fstart } = \$rows[\$i][2];
+		\$hash{ fend } = \$rows[\$i][3];
+		
+		if ( !exists \$property{ \$hash{key} } ) {
+			if ( \$hash{key} eq "anticodon" ) {
+				\$property{ \$hash{key} } = \$hash{key_value};
+				\$property{codon} = reverseComplement( \$hash{key_value} );
 			}
 			else {
-				\$property{ \$hash->{key} } = \$hash->{key_value};
+				\$property{ \$hash{key} } = \$hash{key_value};
 			}
+			\$property{ fstart } = \$hash{fstart};
+			\$property{ fend } = \$hash{fend};
 		}
 		else {
 			my \%tempHash = ();
@@ -4148,22 +4273,22 @@ sub intervalEvidenceProperties {
 					\$tempHash{\$key} = \$property{\$key};
 				}
 			}
-			push \@listProperties, \\\%tempHash;
+			push \@list, \\\%tempHash;
 			\%property = ();
-			if ( \$hash->{key} eq "anticodon" ) {
-				\$property{ \$hash->{key} } = \$hash->{key_value};
-				\$property{codon} = reverseComplement( \$hash->{key_value} );
+			if ( \$hash{key} eq "anticodon" ) {
+				\$property{ \$hash{key} } = \$hash{key_value};
+				\$property{codon} = reverseComplement( \$hash{key_value} );
 			}
 			else {
-				\$property{ \$hash->{key} } = \$hash->{key_value};
+				\$property{ \$hash{key} } = \$hash{key_value};
 			}
-		}
-		if ( scalar \@listProperties == 0 ) {
-			push \@listProperties, \\\%property;
+			\$property{ fstart } = \$hash{fstart};
+			\$property{ fend } = \$hash{fend};
 		}
 	}
+	push \@list, \\\%property if scalar \@list == 0;
 
-	return \\\@listProperties;
+	return \\\@list;
 }
 
 =head2
@@ -4734,6 +4859,13 @@ sub searchContig_GET {
 		\$reverseComplement = \$c->request->param("revCompContig");
 	}
 
+	my \@list = ();
+	push \@list, sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
+	standardStatusOk( \$self, \$c, \@list );
+}
+
+sub sequenceContig {
+	my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
 	use File::Basename;
 	my \$data     = "";
 	my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
@@ -4744,7 +4876,7 @@ sub searchContig_GET {
 	my \$content = do { local \$/; <\$FILEHANDLER> };
 
 	my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
-	\$data = join("\\n", \@lines);
+	\$data = join("", \@lines);
 	
 	close(\$FILEHANDLER);
 
@@ -4755,21 +4887,19 @@ sub searchContig_GET {
 		\$c->stash->{end}       = \$end;
 		\$c->stash->{hadLimits} = 1;
 	}
-	if ( defined \$reverseComplement ) {
-		\$data = formatSequence( reverseComplement(\$data) );
+	if ( \$reverseComplement ) {
+		\$data = reverseComplement(\$data);
 		\$c->stash->{hadReverseComplement} = 1;
 	}
+	\$data = formatSequence(\$data);
 	my \$result = \$data;
 	
-
-	my \@list = ();
 	my \%hash = ();
 	\$hash{'geneID'} = \$sequence->id;
 	\$hash{'gene'}   = \$sequence->name;
 	\$hash{'contig'} = \$result;
-
-	push \@list, \\%hash;
-	standardStatusOk( \$self, \$c, \@list );
+	\$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
+	return \\\%hash;
 }
 
 =head2 reverseComplement
@@ -4928,7 +5058,8 @@ sub search_POST {
 					\$hash{DB_GENETIC_CODE},    
 					\$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
 					\$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
-					\$hash{ALIGNMENTS}
+					\$hash{ALIGNMENTS},         \$hash{COST_OPEN_GAP},
+                    \$hash{COST_EXTEND_GAP},    \$hash{WORD_SIZE}
 				)
 			};
 			\$content = join( "", \@response );
@@ -5812,10 +5943,10 @@ Method used to get feature by position
 =cut
 
 sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
-  CaptureArgs(3) : ActionClass('REST') { }
+  CaptureArgs(6) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
-	my ( \$self, \$c, \$start, \$end, \$pipeline_id, \$pageSize, \$offset ) = \@_;
+	my ( \$self, \$c, \$start, \$end, \$contig, \$pipeline_id, \$pageSize, \$offset ) = \@_;
 	if ( !\$start and defined \$c->request->param("start") ) {
 		\$start = \$c->request->param("start");
 	}
@@ -5831,6 +5962,9 @@ sub geneByPosition_GET {
 	if ( !\$offset and defined \$c->request->param("offset") ) {
 		\$offset = \$c->request->param("offset");
 	}
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");   
+	}
 	my \@list = ();
 
 	my \%hash = ();
@@ -5838,8 +5972,11 @@ sub geneByPosition_GET {
 	\$hash{start}    = \$start;
 	\$hash{end}      = \$end;
 	\$hash{pageSize} = \$pageSize;
-	\$hash{offset}	 = \$offset;
-	my \@ids = \@{ \$c->model('SearchDatabaseRepository')->geneByPosition( \\\%hash ) };
+	\$hash{offset}	= \$offset;
+	\$hash{contig}	= \$contig;
+	my \$result = \$c->model('SearchDatabaseRepository')->geneByPosition( \\\%hash );
+	my \$total = \$result->{total};
+	my \@ids = \@{ \$result->{list} };
 	my \$featureId = join( " ", \@ids );
 	\%hash            = ();
 	\$hash{pipeline}  = \$pipeline_id;
@@ -5851,7 +5988,7 @@ sub geneByPosition_GET {
 		push \@list, \$resultList[\$i]->pack();
 	}
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$pageSize, \$offset );
+	standardStatusOk( \$self, \$c, \\\@list, \$total, \$pageSize, \$offset );
 }
 
 sub targetClass : Path("/SearchDatabase/targetClass") : CaptureArgs(1) : ActionClass('REST') { }
@@ -6260,7 +6397,7 @@ sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
   CaptureArgs(3) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
-	my ( \$self, \$c, \$start, \$end, \$pageSize, \$offset ) = \@_;
+	my ( \$self, \$c, \$start, \$end, \$contig, \$pageSize, \$offset ) = \@_;
 	if ( !\$start and defined \$c->request->param("start") ) {
 		\$start = \$c->request->param("start");
 	}
@@ -6273,11 +6410,17 @@ sub geneByPosition_GET {
 	if ( !\$offset and defined \$c->request->param("offset") ) {
 		\$offset = \$c->request->param("offset");
 	}
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
+	        
+        \$contig = \$c->model('Basic::Sequence')->search({ name => \$contig}, { columns => [ qw/ id / ] })->first()->{_column_data}->{"id"};
+
 	my \$searchDBClient =
 	  Report_HTML_DB::Clients::SearchDBClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
 	my \$response = \$searchDBClient->getGeneByPosition(
-			\$start, \$end, \$c->config->{pipeline_id}, \$pageSize, \$offset
+			\$start, \$end, \$contig, \$c->config->{pipeline_id}, \$pageSize, \$offset
 		);
 	standardStatusOk(
 		\$self, \$c, \$response->{response}, \$response->{total}, \$pageSize, \$offset
@@ -6413,7 +6556,8 @@ sub search_POST {
 		\$matrix,              \$ungappedAlignment,  \$geneticCode,
 		\$databaseGeneticCode, \$frameShiftPenality, \$otherAdvanced,
 		\$graphicalOverview,   \$alignmentView,      \$descriptions,
-		\$alignments,          \$colorSchema,        \$fastaFile
+		\$alignments,          \$colorSchema,        \$fastaFile,
+        \$costOpenGap,          \$costToExtendGap,  \$wordSize
 	) = \@_;
 	if ( !\$blast and defined \$c->request->param("PROGRAM") ) {
 		\$blast = \$c->request->param("PROGRAM");
@@ -6472,6 +6616,15 @@ sub search_POST {
 	if ( !\$alignments and defined \$c->request->param("ALIGNMENTS") ) {
 		\$alignments = \$c->request->param("ALIGNMENTS");
 	}
+    if ( !\$costOpenGap and defined \$c->request->param("COST_OPEN_GAP") ) {
+        \$costOpenGap = \$c->request->param("COST_OPEN_GAP");
+    }
+    if ( !\$costToExtendGap and defined \$c->request->param("COST_EXTEND_GAP") ) {
+        \$costToExtendGap = \$c->request->param("COST_EXTEND_GAP");
+    }
+    if ( !\$wordSize and defined \$c->request->param("WORD_SIZE") ) {
+        \$wordSize = \$c->request->param("WORD_SIZE");
+    }
 
 	my \%hash = ();
 
@@ -6663,7 +6816,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
                 })
         );
 
-        \$c->stash(searchDBTexts => resultsetListToHash(\\\@texts));
+        \$c->stash(searchDBTexts => resultsetListToHash(\\\@texts, "tag", "value"));
 	
 	my \$searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => \$c->config->{rest_endpoint});
 	my \$pipeline;
@@ -6695,7 +6848,14 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
         );
 	
 	\$c->stash(template => '$lowCaseName/search-database/index.tt');
-	\$c->stash(components => resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component"));
+	my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
+	\$c->stash(components => \$components);
+	if(\$components->{"pathways"}) {
+		my \$filepath = \$c->model('Basic::Component')->search({ component => 'report_pathways' }, { columns => [ qw/filepath/ ], group_by => [ qw/filepath/ ] })->
+			first()->{_column_data}->{"filepath"};
+		#\$filepath =~ /(reports[\\w\\/]+\\/)/g;
+		\$c->stash->{report_pathways} = \$filepath;
+	}
 	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
 	\$c->stash->{hadSearchDatabase} = 1;
 
@@ -6966,10 +7126,127 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 	close \$FILEHANDLER;
 }
 
+sub downloadSequence : Path("DownloadSequence") : CaptureArgs(4) {
+	my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
+	if ( !\$start and defined \$c->request->param("start") ) {
+		\$start = \$c->request->param("start");
+	}
+	if ( !\$end and defined \$c->request->param("end") ) {
+		\$end = \$c->request->param("end");
+	}
+	if ( !\$reverseComplement
+		and defined \$c->request->param("reverseComplement") )
+	{
+		\$reverseComplement = \$c->request->param("reverseComplement");
+	}
+	
+	my \$sequence = sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
+	
+	use File::Temp ();
+	my \$fh    = File::Temp->new();
+	my \$fname = \$fh->filename;
+	open(my \$FILEHANDLER, ">", \$fname );
+	my \$fastaHeader = ">".\$sequence->{gene};
+	if(\$start && \$end) {
+		\$fastaHeader .= "_(".\$start."-".\$end.")";
+	}
+	if(\$reverseComplement) {
+		\$fastaHeader .= "_reverse_complemented";
+	}
+	print \$FILEHANDLER \$fastaHeader ."\n".\$sequence->{contig};
+	close(\$FILEHANDLER);
+	
+	open( \$FILEHANDLER, "<", \$fname );
+	binmode \$FILEHANDLER;
+	my \$file;
+
+	local \$/ = \\10240;
+	while (<\$FILEHANDLER>) {
+		\$file .= \$_;
+	}
+	\$c->response->body(\$file);
+	\$c->response->headers->content_type('application/x-download');
+	
+	\$c->response->body(\$file);
+	\$fastaHeader =~ s/>//g;
+	\$c->response->header('Content-Disposition' => 'attachment; filename='.\$fastaHeader . ".fasta");
+	close \$FILEHANDLER;
+}
+
+sub sequenceContig {
+	my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+	use File::Basename;
+	my \$data     = "";
+	my \$sequence = \$c->model('Basic::Sequence')->search({ "name" => \$contig}, {})->first;
+
+	open( my \$FILEHANDLER,
+		"<", dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
+
+	my \$content = do { local \$/; <\$FILEHANDLER> };
+
+	my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
+	\$data = join("", \@lines);
+	
+	close(\$FILEHANDLER);
+
+	if ( \$start && \$end ) {
+		\$start += -1;
+		\$data = substr( \$data, \$start, ( \$end - \$start ) );
+		\$c->stash->{start}     = \$start;
+		\$c->stash->{end}       = \$end;
+		\$c->stash->{hadLimits} = 1;
+	}
+	if ( \$reverseComplement ) {
+		\$data = reverseComplement(\$data);
+		\$c->stash->{hadReverseComplement} = 1;
+	}
+	\$data = formatSequence(\$data);
+	my \$result = \$data;
+	
+	my \%hash = ();
+	\$hash{'geneID'} = \$sequence->id;
+	\$hash{'gene'}   = \$sequence->name;
+	\$hash{'contig'} = \$result;
+	\$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
+	return \\\%hash;
+}
+
+=head2 reverseComplement
+
+Method used to return the reverse complement of a sequence
+
+=cut
+
+sub reverseComplement {
+	my (\$sequence) = \@_;
+	my \$reverseComplement = reverse(\$sequence);
+	\$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+	return \$reverseComplement;
+}
+
+=head2 formatSequence
+
+Method used to format sequence
+
+=cut
+
+sub formatSequence {
+    my \$seq = shift;
+    my \$block = shift || 80;
+    \$seq =~ s/.{\$block}/\$&\\n/gs;
+    chomp \$seq;
+    return \$seq;
+}
+
 sub reports : Path("reports") : CaptureArgs(3) {
-	my ( \$self, \$c, \$type, \$file, \$file2 ) = \@_;
-	my \$filepath = "\$type/\$file";
-	\$filepath .= "/\$file2" if \$file2;
+	my ( \$self, \$c, \$type, \@files ) = \@_;
+        my \$filepath = "\$type";
+        \$filepath .= "/". \$_ foreach (\@files);
+	#my \$filepath = "\$type/\$file";
+	#\$filepath .= "/\$file2" if \$file2;
 	
 	\$self->status_bad_request( \$c, message => "Invalid request" )
 	  if ( \$filepath =~ m/\\.\\.\\// );
@@ -7000,7 +7277,7 @@ sub reports : Path("reports") : CaptureArgs(3) {
                                         "<", dirname(__FILE__) . "/../../../root/\$type/" . \$imagePath );
                                 } else {
                                         open( \$FILEHANDLER,
-                                        "<", dirname(__FILE__) . "/../../../root/\$type/\$file" . "/" . \$_ );
+                                        "<", dirname(__FILE__) . "/../../../root/\$type/\$files[0]" . "/" . \$_ );
                                 }
                                 my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
                                 close(\$FILEHANDLER);
@@ -7122,7 +7399,9 @@ foreach my $filepathComponent (@filepathsComponents) {
 				}
 				else {
 					my $test = "";
+					#\/([\w._]+\/[\w._]*)$
 					$test = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+					print $LOG "\n[7365] - $test\n" ;
 					unless(
 -d "$standard_dir/$html_dir/root/$test" && 
 -e "$standard_dir/$html_dir/root/$test" && 
@@ -7380,12 +7659,16 @@ CONTENTABOUTINDEX
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        [% FOREACH text IN texts %]
-                                            [% IF text.tag == "blast-search-options-other-advanced-options" %]
-                                                <label for="OTHER_ADVANCED"><a href="[% text.details %]">[% text.value %]</a></label>
-                                            [% END %]
-                                        [% END %]
-                                        <input class="form-control" type="text" id="OTHER_ADVANCED" name="OTHER_ADVANCED" value="" maxlength="50">
+                                        <label>Cost to open gap </label>
+                                        <input class="form-control" type="number" name="COST_OPEN_GAP" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cost to extend a gap </label>
+                                        <input class="form-control" type="number" name="COST_EXTEND_GAP" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Word size </label>
+                                        <input class="form-control" type="number" name="WORD_SIZE" />
                                     </div>
                                 </div>
                             </div>
@@ -7582,21 +7865,18 @@ CONTENTINDEXDOWNLOADS
 				pathways = 0
 				organism = 0 
 			%]
-			
-			[% FOREACH component IN components %]
-				[% IF component.component.match("report_go") %]
+				[% IF components.item("go") %]
 					[% go_mapping = 1 %]
 				[% END %]
-				[% IF component.component.match("report_eggnog") %]
+				[% IF components.item("eggnog") %]
 					[% orthology = 1 %]
 				[% END %]
-				[% IF component.component.match("report_pathways") %]
+				[% IF components.item("pathways") %]
 					[% pathways = 1 %]
 				[% END %]
-				[% IF component.component.match("report_kegg_organism") %]
+				[% IF components.item("kegg_organism") %]
 					[% organism = 1 %]
 				[% END %]
-			[% END %]
 			[% IF go_mapping %]
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
@@ -8006,6 +8286,9 @@ CONTENTINDEXHOME
                 		[% IF components.item('annotation_bigpi') %]
                 			[% bigpi = 1 %]
                 		[% END %]
+                		[% IF report_pathways %]
+                			<input type="hidden" id="report_pathways" value="[% report_pathways %]" />
+                		[% END %]
                 	
                     [% IF section_protein_coding %]
                      <div id="parentCollapseOne" class="panel panel-default">
@@ -8068,6 +8351,11 @@ CONTENTINDEXHOME
                                       <div class="form-group">
 					<label>[% searchDBTexts.item('search-database-analyses-protein-code-excluding') %]</label>
                                           <input class="form-control" type="text" name="noDesc">
+                                      </div>
+                                      <div class="form-group">
+	                                      <div class="checkbox">
+	                                      	  <label><input type="checkbox" name="individually" > [% searchDBTexts.item('search-database-analyses-protein-code-match-all') %]</label> 
+	                                      </div>
                                       </div>
                                   [% END %]
                                      <ul class="nav nav-pills">
@@ -8473,7 +8761,7 @@ CONTENTINDEXHOME
 									<input class="form-control" type="number" name="TRFrepSize">
 									[% FOREACH text IN searchDBTexts.item('search-database-quantity-trf') %]
 									<div class="radio">
-										<label>[% text.value %]</label>
+										<label>[% text %]</label>
 									</div>
 									[% END %]
 								</div>
@@ -8712,6 +9000,11 @@ CONTENTINDEXHOME
         </div>
     </div>
 </div>
+<form id="geneByPosition">
+<input type="hidden" name="contig" id="contigGenePosition" />
+<input type="hidden" name="start" id="start" />
+<input type="hidden" name="end" id="end" />
+</form>
 <!-- CONTENT-WRAPPER SECTION END-->
 
 
@@ -8804,15 +9097,14 @@ CONTENTINDEXSEARCHDATABASE
 <div class="panel panel-default result">
 	<div class="panel-heading">
 		<div class="panel-title">
-			<a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
-			[% IF hadLimits %]
-				from [% start %] to [% end %] of 
-			[% END %]
-			[% sequence.name %]
-			[% IF hadReverseComplement %]
-				, reverse complemented
-			[% END %]
-			)</a>
+			<div class='row'>
+				<div class='col-md-10'>
+					<a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results
+				</div>
+				<div class='col-md-2'>
+					<a href="/DownloadSequence?contig=[% sequence.name %]&start=[% start %]&end=[% end %]&reverseComplement=[% hadReverseComplement %]">Download FASTA</a>
+				</div>
+			</div>			
 		</div>
 	</div>
 	<div id="[% sequence.id %]" class="panel-collapse collapse in">
@@ -8827,6 +9119,7 @@ CONTENTINDEXSEARCHDATABASE
 		</div>
 	</div>
 </div>
+
 CONTENT
 		,
 		"dgpiBasicResult.tt" => <<CONTENT
@@ -9204,6 +9497,7 @@ CONTENT
 		"pathways.tt" => <<CONTENT
 <tr>
 	<td><a href="http://www.genome.jp/dbget-bin/www_bget?[% result.metabolic_pathway_id %]">[% result.metabolic_pathway_id %]</a> - [% result.metabolic_pathway_description %]</td>
+	<td>[% result.viewmap %]</td>
 </tr>
 CONTENT
 		,
@@ -9224,7 +9518,8 @@ CONTENT
 				<thead>
 					<tr>
 						<th>Pathways:</th>
-					</tr>
+						<th>View map:</th>
+					</tr>	
 				</thead>
 				<tbody id="pathways-[% result.orthologous_group_id %]">
 					

@@ -27,18 +27,21 @@ $graphicalOverview		=>	scalar with off or on for graphical overview
 $alignmentView			=>	scalar with the alignment view
 $descriptions			=>	scalar with the quantity of descriptions
 $alignments				=>	scalar with the quantity of alignments
-$colorSchema			=>	scalar with the color schema
+$costOpenGap            =>  scalar with the cost to open gap
+$costToExtendGap        =>  scalar with the cost to extend a gap
+$wordSize               =>  scalar with the word size
 
 =cut
 
 sub executeBlastSearch {
 	my (
-		$self,              $blast,        $database,
-		$fastaSequence,     $from,         $to,
-		$filter,            $expect,       $matrix,
-		$ungappedAlignment, $geneticCode,  $databaseGeneticCode,
+		$self,              $blast,         $database,
+		$fastaSequence,     $from,          $to,
+		$filter,            $expect,        $matrix,
+		$ungappedAlignment, $geneticCode,   $databaseGeneticCode,
 		$otherAdvanced,     $graphicalOverview,
-		$alignmentView,     $descriptions, $alignments
+		$alignmentView,     $descriptions,  $alignments,
+        $costOpenGap,       $costToExtendGap,   $wordSize
 	) = @_;
 
 	my $command =
@@ -52,12 +55,60 @@ sub executeBlastSearch {
 		|| $blast eq "tblastn"
 		|| $blast eq "tblastx" );
 
-	$command .= " -ungapped " if $ungappedAlignment;
+	$command .= " -ungapped " if $ungappedAlignment && $blast eq "blastn";
 	$command .= " -query_gencode \"$geneticCode\" "
 	  if $geneticCode && $blast eq "blastx";
 	$command .= " -db_gencode \"$databaseGeneticCode\" "
 	  if $databaseGeneticCode
 	  && ( $blast eq "tblastn" || $blast eq "tblastx" );
+
+    if ($filter) {
+        my @list = @$filter;
+        foreach my $value (@list) {
+            if($value eq 'L') {
+                if ($blast eq "blastn") {
+                    $command .= " -dust 'yes' ";
+                } else {
+                    $command .= " -seg 'yes' ";
+                }
+            }
+        }
+    }
+    if($blast eq "blastn") {
+        if ($costOpenGap) {
+            $command .= " -gapopen $costOpenGap ";
+        } else {
+            $command .= " -gapopen 5 ";
+        }
+        if ($costToExtendGap) {
+            $command .= " -gapextend $costToExtendGap ";
+        } else {
+            $command .= " -gapextend 2";
+        }
+        if($wordSize) {
+            $command .= " -word_size $wordSize ";
+        } else {
+            $command .= " -word_size 11 ";
+        }
+    } elsif ($blast eq "blastp" ||
+             $blast eq "blastx" ||
+             $blast eq "tblastn") {
+        if ($costOpenGap) {
+            $command .= " -gapopen $costOpenGap ";
+        } else {
+            $command .= " -gapopen 11 ";
+        }
+        if ($costToExtendGap) {
+            $command .= " -gapextend $costToExtendGap ";
+        } else {
+            $command .= " -gapextend 1";
+        }
+        if($wordSize) {
+            $command .= " -word_size $wordSize ";
+        } else {
+            $command .= " -word_size 3 ";
+        } 
+    }
 
 	$command .= " -num_descriptions \"$descriptions\" " if $descriptions;
 	$command .= " -num_alignments \"$alignments\" " if $alignments;
