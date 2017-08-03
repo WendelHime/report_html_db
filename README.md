@@ -21,17 +21,23 @@ http://127.0.0.1:3000
 
 
 TODO:
-- 
--	Checar todas as etapas de anotação e ver se falta alguma outra interface a ser feita. 
-
+-
+  
 Dev:
 -
+
+
+
+Test:
+-
+
 
 Done:
 -
 -	Criar clients em perl para uso do caminho da aplicação de serviços no arquivo de configuração
 -	Precisamos atualizar o conteudo HTML que sera escrito pelo script
--	Apontar os clients js para o website-	Colocar Interpro description e id no nome do painel
+-	Apontar os clients js para o website
+-	Colocar Interpro description e id no nome do painel
 -	Atualizar Repository(linhas 858, 861, 864, 868, 1064, 1067, 1070), action.js
 -	Testar todas as pesquisa
 -	Função do repositorio recebe parametro de page\_size(limite em quantidade) e offset(compensação antes de pegar o limite)
@@ -165,3 +171,17 @@ GGGTGACGA TGCCGAGCAGCCCGAGGTGCAGGACGGCACCGTCGAAGCCCTCGTCGCCGCGCGCGACGG TGCGTCGCT
 -   BLAST:
 -       Remover  parâmetro matrix
 -       Refatorar campos advanced options  
+-   Blast - Sequencias proteicas com tblastn e blastp dão problema no fancy blast. 
+-   RPSBLAST é RPS-BLAST 
+-   Corrigir link do Download FASTA
+-   Has repetition units of bases: somente números inteiros positivos > zero 
+-   Get rRNAs by type - colocar em ordem alfabética  
+-   transporter classification -  transporter class: não encontrado  
+-   Fazer com que o painel inteiro seja clicável ou muda cor para azul  
+-   Downloads - nomes de arquivos devem fazer sentido.  
+-   Painel de sequencia - adicionar link FASTA
+-   Downloads - Annotations:
+-   Feature Table (um zipado de todos os arquivos \*.gb do report\_feature\_table\_submission.pl)
+-    Extended Feature Table (um zipado de todos os arquivos all\_results.tab do report\_feature\_table\_artemis.pl)
+-   GFF3 (um zipado de todos os arquivos do report\_gff.pl) 
+-   ícones do KEGG e eggnog de global analyses estão quebrados                                                     

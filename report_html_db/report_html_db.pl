@@ -144,6 +144,9 @@ my @report_pathways_dir = ();
 #my $report_orthology_dir;
 my @report_eggnog_dir;
 my @report_go_dir = ();
+my $report_feature_table_submission = "";
+my $report_feature_table_artemis = "";
+my $report_gff = "";
 
 #my $eggnog_file;
 my @report_kegg_organism_dir = ();
@@ -306,6 +309,15 @@ if ( defined( $config->{"report_eggnog_dir"} ) ) {
 if ( defined( $config->{"report_pathways_dir"} ) ) {
 	@report_pathways_dir = split( ";", $config->{"report_pathways_dir"} );
 }
+if ( defined( $config->{"report_feature_table_submission_dir"} ) ) {
+    $report_feature_table_submission = $config->{"report_feature_table_submission_dir"};
+}
+if ( defined( $config->{"report_feature_table_artemis_dir"} ) ) {
+    $report_feature_table_artemis = $config->{"report_feature_table_artemis_dir"};
+}
+if ( defined( $config->{"report_gff_dir"} ) ) {
+    $report_gff = $config->{"report_gff_dir"};
+} 
 if ( defined( $config->{"comparative_metabolic_reconstruction"} ) ) {
 	@report_kegg_organism_dir =
 	  split( ";", $config->{"report_kegg_organism_dir"} );
@@ -412,11 +424,11 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-search-options-filter-options", "Low complexity", "value='L' checked=''"),
         ("blast-search-options-expect", "<a href='http://puma.icb.usp.br/blast/docs/newoptions.html#expect'>Expect</a> (e.g. 1e-6)", ""),
         ("blast-search-options-matrix", "Matrix", "http://puma.icb.usp.br/blast/docs/matrix_info.html"),
-        ("blast-search-options-matrix-options", "PAM30", "PAM30"),
-        ("blast-search-options-matrix-options", "PAM70", "PAM70"),
-        ("blast-search-options-matrix-options", "BLOSUM80", "BLOSUM80"),
         ("blast-search-options-matrix-options", "BLOSUM62", "BLOSUM62"),
         ("blast-search-options-matrix-options", "BLOSUM45", "BLOSUM45"),
+        ("blast-search-options-matrix-options", "BLOSUM80", "BLOSUM80"),
+        ("blast-search-options-matrix-options", "PAM30", "PAM30"),
+        ("blast-search-options-matrix-options", "PAM70", "PAM70"),
         ("blast-search-options-alignment", "Perform ungapped alignment", ""),
         ("blast-search-options-query", "Query Genetic Codes (blastx only)", "http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes"),
         ("blast-search-options-query-options", "Standard (1)", "value='1'"),
@@ -501,7 +513,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-search-by-sequence", "Search by sequence identifier of match:", ""),
         ("search-database-analyses-protein-code-search-by-description", "Or by description of match:", ""),
         
-        ("search-database-analyses-protein-code-not-containing-classification-rpsblast", " not containing RPSBLAST matches", ""),
+        ("search-database-analyses-protein-code-not-containing-classification-rpsblast", " not containing RPS-BLAST matches", ""),
         
         ("search-database-dna-based-analyses-title", "DNA-based analyses", ""),
         ("search-database-dna-based-analyses-tab", "<a href='#contigs' data-toggle='tab'>Contigs</a>", "#contigs"),
@@ -527,6 +539,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("global-analyses-comparative-metabolic-reconstruction", "Comparative Metabolic Reconstruction", ""),
         ("downloads-genes", "Genes", ""),
         ("downloads-other-sequences", "Other sequences", ""),
+        
         ("help-table-contents", "Table of contents", ""),
         ("help-table-contents-1", "1. Introduction", "help_1"),                                                                                                                                
         ("help-table-contents-2", "2. BLAST", "help_2"),                                                                                                                                       
@@ -874,9 +887,10 @@ if ( scalar @report_go_dir > 0 ) {
 		if($path =~ /([\.\/\w]+)\//) {
 			my $directory = $1;
 			$components{"report_go"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);	
+
 		}
 		$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('go', 'report_go', '$components{report_go}');\n";
+"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('go', 'report_go', '$components{report_go}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-expansible-tree', 'Table of ontologies', '/reports/".$components{report_go}."/go_mapping.html');\n";
 		$components{report_go} = $path;
 	}
 }
@@ -887,7 +901,7 @@ if ( scalar @report_eggnog_dir > 0 ) {
                         $components{"report_eggnog"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
                 }
 		$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('eggnog', 'report_eggnog', '$components{report_eggnog}');\n";
+"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('eggnog', 'report_eggnog', '$components{report_eggnog}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-orthology-analysis-classes', 'Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups', '/reports/".$components{report_eggnog}."/classes.html');\n";
 		$components{report_eggnog} = $path;
 	}
 }
@@ -898,7 +912,7 @@ if ( scalar @report_pathways_dir > 0 ) {
                         $components{"report_pathways"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
                 }
 		$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'report_pathways', '$components{report_pathways}');\n";
+"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'report_pathways', '$components{report_pathways}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-report', 'Enzyme by enzyme report of KEGG results', '/reports/".$components{"report_pathways"}."/classes.html'); \n";
 		$components{report_pathways} = $path;
 	}
 }
@@ -909,6 +923,8 @@ if ( scalar @report_kegg_organism_dir > 0 ) {
 "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('kegg_organism', 'report_kegg_organism', '$components{report_kegg_organism}');\n";
 	}
 }
+
+
 
 print $LOG "\nReading sequences\n";
 
@@ -930,6 +946,14 @@ my $annotation_bigpi = 0;
 my $annotation_tcdb = 0;
 my $annotation_infernal = 0;
 my $annotation_trf = 0;
+
+my $allGenesSequences = 0;
+my $proteinCodingSequences = 0;
+my $rRNASequences = 0;
+my $tRNASequences = 0;
+my $nonCodingSequences = 0;
+my $allContigs = 0;
+my $ttSequences = 0;
 
 open(my $SEQUENCES, ">", "$html_dir/root/Sequences.fasta");
 open(my $SEQUENCES_NT, ">", "$html_dir/root/Sequences_NT.fasta");
@@ -1063,10 +1087,7 @@ while ( $sequence_object->read() ) {
 			if ( $evidence->{tag} eq "CDS" ) {
 				open( AA, ">$html_dir/root/$aa_fasta_dir/$file_ev" );
 				print FILE_NT ">$locus_tag\n";
-				print AA "\nNucleotide sequence:\n\n";
-				print AA ">$locus_tag\n";
 				print $SEQUENCES_NT ">$locus_tag\n";
-				
 				print ALL_GENES ">$locus_tag\n";
 	
 				my @intervals = @{ $evidence->{intervals} };
@@ -1081,7 +1102,7 @@ while ( $sequence_object->read() ) {
 			#					print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
 			#					print $LOG "\nSequencia depois:\t".$nt_seq."\n";
 				}
-				
+				print AA ">$locus_tag-nucleotide_sequence\n"; 
 				$nt_seq =~ s/\n//g;
 	
 				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
@@ -1090,13 +1111,15 @@ while ( $sequence_object->read() ) {
 					print AA "$sequence_nt\n";
 					print $SEQUENCES_NT "$sequence_nt\n";
 					print ALL_GENES "$sequence_nt\n";
+                    $allGenesSequences = 1;
+                    $proteinCodingSequences = 1;
+                    $allContigs = 1;
 				}
 				my $seq_aa = $evidence->{protein_sequence};
 				my $sequence_aa;
 				my $len_aa = length($seq_aa);
 				print FILE_AA ">$locus_tag\n";
-				print AA "\nTranslated sequence:\n\n";
-				print AA ">$locus_tag\n";
+				print AA ">$locus_tag-translated_sequence\n";
 				print $SEQUENCES_AA ">$locus_tag\n";
 				for ( my $i = 0 ; $i < $len_aa ; $i += 60 ) {
 					$sequence_aa = substr( $seq_aa, $i, 60 );
@@ -1115,6 +1138,8 @@ while ( $sequence_object->read() ) {
 					print ALL_GENES "$sequence\n";
 				}
 				close(tRNA_FILE);
+                $allGenesSequences = 1;
+                $tRNASequences = 1;
 			}
 			elsif ($evidence->{tag} eq "RNA_scan"){
 				open( rna_FILE, ">>", "$html_dir/root/rna_seqs.fasta" );
@@ -1126,6 +1151,8 @@ while ( $sequence_object->read() ) {
 					print ALL_GENES "$sequence\n";
 				}
 				close(rna_FILE);
+                $allGenesSequences = 1;
+                $nonCodingSequences = 1;
 			}
 			elsif ($evidence->{tag} eq "rRNA_prediction"){
 				open( rRNA_FILE, ">>", "$html_dir/root/rrna_seqs.fasta" );
@@ -1137,6 +1164,8 @@ while ( $sequence_object->read() ) {
 					print ALL_GENES "$sequence\n";
 				}
 				close(rRNA_FILE);
+                $allGenesSequences = 1;
+                $rRNASequences = 1;
 			} else {
 				print $LOG "\n[1082] TAG:\t".$evidence->{tag}."\n";
 				open( UNKNOWN_FILE, ">>", "$html_dir/root/".$evidence->{tag}."_seqs.fasta" );
@@ -1148,6 +1177,8 @@ while ( $sequence_object->read() ) {
 					print ALL_GENES "$sequence\n";
 				}
 				close(UNKNOWN_FILE);
+                $allGenesSequences = 1;
+                $ttSequences = 1 if($evidence->{tag} eq "transterm");
 			}
 			close(ALL_GENES);
 			
@@ -1582,6 +1613,14 @@ close($SEQUENCES);
 `cp -r $html_dir/root/$nt_fasta_dir/ $services_dir/root/`;
 `cp -r $html_dir/root/$fasta_dir/ $services_dir/root/`;
 
+$scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-genes-links-1', 'All genes (protein-coding, ribosomal RNA, transfer RNA, and non-coding RNA)', '/DownloadFile?type=ag');\n" if ($allGenesSequences);
+$scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-genes-links-2', 'Protein-coding genes only', '/DownloadFile?type=pro');\n" if ($proteinCodingSequences);
+$scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-genes-links-3', 'Ribosomal RNA genes only', '/DownloadFile?type=rrg');\n" if ($rRNASequences);
+$scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-genes-links-4', 'Transfer RNA genes only', '/DownloadFile?type=trg');\n" if ($tRNASequences);
+$scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-genes-links-5', 'Other non-coding RNA genes only table', '/DownloadFile?type=oncg');\n" if ($nonCodingSequences);
+$scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-other-sequences-links-1', 'Get all contigs', '/DownloadFile?type=ac');\n" if ($allContigs);
+$scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-other-sequences-links-2', 'All transcriptional terminators (predicted by TransTermHP)', '/DownloadFile?type=tt');\n" if ($ttSequences);
+
 if($annotation_blast) {
 	$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES
@@ -1713,7 +1752,7 @@ SQL
 if($annotation_rpsblast) {
 	$scriptSQL .= <<SQL;
 				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#rpsblast' data-toggle='tab'>RPSBlast</a>", "");
+					("search-database-analyses-protein-code-tab", "<a href='#rpsblast' data-toggle='tab'>RPS-BLAST</a>", "");
 SQL
 }
 if ($annotation_transterm) {
@@ -1916,6 +1955,53 @@ $lowCaseName = lc $lowCaseName;
 #create view
 print $LOG "\nCreating view\n";
 `./$html_dir/script/"$lowCaseName"_create.pl view TT TT`;
+if($report_feature_table_submission) {
+    my @files = glob( $report_feature_table_submission . "/*.gb");
+    use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+	my $zip = Archive::Zip->new();
+	$zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
+    print $LOG "\n[1962] submission - $_\n" foreach @files;
+    `mkdir -p $standard_dir/$html_dir/root`;
+    unless ( $zip->writeToFileNamed("$standard_dir/$html_dir/root/feature_table_submission.zip") == AZ_OK ) {
+        die 'error';
+    }
+    $scriptSQL .= "\nINSERT INTO TEXTS(tag, value, details) VALUES 
+    ('downloads-annotations-links-1', 'Feature Table', '/DownloadFile?type=ftb');\nINSERT INTO FILES(tag, filepath, details) VALUES ('ftb', 'feature_table_submission.zip', '');\n";
+}
+if($report_feature_table_artemis) {
+    my @files = glob( $report_feature_table_artemis . "/*all_results.tab");
+    use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+	my $zip = Archive::Zip->new();
+	$zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
+    print $LOG "\n[1972] artemis - $_\n" foreach @files;
+    `mkdir -p $standard_dir/$html_dir/root`;
+    unless ( $zip->writeToFileNamed("$standard_dir/$html_dir/root/feature_table_artemis.zip") == AZ_OK ) {
+        die 'error';
+    } 
+    $scriptSQL .= "\nINSERT INTO TEXTS(tag, value, details) VALUES 
+    ('downloads-annotations-links-2', 'Extended Feature Table', '/DownloadFile?type=eft');\nINSERT INTO FILES(tag, filepath, details) VALUES ('eft', 'feature_table_artemis.zip', '');\n"; 
+}
+if($report_gff) {
+    my @files = glob( $report_gff . "/*");
+    use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+	my $zip = Archive::Zip->new();
+	$zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
+    print $LOG "\n[1982] gff3 - $_\n" foreach @files;
+    `mkdir -p $standard_dir/$html_dir/root`;
+    unless ( $zip->writeToFileNamed("$standard_dir/$html_dir/root/gff3.zip") == AZ_OK ) {
+        die 'error';
+    }
+    $scriptSQL .= "\nINSERT INTO TEXTS(tag, value, details) VALUES 
+    ('downloads-annotations-links-3', 'GFF3', '/DownloadFile?type=gff');\nINSERT INTO FILES(tag, filepath, details) VALUES ('gff', 'gff3.zip', '');\n"; 
+} 
+
+if(defined $report_feature_table_submission ||
+   defined $report_feature_table_artemis ||
+   defined $report_gff ) {
+    $scriptSQL .= "\nINSERT INTO TEXTS(tag, value, details) VALUES
+     ('downloads-annotations', 'Annotations', '');\n";
+}
+
 my $fileHandler;
 open( $fileHandler, "<", "$html_dir/lib/$html_dir/View/TT.pm" );
 my $contentToBeChanged =
@@ -2159,7 +2245,7 @@ join featureprop pl on (l.srcfeature_id = pl.feature_id)
 join cvterm cp on (pl.type_id = cp.cvterm_id) 
 join featureprop pd on (r.subject_id = pd.feature_id) 
 join cvterm cd on (pd.type_id = cd.cvterm_id) 
-where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ;";
+where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ORDER BY pd.value ASC ;";
 	push \@args, \$hash->{pipeline};
 	my \$sth = \$dbh->prepare(\$query);
 	print STDERR \$query;
@@ -4186,7 +4272,7 @@ sub subevidences {
 	my \%component_name = (
 		'annotation_interpro.pl' => 'Domain search - InterProScan',
 		'annotation_blast.pl'    => 'Similarity search - BLAST',
-		'annotation_rpsblast.pl' => 'Similarity search - RPSBLAST',
+		'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
 		'annotation_phobius.pl' =>
 		  'Transmembrane domains and signal peptide search - Phobius',
 		'annotation_pathways.pl'  => 'Pathway classification - KEGG',
@@ -6646,6 +6732,11 @@ sub search_POST {
 	if(\$hash{SEQUENCE} !~ />/) {
 		\$hash{SEQUENCE} = ">Sequence\\n" . \$hash{SEQUENCE};
 	}
+    foreach my \$header (\$hash{SEQUENCE} =~ /^(>[\\w \\-\\(\\)\\[\\];.]*)+\\n/gm) {
+        my \$auxHeader = \$header;
+        \$header =~ s/ /_/g;
+        \$hash{SEQUENCE} =~ s/\$auxHeader/\$header/g;
+    }
 	my \$blastClient =
 	  Report_HTML_DB::Clients::BlastClient->new(
 		rest_endpoint => \$c->config->{rest_endpoint} );
@@ -6795,7 +6886,10 @@ Search database page (/SearchDatabase)
 
 =cut
 sub searchDatabase :Path("SearchDatabase") :Args(0) {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c, \$id ) = \@_;
+    if(defined \$c->request->param("id")) {
+        \$id = \$c->request->param("id");
+    }
 	\$c->stash->{titlePage} = 'Search Database';
 	\$c->stash(currentPage => 'search-database');
 	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
@@ -6833,6 +6927,8 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 		\$pipeline = \$c->config->{pipeline_id};
 	}
 	
+    \$c->stash(id => \$id);
+
 	\$c->stash(
 		targetClass => \$searchDBClient->getTargetClass(\$pipeline)->getResponse()  
 	);
@@ -7118,7 +7214,7 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 	\$c->response->body(\$file);
 	\$c->response->headers->content_type('application/x-download');
 	my \$filename = "";
-	if(\$filepath =~ /\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_]+)/g) {
+	if(\$filepath =~ /\\/*([\\w\\s\\-_]*\\.[\\w\\s\\-_]+)/g) {
 		\$filename = \$1;
 	}
 	\$c->response->body(\$file);
@@ -7262,32 +7358,35 @@ sub reports : Path("reports") : CaptureArgs(3) {
 	}
 	close(\$FILEHANDLER);
 	if(\$filepath =~ /\\.png/g) {
-                use MIME::Base64;
-                \$content = MIME::Base64::encode_base64(\$content);
-        } elsif(\$filepath =~ /\.html/g) {
-                if(!(\$filepath =~ m/pathway/)) {
-                        \$content =~ s/src="/src="\\/\$type\\//igm;
-                        \$content =~ s/HREF="/HREF="\\/\$type\\//g;
+        use MIME::Base64;
+        \$content = MIME::Base64::encode_base64(\$content);
+    } elsif(\$filepath =~ /\.html/g) {
+        if(!(\$filepath =~ m/pathway/)) {
+            my \$pathname = \$c->req->base;
+            \$pathname =~ s/\\\/*reports[\\w\\.\\/]*//g;
+            \$content =~ s/src="/src="\$pathname\\/\$type\\//igm;
+            \$content =~ s/HREF="/HREF="\\/\$type\\//g;
+        } else {
+            foreach (\$content =~ /<img[\\w\\s"=]*src="([\\.\\w\\s\\-\\/]*)"/img) {
+                if(\$_ =~ m/kegg.gif/) {
+                    my \$imagePath = \$_;
+                    \$imagePath =~ s/\\.\\.\\///;
+                    open( \$FILEHANDLER, "<", dirname(__FILE__) . "/../../../root/\$type/" . \$imagePath );
                 } else {
-                        foreach (\$content =~ /<img[\\w\\s"=]*src="([\\.\\w\\s\\-\\/]*)"/img) {
-                                if(\$_ =~ m/kegg.gif/) {
-                                        my \$imagePath = \$_;
-                                        \$imagePath =~ s/\\.\\.\\///;
-                                         open( \$FILEHANDLER,
-                                        "<", dirname(__FILE__) . "/../../../root/\$type/" . \$imagePath );
-                                } else {
-                                        open( \$FILEHANDLER,
-                                        "<", dirname(__FILE__) . "/../../../root/\$type/\$files[0]" . "/" . \$_ );
-                                }
-                                my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
-                                close(\$FILEHANDLER);
-                                use MIME::Base64;
-                                \$contentFile = MIME::Base64::encode_base64(\$contentFile);
-                                \$content =~ s/<img[\\w\\s"=]*src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
-                        }
-                        #\$content =~ s/HREF="/HREF="\/\$type/igm;
+                    open( \$FILEHANDLER, "<", dirname(__FILE__) . "/../../../root/\$type/\$files[0]" . "/" . \$_ );
                 }
+                my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+                close(\$FILEHANDLER);
+                use MIME::Base64;
+                \$contentFile = MIME::Base64::encode_base64(\$contentFile);
+                \$content =~ s/<img[\\w\\s"=]*src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
+            }
+                        #\$content =~ s/HREF="/HREF="\/\$type/igm;
         }
+        my \$pathname = \$c->req->base . "SearchDatabase?id"; 
+        \$content =~ s/<a href="blast_dir[\\w\\/\\.]*">([\\w\\s]*)/<a href="\$pathname=\$1">\$1/g;
+        \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\/a>\$2/g;
+    }
 	\$c->response->body(\$content);
 }
 
@@ -7605,7 +7704,7 @@ CONTENTABOUTINDEX
                                                 <label>[% text.value %]</label>
                                             [% END %]
                                         [% END %]
-                                        <input class="form-control" type="text" name="EXPECT" size="3" value="1e-6">
+                                        <input class="form-control" type="number" name="EXPECT" size="3" value="10">
                                     </div>
                                     <div class="form-group">
                                         [% FOREACH text IN texts %]
@@ -7688,7 +7787,7 @@ CONTENTABOUTINDEX
                                 	<div class="form-group">
                                     	<label>Contig: </label>
                                       	<select name="contig">
-                                      		<option value="">All</option>
+                                      		<option value="">Select</option>
                                       		[% FOREACH sequence IN sequences %]
                                       			<option value="[% sequence.id %]">[% sequence.name %]</option>
                                       		[% END %]
@@ -7804,7 +7903,7 @@ CONTENTINDEXBLAST
                             <ul>
                                 [% FOREACH text IN texts %]
                                     [% IF text.tag.search('downloads-genes-links-') %]
-                                        <li>[% text.value %]</li>
+				    <li><a href="[% c.uri_for(text.details).replace('%3F', '?') %]">[% text.value %]</a></li>
                                     [% END %]
                                 [% END %]
                             </ul>
@@ -7829,7 +7928,7 @@ CONTENTINDEXBLAST
                             <ul>
                                 [% FOREACH text IN texts %]
                                     [% IF text.tag.search('downloads-other-sequences-links-') %]
-                                        <li>[% text.value %]</li>
+                                        <li><a href="[% c.uri_for(text.details).replace('%3F', '?') %]">[% text.value %]</a></li>
                                     [% END %]
                                 [% END %]
                             </ul>
@@ -7837,6 +7936,31 @@ CONTENTINDEXBLAST
                     </div>
                 </div>
             </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'downloads-annotations' %]
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
+                            [% END %]
+                        [% END %]
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="notice-board">
+                            <ul>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag.search('downloads-annotations-') %]
+				    <li><a href="[% c.uri_for(text.details).replace('%3F', '?') %]">[% text.value %]</a></li>
+                                    [% END %]
+                                [% END %]
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> 
 
         </div>
     </div>
@@ -7893,14 +8017,14 @@ CONTENTINDEXDOWNLOADS
 	                        <div class="form-group">
 	                            [% FOREACH text IN texts %]
 	                                [% IF text.tag == 'global-analyses-expansible-tree' %]
-	                                    <label>[% text.value %]</label>
+	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
 	                                [% END %]
 	                            [% END %]
 	                        </div>
 	                        <div class="form-group">
 	                            [% FOREACH text IN texts %]
 	                                [% IF text.tag == 'global-analyses-table-ontologies' %]
-	                                    <label>[% text.value %]</label>
+	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
 	                                [% END %]
 	                            [% END %]
 	                        </div>
@@ -7932,7 +8056,7 @@ CONTENTINDEXDOWNLOADS
 	                        <div class="form-group">
 	                            [% FOREACH text IN texts %]
 	                                [% IF text.tag == 'global-analyses-orthology-analysis-classes' %]
-	                                    <label>[% text.value %]</label>
+	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
 	                                [% END %]
 	                            [% END %]
 	                        </div>
@@ -7957,7 +8081,7 @@ CONTENTINDEXDOWNLOADS
 	                        [% FOREACH text IN texts %]
 	                            [% IF text.tag.search('global-analyses-kegg-report') %]
 	                                <div class="form-group">
-	                                    <label>[% text.value %]</label>
+	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
 	                                </div>
 	                            [% END %]
 	                        [% END %]
@@ -7982,7 +8106,7 @@ CONTENTINDEXDOWNLOADS
 	                        [% FOREACH text IN texts %]
 	                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction-topics' %]
 	                                <div class="form-group">
-	                                    <label>[% text.value %]</label>
+						<label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
 	                                </div>
 	                            [% END %]
 	                        [% END %]
@@ -8518,8 +8642,8 @@ CONTENTINDEXHOME
 								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-class') %]</label>
                                                   		<select class="form-control" name="tcdbClass">
                                                       			<option value="">All</option>
-                                                      			[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-class') %]
-                                                              		<option value="[% text.value %]">[% text.value %]</option>
+                                                      			[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-class-option') %]
+                                                              		<option value="[% text %]">[% text %]</option>
                                                           		[% END %]
                                                   		</select>
                                               		</div>
@@ -8758,7 +8882,7 @@ CONTENTINDEXHOME
 								</div>
 								<div class="form-group">
 									<label>[% searchDBTexts.item('search-database-dna-based-analyses-repetition-unit-bases') %]</label>
-									<input class="form-control" type="number" name="TRFrepSize">
+									<input class="form-control" type="number" name="TRFrepSize" min="1">
 									[% FOREACH text IN searchDBTexts.item('search-database-quantity-trf') %]
 									<div class="radio">
 										<label>[% text %]</label>
@@ -9013,6 +9137,7 @@ CONTENTSEARCHDATABASE
 		,
 		"index.tt" => <<CONTENTINDEXSEARCHDATABASE
 <!DOCTYPE html>
+<input type="hidden" id="id" value="[% id %]" />
 <div class="content-wrapper">
     <div class="container">
     	<div class="row">
@@ -9061,31 +9186,31 @@ CONTENTSEARCHDATABASE
     \$("#parentCollapseOne").click(function ()
     {
         \$("#parentCollapseOne").removeClass("panel-default");
-        \$("#parentCollapseTwo").removeClass("panel-primary");
-        \$("#parentCollapseThree").removeClass("panel-primary");
-        \$("#parentCollapseOne").addClass("panel-primary");
+        \$("#parentCollapseTwo").removeClass("panel-info");
+        \$("#parentCollapseThree").removeClass("panel-info");
+        \$("#parentCollapseOne").addClass("panel-info");
         \$("#parentCollapseTwo").addClass("panel-default");
         \$("#parentCollapseThree").addClass("panel-default");
     });
     \$("#parentCollapseTwo").click(function ()
     {
         \$("#parentCollapseTwo").removeClass("panel-default");
-        \$("#parentCollapseOne").removeClass("panel-primary");
-        \$("#parentCollapseThree").removeClass("panel-primary");
-        \$("#parentCollapseTwo").addClass("panel-primary");
+        \$("#parentCollapseOne").removeClass("panel-info");
+        \$("#parentCollapseThree").removeClass("panel-info");
+        \$("#parentCollapseTwo").addClass("panel-info");
         \$("#parentCollapseOne").addClass("panel-default");
         \$("#parentCollapseThree").addClass("panel-default");
     });
     \$("#parentCollapseThree").click(function ()
     {
         \$("#parentCollapseThree").removeClass("panel-default");
-        \$("#parentCollapseTwo").removeClass("panel-primary");
-        \$("#parentCollapseOne").removeClass("panel-primary");
-        \$("#parentCollapseThree").addClass("panel-primary");
+        \$("#parentCollapseTwo").removeClass("panel-info");
+        \$("#parentCollapseOne").removeClass("panel-info");
+        \$("#parentCollapseThree").addClass("panel-info");
         \$("#parentCollapseOne").addClass("panel-default");
         \$("#parentCollapseTwo").addClass("panel-default");
     });
-</script>
+</script> 
 
 <script type="text/javascript" src="/assets/js/site-client.js"></script>
 <script type="text/javascript" src="/assets/js/search-database.js"></script>
@@ -9102,7 +9227,7 @@ CONTENTINDEXSEARCHDATABASE
 					<a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results
 				</div>
 				<div class='col-md-2'>
-					<a href="/DownloadSequence?contig=[% sequence.name %]&start=[% start %]&end=[% end %]&reverseComplement=[% hadReverseComplement %]">Download FASTA</a>
+					<a href="[% sequence.path %]/DownloadSequence?contig=[% sequence.name %]&start=[% start %]&end=[% end %]&reverseComplement=[% hadReverseComplement %]">Download FASTA</a>
 				</div>
 			</div>			
 		</div>
@@ -9740,7 +9865,14 @@ CONTENT
 <div class="panel panel-default sequences">
 	<div class="panel-heading">
 		<div class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#sequence-[% result.feature_id %]">Sequence</a>
+            <div class="row">
+                <div class="col-md-10">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#sequence-[% result.feature_id %]">Sequence</a> 
+                </div>
+                <div class="col-md-2">
+                    <a href="[% result.pathname %]/DownloadSequence?contig=[% result.contig %]&start=[% result.start %]&end=[% result.end %]&reverseComplement=[% result.reverseComplement %]">Download FASTA</a>
+                </div>
+            </div>
 		</div>
 	</div>
 	<div id="sequence-[% result.feature_id %]" class="panel-body collapse sequence">
@@ -10430,4 +10562,18 @@ sub verify_element {
 
 	return 0;
 
+}
+=head2
+
+Method used to get filename by filepath
+
+=cut
+
+sub getFilenameByFilepath {
+	my ($filepath) = @_;
+	my $filename = "";
+	if ( $filepath =~ /\/([\w\s\-_]+\.[\w\s\-_.]+)/g ) {
+		$filename = $1;
+	}
+	return $filename;
 }

@@ -63,10 +63,20 @@ sub executeBlastSearch {
 	  && ( $blast eq "tblastn" || $blast eq "tblastx" );
 
     if ($filter) {
-        my @list = @$filter;
-        foreach my $value (@list) {
-            if($value eq 'L') {
-                if ($blast eq "blastn") {
+        if(ref $filter =~ /ARRAY/) {
+            my @list = @$filter;
+            foreach my $value (@list) {
+                if($value eq 'L') {
+                    if ($blast eq "blastn") {
+                        $command .= " -dust 'yes' ";
+                    } else {
+                        $command .= " -seg 'yes' ";
+                    }
+                }
+            }
+        } else {
+            if($filter eq 'L') {
+                if($blast eq "blastn") {
                     $command .= " -dust 'yes' ";
                 } else {
                     $command .= " -seg 'yes' ";
