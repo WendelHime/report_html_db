@@ -22,7 +22,8 @@ http://127.0.0.1:3000
 
 TODO:
 -
-  
+-   Verify if existis in predgpi interval, property result  
+
 Dev:
 -
 

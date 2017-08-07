@@ -6934,7 +6934,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 	);
 	
 	\$c->stash(
-		rRNAsAvailable => \$searchDBClient->getRibosomalRNAs(\$pipeline)->getResponse()
+		rRNAsAvailable => [sort { \$a <=> \$b } \@{\$searchDBClient->getRibosomalRNAs(\$pipeline)->getResponse()}]
 	);
 	
 		\$c->stash(
@@ -7385,7 +7385,7 @@ sub reports : Path("reports") : CaptureArgs(3) {
         }
         my \$pathname = \$c->req->base . "SearchDatabase?id"; 
         \$content =~ s/<a href="blast_dir[\\w\\/\\.]*">([\\w\\s]*)/<a href="\$pathname=\$1">\$1/g;
-        \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\/a>\$2/g;
+        \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\\/a>\$2/g;
     }
 	\$c->response->body(\$content);
 }
@@ -8922,7 +8922,7 @@ CONTENTINDEXHOME
 								</div>
 								<div class="form-group">
 									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-evalue-match') %]</label>
-									<input class="form-control" type="number" step="any" name="ncRNAevalue">
+									<input class="form-control" type="number" step="any" min="0" name="ncRNAevalue">
 									[% FOREACH text IN searchDBTexts.item('search-database-quantity-ncrna') %]
 									<div class="radio">
 										<label>[% text %]</label>
@@ -9007,7 +9007,7 @@ CONTENTINDEXHOME
 								</div>
 								<div class="form-group">
 									<label>[% searchDBTexts.item('search-database-dna-based-analyses-transcriptional-terminators-confidence-score') %]</label>
-									<input class="form-control" type="number" step="any" name="TTconf">
+									<input class="form-control" type="number" step="any" min="1" name="TTconf">
 									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-TTconfM') %]
 									<div class="radio">
 										<label>[% text %]</label>
@@ -9054,7 +9054,7 @@ CONTENTINDEXHOME
 								</div>
 								<div class="form-group">
 									<label>[% searchDBTexts.item('search-database-dna-based-analyses-predicted-alienhunter') %]</label>
-									<input class="form-control" type="number" steṕ="any" name="AHlen">
+									<input class="form-control" type="number" min="0" step="any" name="AHlen">
 									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHlenM') %]
 									<div class="radio">
 										<label>[% text %]</label>
@@ -9063,7 +9063,7 @@ CONTENTINDEXHOME
 								</div>
 								<div class="form-group">
 									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-score') %]</label>
-									<input class="form-control" type="number" steṕ="any" name="AHscore">
+									<input class="form-control" type="number" min="0" step="any" name="AHscore">
 									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHscM') %]
 									<div class="radio">
 										<label>[% text %]</label>
@@ -9072,7 +9072,7 @@ CONTENTINDEXHOME
 								</div>
 								<div class="form-group">
 									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-threshold') %]</label>
-									<input class="form-control" type="number" steṕ="any" name="AHthr">
+									<input class="form-control" type="number" min="0" step="any" name="AHthr">
 									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHthrM') %]
 									<div class="radio">
 										<label>[% text %]</label>
@@ -9522,7 +9522,7 @@ CONTENT
 				<p>InterPro identifier:</p>
 			</div>
 			<div class="col-md-9">
-				<p><a href="http://www.ebi.ac.uk/interpro/entry/[% result.interpro_id %]">[% result.interpro_id %]</a></p>
+				<p><a href="http://www.ebi.ac.uk/interpro/entry/[% result.interpro_id %]" target='_blank'>[% result.interpro_id %]</a></p>
 			</div>
 		</div>
 		<div class="row">
@@ -9538,7 +9538,7 @@ CONTENT
 				<p>Database identifier and database:</p>
 			</div>
 			<div class="col-md-9">
-				<p><a href="http://www.ebi.ac.uk/interpro/search?q=[% result.DB_id %]">[% result.DB_id %]</a> ([% result.DB_name %])</p>
+				<p><a href="http://www.ebi.ac.uk/interpro/search?q=[% result.DB_id %]" target='_blank'>[% result.DB_id %]</a> ([% result.DB_name %])</p>
 			</div>
 		</div>
 		<div class="row">
@@ -9587,7 +9587,7 @@ CONTENT
 		,
 		"orthologies.tt" => <<CONTENT
 <tr>
-	<td><a href="http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=[% result.orthologous_group %]">[% result.orthologous_group %]</a> - [% result.orthologous_group_description %]</td>
+	<td><a href="http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=[% result.orthologous_group %]" target='_blank'>[% result.orthologous_group %]</a> - [% result.orthologous_group_description %]</td>
 </tr>
 CONTENT
 		,
@@ -9621,7 +9621,7 @@ CONTENT
 		,
 		"pathways.tt" => <<CONTENT
 <tr>
-	<td><a href="http://www.genome.jp/dbget-bin/www_bget?[% result.metabolic_pathway_id %]">[% result.metabolic_pathway_id %]</a> - [% result.metabolic_pathway_description %]</td>
+	<td><a href="http://www.genome.jp/dbget-bin/www_bget?[% result.metabolic_pathway_id %]" target='_blank'>[% result.metabolic_pathway_id %]</a> - [% result.metabolic_pathway_description %]</td>
 	<td>[% result.viewmap %]</td>
 </tr>
 CONTENT
@@ -9633,7 +9633,7 @@ CONTENT
 		Orthologous group:
 	</div>
 	<div class="col-md-9">
-		<a href="http://www.genome.jp/dbget-bin/www_bget?[% result.orthologous_group_id %]">[% result.orthologous_group_id %]</a> - [% result.orthologous_group_description %]
+		<a href="http://www.genome.jp/dbget-bin/www_bget?[% result.orthologous_group_id %]" target='_blank'>[% result.orthologous_group_id %]</a> - [% result.orthologous_group_description %]
 	</div>
 </div>
 <div class="row">
@@ -9965,7 +9965,7 @@ CONTENT
 		<p>Transporter classification:</p>
 	</div>
 	<div class="col-md-9">
-		<p><a href="http://tcdb.org/search/result.php?tc=[% result.TCDB_ID %]">[% result.hit_description %]</a></p>
+		<p><a href="http://tcdb.org/search/result.php?tc=[% result.TCDB_ID %]" target='_blank'>[% result.hit_description %]</a></p>
 	</div>
 </div>
 <div class="row">
@@ -9997,7 +9997,7 @@ CONTENT
 		<p>Match identifier:</p>
 	</div>
 	<div class="col-md-9">
-		<p><a href="http://www.uniprot.org/uniprot/[% result.hit_name %]">[% result.hit_name %]</a></p>
+		<p><a href="http://www.uniprot.org/uniprot/[% result.hit_name %]" target='_blank'>[% result.hit_name %]</a></p>
 	</div>
 </div>
 <div class="row">
