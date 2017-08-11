@@ -19,14 +19,33 @@ Acesse o site:
 
 http://127.0.0.1:3000
 
+https://metacpan.org/pod/Future::AsyncAwait#async
+
 
 TODO:
 -
 -   Verify if existis in predgpi interval, property result  
+-   Acesso a Search Database - ainda está um pouco lento - add async clients
+-   Search Database
+-       Ribosomal binding sites:
+-           Link do result deve apresentar o texto em uma nova aba. Isso vale para todos os demais componentes!
+-           Na tabela apresentada na tela, aparece Position shift "undefined" para valores 0
+-           New start deve apresentar o códon de início novo ou, quando não houver mudança, o mesmo que old  (repete)
+-           Checar correlação entre as coordenadas apresentadas na tabela e aquela salvas no arquivo txt para download. 
+-       Tandem Repeats:
+-           Quando não encontrado: "No results found" 
+-       Protein-coding genes:
+-           Resultados (links internos) do InterProScan apresentam a página na mesma aba, sem retorno possível.
+-           Idem KEGG nos links tipo ko00400 
+
 
 Dev:
 -
-
+-   BLAST:
+-       Database - All genes - nucleotide sequences, Contigs - nucleotide sequences, Protein sequences
+-       (tblastn or tblastx only)
+-       Gap costs deve oferecer um menu de escolhas apropriadas para cada programa do blast
+-       Demais opções também devem oferecer menu restrito. Basear-se no NCBI Blast  
 
 
 Test:
@@ -185,4 +204,11 @@ GGGTGACGA TGCCGAGCAGCCCGAGGTGCAGGACGGCACCGTCGAAGCCCTCGTCGCCGCGCGCGACGG TGCGTCGCT
 -   Feature Table (um zipado de todos os arquivos \*.gb do report\_feature\_table\_submission.pl)
 -    Extended Feature Table (um zipado de todos os arquivos all\_results.tab do report\_feature\_table\_artemis.pl)
 -   GFF3 (um zipado de todos os arquivos do report\_gff.pl) 
--   ícones do KEGG e eggnog de global analyses estão quebrados                                                     
+-   ícones do KEGG e eggnog de global analyses estão quebrados  
+-   Global analyses:
+-       GO term (singular) mapping 
+-           A frase "NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to "Table of ontologies" to visualize the results." só deve aparecer se tiver inserido link para o XML (árvore expansível). 
+-       eggNOG
+-           Substituir BLAST result por "Gene" nas tabelas
+-       KEGG Pathways
+-           Substituir BLAST result por "Gene" nas tabelas  

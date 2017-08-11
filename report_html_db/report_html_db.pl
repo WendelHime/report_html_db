@@ -410,9 +410,9 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-program-option", "tblastn", ""),
         ("blast-program-option", "tblastx", ""),
         ("blast-database-title", "Database:", ""),
-        ("blast-database-option", "All genes", "PMN_genome_1"),
-        ("blast-database-option", "Contigs", "PMN_genes_1"),
-        ("blast-database-option", "Protein code", "PMN_prot_1"),
+        ("blast-database-option", "All genes - nucleotide sequences", "PMN_genome_1"),
+        ("blast-database-option", "Contigs - nucleotide sequences", "PMN_genes_1"),
+        ("blast-database-option", "Protein sequences", "PMN_prot_1"),
         ("blast-format-title", "Enter sequence below in <a href='http://puma.icb.usp.br/blast/docs/fasta.html'>FASTA</a> format", ""),
         ("blast-sequence-file-title", "Or load it from disk ", ""),
         ("blast-subsequence-title", "Set subsequence ", ""),
@@ -451,7 +451,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-search-options-query-options", "Pterobranchia Mitochondrial (24)", "value='24'"),
         ("blast-search-options-query-options", "Candidate Division SR1 and Gracilibacteria (25)", "value='25'"),
         ("blast-search-options-query-options", "Pachysolen tannophilus Nuclear (26)", "value='26'"),
-        ("blast-search-options-database", "Database Genetic Codes (tblast[nx] only)", "http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes"),
+        ("blast-search-options-database", "Database Genetic Codes (tblastn or tblastx only)", "http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes"),
         ("blast-search-options-database-options", "Standard (1)", "value='1'"),
         ("blast-search-options-database-options", "Vertebrate Mitochondrial (2)", "value='2'"),
         ("blast-search-options-database-options", "Yeast Mitochondrial (3)", "value='3'"),
@@ -532,7 +532,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-tandem-repeats-note", "NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the 'Help' section for further instructions.", ""),
         
         ("search-database-dna-based-analyses-footer", "Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose ""Search"" button has been pressed will be searched.", ""),
-        ("global-analyses-go-terms-mapping", "GO terms mapping", ""),
+        ("global-analyses-go-terms-mapping", "GO term mapping", ""),
         ("global-analyses-go-terms-mapping-footer", "NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to ""Table of ontologies"" to visualize the results.", ""),
         ("global-analyses-eggNOG", "eggNOG", ""),
         ("global-analyses-kegg-pathways", "KEGG Pathways", ""),
@@ -6866,7 +6866,10 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
 	}))]);
 	
 	\$c->stash(template => '$lowCaseName/global-analyses/index.tt');
-	\$c->stash(components => resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component"));
+    \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
+	\$c->stash(components => \$components);
+
+    \$c->stash->{go_expansible_tree} = -e \$components->{report_go} ? 1 : 0;
 	\$c->stash->{hadGlobal} = 1;
 	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 	
@@ -7384,6 +7387,7 @@ sub reports : Path("reports") : CaptureArgs(3) {
                         #\$content =~ s/HREF="/HREF="\/\$type/igm;
         }
         my \$pathname = \$c->req->base . "SearchDatabase?id"; 
+        $content =~ s/<th>Blast result<\\\/th>/<th>Gene<\\\/th>/g;
         \$content =~ s/<a href="blast_dir[\\w\\/\\.]*">([\\w\\s]*)/<a href="\$pathname=\$1">\$1/g;
         \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\\/a>\$2/g;
     }
@@ -8029,6 +8033,7 @@ CONTENTINDEXDOWNLOADS
 	                            [% END %]
 	                        </div>
 	                    </div>
+                        [% IF go_expansible_tree %]
 	                    <div class="panel-footer">
 	                        [% FOREACH text IN texts %]
 	                            [% IF text.tag == 'global-analyses-go-terms-mapping-footer' %]
@@ -8036,6 +8041,7 @@ CONTENTINDEXDOWNLOADS
 	                            [% END %]
 	                        [% END %]
 	                    </div>
+                        [% END %]
 	                </div>
 	            </div>
             [% END %]
