@@ -14,6 +14,7 @@ has start          => ( is => 'ro', isa => 'Str' );
 has end            => ( is => 'ro', isa => 'Str' );
 has site_pattern   => ( is => 'ro', isa => 'Str' );
 has old_start      => ( is => 'ro', isa => 'Str' );
+has old_position   => ( is => 'ro', isa => 'Str' ); 
 has position_shift => ( is => 'ro', isa => 'Str' );
 has new_start      => ( is => 'ro', isa => 'Str' );
 has feature_id	=> ( is => 'ro', isa => 'Str' );
@@ -71,6 +72,17 @@ sub setOldStart {
 sub getOldStart {
 	my ($self) = @_;
 	return $self->{old_start};
+}
+
+sub setOldPosition {
+	my ( $self, $old_position ) = @_;
+	$self->{old_position} = $old_position;
+	return $self->{old_position};
+}
+
+sub getOldPosition {
+	my ($self) = @_;
+	return $self->{old_position};
 }
 
 sub setPositionShift {

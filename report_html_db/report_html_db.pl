@@ -188,10 +188,18 @@ my $databases_code;
 my $databases_dir;
 my $html_file;
 my $banner;
+my $titlePage;
+my $color_primary;
+my $color_accent;
+my $color_primary_text;
+my $color_accent_text;
+my $color_menu;
 my $tcdb_file = "";
 my $ko_file;
 #my $uniquename;
 my $annotation_dir;
+
+my $homepage_image_organism;
 
 #
 #read configuration file
@@ -318,7 +326,7 @@ if ( defined( $config->{"report_feature_table_artemis_dir"} ) ) {
 if ( defined( $config->{"report_gff_dir"} ) ) {
     $report_gff = $config->{"report_gff_dir"};
 } 
-if ( defined( $config->{"comparative_metabolic_reconstruction"} ) ) {
+if ( defined( $config->{"report_kegg_organism_dir"} ) ) {
 	@report_kegg_organism_dir =
 	  split( ";", $config->{"report_kegg_organism_dir"} );
 }
@@ -335,6 +343,24 @@ if ( defined( $config->{"homepage_text_file"} ) ) {
 if ( defined( $config->{"homepage_banner_image"} ) ) {
 	$banner = $config->{"homepage_banner_image"};
 }
+if (defined( $config->{"homepage_title"} ) ) {
+    $titlePage = $config->{"homepage_title"};
+} 
+if (defined( $config->{"color_primary"} ) ) {
+    $color_primary = $config->{"color_primary"};
+} 
+if (defined( $config->{"color_accent"} ) ) {
+    $color_accent = $config->{"color_accent"};
+}
+if (defined( $config->{"color_menu"} ) ) {
+    $color_menu = $config->{"color_menu"};
+}
+if (defined( $config->{"color_primary_text"} ) ) {
+    $color_primary_text = $config->{"color_primary_text"};
+}
+if (defined( $config->{"color_accent_text"} ) ) {
+    $color_accent_text = $config->{"color_accent_text"};
+}  
 if ( defined( $config->{"TCDB_file"} ) ) {
 	$tcdb_file = $config->{"TCDB_file"};
 }
@@ -352,6 +378,10 @@ if ( defined( $config->{"component_name_list"} ) ) {
 }
 if ( defined( $config->{"annotation_dir"} ) ) {
 	$annotation_dir = $config->{"annotation_dir"};
+}
+
+if ( defined( $config->{"homepage_image_organism"} ) ) {
+	$homepage_image_organism = $config->{"homepage_image_organism"};
 }
 
 #
@@ -426,9 +456,12 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-search-options-matrix", "Matrix", "http://puma.icb.usp.br/blast/docs/matrix_info.html"),
         ("blast-search-options-matrix-options", "BLOSUM62", "BLOSUM62"),
         ("blast-search-options-matrix-options", "BLOSUM45", "BLOSUM45"),
+        ("blast-search-options-matrix-options", "BLOSUM50", "BLOSUM50"), 
         ("blast-search-options-matrix-options", "BLOSUM80", "BLOSUM80"),
+        ("blast-search-options-matrix-options", "BLOSUM90", "BLOSUM90"), 
         ("blast-search-options-matrix-options", "PAM30", "PAM30"),
         ("blast-search-options-matrix-options", "PAM70", "PAM70"),
+        ("blast-search-options-matrix-options", "PAM250", "PAM250"),
         ("blast-search-options-alignment", "Perform ungapped alignment", ""),
         ("blast-search-options-query", "Query Genetic Codes (blastx only)", "http://puma.icb.usp.br/blast/docs/newoptions.html#gencodes"),
         ("blast-search-options-query-options", "Standard (1)", "value='1'"),
@@ -791,8 +824,8 @@ print $LOG "\nDeleting old fasta directories\n";
 print $LOG "\nSeparating sequences od multifasta and create directory\n";
 
 #separa sequencias do multifasta e cria diretorio
-my $html_dir     = "website";
-my $services_dir = "services";
+my $html_dir     = $organism_name."-Website";
+my $services_dir = $organism_name."-Services";
 print $LOG "\nCreating $html_dir\n";
 !system("mkdir -p $html_dir")
   or die "Could not created directory $html_dir\n";
@@ -843,6 +876,7 @@ foreach my $c ( sort @components_name ) {
 		|| $c eq "annotation_mreps.pl"
 		|| $c eq "annotation_glimmer3.pl"
 		|| $c eq "upload_gtf.pl"
+        || $c eq "upload_prediction.pl"
 		|| $c eq "annotation_trna.pl"
 		|| $c eq "annotation_alienhunter.pl" )
 	{
@@ -918,9 +952,13 @@ if ( scalar @report_pathways_dir > 0 ) {
 }
 if ( scalar @report_kegg_organism_dir > 0 ) {
 	foreach my $path (@report_kegg_organism_dir) {
-		$components{"report_kegg_organism"} .= $path . ";";
-		$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('kegg_organism', 'report_kegg_organism', '$components{report_kegg_organism}');\n";
+        if($path =~ /([\.\/\w]+)\//) {
+            my $directory = $1;
+            $components{"report_kegg_organism"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+        } 
+        $scriptSQL .=
+"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('kegg_organism', 'report_kegg_organism', '$components{report_kegg_organism}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-organism-report', 'Map by map report of KEGG results', '/reports/".$components{report_kegg_organism}."/html_page/classes.html');\n";
+        $components{"report_kegg_organism"} = $path;
 	}
 }
 
@@ -1240,6 +1278,10 @@ while ( $sequence_object->read() ) {
 						$components{$component} =
 						  "$annotation_dir/$component/upload_gtf.txt";
 					}
+                    elsif ( $component_name eq "upload_prediction" ) {
+						$components{$component} =
+						  "$annotation_dir/$component/upload_prediction.txt";
+					}
 					elsif ( $component_name eq "annotation_transterm" ) {
 						my $file = $name . ".txt";
 						$components{$component} = "$annotation_dir/$component/$file";
@@ -1413,6 +1455,12 @@ while ( $sequence_object->read() ) {
 							  "$annotation_dir/$component/upload_gtf.txt";
 							$scriptSQL .=
 								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/upload_gtf.txt');\n";  
+						}
+                        elsif ( $component_name eq "upload_prediction" ) {
+							$components{$component} =
+							  "$annotation_dir/$component/upload_prediction.txt";
+							$scriptSQL .=
+								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/upload_prediction.txt');\n";  
 						}
 						elsif ( $component_name eq "annotation_interpro" ) {
 							$components{$component} = "$annotation_dir/$component/";
@@ -1940,14 +1988,22 @@ chomp $pathCatalyst;
 #give permission to execute catalyst.pl
 #chmod( "755", $pathCatalyst );
 `chmod 755 $pathCatalyst`;
-
+my $packageWebsite = $html_dir;
+$packageWebsite =~ s/-/::/; 
+my $packageServices = $services_dir; 
+$packageServices =~ s/-/::/; 
 print $LOG "\nCreating website...\n";
-`$pathCatalyst $html_dir`;
+`$pathCatalyst $packageWebsite`;
 print $LOG "\nCreating services...\n";
-`$pathCatalyst $services_dir`;
+`$pathCatalyst $packageServices`;
 
+my $libDirectoryWebsite = $html_dir;
+my $libDirectoryServices = $services_dir;
+$libDirectoryWebsite =~ s/-/\//;
+$libDirectoryServices =~ s/-/\//;
 my $lowCaseName = $html_dir;
 $lowCaseName = lc $lowCaseName;
+$lowCaseName =~ s/-/_/g;
 
 #give permission to execute files script
 #chmod("111", "$nameProject/script/".$lowCaseName."_server.pl");
@@ -2003,14 +2059,14 @@ if(defined $report_feature_table_submission ||
 }
 
 my $fileHandler;
-open( $fileHandler, "<", "$html_dir/lib/$html_dir/View/TT.pm" );
+open( $fileHandler, "<", "$html_dir/lib/$libDirectoryWebsite/View/TT.pm" );
 my $contentToBeChanged =
 "__PACKAGE__->config(\n\tTEMPLATE_EXTENSION\t=>\t'.tt',\n\tTIMER\t=>\t0,\n\tWRAPPER\t=>\t'$lowCaseName/_layout.tt',\n\tENCODING\t=>\t'utf-8',\n\trender_die\t=> 1,\n);";
 my $data = do { local $/; <$fileHandler> };
 $data =~ s/__\w+->config\(([\w\s=>''"".,\/]*)\s\);/$contentToBeChanged/igm;
 close($fileHandler);
 print $LOG "\nEditing view\n";
-writeFile( "$html_dir/lib/$html_dir/View/TT.pm", $data );
+writeFile( "$html_dir/lib/$libDirectoryWebsite/View/TT.pm", $data );
 
 #if database file exists, delete
 if ( -e $databaseFilepath ) {
@@ -2018,13 +2074,16 @@ if ( -e $databaseFilepath ) {
 }
 
 #add resources to the config file
-open( $fileHandler, ">>", "$html_dir/website.conf" );
+open( $fileHandler, ">>", "$html_dir/$lowCaseName.conf" );
 print $fileHandler "\ntarget_class_id "
   . $type_target_class_id
   . "\n";
 close($fileHandler);
 
-open($fileHandler, ">>", "$services_dir/services.conf");
+my $lowCaseNameServices = $services_dir;
+$lowCaseNameServices = lc $services_dir;
+$lowCaseNameServices =~ s/-/_/; 
+open($fileHandler, ">>", "$services_dir/$lowCaseNameServices.conf");
 print $fileHandler "\nannotations_dir " . $annotation_dir;
 close($fileHandler);
 
@@ -2039,7 +2098,7 @@ print $LOG "\nCreating database file\t$databaseFilepath\n";
 
 #create models project
 print $LOG "\nCreating models\n";
-`$html_dir/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$html_dir"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON;PRAGMA encoding='UTF-8'"`;
+`$html_dir/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$packageWebsite"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON;PRAGMA encoding='UTF-8'"`;
 
 my %models = (
 	"BaseResponse" => <<BASERESPONSE,
@@ -2146,13 +2205,13 @@ CLIENTS
 );
 
 foreach my $key ( keys %models ) {
-	my $package_website = "package " . $html_dir . "::Model::" . $key . ";";
+	my $package_website = "package " . $packageWebsite . "::Model::" . $key . ";";
 	my $package_services =
-	  "package " . $services_dir . "::Model::" . $key . ";";
+	  "package " . $packageServices . "::Model::" . $key . ";";
 	my $content_website = $package_website . "\n" . $models{$key};
-	writeFile( "$html_dir/lib/$html_dir/Model/" . $key . ".pm",
+	writeFile( "$html_dir/lib/$libDirectoryWebsite/Model/" . $key . ".pm",
 		$content_website );
-	writeFile( "$services_dir/lib/$services_dir/Model/" . $key . ".pm",
+	writeFile( "$services_dir/lib/$libDirectoryServices/Model/" . $key . ".pm",
 		$package_services . "\n" . $models{$key} );
 
 }
@@ -2179,7 +2238,7 @@ foreach my $component ( sort keys %components ) {
 #	Add relationship to models
 #
 #####
-my $packageDBI = $services_dir . "::Model::SearchDatabaseRepository";
+my $packageDBI = $packageServices . "::Model::SearchDatabaseRepository";
 my $DBI        = <<DBI;
 package $packageDBI;
 
@@ -2420,8 +2479,8 @@ sub analyses_CDS {
 		\$connector  = "1";
 	}
 	if (   ( exists \$hash->{noGO} && \$hash->{noGO} )
-		|| ( exists \$hash->{goID}   && \$hash->{noGO} )
-		|| ( exists \$hash->{goDesc} && \$hash->{noGO} ) )
+		|| ( exists \$hash->{goID}   && \$hash->{goID} )
+		|| ( exists \$hash->{goDesc} && \$hash->{goDesc} ) )
 	{
 		\$query_GO =
 		    "(SELECT DISTINCT r.object_id "
@@ -3029,7 +3088,12 @@ WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? A
 	  . \$query_dgpi
 	  . \$query_bigpi
 	  . \$query_predgpi
-	  . " ) as motherfuckerquery GROUP BY motherfuckerquery.feature_id ORDER BY motherfuckerquery.feature_id ";
+	  . " ) as motherfuckerquery 
+            LEFT JOIN feature_relationship fr ON (fr.object_id = motherfuckerquery.feature_id) 
+            LEFT JOIN featureprop fp ON (fp.feature_id = fr.subject_id) 
+            LEFT JOIN cvterm cv ON (cv.cvterm_id = fp.type_id) 
+            WHERE cv.name = 'locus_tag' 
+            GROUP BY motherfuckerquery.feature_id, fp.value ORDER BY fp.value ASC ";
 	  
 	if (!\$query_Phobius) {
 		my \$quantityParameters = () = \$query =~ /\\?/g;
@@ -3137,6 +3201,8 @@ where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' an
 		\$query .= " and pd.value=?";
 		push \@args, \$hash->{type};
 	}
+
+    \$query .= " ORDER BY f.uniquename ASC, l.fstart ASC ";
 	
 	if (   exists \$hash->{pageSize}
 		&& \$hash->{pageSize}
@@ -3185,6 +3251,7 @@ sub tRNA_search {
 	  . "from feature_relationship r "
 	  . "join cvterm c on (r.type_id = c.cvterm_id) "
 	  . "join featureloc l on (r.subject_id = l.feature_id) "
+      . "join feature fl on (fl.feature_id = l.srcfeature_id) "
 	  . "join analysisfeature af on (af.feature_id = r.object_id) "
 	  . "join analysis a on (a.analysis_id = af.analysis_id) "
 	  . "join featureprop p on (p.feature_id = l.srcfeature_id) "
@@ -3213,6 +3280,8 @@ sub tRNA_search {
 		\$query .= "and pa.value = ?";
 		push \@args, \$anticodon;
 	}
+
+    \$query .= " ORDER BY fl.uniquename ASC,  l.fstart ASC ";
 	
 	if (   exists \$hash->{pageSize}
 		&& \$hash->{pageSize}
@@ -3489,7 +3558,7 @@ sub ncRNA_search {
 		push \@args, lc( "\%" . \$hash->{'ncRNAtargetDesc'} . "\%" );
 	}
 
-	\$query = \$select . \$join . \$query;
+	\$query = \$select . \$join . \$query . " ORDER BY fl.uniquename ASC, l.fstart ASC  ";
 	
 	if (   exists \$hash->{pageSize}
 		&& \$hash->{pageSize}
@@ -3661,7 +3730,7 @@ sub rbs_search {
 	my \@args = ();
 	my \$select =
 "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, fl.feature_id, ppSitePattern.value AS site_pattern, ppPositionShift.value AS position_shift, ".
-	" ppOldStart.value AS old_start, COUNT(*) OVER() AS total ";
+	" ppOldStart.value AS old_start, ppOldPosition.value AS old_position, COUNT(*) OVER() AS total, pp2.value AS new_start  ";
 
 #	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
 #		\$select .= " AS site_pattern";
@@ -3686,10 +3755,14 @@ sub rbs_search {
                 join featureprop ppOldStart on (ppOldStart.feature_id = r.subject_id)
                 join cvterm cppOldStart on (ppOldStart.type_id = cppOldStart.cvterm_id)
                 join featureprop ppPositionShift on (ppPositionShift.feature_id = r.subject_id)
-                join cvterm cppPositionShift on (ppPositionShift.type_id = cppPositionShift.cvterm_id)";
+                join cvterm cppPositionShift on (ppPositionShift.type_id = cppPositionShift.cvterm_id) 
+                join featureprop pp2 on (pp2.feature_id = r.subject_id) 
+                join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id) 
+                join featureprop ppOldPosition on (ppOldPosition.feature_id = r.subject_id)
+                join cvterm cppOldPosition on (ppOldPosition.type_id = cppOldPosition.cvterm_id) ";
 	my \$query =
 "where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
-" and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift' ";
+" and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift'  and cpp2.name='new_start_codon' and cppOldPosition.name='old_position' ";
 	push \@args, \$hash->{pipeline};
 	
 	if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3716,11 +3789,7 @@ sub rbs_search {
 		}
 	}
 	elsif ( \$hash->{'RBSnewcodon'} ) {
-		\$select .= ", pp2.value AS new_start";
-		\$join .=
-"join featureprop pp2 on (pp2.feature_id = r.subject_id) join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id)";
-		\$query .=
-"and cppOldStart.name='old_start_codon' and cpp2.name='new_start_codon' and (ppOldStart.value != pp2.value)";
+		\$query .= " and (ppOldStart.value != pp2.value) ";
 	}
 
 	\$query = \$select . \$join . \$query;
@@ -3756,13 +3825,14 @@ sub rbs_search {
 			feature_id 		=> \$rows[\$i][3],
 			site_pattern	=> \$rows[\$i][4],
 			position_shift	=> \$rows[\$i][5],
-			old_start		=> \$rows[\$i][6]
+			old_start		=> \$rows[\$i][6],
+            old_position    => \$rows[\$i][7]
 		);
 
-		if ( \$columns[8] eq "new_start" ) {
-			\$result->setNewStart( \$rows[\$i][8] );
+		if ( \$columns[9] eq "new_start" ) {
+			\$result->setNewStart( \$rows[\$i][9] );
 		}
-		\$hash{total} = \$rows[\$i][7];
+		\$hash{total} = \$rows[\$i][8];
 		push \@list, \$result;
 	}
 	\$hash{list} = \\\@list;
@@ -3923,7 +3993,8 @@ sub searchGene {
 	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
 	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
 	  . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
-	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id ";
+	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id "
+      . "LEFT JOIN feature ff ON ff.feature_id = featureloc_features_2.srcfeature_id ";
 	my \$where =
 "WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = ? ";
 	push \@args, \$hash->{pipeline};
@@ -4039,7 +4110,7 @@ sub searchGene {
 		push \@args, lc( "\%" . \$hash->{geneID} . "\%" );
 	}
 	
-	\$where .= " ORDER BY feature_relationship_props_subject_feature.value ASC ";
+    \$where .= " ORDER BY ff.uniquename ASC, featureloc_features_2.fstart ASC ";
 
 	if (   exists \$hash->{pageSize}
 		&& \$hash->{pageSize}
@@ -4067,22 +4138,81 @@ sub searchGene {
 	my \@list         = ();
 
 	use Report_HTML_DB::Models::Application::Feature;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$feature = Report_HTML_DB::Models::Application::Feature->new(
-			feature_id => \$rows[\$i][0],
-			uniquename => \$rows[\$i][2],
-			name       => \$rows[\$i][1],
-			fstart     => \$rows[\$i][3],
-			fend       => \$rows[\$i][4],
-			type       => \$rows[\$i][5],
-		);
-		\$returnedHash{total} = \$rows[\$i][6];
-		push \@list, \$feature;
-	}
-
+    for ( my \$i = 0; \$i < scalar \@rows ; \$i++ ) {
+        my \$feature;
+        if(\$rows[\$i][5] eq "CDS") {
+            my \%hashBlast = ();
+            \$hashBlast{pipeline_id} = \$hash->{pipeline};
+            \$hashBlast{feature_id} = \$rows[\$i][0];
+            my \$identifierDescriptionHash = getIdentifierAndDescriptionSimilarity(\$self, getFirstBlastResult(\$self, \\\%hashBlast)->{feature_id});
+            my \$uniquename =(\$identifierDescriptionHash->{description} ? \$identifierDescriptionHash->{description} : \$rows[\$i][2]) ;
+            \$uniquename =~ s/\\w+\\_*\\.+\\w\\s//g;
+            \$uniquename =~ s/\\w*_[\\w\\d]*//g;
+            \$feature = Report_HTML_DB::Models::Application::Feature->new(
+                feature_id => \$rows[\$i][0],
+                uniquename => \$uniquename,
+                name       => \$rows[\$i][1],
+                fstart     => \$rows[\$i][3],
+                fend       => \$rows[\$i][4],
+                type       => \$rows[\$i][5],
+            );
+        } else {
+            my \$uniquename = \$rows[\$i][2];
+            \$uniquename =~ s/\\w+\\_*\\.+\\w\\s//g;
+            \$uniquename =~ s/\\w*_[\\w\\d]*//g; 
+            \$feature = Report_HTML_DB::Models::Application::Feature->new(
+                feature_id => \$rows[\$i][0],
+                uniquename => \$uniquename,
+                name       => \$rows[\$i][1],
+                fstart     => \$rows[\$i][3],
+                fend       => \$rows[\$i][4],
+                type       => \$rows[\$i][5],
+            );
+        }
+        \$returnedHash{total} = \$rows[\$i][6];
+        push \@list, \$feature;
+    }
 	\$returnedHash{list} = \\\@list;
 
-return \\\%returnedHash;
+    return \\\%returnedHash;
+}
+
+sub getFirstBlastResult {
+    my (\$self, \$hash) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query = "SELECT DISTINCT f.feature_id
+        FROM feature f
+        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+        JOIN feature fo ON (r.object_id = fo.feature_id)
+        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+        JOIN analysis a ON (a.analysis_id = af.analysis_id)
+        JOIN analysisprop ap ON (ap.analysis_id = a.analysis_id)
+        JOIN featureloc l ON (r.object_id = l.feature_id)
+        JOIN featureprop p ON (p.feature_id = srcfeature_id)
+        JOIN cvterm c ON (p.type_id = c.cvterm_id)
+        JOIN feature_relationship ra ON (ra.object_id = f.feature_id)
+        JOIN cvterm cra ON (ra.type_id = cra.cvterm_id)
+        JOIN featureprop pfo ON (ra.subject_id = pfo.feature_id)
+        JOIN cvterm cpfo ON (cpfo.cvterm_id = pfo.type_id)
+        JOIN featureprop pr ON (r.object_id = pr.feature_id)
+        JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id)
+        WHERE a.program = 'annotation_blast.pl'
+        AND c.name ='pipeline_id'
+        AND p.value = ?
+        AND cra.name = 'alignment'
+        AND cpfo.name = 'subject_id'
+        AND r.object_id = ?
+        AND ap.value LIKE '%database_code=INSD%' LIMIT 1";
+
+    push \@args, \$hash->{pipeline_id};
+    push \@args, \$hash->{feature_id};
+    my \$sth = \$dbh->prepare(\$query);
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%hash  = ();
+    \$hash{feature_id} = \$rows[0][0];
+    return \\\%hash;
 }
 
 =head2
@@ -4560,10 +4690,10 @@ it under the same terms as Perl itself.
 
 DBI
 
-writeFile( "$services_dir/lib/$services_dir/Model/SearchDatabaseRepository.pm",
+writeFile( "$services_dir/lib/$libDirectoryServices/Model/SearchDatabaseRepository.pm",
 	$DBI );
 	
-$packageDBI = $services_dir . "::Model::BlastRepository";
+$packageDBI = $packageServices . "::Model::BlastRepository";
 $DBI        = <<DBI;
 package $packageDBI;
 use strict;
@@ -4579,7 +4709,7 @@ __PACKAGE__->config(
 
 DBI
 
-writeFile( "$services_dir/lib/$services_dir/Model/BlastRepository.pm",
+writeFile( "$services_dir/lib/$libDirectoryServices/Model/BlastRepository.pm",
 	$DBI );
 
 #####
@@ -4590,12 +4720,11 @@ writeFile( "$services_dir/lib/$services_dir/Model/BlastRepository.pm",
 
 #create controllers project
 print $LOG "\nCreating controllers...\n";
-my $lowCaseNameServices = $services_dir;
-$lowCaseNameServices = lc $services_dir;
+
 `$services_dir/script/"$lowCaseNameServices"_create.pl controller SearchDatabase`;
 
-my $temporaryPackage = $html_dir . '::Controller::Site';
-writeFile( "$html_dir/lib/$html_dir/Controller/Site.pm", <<CONTENTSite);
+my $temporaryPackage = $packageWebsite . '::Controller::Site';
+writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Site.pm", <<CONTENTSite);
 package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
@@ -4632,9 +4761,15 @@ sub getHTMLContent_GET {
 	if(\$filepath =~ m/\\.\\.\\//) {
 		\$self->status_bad_request(\$c, message => "Invalid filepath");
 	}
-	use File::Basename;
+    my \$root = \$c->path_to('.');
+    chomp(\$root);
+    my \$directoryWebsite = "";
+    \$directoryWebsite = \$_ foreach(\$root =~ /\\/([\\w.-]+)+\$/);
+    \$directoryWebsite =~ s/-/_/;
+    \$directoryWebsite = lc \$directoryWebsite;
+
 	open( my \$FILEHANDLER,
-		"<", dirname(__FILE__) . "/../../../root/" . \$filepath );
+		"<", \$c->path_to('root') . "/" .  \$directoryWebsite . "/" . \$filepath );
 
 	my \$content = do { local \$/; <\$FILEHANDLER> };
 	close(\$FILEHANDLER);
@@ -4717,7 +4852,7 @@ sub getFileByComponentID : Path("/FileByComponentID") : CaptureArgs(1) {
 	\$randomString =~ s/\\///;
 	my \$zip = Archive::Zip->new();
 
-	\$zip->addFile( dirname(__FILE__) . "/../../../root/" . \$hash{filepath},
+	\$zip->addFile( \$c->path_to('root') . "/" . \$hash{filepath},
 		getFilenameByFilepath( \$hash{filepath} ) );
 	if (   \$hash{name} =~ /annotation\\_blast/
 		|| \$hash{name} =~ /annotation\\_pathways/
@@ -4725,14 +4860,13 @@ sub getFileByComponentID : Path("/FileByComponentID") : CaptureArgs(1) {
 		|| \$hash{name} =~ /annotation\\_tcdb/ )
 	{
 		\$hash{filepath} =~ s/\\.html/\\.png/;
-		\$zip->addFile( dirname(__FILE__) . "/../../../root/" . \$hash{filepath},
+		\$zip->addFile( \$c->path_to('root') . "/" . \$hash{filepath},
 			getFilenameByFilepath( \$hash{filepath} ) );
 	}
 	elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
 		\$hash{filepath} =~ s/\\/[\\w\\s\\-_]+\\.[\\w\\s\\-_ .]+//;
 		\$zip->addDirectory(
-			dirname(__FILE__)
-			  . "/../../../root/"
+			  \$c->path_to('root') . "/"
 			  . \$hash{filepath}
 			  . "/resources",
 			"resources"
@@ -4855,6 +4989,44 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
 	
 }
 
+sub viewFileByContigAndType : Path("/ViewFileByContigAndType") : CaptureArgs(2) {
+    my (\$self, \$c, \$contig, \$type) = \@_;
+	if ( !\$type and defined \$c->request->param("type") ) {
+		\$type = \$c->request->param("type");
+	}
+	if ( !\$contig and defined \$c->request->param("contig") ) {
+		\$contig = \$c->request->param("contig");
+	}
+	my \$name = "";
+	if(\$type eq "rna") {
+		\$name = "infernal";
+	} elsif(\$type eq "rrna_prediction") {
+	    \$name = "rnammer";
+	} elsif(\$type =~ "trna") {
+		\$name = "trna";
+	} else {
+		\$name = \$type;
+	}
+	
+	my \$filepath = (
+		\$c->model('Basic::Component')->search(
+			{
+				name 		=> {  "like", "%".\$name."%"},
+				filepath 	=> { "like", "%".\$contig."%"}
+			},
+			{
+				columns => qw/filepath/,
+				rows    => 1
+			}
+		)->single->get_column(qw/filepath/)
+	);
+	open( my \$FILEHANDLER, "<", \$filepath ); 
+    my \$content = do { local(\$/); <\$FILEHANDLER> };;
+	close(\$FILEHANDLER); 
+    \$c->response->body(\$content); 
+    \$c->response->headers->content_type('text/plain'); 
+} 
+
 sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : CaptureArgs(2) {
 	my (\$self, \$c, \$contig, \$type) = \@_;
 	if ( !\$type and defined \$c->request->param("type") ) {
@@ -4894,12 +5066,8 @@ sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : Capture
 	while (<\$FILEHANDLER>) {
 		\$file .= \$_;
 	}
+    \$c->response->headers->content_type('text/plain'); 
 	\$c->response->body(\$file);
-	\$c->response->headers->content_type('application/x-download');
-	my \$filename = "";
-	\$filename = \$_ foreach (\$filepath =~ /\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_]+)/g);
-	\$c->response->body(\$file);
-	\$c->response->header('Content-Disposition' => 'attachment; filename='.\$filename);
 	close \$FILEHANDLER;
 }
 	 
@@ -4957,7 +5125,7 @@ sub sequenceContig {
 	my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
 
 	open( my \$FILEHANDLER,
-		"<", dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
+		"<", \$c->path_to('root') . "/" . \$sequence->filepath );
 
 	my \$content = do { local \$/; <\$FILEHANDLER> };
 
@@ -5064,8 +5232,8 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 CONTENTSite
-$temporaryPackage = $services_dir . '::Controller::Blast';
-writeFile( "$services_dir/lib/$services_dir/Controller/Blast.pm" , <<CONTENT
+$temporaryPackage = $packageServices . '::Controller::Blast';
+writeFile( "$services_dir/lib/$libDirectoryServices/Controller/Blast.pm" , <<CONTENT
 package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
@@ -5120,11 +5288,11 @@ sub search_POST {
 	print \$FILEHANDLER \$hash{SEQUENCE};
 	close(\$FILEHANDLER);
 
-	\$hash{DATALIB} = \$c->config->{annotations_dir} . "/services/root/seq/Sequences"
+	\$hash{DATALIB} = \$c->path_to("root") . "/seq/Sequences"
 	  if ( \$hash{DATALIB} eq "PMN_genome_1" );
-	\$hash{DATALIB} = \$c->config->{annotations_dir} . "/services/root/orfs_nt/Sequences_NT"
+	\$hash{DATALIB} = \$c->path_to("root") . "/orfs_nt/Sequences_NT"
 	  if ( \$hash{DATALIB} eq "PMN_genes_1" );
-	\$hash{DATALIB} = \$c->config->{annotations_dir} . "/services/root/orfs_aa/Sequences_AA"
+	\$hash{DATALIB} = \$c->path_to("root") . "/orfs_aa/Sequences_AA"
 	  if ( \$hash{DATALIB} eq "PMN_prot_1" );
 	my \$content = "";
 	if ( exists \$hash{PROGRAM} ) {
@@ -5258,8 +5426,8 @@ __PACKAGE__->meta->make_immutable;
 CONTENT
 );
 
-$temporaryPackage = $services_dir . '::Controller::SearchDatabase';
-writeFile( "$services_dir/lib/$services_dir/Controller/SearchDatabase.pm",
+$temporaryPackage = $packageServices . '::Controller::SearchDatabase';
+writeFile( "$services_dir/lib/$libDirectoryServices/Controller/SearchDatabase.pm",
 	<<CONTENT);
 package $temporaryPackage;
 use Moose;
@@ -5522,8 +5690,8 @@ sub getSubsequence_GET {
 		open(
 			my \$FILEHANDLER,
 			"<",
-			dirname(__FILE__)
-			  . "/../../../root/seq/"
+			  \$c->path_to('root') 
+              ."/seq/"
 			  . \$sequenceName
 			  . ".fasta"
 		);
@@ -5552,7 +5720,7 @@ sub getSubsequence_GET {
 		open(
 			my \$FILEHANDLER,
 			"<",
-			dirname(__FILE__) . "/../../../root/orfs_aa/" . \$contig . ".fasta"
+			\$c->path_to('root') . "/orfs_aa/" . \$contig . ".fasta"
 		);
 
 		for my \$line (<\$FILEHANDLER>) {
@@ -5955,23 +6123,8 @@ sub rbsSearch_GET {
 	my \$result = \$c->model('SearchDatabaseRepository')->rbs_search( \\\%hash );
 	my \@resultList = \@{ \$result->{list} };
 
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		my \%object = (
-			contig => \$resultList[\$i]->getContig,
-			start  => \$resultList[\$i]->getStart,
-			end    => \$resultList[\$i]->getEnd,
-		);
-
-		\$object{site_pattern} = \$resultList[\$i]->getSitePattern
-		  if \$resultList[\$i]->getSitePattern;
-		\$object{old_start} = \$resultList[\$i]->getOldStart
-		  if \$resultList[\$i]->getOldStart;
-		\$object{position_shift} = \$resultList[\$i]->getPositionShift
-		  if \$resultList[\$i]->getPositionShift;
-		\$object{new_start} = \$resultList[\$i]->getNewStart
-		  if \$resultList[\$i]->getNewStart;
-
-		push \@list, \\\%object;
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+		push \@list, \$resultList[\$i]->pack();
 	}
 
 	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, \$hash{offset} );
@@ -6138,7 +6291,7 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 CONTENT
-$temporaryPackage = $html_dir . '::Controller::SearchDatabase';
+$temporaryPackage = $packageWebsite . '::Controller::SearchDatabase';
 my $searchDBContent = <<SEARCHDBCONTENT;
 package $temporaryPackage;
 use Moose;
@@ -6606,12 +6759,12 @@ __PACKAGE__->meta->make_immutable;
 1;
 
 SEARCHDBCONTENT
-writeFile( "$html_dir/lib/$html_dir/Controller/SearchDatabase.pm",
+writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/SearchDatabase.pm",
 	$searchDBContent );
 	
-$temporaryPackage = $html_dir . '::Controller::Blast';
+$temporaryPackage = $packageWebsite . '::Controller::Blast';
 my $blastContent = <<BLAST;
-package website::Controller::Blast;
+package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
 
@@ -6619,7 +6772,7 @@ BEGIN { extends 'Catalyst::Controller'; }
 
 =head1 NAME
 
-website::Controller::SearchDatabase - Catalyst Controller
+$temporaryPackage - Catalyst Controller
 
 =head1 DESCRIPTION
 
@@ -6807,10 +6960,10 @@ __PACKAGE__->meta->make_immutable;
 
 BLAST
 
-writeFile( "$html_dir/lib/$html_dir/Controller/Blast.pm",
+writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Blast.pm",
 	$blastContent );
 
-$temporaryPackage = $html_dir . '::Controller::Root';
+$temporaryPackage = $packageWebsite . '::Controller::Root';
 my $rootContent = <<ROOT;
 package $temporaryPackage;
 use Moose;
@@ -6866,7 +7019,7 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
 	}))]);
 	
 	\$c->stash(template => '$lowCaseName/global-analyses/index.tt');
-    \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
+    my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
 	\$c->stash(components => \$components);
 
     \$c->stash->{go_expansible_tree} = -e \$components->{report_go} ? 1 : 0;
@@ -6922,7 +7075,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 		my \$response = \$searchDBClient->getPipeline()->getResponse()->{pipeline_id};
 		use File::Basename;
 		open( my \$FILEHANDLER,
-			">>", dirname(__FILE__) . "/../../../website.conf");
+			">>", \$c->path_to('.') . "/" . "$lowCaseName.conf");
 		print \$FILEHANDLER "\npipeline_id \$response\n";
 		close(\$FILEHANDLER);
 		\$pipeline = \$response;
@@ -7206,7 +7359,7 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
 		)->single->get_column(qw/filepath/)
 	);
 
-	open( my \$FILEHANDLER, "<", dirname(__FILE__) . "/../../../root/" . \$filepath );
+	open( my \$FILEHANDLER, "<", \$c->path_to('root') . "/" . \$filepath );
 	binmode \$FILEHANDLER;
 	my \$file;
 
@@ -7282,7 +7435,7 @@ sub sequenceContig {
 	my \$sequence = \$c->model('Basic::Sequence')->search({ "name" => \$contig}, {})->first;
 
 	open( my \$FILEHANDLER,
-		"<", dirname(__FILE__) . "/../../../root/" . \$sequence->filepath );
+		"<", \$c->path_to('root') . "/" . \$sequence->filepath );
 
 	my \$content = do { local \$/; <\$FILEHANDLER> };
 
@@ -7350,9 +7503,8 @@ sub reports : Path("reports") : CaptureArgs(3) {
 	\$self->status_bad_request( \$c, message => "Invalid request" )
 	  if ( \$filepath =~ m/\\.\\.\\// );
 	
-	use File::Basename;
 	open( my \$FILEHANDLER,
-		"<", dirname(__FILE__) . "/../../../root/" . \$filepath );
+		"<", \$c->path_to('root') . "/" . \$filepath );
 	my \$content = "";
 	while ( my \$line = <\$FILEHANDLER> ) {
 		#\$line =~ s/href="/href="\\/reports\\/\$type\\//
@@ -7364,19 +7516,25 @@ sub reports : Path("reports") : CaptureArgs(3) {
         use MIME::Base64;
         \$content = MIME::Base64::encode_base64(\$content);
     } elsif(\$filepath =~ /\.html/g) {
-        if(!(\$filepath =~ m/pathway/)) {
-            my \$pathname = \$c->req->base;
+        my \$pathname = \$c->req->base; 
+        if(!(\$filepath =~ m/pathway/  || \$filepath =~ m/html_image/ )) {
             \$pathname =~ s/\\\/*reports[\\w\\.\\/]*//g;
-            \$content =~ s/src="/src="\$pathname\\/\$type\\//igm;
-            \$content =~ s/HREF="/HREF="\\/\$type\\//g;
+            if (\$filepath !~ m/kegg_organism_report/) {
+                \$content =~ s/src="/src="\$pathname\\/\$type\\//igm;
+            } else {
+                \$content =~ s/src="/src="\$pathname\\/\$type\\/\$files[0]\\//igm ;
+            }
+            \$content =~ s/HREF="/HREF="\$pathname\\/\$type\\//g;
         } else {
+            \$content =~ s/<link rel="stylesheet" href="/<link rel="stylesheet" href="\$pathname\\/reports\\/\$type\\/pathway_figures/g;
+            \$content =~ s/<script language="JavaScript" src="/<script language="JavaScript" src="\$pathname\\/reports\\/\$type\\/pathway_figures/g;
             foreach (\$content =~ /<img[\\w\\s"=]*src="([\\.\\w\\s\\-\\/]*)"/img) {
                 if(\$_ =~ m/kegg.gif/) {
                     my \$imagePath = \$_;
                     \$imagePath =~ s/\\.\\.\\///;
-                    open( \$FILEHANDLER, "<", dirname(__FILE__) . "/../../../root/\$type/" . \$imagePath );
+                    open( \$FILEHANDLER, "<", \$c->path_to('root') . "/\$type/" . \$imagePath );
                 } else {
-                    open( \$FILEHANDLER, "<", dirname(__FILE__) . "/../../../root/\$type/\$files[0]" . "/" . \$_ );
+                    open( \$FILEHANDLER, "<", \$c->path_to('root') . "/\$type/\$files[0]" . "/" . \$_ );
                 }
                 my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
                 close(\$FILEHANDLER);
@@ -7387,9 +7545,10 @@ sub reports : Path("reports") : CaptureArgs(3) {
                         #\$content =~ s/HREF="/HREF="\/\$type/igm;
         }
         my \$pathname = \$c->req->base . "SearchDatabase?id"; 
-        $content =~ s/<th>Blast result<\\\/th>/<th>Gene<\\\/th>/g;
-        \$content =~ s/<a href="blast_dir[\\w\\/\\.]*">([\\w\\s]*)/<a href="\$pathname=\$1">\$1/g;
-        \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\\/a>\$2/g;
+        \$content =~ s/<th( align="center")*>Blast result<\\\/th>/<th\$1>Gene<\\\/th>/g; 
+        \$content =~ s/<td><a href="[\\w\\/\\.]*">([\\w\\s]*)/<td><a href="\$pathname=\$1">\$1/g if ((\$content !~ /Class abbreviation/ && \$content !~ /KEGG Code/ ) && \$type ne "kegg_organism_report" );
+        \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\\/a>\$2/g if(\$type eq "go_report");
+        \$content =~ s/(\\/kegg_organism_report\\/)([\\w.]+)+"/\$1\$files[0]\\/\$2"/;
     }
 	\$c->response->body(\$content);
 }
@@ -7440,8 +7599,8 @@ sub end : Private {
 		);
 		\$c->stash->{hadGlobal}         = 1;
 		\$c->stash->{hadSearchDatabase} = 1;
-		\$c->stash->{template} = 'website/errors.tt';
-		\$c->forward('website::View::TT');
+		\$c->stash->{template} = '$lowCaseName/errors.tt';
+		\$c->forward('$packageWebsite\::View::TT');
 		\$c->clear_errors;
 	}
 
@@ -7452,7 +7611,7 @@ sub end : Private {
 		\$c->response->content_type('text/html; charset=utf-8');
 	}
 
-	\$c->forward('website::View::TT');
+	\$c->forward('$packageWebsite\::View::TT');
 }
 
 =head1 AUTHOR
@@ -7529,9 +7688,197 @@ print $LOG "Copying files assets\n";
 `cp -r assets $html_dir/root/`;
 `rm -Rf assets`;
 
+$color_primary =~ s/"//g;
+$color_primary_text =~ s/"//g;
+$color_accent =~ s/"//g;
+$color_accent_text =~ s/"//g;
+$color_menu =~ s/"//g;
+$titlePage =~ s/"//g;
+
+open (my $FILEHANDLER, ">>", "$html_dir/root/assets/css/style.css");
+print $FILEHANDLER "\n
+#informationPanel {
+    text-align: justify;
+    text-justify: inter-word;
+}
+                
+.panel-body {
+    background-color: #fff;
+}
+
+#organismImage {
+    width:100%;
+    height:100%;
+}
+
+header {
+    background-color: $color_accent;
+    color: $color_accent_text; 
+}
+
+.navbar-inverse {
+    background-color: $color_primary;
+}
+
+.navbar-inverse .navbar-brand {
+    color: $color_primary_text;
+}
+
+.menu-section {
+    background-color: $color_menu;
+}
+
+.menu-top-active {
+    background-color: $color_primary;
+}
+
+.menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
+    background-color: $color_accent!important;
+}
+
+footer {
+    background-color: $color_primary;
+    color: $color_primary_text;
+}
+
+.page-head-line {
+    color: $color_accent;
+    border-bottom: 2px solid $color_accent;
+}                                        
+
+.navbar-toggle {
+    background-color: $color_accent;
+}
+
+";
+close($FILEHANDLER);
+
 if ($banner) {
 	`cp $banner $html_dir/root/assets/img/logo.png`;
 }
+
+my $menu = "<!DOCTYPE html>
+<div class='navbar navbar-inverse set-radius-zero'>
+    <div class='container'>
+        <div class='navbar-header'>
+            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+            </button>";
+            ;
+
+if($banner)  {
+    $menu .= "<a class='navbar-brand' href='[% c.uri_for(\"/\") %]'>
+                <img src='/assets/img/logo.png' />
+            </a>";
+} elsif ($titlePage) {
+    $menu .= "<div class='row'>
+                <div class='col-md-12'>
+                    <a class='navbar-brand' href=\"[% c.uri_for('/') %]\">$titlePage</a>                                                                                        
+                </div>
+             </div>";
+}
+
+$menu .=  "</div>
+    </div>
+</div>
+<!-- LOGO HEADER END-->
+<section class='menu-section'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class='navbar-collapse collapse '>
+                    <ul id='menu-top' class='nav navbar-nav navbar-right'>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag.search('menu') %]
+                                [% IF text.value == currentPage %]
+                                    <li><a class='menu-top-active' href='[% c.uri_for(text.details) %]'>[% text.value %]</a></li>
+                                [% ELSE %]
+                                	[% IF hadSearchDatabase && text.value.match('search database') %]
+			                        	<li><a  href='[% c.uri_for(\"/SearchDatabase\") %]'>Search database</a></li>
+			                        [% ELSIF hadGlobal && text.value.match('global analyses') %]
+			                        	<li><a	href='[% c.uri_for(\"/GlobalAnalyses\") %]'>Global analyses</a></li>
+			                        [% ELSIF !text.value.match('global analyses') && !text.value.match('search database') %]
+			                        	<li><a href='[% c.uri_for(text.details) %]'>[% text.value %]</a></li>
+			                        [% END %]
+                                [% END %]
+                            [% END %]
+                        [% END %]
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+";
+
+my $panelInformation = "
+<!DOCTYPE html>
+<div class='content-wrapper'>
+    <div class='container'>	
+        <div class='row'>
+            <div class='col-md-12'>
+                <div class='panel panel-info'>
+                    <div class='panel-heading'>
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag.search('home') && !text.tag.search('value') %]
+                                [% text.value %]
+                            [% END %]
+                        [% END %]
+                    </div>
+                    <div class='panel-body'>";
+
+unless($homepage_image_organism) {
+    $panelInformation .= "
+                        <div class='row'>
+                            <div id='informationPanel' class='col-md-12'>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag.search('home-value')%]
+                                        [% text.value %]
+                                    [% END %]
+                                [% END %]
+                            </div>
+                        </div>";
+} else {
+    `cp $homepage_image_organism $html_dir/assets/img/`;
+    $homepage_image_organism = getFilenameByFilepath($homepage_image_organism);
+    $panelInformation .= "
+                        <div class='row'>
+                            <div id='informationPanel' class='col-md-6'>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag.search('home-value')%]
+                                        [% text.value %]
+                                    [% END %]
+                                [% END %]
+                            </div> 
+                            <div class='col-md-6'>
+                                <img id='organismImage' src='/assets/img/$homepage_image_organism' />
+                                
+                            </div>
+                        </div>"; 
+}
+$panelInformation .="</div>
+                    <div class='panel-footer'> 
+                        <div class='row'>
+                            <div class='col-md-12'>
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag.search('home-sub')%]
+                                        <sub>[% text.value %]</sub>
+                                    [% END %]
+                                [% END %] 
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> ";
+
 
 #Conteúdo HTML da pasta root, primeira chave refere-se ao nome do diretório
 #O valor do vetor possuí o primeiro valor como nome do arquivo, e os demais como conteúdo do arquivo
@@ -7619,7 +7966,7 @@ CONTENTABOUTINDEX
                             <label><a href="[% text.details %]">[% text.value %]</a></label>
                             [% END %]
                         [% END %]
-                        <select class="form-control" name="PROGRAM">
+                        <select id="program" class="form-control" name="PROGRAM">
                             [% FOREACH text IN texts %]
                                 [% IF text.tag.search('blast-program-option') %]
                                 <option> [% text.value %] </option>
@@ -7716,7 +8063,7 @@ CONTENTABOUTINDEX
                                                 <label><a href="[% text.details %]">[% text.value %]</a></label>
                                             [% END %]
                                         [% END %]
-                                            <select class="form-control" name="MAT_PARAM">
+                                            <select class="form-control" id="matrix" name="MAT_PARAM"> 
                                                 [% FOREACH text IN texts %]
                                                     [% IF text.tag.search('blast-search-options-matrix-options') %]
                                                         <option value="[% text.details %]" > [% text.value %]</option>
@@ -7762,17 +8109,34 @@ CONTENTABOUTINDEX
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Cost to open gap </label>
-                                        <input class="form-control" type="number" name="COST_OPEN_GAP" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Cost to extend a gap </label>
-                                        <input class="form-control" type="number" name="COST_EXTEND_GAP" />
+                                        <label>Gap Costs </label>
+                                        <select class="form-control" id="gapCosts">
+                                            <option value="0 0">Linear</option>
+                                            <option value="5 2">Existence: 5 Extension: 2</option>
+                                            <option value="2 2">Existence: 2 Extension: 2</option>
+                                            <option value="1 2">Existence: 1 Extension: 2</option>
+                                            <option value="0 2">Existence: 0 Extension: 2</option>
+                                            <option value="3 1">Existence: 3 Extension: 1</option>
+                                            <option value="2 1">Existence: 2 Extension: 1</option>
+                                            <option value="1 1">Existence: 1 Extension: 1</option>
+                                        </select>
+                                        <input id="COST_OPEN_GAP"  type="hidden" name="COST_OPEN_GAP" />
+                                        <input id="COST_EXTEND_GAP"  type="hidden" name="COST_EXTEND_GAP" /> 
                                     </div>
                                     <div class="form-group">
                                         <label>Word size </label>
-                                        <input class="form-control" type="number" name="WORD_SIZE" />
-                                    </div>
+                                        <select class="form-control" id="wordSize" name="WORD_SIZE">
+                                            <option value="16">16</option>
+                                            <option value="20">20</option>
+                                            <option value="24">24</option>
+                                            <option value="28" selected="selected">28</option>
+                                            <option value="32">32</option>
+                                            <option value="48">48</option>
+                                            <option value="64">64</option>
+                                            <option value="128">128</option>
+                                            <option value="256">256</option>
+                                        </select>
+                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -7876,7 +8240,7 @@ CONTENTBLAST
     			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
     		</div>
     	</div>
-        [% INCLUDE 'website/blast/_forms.tt' %]
+        [% INCLUDE '$lowCaseName/blast/_forms.tt' %]
     </div>
 </div>
 <script type="text/javascript" src="/assets/js/fileHandler.js"></script>
@@ -8085,7 +8449,7 @@ CONTENTINDEXDOWNLOADS
 	                <div id="collapseThree" class="panel-collapse collapse">
 	                    <div class="panel-body">
 	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag.search('global-analyses-kegg-report') %]
+	                            [% IF text.tag.search('global-analyses-kegg-report') || text.tag.search('global-analyses-kegg-organism-report') %]
 	                                <div class="form-group">
 	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
 	                                </div>
@@ -8095,31 +8459,6 @@ CONTENTINDEXDOWNLOADS
 	                </div>
 	            </div>
 	        [% END %]
-
-			[% IF organism %]
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    <h4 class="panel-title">
-	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction' %]
-	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" class="collapsed">[% text.value %]</a>
-	                            [% END %]
-	                        [% END %]
-	                    </h4>
-	                </div>
-	                <div id="collapseFour" class="panel-collapse collapse">
-	                    <div class="panel-body">
-	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag == 'global-analyses-comparative-metabolic-reconstruction-topics' %]
-	                                <div class="form-group">
-						<label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-	                                </div>
-	                            [% END %]
-	                        [% END %]
-	                    </div>
-	                </div>
-	            </div>
-            [% END %]
             
         </div>
     </div>
@@ -8261,35 +8600,7 @@ CONTENTHELP
 CONTENTINDEXHELP
 	},
 	"home" => {
-		"_panelInformation.tt" => <<CONTENTHOME
-<!DOCTYPE html>
-<div class="content-wrapper">
-    <div class="container">	
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        [% FOREACH text IN texts %]
-                            [% IF text.tag.search('home') && !text.tag.search('value') %]
-                                [% text.value %]
-                            [% END %]
-                        [% END %]
-                    </div>
-                    <div class="panel-body">
-                        [% FOREACH text IN texts %]
-                            [% IF text.tag.search('home-value')%]
-                                [% text.value %]
-                            [% END %]
-                        [% END %]
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-CONTENTHOME
-		,
+		"_panelInformation.tt" => $panelInformation,
 		"index.tt" => <<CONTENTINDEXHOME
 <!DOCTYPE html>
 <div class="content-wrapper">
@@ -8343,7 +8654,8 @@ CONTENTINDEXHOME
                 		components.item('annotation_phat') OR 
                 		components.item('annotation_snap') OR 
                 		components.item('annotation_orf') OR
-                		components.item('upload_gtf') %]
+                		components.item('upload_gtf') OR
+                        components.item('upload_prediction') %]
                 		[% section_protein_coding = 1 %]
                 	[% END %]
                 	[% IF components.item('annotation_trna') OR 
@@ -8436,7 +8748,7 @@ CONTENTINDEXHOME
                                          	<div class="form-group">
                                          		<label>Contig: </label>
                                          		<select name="contig">
-                                         			<option value="">All</option>
+                                         			<option value="">Select</option>
                                          			[% FOREACH sequence IN sequences %]
                                          				<option value="[% sequence.id %]">[% sequence.name %]</option>
                                          			[% END %]
@@ -9154,7 +9466,7 @@ CONTENTSEARCHDATABASE
     			<span id="totalResults"></span>
     		</div>
     	</div>
-        [% INCLUDE 'website/search-database/_forms.tt' %]
+        [% INCLUDE '$lowCaseName/search-database/_forms.tt' %]
         <section class="pagination-section">
 	    	<div class="row">
 	    		<div class="col-sm-2">
@@ -9642,23 +9954,7 @@ CONTENT
 		<a href="http://www.genome.jp/dbget-bin/www_bget?[% result.orthologous_group_id %]" target='_blank'>[% result.orthologous_group_id %]</a> - [% result.orthologous_group_description %]
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-12">
-		<div class="table-responsive">
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>Pathways:</th>
-						<th>View map:</th>
-					</tr>	
-				</thead>
-				<tbody id="pathways-[% result.orthologous_group_id %]">
-					
-				</tbody>
-			</table>
-		</div>
-	</div>
-</div>
+
 CONTENT
 		,
 		"predgpiBasicResult.tt" => <<CONTENT
@@ -10268,60 +10564,8 @@ HEAD
 </header>
 HEADER
 		,
-		"_menu.tt" => <<MENU
-<!DOCTYPE html>
-<div class="navbar navbar-inverse set-radius-zero">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="[% c.uri_for('/') %]">
+		"_menu.tt" => $menu
 
-                <img src="/assets/img/logo.png" />
-            </a>
-
-        </div>
-    </div>
-</div>
-<!-- LOGO HEADER END-->
-<section class="menu-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="navbar-collapse collapse ">
-                    <ul id="menu-top" class="nav navbar-nav navbar-right">
-                        [% FOREACH text IN texts %]
-                            [% IF text.tag.search('menu') %]
-                                [% IF text.value == currentPage %]
-                                    <li><a class="menu-top-active" href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
-                                [% ELSE %]
-                                	[% IF hadSearchDatabase && text.value.match("search database") %]
-			                        	<li><a  href="[% c.uri_for('/SearchDatabase') %]">Search database</a></li>
-			                        [% ELSIF hadGlobal && text.value.match("global analyses") %]
-			                        	<li><a	href="[% c.uri_for('/GlobalAnalyses') %]">Global analyses</a></li>
-			                        [% ELSIF !text.value.match("global analyses") && !text.value.match("search database")%]
-			                        	<li><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></li>
-			                        [% END %]
-                                [% END %]
-                            [% END %]
-                        [% END %]
-                        <!--<li><a  class="menu-top-active" href="[% c.uri_for('/') %]">Home</a></li>
-                       	<li><a	href="[% c.uri_for('/Blast') %]">BLAST</a></li>
-                        <li><a	href="[% c.uri_for('/Downloads') %]">Downloads</a></li>
-                        <li><a	href="[% c.uri_for('/Help') %]">Help</a></li>
-                        <li><a	href="[% c.uri_for('/About') %]">About</a></li>-->
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-MENU
 	}
 );
 
@@ -10402,7 +10646,7 @@ ERROR
 writeFile( "$html_dir/root/$lowCaseName/errors.tt", $errorPage );
 
 print $LOG "\nEditing root file\n";
-writeFile( "$html_dir/lib/$html_dir/Controller/Root.pm", $rootContent );
+writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Root.pm", $rootContent );
 
 #inicialize server project
 #`./$nameProject/script/"$lowCaseName"_server.pl -r`;
@@ -10559,8 +10803,8 @@ Method used to verify if element exists in list reference
 sub verify_element {
 	my $element = shift;
 	my $vector  = shift;
-	my @array   = @{$vector};
-	my %params  = map { $_ => 1 } @array;
+	my @array   = grep /\S/, @{$vector};
+    my %params  = map { $_ => 1 } @array;
 
 	if ( exists( $params{$element} ) ) {
 		return 1;
