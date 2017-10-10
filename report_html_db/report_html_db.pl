@@ -80,8 +80,8 @@ homepage_banner_image=
 CONF
 
 unless (@ARGV) {
-	print $print_conf;
-	exit;
+    print $print_conf;
+    exit;
 }
 
 use strict;
@@ -215,32 +215,32 @@ $config = $module->config;
 #
 if (   !exists( $config->{"organism_name"} ) )
 {
-	$missingArgument = 1;
-	print "Missing mandatory configuration argument:organism_name\n";
+    $missingArgument = 1;
+    print "Missing mandatory configuration argument:organism_name\n";
 }
 else { $organism_name = $config->{"organism_name"} }
 if ( !exists( $config->{"fasta_file"} ) ) {
 }
 else { $fasta_file = $config->{"fasta_file"} }
 if ($missingArgument) {
-	die
-"\n\nCannot run $0, mandatory configuration argument missing (see above)\n";
+    die
+    "\n\nCannot run $0, mandatory configuration argument missing (see above)\n";
 }
 #
 #set optional arguments that were declared in configuration file
 #
 if ( defined( $config->{"std_dir"} ) ) {
-	$standard_dir = $config->{"std_dir"};
+    $standard_dir = $config->{"std_dir"};
 }
 if ( defined( $config->{"aa_fasta_dir"} ) ) {
-	$aa_fasta_dir = $config->{"aa_fasta_dir"};
+    $aa_fasta_dir = $config->{"aa_fasta_dir"};
 }
 
 if ( defined( $config->{"nt_fasta_dir"} ) ) {
-	$nt_fasta_dir = $config->{"nt_fasta_dir"};
+    $nt_fasta_dir = $config->{"nt_fasta_dir"};
 }
 if ( defined( $config->{"fasta_dir"} ) ) {
-	$fasta_dir = $config->{"fasta_dir"};
+    $fasta_dir = $config->{"fasta_dir"};
 }
 
 =pod
@@ -250,14 +250,14 @@ if (defined($config->{"blast_dir"})){
 =cut
 
 if ( defined( $config->{"aa_orf_file"} ) ) {
-	$aa_orf_file = $config->{"aa_orf_file"};
+    $aa_orf_file = $config->{"aa_orf_file"};
 }
 
 #if (defined($config->{"nt_orf_file"})){
 #   $nt_orf_file = $config->{"nt_orf_file"};
 #}
 if ( defined( $config->{"type_target_class_id"} ) ) {
-	$type_target_class_id = $config->{"type_target_class_id"};
+    $type_target_class_id = $config->{"type_target_class_id"};
 }
 #if ( defined( $config->{"pipeline"} ) ) {
 #	$pipeline = $config->{"pipeline"};
@@ -265,57 +265,57 @@ if ( defined( $config->{"type_target_class_id"} ) ) {
 
 #componentes do Jota
 if ( defined( $config->{"alienhunter_output_file"} ) ) {
-	$alienhunter_output_file = $config->{"alienhunter_output_file"};
+    $alienhunter_output_file = $config->{"alienhunter_output_file"};
 }
 if ( defined( $config->{"alienhunter_dir"} ) ) {
-	$alienhunter_dir = $config->{"alienhunter_dir"};
+    $alienhunter_dir = $config->{"alienhunter_dir"};
 }
 if ( defined( $config->{"infernal_output_file"} ) ) {
-	$infernal_output_file = $config->{"infernal_output_file"};
+    $infernal_output_file = $config->{"infernal_output_file"};
 }
 if ( defined( $config->{"infernal_dir"} ) ) {
-	$infernal_dir = $config->{"infernal_dir"};
+    $infernal_dir = $config->{"infernal_dir"};
 }
 if ( defined( $config->{"rbs_dir"} ) ) {
-	$rbs_dir = $config->{"rbs_dir"};
+    $rbs_dir = $config->{"rbs_dir"};
 }
 if ( defined( $config->{"rnammer_dir"} ) ) {
-	$rnammer_dir = $config->{"rnammer_dir"};
+    $rnammer_dir = $config->{"rnammer_dir"};
 }
 if ( defined( $config->{"transterm_dir"} ) ) {
-	$transterm_dir = $config->{"transterm_dir"};
+    $transterm_dir = $config->{"transterm_dir"};
 }
 if ( defined( $config->{"tcdb_dir"} ) ) {
-	$tcdb_dir = $config->{"tcdb_dir"};
+    $tcdb_dir = $config->{"tcdb_dir"};
 }
 if ( defined( $config->{"skews_dir"} ) ) {
-	$skews_dir = $config->{"skews_dir"};
+    $skews_dir = $config->{"skews_dir"};
 }
 if ( defined( $config->{"trf_dir"} ) ) {
-	$trf_dir = $config->{"trf_dir"};
+    $trf_dir = $config->{"trf_dir"};
 }
 
 if ( defined( $config->{"trna_dir"} ) ) {
-	$trna_dir = $config->{"trna_dir"};
+    $trna_dir = $config->{"trna_dir"};
 }
 
 if ( defined( $config->{"string_dir"} ) ) {
-	$string_dir = $config->{"string_dir"};
+    $string_dir = $config->{"string_dir"};
 }
 
 if ( defined( $config->{"mreps_dir"} ) ) {
-	$mreps_dir = $config->{"mreps_dir"};
+    $mreps_dir = $config->{"mreps_dir"};
 }
 
 if ( defined( $config->{"report_go_dir"} ) ) {
-	@report_go_dir = split( ";", $config->{"report_go_dir"} );
+    @report_go_dir = split( ";", $config->{"report_go_dir"} );
 }
 
 if ( defined( $config->{"report_eggnog_dir"} ) ) {
-	@report_eggnog_dir = split( ";", $config->{"report_eggnog_dir"} );
+    @report_eggnog_dir = split( ";", $config->{"report_eggnog_dir"} );
 }
 if ( defined( $config->{"report_pathways_dir"} ) ) {
-	@report_pathways_dir = split( ";", $config->{"report_pathways_dir"} );
+    @report_pathways_dir = split( ";", $config->{"report_pathways_dir"} );
 }
 if ( defined( $config->{"report_feature_table_submission_dir"} ) ) {
     $report_feature_table_submission = $config->{"report_feature_table_submission_dir"};
@@ -327,21 +327,21 @@ if ( defined( $config->{"report_gff_dir"} ) ) {
     $report_gff = $config->{"report_gff_dir"};
 } 
 if ( defined( $config->{"report_kegg_organism_dir"} ) ) {
-	@report_kegg_organism_dir =
-	  split( ";", $config->{"report_kegg_organism_dir"} );
+    @report_kegg_organism_dir =
+    split( ";", $config->{"report_kegg_organism_dir"} );
 }
 if ( defined( $config->{"database_code_list"} ) ) {
-	$databases_code = $config->{"database_code_list"};
+    $databases_code = $config->{"database_code_list"};
 }
 
 if ( defined( $config->{"blast_dir_list"} ) ) {
-	$databases_dir = $config->{"blast_dir_list"};
+    $databases_dir = $config->{"blast_dir_list"};
 }
 if ( defined( $config->{"homepage_text_file"} ) ) {
-	$html_file = $config->{"homepage_text_file"};
+    $html_file = $config->{"homepage_text_file"};
 }
 if ( defined( $config->{"homepage_banner_image"} ) ) {
-	$banner = $config->{"homepage_banner_image"};
+    $banner = $config->{"homepage_banner_image"};
 }
 if (defined( $config->{"homepage_title"} ) ) {
     $titlePage = $config->{"homepage_title"};
@@ -362,26 +362,26 @@ if (defined( $config->{"color_accent_text"} ) ) {
     $color_accent_text = $config->{"color_accent_text"};
 }  
 if ( defined( $config->{"TCDB_file"} ) ) {
-	$tcdb_file = $config->{"TCDB_file"};
+    $tcdb_file = $config->{"TCDB_file"};
 }
 if ( defined( $config->{"ko_file"} ) ) {
-	$ko_file = $config->{"ko_file"};
+    $ko_file = $config->{"ko_file"};
 }
 #if ( defined( $config->{"uniquename"} ) ) {
 #	$uniquename = $config->{"uniquename"};
 #}
 if ( defined( $config->{"filepath_log"} ) ) {
-	$filepath_log = $config->{"filepath_log"};
+    $filepath_log = $config->{"filepath_log"};
 }
 if ( defined( $config->{"component_name_list"} ) ) {
-	$component_name_list = $config->{"component_name_list"};
+    $component_name_list = $config->{"component_name_list"};
 }
 if ( defined( $config->{"annotation_dir"} ) ) {
-	$annotation_dir = $config->{"annotation_dir"};
+    $annotation_dir = $config->{"annotation_dir"};
 }
 
 if ( defined( $config->{"homepage_image_organism"} ) ) {
-	$homepage_image_organism = $config->{"homepage_image_organism"};
+    $homepage_image_organism = $config->{"homepage_image_organism"};
 }
 
 #
@@ -397,31 +397,31 @@ open( my $LOG, ">", $filepath_log );
 
 my $scriptSQL = <<SQL;
 CREATE TABLE TEXTS (
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-	tag VARCHAR(200),
-	value VARCHAR(2000),
-	details VARCHAR(2000)
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+    tag VARCHAR(200),
+    value VARCHAR(2000),
+    details VARCHAR(2000)
 );
 
 CREATE TABLE FILES (
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-	tag VARCHAR(200),
-	filepath VARCHAR(2000),
-	details VARCHAR(2000)
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    tag VARCHAR(200),
+    filepath VARCHAR(2000),
+    details VARCHAR(2000)
 );
 
 CREATE TABLE COMPONENTS(
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  
-	name VARCHAR(2000),
-	locus_tag VARCHAR(2000),
-	component VARCHAR(2000),
-	filepath VARCHAR(2000)
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,  
+    name VARCHAR(2000),
+    locus_tag VARCHAR(2000),
+    component VARCHAR(2000),
+    filepath VARCHAR(2000)
 );
 
 CREATE TABLE SEQUENCES(
-	id INTEGER PRIMARY KEY NOT NULL,
-	name VARCHAR(2000),
-	filepath VARCHAR(2000)
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(2000),
+    filepath VARCHAR(2000)
 );
 BEGIN TRANSACTION;
 INSERT INTO TEXTS(tag, value, details) VALUES
@@ -533,7 +533,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("blast-button", "Search", "type='submit' class='btn btn-primary' "),
         ("search-database-form-title", "Search based on sequences or annotations", ""),
         ("search-database-gene-ids-descriptions-title", "Gene IDs", ""),
-	("search-database-gene-ids-descriptions-tab", "<li class='active'><a href='#geneIdentifier' data-toggle='tab'>Gene identifier</a></li>", ""),
+    ("search-database-gene-ids-descriptions-tab", "<li class='active'><a href='#geneIdentifier' data-toggle='tab'>Gene identifier</a></li>", ""),
         ("search-database-gene-ids-descriptions-gene-id", "<label>Gene ID: </label>", ""),        
         ("search-database-analyses-protein-code-title", "Protein-coding genes", ""),
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
@@ -541,13 +541,13 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
         ("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>Orthology analysis (eggNOG)</a>", ""),
         ("search-database-analyses-protein-code-tab", "<a href='#interpro' data-toggle='tab'>Interpro</a>", "#interpro"),
-        
-        
+
+
         ("search-database-analyses-protein-code-search-by-sequence", "Search by sequence identifier of match:", ""),
         ("search-database-analyses-protein-code-search-by-description", "Or by description of match:", ""),
-        
+
         ("search-database-analyses-protein-code-not-containing-classification-rpsblast", " not containing RPS-BLAST matches", ""),
-        
+
         ("search-database-dna-based-analyses-title", "DNA-based analyses", ""),
         ("search-database-dna-based-analyses-tab", "<a href='#contigs' data-toggle='tab'>Contigs</a>", "#contigs"),
         ("search-database-dna-based-analyses-only-contig-title", "Get only contig: ", ""),
@@ -556,14 +556,14 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-reverse-complement", " reverse complement?", "");
 
 INSERT INTO TEXTS(tag, value, details) VALUES
-		("search-database-dna-based-analyses-tandem-repeats", "Get all tandem repeats that: ", ""),
+        ("search-database-dna-based-analyses-tandem-repeats", "Get all tandem repeats that: ", ""),
         ("search-database-dna-based-analyses-contain-sequence-repetition-unit", "Contain the sequence in the repetition unit:", ""),
         ("search-database-dna-based-analyses-repetition-unit-bases", "Has repetition units of bases: ", ""),
         ("search-database-dna-based-analyses-occours-between", "Occurs between ", ""),
         ("search-database-dna-based-analyses-occours-between-and", "and", ""),
         ("search-database-dna-based-analyses-occours-between-and-times", "times", ""),
         ("search-database-dna-based-analyses-tandem-repeats-note", "NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the 'Help' section for further instructions.", ""),
-        
+
         ("search-database-dna-based-analyses-footer", "Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose ""Search"" button has been pressed will be searched.", ""),
         ("global-analyses-go-terms-mapping", "GO term mapping", ""),
         ("global-analyses-go-terms-mapping-footer", "NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to ""Table of ontologies"" to visualize the results.", ""),
@@ -572,7 +572,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("global-analyses-comparative-metabolic-reconstruction", "Comparative Metabolic Reconstruction", ""),
         ("downloads-genes", "Genes", ""),
         ("downloads-other-sequences", "Other sequences", ""),
-        
+
         ("help-table-contents", "Table of contents", ""),
         ("help-table-contents-1", "1. Introduction", "help_1"),                                                                                                                                
         ("help-table-contents-2", "2. BLAST", "help_2"),                                                                                                                                       
@@ -697,13 +697,13 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("help_6-1-paragraph", "Some files still not present for download.", ""),
         ("help_6-2-paragraph", "To be added...", ""),
         ("result-warning-contigs", "Stretch not exist", "");
-        
-	INSERT INTO TEXTS(tag, value, details) VALUES
-		("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
-        ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
-        
+
     INSERT INTO TEXTS(tag, value, details) VALUES
-		("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
+        ("search-database-analyses-protein-code-not-containing-classification-eggNOG", " not containing eggNOG matches", ""),
+        ("search-database-analyses-protein-code-eggNOG", "Search by eggNOG identifier: ", "");
+
+    INSERT INTO TEXTS(tag, value, details) VALUES
+        ("search-database-analyses-protein-code-not-containing-classification-kegg", " not containing KEGG pathway matches", ""),
         ("search-database-analyses-protein-code-by-orthology-identifier-kegg", "Search by KEGG orthology identifier:", ""),
         ("search-database-analyses-protein-code-by-kegg-pathway", "Or by KEGG pathway:", ""),
         ("search-database-analyses-protein-code-not-containing-classification", " not containing Gene Ontology classification", ""),
@@ -715,93 +715,77 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='orMore'> or more", ""),
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='exact'> exactly", ""),
-	
-	("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='orLess'> or less", ""),
+
+    ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='orLess'> or less", ""),
         ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='orMore'> or more", ""),
         ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='exact'> exactly", ""),
 
-	("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='orLess'> or less", ""),
+    ("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='orLess'> or less", ""),
         ("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='orMore'> or more", ""),
         ("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='exact'> exactly", ""),
 
-	("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='orLess'> or less", ""),
+    ("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='orLess'> or less", ""),
         ("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='orMore'> or more", ""),
         ("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='exact'> exactly", ""),
 
-	("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='orLess'> or less", ""),
+    ("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='orLess'> or less", ""),
         ("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='orMore'> or more", ""),
         ("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='exact'> exactly", ""),
 
-	("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='orLess'> or less", ""),
+    ("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='orLess'> or less", ""),
         ("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='orMore'> or more", ""),
         ("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='exact'> exactly", ""),
 
-	("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='orLess'> or less", ""),
+    ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='orLess'> or less", ""),
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='orMore'> or more", ""),
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='exact'> exactly", ""),
 
-	("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orLess'> or less", ""),
+    ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orMore'> or more", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='exact'> exactly", ""),
 
-	("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='orLess'> or less", ""),
+    ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='orLess'> or less", ""),
         ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='orMore'> or more", ""),
         ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='exact'> exactly", ""),
 
-	("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='orLess'> or less", ""),
+    ("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='orLess'> or less", ""),
         ("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='orMore'> or more", ""),
         ("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='exact'> exactly", ""),
-	
-	("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='orLess'> or less", ""),
+
+    ("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='exact'> exactly", ""),
 
-	("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='orLess'> or less", ""),
+    ("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='exact'> exactly", ""),
 
-	("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='orLess'> or less", ""),
+    ("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='exact'> exactly", ""),
 
-	("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='orLess'> or less", ""),
+    ("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='exact'> exactly", ""),
 
-	("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='orLess'> or less", ""),
+    ("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='exact'> exactly", ""),
 
-	("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='orLess'> or less", ""),
+    ("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='exact'> exactly", ""),
 
-	
+
         ("search-database-analyses-protein-code-signal-peptide", "With signal peptide? ", ""),
         ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='sigP' value='sigPyes' >  yes", ""),
         ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='sigP' value='sigPno'> no", ""),
-        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='sigP' value='sigPwhatever' checked='checked'> do not care", "");
+        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='sigP' value='sigPwhatever' checked='checked'> do not care", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='signalP' value='YES' >  yes", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='signalP' value='NO'> no", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='signalP' value='whatever' checked='checked'> do not care", "");
 SQL
 
-#        ("search-database-dna-based-analyses-only-contig", "contig00028", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00044", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00045", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00046", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00053", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00060", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00076", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00078", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00086", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00089", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig00093", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_1.2", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_1.3", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_1.7", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_2.1", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_2.2", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_2.3", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_2.4", ""),
-#        ("search-database-dna-based-analyses-only-contig", "contig_2.5", ""),
 
 ###
 #
@@ -828,16 +812,16 @@ my $html_dir     = $organism_name."-Website";
 my $services_dir = $organism_name."-Services";
 print $LOG "\nCreating $html_dir\n";
 !system("mkdir -p $html_dir")
-  or die "Could not created directory $html_dir\n";
+    or die "Could not created directory $html_dir\n";
 print $LOG "\nCreating $fasta_dir\n";
 !system("mkdir -p $html_dir/root/$fasta_dir")
-  or die "Could not created directory $html_dir/root/$fasta_dir\n";
+    or die "Could not created directory $html_dir/root/$fasta_dir\n";
 
 #print $LOG "Separating ORFs em AA of multifasta AA";
 ##separa ORFs em aa do multifasta aa
 print $LOG "\nCreating $aa_fasta_dir\n";
 !system("mkdir -p $html_dir/root/$aa_fasta_dir")
-  or die "Could not created directory $html_dir/root/$aa_fasta_dir\n";
+    or die "Could not created directory $html_dir/root/$aa_fasta_dir\n";
 #
 #if ( $aa_orf_file ne "" ) {
 #	open( FILE_AA, "$aa_orf_file" ) or print $LOG "Could not open file $aa_orf_file\n";
@@ -847,7 +831,7 @@ print $LOG "\nCreating $aa_fasta_dir\n";
 ##separa ORFs nt do multifasta nt
 print $LOG "\nCreating $nt_fasta_dir\n";
 !system("mkdir -p $html_dir/root/$nt_fasta_dir")
-  or print $LOG "Could not created directory $html_dir/root/$nt_fasta_dir\n";
+    or print $LOG "Could not created directory $html_dir/root/$nt_fasta_dir\n";
 
 #if($nt_orf_file ne "")
 #{
@@ -864,32 +848,32 @@ my @components_name = split( ';', $component_name_list );
 my @comp_dna = ();
 my @comp_ev  = ();
 foreach my $c ( sort @components_name ) {
-	if (   $c eq "annotation_alienhunter.pl"
-		|| $c eq "annotation_skews.pl"
-		|| $c eq "annotation_infernal.pl"
-		|| $c eq "annotation_rbsfinder.pl"
-		|| $c eq "annotation_rnammer.pl"
-		|| $c eq "annotation_transterm.pl"
-		|| $c eq "annotation_trf.pl"
-		|| $c eq "annotation_trna.pl"
-		|| $c eq "annotation_string.pl"
-		|| $c eq "annotation_mreps.pl"
-		|| $c eq "annotation_glimmer3.pl"
-		|| $c eq "upload_gtf.pl"
+    if (   $c eq "annotation_alienhunter.pl"
+        || $c eq "annotation_skews.pl"
+        || $c eq "annotation_infernal.pl"
+        || $c eq "annotation_rbsfinder.pl"
+        || $c eq "annotation_rnammer.pl"
+        || $c eq "annotation_transterm.pl"
+        || $c eq "annotation_trf.pl"
+        || $c eq "annotation_trna.pl"
+        || $c eq "annotation_string.pl"
+        || $c eq "annotation_mreps.pl"
+        || $c eq "annotation_glimmer3.pl"
+        || $c eq "upload_gtf.pl"
         || $c eq "upload_prediction.pl"
-		|| $c eq "annotation_trna.pl"
-		|| $c eq "annotation_alienhunter.pl" )
-	{
-		#$c =~ s/\.pl//;
-		$c =~ /\.pl/g;
-		my $name = $`;
-		push @comp_dna, $name;
-	}
-	else {
-		#$c =~ s/\.pl//;
-		$c =~ /\.pl/g;
-		push @comp_ev, $`;
-	}
+        || $c eq "annotation_trna.pl"
+        || $c eq "annotation_alienhunter.pl" )
+    {
+        #$c =~ s/\.pl//;
+        $c =~ /\.pl/g;
+        my $name = $`;
+        push @comp_dna, $name;
+    }
+    else {
+        #$c =~ s/\.pl//;
+        $c =~ /\.pl/g;
+        push @comp_ev, $`;
+    }
 }
 #
 # Read ALL Sequence Objects and sort by name for nice display
@@ -917,49 +901,49 @@ my $dbPassword          = "";
 my $locus               = 0;
 
 if ( scalar @report_go_dir > 0 ) {
-	foreach my $path (@report_go_dir) {
-		if($path =~ /([\.\/\w]+)\//) {
-			my $directory = $1;
-			$components{"report_go"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);	
+    foreach my $path (@report_go_dir) {
+        if($path =~ /([\.\/\w]+)\//) {
+            my $directory = $1;
+            $components{"report_go"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);	
 
-		}
-		$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('go', 'report_go', '$components{report_go}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-expansible-tree', 'Table of ontologies', '/reports/".$components{report_go}."/go_mapping.html');\n";
-		$components{report_go} = $path;
-	}
+        }
+        $scriptSQL .=
+        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('go', 'report_go', '$components{report_go}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-expansible-tree', 'Table of ontologies', '/reports/".$components{report_go}."/go_mapping.html');\n";
+        $components{report_go} = $path;
+    }
 }
 if ( scalar @report_eggnog_dir > 0 ) {
-	foreach my $path (@report_eggnog_dir) {
-		if($path =~ /([\.\/\w]+)\//) {
-                        my $directory = $1;
-                        $components{"report_eggnog"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
-                }
-		$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('eggnog', 'report_eggnog', '$components{report_eggnog}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-orthology-analysis-classes', 'Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups', '/reports/".$components{report_eggnog}."/classes.html');\n";
-		$components{report_eggnog} = $path;
-	}
+    foreach my $path (@report_eggnog_dir) {
+        if($path =~ /([\.\/\w]+)\//) {
+            my $directory = $1;
+            $components{"report_eggnog"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+        }
+        $scriptSQL .=
+        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('eggnog', 'report_eggnog', '$components{report_eggnog}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-orthology-analysis-classes', 'Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups', '/reports/".$components{report_eggnog}."/classes.html');\n";
+        $components{report_eggnog} = $path;
+    }
 }
 if ( scalar @report_pathways_dir > 0 ) {
-	foreach my $path (@report_pathways_dir) {
-		if($path =~ /([\.\/\w]+)\//) {
-                        my $directory = $1;
-                        $components{"report_pathways"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
-                }
-		$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'report_pathways', '$components{report_pathways}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-report', 'Enzyme by enzyme report of KEGG results', '/reports/".$components{"report_pathways"}."/classes.html'); \n";
-		$components{report_pathways} = $path;
-	}
+    foreach my $path (@report_pathways_dir) {
+        if($path =~ /([\.\/\w]+)\//) {
+            my $directory = $1;
+            $components{"report_pathways"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+        }
+        $scriptSQL .=
+        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'report_pathways', '$components{report_pathways}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-report', 'Enzyme by enzyme report of KEGG results', '/reports/".$components{"report_pathways"}."/classes.html'); \n";
+        $components{report_pathways} = $path;
+    }
 }
 if ( scalar @report_kegg_organism_dir > 0 ) {
-	foreach my $path (@report_kegg_organism_dir) {
+    foreach my $path (@report_kegg_organism_dir) {
         if($path =~ /([\.\/\w]+)\//) {
             my $directory = $1;
             $components{"report_kegg_organism"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
         } 
         $scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('kegg_organism', 'report_kegg_organism', '$components{report_kegg_organism}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-organism-report', 'Map by map report of KEGG results', '/reports/".$components{report_kegg_organism}."/html_page/classes.html');\n";
+        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('kegg_organism', 'report_kegg_organism', '$components{report_kegg_organism}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-organism-report', 'Map by map report of KEGG results', '/reports/".$components{report_kegg_organism}."/html_page/classes.html');\n";
         $components{"report_kegg_organism"} = $path;
-	}
+    }
 }
 
 
@@ -984,6 +968,7 @@ my $annotation_bigpi = 0;
 my $annotation_tcdb = 0;
 my $annotation_infernal = 0;
 my $annotation_trf = 0;
+my $annotation_signalP = 0;
 
 my $allGenesSequences = 0;
 my $proteinCodingSequences = 0;
@@ -998,652 +983,483 @@ open(my $SEQUENCES_NT, ">", "$html_dir/root/Sequences_NT.fasta");
 open(my $SEQUENCES_AA, ">", "$html_dir/root/Sequences_AA.fasta");
 
 $scriptSQL .= <<SQL;
-			INSERT INTO FILES(tag, filepath) VALUES ("ag", "all_genes.fasta"), 
-			("trg", "trna_seqs.fasta"), ("rrg", "rrna_seqs.fasta"), ("oncg", "rna_seqs.fasta"), ("pro", "Sequences_NT.fasta"), 
-			("ac", "Sequences.fasta"), ("tt", "transterm_seqs.fasta");
+            INSERT INTO FILES(tag, filepath) VALUES ("ag", "all_genes.fasta"), 
+            ("trg", "trna_seqs.fasta"), ("rrg", "rrna_seqs.fasta"), ("oncg", "rna_seqs.fasta"), ("pro", "Sequences_NT.fasta"), 
+            ("ac", "Sequences.fasta"), ("tt", "transterm_seqs.fasta");
 SQL
 
 while ( $sequence_object->read() ) {
-	$sequence_object->print();
-	print $LOG "\nSequence:\t" . $sequence_object->{sequence_id} . "\nName:\t".$sequence_object->sequence_name()."\n"; 
-	++$seq_count;
-	$header = $sequence_object->fasta_header();
-	my @conclusions = @{ $sequence_object->get_conclusions() };
-	my $n           = scalar(@conclusions);
+    $sequence_object->print();
+    print $LOG "\nSequence:\t" . $sequence_object->{sequence_id} . "\nName:\t".$sequence_object->sequence_name()."\n"; 
+    ++$seq_count;
+    $header = $sequence_object->fasta_header();
+    my @conclusions = @{ $sequence_object->get_conclusions() };
+    my $n           = scalar(@conclusions);
 
-	#	print STDERR "N de conc: $n\n";
-	my $bases = $sequence_object->current_sequence();
-	#print $LOG "\nCurrent Sequence:\t$bases\n";
-	my $name  = $sequence_object->sequence_name();
-	$dbName     = $sequence_object->{dbname};
-	$dbHost     = $sequence_object->{host};
-	$dbUser     = $sequence_object->{user};
-	$dbPassword = $sequence_object->{password};
-	print $LOG "\nDatabase name:\t$dbName\nHost:\t$dbHost\nUser:\t$dbUser\n";
+    #	print STDERR "N de conc: $n\n";
+    my $bases = $sequence_object->current_sequence();
+    #print $LOG "\nCurrent Sequence:\t$bases\n";
+    my $name  = $sequence_object->sequence_name();
+    $dbName     = $sequence_object->{dbname};
+    $dbHost     = $sequence_object->{host};
+    $dbUser     = $sequence_object->{user};
+    $dbPassword = $sequence_object->{password};
+    print $LOG "\nDatabase name:\t$dbName\nHost:\t$dbHost\nUser:\t$dbUser\n";
 
 #aqui começaria a geração da pagina relacionada a cada anotação
 #pulando isso, passamos para geração dos arquivos, volta a duvida sobre a necessidade desses arquivos
-	my $file_aa = $name . "_CDS_AA.fasta";
-	my $file_nt = $name . "_CDS_NT.fasta";
-	open( FILE_AA, ">$html_dir/root/$aa_fasta_dir/$file_aa" );
-	open( FILE_NT, ">$html_dir/root/$nt_fasta_dir/$file_nt" );
+    my $file_aa = $name . "_CDS_AA.fasta";
+    my $file_nt = $name . "_CDS_NT.fasta";
+    open( FILE_AA, ">$html_dir/root/$aa_fasta_dir/$file_aa" );
+    open( FILE_NT, ">$html_dir/root/$nt_fasta_dir/$file_nt" );
 
-	#	print $LOG "\n$name\n$bases\n\n";
-	$scriptSQL .=
-	    "\nINSERT INTO SEQUENCES(id, name, filepath) VALUES ("
-	  . $sequence_object->{sequence_id} . ", '"
-	  . $name . "', '"
-	  . $fasta_dir . "/"
-	  . $name
-	  . ".fasta');\n";
+    #	print $LOG "\n$name\n$bases\n\n";
+    $scriptSQL .=
+    "\nINSERT INTO SEQUENCES(id, name, filepath) VALUES ("
+    . $sequence_object->{sequence_id} . ", '"
+    . $name . "', '"
+    . $fasta_dir . "/"
+    . $name
+    . ".fasta');\n";
 
 #    my $ann_file = "annotations/".$name;
 # no script original(report_html.pl) começa a criação da pagina principal onde são listadas as sequencias
 # pulando essa parte, começamos a escrita do arquivo fasta, entra em duvida a necessidade desse arquivo
-	open( FASTAOUT, ">$html_dir/root/$fasta_dir/$name.fasta" )
-	  or warn
-	  "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
-	my $length = length($bases);
-	print $SEQUENCES ">$name\n";
-	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
-		my $sequence = substr( $bases, $i, 60 );
-		print $SEQUENCES "$sequence\n";
-	}
-	print FASTAOUT ">$name\n";
-	for ( my $i = 0 ; $i < $length ; $i += 60 ) {
-		my $sequence = substr( $bases, $i, 60 );
-		print FASTAOUT "$sequence\n";
-	}
-	close(FASTAOUT);
+    open( FASTAOUT, ">$html_dir/root/$fasta_dir/$name.fasta" )
+        or warn
+    "could not create fasta file $html_dir/root/$fasta_dir/$name.fasta\n";
+    my $length = length($bases);
+    print $SEQUENCES ">$name\n";
+    for ( my $i = 0 ; $i < $length ; $i += 60 ) {
+        my $sequence = substr( $bases, $i, 60 );
+        print $SEQUENCES "$sequence\n";
+    }
+    print FASTAOUT ">$name\n";
+    for ( my $i = 0 ; $i < $length ; $i += 60 ) {
+        my $sequence = substr( $bases, $i, 60 );
+        print FASTAOUT "$sequence\n";
+    }
+    close(FASTAOUT);
 
 #	my @logs = @{ $sequence_object->get_logs_hash() };
 
-	foreach my $conclusion (@conclusions) {
-		$sequence_object->get_evidence_for_conclusion();
-		my %hash      = %{ $sequence_object->{array_evidence} };
-		my @evidences = @{ $conclusion->{evidence_number} };
+    foreach my $conclusion (@conclusions) {
+        $sequence_object->get_evidence_for_conclusion();
+        my %hash      = %{ $sequence_object->{array_evidence} };
+        my @evidences = @{ $conclusion->{evidence_number} };
 
-		###
-		#
-		# Receber lista de componentes rodados
-		#
-		###
+        ###
+        #
+        # Receber lista de componentes rodados
+        #
+        ###
 
-		foreach my $ev (@evidences) {
-			my $evidence      = $hash{$ev};
-			my $ev_name = $sequence_object->fasta_header_evidence($evidence);
-			$ev_name =~ s/>//;
-			my $fasta_header_evidence =
-			  $sequence_object->fasta_header_evidence($evidence);
+        foreach my $ev (@evidences) {
+            my $evidence      = $hash{$ev};
+            my $ev_name = $sequence_object->fasta_header_evidence($evidence);
+            $ev_name =~ s/>//;
+            my $fasta_header_evidence =
+            $sequence_object->fasta_header_evidence($evidence);
 
-			$fasta_header_evidence =~ s/>//g;
-			$fasta_header_evidence =~ s/>//g;
-			$fasta_header_evidence =~ s/\|/_/g;
-			$fasta_header_evidence =~ s/__/_/g;
+            $fasta_header_evidence =~ s/>//g;
+            $fasta_header_evidence =~ s/>//g;
+            $fasta_header_evidence =~ s/\|/_/g;
+            $fasta_header_evidence =~ s/__/_/g;
 
-			$fasta_header_evidence =~ s/>//g;
+            $fasta_header_evidence =~ s/>//g;
 
-			my $component = $sequence_object->fasta_header_program($evidence);
-			my $component_name =
-			  !$evidence->{log}{name}
-			  ? ( $component =~ /(annotation[_\w]+)/g )[0]
-			  : $evidence->{log}{name};
-			$component_name = $` if $component_name =~ /\.pl/g;
-			my $locus_tag;
+            my $component = $sequence_object->fasta_header_program($evidence);
+            my $component_name =
+            !$evidence->{log}{name}
+            ? ( $component =~ /(annotation[_\w]+)/g )[0]
+            : $evidence->{log}{name};
+            $component_name = $` if $component_name =~ /\.pl/g;
+            my $locus_tag;
 
-			if ( $conclusion->{locus_tag} ) {
-				$locus_tag = $conclusion->{locus_tag};
-			}
-			else {
-				$locus++;
-				$locus_tag = "NOLOCUSTAG_$locus";
-			}
-			
-			#				print STDERR "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
-		   #				print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
-		   
-		   my $number = $evidence->{number};
-			my $start;
-			my $end;
+            if ( $conclusion->{locus_tag} ) {
+                $locus_tag = $conclusion->{locus_tag};
+            }
+            else {
+                $locus++;
+                $locus_tag = "NOLOCUSTAG_$locus";
+            }
 
-			if ( $evidence->{start} < $evidence->{end} ) {
-				$start = $evidence->{start};
-				$end   = $evidence->{end};
-			}
-			else {
-				$start = $evidence->{end};
-				$end   = $evidence->{start};
-			}
-			my $len_nt = ( $end - $start ) + 1;
-			my $sequence_nt;
-			my $nt_seq = substr( $bases, $start - 1, $len_nt );
-			$len_nt = length($nt_seq);
-			my $file_ev = $locus_tag . ".fasta";
-			
-			open(ALL_GENES, ">>", "$html_dir/root/all_genes.fasta");
-			
-			if ( $evidence->{tag} eq "CDS" ) {
-				open( AA, ">$html_dir/root/$aa_fasta_dir/$file_ev" );
-				print FILE_NT ">$locus_tag\n";
-				print $SEQUENCES_NT ">$locus_tag\n";
-				print ALL_GENES ">$locus_tag\n";
-	
-				my @intervals = @{ $evidence->{intervals} };
-				print $LOG "\nIntervals:	" . @intervals . "\n";
-				my $strand = $intervals[0]->{strand};
-				print $LOG "\nstrand:	" . $strand . "\n";
-				if ( ( $strand eq '-' ) or ( ( $strand eq '-1' ) ) ) {
-	
-					#					print $LOG "Sequencia antes:\t".$nt_seq."\n";
-					$nt_seq = formatSequence( reverseComplement($nt_seq) );
-	
-			#					print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
-			#					print $LOG "\nSequencia depois:\t".$nt_seq."\n";
-				}
-				print AA ">$locus_tag-nucleotide_sequence\n"; 
-				$nt_seq =~ s/\n//g;
-	
-				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
-					$sequence_nt = substr( $nt_seq, $i, 60 );
-					print FILE_NT "$sequence_nt\n";
-					print AA "$sequence_nt\n";
-					print $SEQUENCES_NT "$sequence_nt\n";
-					print ALL_GENES "$sequence_nt\n";
+            #				print STDERR "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
+            #				print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
+
+            my $number = $evidence->{number};
+            my $start;
+            my $end;
+
+            if ( $evidence->{start} < $evidence->{end} ) {
+                $start = $evidence->{start};
+                $end   = $evidence->{end};
+            }
+            else {
+                $start = $evidence->{end};
+                $end   = $evidence->{start};
+            }
+            my $len_nt = ( $end - $start ) + 1;
+            my $sequence_nt;
+            my $nt_seq = substr( $bases, $start - 1, $len_nt );
+            $len_nt = length($nt_seq);
+            my $file_ev = $locus_tag . ".fasta";
+
+            open(ALL_GENES, ">>", "$html_dir/root/all_genes.fasta");
+
+            if ( $evidence->{tag} eq "CDS" ) {
+                open( AA, ">$html_dir/root/$aa_fasta_dir/$file_ev" );
+                print FILE_NT ">$locus_tag\n";
+                print $SEQUENCES_NT ">$locus_tag\n";
+                print ALL_GENES ">$locus_tag\n";
+
+                my @intervals = @{ $evidence->{intervals} };
+                print $LOG "\nIntervals:	" . @intervals . "\n";
+                my $strand = $intervals[0]->{strand};
+                print $LOG "\nstrand:	" . $strand . "\n";
+                if ( ( $strand eq '-' ) or ( ( $strand eq '-1' ) ) ) {
+
+                    #					print $LOG "Sequencia antes:\t".$nt_seq."\n";
+                    $nt_seq = formatSequence( reverseComplement($nt_seq) );
+
+                    #					print $LOG "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
+                    #					print $LOG "\nSequencia depois:\t".$nt_seq."\n";
+                }
+                print AA ">$locus_tag-nucleotide_sequence\n"; 
+                $nt_seq =~ s/\n//g;
+
+                for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+                    $sequence_nt = substr( $nt_seq, $i, 60 );
+                    print FILE_NT "$sequence_nt\n";
+                    print AA "$sequence_nt\n";
+                    print $SEQUENCES_NT "$sequence_nt\n";
+                    print ALL_GENES "$sequence_nt\n";
                     $allGenesSequences = 1;
                     $proteinCodingSequences = 1;
                     $allContigs = 1;
-				}
-				my $seq_aa = $evidence->{protein_sequence};
-				my $sequence_aa;
-				my $len_aa = length($seq_aa);
-				print FILE_AA ">$locus_tag\n";
-				print AA ">$locus_tag-translated_sequence\n";
-				print $SEQUENCES_AA ">$locus_tag\n";
-				for ( my $i = 0 ; $i < $len_aa ; $i += 60 ) {
-					$sequence_aa = substr( $seq_aa, $i, 60 );
-					print FILE_AA "$sequence_aa\n";
-					print AA "$sequence_aa\n";
-					print $SEQUENCES_AA "$sequence_aa\n";
-				}
-			}
-			elsif ($evidence->{tag} eq "tRNAscan") {
-				open( tRNA_FILE, ">>", "$html_dir/root/trna_seqs.fasta" );
-				print tRNA_FILE ">$locus_tag\n";
-				print ALL_GENES ">$locus_tag\n";				
-				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
-					my $sequence = substr( $nt_seq, $i, 60 );
-					print tRNA_FILE "$sequence\n";
-					print ALL_GENES "$sequence\n";
-				}
-				close(tRNA_FILE);
+                }
+                my $seq_aa = $evidence->{protein_sequence};
+                my $sequence_aa;
+                my $len_aa = length($seq_aa);
+                print FILE_AA ">$locus_tag\n";
+                print AA ">$locus_tag-translated_sequence\n";
+                print $SEQUENCES_AA ">$locus_tag\n";
+                for ( my $i = 0 ; $i < $len_aa ; $i += 60 ) {
+                    $sequence_aa = substr( $seq_aa, $i, 60 );
+                    print FILE_AA "$sequence_aa\n";
+                    print AA "$sequence_aa\n";
+                    print $SEQUENCES_AA "$sequence_aa\n";
+                }
+            }
+            elsif ($evidence->{tag} eq "tRNAscan") {
+                open( tRNA_FILE, ">>", "$html_dir/root/trna_seqs.fasta" );
+                print tRNA_FILE ">$locus_tag\n";
+                print ALL_GENES ">$locus_tag\n";				
+                for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+                    my $sequence = substr( $nt_seq, $i, 60 );
+                    print tRNA_FILE "$sequence\n";
+                    print ALL_GENES "$sequence\n";
+                }
+                close(tRNA_FILE);
                 $allGenesSequences = 1;
                 $tRNASequences = 1;
-			}
-			elsif ($evidence->{tag} eq "RNA_scan"){
-				open( rna_FILE, ">>", "$html_dir/root/rna_seqs.fasta" );
-				print rna_FILE ">$locus_tag\n";
-				print ALL_GENES ">$locus_tag\n";				
-				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
-					my $sequence = substr( $nt_seq, $i, 60 );
-					print rna_FILE "$sequence\n";
-					print ALL_GENES "$sequence\n";
-				}
-				close(rna_FILE);
+            }
+            elsif ($evidence->{tag} eq "RNA_scan"){
+                open( rna_FILE, ">>", "$html_dir/root/rna_seqs.fasta" );
+                print rna_FILE ">$locus_tag\n";
+                print ALL_GENES ">$locus_tag\n";				
+                for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+                    my $sequence = substr( $nt_seq, $i, 60 );
+                    print rna_FILE "$sequence\n";
+                    print ALL_GENES "$sequence\n";
+                }
+                close(rna_FILE);
                 $allGenesSequences = 1;
                 $nonCodingSequences = 1;
-			}
-			elsif ($evidence->{tag} eq "rRNA_prediction"){
-				open( rRNA_FILE, ">>", "$html_dir/root/rrna_seqs.fasta" );
-				print rRNA_FILE ">$locus_tag\n";				
-				print ALL_GENES ">$locus_tag\n";
-				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
-					my $sequence = substr( $nt_seq, $i, 60 );
-					print rRNA_FILE "$sequence\n";
-					print ALL_GENES "$sequence\n";
-				}
-				close(rRNA_FILE);
+            }
+            elsif ($evidence->{tag} eq "rRNA_prediction"){
+                open( rRNA_FILE, ">>", "$html_dir/root/rrna_seqs.fasta" );
+                print rRNA_FILE ">$locus_tag\n";				
+                print ALL_GENES ">$locus_tag\n";
+                for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+                    my $sequence = substr( $nt_seq, $i, 60 );
+                    print rRNA_FILE "$sequence\n";
+                    print ALL_GENES "$sequence\n";
+                }
+                close(rRNA_FILE);
                 $allGenesSequences = 1;
                 $rRNASequences = 1;
-			} else {
-				print $LOG "\n[1082] TAG:\t".$evidence->{tag}."\n";
-				open( UNKNOWN_FILE, ">>", "$html_dir/root/".$evidence->{tag}."_seqs.fasta" );
-				print UNKNOWN_FILE ">$locus_tag\n";				
-				print ALL_GENES ">$locus_tag\n";
-				for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
-					my $sequence = substr( $nt_seq, $i, 60 );
-					print UNKNOWN_FILE "$sequence\n";
-					print ALL_GENES "$sequence\n";
-				}
-				close(UNKNOWN_FILE);
+            } else {
+                print $LOG "\n[1082] TAG:\t".$evidence->{tag}."\n";
+                open( UNKNOWN_FILE, ">>", "$html_dir/root/".$evidence->{tag}."_seqs.fasta" );
+                print UNKNOWN_FILE ">$locus_tag\n";				
+                print ALL_GENES ">$locus_tag\n";
+                for ( my $i = 0 ; $i < $len_nt ; $i += 60 ) {
+                    my $sequence = substr( $nt_seq, $i, 60 );
+                    print UNKNOWN_FILE "$sequence\n";
+                    print ALL_GENES "$sequence\n";
+                }
+                close(UNKNOWN_FILE);
                 $allGenesSequences = 1;
                 $ttSequences = 1 if($evidence->{tag} eq "transterm");
-			}
-			close(ALL_GENES);
-			
-			if ( $component && $component_name ) {
-				my $resp = verify_element( $component_name, \@comp_dna );
-				$locus_tag = $evidence->{evidence_id};
+            }
+            close(ALL_GENES);
+
+            if ( $component && $component_name ) {
+                my $resp = verify_element( $component_name, \@comp_dna );
+                $locus_tag = $evidence->{evidence_id};
 #				print $LOG "\n[961]\t-\t$locus_tag\n";
-				print $LOG "\n[962] $component_name -  resp = $resp\n";
-				if ($resp) {
-					
-					if ( $component_name eq "annotation_trf" ) {
-						my $file = $name . "_trf.txt";
-						$components{$component} = "$annotation_dir/$component/$file";
-						$annotation_trf = 1;
-					}
-					elsif ( $component_name eq "annotation_trna" ) {
-						my $file = $name . "_trna.txt";
-						$components{$component} = "$annotation_dir/$component/$file";
-						$annotation_trna = 1;
-					}
-					elsif ( $component_name eq "annotation_alienhunter" ) {
-						my $file = $alienhunter_output_file . "_" . $name;
-						$components{$component} = "$annotation_dir/" . $component . "/" . $file;
-						$annotation_alienhunter = 1;
-					}
-					elsif ( $component_name eq "annotation_infernal" ) {
-						my $file = $infernal_output_file . "_" . $name;
-						$components{$component} = "$annotation_dir/$component/$file";
-						$annotation_infernal = 1;
-					}
-					elsif ( $component_name eq "annotation_skews" ) {
-						my $filestring = `ls $skews_dir`;
-						my @phdfilenames = split( /\n/, $filestring );
-						my $aux      = "";
-						foreach my $file (@phdfilenames) {
-							if (    $file =~ m/$name/
-								and $file =~ m/.png/ )
-							{
-								$aux .= "$annotation_dir/$component/$file\n";
-							}
-						}
-						$components{$component} = $aux;
-					}
-					elsif ( $component_name eq "annotation_rbsfinder" ) {
-						my $file = $name . ".txt";
-						$components{$component} = "$annotation_dir/$component/$file";
-						$annotation_rbs = 1;
-					}
-					elsif ( $component_name eq "annotation_rnammer" ) {
-						my $file = $name . "_rnammer.gff";
-						$components{$component} = "$annotation_dir/$component/$file";
-						$annotation_rnammer = 1;
-					}
-					elsif ( $component_name eq "annotation_glimmer3" ) {
-						$components{$component} =
-						  "$annotation_dir/$component/glimmer3.txt";
-					}
-					elsif ( $component_name eq "upload_gtf" ) {
-						$components{$component} =
-						  "$annotation_dir/$component/upload_gtf.txt";
-					}
+                print $LOG "\n[962] $component_name -  resp = $resp\n";
+                if ($resp) {
+
+                    if ( $component_name eq "annotation_trf" ) {
+                        my $file = $name . "_trf.txt";
+                        $components{$component} = "$annotation_dir/$component/$file";
+                        $annotation_trf = 1;
+                    }
+                    elsif ( $component_name eq "annotation_trna" ) {
+                        my $file = $name . "_trna.txt";
+                        $components{$component} = "$annotation_dir/$component/$file";
+                        $annotation_trna = 1;
+                    }
+                    elsif ( $component_name eq "annotation_alienhunter" ) {
+                        my $file = $alienhunter_output_file . "_" . $name;
+                        $components{$component} = "$annotation_dir/" . $component . "/" . $file;
+                        $annotation_alienhunter = 1;
+                    }
+                    elsif ( $component_name eq "annotation_infernal" ) {
+                        my $file = $infernal_output_file . "_" . $name;
+                        $components{$component} = "$annotation_dir/$component/$file";
+                        $annotation_infernal = 1;
+                    }
+                    elsif ( $component_name eq "annotation_skews" ) {
+                        my $filestring = `ls $skews_dir`;
+                        my @phdfilenames = split( /\n/, $filestring );
+                        my $aux      = "";
+                        foreach my $file (@phdfilenames) {
+                            if (    $file =~ m/$name/
+                                    and $file =~ m/.png/ )
+                            {
+                                $aux .= "$annotation_dir/$component/$file\n";
+                            }
+                        }
+                        $components{$component} = $aux;
+                    }
+                    elsif ( $component_name eq "annotation_rbsfinder" ) {
+                        my $file = $name . ".txt";
+                        $components{$component} = "$annotation_dir/$component/$file";
+                        $annotation_rbs = 1;
+                    }
+                    elsif ( $component_name eq "annotation_rnammer" ) {
+                        my $file = $name . "_rnammer.gff";
+                        $components{$component} = "$annotation_dir/$component/$file";
+                        $annotation_rnammer = 1;
+                    }
+                    elsif ( $component_name eq "annotation_glimmer3" ) {
+                        $components{$component} =
+                        "$annotation_dir/$component/glimmer3.txt";
+                    }
+                    elsif ( $component_name eq "upload_gtf" ) {
+                        $components{$component} =
+                        "$annotation_dir/$component/upload_gtf.txt";
+                    }
                     elsif ( $component_name eq "upload_prediction" ) {
-						$components{$component} =
-						  "$annotation_dir/$component/upload_prediction.txt";
-					}
-					elsif ( $component_name eq "annotation_transterm" ) {
-						my $file = $name . ".txt";
-						$components{$component} = "$annotation_dir/$component/$file";
-						$annotation_transterm = 1;
-					}
-					elsif ( $component_name eq "annotation_mreps" ) {
-						my $file = "$annotation_dir/" . $component . "/" . $name . "_mreps.txt";
-						$components{$component} = "$file";
-					}
-					elsif ( $component_name eq "annotation_string" ) {
-						my $file =
-						  $string_dir . "/" . $name . "_string.txt";
-						$components{$component} = "$annotation_dir/$component/$file";
-					}
-					
+                        $components{$component} =
+                        "$annotation_dir/$component/upload_prediction.txt";
+                    }
+                    elsif ( $component_name eq "annotation_transterm" ) {
+                        my $file = $name . ".txt";
+                        $components{$component} = "$annotation_dir/$component/$file";
+                        $annotation_transterm = 1;
+                    }
+                    elsif ( $component_name eq "annotation_mreps" ) {
+                        my $file = "$annotation_dir/" . $component . "/" . $name . "_mreps.txt";
+                        $components{$component} = "$file";
+                    }
+                    elsif ( $component_name eq "annotation_string" ) {
+                        my $file =
+                        $string_dir . "/" . $name . "_string.txt";
+                        $components{$component} = "$annotation_dir/$component/$file";
+                    }
+
 #					if ( $component_name =~ /annotation_/g ) {
 #						$component_name =~ s/annotation_//g;
 #					}
 #					els
-					if ( $component_name =~ /report_/g ) {
-						$component_name =~ s/report_//g;
-					}
+                    if ( $component_name =~ /report_/g ) {
+                        $component_name =~ s/report_//g;
+                    }
 
-					push @filepathsComponents, $components{$component};
+                    push @filepathsComponents, $components{$component};
 
 #					print STDERR "\n[1119] Name:\t$component_name\nComponent:\t$component\nfilepath:\t$components{$component}\n\n";
-					$scriptSQL .=
-"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$components{$component}');\n";
-				}
+                    $scriptSQL .=
+                    "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$components{$component}');\n";
+                }
 
-			}
-			
-			$fasta_header_evidence =~ s/>//g;
-			$fasta_header_evidence =~ s/>//g;
-			$fasta_header_evidence =~ s/\|/_/g;
-			$fasta_header_evidence =~ s/__/_/g;
-			print $LOG "\n[1186]\tFastaHeaderEvidence\t-\t$fasta_header_evidence\n";
-			my $html_file = $fasta_header_evidence . ".html";
-			my $txt_file  = $fasta_header_evidence . ".txt";
-			my $png_file  = $fasta_header_evidence . ".png";
-			$component_name = $evidence->{log}{name};
-			$fasta_header_evidence =~ s/>//g;
+            }
 
-			if ( $evidence->{tag} eq "CDS" ) {
+            $fasta_header_evidence =~ s/>//g;
+            $fasta_header_evidence =~ s/>//g;
+            $fasta_header_evidence =~ s/\|/_/g;
+            $fasta_header_evidence =~ s/__/_/g;
+            print $LOG "\n[1186]\tFastaHeaderEvidence\t-\t$fasta_header_evidence\n";
+            my $html_file = $fasta_header_evidence . ".html";
+            my $txt_file  = $fasta_header_evidence . ".txt";
+            my $png_file  = $fasta_header_evidence . ".png";
+            $component_name = $evidence->{log}{name};
+            $fasta_header_evidence =~ s/>//g;
 
-				#				foreach my $subevidence ( @{ $evidence->{evidences} } ) {
-				#					push @subevidences, $subevidence;
-				#				}
+            if ( $evidence->{tag} eq "CDS" ) {
 
-				
+                #				foreach my $subevidence ( @{ $evidence->{evidences} } ) {
+                #					push @subevidences, $subevidence;
+                #				}
 
-				print $LOG "\nLocus tag: " . $locus_tag . "\n";
 
-				#####
-#
-#
-#	Sequência da evidência: verificar o campo strand (tag intervals) e calcular o reverso complementar da sequência caso a fita seja negativa (verificar se a strand é ‘-1’ ou ‘-’)
-#
-#
-				#####
 
-				
-#				@logs = ();
-#				foreach my $log (@logs) {
-#					my %hash_log = %{$log};
-#					my $log_name = $hash_log{program};
-#
-#					#					$log_name =~ s/annotation_//g;
-#					$log_name =~ s/.pl//g;
-#					my $resp = verify_element( $log_name, \@comp_ev );
-#					if ($resp) {
-#						my $dir =
-#						  $hash_log{program} . "_log_" . $hash_log{log_number};
-#						if ( $log_name eq "blast" ) {
-#	
-#						}
-#						elsif ( $component_name eq "annotation_interpro" ) {
-#							$components{$component} = "$dir/HTML/$html_file";
-#						}
-#						elsif ( $log_name eq "annotation_orthology" ) {
-#							my $code;
-#							
-#							while ( $hash_log{arguments} =~
-#								/database_code\s*=\s*(\w+)+\s*/ig )
-#							{
-#								$code = $1;
-#							}
-#							my $aux_html = $html_file;
-#							$code = "." . $code . ".html";
-#							$aux_html =~ s/.html/$code/g;
-#							$components{$component} = "$dir/$aux_html";
-#						}
-#						elsif ( $log_name eq "annotation_pathways" ) {
-#							###
-#							#
-#							#	Pegando todos os pathways do arquivo KO
-#							#
-#							###
-#							open( my $KOFILE, "<", $ko_file )
-#							  or warn
-#							  "WARNING: Could not open KO file $ko_file: $!\n";
-#							my $content        = do { local $/; <$KOFILE> };
-#							my @idKEGG         = ();
-#							my %workAroundSort = (); 
-#							while (
-#								$content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm )
-#							{
-#								if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
-#									$workAroundSort{$2} = $1;
-#									push @idKEGG, $1;
-#								}
-#							}
-#
-#							foreach my $key ( sort keys %workAroundSort ) {
-#								my $value = $workAroundSort{$key};
-#							}
-#							close($KOFILE);
-#							$components{$component} = "$dir/$html_file";
-#							
-#						}
-#						elsif ( $log_name eq "annotation_phobius" ) {
-#							$components{$component} = "$dir/$png_file";
-#						}
-#						elsif ( $component_name eq "annotation_rpsblast.pl" ) {
-#							$components{$component} = "$dir/$txt_file";
-#
-#						}
-#						elsif ( $log_name eq "annotation_signalP" ) {
-#							$components{$component} = "$dir/$png_file";
-#						}
-#						elsif ( $log_name eq "annotation_psort" ) {
-#							$components{$component} = "psort_dir/$txt_file";
-#						}
-#					}
-#				}
-				my @sub_evidences = @{ $evidence->{evidences} };
-				
-				foreach my $sub_evidence (@sub_evidences) {
-					$locus_tag = $sub_evidence->{evidence_id};
-#					print $LOG "\n[1271]\t-\t$locus_tag\n";
-					my $component_name = $sub_evidence->{log}{name};
-#					print STDERR "\n[1252]\t$sub_evidence->{log}{arguments}\n";
-					$component_name =~ s/.pl//g;
-					my $component =
-					  $sequence_object->fasta_header_program($sub_evidence);
+                print $LOG "\nLocus tag: " . $locus_tag . "\n";
 
-#					print STDERR "\n[1297] - Program ev: $program_ev\n";
-					#$signalp_dir = $program_ev;
-					my $resp = verify_element( $component_name, \@comp_ev );
-					print $LOG "\n[1263] - $component - $component_name - resp = $resp - locus_tag = $locus_tag\n";
-#					print STDERR "\n[1263]\t-\t$component/$html_file\n";
-					
-					if (  $resp  )
-					{
-#						print STDERR "\n[1268]\t-\t$component_name\t$component/$html_file\n" ;
-						if ( $component_name eq "annotation_blast" ) {
-							$components{$component} = "$annotation_dir/$component/$html_file";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$html_file');\n";
-							$annotation_blast = 1;
-					   #print $LOG "\nComponent blast test[917]:\t$component\n";
-						}
-						elsif ( $component_name eq "annotation_glimmer3" ) {
-							$components{$component} =
-							  "$annotation_dir/". $component . "/glimmer3.txt";
-							  $scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/glimmer3.txt');\n";
-						}
-						elsif ( $component_name eq "upload_gtf" ) {
-							$components{$component} =
-							  "$annotation_dir/$component/upload_gtf.txt";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/upload_gtf.txt');\n";  
-						}
-                        elsif ( $component_name eq "upload_prediction" ) {
-							$components{$component} =
-							  "$annotation_dir/$component/upload_prediction.txt";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/upload_prediction.txt');\n";  
-						}
-						elsif ( $component_name eq "annotation_interpro" ) {
-							$components{$component} = "$annotation_dir/$component/";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/HTML/$html_file');\n";
-							$annotation_interpro = 1;
-						}
-						elsif ( $component_name eq "annotation_orthology" ) {
-							my $code;
-							
-							while ( $sub_evidence->{log}{arguments} =~
-								/database_code\s*=\s*(\w+)+\s*/ig )
-							{
-								$code = $1;
-							}
-							my $aux_html = $html_file;
-							$code = "." . $code . ".html";
-							$aux_html =~ s/.html/$code/g;
-							$components{$component} = "$annotation_dir/$component/$aux_html";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$aux_html');\n";
-							$annotation_orthology = 1;
-						}
-						elsif ( $component_name eq "annotation_pathways" ) {
-							$components{$component} = "$annotation_dir/$component/$html_file";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$html_file');\n";
-							$annotation_pathways = 1;
-						}
-						elsif ( $component_name eq "annotation_phobius" ) {
-							$components{$component} = "$annotation_dir/$component/$png_file";
-							$annotation_phobius = 1;
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$png_file');\n";
-						}
-						elsif ( $component_name eq "annotation_signalP" ) {
-							$components{$component} = "$annotation_dir/$component/$png_file";
-                                                        $scriptSQL .=
-                                                                "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$png_file');\n";
-						}
-						elsif ( $component_name eq "annotation_rpsblast" ) {
-							$components{$component} = "$annotation_dir/$component/$txt_file";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$txt_file');\n";
-							$annotation_rpsblast = 1;
-						}
-						elsif( $component_name eq "annotation_tmhmm" ) {
-							$components{$component} = "$annotation_dir/$component/$png_file";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$png_file');\n";
-							$annotation_tmhmm = 1;
-						}
-						elsif($component_name eq "annotation_predgpi" || $component_name eq "annotation_dgpi" || $component_name eq "annotation_bigpi" || $component_name eq "annotation_tcdb") {
-							$components{$component} = "$annotation_dir/$component/$html_file";
-							$scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/$html_file');\n";
-								
-							if($component_name eq "annotation_dgpi") {
-								$annotation_dgpi = 1;
-							} elsif($component_name eq "annotation_predgpi"){
-								$annotation_predgpi = 1;
-							} elsif($component_name eq "annotation_bigpi") {
-								$annotation_bigpi = 1;
-							} elsif($component_name eq "annotation_tcdb") {
-								$annotation_tcdb = 1;
-							}
-						}
-						elsif ( $component_name eq "annotation_hmmer" ) {
-							$components{$component} = "$annotation_dir/" .
-							  $component . "/hmmer.txt";
-							  $scriptSQL .=
-								"\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$annotation_dir/$component/hmmer.txt');\n";
-						}
-					}
-					push @filepathsComponents, $components{$component};
-				}
-				
-				###
-	   #
-	   #	TODO: confirmar com a professora os erros existentes para depois tentar
-	   #
-				####
+=pod
+Sequência da evidência: verificar o campo strand (tag intervals) e calcular o reverso complementar da sequência caso a fita seja negativa (verificar se a strand é ‘-1’ ou ‘-’)
+=cut
+my @sub_evidences = @{ $evidence->{evidences} };
 
-			   #				unless ($filepath) {
-			   #			foreach my $log ( @{ $sequence_object->get_logs() } ) {
-			   #				if ( $log->{program} eq $component ) {
-			   #					my $directory = "";
-			   #					my $file      = "";
-			   #					if ( $log->{arguments} =~ /^\w*output_dir=(\w+)"*/gm ) {
-			   #						$directory = $1;
-			   #					}
-			   #					if ( $log->{arguments} =~ /^\w*output_file=(\w+.+)"*/gm ) {
-			   #						$file = $1;
-			   #					}
-			   #					if ( $directory || $file ) {
-			   #						unless ($directory) {
-			   #							my $dirName = $file;
-			   #							$dirName =~ s/.txt//g;
-			   #							$directory = $dirName . "_dir";
-			   #						}
-			   #						elsif ( !$file ) {
-			   #							my $fileName = $directory;
-			   #							$fileName =~ s/_dir//g;
-			   #							$file = $fileName . ".txt";
-			   #						}
-			   #						if ( $directory && $file ) {
-			   #							$filepath = "$directory/$file";
-			   #							print $LOG "\n".$filepath."\n";
-			   #						}
-			   #					}
-			   #				}
-			   #			}
-			   #				}
+foreach my $sub_evidence (@sub_evidences) {
+    $locus_tag = $sub_evidence->{evidence_id};
+    my $component_name = $sub_evidence->{log}{name};
+    $component_name =~ s/.pl//g;
+    my $component =
+    $sequence_object->fasta_header_program($sub_evidence);
 
-			}
+    my $resp = verify_element( $component_name, \@comp_ev );
+    print $LOG "\n[1263] - $component - $component_name - resp = $resp - locus_tag = $locus_tag\n";
 
-		}
+    if (  $resp  )
+    {
+        if ( $component_name eq "annotation_blast" ) {
+            $components{$component} = "$annotation_dir/$component/$html_file";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+            $annotation_blast = 1;
+        }
+        elsif ( $component_name eq "annotation_glimmer3" ) {
+            $components{$component} =
+            "$annotation_dir/". $component . "/glimmer3.txt";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/glimmer3.txt');\n";
+        }
+        elsif ( $component_name eq "upload_gtf" ) {
+            $components{$component} =
+            "$annotation_dir/$component/upload_gtf.txt";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/upload_gtf.txt');\n";  
+        }
+        elsif ( $component_name eq "upload_prediction" ) {
+            $components{$component} =
+            "$annotation_dir/$component/upload_prediction.txt";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/upload_prediction.txt');\n";  
+        }
+        elsif ( $component_name eq "annotation_interpro" ) {
+            $components{$component} = "$annotation_dir/$component/";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/HTML/$html_file');\n";
+            $annotation_interpro = 1;
+        }
+        elsif ( $component_name eq "annotation_orthology" ) {
+            my $code;
 
-		#		foreach my $subevidence (@subevidences) {
-		#			push @evidences, $subevidence;
-		#		}
-	}
+            while ( $sub_evidence->{log}{arguments} =~
+                /database_code\s*=\s*(\w+)+\s*/ig )
+            {
+                $code = $1;
+            }
+            my $aux_html = $html_file;
+            $code = "." . $code . ".html";
+            $aux_html =~ s/.html/$code/g;
+            $components{$component} = "$annotation_dir/$component/$aux_html";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$aux_html');\n";
+            $annotation_orthology = 1;
+        }
+        elsif ( $component_name eq "annotation_pathways" ) {
+            $components{$component} = "$annotation_dir/$component/$html_file";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+            $annotation_pathways = 1;
+        }
+        elsif ( $component_name eq "annotation_phobius" ) {
+            $components{$component} = "$annotation_dir/$component/$png_file";
+            $annotation_phobius = 1;
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
+        }
+        elsif ( $component_name eq "annotation_signalP" ) {
+            $components{$component} = "$annotation_dir/$component/$png_file";
+            $annotation_signalP = 1;
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
+        }
+        elsif ( $component_name eq "annotation_rpsblast" ) {
+            $components{$component} = "$annotation_dir/$component/$txt_file";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$txt_file');\n";
+            $annotation_rpsblast = 1;
+        }
+        elsif( $component_name eq "annotation_tmhmm" ) {
+            $components{$component} = "$annotation_dir/$component/$png_file";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
+            $annotation_tmhmm = 1;
+        }
+        elsif($component_name eq "annotation_predgpi" || $component_name eq "annotation_dgpi" || $component_name eq "annotation_bigpi" || $component_name eq "annotation_tcdb") {
+            $components{$component} = "$annotation_dir/$component/$html_file";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
 
-	foreach my $key ( keys %components ) {
-		print $LOG "\nKey:\t$key\nValue:\t" . $components{$key} . "\n"
-		  if defined $components{$key};
-		push @filepathsComponents, $components{$key};
-	}
+            if($component_name eq "annotation_dgpi") {
+                $annotation_dgpi = 1;
+            } elsif($component_name eq "annotation_predgpi"){
+                $annotation_predgpi = 1;
+            } elsif($component_name eq "annotation_bigpi") {
+                $annotation_bigpi = 1;
+            } elsif($component_name eq "annotation_tcdb") {
+                $annotation_tcdb = 1;
+            }
+        }
+        elsif ( $component_name eq "annotation_hmmer" ) {
+            $components{$component} = "$annotation_dir/" .
+            $component . "/hmmer.txt";
+            $scriptSQL .=
+            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/hmmer.txt');\n";
+        }
+    }
+    push @filepathsComponents, $components{$component};
+}
 
-	close(AA);
-	close(FILE_AA);
-	close(FILE_NT);
 
-#	if ( @{ $sequence_object->get_logs() } ) {
-#		foreach my $log ( @{ $sequence_object->get_logs() } ) {
-#			my $component = $log->{program};
-#			my $seq_id = $sequence_object->{sequence_id};
-#			print $LOG "Component ($seq_id - $log->{analysis_id}): " . $log->{program} . "\n";
-#			if ( $component =~ /<program name=\"([\w\-\_]*\.pl)\"/gim ) {
-#				push @components_name, $1;
-#			}
-#			else {
-#				push @components_name, $component;
-#			}
-#
-#			#    		foreach my $key(sort keys %$log)
-#			#    		{
-#			#    			$scriptSQL .= "\n--logs\t$key\t".$log->{$key}."\n";
-#			#    		}
-#		}
-#	}
+            }
 
-	#	if (scalar @report_go_dir > 0 ) {
-	#		push @components_name, "report_go.pl";
-	#	}
-	#	if(scalar @report_eggnog_dir > 0) {
-	#		push @components_name, "report_orthology.pl";
-	#	}
-	#	if(scalar @report_pathways_dir > 0) {
-	#		push @components_name, "report_pathways.pl";
-	#	}
-	#	if (scalar @report_kegg_organism_dir > 0) {
-	#		push @components_name, "report_kegg_organism.pl";
-	#	}
+        }
 
- #    foreach my $key(sort keys %$sequence_object)
- #    {
- #    	$scriptSQL .= "\n--sequenceObject\t$key\t".$sequence_object->{$key}."\n";
- #    }
+    }
 
-	$header =~ s/>//g;
-	$header =~ m/(\S+)_(\d+)/;
-	$prefix_name = $1;
+    foreach my $key ( keys %components ) {
+        print $LOG "\nKey:\t$key\nValue:\t" . $components{$key} . "\n"
+        if defined $components{$key};
+        push @filepathsComponents, $components{$key};
+    }
 
-	#	my $count;
-	#	my $line_subev;
-	###
-	##preparar pra pegar outros valores alem dos reports
-	###
-	#	foreach my $component ( sort @components_name ) {
-	#
-	#	}
-	#$sequence_object->print();
+    close(AA);
+    close(FILE_AA);
+    close(FILE_NT);
+
+
+    $header =~ s/>//g;
+    $header =~ m/(\S+)_(\d+)/;
+    $prefix_name = $1;
+
 }
 
 close($SEQUENCES_NT);
@@ -1670,32 +1486,32 @@ $scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-other-
 $scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-other-sequences-links-2', 'All transcriptional terminators (predicted by TransTermHP)', '/DownloadFile?type=tt');\n" if ($ttSequences);
 
 if($annotation_blast) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#blast' data-toggle='tab'>BLAST"</a>, "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#blast' data-toggle='tab'>BLAST"</a>, "");
 SQL
 }
 if($annotation_trf) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "<a href='#tandemRepeats' data-toggle='tab'>Tandem repeats</a>", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-dna-based-analyses-tab", "<a href='#tandemRepeats' data-toggle='tab'>Tandem repeats</a>", "");
 SQL
 }
 if($annotation_interpro) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#geneOntology' data-toggle='tab'>Gene ontology</a>", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#geneOntology' data-toggle='tab'>Gene ontology</a>", "");
 SQL
 }
 if($annotation_tcdb) {
-	###
-	#
-	#       Realiza leitura do arquivo de TCDBs
-	#
-	###
-	if ($tcdb_file) {
-	        $scriptSQL .= readTCDBFile($tcdb_file);
-	        $scriptSQL .= <<SQL;
+    ###
+    #
+    #       Realiza leitura do arquivo de TCDBs
+    #
+    ###
+    if ($tcdb_file) {
+        $scriptSQL .= readTCDBFile($tcdb_file);
+        $scriptSQL .= <<SQL;
         INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-tab", "<a href='#transporterClassification' data-toggle='tab'>Transporter classification</a>", ""),
         ("search-database-analyses-protein-code-not-containing-classification-tcdb", " not containing TCDB classification", ""),
@@ -1710,153 +1526,159 @@ if($annotation_tcdb) {
         ("search-database-dna-based-analyses-or-by-target-type", "Or by target type: ", ""),
         ("search-database-dna-based-analyses-or-by-target-description", "Or by target description: ", "");
 SQL
-	}
-	print $LOG "\n$tcdb_file read!\n";
+    }
+    print $LOG "\n$tcdb_file read!\n";
 
 }
 if($annotation_orthology) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>Orthology</a>", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>Orthology</a>", "");
 SQL
 }
 if($annotation_pathways) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#kegg' data-toggle='tab'>KEGG</a>", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#kegg' data-toggle='tab'>KEGG</a>", "");
 SQL
 
-	###
-	#
-	#	Pegando todos os pathways do arquivo KO
-	#
-	###
-	open( my $KOFILE, "<", $ko_file )
-	  or warn
-	  "WARNING: Could not open KO file $ko_file: $!\n";
-	my $content        = do { local $/; <$KOFILE> };
-	my @idKEGG         = ();
-	my %workAroundSort = ();
-	while (
-		$content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm )
-	{
-		if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
-			$workAroundSort{$2} = $1;
-			push @idKEGG, $1;
-		}
-	}
+    ###
+    #
+    #	Pegando todos os pathways do arquivo KO
+    #
+    ###
+    open( my $KOFILE, "<", $ko_file )
+        or warn
+    "WARNING: Could not open KO file $ko_file: $!\n";
+    my $content        = do { local $/; <$KOFILE> };
+    my @idKEGG         = ();
+    my %workAroundSort = ();
+    while (
+        $content =~ /[PATHWAY]*\s+ko(\d*)\s*(.*)/gm )
+    {
+        if ( !( $1 ~~ @idKEGG ) && $1 ne "" ) {
+            $workAroundSort{$2} = $1;
+            push @idKEGG, $1;
+        }
+    }
 
-	foreach my $key ( sort keys %workAroundSort ) {
-		my $value = $workAroundSort{$key};
-		$scriptSQL .= <<SQL;
-			INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "<option value='$value'>$key</option>", "");
+    foreach my $key ( sort keys %workAroundSort ) {
+        my $value = $workAroundSort{$key};
+        $scriptSQL .= <<SQL;
+            INSERT INTO TEXTS(tag, value, details) VALUES ("search-database-analyses-protein-code-by-kegg-pathway-options", "<option value='$value'>$key</option>", "");
 SQL
-	}
-	close($KOFILE);
+    }
+    close($KOFILE);
 }
 if($annotation_phobius) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#phobius' data-toggle='tab'>Phobius</a>", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#phobius' data-toggle='tab'>Phobius</a>", "");
+SQL
+}
+if ($annotation_signalP) {
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-analyses-protein-code-tab", "<a href='#signalP' data-toggle='tab'>SignalP</a>", "");
 SQL
 }
 if($annotation_tmhmm) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#tmhmm' data-toggle='tab'>TMHMM</a>", ""),
-					("search-database-analyses-protein-code-not-containing-tmhmm", " not containing TMHMM matches", ""),
-					("search-database-analyses-protein-code-number-transmembrane-domains", "Number of transmembrane domains:", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#tmhmm' data-toggle='tab'>TMHMM</a>", ""),
+                    ("search-database-analyses-protein-code-not-containing-tmhmm", " not containing TMHMM matches", ""),
+                    ("search-database-analyses-protein-code-number-transmembrane-domains", "Number of transmembrane domains:", "");
 SQL
 }
 if($annotation_dgpi) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-analyses-protein-code-tab", "<a href='#dgpi' data-toggle='tab'>DGPI</a>", ""),
-					("search-database-analyses-protein-code-not-containing-dgpi", " not containing DGPI matches", ""),
-					("search-database-analyses-protein-code-cleavage-site-dgpi", "Get by cleavage site", ""),
-					("search-database-analyses-protein-code-score-dgpi", "Or get by score", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-analyses-protein-code-tab", "<a href='#dgpi' data-toggle='tab'>DGPI</a>", ""),
+                    ("search-database-analyses-protein-code-not-containing-dgpi", " not containing DGPI matches", ""),
+                    ("search-database-analyses-protein-code-cleavage-site-dgpi", "Get by cleavage site", ""),
+                    ("search-database-analyses-protein-code-score-dgpi", "Or get by score", "");
 SQL
 }
 if($annotation_predgpi) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-analyses-protein-code-tab", "<a href='#predgpi' data-toggle='tab'>PreDGPI</a>", ""),
-					("search-database-analyses-protein-code-not-containing-predgpi", " not containing PreDGPI matches", ""),
-					("search-database-analyses-protein-code-name-predgpi", "Get by name", ""),
-					("search-database-analyses-protein-code-position-predgpi", "Or get by position", ""),
-					("search-database-analyses-protein-code-specificity-predgpi", "Or get by specificity", ""),
-					("search-database-analyses-protein-code-sequence-predgpi", "Or get by sequence", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-analyses-protein-code-tab", "<a href='#predgpi' data-toggle='tab'>PreDGPI</a>", ""),
+                    ("search-database-analyses-protein-code-not-containing-predgpi", " not containing PreDGPI matches", ""),
+                    ("search-database-analyses-protein-code-name-predgpi", "Get by name", ""),
+                    ("search-database-analyses-protein-code-position-predgpi", "Or get by position", ""),
+                    ("search-database-analyses-protein-code-specificity-predgpi", "Or get by specificity", ""),
+                    ("search-database-analyses-protein-code-sequence-predgpi", "Or get by sequence", "");
 SQL
 }
 if($annotation_bigpi) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-analyses-protein-code-tab", "<a href='#bigpi' data-toggle='tab'>BIGPI</a>", ""),
-					("search-database-analyses-protein-code-not-containing-bigpi", " not containing BIGPI matches", ""),
-					("search-database-analyses-protein-code-value-bigpi", "Get by value", ""),
-					("search-database-analyses-protein-code-position-bigpi", "Or get by position", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-analyses-protein-code-tab", "<a href='#bigpi' data-toggle='tab'>BIGPI</a>", ""),
+                    ("search-database-analyses-protein-code-not-containing-bigpi", " not containing BIGPI matches", ""),
+                    ("search-database-analyses-protein-code-value-bigpi", "Get by value", ""),
+                    ("search-database-analyses-protein-code-position-bigpi", "Or get by position", "");
 SQL
 }
 if($annotation_rpsblast) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-analyses-protein-code-tab", "<a href='#rpsblast' data-toggle='tab'>RPS-BLAST</a>", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#rpsblast' data-toggle='tab'>RPS-BLAST</a>", "");
 SQL
 }
 if ($annotation_transterm) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "<a href='#transcriptionalTerminators' data-toggle='tab'>Transcriptional terminators</a>", ""),
-					("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
-			        ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
-			        ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
-			        ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-dna-based-analyses-tab", "<a href='#transcriptionalTerminators' data-toggle='tab'>Transcriptional terminators</a>", ""),
+                    ("search-database-dna-based-analyses-transcriptional-terminators-confidence-score", "Get transcriptional terminators with confidence score: ", ""),
+                    ("search-database-dna-based-analyses-or-hairpin-score", "Or with hairpin score: ", ""),
+                    ("search-database-dna-based-analyses-or-tail-score", "Or with tail score: ", ""),
+                    ("search-database-dna-based-analyses-hairpin-note", "NOTE: hairpin and tail scores are negative.", "");
 SQL
 }
 if($annotation_rbs) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "<a href='#ribosomalBindingSites' data-toggle='tab'>Ribosomal binding sites</a>", ""),
-			        ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", "<input type='radio' name='RBSshiftM' value='neg' checked> upstream", "value='neg' checked"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", "<input type='radio' name='RBSshiftM' value='pos'> downstream", "value='pos'"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", "<input type='radio' name='RBSshiftM' value='both'> either", "value='both'"),
-			        ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-dna-based-analyses-tab", "<a href='#ribosomalBindingSites' data-toggle='tab'>Ribosomal binding sites</a>", ""),
+                    ("search-database-dna-based-analyses-ribosomal-binding", "Search ribosomal binding sites containing sequence pattern: ", ""),
+                    ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift", " Or search for all ribosomal binding site predictions that recommend a shift in start codon position", ""),
+                    ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", "<input type='radio' name='RBSshiftM' value='neg' checked> upstream", "value='neg' checked"),
+                    ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", "<input type='radio' name='RBSshiftM' value='pos'> downstream", "value='pos'"),
+                    ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-options", "<input type='radio' name='RBSshiftM' value='both'> either", "value='both'"),
+                    ("search-database-dna-based-analyses-or-search-all-ribosomal-binding-start", "Or search for all ribosomal binding site predictions that recommend a change of  start codon", "");
 SQL
 }
 if($annotation_infernal) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "<a href='#otherNonCodingRNAs' data-toggle='tab'>Other non-coding RNAs</a>", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-dna-based-analyses-tab", "<a href='#otherNonCodingRNAs' data-toggle='tab'>Other non-coding RNAs</a>", "");
 SQL
 }
 if($annotation_alienhunter) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "<a href='#horizontalGeneTransfers' data-toggle='tab'>Horizontal gene transfers</a>", ""),
-					("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
-			        ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
-			        ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-dna-based-analyses-tab", "<a href='#horizontalGeneTransfers' data-toggle='tab'>Horizontal gene transfers</a>", ""),
+                    ("search-database-dna-based-analyses-predicted-alienhunter", "Get predicted AlienHunter regions of length: ", ""),
+                    ("search-database-dna-based-analyses-or-get-regions-score", "Or get regions of score: ", ""),
+                    ("search-database-dna-based-analyses-or-get-regions-threshold", "Or get regions of threshold: ", "");
 SQL
 }
 if($annotation_rnammer) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES
-					("search-database-dna-based-analyses-tab", "<a href='#rrna' data-toggle='tab'>rRNA</a>", ""), 
-					("search-database-dna-based-analyses-get-by-rrna-type", "Get rRNAs by type: ", "");
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-dna-based-analyses-tab", "<a href='#rrna' data-toggle='tab'>rRNA</a>", ""), 
+                    ("search-database-dna-based-analyses-get-by-rrna-type", "Get rRNAs by type: ", "");
 SQL
 }
 if($annotation_trna) {
-	$scriptSQL .= <<SQL;
-				INSERT INTO TEXTS(tag, value, details) VALUES 
-					("search-database-dna-based-analyses-tab", "<a href='#trna' data-toggle='tab'>tRNA</a>", ""),
-			        ("search-database-dna-based-analyses-get-by-amino-acid", "Get tRNAs by amino acid: ", ""),
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Ala'>Alanine (A)</option>", ""),                                                                                                
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Arg'>Arginine (R)</option>", ""),                                                                                               
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Asp'>Asparagine (N)</option>", ""),                                                                                             
-			        ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Ala'>Aspartic acid (D)</option>", ""),                                                                                          
-				("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Cys'>Cysteine (C)</option>", ""),                                                                                               
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES 
+                    ("search-database-dna-based-analyses-tab", "<a href='#trna' data-toggle='tab'>tRNA</a>", ""),
+                    ("search-database-dna-based-analyses-get-by-amino-acid", "Get tRNAs by amino acid: ", ""),
+                    ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Ala'>Alanine (A)</option>", ""),                                                                                                
+                    ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Arg'>Arginine (R)</option>", ""),                                                                                               
+                    ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Asp'>Asparagine (N)</option>", ""),                                                                                             
+                    ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Ala'>Aspartic acid (D)</option>", ""),                                                                                          
+                ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Cys'>Cysteine (C)</option>", ""),                                                                                               
                                 ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Glu'>Glutamic acid (E)</option>", ""),                                                                                          
                                 ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Gln'>Glutamine (Q)</option>", ""),                                                                                              
                                 ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Gly'>Glycine (G)</option>", ""),                                                                                                
@@ -1872,8 +1694,8 @@ if($annotation_trna) {
                                 ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Trp'>Tryptophan (W)</option>", ""),
                                 ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Tyr'>Tyrosine (Y)</option>", ""),
                                 ("search-database-dna-based-analyses-get-by-amino-acid-options", "<option value='Val'>Valine (V)</option>", ""),
-			        ("search-database-dna-based-analyses-get-by-codon", "Or get tRNAs by codon: ", ""),
-				("search-database-dna-based-analyses-get-by-codon-options", "<option value='AAA'>AAA</option>", "<option value='AAA'>AAA</option>"),                                            
+                    ("search-database-dna-based-analyses-get-by-codon", "Or get tRNAs by codon: ", ""),
+                ("search-database-dna-based-analyses-get-by-codon-options", "<option value='AAA'>AAA</option>", "<option value='AAA'>AAA</option>"),                                            
                                 ("search-database-dna-based-analyses-get-by-codon-options", "<option value='AAC'>AAC</option>", "<option value='AAC'>AAC</option>"), 
                                 ("search-database-dna-based-analyses-get-by-codon-options", "<option value='AAG'>AAG</option>", "<option value='AAG'>AAG</option>"),
                                 ("search-database-dna-based-analyses-get-by-codon-options", "<option value='AAT'>AAT</option>", "<option value='AAT'>AAT</option>"),
@@ -1941,7 +1763,7 @@ SQL
 my $filepath = `pwd`;
 chomp $filepath;
 my $databaseFilepath =
-  $filepath . "/" . $standard_dir . "/" . $html_dir . "/database.db";
+$filepath . "/" . $standard_dir . "/" . $html_dir . "/database.db";
 `mkdir -p "$filepath"/"$standard_dir"/"$html_dir"`;
 
 #my $optret = GetOptions(
@@ -1979,9 +1801,9 @@ my $databaseFilepath =
 #path catalyst file
 my $pathCatalyst = `which catalyst.pl`;
 unless ($pathCatalyst) {
-	print $LOG
-"\nCatalyst not found, please install dependences:\ncpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema DBIx::Class::Schema::Loader MooseX::NonMoose\n";
-	exit;
+    print $LOG
+    "\nCatalyst not found, please install dependences:\ncpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema DBIx::Class::Schema::Loader MooseX::NonMoose\n";
+    exit;
 }
 chomp $pathCatalyst;
 
@@ -2014,8 +1836,8 @@ print $LOG "\nCreating view\n";
 if($report_feature_table_submission) {
     my @files = glob( $report_feature_table_submission . "/*.gb");
     use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
-	my $zip = Archive::Zip->new();
-	$zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
+    my $zip = Archive::Zip->new();
+    $zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
     print $LOG "\n[1962] submission - $_\n" foreach @files;
     `mkdir -p $standard_dir/$html_dir/root`;
     unless ( $zip->writeToFileNamed("$standard_dir/$html_dir/root/feature_table_submission.zip") == AZ_OK ) {
@@ -2027,8 +1849,8 @@ if($report_feature_table_submission) {
 if($report_feature_table_artemis) {
     my @files = glob( $report_feature_table_artemis . "/*all_results.tab");
     use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
-	my $zip = Archive::Zip->new();
-	$zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
+    my $zip = Archive::Zip->new();
+    $zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
     print $LOG "\n[1972] artemis - $_\n" foreach @files;
     `mkdir -p $standard_dir/$html_dir/root`;
     unless ( $zip->writeToFileNamed("$standard_dir/$html_dir/root/feature_table_artemis.zip") == AZ_OK ) {
@@ -2040,8 +1862,8 @@ if($report_feature_table_artemis) {
 if($report_gff) {
     my @files = glob( $report_gff . "/*");
     use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
-	my $zip = Archive::Zip->new();
-	$zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
+    my $zip = Archive::Zip->new();
+    $zip->addFile( $_, getFilenameByFilepath($_) ) foreach @files;
     print $LOG "\n[1982] gff3 - $_\n" foreach @files;
     `mkdir -p $standard_dir/$html_dir/root`;
     unless ( $zip->writeToFileNamed("$standard_dir/$html_dir/root/gff3.zip") == AZ_OK ) {
@@ -2052,10 +1874,10 @@ if($report_gff) {
 } 
 
 if(defined $report_feature_table_submission ||
-   defined $report_feature_table_artemis ||
-   defined $report_gff ) {
+    defined $report_feature_table_artemis ||
+    defined $report_gff ) {
     $scriptSQL .= "\nINSERT INTO TEXTS(tag, value, details) VALUES
-     ('downloads-annotations', 'Annotations', '');\n";
+    ('downloads-annotations', 'Annotations', '');\n";
 }
 
 my $fileHandler;
@@ -2070,14 +1892,14 @@ writeFile( "$html_dir/lib/$libDirectoryWebsite/View/TT.pm", $data );
 
 #if database file exists, delete
 if ( -e $databaseFilepath ) {
-	unlink $databaseFilepath;
+    unlink $databaseFilepath;
 }
 
 #add resources to the config file
 open( $fileHandler, ">>", "$html_dir/$lowCaseName.conf" );
 print $fileHandler "\ntarget_class_id "
-  . $type_target_class_id
-  . "\n";
+. $type_target_class_id
+. "\n";
 close($fileHandler);
 
 my $lowCaseNameServices = $services_dir;
@@ -2101,7 +1923,7 @@ print $LOG "\nCreating models\n";
 `$html_dir/script/"$lowCaseName"_create.pl model Basic DBIC::Schema "$packageWebsite"::Basic create=static "dbi:SQLite:$databaseFilepath" on_connect_do="PRAGMA foreign_keys = ON;PRAGMA encoding='UTF-8'"`;
 
 my %models = (
-	"BaseResponse" => <<BASERESPONSE,
+    "BaseResponse" => <<BASERESPONSE,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
@@ -2113,7 +1935,7 @@ __PACKAGE__->config(
 
 1;
 BASERESPONSE
-	"PagedResponse" => <<PAGEDRESPONSE,
+    "PagedResponse" => <<PAGEDRESPONSE,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
@@ -2125,7 +1947,7 @@ __PACKAGE__->config(
 
 1;	
 PAGEDRESPONSE
-	"Feature" => <<FEATURE,
+    "Feature" => <<FEATURE,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
@@ -2138,7 +1960,7 @@ __PACKAGE__->config(
 1;
 FEATURE
 
-	"Subevidence" => <<SUBEVIDENCE,
+    "Subevidence" => <<SUBEVIDENCE,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
@@ -2150,7 +1972,7 @@ __PACKAGE__->config(
 
 1;
 SUBEVIDENCE
-	"TRFSearch" => <<TRFSEARCH,
+    "TRFSearch" => <<TRFSEARCH,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
@@ -2162,7 +1984,7 @@ __PACKAGE__->config(
 
 1;
 TRFSEARCH
-	"TRNASearch" => <<TRNASEARCH,
+    "TRNASearch" => <<TRNASEARCH,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
@@ -2175,28 +1997,28 @@ __PACKAGE__->config(
 1;
 
 TRNASEARCH
-	"SearchDBClient" => <<CLIENTS,
+    "SearchDBClient" => <<CLIENTS,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
 
 __PACKAGE__->config(
-	class		=> 'Report_HTML_DB::Clients::SearchDBClient',
-	constructor	=> 'new',
+    class		=> 'Report_HTML_DB::Clients::SearchDBClient',
+    constructor	=> 'new',
 );
 
 1;
 
 CLIENTS
 
-	"BlastClient" => <<CLIENTS,
+    "BlastClient" => <<CLIENTS,
 use strict;
 use warnings;
 use base 'Catalyst::Model::Adaptor';
 
 __PACKAGE__->config(
-	class		=> 'Report_HTML_DB::Clients::BlastClient',
-	constructor	=> 'new',
+    class		=> 'Report_HTML_DB::Clients::BlastClient',
+    constructor	=> 'new',
 );
 
 1;
@@ -2205,14 +2027,14 @@ CLIENTS
 );
 
 foreach my $key ( keys %models ) {
-	my $package_website = "package " . $packageWebsite . "::Model::" . $key . ";";
-	my $package_services =
-	  "package " . $packageServices . "::Model::" . $key . ";";
-	my $content_website = $package_website . "\n" . $models{$key};
-	writeFile( "$html_dir/lib/$libDirectoryWebsite/Model/" . $key . ".pm",
-		$content_website );
-	writeFile( "$services_dir/lib/$libDirectoryServices/Model/" . $key . ".pm",
-		$package_services . "\n" . $models{$key} );
+    my $package_website = "package " . $packageWebsite . "::Model::" . $key . ";";
+    my $package_services =
+    "package " . $packageServices . "::Model::" . $key . ";";
+    my $content_website = $package_website . "\n" . $models{$key};
+    writeFile( "$html_dir/lib/$libDirectoryWebsite/Model/" . $key . ".pm",
+        $content_website );
+    writeFile( "$services_dir/lib/$libDirectoryServices/Model/" . $key . ".pm",
+        $package_services . "\n" . $models{$key} );
 
 }
 
@@ -2221,16 +2043,16 @@ foreach my $key ( keys %models ) {
 my $hadGlobal         = 0;
 my $hadSearchDatabase = 0;
 foreach my $component ( sort keys %components ) {
-	if (   scalar @report_go_dir > 0
-		|| scalar @report_eggnog_dir > 0
-		|| scalar @report_pathways_dir > 0
-		|| scalar @report_kegg_organism_dir > 0 )
-	{
-		$hadGlobal = 1;
-	}
-	if ( $component =~ m/annotation/gi ) {
-		$hadSearchDatabase = 1;
-	}
+    if (   scalar @report_go_dir > 0
+        || scalar @report_eggnog_dir > 0
+        || scalar @report_pathways_dir > 0
+        || scalar @report_kegg_organism_dir > 0 )
+    {
+        $hadGlobal = 1;
+    }
+    if ( $component =~ m/annotation/gi ) {
+        $hadSearchDatabase = 1;
+    }
 }
 
 #####
@@ -2247,10 +2069,10 @@ use warnings;
 use parent 'Catalyst::Model::DBI';
 
 __PACKAGE__->config(
-	dsn      => "dbi:Pg:dbname=$dbName;host=$dbHost",
-	user     => "$dbUser",
-	password => "$dbPassword",
-	options  => {},
+    dsn      => "dbi:Pg:dbname=$dbName;host=$dbHost",
+    user     => "$dbUser",
+    password => "$dbPassword",
+    options  => {},
 );
 
 =head2
@@ -2260,15 +2082,15 @@ Method used to get pipeline from database
 =cut
 
 sub getPipeline {
-	my ( \$self ) = \@_;
-	my \$dbh = \$self->dbh;
-	my \$query = "select distinct p.value as value
-        	from feature_relationship r
-        	join featureloc l on (r.subject_id = l.feature_id)
-        	join featureprop p on (p.feature_id = l.srcfeature_id)
-        	join cvterm cp on (p.type_id = cp.cvterm_id)
-        	WHERE cp.name='pipeline_id';";
-	my \$sth = \$dbh->prepare(\$query);
+    my ( \$self ) = \@_;
+    my \$dbh = \$self->dbh;
+    my \$query = "select distinct p.value as value
+    from feature_relationship r
+    join featureloc l on (r.subject_id = l.feature_id)
+            join featureprop p on (p.feature_id = l.srcfeature_id)
+            join cvterm cp on (p.type_id = cp.cvterm_id)
+            WHERE cp.name='pipeline_id';";
+    my \$sth = \$dbh->prepare(\$query);
         print STDERR \$query;
         \$sth->execute();
         my \@rows = \@{ \$sth->fetchall_arrayref() };
@@ -2288,10 +2110,10 @@ Method used to get rRNAs availables in the sequence
 =cut
 
 sub getRibosomalRNAs {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh = \$self->dbh;
-	my \@args = ();
-	my \$query = "select distinct pd.value AS name 
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh = \$self->dbh;
+    my \@args = ();
+    my \$query = "select distinct pd.value AS name 
 from feature f 
 join feature_relationship r on (f.feature_id = r.object_id) 
 join cvterm cr on (r.type_id = cr.cvterm_id) 
@@ -2305,16 +2127,16 @@ join cvterm cp on (pl.type_id = cp.cvterm_id)
 join featureprop pd on (r.subject_id = pd.feature_id) 
 join cvterm cd on (pd.type_id = cd.cvterm_id) 
 where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ORDER BY pd.value ASC ;";
-	push \@args, \$hash->{pipeline};
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
+    push \@args, \$hash->{pipeline};
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \@list = ();
     for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-    	push \@list, \$rows[\$i][0];
-	}
-	return \\\@list;
+        push \@list, \$rows[\$i][0];
+    }
+    return \\\@list;
 }
 
 =head2
@@ -2324,256 +2146,256 @@ Method used to realize search based on parameters received by form of analyses o
 =cut
 
 sub analyses_CDS {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query = "SELECT motherfuckerquery.feature_id, COUNT(*) OVER() FROM "
-	  . "((select distinct f.feature_id "
-	  . "from feature f "
-	  . "join feature_relationship r on (f.feature_id = r.object_id) "
-	  . "join cvterm cr on (r.type_id = cr.cvterm_id) "
-	  . "join featureprop ps on (r.subject_id = ps.feature_id) "
-	  . "join cvterm cs on (ps.type_id = cs.cvterm_id) "
-	  . "join featureprop pf on (f.feature_id = pf.feature_id) "
-	  . "join cvterm cf on (pf.type_id = cf.cvterm_id) "
-	  . "join featureloc l on (l.feature_id = f.feature_id) "
-	  . "join featureprop pl on (l.srcfeature_id = pl.feature_id) "
-	  . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
-	  . "join featureprop pd on (r.subject_id = pd.feature_id) "
-	  . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
-	  . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ) ";
-		push \@args, \$hash->{contig};
-	} else {
-		\$query .= " ) ";
-	}
-	
-	my \$connector = "1";
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query = "SELECT motherfuckerquery.feature_id, COUNT(*) OVER() FROM "
+      . "((select distinct f.feature_id "
+      . "from feature f "
+      . "join feature_relationship r on (f.feature_id = r.object_id) "
+      . "join cvterm cr on (r.type_id = cr.cvterm_id) "
+      . "join featureprop ps on (r.subject_id = ps.feature_id) "
+      . "join cvterm cs on (ps.type_id = cs.cvterm_id) "
+      . "join featureprop pf on (f.feature_id = pf.feature_id) "
+      . "join cvterm cf on (pf.type_id = cf.cvterm_id) "
+      . "join featureloc l on (l.feature_id = f.feature_id) "
+      . "join featureprop pl on (l.srcfeature_id = pl.feature_id) "
+      . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
+      . "join featureprop pd on (r.subject_id = pd.feature_id) "
+      . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
+      . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ";
+    push \@args, \$hash->{pipeline};
 
-	my \$query_gene     = "";
-	my \$query_GO       = "";
-	my \$query_TCDB     = "";
-	my \$query_Phobius  = "";
-	my \$query_sigP     = "";
-	my \$query_blast    = "";
-	my \$query_RPS      = "";
-	my \$query_KEGG     = "";
-	my \$query_ORTH     = "";
-	my \$query_interpro = "";
-	my \$query_tmhmm    = "";
-	my \$query_dgpi	   = "";
-	my \$query_predgpi  = "";
-	my \$query_bigpi	   = "";
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ) ";
+        push \@args, \$hash->{contig};
+    } else {
+        \$query .= " ) ";
+    }
 
-	if (   ( exists \$hash->{geneDesc} && \$hash->{geneDesc} )
-		|| ( exists \$hash->{noDesc} && \$hash->{noDesc} ) )
-	{
-		my \$and = "";
-		\$query_gene =
-		    "(SELECT DISTINCT f.feature_id "
-		  . "FROM feature f JOIN feature_relationship r ON (f.feature_id = r.object_id) "
-		  . "JOIN cvterm cr ON (r.type_id = cr.cvterm_id) "
-		  . "JOIN featureloc l ON (l.feature_id = f.feature_id) "
-		  . "JOIN featureprop pl ON (l.srcfeature_id = pl.feature_id) "
-		  . "JOIN cvterm cp ON (pl.type_id = cp.cvterm_id) "
-		  . "JOIN featureprop pd ON (r.subject_id = pd.feature_id) "
-		  . "JOIN cvterm cd ON (pd.type_id = cd.cvterm_id) "
-		  . "WHERE cr.name = 'based_on' AND cd.name = 'description' AND cp.name = 'pipeline_id' AND pl.value=? AND ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " INTERSECT " if \$connector;
+    my \$connector = "1";
 
-		if ( exists \$hash->{geneDesc} && \$hash->{geneDesc} ) {
-			\$query_gene .= generate_clause( "?", "", "", "lower(pd.value)" );
-			push \@args, lc("\%".\$hash->{geneDesc} . "\%");
-			\$and = " AND ";
-		}
-		if ( exists \$hash->{noDesc} && \$hash->{noDesc} ) {
-			\$query_gene .=
-			  generate_clause( "?", "NOT", \$and, "lower(pd.value)" );
-			push \@args, "\%" . lc( \$hash->{noDesc} ) . "\%";
-		}
-		
-		if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
-		|| ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
-		{
-			my \@likesDescription   = ();
-			my \@likesNoDescription = ();
-			if ( \$hash->{geneDescription} ) {
-				while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
-					push \@likesDescription,
-					  generate_clause( "?", "", "",
-						"lower(pd.value)"
-					  );
-					push \@args, lc( "\%" . \$1 . "\%" );
-				}
-			}
-			if ( \$hash->{noDescription} ) {
-				while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
-					push \@likesNoDescription,
-					  generate_clause( "?", "NOT", "",
-						"lower(pd.value)"
-					  );
-					push \@args, lc( "\%" . \$1 . "\%" );
-				}
-			}
-	
-			if (    exists \$hash->{individually}
-				and \$hash->{individually}
-				and scalar(\@likesDescription) > 0 )
-			{
-				if ( scalar(\@likesNoDescription) > 0 ) {
-					foreach my \$like (\@likesDescription) {
-						\$query_gene .= " AND " . \$like;
-					}
-					foreach my \$notLike (\@likesNoDescription) {
-						\$query_gene .= " AND " . \$notLike;
-					}
-				}
-				else {
-					foreach my \$like (\@likesDescription) {
-						\$query_gene .= " AND " . \$like;
-					}
-				}
-			}
-			elsif ( scalar(\@likesDescription) > 0 ) {
-				my \$and = "";
-				if ( scalar(\@likesNoDescription) > 0 ) {
-					foreach my \$notLike (\@likesNoDescription) {
-						\$query_gene .= " AND " . \$notLike;
-					}
-					\$and = "1";
-				}
-				if (\$and) {
-					\$and = " AND ";
-				}
-				else {
-					\$and = " OR ";
-				}
-				\$query_gene .= " AND (";
-				my \$counter = 0;
-				foreach my \$like (\@likesDescription) {
-					if ( \$counter == 0 ) {
-						\$query_gene .= \$like;
-						\$counter++;
-					}
-					else {
-						\$query_gene .= \$and . \$like;
-					}
-				}
-				\$query_gene .= " ) ";
-			}
-			elsif ( scalar(\@likesDescription) <= 0
-				and scalar(\@likesNoDescription) > 0 )
-			{
-				foreach my \$like (\@likesNoDescription) {
-					\$query_gene .= " AND " . \$like;
-				}
-			}
-		}
-		
-		\$query_gene .= ")";
-		\$query_gene = \$connector . \$query_gene;
-		\$connector  = "1";
-	}
-	if (   ( exists \$hash->{noGO} && \$hash->{noGO} )
-		|| ( exists \$hash->{goID}   && \$hash->{goID} )
-		|| ( exists \$hash->{goDesc} && \$hash->{goDesc} ) )
-	{
-		\$query_GO =
-		    "(SELECT DISTINCT r.object_id "
-		  . "FROM feature_relationship r "
-		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
-		  . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-		  . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
-		  . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-		  . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+    my \$query_gene     = "";
+    my \$query_GO       = "";
+    my \$query_TCDB     = "";
+    my \$query_Phobius  = "";
+    my \$query_sigP     = "";
+    my \$query_blast    = "";
+    my \$query_RPS      = "";
+    my \$query_KEGG     = "";
+    my \$query_ORTH     = "";
+    my \$query_interpro = "";
+    my \$query_tmhmm    = "";
+    my \$query_dgpi	   = "";
+    my \$query_predgpi  = "";
+    my \$query_bigpi	   = "";
 
-		push \@args, \$hash->{pipeline};
+    if (   ( exists \$hash->{geneDesc} && \$hash->{geneDesc} )
+        || ( exists \$hash->{noDesc} && \$hash->{noDesc} ) )
+    {
+        my \$and = "";
+        \$query_gene =
+            "(SELECT DISTINCT f.feature_id "
+          . "FROM feature f JOIN feature_relationship r ON (f.feature_id = r.object_id) "
+          . "JOIN cvterm cr ON (r.type_id = cr.cvterm_id) "
+          . "JOIN featureloc l ON (l.feature_id = f.feature_id) "
+          . "JOIN featureprop pl ON (l.srcfeature_id = pl.feature_id) "
+          . "JOIN cvterm cp ON (pl.type_id = cp.cvterm_id) "
+          . "JOIN featureprop pd ON (r.subject_id = pd.feature_id) "
+          . "JOIN cvterm cd ON (pd.type_id = cd.cvterm_id) "
+          . "WHERE cr.name = 'based_on' AND cd.name = 'description' AND cp.name = 'pipeline_id' AND pl.value=? AND ";
+        push \@args, \$hash->{pipeline};
+        \$connector = " INTERSECT " if \$connector;
 
-		\$connector = " INTERSECT " if \$connector;
+        if ( exists \$hash->{geneDesc} && \$hash->{geneDesc} ) {
+            \$query_gene .= generate_clause( "?", "", "", "lower(pd.value)" );
+            push \@args, lc("\%".\$hash->{geneDesc} . "\%");
+            \$and = " AND ";
+        }
+        if ( exists \$hash->{noDesc} && \$hash->{noDesc} ) {
+            \$query_gene .=
+              generate_clause( "?", "NOT", \$and, "lower(pd.value)" );
+            push \@args, "\%" . lc( \$hash->{noDesc} ) . "\%";
+        }
 
-		if ( exists \$hash->{noGO} && \$hash->{noGO} ) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_GO .= "AND cpd.name LIKE 'evidence_\%' ";
-		}
-		elsif ( exists \$hash->{goID} && \$hash->{goID} ) {
-			\$query_GO .=
-			  "AND cpd.name LIKE 'evidence_\%' AND lower(pd.value) LIKE ?)";
-			push \@args, "\%" . lc( \$hash->{'goID'} ) . "\%";
-		}
-		elsif ( exists \$hash->{goDesc} && \$hash->{goDesc} ) {
-			\$query_GO .=
-			  "and cpd.name like 'evidence_\%' and "
-			  . generate_clause( "?", "", "", "lower(pd.value)" ) . " )";
-			push \@args, "\%" . lc( \$hash->{'goDesc'} ) . "\%";
-		}
-		\$query_GO  = \$connector . \$query_GO . ")";
-		\$connector = "1";
-	}
-	if (   ( exists \$hash->{'noTC'} && \$hash->{'noTC'} )
-		|| ( exists \$hash->{'tcdbID'}       && \$hash->{'tcdbID'} )
-		|| ( exists \$hash->{'tcdbFam'}      && \$hash->{'tcdbFam'} )
-		|| ( exists \$hash->{'tcdbSubclass'} && \$hash->{'tcdbSubclass'} )
-		|| ( exists \$hash->{'tcdbClass'}    && \$hash->{'tcdbClass'} )
-		|| ( exists \$hash->{'tcdbDesc'}     && \$hash->{'tcdbDesc'} ) )
-	{
-		\$query_TCDB =
-		    "(SELECT DISTINCT r.object_id "
-		  . "FROM feature_relationship r "
-		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
-		  . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-		  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
-		  . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
-		  . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-		  . "WHERE c.name ='pipeline_id' AND p.value = ? ";
-		push \@args, \$hash->{pipeline};
+        if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
+        || ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
+        {
+            my \@likesDescription   = ();
+            my \@likesNoDescription = ();
+            if ( \$hash->{geneDescription} ) {
+                while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
+                    push \@likesDescription,
+                      generate_clause( "?", "", "",
+                        "lower(pd.value)"
+                      );
+                    push \@args, lc( "\%" . \$1 . "\%" );
+                }
+            }
+            if ( \$hash->{noDescription} ) {
+                while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
+                    push \@likesNoDescription,
+                      generate_clause( "?", "NOT", "",
+                        "lower(pd.value)"
+                      );
+                    push \@args, lc( "\%" . \$1 . "\%" );
+                }
+            }
 
-		\$connector = " INTERSECT " if \$connector;
+            if (    exists \$hash->{individually}
+                and \$hash->{individually}
+                and scalar(\@likesDescription) > 0 )
+            {
+                if ( scalar(\@likesNoDescription) > 0 ) {
+                    foreach my \$like (\@likesDescription) {
+                        \$query_gene .= " AND " . \$like;
+                    }
+                    foreach my \$notLike (\@likesNoDescription) {
+                        \$query_gene .= " AND " . \$notLike;
+                    }
+                }
+                else {
+                    foreach my \$like (\@likesDescription) {
+                        \$query_gene .= " AND " . \$like;
+                    }
+                }
+            }
+            elsif ( scalar(\@likesDescription) > 0 ) {
+                my \$and = "";
+                if ( scalar(\@likesNoDescription) > 0 ) {
+                    foreach my \$notLike (\@likesNoDescription) {
+                        \$query_gene .= " AND " . \$notLike;
+                    }
+                    \$and = "1";
+                }
+                if (\$and) {
+                    \$and = " AND ";
+                }
+                else {
+                    \$and = " OR ";
+                }
+                \$query_gene .= " AND (";
+                my \$counter = 0;
+                foreach my \$like (\@likesDescription) {
+                    if ( \$counter == 0 ) {
+                        \$query_gene .= \$like;
+                        \$counter++;
+                    }
+                    else {
+                        \$query_gene .= \$and . \$like;
+                    }
+                }
+                \$query_gene .= " ) ";
+            }
+            elsif ( scalar(\@likesDescription) <= 0
+                and scalar(\@likesNoDescription) > 0 )
+            {
+                foreach my \$like (\@likesNoDescription) {
+                    \$query_gene .= " AND " . \$like;
+                }
+            }
+        }
 
-		if ( \$hash->{'noTC'} ) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_TCDB .= " AND cpd.name = 'TCDB_ID'";
-		}
-		elsif ( \$hash->{'tcdbID'} ) {
-			\$query_TCDB .= "AND cpd.name = 'TCDB_ID' AND pd.value = ?";
-			push \@args, \$hash->{'tcdbID'};
-		}
-		elsif ( \$hash->{'tcdbFam'} ) {
-			\$query_TCDB .=
-			  "AND cpd.name = 'TCDB_family' AND lower(pd.value) LIKE ?";
-			push \@args, "\%" . lc( \$hash->{'tcdbFam'} ) . "\%";
-		}
-		elsif ( \$hash->{'tcdbSubclass'} ) {
-			\$query_TCDB .=
-			  "AND cpd.name = 'TCDB_subclass' AND lower(pd.value) LIKE ?";
-			push \@args, "\%" . lc( \$hash->{'tcdbSubclass'} ) . "\%";
-		}
-		elsif ( \$hash->{'tcdbClass'} ) {
-			\$query_TCDB .=
-			  "AND cpd.name = 'TCDB_class' AND lower(pd.value) LIKE ?";
-			push \@args, "\%" . lc( \$hash->{'tcdbClass'} ) . "\%";
-		}
-		elsif ( \$hash->{'tcdbDesc'} ) {
-			\$query_TCDB .=
-			  "and cpd.name = 'hit_description' and "
-			  . generate_clause( "?", "", "", "lower(pd.value)" );
-			push \@args, lc( \$hash->{'tcdbDesc'} );
-		}
-		\$query_TCDB = \$connector . \$query_TCDB . ")";
-		\$connector  = "1";
-	}
-	if (   ( exists \$hash->{'noBlast'} && \$hash->{'noBlast'} )
-		|| ( exists \$hash->{'blastID'}   && \$hash->{'blastID'} )
-		|| ( exists \$hash->{'blastDesc'} && \$hash->{'blastDesc'} ) )
-	{
-		\$query_blast = "(SELECT DISTINCT r.object_id " . " FROM feature f
+        \$query_gene .= ")";
+        \$query_gene = \$connector . \$query_gene;
+        \$connector  = "1";
+    }
+    if (   ( exists \$hash->{noGO} && \$hash->{noGO} )
+        || ( exists \$hash->{goID}   && \$hash->{goID} )
+        || ( exists \$hash->{goDesc} && \$hash->{goDesc} ) )
+    {
+        \$query_GO =
+            "(SELECT DISTINCT r.object_id "
+          . "FROM feature_relationship r "
+          . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+          . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+          . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
+          . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+          . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
+          . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
+          . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+
+        push \@args, \$hash->{pipeline};
+
+        \$connector = " INTERSECT " if \$connector;
+
+        if ( exists \$hash->{noGO} && \$hash->{noGO} ) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_GO .= "AND cpd.name LIKE 'evidence_\%' ";
+        }
+        elsif ( exists \$hash->{goID} && \$hash->{goID} ) {
+            \$query_GO .=
+              "AND cpd.name LIKE 'evidence_\%' AND lower(pd.value) LIKE ?)";
+            push \@args, "\%" . lc( \$hash->{'goID'} ) . "\%";
+        }
+        elsif ( exists \$hash->{goDesc} && \$hash->{goDesc} ) {
+            \$query_GO .=
+              "and cpd.name like 'evidence_\%' and "
+              . generate_clause( "?", "", "", "lower(pd.value)" ) . " )";
+            push \@args, "\%" . lc( \$hash->{'goDesc'} ) . "\%";
+        }
+        \$query_GO  = \$connector . \$query_GO . ")";
+        \$connector = "1";
+    }
+    if (   ( exists \$hash->{'noTC'} && \$hash->{'noTC'} )
+        || ( exists \$hash->{'tcdbID'}       && \$hash->{'tcdbID'} )
+        || ( exists \$hash->{'tcdbFam'}      && \$hash->{'tcdbFam'} )
+        || ( exists \$hash->{'tcdbSubclass'} && \$hash->{'tcdbSubclass'} )
+        || ( exists \$hash->{'tcdbClass'}    && \$hash->{'tcdbClass'} )
+        || ( exists \$hash->{'tcdbDesc'}     && \$hash->{'tcdbDesc'} ) )
+    {
+        \$query_TCDB =
+            "(SELECT DISTINCT r.object_id "
+          . "FROM feature_relationship r "
+          . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+          . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+          . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
+          . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+          . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+          . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
+          . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
+          . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+        push \@args, \$hash->{pipeline};
+
+        \$connector = " INTERSECT " if \$connector;
+
+        if ( \$hash->{'noTC'} ) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_TCDB .= " AND cpd.name = 'TCDB_ID'";
+        }
+        elsif ( \$hash->{'tcdbID'} ) {
+            \$query_TCDB .= "AND cpd.name = 'TCDB_ID' AND pd.value = ?";
+            push \@args, \$hash->{'tcdbID'};
+        }
+        elsif ( \$hash->{'tcdbFam'} ) {
+            \$query_TCDB .=
+              "AND cpd.name = 'TCDB_family' AND lower(pd.value) LIKE ?";
+            push \@args, "\%" . lc( \$hash->{'tcdbFam'} ) . "\%";
+        }
+        elsif ( \$hash->{'tcdbSubclass'} ) {
+            \$query_TCDB .=
+              "AND cpd.name = 'TCDB_subclass' AND lower(pd.value) LIKE ?";
+            push \@args, "\%" . lc( \$hash->{'tcdbSubclass'} ) . "\%";
+        }
+        elsif ( \$hash->{'tcdbClass'} ) {
+            \$query_TCDB .=
+              "AND cpd.name = 'TCDB_class' AND lower(pd.value) LIKE ?";
+            push \@args, "\%" . lc( \$hash->{'tcdbClass'} ) . "\%";
+        }
+        elsif ( \$hash->{'tcdbDesc'} ) {
+            \$query_TCDB .=
+              "and cpd.name = 'hit_description' and "
+              . generate_clause( "?", "", "", "lower(pd.value)" );
+            push \@args, lc( \$hash->{'tcdbDesc'} );
+        }
+        \$query_TCDB = \$connector . \$query_TCDB . ")";
+        \$connector  = "1";
+    }
+    if (   ( exists \$hash->{'noBlast'} && \$hash->{'noBlast'} )
+        || ( exists \$hash->{'blastID'}   && \$hash->{'blastID'} )
+        || ( exists \$hash->{'blastDesc'} && \$hash->{'blastDesc'} ) )
+    {
+        \$query_blast = "(SELECT DISTINCT r.object_id " . " FROM feature f
                 JOIN feature_relationship r ON (r.subject_id = f.feature_id)
                 JOIN feature fo ON (r.object_id = fo.feature_id)
                 JOIN analysisfeature af ON (f.feature_id = af.feature_id)
@@ -2587,185 +2409,185 @@ sub analyses_CDS {
                 JOIN cvterm cpfo ON (cpfo.cvterm_id = pfo.type_id)
                 JOIN featureprop pr ON (r.object_id = pr.feature_id)
                 JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id) ";
-		my \$conditional =
+        my \$conditional =
 "WHERE a.program = 'annotation_blast.pl' AND c.name ='pipeline_id' AND p.value = ? AND cra.name = 'alignment' AND cpfo.name = 'subject_id'";
-		push \@args, \$hash->{pipeline};
-		\$connector = " INTERSECT " if \$connector;
-		if ( \$hash->{'noBlast'} ) {
-			\$connector = " EXCEPT " if \$connector;
-		}
-		elsif ( \$hash->{'blastID'} ) {
-			\$conditional .= " AND lower(pfo.value) LIKE ?";
-			push \@args, "\%" . lc( \$hash->{'blastID'} ) . "\%";
-		}
-		elsif ( \$hash->{'blastDesc'} ) {
-			\$conditional .=
-			  " AND " . generate_clause( "?", "", "", "lower(pfo.value)" );
-			push \@args, \$hash->{'blastDesc'};
-		}
-		\$query_blast = \$connector . \$query_blast . \$conditional . ")";
-		\$connector   = "1";
-	}
-	if (   ( exists \$hash->{'noRps'} && \$hash->{'noRps'} )
-		|| ( exists \$hash->{'rpsID'}   && \$hash->{'rpsID'} )
-		|| ( exists \$hash->{'rpsDesc'} && \$hash->{'rpsDesc'} ) )
-	{
-		\$query_RPS =
-		    "(select distinct r.object_id "
-		  . " from feature f "
-		  . "join feature_relationship r on (r.subject_id = f.feature_id) "
-		  . "join feature fo on (r.object_id = fo.feature_id) "
-		  . "join analysisfeature af on (f.feature_id = af.feature_id) "
-		  . "join analysis a on (a.analysis_id = af.analysis_id) "
-		  . "join featureloc l on (r.object_id = l.feature_id) "
-		  . "join featureprop p on (p.feature_id = srcfeature_id) "
-		  . "join cvterm c on (p.type_id = c.cvterm_id) "
-		  . "join feature_relationship ra on (ra.object_id = f.feature_id) "
-		  . "join cvterm cra on (ra.type_id = cra.cvterm_id) "
-		  . "join featureprop pfo on (ra.subject_id = pfo.feature_id) "
-		  . "join cvterm cpfo on (cpfo.cvterm_id = pfo.type_id) "
-		  . "join featureprop pr on (r.object_id = pr.feature_id) "
-		  . "join cvterm cpr on (pr.type_id = cpr.cvterm_id) ";
-		my \$conditional =
+        push \@args, \$hash->{pipeline};
+        \$connector = " INTERSECT " if \$connector;
+        if ( \$hash->{'noBlast'} ) {
+            \$connector = " EXCEPT " if \$connector;
+        }
+        elsif ( \$hash->{'blastID'} ) {
+            \$conditional .= " AND lower(pfo.value) LIKE ?";
+            push \@args, "\%" . lc( \$hash->{'blastID'} ) . "\%";
+        }
+        elsif ( \$hash->{'blastDesc'} ) {
+            \$conditional .=
+              " AND " . generate_clause( "?", "", "", "lower(pfo.value)" );
+            push \@args, \$hash->{'blastDesc'};
+        }
+        \$query_blast = \$connector . \$query_blast . \$conditional . ")";
+        \$connector   = "1";
+    }
+    if (   ( exists \$hash->{'noRps'} && \$hash->{'noRps'} )
+        || ( exists \$hash->{'rpsID'}   && \$hash->{'rpsID'} )
+        || ( exists \$hash->{'rpsDesc'} && \$hash->{'rpsDesc'} ) )
+    {
+        \$query_RPS =
+            "(select distinct r.object_id "
+          . " from feature f "
+          . "join feature_relationship r on (r.subject_id = f.feature_id) "
+          . "join feature fo on (r.object_id = fo.feature_id) "
+          . "join analysisfeature af on (f.feature_id = af.feature_id) "
+          . "join analysis a on (a.analysis_id = af.analysis_id) "
+          . "join featureloc l on (r.object_id = l.feature_id) "
+          . "join featureprop p on (p.feature_id = srcfeature_id) "
+          . "join cvterm c on (p.type_id = c.cvterm_id) "
+          . "join feature_relationship ra on (ra.object_id = f.feature_id) "
+          . "join cvterm cra on (ra.type_id = cra.cvterm_id) "
+          . "join featureprop pfo on (ra.subject_id = pfo.feature_id) "
+          . "join cvterm cpfo on (cpfo.cvterm_id = pfo.type_id) "
+          . "join featureprop pr on (r.object_id = pr.feature_id) "
+          . "join cvterm cpr on (pr.type_id = cpr.cvterm_id) ";
+        my \$conditional =
 "where a.program = 'annotation_rpsblast.pl' and c.name ='pipeline_id' and p.value = ? and cra.name = 'alignment' and cpfo.name = 'subject_id' ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " INTERSECT " if \$connector;
+        push \@args, \$hash->{pipeline};
+        \$connector = " INTERSECT " if \$connector;
 
-		if ( \$hash->{'noRps'} ) {
-			\$connector = " EXCEPT " if \$connector;
-		}
-		elsif ( \$hash->{'rpsID'} ) {
-			\$conditional .= " and lower(pfo.value) like ? ";
-			push \@args, "\%" . lc( \$hash->{'rpsID'} ) . "\%";
-		}
-		elsif ( \$hash->{'rpsDesc'} ) {
-			\$conditional .=
-			  " and " . generate_clause( "?", "", "", "lower(pfo.value)" );
-			push \@args, "\%" . lc( \$hash->{'rpsDesc'} ) . "\%";
-		}
-		\$query_RPS = \$connector . \$query_RPS . \$conditional . ")";
-		\$connector = 1;
-	}
-	if (   \$hash->{'noKEGG'}
-		|| \$hash->{'koID'}
-		|| \$hash->{'keggPath'}
-		|| \$hash->{'keggDesc'} )
-	{
-		\$query_KEGG =
-		    "(select distinct r.object_id "
-		  . "from feature_relationship r "
-		  . "join featureloc l on (r.object_id = l.feature_id)"
-		  . "join featureprop p on (p.feature_id = l.srcfeature_id)"
-		  . "join cvterm c on (p.type_id = c.cvterm_id)"
-		  . "join feature_relationship pr on (r.subject_id = pr.object_id)"
-		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id)"
-		  . "join featureprop pd on (pr.subject_id = pd.feature_id)"
-		  . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
-		my \$conditional = " where c.name ='pipeline_id' and p.value = ? ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " intersect " if \$connector;
-		if ( \$hash->{'noKEGG'} ) {
-			\$connector = " except " if \$connector;
-			\$conditional .= " and cpd.name = 'orthologous_group_id'";
-		}
-		elsif ( \$hash->{'koID'} ) {
-			\$conditional .=
+        if ( \$hash->{'noRps'} ) {
+            \$connector = " EXCEPT " if \$connector;
+        }
+        elsif ( \$hash->{'rpsID'} ) {
+            \$conditional .= " and lower(pfo.value) like ? ";
+            push \@args, "\%" . lc( \$hash->{'rpsID'} ) . "\%";
+        }
+        elsif ( \$hash->{'rpsDesc'} ) {
+            \$conditional .=
+              " and " . generate_clause( "?", "", "", "lower(pfo.value)" );
+            push \@args, "\%" . lc( \$hash->{'rpsDesc'} ) . "\%";
+        }
+        \$query_RPS = \$connector . \$query_RPS . \$conditional . ")";
+        \$connector = 1;
+    }
+    if (   \$hash->{'noKEGG'}
+        || \$hash->{'koID'}
+        || \$hash->{'keggPath'}
+        || \$hash->{'keggDesc'} )
+    {
+        \$query_KEGG =
+            "(select distinct r.object_id "
+          . "from feature_relationship r "
+          . "join featureloc l on (r.object_id = l.feature_id)"
+          . "join featureprop p on (p.feature_id = l.srcfeature_id)"
+          . "join cvterm c on (p.type_id = c.cvterm_id)"
+          . "join feature_relationship pr on (r.subject_id = pr.object_id)"
+          . "join featureprop ppr on (pr.subject_id = ppr.feature_id)"
+          . "join featureprop pd on (pr.subject_id = pd.feature_id)"
+          . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
+        my \$conditional = " where c.name ='pipeline_id' and p.value = ? ";
+        push \@args, \$hash->{pipeline};
+        \$connector = " intersect " if \$connector;
+        if ( \$hash->{'noKEGG'} ) {
+            \$connector = " except " if \$connector;
+            \$conditional .= " and cpd.name = 'orthologous_group_id'";
+        }
+        elsif ( \$hash->{'koID'} ) {
+            \$conditional .=
 " and cpd.name = 'orthologous_group_id' and lower(pd.value) LIKE ? ";
-			push \@args, "\%" . lc( \$hash->{'koID'} ) . "\%";
-		}
-		elsif ( \$hash->{'keggPath'} ) {
-			\$conditional .=
+            push \@args, "\%" . lc( \$hash->{'koID'} ) . "\%";
+        }
+        elsif ( \$hash->{'keggPath'} ) {
+            \$conditional .=
 " and cpd.name = 'metabolic_pathway_id' and lower(pd.value) like ? ";
-			push \@args, "\%" . lc( \$hash->{'keggPath'} ) . "\%";
-		}
-		elsif ( \$hash->{'keggDesc'} ) {
-			\$query_KEGG .=
-			    " join analysisfeature af on (r.subject_id = af.feature_id)"
-			  . "join analysis a on (a.analysis_id = af.analysis_id) ";
-			\$conditional .=
+            push \@args, "\%" . lc( \$hash->{'keggPath'} ) . "\%";
+        }
+        elsif ( \$hash->{'keggDesc'} ) {
+            \$query_KEGG .=
+                " join analysisfeature af on (r.subject_id = af.feature_id)"
+              . "join analysis a on (a.analysis_id = af.analysis_id) ";
+            \$conditional .=
 " and a.program = 'annotation_pathways.pl' and cpd.name = 'orthologous_group_description' and "
-			  . generate_clause( "?", "", "", "pd.value" );
-			push \@args, "\%" . lc( \$hash->{'keggDesc'} ) . "\%";
-		}
-		\$query_KEGG = \$connector . \$query_KEGG . \$conditional . ")";
-		\$connector  = "1";
-	}
-	if (   ( exists \$hash->{'noOrth'} && \$hash->{'noOrth'} )
-		|| ( exists \$hash->{'orthID'}   && \$hash->{'orthID'} )
-		|| ( exists \$hash->{'orthDesc'} && \$hash->{'orthDesc'} ) )
-	{
-		\$query_ORTH =
-		    "(select distinct r.object_id"
-		  . " from feature_relationship r "
-		  . "join featureloc l on (r.object_id = l.feature_id) "
-		  . "join featureprop p on (p.feature_id = l.srcfeature_id) "
-		  . "join cvterm c on (p.type_id = c.cvterm_id) "
-		  . "join feature_relationship pr on (r.subject_id = pr.object_id) "
-		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
-		  . "join featureprop pd on (pr.subject_id = pd.feature_id) "
-		  . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
-		my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " intersect " if \$connector;
-		if ( \$hash->{'noOrth'} ) {
-			\$connector = " except " if \$connector;
-			\$conditional .= " and cpd.name = 'orthologous_group' ";
-		}
-		elsif ( \$hash->{'orthID'} ) {
-			\$conditional =
-			  "and cpd.name = 'orthologous_group' and lower(pd.value) like ? ";
-			push \@args, "\%" . lc( \$hash->{'orthID'} ) . "\%";
-		}
-		elsif ( \$hash->{'orthDesc'} ) {
-			\$query_ORTH .=
-			    " join analysisfeature af on (r.subject_id = af.feature_id) "
-			  . " join analysis a on (a.analysis_id = af.analysis_id) ";
-			\$conditional .=
+              . generate_clause( "?", "", "", "pd.value" );
+            push \@args, "\%" . lc( \$hash->{'keggDesc'} ) . "\%";
+        }
+        \$query_KEGG = \$connector . \$query_KEGG . \$conditional . ")";
+        \$connector  = "1";
+    }
+    if (   ( exists \$hash->{'noOrth'} && \$hash->{'noOrth'} )
+        || ( exists \$hash->{'orthID'}   && \$hash->{'orthID'} )
+        || ( exists \$hash->{'orthDesc'} && \$hash->{'orthDesc'} ) )
+    {
+        \$query_ORTH =
+            "(select distinct r.object_id"
+          . " from feature_relationship r "
+          . "join featureloc l on (r.object_id = l.feature_id) "
+          . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+          . "join cvterm c on (p.type_id = c.cvterm_id) "
+          . "join feature_relationship pr on (r.subject_id = pr.object_id) "
+          . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
+          . "join featureprop pd on (pr.subject_id = pd.feature_id) "
+          . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
+        my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
+        push \@args, \$hash->{pipeline};
+        \$connector = " intersect " if \$connector;
+        if ( \$hash->{'noOrth'} ) {
+            \$connector = " except " if \$connector;
+            \$conditional .= " and cpd.name = 'orthologous_group' ";
+        }
+        elsif ( \$hash->{'orthID'} ) {
+            \$conditional =
+              "and cpd.name = 'orthologous_group' and lower(pd.value) like ? ";
+            push \@args, "\%" . lc( \$hash->{'orthID'} ) . "\%";
+        }
+        elsif ( \$hash->{'orthDesc'} ) {
+            \$query_ORTH .=
+                " join analysisfeature af on (r.subject_id = af.feature_id) "
+              . " join analysis a on (a.analysis_id = af.analysis_id) ";
+            \$conditional .=
 " and a.program = 'annotation_orthology.pl' and cpd.name = 'orthologous_group_description' and "
-			  . generate_clause( "?", "", "", "lower(pd.value)" );
-			push \@args, "\%" . \$hash->{'orthDesc'} . "\%";
-		}
-		\$query_ORTH = \$connector . \$query_ORTH . \$conditional . ")";
-		\$connector  = "1";
-	}
-	if (   ( exists \$hash->{'noIP'} && \$hash->{'noIP'} )
-		|| ( exists \$hash->{'interproID'}   && \$hash->{'interproID'} )
-		|| ( exists \$hash->{'interproDesc'} && \$hash->{'interproDesc'} ) )
-	{
-		\$query_interpro =
-		    "(select distinct r.object_id "
-		  . " from feature f "
-		  . "join feature_relationship r on (r.subject_id = f.feature_id) "
-		  . "join featureloc l on (r.object_id = l.feature_id) "
-		  . "join featureprop p on (p.feature_id = l.srcfeature_id) "
-		  . "join cvterm c on (p.type_id = c.cvterm_id) "
-		  . "join feature_relationship pr on (r.subject_id = pr.object_id) "
-		  . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
-		  . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) ";
-		my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " intersect " if \$connector;
-		if ( \$hash->{'noIP'} ) {
-			\$connector = " except " if \$connector;
-			\$conditional .= "and cpr.name like 'interpro_id'";
-		}
-		elsif ( \$hash->{'interproID'} ) {
-			\$conditional .=
-			  "and cpr.name like 'interpro_id' and ppr.value LIKE ? ";
-			push \@args, "\%" . \$hash->{'interproID'} . "\%";
-		}
-		elsif ( \$hash->{'interproDesc'} ) {
-			\$conditional .=
-			  "and cpr.name like 'description\%' and ppr.value like ? ";
-			push \@args, "\%" . \$hash->{'interproDesc'} . "\%";
-		}
-		\$query_interpro = \$connector . \$query_interpro . \$conditional . ")";
-		\$connector      = 1;
-	}
-	if (   ( exists \$hash->{'noTMHMM'} && \$hash->{'noTMHMM'} )
-		|| ( exists \$hash->{'TMHMMdom'}   && \$hash->{'TMHMMdom'}   ) )
-	{
-		my \$select = "(SELECT DISTINCT r.object_id       
+              . generate_clause( "?", "", "", "lower(pd.value)" );
+            push \@args, "\%" . \$hash->{'orthDesc'} . "\%";
+        }
+        \$query_ORTH = \$connector . \$query_ORTH . \$conditional . ")";
+        \$connector  = "1";
+    }
+    if (   ( exists \$hash->{'noIP'} && \$hash->{'noIP'} )
+        || ( exists \$hash->{'interproID'}   && \$hash->{'interproID'} )
+        || ( exists \$hash->{'interproDesc'} && \$hash->{'interproDesc'} ) )
+    {
+        \$query_interpro =
+            "(select distinct r.object_id "
+          . " from feature f "
+          . "join feature_relationship r on (r.subject_id = f.feature_id) "
+          . "join featureloc l on (r.object_id = l.feature_id) "
+          . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+          . "join cvterm c on (p.type_id = c.cvterm_id) "
+          . "join feature_relationship pr on (r.subject_id = pr.object_id) "
+          . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
+          . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) ";
+        my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
+        push \@args, \$hash->{pipeline};
+        \$connector = " intersect " if \$connector;
+        if ( \$hash->{'noIP'} ) {
+            \$connector = " except " if \$connector;
+            \$conditional .= "and cpr.name like 'interpro_id'";
+        }
+        elsif ( \$hash->{'interproID'} ) {
+            \$conditional .=
+              "and cpr.name like 'interpro_id' and ppr.value LIKE ? ";
+            push \@args, "\%" . \$hash->{'interproID'} . "\%";
+        }
+        elsif ( \$hash->{'interproDesc'} ) {
+            \$conditional .=
+              "and cpr.name like 'description\%' and ppr.value like ? ";
+            push \@args, "\%" . \$hash->{'interproDesc'} . "\%";
+        }
+        \$query_interpro = \$connector . \$query_interpro . \$conditional . ")";
+        \$connector      = 1;
+    }
+    if (   ( exists \$hash->{'noTMHMM'} && \$hash->{'noTMHMM'} )
+        || ( exists \$hash->{'TMHMMdom'}   && \$hash->{'TMHMMdom'}   ) )
+    {
+        my \$select = "(SELECT DISTINCT r.object_id       
 FROM feature f 
 JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
 JOIN feature fo ON (r.object_id = fo.feature_id) 
@@ -2782,35 +2604,35 @@ JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
 JOIN featureprop ppp ON (pr.subject_id = ppp.feature_id)       
 JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id)
 WHERE a.program = 'annotation_tmhmm.pl' AND c.name ='pipeline_id' AND p.value=? AND cpr.name ='version' AND cpp.name='direction' AND cppp.name='predicted_TMHs' ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " INTERSECT " if \$connector;
-		if(\$hash->{'noTMHMM'}) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_tmhmm = \$connector . \$select . ")";
-		} elsif(\$hash->{'TMHMMdom'}) {
-			\$select .= " AND my_to_decimal(ppp.value) ";
-			if ( \$hash->{'tmhmmQuant'} eq "exact" ) {
-				\$select .= "= ? ";
-			}
-			elsif ( \$hash->{'tmhmmQuant'} eq "orLess" ) {
-				\$select .= "<= ? ";
-			}
-			elsif ( \$hash->{'tmhmmQuant'} eq "orMore" ) {
-				\$select .= ">= ? ";
-			}
-			push \@args, \$hash->{'TMHMMdom'} if \$hash->{'tmhmmQuant'};
-			\$query_Phobius = \$connector . \$select . ")";
-			\$connector     = "1";
-		} else {
-			\$query_tmhmm = "";
-		}
-		
-	}
-	if (    ( exists \$hash->{'noDGPI'} && \$hash->{'noDGPI'} )
-		||  ( exists \$hash->{'cleavageSiteDGPI'}   && \$hash->{'cleavageSiteDGPI'}   ) 
-		||  ( exists \$hash->{'scoreDGPI'}   && \$hash->{'scoreDGPI'}   )  )
-	{
-		my \$select = "(SELECT DISTINCT r.object_id       
+        push \@args, \$hash->{pipeline};
+        \$connector = " INTERSECT " if \$connector;
+        if(\$hash->{'noTMHMM'}) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_tmhmm = \$connector . \$select . ")";
+        } elsif(\$hash->{'TMHMMdom'}) {
+            \$select .= " AND my_to_decimal(ppp.value) ";
+            if ( \$hash->{'tmhmmQuant'} eq "exact" ) {
+                \$select .= "= ? ";
+            }
+            elsif ( \$hash->{'tmhmmQuant'} eq "orLess" ) {
+                \$select .= "<= ? ";
+            }
+            elsif ( \$hash->{'tmhmmQuant'} eq "orMore" ) {
+                \$select .= ">= ? ";
+            }
+            push \@args, \$hash->{'TMHMMdom'} if \$hash->{'tmhmmQuant'};
+            \$query_Phobius = \$connector . \$select . ")";
+            \$connector     = "1";
+        } else {
+            \$query_tmhmm = "";
+        }
+
+    }
+    if (    ( exists \$hash->{'noDGPI'} && \$hash->{'noDGPI'} )
+        ||  ( exists \$hash->{'cleavageSiteDGPI'}   && \$hash->{'cleavageSiteDGPI'}   ) 
+        ||  ( exists \$hash->{'scoreDGPI'}   && \$hash->{'scoreDGPI'}   )  )
+    {
+        my \$select = "(SELECT DISTINCT r.object_id       
 FROM feature f 
 JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
 JOIN feature fo ON (r.object_id = fo.feature_id) 
@@ -2825,50 +2647,50 @@ JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
 JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
 JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
 WHERE a.program = 'annotation_dgpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='cleavage_site' AND cpp.name='score' ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " INTERSECT " if \$connector;
-		if(\$hash->{'noDGPI'}) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_dgpi = \$connector . \$select . ")";
-		} elsif(\$hash->{'cleavageSiteDGPI'}) {
-			\$select .= " AND my_to_decimal(ppr.value) ";
-			
-			if ( \$hash->{'cleavageQuant'} eq "exact" ) {
-				\$select .= "= ? ";
-			}
-			elsif ( \$hash->{'cleavageQuant'} eq "orLess" ) {
-				\$select .= "<= ? ";
-			}
-			elsif ( \$hash->{'cleavageQuant'} eq "orMore" ) {
-				\$select .= ">= ? ";
-			}
-			push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
-			\$query_Phobius = \$connector . \$select . ")";
-			\$connector     = "1";
-		} elsif(\$hash->{'scoreDGPI'}) {
-			\$select .= " AND my_to_decimal(pp.value) ";
-			
-			if ( \$hash->{'scoreQuant'} eq "exact" ) {
-				\$select .= "= ? ";
-			}
-			elsif ( \$hash->{'scoreQuant'} eq "orLess" ) {
-				\$select .= "<= ? ";
-			}
-			elsif ( \$hash->{'scoreQuant'} eq "orMore" ) {
-				\$select .= ">= ? ";
-			}
-			push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
-			\$query_Phobius = \$connector . \$select . ")";
-			\$connector     = "1";
-		}
-		\$connector      = 1;
-	}
-	if (    ( exists \$hash->{'noPreDGPI'} && \$hash->{'noPreDGPI'} )
-		||  ( exists \$hash->{'namePreDGPI'} && \$hash->{'namePreDGPI'} ) 
-		||  ( exists \$hash->{'positionPreDGPI'} && \$hash->{'positionPreDGPI'} ) 
-		||  ( exists \$hash->{'specificityPreDGPI'} && \$hash->{'specificityPreDGPI'} ) 
-		||  ( exists \$hash->{'sequencePreDGPI'} && \$hash->{'sequencePreDGPI'} )  ) {
-		my \$select = "(SELECT DISTINCT r.object_id       
+        push \@args, \$hash->{pipeline};
+        \$connector = " INTERSECT " if \$connector;
+        if(\$hash->{'noDGPI'}) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_dgpi = \$connector . \$select . ")";
+        } elsif(\$hash->{'cleavageSiteDGPI'}) {
+            \$select .= " AND my_to_decimal(ppr.value) ";
+
+            if ( \$hash->{'cleavageQuant'} eq "exact" ) {
+                \$select .= "= ? ";
+            }
+            elsif ( \$hash->{'cleavageQuant'} eq "orLess" ) {
+                \$select .= "<= ? ";
+            }
+            elsif ( \$hash->{'cleavageQuant'} eq "orMore" ) {
+                \$select .= ">= ? ";
+            }
+            push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
+            \$query_Phobius = \$connector . \$select . ")";
+            \$connector     = "1";
+        } elsif(\$hash->{'scoreDGPI'}) {
+            \$select .= " AND my_to_decimal(pp.value) ";
+
+            if ( \$hash->{'scoreQuant'} eq "exact" ) {
+                \$select .= "= ? ";
+            }
+            elsif ( \$hash->{'scoreQuant'} eq "orLess" ) {
+                \$select .= "<= ? ";
+            }
+            elsif ( \$hash->{'scoreQuant'} eq "orMore" ) {
+                \$select .= ">= ? ";
+            }
+            push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
+            \$query_Phobius = \$connector . \$select . ")";
+            \$connector     = "1";
+        }
+        \$connector      = 1;
+    }
+    if (    ( exists \$hash->{'noPreDGPI'} && \$hash->{'noPreDGPI'} )
+        ||  ( exists \$hash->{'namePreDGPI'} && \$hash->{'namePreDGPI'} ) 
+        ||  ( exists \$hash->{'positionPreDGPI'} && \$hash->{'positionPreDGPI'} ) 
+        ||  ( exists \$hash->{'specificityPreDGPI'} && \$hash->{'specificityPreDGPI'} ) 
+        ||  ( exists \$hash->{'sequencePreDGPI'} && \$hash->{'sequencePreDGPI'} )  ) {
+        my \$select = "(SELECT DISTINCT r.object_id       
 FROM feature f 
 JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
 JOIN feature fo ON (r.object_id = fo.feature_id) 
@@ -2887,61 +2709,61 @@ JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id)
 JOIN featureprop pppp ON (pr.subject_id = pppp.feature_id) 
 JOIN cvterm cpppp ON (pppp.type_id = cpppp.cvterm_id)      
 WHERE a.program = 'annotation_predgpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='name' AND cpp.name='position' AND cppp.name='specificity' AND cpppp.name='sequence' ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " INTERSECT " if \$connector;
-		if(\$hash->{'noPreDGPI'}) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_predgpi = \$connector . \$select . ")";
-		}
-		elsif(\$hash->{'namePreDGPI'}) {
-			\$select .= " AND lower(ppr.value ) LIKE ? ";
-			push \@args, "%" . lc( \$hash->{'namePreDGPI'} ) . "%";
-			\$query_predgpi .= \$connector . \$select . " ) ";
-			\$connector     = "1";
-		}
-		elsif(\$hash->{'positionPreDGPI'}) {
-			\$select .= " AND my_to_decimal(pp.value) ";
-			if ( \$hash->{'positionQuantPreDGPI'} eq "exact" ) {
-				\$select .= "= ? ";
-			}
-			elsif ( \$hash->{'positionQuantPreDGPI'} eq "orLess" ) {
-				\$select .= "<= ? ";
-			}
-			elsif ( \$hash->{'positionQuantPreDGPI'} eq "orMore" ) {
-				\$select .= ">= ? ";
-			}
-			push \@args, \$hash->{'positionPreDGPI'} if \$hash->{positionQuantPreDGPI};
-			\$query_predgpi .= \$connector . \$select . " ) ";
-			\$connector     = "1";
-		}
-		elsif(\$hash->{'specificityPreDGPI'}) {
-			\$select .= " AND my_to_decimal(ppp.value) ";
-			if ( \$hash->{'specificityQuantPreDGPI'} eq "exact" ) {
-				\$select .= "= ? ";
-			}
-			elsif ( \$hash->{'specificityQuantPreDGPI'} eq "orLess" ) {
-				\$select .= "<= ? ";
-			}
-			elsif ( \$hash->{'specificityQuantPreDGPI'} eq "orMore" ) {
-				\$select .= ">= ? ";
-			}
-			push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
-			\$query_predgpi .= \$connector . \$select . " ) ";
-			\$connector     = "1";
-		}
-		elsif(\$hash->{'sequencePreDGPI'}) {
-			\$select .= " AND lower(pppp.value ) LIKE ? ";
-			push \@args, "%" . lc( \$hash->{'sequencePreDGPI'} ) . "%";
-			\$query_predgpi .= \$connector . \$select . " ) ";
-			\$connector     = "1";
-		}
-		
-	}
-	if (    ( exists \$hash->{'noBigGPI'} && \$hash->{'noBigGPI'} )
-		||  ( exists \$hash->{'pvalueBigpi'}   && \$hash->{'pvalueBigpi'}   ) 
-		||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  )
-	{
-		my \$select = "(SELECT DISTINCT r.object_id       
+        push \@args, \$hash->{pipeline};
+        \$connector = " INTERSECT " if \$connector;
+        if(\$hash->{'noPreDGPI'}) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_predgpi = \$connector . \$select . ")";
+        }
+        elsif(\$hash->{'namePreDGPI'}) {
+            \$select .= " AND lower(ppr.value ) LIKE ? ";
+            push \@args, "%" . lc( \$hash->{'namePreDGPI'} ) . "%";
+            \$query_predgpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        }
+        elsif(\$hash->{'positionPreDGPI'}) {
+            \$select .= " AND my_to_decimal(pp.value) ";
+            if ( \$hash->{'positionQuantPreDGPI'} eq "exact" ) {
+                \$select .= "= ? ";
+            }
+            elsif ( \$hash->{'positionQuantPreDGPI'} eq "orLess" ) {
+                \$select .= "<= ? ";
+            }
+            elsif ( \$hash->{'positionQuantPreDGPI'} eq "orMore" ) {
+                \$select .= ">= ? ";
+            }
+            push \@args, \$hash->{'positionPreDGPI'} if \$hash->{positionQuantPreDGPI};
+            \$query_predgpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        }
+        elsif(\$hash->{'specificityPreDGPI'}) {
+            \$select .= " AND my_to_decimal(ppp.value) ";
+            if ( \$hash->{'specificityQuantPreDGPI'} eq "exact" ) {
+                \$select .= "= ? ";
+            }
+            elsif ( \$hash->{'specificityQuantPreDGPI'} eq "orLess" ) {
+                \$select .= "<= ? ";
+            }
+            elsif ( \$hash->{'specificityQuantPreDGPI'} eq "orMore" ) {
+                \$select .= ">= ? ";
+            }
+            push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
+            \$query_predgpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        }
+        elsif(\$hash->{'sequencePreDGPI'}) {
+            \$select .= " AND lower(pppp.value ) LIKE ? ";
+            push \@args, "%" . lc( \$hash->{'sequencePreDGPI'} ) . "%";
+            \$query_predgpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        }
+
+    }
+    if (    ( exists \$hash->{'noBigGPI'} && \$hash->{'noBigGPI'} )
+        ||  ( exists \$hash->{'pvalueBigpi'}   && \$hash->{'pvalueBigpi'}   ) 
+        ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  )
+    {
+        my \$select = "(SELECT DISTINCT r.object_id       
 FROM feature f 
 JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
 JOIN feature fo ON (r.object_id = fo.feature_id) 
@@ -2956,103 +2778,103 @@ JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
 JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
 JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
 WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='pvalue' AND cpp.name='position' ";
-		push \@args, \$hash->{pipeline};
-		\$connector = " INTERSECT " if \$connector;
-		if(\$hash->{'noBigGPI'}) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_predgpi = \$connector . \$select . ")";
-		} elsif (\$hash->{'pvalueBigpi'}) {
-			\$select .= " AND my_to_decimal(ppr.value) ";
-			if ( \$hash->{'pvalueQuantBigpi'} eq "exact" ) {
-				\$select .= "= ? ";
-			}
-			elsif ( \$hash->{'pvalueQuantBigpi'} eq "orLess" ) {
-				\$select .= "<= ? ";
-			}
-			elsif ( \$hash->{'pvalueQuantBigpi'} eq "orMore" ) {
-				\$select .= ">= ? ";
-			}
-			push \@args, \$hash->{'pvalueBigpi'} if \$hash->{pvalueQuantBigpi};
-			\$query_bigpi .= \$connector . \$select . " ) ";
-			\$connector     = "1";
-		} elsif (\$hash->{'positionBigpi'}) {
-			\$select .= " AND my_to_decimal(pp.value) ";
-			if ( \$hash->{'positionQuantBigpi'} eq "exact" ) {
-				\$select .= "= ? ";
-			}
-			elsif ( \$hash->{'positionQuantBigpi'} eq "orLess" ) {
-				\$select .= "<= ? ";
-			}
-			elsif ( \$hash->{'positionQuantBigpi'} eq "orMore" ) {
-				\$select .= ">= ? ";
-			}
-			push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
-			\$query_bigpi .= \$connector . \$select . " ) ";
-			\$connector     = "1";
-		}
-	}
-	if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
-		|| ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) )
-	{
-		my \$select = "(SELECT DISTINCT r.object_id ";
-		my \$join =
-		    "FROM feature f "
-		  . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
-		  . "JOIN feature fo ON (r.object_id = fo.feature_id) "
-		  . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-		  . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-		  . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
-		  . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
-		  . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
-		my \$conditional =
+        push \@args, \$hash->{pipeline};
+        \$connector = " INTERSECT " if \$connector;
+        if(\$hash->{'noBigGPI'}) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_predgpi = \$connector . \$select . ")";
+        } elsif (\$hash->{'pvalueBigpi'}) {
+            \$select .= " AND my_to_decimal(ppr.value) ";
+            if ( \$hash->{'pvalueQuantBigpi'} eq "exact" ) {
+                \$select .= "= ? ";
+            }
+            elsif ( \$hash->{'pvalueQuantBigpi'} eq "orLess" ) {
+                \$select .= "<= ? ";
+            }
+            elsif ( \$hash->{'pvalueQuantBigpi'} eq "orMore" ) {
+                \$select .= ">= ? ";
+            }
+            push \@args, \$hash->{'pvalueBigpi'} if \$hash->{pvalueQuantBigpi};
+            \$query_bigpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        } elsif (\$hash->{'positionBigpi'}) {
+            \$select .= " AND my_to_decimal(pp.value) ";
+            if ( \$hash->{'positionQuantBigpi'} eq "exact" ) {
+                \$select .= "= ? ";
+            }
+            elsif ( \$hash->{'positionQuantBigpi'} eq "orLess" ) {
+                \$select .= "<= ? ";
+            }
+            elsif ( \$hash->{'positionQuantBigpi'} eq "orMore" ) {
+                \$select .= ">= ? ";
+            }
+            push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
+            \$query_bigpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        }
+    }
+    if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
+        || ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) )
+    {
+        my \$select = "(SELECT DISTINCT r.object_id ";
+        my \$join =
+            "FROM feature f "
+          . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
+          . "JOIN feature fo ON (r.object_id = fo.feature_id) "
+          . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+          . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+          . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
+          . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
+          . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
+        my \$conditional =
 "WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
-		push \@args, \$hash->{pipeline};
+        push \@args, \$hash->{pipeline};
 
-		\$connector = " INTERSECT " if \$connector;
-		if ( \$hash->{noPhobius} ) {
-			\$connector = " EXCEPT " if \$connector;
-			\$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
-		}
-		elsif ( \$hash->{'TMdom'} ) {
-			\$join .=
-			    "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-			  . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
-			  . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
-			  . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
-			  . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
-			\$conditional .=
+        \$connector = " INTERSECT " if \$connector;
+        if ( \$hash->{noPhobius} ) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
+        }
+        elsif ( \$hash->{'TMdom'} ) {
+            \$join .=
+                "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+              . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+              . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
+              . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
+              . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
+            \$conditional .=
 " AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
 
-			if ( \$hash->{'tmQuant'} eq "exact" ) {
-				\$conditional .= "= ? ";
-			}
-			elsif ( \$hash->{'tmQuant'} eq "orLess" ) {
-				\$conditional .= "<= ? ";
-			}
-			elsif ( \$hash->{'tmQuant'} eq "orMore" ) {
-				\$conditional .= ">= ? ";
-			}
-			push \@args, \$hash->{'TMdom'} if \$hash->{'tmQuant'};
-			\$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
-			\$connector     = "1";
-		}
-		else {
-			\$query_Phobius = "";
-		}
-		if ( \$hash->{'sigP'} ne "sigPwhatever" ) {
-			if ( \$hash->{'sigP'} ne "sigPwhatever"
-				&& !\$hash->{'noPhobius'} )
-			{
-				my \$sigPconn = "";
-				if ( \$hash->{'sigP'} eq "sigPyes" ) {
-					\$sigPconn = " INTERSECT " if \$connector;
-				}
-				elsif ( \$hash->{'sigP'} eq "sigPno" ) {
-					\$sigPconn = " EXCEPT " if \$connector;
-				}
+            if ( \$hash->{'tmQuant'} eq "exact" ) {
+                \$conditional .= "= ? ";
+            }
+            elsif ( \$hash->{'tmQuant'} eq "orLess" ) {
+                \$conditional .= "<= ? ";
+            }
+            elsif ( \$hash->{'tmQuant'} eq "orMore" ) {
+                \$conditional .= ">= ? ";
+            }
+            push \@args, \$hash->{'TMdom'} if \$hash->{'tmQuant'};
+            \$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
+            \$connector     = "1";
+        }
+        else {
+            \$query_Phobius = "";
+        }
+        if ( \$hash->{'sigP'} ne "sigPwhatever" ) {
+            if ( \$hash->{'sigP'} ne "sigPwhatever"
+                && !\$hash->{'noPhobius'} )
+            {
+                my \$sigPconn = "";
+                if ( \$hash->{'sigP'} eq "sigPyes" ) {
+                    \$sigPconn = " INTERSECT " if \$connector;
+                }
+                elsif ( \$hash->{'sigP'} eq "sigPno" ) {
+                    \$sigPconn = " EXCEPT " if \$connector;
+                }
 
-				\$query_sigP .=
-				  " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
+                \$query_Phobius .=
+                  " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
                         JOIN feature_relationship r ON (r.subject_id = f.feature_id)
                         JOIN feature fo ON (r.object_id = fo.feature_id)
                         JOIN featureloc l ON (r.object_id = l.feature_id)
@@ -3066,79 +2888,100 @@ WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? A
                         JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
                         JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
                         where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
-				push \@args, \$hash->{pipeline};
-			}
-			\$connector = "1";
-		}
-	}
+                push \@args, \$hash->{pipeline};
+            }
+            \$connector = "1";
+        }
+    }
+    if (exists \$hash->{'signalP'} && \$hash->{'signalP'} ne "whatever") {
+        if ( \$hash->{'signalP'} eq "yes" ) {
+            \$query_sigP = " INTERSECT " if \$connector;
+        } else {
+            \$query_sigP = " EXCEPT " if \$connector;
+        }
+        \$query_sigP .= " (SELECT DISTINCT r.object_id       
+                            FROM feature f 
+                            JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
+                            JOIN feature fo ON (r.object_id = fo.feature_id) 
+                            JOIN featureloc l ON (r.object_id = l.feature_id) 
+                            JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
+                            JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
+                            JOIN analysis a ON (a.analysis_id = af.analysis_id) 
+                            JOIN cvterm c ON (p.type_id = c.cvterm_id)  
+                            JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
+                            JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
+                            JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)  
+                            WHERE a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'pep_sig' AND ppr.value = 'YES')";
+        \$connector = "1"; 
+    }
 
-	\$query =
-	    \$query
-	  . \$query_gene
-	  . \$query_GO
-	  . \$query_TCDB
-	  . \$query_Phobius
-	  . \$query_sigP
-	  . \$query_blast
-	  . \$query_RPS
-	  . \$query_KEGG
-	  . \$query_ORTH
-	  . \$query_interpro
-	  . \$query_tmhmm
-	  . \$query_dgpi
-	  . \$query_bigpi
-	  . \$query_predgpi
-	  . " ) as motherfuckerquery 
+    \$query =
+        \$query
+      . \$query_gene
+      . \$query_GO
+      . \$query_TCDB
+      . \$query_Phobius
+      . \$query_sigP
+      . \$query_blast
+      . \$query_RPS
+      . \$query_KEGG
+      . \$query_ORTH
+      . \$query_interpro
+      . \$query_tmhmm
+      . \$query_dgpi
+      . \$query_bigpi
+      . \$query_predgpi
+      . " ) as motherfuckerquery 
             LEFT JOIN feature_relationship fr ON (fr.object_id = motherfuckerquery.feature_id) 
             LEFT JOIN featureprop fp ON (fp.feature_id = fr.subject_id) 
             LEFT JOIN cvterm cv ON (cv.cvterm_id = fp.type_id) 
             WHERE cv.name = 'locus_tag' 
             GROUP BY motherfuckerquery.feature_id, fp.value ORDER BY fp.value ASC ";
-	  
-	if (!\$query_Phobius) {
-		my \$quantityParameters = () = \$query =~ /\\?/g;
-		my \$counter = scalar \@args;
-		if(\$counter > \$quantityParameters) {
-			while(scalar \@args > \$quantityParameters) {
-				print STDERR "\nARGS:\t".\$_."\n" foreach (\@args);
-				shift \@args;
+
+    if (!\$query_Phobius) {
+        my \$quantityParameters = () = \$query =~ /\\?/g;
+        my \$counter = scalar \@args;
+        if(\$counter > \$quantityParameters) {
+            while(scalar \@args > \$quantityParameters) {
+                print STDERR "\nARGS:\t".\$_."\n" foreach (\@args);
+                shift \@args;
 #				delete \$args[\$counter-1];
 #				\$counter--;
-			}
-		}
-	}
-	  
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}	
+            }
+        }
+    }
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \%returnedHash = ();
-	my \@list         = ();
-	
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		push \@list, \$rows[\$i][0];
-		\$returnedHash{total} = \$rows[\$i][1];
-	}
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }	
 
-	\$returnedHash{list} = \\\@list;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%returnedHash = ();
+    my \@list         = ();
 
-	return \\\%returnedHash;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        push \@list, \$rows[\$i][0];
+        \$returnedHash{total} = \$rows[\$i][1];
+    }
+
+    \$returnedHash{list} = \\\@list;
+
+    return \\\%returnedHash;
 }
 
 =head2
@@ -3148,22 +2991,22 @@ Method used to generate clause for any query
 =cut
 
 sub generate_clause {
-	my \$terms = shift;
-	my \$not   = shift || "";
-	my \$and   = shift || "";
-	my \$field = shift;
+    my \$terms = shift;
+    my \$not   = shift || "";
+    my \$and   = shift || "";
+    my \$field = shift;
 
-	my \@terms  = split( /\\s+/, \$terms );
-	my \$clause = " \$and (";
-	my \$i      = 0;
-	foreach my \$term (\@terms) {
-		my \$com = "";
-		\$com = " or " if \$i > 0;
-		\$clause .= "\$com \$field \$not like \$term";
-		\$i++;
-	}
-	\$clause .= ")";
-	return \$clause;
+    my \@terms  = split( /\\s+/, \$terms );
+    my \$clause = " \$and (";
+    my \$i      = 0;
+    foreach my \$term (\@terms) {
+        my \$com = "";
+        \$com = " or " if \$i > 0;
+        \$clause .= "\$com \$field \$not like \$term";
+        \$i++;
+    }
+    \$clause .= ")";
+    return \$clause;
 }
 
 =head2
@@ -3173,13 +3016,13 @@ Method used to realize search of rRNAs by contig and type
 =cut
 
 sub rRNA_search {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query = "select f.feature_id, COUNT(*) OVER() AS total
-from feature f 
-join feature_relationship r on (f.feature_id = r.object_id) 
-join cvterm cr on (r.type_id = cr.cvterm_id) 
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query = "select f.feature_id, COUNT(*) OVER() AS total
+    from feature f 
+    join feature_relationship r on (f.feature_id = r.object_id) 
+    join cvterm cr on (r.type_id = cr.cvterm_id) 
 join featureprop ps on (r.subject_id = ps.feature_id) 
 join cvterm cs on (ps.type_id = cs.cvterm_id) 
 join featureprop pf on (f.feature_id = pf.feature_id) 
@@ -3190,50 +3033,50 @@ join cvterm cp on (pl.type_id = cp.cvterm_id)
 join featureprop pd on (r.subject_id = pd.feature_id) 
 join cvterm cd on (pd.type_id = cd.cvterm_id) 
 where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
-	
-	if(exists \$hash->{type} && \$hash->{type}) {
-		\$query .= " and pd.value=?";
-		push \@args, \$hash->{type};
-	}
+    push \@args, \$hash->{pipeline};
+
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
+
+    if(exists \$hash->{type} && \$hash->{type}) {
+        \$query .= " and pd.value=?";
+        push \@args, \$hash->{type};
+    }
 
     \$query .= " ORDER BY f.uniquename ASC, l.fstart ASC ";
-	
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
-	
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \%returnedHash = ();
-	my \@list         = ();
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		push \@list, \$rows[\$i][0];
-		\$returnedHash{total} = \$rows[\$i][1];
-	}
-	\$returnedHash{"list"} = \\\@list;
 
-	return \\\%returnedHash;
-	
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
+
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%returnedHash = ();
+    my \@list         = ();
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        push \@list, \$rows[\$i][0];
+        \$returnedHash{total} = \$rows[\$i][1];
+    }
+    \$returnedHash{"list"} = \\\@list;
+
+    return \\\%returnedHash;
+
 }
 
 =head2
@@ -3243,82 +3086,82 @@ Method used to return tRNA data from database
 =cut
 
 sub tRNA_search {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query =
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query =
 "select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon, COUNT(*) OVER() AS total "
-	  . "from feature_relationship r "
-	  . "join cvterm c on (r.type_id = c.cvterm_id) "
-	  . "join featureloc l on (r.subject_id = l.feature_id) "
+      . "from feature_relationship r "
+      . "join cvterm c on (r.type_id = c.cvterm_id) "
+      . "join featureloc l on (r.subject_id = l.feature_id) "
       . "join feature fl on (fl.feature_id = l.srcfeature_id) "
-	  . "join analysisfeature af on (af.feature_id = r.object_id) "
-	  . "join analysis a on (a.analysis_id = af.analysis_id) "
-	  . "join featureprop p on (p.feature_id = l.srcfeature_id) "
-	  . "join cvterm cp on (p.type_id = cp.cvterm_id) "
-	  . "join featureprop pt on (r.subject_id = pt.feature_id) "
-	  . "join cvterm cpt on (pt.type_id = cpt.cvterm_id) "
-	  . "join featureprop pa on (r.subject_id = pa.feature_id) "
-	  . "join cvterm cpa on (pa.type_id = cpa.cvterm_id) "
-	  . "join featureprop fp on (r.subject_id = fp.feature_id) "
-	  . "join cvterm cfp on (fp.type_id = cfp.cvterm_id) "
-	  . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value=? and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
-	push \@args, \$hash->{pipeline};
-	my \$anticodon = "";
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
+      . "join analysisfeature af on (af.feature_id = r.object_id) "
+      . "join analysis a on (a.analysis_id = af.analysis_id) "
+      . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+      . "join cvterm cp on (p.type_id = cp.cvterm_id) "
+      . "join featureprop pt on (r.subject_id = pt.feature_id) "
+      . "join cvterm cpt on (pt.type_id = cpt.cvterm_id) "
+      . "join featureprop pa on (r.subject_id = pa.feature_id) "
+      . "join cvterm cpa on (pa.type_id = cpa.cvterm_id) "
+      . "join featureprop fp on (r.subject_id = fp.feature_id) "
+      . "join cvterm cfp on (fp.type_id = cfp.cvterm_id) "
+      . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value=? and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
+    push \@args, \$hash->{pipeline};
+    my \$anticodon = "";
 
-	if ( \$hash->{'tRNAaa'} ne "" ) {
-		\$query .= "and pt.value = ?";
-		push \@args, \$hash->{'tRNAaa'};
-	}
-	elsif ( \$hash->{'tRNAcd'} ne "" ) {
-		\$anticodon = reverseComplement( \$hash->{'tRNAcd'} );
-		\$query .= "and pa.value = ?";
-		push \@args, \$anticodon;
-	}
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
+
+    if ( \$hash->{'tRNAaa'} ne "" ) {
+        \$query .= "and pt.value = ?";
+        push \@args, \$hash->{'tRNAaa'};
+    }
+    elsif ( \$hash->{'tRNAcd'} ne "" ) {
+        \$anticodon = reverseComplement( \$hash->{'tRNAcd'} );
+        \$query .= "and pa.value = ?";
+        push \@args, \$anticodon;
+    }
 
     \$query .= " ORDER BY fl.uniquename ASC,  l.fstart ASC ";
-	
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \%returnedHash = ();
-	my \@list         = ();
-	use Report_HTML_DB::Models::Application::TRNASearch;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$result = Report_HTML_DB::Models::Application::TRNASearch->new(
-			id         => \$rows[\$i][0],
-			sequence   => \$rows[\$i][2],
-			amino_acid => \$rows[\$i][1],
-			codon      => \$rows[\$i][3],
-		);
-		\$returnedHash{total} = \$rows[\$i][4];
-		push \@list, \$result;
-	}
-	\$returnedHash{"list"} = \\\@list;
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
 
-	return \\\%returnedHash;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%returnedHash = ();
+    my \@list         = ();
+    use Report_HTML_DB::Models::Application::TRNASearch;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$result = Report_HTML_DB::Models::Application::TRNASearch->new(
+            id         => \$rows[\$i][0],
+            sequence   => \$rows[\$i][2],
+            amino_acid => \$rows[\$i][1],
+            codon      => \$rows[\$i][3],
+        );
+        \$returnedHash{total} = \$rows[\$i][4];
+        push \@list, \$result;
+    }
+    \$returnedHash{"list"} = \\\@list;
+
+    return \\\%returnedHash;
 }
 
 =head2
@@ -3328,14 +3171,14 @@ Method used to return tandem repeats data from database
 =cut
 
 sub trf_search {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh       = \$self->dbh;
-	my \@args      = ();
-	my \$connector = "";
-	my \$select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence, fl.feature_id, COUNT(*) OVER() AS total ";
-	my \$join = "from feature_relationship r
-                 join featureloc l on (r.subject_id = l.feature_id)
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh       = \$self->dbh;
+    my \@args      = ();
+    my \$connector = "";
+    my \$select =
+    "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence, fl.feature_id, COUNT(*) OVER() AS total ";
+    my \$join = "from feature_relationship r
+    join featureloc l on (r.subject_id = l.feature_id)
                  join feature fl on (fl.feature_id = l.srcfeature_id)
                  join featureprop pp on (r.subject_id = pp.feature_id)
                  join cvterm cp on (pp.type_id = cp.cvterm_id)
@@ -3347,120 +3190,120 @@ sub trf_search {
                  join analysis a on (af.analysis_id = a.analysis_id)
                  join featureprop ps on (ps.feature_id = l.srcfeature_id)
                  join cvterm cps on (ps.type_id = cps.cvterm_id) ";
-	my \$query =
+    my \$query =
 "where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value=? ";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
+    push \@args, \$hash->{pipeline};
 
-	if ( \$hash->{'TRFrepSeq'} !~ /^\\s*\$/ ) {
-		\$hash->{'TRFrepSeq'} =~ s/\\s+//g;
-		\$query .= "and lower(pur.value) ilike ? ";
-		\$connector = ",";
-		push \@args, lc("\%\$hash->{'TRFrepSeq'}\%");
-	}
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
 
-	if ( \$hash->{'TRFrepSize'} !~ /^\\s*\$/ ) {
-		\$hash->{'TRFrepSize'} =~ s/\\s+//g;
+    if ( \$hash->{'TRFrepSeq'} !~ /^\\s*\$/ ) {
+        \$hash->{'TRFrepSeq'} =~ s/\\s+//g;
+        \$query .= "and lower(pur.value) ilike ? ";
+        \$connector = ",";
+        push \@args, lc("\%\$hash->{'TRFrepSeq'}\%");
+    }
 
-		if ( \$hash->{'TRFsize'} eq "exact" ) {
-			\$query .= "and pp.value = ? ";
-			\$connector = ",";
-		}
-		elsif ( \$hash->{'TRFsize'} eq "orLess" ) {
-			\$query .= "and my_to_decimal(pp.value) <= ? ";
-			\$connector = ",";
-		}
-		elsif ( \$hash->{'TRFsize'} eq "orMore" ) {
-			\$query .= "and my_to_decimal(pp.value) >= ? ";
-			\$connector = ",";
-		}
-		push \@args, \$hash->{'TRFrepSize'};
-	}
+    if ( \$hash->{'TRFrepSize'} !~ /^\\s*\$/ ) {
+        \$hash->{'TRFrepSize'} =~ s/\\s+//g;
 
-	if (   \$hash->{'TRFrepNumMin'} !~ /^\\s*\$/
-		|| \$hash->{'TRFrepNumMax'} !~ /^\\s*\$/ )
-	{
-		my \$min = 0;
-		my \$max = 0;
+        if ( \$hash->{'TRFsize'} eq "exact" ) {
+            \$query .= "and pp.value = ? ";
+            \$connector = ",";
+        }
+        elsif ( \$hash->{'TRFsize'} eq "orLess" ) {
+            \$query .= "and my_to_decimal(pp.value) <= ? ";
+            \$connector = ",";
+        }
+        elsif ( \$hash->{'TRFsize'} eq "orMore" ) {
+            \$query .= "and my_to_decimal(pp.value) >= ? ";
+            \$connector = ",";
+        }
+        push \@args, \$hash->{'TRFrepSize'};
+    }
 
-		\$hash->{'TRFrepNumMin'} =~ s/\\s+//g;
-		if ( \$hash->{'TRFrepNumMin'} ) {
-			\$min++;
-		}
+    if (   \$hash->{'TRFrepNumMin'} !~ /^\\s*\$/
+        || \$hash->{'TRFrepNumMax'} !~ /^\\s*\$/ )
+    {
+        my \$min = 0;
+        my \$max = 0;
 
-		\$hash->{'TRFrepNumMax'} =~ s/\\s+//g;
-		if ( \$hash->{'TRFrepNumMax'} ) {
-			\$max++;
-		}
+        \$hash->{'TRFrepNumMin'} =~ s/\\s+//g;
+        if ( \$hash->{'TRFrepNumMin'} ) {
+            \$min++;
+        }
 
-		if ( \$min && \$max ) {
-			if ( \$hash->{'TRFrepNumMin'} == \$hash->{'TRFrepNumMax'} ) {
-				\$query .= "and my_to_decimal(pc.value) = ? ";
-				push \@args, \$hash->{'TRFrepNumMax'};
-			}
-			elsif ( \$hash->{'TRFrepNumMin'} < \$hash->{'TRFrepNumMax'} ) {
-				\$query .=
+        \$hash->{'TRFrepNumMax'} =~ s/\\s+//g;
+        if ( \$hash->{'TRFrepNumMax'} ) {
+            \$max++;
+        }
+
+        if ( \$min && \$max ) {
+            if ( \$hash->{'TRFrepNumMin'} == \$hash->{'TRFrepNumMax'} ) {
+                \$query .= "and my_to_decimal(pc.value) = ? ";
+                push \@args, \$hash->{'TRFrepNumMax'};
+            }
+            elsif ( \$hash->{'TRFrepNumMin'} < \$hash->{'TRFrepNumMax'} ) {
+                \$query .=
 "and my_to_decimal(pc.value) >= ? and my_to_decimal(pc.value) <= ? ";
-				push \@args, \$hash->{'TRFrepNumMin'};
-				push \@args, \$hash->{'TRFrepNumMax'};
-			}
-		}
-		elsif (\$min) {
-			\$query .= "and my_to_decimal(pc.value) >= ? ";
-			push \@args, \$hash->{'TRFrepNumMin'};
-		}
-		elsif (\$max) {
-			\$query .= "and my_to_decimal(pc.value) <= ? ";
-			push \@args, \$hash->{'TRFrepNumMax'};
-		}
-	}
+                push \@args, \$hash->{'TRFrepNumMin'};
+                push \@args, \$hash->{'TRFrepNumMax'};
+            }
+        }
+        elsif (\$min) {
+            \$query .= "and my_to_decimal(pc.value) >= ? ";
+            push \@args, \$hash->{'TRFrepNumMin'};
+        }
+        elsif (\$max) {
+            \$query .= "and my_to_decimal(pc.value) <= ? ";
+            push \@args, \$hash->{'TRFrepNumMax'};
+        }
+    }
 
-	\$query = \$select . \$join . \$query;
-	
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
+    \$query = \$select . \$join . \$query;
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
-	my \%hash = ();
-	
-	use Report_HTML_DB::Models::Application::TRFSearch;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$result = Report_HTML_DB::Models::Application::TRFSearch->new(
-			contig      => \$rows[\$i][0],
-			start       => \$rows[\$i][1],
-			end         => \$rows[\$i][2],
-			'length'    => \$rows[\$i][3],
-			copy_number => \$rows[\$i][4],
-			sequence    => \$rows[\$i][5],
-			feature_id	=> \$rows[\$i][6],
-		);
-		push \@list, \$result;
-		\$hash{total} = \$rows[\$i][7];
-	}
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
 
-	\$hash{list} = \\\@list;
-	return \\\%hash;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \@list = ();
+    my \%hash = ();
+
+    use Report_HTML_DB::Models::Application::TRFSearch;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$result = Report_HTML_DB::Models::Application::TRFSearch->new(
+            contig      => \$rows[\$i][0],
+            start       => \$rows[\$i][1],
+            end         => \$rows[\$i][2],
+            'length'    => \$rows[\$i][3],
+            copy_number => \$rows[\$i][4],
+            sequence    => \$rows[\$i][5],
+            feature_id	=> \$rows[\$i][6],
+        );
+        push \@list, \$result;
+        \$hash{total} = \$rows[\$i][7];
+    }
+
+    \$hash{list} = \\\@list;
+    return \\\%hash;
 }
 
 =head2
@@ -3470,12 +3313,12 @@ Method used to return non coding RNAs data from database
 =cut
 
 sub ncRNA_search {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$select =
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$select =
 "select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description, COUNT(*) OVER() AS total ";
-	my \$join = " from feature_relationship r 
+    my \$join = " from feature_relationship r 
                 join featureloc lc on (r.subject_id = lc.feature_id)
                 join feature fl on (fl.feature_id = lc.srcfeature_id)
                 join cvterm c on (r.type_id = c.cvterm_id)
@@ -3486,122 +3329,122 @@ sub ncRNA_search {
                 join cvterm cp on (p.type_id = cp.cvterm_id) 
                 join featureprop pp on (pp.feature_id = r.subject_id) 
                 join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
-	my \$query =
+    my \$query =
 "where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value=? and cpp.name='target_description' ";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
+    push \@args, \$hash->{pipeline};
 
-	if ( \$hash->{'ncRNAtargetID'} !~ /^\\s*\$/ ) {
-		\$hash->{'ncRNAtargetID'} =~ s/\\s+//g;
-		\$select .= ", ppc.value AS Target_ID";
-		\$join .=
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
+
+    if ( \$hash->{'ncRNAtargetID'} !~ /^\\s*\$/ ) {
+        \$hash->{'ncRNAtargetID'} =~ s/\\s+//g;
+        \$select .= ", ppc.value AS Target_ID";
+        \$join .=
 "join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
-		\$query .=
-		  "and cppc.name = 'target_identifier' and lower(ppc.value) LIKE ? ";
-		push \@args, "\%" . lc( \$hash->{'ncRNAtargetID'} ) . "\%";
-	}
+        \$query .=
+          "and cppc.name = 'target_identifier' and lower(ppc.value) LIKE ? ";
+        push \@args, "\%" . lc( \$hash->{'ncRNAtargetID'} ) . "\%";
+    }
 
-	elsif ( \$hash->{'ncRNAevalue'} !~ /^\\s*\$/ ) {
-		\$hash->{'ncRNAevalue'} =~ s/\\s+//g;
-		\$select .= ", ppe.value AS evalue";
-		\$join .=
+    elsif ( \$hash->{'ncRNAevalue'} !~ /^\\s*\$/ ) {
+        \$hash->{'ncRNAevalue'} =~ s/\\s+//g;
+        \$select .= ", ppe.value AS evalue";
+        \$join .=
 "join featureprop ppe on (ppe.feature_id = r.subject_id) join cvterm cppe on (ppe.type_id = cppe.cvterm_id) ";
-		if ( \$hash->{'ncRNAevM'} eq "exact" ) {
-			\$query .=
-			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = ? ";
-		}
-		elsif ( \$hash->{'ncRNAevM'} eq "orLess" ) {
-			\$query .=
-			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= ? ";
-		}
-		elsif ( \$hash->{'ncRNAevM'} eq "orMore" ) {
-			\$query .=
-			  "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= ? ";
-		}
-		push \@args, \$hash->{'ncRNAevalue'};
-	}
-	elsif ( \$hash->{'ncRNAtargetName'} !~ /^\\s*\$/ ) {
-		\$hash->{'ncRNAtargetName'} =~ s/^\\s+//;
-		\$hash->{'ncRNAtargetName'} =~ s/\\s+\$//;
-		\$select .= ", ppn.value AS Target_name";
-		\$join .=
+        if ( \$hash->{'ncRNAevM'} eq "exact" ) {
+            \$query .=
+              "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = ? ";
+        }
+        elsif ( \$hash->{'ncRNAevM'} eq "orLess" ) {
+            \$query .=
+              "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= ? ";
+        }
+        elsif ( \$hash->{'ncRNAevM'} eq "orMore" ) {
+            \$query .=
+              "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= ? ";
+        }
+        push \@args, \$hash->{'ncRNAevalue'};
+    }
+    elsif ( \$hash->{'ncRNAtargetName'} !~ /^\\s*\$/ ) {
+        \$hash->{'ncRNAtargetName'} =~ s/^\\s+//;
+        \$hash->{'ncRNAtargetName'} =~ s/\\s+\$//;
+        \$select .= ", ppn.value AS Target_name";
+        \$join .=
 "join featureprop ppn on (ppn.feature_id = r.subject_id) join cvterm cppn on (ppn.type_id = cppn.cvterm_id) ";
-		\$query .= "and cppn.name = 'target_name' and lower(ppn.value) ilike ? ";
-		push \@args, lc( "\%" . \$hash->{'ncRNAtargetName'} . "\%" );
-	}
+        \$query .= "and cppn.name = 'target_name' and lower(ppn.value) ilike ? ";
+        push \@args, lc( "\%" . \$hash->{'ncRNAtargetName'} . "\%" );
+    }
 
-	elsif ( \$hash->{'ncRNAtargetClass'} !~ /^\\s*\$/ ) {
-		\$select .= ", ppc.value AS Target_class";
-		\$join .=
+    elsif ( \$hash->{'ncRNAtargetClass'} !~ /^\\s*\$/ ) {
+        \$select .= ", ppc.value AS Target_class";
+        \$join .=
 "join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
-		\$query .= "and cppc.name = 'target_class' and ppc.value = ? ";
-		push \@args, \$hash->{'ncRNAtargetClass'};
-	}
+        \$query .= "and cppc.name = 'target_class' and ppc.value = ? ";
+        push \@args, \$hash->{'ncRNAtargetClass'};
+    }
 
-	elsif ( \$hash->{'ncRNAtargetType'} !~ /^\\s*\$/ ) {
-		\$hash->{'ncRNAtargetType'} =~ s/^\\s+//;
-		\$hash->{'ncRNAtargetType'} =~ s/\\s+\$//;
-		\$select .= ", ppt.value AS Target_type";
-		\$join .=
+    elsif ( \$hash->{'ncRNAtargetType'} !~ /^\\s*\$/ ) {
+        \$hash->{'ncRNAtargetType'} =~ s/^\\s+//;
+        \$hash->{'ncRNAtargetType'} =~ s/\\s+\$//;
+        \$select .= ", ppt.value AS Target_type";
+        \$join .=
 "join featureprop ppt on (ppt.feature_id = r.subject_id) join cvterm cppt on (ppt.type_id = cppt.cvterm_id) ";
-		\$query .= "and cppt.name = 'target_type' and lower(ppt.value) ilike ? ";
-		push \@args, lc( "\%" . \$hash->{'ncRNAtargetType'} . "\%" );
-	}
-	elsif ( \$hash->{'ncRNAtargetDesc'} !~ /^\\s*\$/ ) {
-		\$hash->{'ncRNAtargetDesc'} =~ s/^\\s+//;
-		\$hash->{'ncRNAtargetDesc'} =~ s/\\s+\$//;
-		\$query .= "and lower(pp.value) like ? ";
-		push \@args, lc( "\%" . \$hash->{'ncRNAtargetDesc'} . "\%" );
-	}
+        \$query .= "and cppt.name = 'target_type' and lower(ppt.value) ilike ? ";
+        push \@args, lc( "\%" . \$hash->{'ncRNAtargetType'} . "\%" );
+    }
+    elsif ( \$hash->{'ncRNAtargetDesc'} !~ /^\\s*\$/ ) {
+        \$hash->{'ncRNAtargetDesc'} =~ s/^\\s+//;
+        \$hash->{'ncRNAtargetDesc'} =~ s/\\s+\$//;
+        \$query .= "and lower(pp.value) like ? ";
+        push \@args, lc( "\%" . \$hash->{'ncRNAtargetDesc'} . "\%" );
+    }
 
-	\$query = \$select . \$join . \$query . " ORDER BY fl.uniquename ASC, l.fstart ASC  ";
-	
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
+    \$query = \$select . \$join . \$query . " ORDER BY fl.uniquename ASC, l.fstart ASC  ";
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
-	my \%hash = ();
-	use Report_HTML_DB::Models::Application::NcRNASearch;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$result = Report_HTML_DB::Models::Application::NcRNASearch->new(
-			id           => \$rows[\$i][0],
-			contig       => \$rows[\$i][1],
-			start        => \$rows[\$i][3],
-			end          => \$rows[\$i][2],
-			description  => \$rows[\$i][4],
-			target_ID    => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
-			evalue       => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
-			target_name  => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
-			target_class => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
-			target_type  => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : ''
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
 
-		);
-		push \@list, \$result;
-		\$hash{total} = \$rows[\$i][5];
-	}
-	\$hash{list} = \\\@list;
-	return \\\%hash;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \@list = ();
+    my \%hash = ();
+    use Report_HTML_DB::Models::Application::NcRNASearch;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$result = Report_HTML_DB::Models::Application::NcRNASearch->new(
+            id           => \$rows[\$i][0],
+            contig       => \$rows[\$i][1],
+            start        => \$rows[\$i][3],
+            end          => \$rows[\$i][2],
+            description  => \$rows[\$i][4],
+            target_ID    => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+            evalue       => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+            target_name  => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+            target_class => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : '',
+            target_type  => \$rows[\$i][6] ? \$rows[\$i][6] !~ '' : ''
+
+        );
+        push \@list, \$result;
+        \$hash{total} = \$rows[\$i][5];
+    }
+    \$hash{list} = \\\@list;
+    return \\\%hash;
 }
 
 =head2
@@ -3611,13 +3454,13 @@ Method used to return transcriptional terminator data from database
 =cut
 
 sub transcriptional_terminator_search {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$select =
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$select =
 "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppConfidence.value AS confidence, ppHairpinScore.value AS hairpin_score, ppTailScore.value AS tail_score, fl.feature_id, COUNT(*) OVER() AS total ";
-	
-	my \$join = " from feature_relationship r
+
+    my \$join = " from feature_relationship r
                  join featureloc lc on (r.subject_id = lc.feature_id)
                  join feature fl on (fl.feature_id = lc.srcfeature_id)
                  join cvterm c on (r.type_id = c.cvterm_id)
@@ -3632,90 +3475,90 @@ sub transcriptional_terminator_search {
                  join cvterm cppHairpinScore on (ppHairpinScore.type_id = cppHairpinScore.cvterm_id) 
                  join featureprop ppTailScore on (ppTailScore.feature_id = r.subject_id)
                  join cvterm cppTailScore on (ppTailScore.type_id = cppTailScore.cvterm_id) ";
-	my \$query =
+    my \$query =
 "where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? and cppConfidence.name = 'confidence' AND cppHairpinScore.name = 'hairpin' AND cppTailScore.name = 'tail' ";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
+    push \@args, \$hash->{pipeline};
 
-	my \$search_field;
-	my \$field;
-	my \$modifier;
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
 
-	if ( \$hash->{'TTconf'} !~ /^\\s*\$/ ) {
-		\$search_field = \$hash->{'TTconf'} + 1;
-		\$modifier     = \$hash->{'TTconfM'};
-		\$field        = "ppConfidence";
-	}
-	elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ ) {
-		\$search_field = \$hash->{'TThp'} + 1;
-		\$modifier     = \$hash->{'TThpM'};
-		\$field        = "ppHairpinScore";
-	}
-	elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ ) {
-		\$search_field = \$hash->{'TTtail'} + 1;
-		\$modifier     = \$hash->{'TTtailM'};
-		\$field        = "ppTailScore";
-	}
+    my \$search_field;
+    my \$field;
+    my \$modifier;
 
-	\$search_field =~ s/\\s+//g;
+    if ( \$hash->{'TTconf'} !~ /^\\s*\$/ ) {
+        \$search_field = \$hash->{'TTconf'} + 1;
+        \$modifier     = \$hash->{'TTconfM'};
+        \$field        = "ppConfidence";
+    }
+    elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ ) {
+        \$search_field = \$hash->{'TThp'} + 1;
+        \$modifier     = \$hash->{'TThpM'};
+        \$field        = "ppHairpinScore";
+    }
+    elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ ) {
+        \$search_field = \$hash->{'TTtail'} + 1;
+        \$modifier     = \$hash->{'TTtailM'};
+        \$field        = "ppTailScore";
+    }
 
-	if ( \$modifier eq "exact" ) {
-		\$query .= " and my_to_decimal(\$field.value) = ? ";
-	}
-	elsif ( \$modifier eq "orLess" ) {
-		\$query .= " and my_to_decimal(\$field.value) <= ? ";
-	}
-	elsif ( \$modifier eq "orMore" ) {
-		\$query .= " and my_to_decimal(\$field.value) >= ? ";
-	}
+    \$search_field =~ s/\\s+//g;
 
-	push \@args, (\$search_field - 1) if (\$search_field);
+    if ( \$modifier eq "exact" ) {
+        \$query .= " and my_to_decimal(\$field.value) = ? ";
+    }
+    elsif ( \$modifier eq "orLess" ) {
+        \$query .= " and my_to_decimal(\$field.value) <= ? ";
+    }
+    elsif ( \$modifier eq "orMore" ) {
+        \$query .= " and my_to_decimal(\$field.value) >= ? ";
+    }
 
-	\$query = \$select . \$join . \$query;
+    push \@args, (\$search_field - 1) if (\$search_field);
 
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
+    \$query = \$select . \$join . \$query;
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \%hash = ();
-	my \@list    = ();
-	my \@columns = \@{ \$sth->{NAME} };
-	use Report_HTML_DB::Models::Application::TranscriptionalTerminator;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$result = Report_HTML_DB::Models::Application::TranscriptionalTerminator->new(
-			contig 			=> \$rows[\$i][0],
-			start  			=> \$rows[\$i][1],
-			end    			=> \$rows[\$i][2],
-			confidence    	=> \$rows[\$i][3],
-			hairpin_score  	=> \$rows[\$i][4],
-			tail_score    	=> \$rows[\$i][5],
-			feature_id		=> \$rows[\$i][6],
-		);
-		push \@list, \$result;
-		\$hash{total} = \$rows[\$i][7];
-	}
-	\$hash{list} = \\\@list;
-	return \\\%hash;
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
+
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%hash = ();
+    my \@list    = ();
+    my \@columns = \@{ \$sth->{NAME} };
+    use Report_HTML_DB::Models::Application::TranscriptionalTerminator;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$result = Report_HTML_DB::Models::Application::TranscriptionalTerminator->new(
+            contig 			=> \$rows[\$i][0],
+            start  			=> \$rows[\$i][1],
+            end    			=> \$rows[\$i][2],
+            confidence    	=> \$rows[\$i][3],
+            hairpin_score  	=> \$rows[\$i][4],
+            tail_score    	=> \$rows[\$i][5],
+            feature_id		=> \$rows[\$i][6],
+        );
+        push \@list, \$result;
+        \$hash{total} = \$rows[\$i][7];
+    }
+    \$hash{list} = \\\@list;
+    return \\\%hash;
 }
 
 =head2
@@ -3725,12 +3568,12 @@ Method used to return ribosomal binding sites data from database
 =cut
 
 sub rbs_search {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, fl.feature_id, ppSitePattern.value AS site_pattern, ppPositionShift.value AS position_shift, ".
-	" ppOldStart.value AS old_start, ppOldPosition.value AS old_position, COUNT(*) OVER() AS total, pp2.value AS new_start  ";
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$select =
+    "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, fl.feature_id, ppSitePattern.value AS site_pattern, ppPositionShift.value AS position_shift, ".
+    " ppOldStart.value AS old_start, ppOldPosition.value AS old_position, COUNT(*) OVER() AS total, pp2.value AS new_start  ";
 
 #	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
 #		\$select .= " AS site_pattern";
@@ -3741,7 +3584,7 @@ sub rbs_search {
 #	else {
 #		\$select .= " AS position_shift";
 #	}
-	my \$join = " from feature_relationship r
+    my \$join = " from feature_relationship r
                 join featureloc lc on (r.subject_id = lc.feature_id) 
                 join feature fl on (fl.feature_id = lc.srcfeature_id) 
                 join cvterm c on (r.type_id = c.cvterm_id)
@@ -3760,83 +3603,83 @@ sub rbs_search {
                 join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id) 
                 join featureprop ppOldPosition on (ppOldPosition.feature_id = r.subject_id)
                 join cvterm cppOldPosition on (ppOldPosition.type_id = cppOldPosition.cvterm_id) ";
-	my \$query =
+    my \$query =
 "where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
 " and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift'  and cpp2.name='new_start_codon' and cppOldPosition.name='old_position' ";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
+    push \@args, \$hash->{pipeline};
 
-	if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
-		\$hash->{'RBSpattern'} =~ s/\\s*//g;
-		\$query .= " and lower(ppSitePattern.value) like ? ";
-		push \@args, lc( "\%" . \$hash->{'RBSpattern'} . "\%" );
-	}
-	elsif ( \$hash->{'RBSshift'} ) {
-		if ( \$hash->{'RBSshiftM'} eq "both" ) {
-			\$query .= " and ppPositionShift.value != '0'";
-		}
-		elsif ( \$hash->{'RBSshiftM'} eq "neg" ) {
-			\$query .=
-			  " and my_to_decimal(ppPositionShift.value) < '0'";
-		}
-		elsif ( \$hash->{'RBSshiftM'} eq "pos" ) {
-			\$query .=
-			  " and my_to_decimal(ppPositionShift.value) >= '0'";
-		}
-	}
-	elsif ( \$hash->{'RBSnewcodon'} ) {
-		\$query .= " and (ppOldStart.value != pp2.value) ";
-	}
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
 
-	\$query = \$select . \$join . \$query;
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
+    if ( \$hash->{'RBSpattern'} !~ /^\\s*\$/ ) {
+        \$hash->{'RBSpattern'} =~ s/\\s*//g;
+        \$query .= " and lower(ppSitePattern.value) like ? ";
+        push \@args, lc( "\%" . \$hash->{'RBSpattern'} . "\%" );
+    }
+    elsif ( \$hash->{'RBSshift'} ) {
+        if ( \$hash->{'RBSshiftM'} eq "both" ) {
+            \$query .= " and ppPositionShift.value != '0'";
+        }
+        elsif ( \$hash->{'RBSshiftM'} eq "neg" ) {
+            \$query .=
+              " and my_to_decimal(ppPositionShift.value) < '0'";
+        }
+        elsif ( \$hash->{'RBSshiftM'} eq "pos" ) {
+            \$query .=
+              " and my_to_decimal(ppPositionShift.value) >= '0'";
+        }
+    }
+    elsif ( \$hash->{'RBSnewcodon'} ) {
+        \$query .= " and (ppOldStart.value != pp2.value) ";
+    }
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
-	my \%hash = ();
-	my \@columns = \@{ \$sth->{NAME} };
-	use Report_HTML_DB::Models::Application::RBSSearch;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$result = Report_HTML_DB::Models::Application::RBSSearch->new(
-			contig 			=> \$rows[\$i][0],
-			start  			=> \$rows[\$i][2],
-			end    			=> \$rows[\$i][1],
-			feature_id 		=> \$rows[\$i][3],
-			site_pattern	=> \$rows[\$i][4],
-			position_shift	=> \$rows[\$i][5],
-			old_start		=> \$rows[\$i][6],
+    \$query = \$select . \$join . \$query;
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
+
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \@list = ();
+    my \%hash = ();
+    my \@columns = \@{ \$sth->{NAME} };
+    use Report_HTML_DB::Models::Application::RBSSearch;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$result = Report_HTML_DB::Models::Application::RBSSearch->new(
+            contig 			=> \$rows[\$i][0],
+            start  			=> \$rows[\$i][2],
+            end    			=> \$rows[\$i][1],
+            feature_id 		=> \$rows[\$i][3],
+            site_pattern	=> \$rows[\$i][4],
+            position_shift	=> \$rows[\$i][5],
+            old_start		=> \$rows[\$i][6],
             old_position    => \$rows[\$i][7]
-		);
+        );
 
-		if ( \$columns[9] eq "new_start" ) {
-			\$result->setNewStart( \$rows[\$i][9] );
-		}
-		\$hash{total} = \$rows[\$i][8];
-		push \@list, \$result;
-	}
-	\$hash{list} = \\\@list;
-	return \\\%hash;
+        if ( \$columns[9] eq "new_start" ) {
+            \$result->setNewStart( \$rows[\$i][9] );
+        }
+        \$hash{total} = \$rows[\$i][8];
+        push \@list, \$result;
+    }
+    \$hash{list} = \\\@list;
+    return \\\%hash;
 }
 
 =head2
@@ -3846,13 +3689,13 @@ Method used to return horizontal transferences data from database
 =cut
 
 sub alienhunter_search {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$select =
-"select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppLength.value AS length, ppScore.value AS score, ppThreshold.value AS threshold, fl.feature_id, COUNT(*) OVER() AS total ";
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$select =
+    "select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppLength.value AS length, ppScore.value AS score, ppThreshold.value AS threshold, fl.feature_id, COUNT(*) OVER() AS total ";
 
-	my \$join = " from feature_relationship r
+    my \$join = " from feature_relationship r
                 join featureloc lc on (r.subject_id = lc.feature_id) 
                 join feature fl on (fl.feature_id = lc.srcfeature_id) 
                 join cvterm c on (r.type_id = c.cvterm_id) 
@@ -3867,92 +3710,92 @@ sub alienhunter_search {
                 join cvterm cppScore on (ppScore.type_id = cppScore.cvterm_id) 
                 join featureprop ppThreshold on (ppThreshold.feature_id = r.subject_id) 
                 join cvterm cppThreshold on (ppThreshold.type_id = cppThreshold.cvterm_id) ";
-	my \$query =
+    my \$query =
 "where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? and cppLength.name = 'length' and cppScore.name = 'score' and cppThreshold.name = 'threshold' ";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$query .= " and l.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
+    push \@args, \$hash->{pipeline};
 
-	my \$search_field;
-	my \$field;
-	my \$modifier;
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$query .= " and l.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
 
-	if ( \$hash->{'AHlen'} !~ /^\\s*\$/ ) {
-		\$search_field = \$hash->{'AHlen'} + 1;
-		\$modifier     = \$hash->{'AHlenM'};
-		\$field		  = "ppLength";
-	}
-	elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ ) {
-		\$search_field = \$hash->{'AHscore'} + 1;
-		\$modifier     = \$hash->{'AHscM'};
-		\$field		  = "ppScore";
-	}
-	elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ ) {
-		\$search_field = \$hash->{'AHthr'} + 1;
-		\$modifier     = \$hash->{'AHthrM'};
-		\$field		  = "ppThreshold";
-	}
+    my \$search_field;
+    my \$field;
+    my \$modifier;
 
-	\$search_field =~ s/\\s+//g;
+    if ( \$hash->{'AHlen'} !~ /^\\s*\$/ ) {
+        \$search_field = \$hash->{'AHlen'} + 1;
+        \$modifier     = \$hash->{'AHlenM'};
+        \$field		  = "ppLength";
+    }
+    elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ ) {
+        \$search_field = \$hash->{'AHscore'} + 1;
+        \$modifier     = \$hash->{'AHscM'};
+        \$field		  = "ppScore";
+    }
+    elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ ) {
+        \$search_field = \$hash->{'AHthr'} + 1;
+        \$modifier     = \$hash->{'AHthrM'};
+        \$field		  = "ppThreshold";
+    }
 
-	if ( \$modifier eq "exact" ) {
-		\$query .= " and my_to_decimal(\$field.value) = ? ";
-	}
-	elsif ( \$modifier eq "orLess" ) {
-		\$query .= " and my_to_decimal(\$field.value) <= ? ";
-	}
-	elsif ( \$modifier eq "orMore" ) {
-		\$query .= " and my_to_decimal(\$field.value) >= ? ";
-	}
+    \$search_field =~ s/\\s+//g;
 
-	push \@args, (\$search_field - 1) if \$search_field;
+    if ( \$modifier eq "exact" ) {
+        \$query .= " and my_to_decimal(\$field.value) = ? ";
+    }
+    elsif ( \$modifier eq "orLess" ) {
+        \$query .= " and my_to_decimal(\$field.value) <= ? ";
+    }
+    elsif ( \$modifier eq "orMore" ) {
+        \$query .= " and my_to_decimal(\$field.value) >= ? ";
+    }
 
-	\$query = \$select . \$join . \$query;
-	
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
+    push \@args, (\$search_field - 1) if \$search_field;
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
-	my \%hash = ();
-	my \@columns = \@{ \$sth->{NAME} };
-	use Report_HTML_DB::Models::Application::AlienHunterSearch;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$result = Report_HTML_DB::Models::Application::AlienHunterSearch->new(
-			id     		=> \$rows[\$i][0],
-			contig 		=> \$rows[\$i][1],
-			start  		=> \$rows[\$i][2],
-			end    		=> \$rows[\$i][3],
-			length 		=> \$rows[\$i][4],
-			score  		=> \$rows[\$i][5],
-			threshold 	=> \$rows[\$i][6],
-			feature_id	=> \$rows[\$i][7],
-		);
+    \$query = \$select . \$join . \$query;
 
-		\$hash{total} = \$rows[\$i][8];
-		push \@list, \$result;
-	}
-	\$hash{list} = \\\@list;
-	return \\\%hash;
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
+
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \@list = ();
+    my \%hash = ();
+    my \@columns = \@{ \$sth->{NAME} };
+    use Report_HTML_DB::Models::Application::AlienHunterSearch;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$result = Report_HTML_DB::Models::Application::AlienHunterSearch->new(
+            id     		=> \$rows[\$i][0],
+            contig 		=> \$rows[\$i][1],
+            start  		=> \$rows[\$i][2],
+            end    		=> \$rows[\$i][3],
+            length 		=> \$rows[\$i][4],
+            score  		=> \$rows[\$i][5],
+            threshold 	=> \$rows[\$i][6],
+            feature_id	=> \$rows[\$i][7],
+        );
+
+        \$hash{total} = \$rows[\$i][8];
+        push \@list, \$result;
+    }
+    \$hash{list} = \\\@list;
+    return \\\%hash;
 }
 
 =head2
@@ -3962,10 +3805,10 @@ Method used to return the reverse complement
 =cut
 
 sub reverseComplement {
-	my (\$sequence) = \@_;
-	my \$reverseComplement = reverse(\$sequence);
-	\$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
-	return \$reverseComplement;
+    my (\$sequence) = \@_;
+    my \$reverseComplement = reverse(\$sequence);
+    \$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+    return \$reverseComplement;
 }
 
 =head2
@@ -3975,169 +3818,169 @@ Method used to realize search by feature
 =cut
 
 sub searchGene {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query =
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query =
 "SELECT me.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, feature_relationship_props_subject_feature_2.value AS uniquename, "
-	  . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type,  COUNT(*) OVER() AS total "
-	  . "FROM feature me "
-	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
-	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
-	  . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
-	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
-	  . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
-	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
-	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureloc_featureprop.type_id "
-	  . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
-	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
-	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-	  . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
-	  . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id "
+      . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type,  COUNT(*) OVER() AS total "
+      . "FROM feature me "
+      . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
+      . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
+      . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
+      . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
+      . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
+      . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
+      . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureloc_featureprop.type_id "
+      . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
+      . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
+      . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
+      . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
+      . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id "
       . "LEFT JOIN feature ff ON ff.feature_id = featureloc_features_2.srcfeature_id ";
-	my \$where =
+    my \$where =
 "WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = ? ";
-	push \@args, \$hash->{pipeline};
-	
-	if(exists \$hash->{contig} && \$hash->{contig}) {
-		\$where .= " AND featureloc_features_2.srcfeature_id = ? ";
-		push \@args, \$hash->{contig};
-	}
+    push \@args, \$hash->{pipeline};
 
-	my \$connector = "";
-	if ( exists \$hash->{featureId} && \$hash->{featureId} ) {
-		if ( index( \$hash->{featureId}, " " ) != -1 ) {
-			\$where .= " AND (";
-			while ( \$hash->{featureId} =~ /(\\d+)+/g ) {
-				\$connector = " OR " if \$connector;
-				\$where .= \$connector . "me.feature_id = ? ";
-				push \@args, \$1;
-				\$connector = "1";
-			}
-			\$where .= ")";
-		}
-		else {
+    if(exists \$hash->{contig} && \$hash->{contig}) {
+        \$where .= " AND featureloc_features_2.srcfeature_id = ? ";
+        push \@args, \$hash->{contig};
+    }
 
-			\$where .= " AND me.feature_id = ? ";
-			push \@args, \$hash->{featureId};
-			\$connector = "1";
-		}
-	}
+    my \$connector = "";
+    if ( exists \$hash->{featureId} && \$hash->{featureId} ) {
+        if ( index( \$hash->{featureId}, " " ) != -1 ) {
+            \$where .= " AND (";
+            while ( \$hash->{featureId} =~ /(\\d+)+/g ) {
+                \$connector = " OR " if \$connector;
+                \$where .= \$connector . "me.feature_id = ? ";
+                push \@args, \$1;
+                \$connector = "1";
+            }
+            \$where .= ")";
+        }
+        else {
 
-	if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
-		or ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
-	{
-		\$connector = " AND " if \$connector;
-		\$where .= \$connector;
-		my \@likesDescription   = ();
-		my \@likesNoDescription = ();
-		if ( \$hash->{geneDescription} ) {
-			while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
-				push \@likesDescription,
-				  generate_clause( "?", "", "",
-					"lower(feature_relationship_props_subject_feature_2.value)"
-				  );
-				push \@args, lc( "\%" . \$1 . "\%" );
-			}
-		}
-		if ( \$hash->{noDescription} ) {
-			while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
-				push \@likesNoDescription,
-				  generate_clause( "?", "NOT", "",
-					"lower(feature_relationship_props_subject_feature_2.value)"
-				  );
-				push \@args, lc( "\%" . \$1 . "\%" );
-			}
-		}
+            \$where .= " AND me.feature_id = ? ";
+            push \@args, \$hash->{featureId};
+            \$connector = "1";
+        }
+    }
 
-		if (    exists \$hash->{individually}
-			and \$hash->{individually}
-			and scalar(\@likesDescription) > 0 )
-		{
-			if ( scalar(\@likesNoDescription) > 0 ) {
-				foreach my \$like (\@likesDescription) {
-					\$where .= " AND " . \$like;
-				}
-				foreach my \$notLike (\@likesNoDescription) {
-					\$where .= " AND " . \$notLike;
-				}
-			}
-			else {
-				foreach my \$like (\@likesDescription) {
-					\$where .= " AND " . \$like;
-				}
-			}
-		}
-		elsif ( scalar(\@likesDescription) > 0 ) {
-			my \$and = "";
-			if ( scalar(\@likesNoDescription) > 0 ) {
-				foreach my \$notLike (\@likesNoDescription) {
-					\$where .= " AND " . \$notLike;
-				}
-				\$and = "1";
-			}
-			if (\$and) {
-				\$and = " AND ";
-			}
-			else {
-				\$and = " OR ";
-			}
-			\$where .= " AND (";
-			my \$counter = 0;
-			foreach my \$like (\@likesDescription) {
-				if ( \$counter == 0 ) {
-					\$where .= \$like;
-					\$counter++;
-				}
-				else {
-					\$where .= \$and . \$like;
-				}
-			}
-			\$where .= " ) ";
-		}
-		elsif ( scalar(\@likesDescription) <= 0
-			and scalar(\@likesNoDescription) > 0 )
-		{
-			foreach my \$like (\@likesNoDescription) {
-				\$where .= " AND " . \$like;
-			}
-		}
-	}
+    if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
+        or ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
+    {
+        \$connector = " AND " if \$connector;
+        \$where .= \$connector;
+        my \@likesDescription   = ();
+        my \@likesNoDescription = ();
+        if ( \$hash->{geneDescription} ) {
+            while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
+                push \@likesDescription,
+                  generate_clause( "?", "", "",
+                    "lower(feature_relationship_props_subject_feature_2.value)"
+                  );
+                push \@args, lc( "\%" . \$1 . "\%" );
+            }
+        }
+        if ( \$hash->{noDescription} ) {
+            while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
+                push \@likesNoDescription,
+                  generate_clause( "?", "NOT", "",
+                    "lower(feature_relationship_props_subject_feature_2.value)"
+                  );
+                push \@args, lc( "\%" . \$1 . "\%" );
+            }
+        }
 
-	if ( exists \$hash->{geneID} && \$hash->{geneID} ) {
-		\$where .=
+        if (    exists \$hash->{individually}
+            and \$hash->{individually}
+            and scalar(\@likesDescription) > 0 )
+        {
+            if ( scalar(\@likesNoDescription) > 0 ) {
+                foreach my \$like (\@likesDescription) {
+                    \$where .= " AND " . \$like;
+                }
+                foreach my \$notLike (\@likesNoDescription) {
+                    \$where .= " AND " . \$notLike;
+                }
+            }
+            else {
+                foreach my \$like (\@likesDescription) {
+                    \$where .= " AND " . \$like;
+                }
+            }
+        }
+        elsif ( scalar(\@likesDescription) > 0 ) {
+            my \$and = "";
+            if ( scalar(\@likesNoDescription) > 0 ) {
+                foreach my \$notLike (\@likesNoDescription) {
+                    \$where .= " AND " . \$notLike;
+                }
+                \$and = "1";
+            }
+            if (\$and) {
+                \$and = " AND ";
+            }
+            else {
+                \$and = " OR ";
+            }
+            \$where .= " AND (";
+            my \$counter = 0;
+            foreach my \$like (\@likesDescription) {
+                if ( \$counter == 0 ) {
+                    \$where .= \$like;
+                    \$counter++;
+                }
+                else {
+                    \$where .= \$and . \$like;
+                }
+            }
+            \$where .= " ) ";
+        }
+        elsif ( scalar(\@likesDescription) <= 0
+            and scalar(\@likesNoDescription) > 0 )
+        {
+            foreach my \$like (\@likesNoDescription) {
+                \$where .= " AND " . \$like;
+            }
+        }
+    }
+
+    if ( exists \$hash->{geneID} && \$hash->{geneID} ) {
+        \$where .=
 " AND lower(feature_relationship_props_subject_feature.value) LIKE ? ";
-		push \@args, lc( "\%" . \$hash->{geneID} . "\%" );
-	}
-	
+        push \@args, lc( "\%" . \$hash->{geneID} . "\%" );
+    }
+
     \$where .= " ORDER BY ff.uniquename ASC, featureloc_features_2.fstart ASC ";
 
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$where .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$where .= " OFFSET 0 ";
-		}
-		else {
-			\$where .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
-	
-	\$query .= \$where;
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$where .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$where .= " OFFSET 0 ";
+        }
+        else {
+            \$where .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \%returnedHash = ();
-	my \@list         = ();
+    \$query .= \$where;
 
-	use Report_HTML_DB::Models::Application::Feature;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%returnedHash = ();
+    my \@list         = ();
+
+    use Report_HTML_DB::Models::Application::Feature;
     for ( my \$i = 0; \$i < scalar \@rows ; \$i++ ) {
         my \$feature;
         if(\$rows[\$i][5] eq "CDS") {
@@ -4172,7 +4015,7 @@ sub searchGene {
         \$returnedHash{total} = \$rows[\$i][6];
         push \@list, \$feature;
     }
-	\$returnedHash{list} = \\\@list;
+    \$returnedHash{list} = \\\@list;
 
     return \\\%returnedHash;
 }
@@ -4221,60 +4064,60 @@ Method used to realize search for basic content of any feature
 =cut
 
 sub geneBasics {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query = "
-	SELECT srcfeature.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, srcfeature.uniquename AS uniquename, 
-	featureloc_features_2.fstart AS	fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS value, a.program
-	FROM feature me
-	LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id    
-	LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id
-	LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id
-	LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id
-	LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id
-	LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id
-	LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id
-	LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id
-	LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id
-	LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id 
-	LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id
-	LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id
-	LEFT JOIN cvterm type_5 ON type_5.cvterm_id = feature_relationship_props_subject_feature_2.type_id
-	LEFT JOIN analysisfeature af ON (af.feature_id = me.feature_id)
-	LEFT JOIN analysis_relationship ar ON (ar.object_id = af.analysis_id)
-	LEFT JOIN analysis a ON (a.analysis_id = ar.subject_id)
-	WHERE ( ( featureloc_featureprop.value = ? AND me.feature_id = ? AND type.name =
-		'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND
-		type_4.name = 'pipeline_id' AND type_5.name = 'description' ) )
-	GROUP BY srcfeature.feature_id,
-		feature_relationship_props_subject_feature.value,
-		feature_relationship_props_subject_feature_2.value,
-		featureloc_features_2.fstart, featureloc_features_2.fend,
-		featureprops_2.value, a.program ";
-	push \@args, \$hash->{pipeline};
-	push \@args, \$hash->{feature_id};
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \@list = ();
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query = "
+    SELECT srcfeature.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, srcfeature.uniquename AS uniquename, 
+    featureloc_features_2.fstart AS	fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS value, a.program
+    FROM feature me
+    LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id    
+    LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id
+    LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id
+    LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id
+    LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id
+    LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id
+    LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id
+    LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id
+    LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id
+    LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id 
+    LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id
+    LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id
+    LEFT JOIN cvterm type_5 ON type_5.cvterm_id = feature_relationship_props_subject_feature_2.type_id
+    LEFT JOIN analysisfeature af ON (af.feature_id = me.feature_id)
+    LEFT JOIN analysis_relationship ar ON (ar.object_id = af.analysis_id)
+    LEFT JOIN analysis a ON (a.analysis_id = ar.subject_id)
+    WHERE ( ( featureloc_featureprop.value = ? AND me.feature_id = ? AND type.name =
+        'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND
+        type_4.name = 'pipeline_id' AND type_5.name = 'description' ) )
+    GROUP BY srcfeature.feature_id,
+        feature_relationship_props_subject_feature.value,
+        feature_relationship_props_subject_feature_2.value,
+        featureloc_features_2.fstart, featureloc_features_2.fend,
+        featureprops_2.value, a.program ";
+    push \@args, \$hash->{pipeline};
+    push \@args, \$hash->{feature_id};
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \@list = ();
 
-	use Report_HTML_DB::Models::Application::Feature;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$feature = Report_HTML_DB::Models::Application::Feature->new(
-			feature_id => \$rows[\$i][0],
-			name       => \$rows[\$i][1],
-			uniquename => \$rows[\$i][2],
-			fstart     => \$rows[\$i][3],
-			fend       => \$rows[\$i][4],
-			type       => \$rows[\$i][5],
-			predictor  => \$rows[\$i][6]
-		);
-		push \@list, \$feature;
-	}
+    use Report_HTML_DB::Models::Application::Feature;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$feature = Report_HTML_DB::Models::Application::Feature->new(
+            feature_id => \$rows[\$i][0],
+            name       => \$rows[\$i][1],
+            uniquename => \$rows[\$i][2],
+            fstart     => \$rows[\$i][3],
+            fend       => \$rows[\$i][4],
+            type       => \$rows[\$i][5],
+            predictor  => \$rows[\$i][6]
+        );
+        push \@list, \$feature;
+    }
 
-	return \\\@list;
+    return \\\@list;
 }
 
 =head2
@@ -4284,60 +4127,60 @@ Method used to get gene by position
 =cut
 
 sub geneByPosition {
-	my ( \$self, \$hash ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query =
-	    "SELECT me.feature_id AS feature_id, COUNT(*) OVER() AS total "
-	  . "FROM feature me "
-	  . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
-	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
-	  . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
-	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
-	  . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
-	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id "
-	  . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
-	  . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
-	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
-	  . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
-	  . "WHERE ( ( featureloc_featureprop.value = ? AND featureloc_features_2.fstart >= ? AND featureloc_features_2.fend <= ? AND featureloc_features_2.srcfeature_id = ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
-	  . "GROUP BY me.feature_id, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
-	  . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
-	push \@args, \$hash->{pipeline};
-	push \@args, \$hash->{start};
-	push \@args, \$hash->{end};
-	push \@args, \$hash->{contig};
+    my ( \$self, \$hash ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query =
+        "SELECT me.feature_id AS feature_id, COUNT(*) OVER() AS total "
+      . "FROM feature me "
+      . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
+      . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
+      . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
+      . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
+      . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
+      . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id "
+      . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
+      . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
+      . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
+      . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
+      . "WHERE ( ( featureloc_featureprop.value = ? AND featureloc_features_2.fstart >= ? AND featureloc_features_2.fend <= ? AND featureloc_features_2.srcfeature_id = ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
+      . "GROUP BY me.feature_id, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
+      . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
+    push \@args, \$hash->{pipeline};
+    push \@args, \$hash->{start};
+    push \@args, \$hash->{end};
+    push \@args, \$hash->{contig};
 
-	if (   exists \$hash->{pageSize}
-		&& \$hash->{pageSize}
-		&& exists \$hash->{offset}
-		&& \$hash->{offset} )
-	{
-		\$query .= " LIMIT ? ";
-		push \@args, \$hash->{pageSize};
-		if ( \$hash->{offset} == 1 ) {
-			\$query .= " OFFSET 0 ";
-		}
-		else {
-			\$query .= " OFFSET ? ";
-			push \@args, \$hash->{offset};
-		}
-	}
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
-	my \%hash = ();
-	my \@list = ();
+    if (   exists \$hash->{pageSize}
+        && \$hash->{pageSize}
+        && exists \$hash->{offset}
+        && \$hash->{offset} )
+    {
+        \$query .= " LIMIT ? ";
+        push \@args, \$hash->{pageSize};
+        if ( \$hash->{offset} == 1 ) {
+            \$query .= " OFFSET 0 ";
+        }
+        else {
+            \$query .= " OFFSET ? ";
+            push \@args, \$hash->{offset};
+        }
+    }
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%hash = ();
+    my \@list = ();
 
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		push \@list, \$rows[\$i][0];
-		\$hash{total} = \$rows[\$i][1];
-	}
-	
-	\$hash{list} = \\\@list;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        push \@list, \$rows[\$i][0];
+        \$hash{total} = \$rows[\$i][1];
+    }
 
-	return \\\%hash;
+    \$hash{list} = \\\@list;
+
+    return \\\%hash;
 }
 
 =head2
@@ -4347,37 +4190,37 @@ Method used to realize search for description of non coding RNA
 =cut
 
 sub ncRNA_description {
-	my ( \$self, \$feature_id, \$pipeline ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query =
+    my ( \$self, \$feature_id, \$pipeline ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query =
 "SELECT me.object_id AS object_id, feature_relationship_props_subject_feature_2.value AS value "
-	  . "FROM feature_relationship me  "
-	  . "JOIN cvterm type ON type.cvterm_id = me.type_id "
-	  . "LEFT JOIN analysisfeature feature_relationship_analysis_feature_feature_object_2 ON feature_relationship_analysis_feature_feature_object_2.feature_id = me.object_id "
-	  . "LEFT JOIN analysis analysis ON analysis.analysis_id = feature_relationship_analysis_feature_feature_object_2.analysis_id "
-	  . "LEFT JOIN featureloc feature_relationship_featureloc_subject_feature_2 ON feature_relationship_featureloc_subject_feature_2.feature_id = me.subject_id "
-	  . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = feature_relationship_featureloc_subject_feature_2.srcfeature_id "
-	  . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = featureloc_featureprop.type_id "
-	  . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = me.subject_id "
-	  . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-	  . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = ? AND me.object_id = ? AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
-	  . "GROUP BY me.object_id, feature_relationship_props_subject_feature_2.value "
-	  . "ORDER BY feature_relationship_props_subject_feature_2.value ASC";
-	push \@args, \$pipeline;
-	push \@args, \$feature_id;
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows    = \@{ \$sth->fetchall_arrayref() };
-	my \%hash    = ();
-	my \@columns = \@{ \$sth->{NAME} };
+      . "FROM feature_relationship me  "
+      . "JOIN cvterm type ON type.cvterm_id = me.type_id "
+      . "LEFT JOIN analysisfeature feature_relationship_analysis_feature_feature_object_2 ON feature_relationship_analysis_feature_feature_object_2.feature_id = me.object_id "
+      . "LEFT JOIN analysis analysis ON analysis.analysis_id = feature_relationship_analysis_feature_feature_object_2.analysis_id "
+      . "LEFT JOIN featureloc feature_relationship_featureloc_subject_feature_2 ON feature_relationship_featureloc_subject_feature_2.feature_id = me.subject_id "
+      . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = feature_relationship_featureloc_subject_feature_2.srcfeature_id "
+      . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = featureloc_featureprop.type_id "
+      . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = me.subject_id "
+      . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
+      . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = ? AND me.object_id = ? AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
+      . "GROUP BY me.object_id, feature_relationship_props_subject_feature_2.value "
+      . "ORDER BY feature_relationship_props_subject_feature_2.value ASC";
+    push \@args, \$pipeline;
+    push \@args, \$feature_id;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows    = \@{ \$sth->fetchall_arrayref() };
+    my \%hash    = ();
+    my \@columns = \@{ \$sth->{NAME} };
 
-	for ( my \$i = 0 ; \$i < scalar \@columns ; \$i++ ) {
-		\$hash{ \$columns[\$i] } = \$rows[0][\$i];
-	}
+    for ( my \$i = 0 ; \$i < scalar \@columns ; \$i++ ) {
+        \$hash{ \$columns[\$i] } = \$rows[0][\$i];
+    }
 
-	return \\\%hash;
+    return \\\%hash;
 }
 
 =head2
@@ -4387,53 +4230,53 @@ Method used to realize search by subevidences
 =cut
 
 sub subevidences {
-	my ( \$self, \$feature_id ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query =
-"SELECT subev_id, subev_type, subev_number, subev_start, subev_end, subev_strand, is_obsolete, program FROM get_subevidences(?) ORDER BY subev_id ASC";
-	push \@args, \$feature_id;
+    my ( \$self, \$feature_id ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query =
+    "SELECT subev_id, subev_type, subev_number, subev_start, subev_end, subev_strand, is_obsolete, program FROM get_subevidences(?) ORDER BY subev_id ASC";
+    push \@args, \$feature_id;
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
 
-	my \%component_name = (
-		'annotation_interpro.pl' => 'Domain search - InterProScan',
-		'annotation_blast.pl'    => 'Similarity search - BLAST',
-		'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
-		'annotation_phobius.pl' =>
-		  'Transmembrane domains and signal peptide search - Phobius',
-		'annotation_pathways.pl'  => 'Pathway classification - KEGG',
-		'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
-		'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
-		'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
-		'annotation_predgpi.pl'	=> 'PreDGPI',
-		'annotation_tmhmm.pl'     => 'TMHMM',
-		'annotation_hmmer.pl'	=> 'HMMER',
-		"annotation_signalP.pl" => 'SignalP',
-		'annotation_bigpi.pl'   => 'BIGPI',
-	);
+    my \%component_name = (
+        'annotation_interpro.pl' => 'Domain search - InterProScan',
+        'annotation_blast.pl'    => 'Similarity search - BLAST',
+        'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
+        'annotation_phobius.pl' =>
+          'Transmembrane domains and signal peptide search - Phobius',
+        'annotation_pathways.pl'  => 'Pathway classification - KEGG',
+        'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
+        'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
+        'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
+        'annotation_predgpi.pl'	=> 'PreDGPI',
+        'annotation_tmhmm.pl'     => 'TMHMM',
+        'annotation_hmmer.pl'	=> 'HMMER',
+        "annotation_signalP.pl" => 'SignalP',
+        'annotation_bigpi.pl'   => 'BIGPI',
+    );
 
-	my \@list = ();
-	use Report_HTML_DB::Models::Application::Subevidence;
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \$subevidence = Report_HTML_DB::Models::Application::Subevidence->new(
-			id                  => \$rows[\$i][0],
-			type                => \$rows[\$i][1],
-			number              => \$rows[\$i][2],
-			start               => \$rows[\$i][3],
-			end                 => \$rows[\$i][4],
-			strand              => \$rows[\$i][5],
-			is_obsolete         => \$rows[\$i][6],
-			program             => \$rows[\$i][7],
-			program_description => \$component_name{ \$rows[\$i][7] }
-		);
-		push \@list, \$subevidence;
-	}
+    my \@list = ();
+    use Report_HTML_DB::Models::Application::Subevidence;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$subevidence = Report_HTML_DB::Models::Application::Subevidence->new(
+            id                  => \$rows[\$i][0],
+            type                => \$rows[\$i][1],
+            number              => \$rows[\$i][2],
+            start               => \$rows[\$i][3],
+            end                 => \$rows[\$i][4],
+            strand              => \$rows[\$i][5],
+            is_obsolete         => \$rows[\$i][6],
+            program             => \$rows[\$i][7],
+            program_description => \$component_name{ \$rows[\$i][7] }
+        );
+        push \@list, \$subevidence;
+    }
 
-	return \\\@list;
+    return \\\@list;
 }
 
 =head2
@@ -4443,68 +4286,68 @@ Method used to realize search by interval evidence properties
 =cut
 
 sub intervalEvidenceProperties {
-	my ( \$self, \$feature_id ) = \@_;
-	my \$dbh = \$self->dbh;
+    my ( \$self, \$feature_id ) = \@_;
+    my \$dbh = \$self->dbh;
 
-	my \$query =
-	  "select c.name, p.value, l.fstart, l.fend 
-	  from featureprop p 
-	  join cvterm c on (p.type_id = c.cvterm_id) 
-	  join feature_relationship r on (r.subject_id = p.feature_id) 
-	  join cvterm cr on (r.type_id = cr.cvterm_id) 
-	  join featureloc l on (r.subject_id = l.feature_id)
-	  where cr.name='interval' and r.object_id=? ORDER BY r.subject_id ASC;";
+    my \$query =
+    "select c.name, p.value, l.fstart, l.fend 
+    from featureprop p 
+    join cvterm c on (p.type_id = c.cvterm_id) 
+    join feature_relationship r on (r.subject_id = p.feature_id) 
+    join cvterm cr on (r.type_id = cr.cvterm_id) 
+      join featureloc l on (r.subject_id = l.feature_id)
+      where cr.name='interval' and r.object_id=? ORDER BY r.subject_id ASC;";
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\$feature_id);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\$feature_id);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
 
-	my \@list = ();
-	my \%property = ();
-	
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \%hash = ();
-		
-		\$hash{ key } = \$rows[\$i][0];
-		\$hash{ key_value } = \$rows[\$i][1];
-		\$hash{ fstart } = \$rows[\$i][2];
-		\$hash{ fend } = \$rows[\$i][3];
-		
-		if ( !exists \$property{ \$hash{key} } ) {
-			if ( \$hash{key} eq "anticodon" ) {
-				\$property{ \$hash{key} } = \$hash{key_value};
-				\$property{codon} = reverseComplement( \$hash{key_value} );
-			}
-			else {
-				\$property{ \$hash{key} } = \$hash{key_value};
-			}
-			\$property{ fstart } = \$hash{fstart};
-			\$property{ fend } = \$hash{fend};
-		}
-		else {
-			my \%tempHash = ();
-			foreach my \$key ( keys \%property ) {
-				if ( defined \$key && \$key ) {
-					\$tempHash{\$key} = \$property{\$key};
-				}
-			}
-			push \@list, \\\%tempHash;
-			\%property = ();
-			if ( \$hash{key} eq "anticodon" ) {
-				\$property{ \$hash{key} } = \$hash{key_value};
-				\$property{codon} = reverseComplement( \$hash{key_value} );
-			}
-			else {
-				\$property{ \$hash{key} } = \$hash{key_value};
-			}
-			\$property{ fstart } = \$hash{fstart};
-			\$property{ fend } = \$hash{fend};
-		}
-	}
-	push \@list, \\\%property if scalar \@list == 0;
+    my \@list = ();
+    my \%property = ();
 
-	return \\\@list;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \%hash = ();
+
+        \$hash{ key } = \$rows[\$i][0];
+        \$hash{ key_value } = \$rows[\$i][1];
+        \$hash{ fstart } = \$rows[\$i][2];
+        \$hash{ fend } = \$rows[\$i][3];
+
+        if ( !exists \$property{ \$hash{key} } ) {
+            if ( \$hash{key} eq "anticodon" ) {
+                \$property{ \$hash{key} } = \$hash{key_value};
+                \$property{codon} = reverseComplement( \$hash{key_value} );
+            }
+            else {
+                \$property{ \$hash{key} } = \$hash{key_value};
+            }
+            \$property{ fstart } = \$hash{fstart};
+            \$property{ fend } = \$hash{fend};
+        }
+        else {
+            my \%tempHash = ();
+            foreach my \$key ( keys \%property ) {
+                if ( defined \$key && \$key ) {
+                    \$tempHash{\$key} = \$property{\$key};
+                }
+            }
+            push \@list, \\\%tempHash;
+            \%property = ();
+            if ( \$hash{key} eq "anticodon" ) {
+                \$property{ \$hash{key} } = \$hash{key_value};
+                \$property{codon} = reverseComplement( \$hash{key_value} );
+            }
+            else {
+                \$property{ \$hash{key} } = \$hash{key_value};
+            }
+            \$property{ fstart } = \$hash{fstart};
+            \$property{ fend } = \$hash{fend};
+        }
+    }
+    push \@list, \\\%property if scalar \@list == 0;
+
+    return \\\@list;
 }
 
 =head2
@@ -4514,41 +4357,41 @@ Method used to realize search by similarity evidence properties
 =cut
 
 sub similarityEvidenceProperties {
-	my ( \$self, \$feature_id ) = \@_;
-	my \$dbh = \$self->dbh;
+    my ( \$self, \$feature_id ) = \@_;
+    my \$dbh = \$self->dbh;
 
-	my \$query =
-	  "SELECT key, key_value FROM get_similarity_evidence_properties(?)";
+    my \$query =
+      "SELECT key, key_value FROM get_similarity_evidence_properties(?)";
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\$feature_id);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\$feature_id);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
 
-	my \@list    = ();
-	my \@columns = \@{ \$sth->{NAME} };
+    my \@list    = ();
+    my \@columns = \@{ \$sth->{NAME} };
 
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		my \%hash = ();
-		for ( my \$j = 0 ; \$j < scalar \@columns ; \$j++ ) {
-			\$hash{ \$columns[\$j] } = \$rows[\$i][\$j];
-		}
-		push \@list, \\\%hash;
-	}
-	my \%returnedhash = ();
-	for ( my \$i = 0 ; \$i < scalar \@list ; \$i++ ) {
-		my \$result = \$list[\$i];
-		if ( \$result->{key} eq "anticodon" ) {
-			\$returnedhash{ \$result->{key} } = \$result->{key_value};
-			\$returnedhash{codon} = reverseComplement( \$result->{key_value} );
-		}
-		else {
-			\$returnedhash{ \$result->{key} } = \$result->{key_value};
-		}
-	}
-	\$returnedhash{id} = \$feature_id;
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \%hash = ();
+        for ( my \$j = 0 ; \$j < scalar \@columns ; \$j++ ) {
+            \$hash{ \$columns[\$j] } = \$rows[\$i][\$j];
+        }
+        push \@list, \\\%hash;
+    }
+    my \%returnedhash = ();
+    for ( my \$i = 0 ; \$i < scalar \@list ; \$i++ ) {
+        my \$result = \$list[\$i];
+        if ( \$result->{key} eq "anticodon" ) {
+            \$returnedhash{ \$result->{key} } = \$result->{key_value};
+            \$returnedhash{codon} = reverseComplement( \$result->{key_value} );
+        }
+        else {
+            \$returnedhash{ \$result->{key} } = \$result->{key_value};
+        }
+    }
+    \$returnedhash{id} = \$feature_id;
 
-	return \\\%returnedhash;
+    return \\\%returnedhash;
 
 }
 
@@ -4559,11 +4402,11 @@ Method used to get identifier and description of similarity
 =cut
 
 sub getIdentifierAndDescriptionSimilarity {
-	my (\$self, \$feature_id) = \@_;
-	my \$dbh = \$self->dbh;
+    my (\$self, \$feature_id) = \@_;
+    my \$dbh = \$self->dbh;
 
-	my \$query =
-	  "select p.value from feature_relationship r 
+    my \$query =
+      "select p.value from feature_relationship r 
 join feature q on (r.subject_id = q.feature_id)         
 join featureprop p on (p.feature_id = r.subject_id)
 join cvterm c on (p.type_id = c.cvterm_id)
@@ -4572,41 +4415,41 @@ join cvterm cq on (q.type_id = cq.cvterm_id)
 where cr.name='alignment' 
 and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
 
-	\$sth->execute(\$feature_id);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
+    \$sth->execute(\$feature_id);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
 
-	my \%hash = ();
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+    my \%hash = ();
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
 
-		my \$response = \$rows[\$i][0];
-		my \@values = ();
-		if (\$response =~ /\\|/g) {
-			if (\$response =~ /CDD/g) {
-				\$response =~ /\\|\\w+\\|(\\d*)([\\w\\ ;.,]*)/g;
-				while (\$response =~ /\\|\\w+\\|(\\d*)([\\w\\ ;.,]*)/g) {
-					push \@values, \$1;
-					push \@values, \$2;
-				}
-			}  else {
-				while (\$response =~ /(?:\\w+)\\|(\\w+\\.*\\w*)\\|([\\w\\ \\:\\[\\]\\<\\>\\.\\-\\+\\*\\(\\)\\&\\\\\%\\\$\\#\\\@\\!\\/]*)\$/g) {
-					push \@values, \$1;
-					push \@values, \$2;
-				}
-			} 
-		} else {
-			while (\$response =~ /(\\w+)([\\w\\s]*)/g) {
-				push \@values, \$1;
-				push \@values, \$2;
-			}
-		}
-		\$hash{identifier} = \$values[0];
-		\$hash{description} = \$values[1];
+        my \$response = \$rows[\$i][0];
+        my \@values = ();
+        if (\$response =~ /\\|/g) {
+            if (\$response =~ /CDD/g) {
+                \$response =~ /\\|\\w+\\|(\\d*)([\\w\\ ;.,]*)/g;
+                while (\$response =~ /\\|\\w+\\|(\\d*)([\\w\\ ;.,]*)/g) {
+                    push \@values, \$1;
+                    push \@values, \$2;
+                }
+            }  else {
+                while (\$response =~ /(?:\\w+)\\|(\\w+\\.*\\w*)\\|([\\w\\ \\:\\[\\]\\<\\>\\.\\-\\+\\*\\(\\)\\&\\\\\%\\\$\\#\\\@\\!\\/]*)\$/g) {
+                    push \@values, \$1;
+                    push \@values, \$2;
+                }
+            } 
+        } else {
+            while (\$response =~ /(\\w+)([\\w\\s]*)/g) {
+                push \@values, \$1;
+                push \@values, \$2;
+            }
+        }
+        \$hash{identifier} = \$values[0];
+        \$hash{description} = \$values[1];
 
-	}
-	return \\\%hash;
+    }
+    return \\\%hash;
 }
 
 =head2
@@ -4616,17 +4459,17 @@ Method used to get feature ID by uniquename
 =cut
 
 sub get_feature_id {
-	my ( \$self, \$uniquename ) = \@_;
-	my \$dbh = \$self->dbh;
+    my ( \$self, \$uniquename ) = \@_;
+    my \$dbh = \$self->dbh;
 
-	my \$query = "SELECT feature_id FROM feature WHERE uniquename = ? LIMIT 1";
+    my \$query = "SELECT feature_id FROM feature WHERE uniquename = ? LIMIT 1";
 
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\$uniquename);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\$uniquename);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
 
-	return \$rows[0][0];
+    return \$rows[0][0];
 }
 
 =head2
@@ -4636,31 +4479,31 @@ Method used to get target class
 =cut
 
 sub get_target_class {
-	my ( \$self, \$pipeline_id ) = \@_;
-	my \$dbh  = \$self->dbh;
-	my \@args = ();
-	my \$query =
-"select DISTINCT ppc.value as value 
-	from feature_relationship r 
-	join featureloc l on (r.subject_id = l.feature_id) 
-	join featureprop p on (p.feature_id = l.srcfeature_id) 
-	join cvterm cp on (p.type_id = cp.cvterm_id) 
-	join featureprop ppc on (ppc.feature_id = r.subject_id) 
-	join cvterm cppc on (ppc.type_id = cppc.cvterm_id) 
-	WHERE cppc.name= 'target_class' and cp.name='pipeline_id' and p.value=?";
-	push \@args, \$pipeline_id;
-	my \$sth = \$dbh->prepare(\$query);
-	print STDERR \$query;
-	\$sth->execute(\@args);
-	my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my ( \$self, \$pipeline_id ) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \@args = ();
+    my \$query =
+    "select DISTINCT ppc.value as value 
+    from feature_relationship r 
+    join featureloc l on (r.subject_id = l.feature_id) 
+    join featureprop p on (p.feature_id = l.srcfeature_id) 
+    join cvterm cp on (p.type_id = cp.cvterm_id) 
+    join featureprop ppc on (ppc.feature_id = r.subject_id) 
+    join cvterm cppc on (ppc.type_id = cppc.cvterm_id) 
+    WHERE cppc.name= 'target_class' and cp.name='pipeline_id' and p.value=?";
+    push \@args, \$pipeline_id;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
 
-	my \@list = ();
+    my \@list = ();
 
-	for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-		push \@list, \$rows[\$i][0];
-	}
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        push \@list, \$rows[\$i][0];
+    }
 
-	return \\\@list;
+    return \\\@list;
 }
 
 =head1 NAME
@@ -4691,8 +4534,8 @@ it under the same terms as Perl itself.
 DBI
 
 writeFile( "$services_dir/lib/$libDirectoryServices/Model/SearchDatabaseRepository.pm",
-	$DBI );
-	
+    $DBI );
+
 $packageDBI = $packageServices . "::Model::BlastRepository";
 $DBI        = <<DBI;
 package $packageDBI;
@@ -4701,8 +4544,8 @@ use warnings;
 use base 'Catalyst::Model::Adaptor';
 
 __PACKAGE__->config(
-	class		=> 'Report_HTML_DB::Repositories::BlastRepository',
-	constructor	=> 'new',
+    class		=> 'Report_HTML_DB::Repositories::BlastRepository',
+    constructor	=> 'new',
 );
 
 1;
@@ -4710,7 +4553,7 @@ __PACKAGE__->config(
 DBI
 
 writeFile( "$services_dir/lib/$libDirectoryServices/Model/BlastRepository.pm",
-	$DBI );
+    $DBI );
 
 #####
 #
@@ -4751,16 +4594,16 @@ Method used to get HTML content from file by filepath
 =cut
 
 sub getHTMLContent : Path("/GetHTMLContent") : CaptureArgs(1) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub getHTMLContent_GET {
-	my ( \$self, \$c, \$filepath ) = \@_;
-	if ( !\$filepath and defined \$c->request->param("filepath") ) {
-		\$filepath = \$c->request->param("filepath");
-	}
-	if(\$filepath =~ m/\\.\\.\\//) {
-		\$self->status_bad_request(\$c, message => "Invalid filepath");
-	}
+    my ( \$self, \$c, \$filepath ) = \@_;
+    if ( !\$filepath and defined \$c->request->param("filepath") ) {
+        \$filepath = \$c->request->param("filepath");
+    }
+    if(\$filepath =~ m/\\.\\.\\//) {
+        \$self->status_bad_request(\$c, message => "Invalid filepath");
+    }
     my \$root = \$c->path_to('.');
     chomp(\$root);
     my \$directoryWebsite = "";
@@ -4768,12 +4611,12 @@ sub getHTMLContent_GET {
     \$directoryWebsite =~ s/-/_/;
     \$directoryWebsite = lc \$directoryWebsite;
 
-	open( my \$FILEHANDLER,
-		"<", \$c->path_to('root') . "/" .  \$directoryWebsite . "/" . \$filepath );
+    open( my \$FILEHANDLER,
+        "<", \$c->path_to('root') . "/" .  \$directoryWebsite . "/" . \$filepath );
 
-	my \$content = do { local \$/; <\$FILEHANDLER> };
-	close(\$FILEHANDLER);
-	standardStatusOk( \$self, \$c, \$content );
+    my \$content = do { local \$/; <\$FILEHANDLER> };
+    close(\$FILEHANDLER);
+    standardStatusOk( \$self, \$c, \$content );
 }
 
 =head2
@@ -4783,33 +4626,33 @@ Method used to return components used
 =cut
 
 sub getComponents : Path("/Components") : Args(0) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub getComponents_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \$resultSet = \$c->model('Basic::Component')->search(
-		{},
-		{
-			order_by => {
-				-asc => [qw/ component /]
-			},
-		}
-	);
+    my \$resultSet = \$c->model('Basic::Component')->search(
+        {},
+        {
+            order_by => {
+                -asc => [qw/ component /]
+            },
+        }
+    );
 
-	my \@list = ();
-	while ( my \$result = \$resultSet->next ) {
-		my \%hash = ();
-		\$hash{id}        = \$result->id;
-		\$hash{name}      = \$result->name;
-		\$hash{component} = \$result->component;
-		if ( \$result->filepath ne "" ) {
-			\$hash{filepath} = \$result->filepath;
-		}
-		push \@list, \\%hash;
-	}
+    my \@list = ();
+    while ( my \$result = \$resultSet->next ) {
+        my \%hash = ();
+        \$hash{id}        = \$result->id;
+        \$hash{name}      = \$result->name;
+        \$hash{component} = \$result->component;
+        if ( \$result->filepath ne "" ) {
+            \$hash{filepath} = \$c->path_to('root') . "/" .\$result->filepath;
+        }
+        push \@list, \\%hash;
+    }
 
-	standardStatusOk( \$self, \$c, \\\@list );
+    standardStatusOk( \$self, \$c, \\\@list );
 }
 
 
@@ -4819,81 +4662,81 @@ Method used to get file by component id
 
 =cut
 sub getFileByComponentID : Path("/FileByComponentID") : CaptureArgs(1) {
-	my ( \$self, \$c, \$id ) = \@_;
-	if ( !\$id and defined \$c->request->param("id") ) {
-		\$id = \$c->request->param("id");
-	}
+    my ( \$self, \$c, \$id ) = \@_;
+    if ( !\$id and defined \$c->request->param("id") ) {
+        \$id = \$c->request->param("id");
+    }
 
-	my \$resultSet = \$c->model('Basic::Component')->search(
-		{
-			'locus_tag' => \$id,
-		},
-		{
-			order_by => {
-				-asc => [qw/ component /]
-			},
-		}
-	);
-	my \%hash = ();
-	while ( my \$result = \$resultSet->next ) {
-		\$hash{id}        = \$result->id;
-		\$hash{name}      = \$result->name;
-		\$hash{component} = \$result->component;
-		\$hash{locus_tag} = \$result->locus_tag;
-		if ( \$result->filepath ne "" ) {
-			\$hash{filepath} = \$result->filepath;
-		}
-	}
+    my \$resultSet = \$c->model('Basic::Component')->search(
+        {
+            'locus_tag' => \$id,
+        },
+        {
+            order_by => {
+                -asc => [qw/ component /]
+            },
+        }
+    );
+    my \%hash = ();
+    while ( my \$result = \$resultSet->next ) {
+        \$hash{id}        = \$result->id;
+        \$hash{name}      = \$result->name;
+        \$hash{component} = \$result->component;
+        \$hash{locus_tag} = \$result->locus_tag;
+        if ( \$result->filepath ne "" ) {
+            \$hash{filepath} = \$c->path_to('root') . "/" .\$result->filepath;
+        }
+    }
 
-	use File::Basename;
-	use Digest::MD5 qw(md5 md5_hex md5_base64);
-	use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
-	my \$randomString = md5_base64( rand(\$\$) );
-	\$randomString =~ s/\\///;
-	my \$zip = Archive::Zip->new();
+    use File::Basename;
+    use Digest::MD5 qw(md5 md5_hex md5_base64);
+    use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
+    my \$randomString = md5_base64( rand(\$\$) );
+        \$randomString =~ s/\\///;
+        my \$zip = Archive::Zip->new();
 
-	\$zip->addFile( \$c->path_to('root') . "/" . \$hash{filepath},
-		getFilenameByFilepath( \$hash{filepath} ) );
-	if (   \$hash{name} =~ /annotation\\_blast/
-		|| \$hash{name} =~ /annotation\\_pathways/
-		|| \$hash{name} =~ /annotation\\_orthology/
-		|| \$hash{name} =~ /annotation\\_tcdb/ )
-	{
-		\$hash{filepath} =~ s/\\.html/\\.png/;
-		\$zip->addFile( \$c->path_to('root') . "/" . \$hash{filepath},
-			getFilenameByFilepath( \$hash{filepath} ) );
-	}
-	elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
-		\$hash{filepath} =~ s/\\/[\\w\\s\\-_]+\\.[\\w\\s\\-_ .]+//;
-		\$zip->addDirectory(
-			  \$c->path_to('root') . "/"
-			  . \$hash{filepath}
-			  . "/resources",
-			"resources"
-		);
-	}
+        \$zip->addFile( \$c->path_to('root') . "/" . \$hash{filepath},
+            getFilenameByFilepath(\$c->path_to('root') . "/" . \$hash{filepath} ) );
+        if (   \$hash{name} =~ /annotation\\_blast/
+            || \$hash{name} =~ /annotation\\_pathways/
+            || \$hash{name} =~ /annotation\\_orthology/
+            || \$hash{name} =~ /annotation\\_tcdb/ )
+        {
+            \$hash{filepath} =~ s/\\.html/\\.png/;
+            \$zip->addFile( \$c->path_to('root') . "/" . \$hash{filepath},
+                getFilenameByFilepath( \$c->path_to('root') . "/" .\$hash{filepath} ) );
+        }
+        elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
+            \$hash{filepath} =~ s/\\/[\\w\\s\\-_]+\\.[\\w\\s\\-_ .]+//;
+            \$zip->addDirectory(
+                \$c->path_to('root') . "/"
+                . \$hash{filepath}
+                . "/resources",
+                "resources"
+            );
+        }
 
-	unless ( \$zip->writeToFileNamed("/tmp/\$randomString") == AZ_OK ) {
-		die 'error';
-	}
+        unless ( \$zip->writeToFileNamed("/tmp/\$randomString") == AZ_OK ) {
+            die 'error';
+        }
 
-	open( my \$FILEHANDLER, "<", "/tmp/\$randomString" );
-	binmode \$FILEHANDLER;
-	my \$file;
+        open( my \$FILEHANDLER, "<", "/tmp/\$randomString" );
+        binmode \$FILEHANDLER;
+        my \$file;
 
-	local \$/ = \\10240;
-	while (<\$FILEHANDLER>) {
-		\$file .= \$_;
-	}
+        local \$/ = \\10240;
+        while (<\$FILEHANDLER>) {
+            \$file .= \$_;
+        }
 
-	\$c->response->headers->content_type('application/x-download');
-	\$c->response->header( 'Content-Disposition' => 'attachment; filename='
-		  . \$randomString
-		  . '.zip' );
-	\$c->response->body(\$file);
-	close \$FILEHANDLER;
-	unlink("/tmp/\$randomString");
-}
+        \$c->response->headers->content_type('application/x-download');
+        \$c->response->header( 'Content-Disposition' => 'attachment; filename='
+            . \$randomString
+            . '.zip' );
+        \$c->response->body(\$file);
+        close \$FILEHANDLER;
+        unlink("/tmp/\$randomString");
+    }
 
 =head2
 
@@ -4902,175 +4745,175 @@ Method used to view result by component ID
 =cut
 
 sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(1) {
-	my ( \$self, \$c, \$id ) = \@_;
-	if ( !\$id and defined \$c->request->param("id") ) {
-		\$id = \$c->request->param("id");
-	}
+    my ( \$self, \$c, \$id ) = \@_;
+    if ( !\$id and defined \$c->request->param("id") ) {
+        \$id = \$c->request->param("id");
+    }
 
-	my \$resultSet = \$c->model('Basic::Component')->search(
-		{
-			'locus_tag' => \$id,
-		},
-		{
-			order_by => {
-				-asc => [qw/ component /]
-			},
-		}
-	);
-	my \%hash = ();
-	while ( my \$result = \$resultSet->next ) {
-		\$hash{id}        = \$result->id;
-		\$hash{name}      = \$result->name;
-		\$hash{component} = \$result->component;
-		\$hash{locus_tag} = \$result->locus_tag;
-		if ( \$result->filepath ne "" ) {
-			\$hash{filepath} = \$result->filepath;
-		}
-	}
+    my \$resultSet = \$c->model('Basic::Component')->search(
+        {
+            'locus_tag' => \$id,
+        },
+        {
+            order_by => {
+                -asc => [qw/ component /]
+            },
+        }
+    );
+    my \%hash = ();
+    while ( my \$result = \$resultSet->next ) {
+        \$hash{id}        = \$result->id;
+        \$hash{name}      = \$result->name;
+        \$hash{component} = \$result->component;
+        \$hash{locus_tag} = \$result->locus_tag;
+        if ( \$result->filepath ne "" ) {
+            \$hash{filepath} = \$c->path_to('root') . "/" . \$result->filepath;
+        }
+    }
 
-	use File::Basename;
-	open( my \$FILEHANDLER,
-		"<", \$hash{filepath} );
-	my \$content = do { local(\$/); <\$FILEHANDLER> };;
-	close(\$FILEHANDLER);
-	
-	if (   \$hash{name} =~ /annotation\\_blast/
-		|| \$hash{name} =~ /annotation\\_pathways/
-		|| \$hash{name} =~ /annotation\\_orthology/
-		|| \$hash{name} =~ /annotation\\_tcdb/ )
-	{
-		my \$image = \$hash{filepath};
-		\$image =~ s/\\.html/\\.png/g;
-		open( \$FILEHANDLER,
-			"<", \$image );
-		my \$contentImage = do { local(\$/); <\$FILEHANDLER> };
-		close(\$FILEHANDLER);
-		use MIME::Base64;
-		\$contentImage = MIME::Base64::encode_base64(\$contentImage);
-		\$content =~ s/\$_/<img src="data:image\\/png;base64,\$contentImage/ foreach (\$content =~ /(<img src="[\\.\\w\\s\\-]*)"/img);
-	}
-	elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
-		my \$directory = \$hash{filepath};
-		\$directory =~ s/\\/([\\w\\s\\-_\\.]+)\\.html//g;
-		foreach (\$content =~ /<img src="([\\.\\w\\s\\-\\/]*)"/img) {
-			open( \$FILEHANDLER,
-				"<", \$directory . "/" . \$_ );
-			my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
-			close(\$FILEHANDLER);
-			use MIME::Base64;
-			\$contentFile = MIME::Base64::encode_base64(\$contentFile);
-			\$content =~ s/<img src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
-		}
-		while (\$content =~ /<link([\\w\\s="]*)href="([\\.\\w\\s\\-\\/]*)"/img) {
-			open( \$FILEHANDLER,
-				"<", \$directory . "/" . \$2 );
-			my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
-			close(\$FILEHANDLER);
-			use MIME::Base64;
-			\$contentFile = MIME::Base64::encode_base64(\$contentFile);
-			if (\$1) {
-				\$content =~ s/<link\$1href="\$2/<link \$1 href="data:text\\/css;base64,\$contentFile/;
-			} else {
-				\$content =~ s/<link href="\$2/<link href="data:text\\/css;base64,\$contentFile/;
-			}
-		}
-		foreach (\$content =~ /<script src="([\\.\\w\\s\\-\\/]*)"/img) {
-			open( \$FILEHANDLER,
-				"<", \$directory . "/" . \$_ );
-			my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
-			close(\$FILEHANDLER);
-			use MIME::Base64;
-			\$contentFile = MIME::Base64::encode_base64(\$contentFile);
-			\$content =~ s/<script src="\$_/<script src="data:text\\/javascript;base64,\$contentFile/;
-		}
-	}
-
-	\$c->response->body(\$content);
-	
-}
-
-sub viewFileByContigAndType : Path("/ViewFileByContigAndType") : CaptureArgs(2) {
-    my (\$self, \$c, \$contig, \$type) = \@_;
-	if ( !\$type and defined \$c->request->param("type") ) {
-		\$type = \$c->request->param("type");
-	}
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	my \$name = "";
-	if(\$type eq "rna") {
-		\$name = "infernal";
-	} elsif(\$type eq "rrna_prediction") {
-	    \$name = "rnammer";
-	} elsif(\$type =~ "trna") {
-		\$name = "trna";
-	} else {
-		\$name = \$type;
-	}
-	
-	my \$filepath = (
-		\$c->model('Basic::Component')->search(
-			{
-				name 		=> {  "like", "%".\$name."%"},
-				filepath 	=> { "like", "%".\$contig."%"}
-			},
-			{
-				columns => qw/filepath/,
-				rows    => 1
-			}
-		)->single->get_column(qw/filepath/)
-	);
-	open( my \$FILEHANDLER, "<", \$filepath ); 
+    use File::Basename;
+    open( my \$FILEHANDLER,
+        "<", \$c->path_to('root') . "/" . \$hash{filepath} );
     my \$content = do { local(\$/); <\$FILEHANDLER> };;
-	close(\$FILEHANDLER); 
+    close(\$FILEHANDLER);
+
+    if (   \$hash{name} =~ /annotation\\_blast/
+        || \$hash{name} =~ /annotation\\_pathways/
+        || \$hash{name} =~ /annotation\\_orthology/
+        || \$hash{name} =~ /annotation\\_tcdb/ )
+    {
+        my \$image = \$c->path_to('root') . "/" . \$hash{filepath};
+        \$image =~ s/\\.html/\\.png/g;
+        open( \$FILEHANDLER,
+            "<", \$image );
+        my \$contentImage = do { local(\$/); <\$FILEHANDLER> };
+        close(\$FILEHANDLER);
+        use MIME::Base64;
+        \$contentImage = MIME::Base64::encode_base64(\$contentImage);
+        \$content =~ s/\$_/<img src="data:image\\/png;base64,\$contentImage/ foreach (\$content =~ /(<img src="[\\.\\w\\s\\-]*)"/img);
+    }
+    elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
+        my \$directory = \$c->path_to('root') . "/" . \$hash{filepath};
+        \$directory =~ s/\\/([\\w\\s\\-_\\.]+)\\.html//g;
+        foreach (\$content =~ /<img src="([\\.\\w\\s\\-\\/]*)"/img) {
+    open( \$FILEHANDLER,
+    "<", \$directory . "/" . \$_ );
+    my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+    close(\$FILEHANDLER);
+    use MIME::Base64;
+    \$contentFile = MIME::Base64::encode_base64(\$contentFile);
+    \$content =~ s/<img src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
+    }
+    while (\$content =~ /<link([\\w\\s="]*)href="([\\.\\w\\s\\-\\/]*)"/img) {
+            open( \$FILEHANDLER,
+                "<", \$directory . "/" . \$2 );
+            my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+            close(\$FILEHANDLER);
+            use MIME::Base64;
+            \$contentFile = MIME::Base64::encode_base64(\$contentFile);
+            if (\$1) {
+                \$content =~ s/<link\$1href="\$2/<link \$1 href="data:text\\/css;base64,\$contentFile/;
+            } else {
+                \$content =~ s/<link href="\$2/<link href="data:text\\/css;base64,\$contentFile/;
+            }
+        }
+        foreach (\$content =~ /<script src="([\\.\\w\\s\\-\\/]*)"/img) {
+    open( \$FILEHANDLER,
+    "<", \$directory . "/" . \$_ );
+    my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+    close(\$FILEHANDLER);
+    use MIME::Base64;
+    \$contentFile = MIME::Base64::encode_base64(\$contentFile);
+    \$content =~ s/<script src="\$_/<script src="data:text\\/javascript;base64,\$contentFile/;
+    }
+    }
+
+    \$c->response->body(\$content);
+
+    }
+
+    sub viewFileByContigAndType : Path("/ViewFileByContigAndType") : CaptureArgs(2) {
+    my (\$self, \$c, \$contig, \$type) = \@_;
+    if ( !\$type and defined \$c->request->param("type") ) {
+    \$type = \$c->request->param("type");
+    }
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+    \$contig = \$c->request->param("contig");
+    }
+    my \$name = "";
+    if(\$type eq "rna") {
+    \$name = "infernal";
+    } elsif(\$type eq "rrna_prediction") {
+    \$name = "rnammer";
+    } elsif(\$type =~ "trna") {
+    \$name = "trna";
+    } else {
+    \$name = \$type;
+    }
+
+    my \$filepath = (
+    \$c->model('Basic::Component')->search(
+    {
+    name 		=> {  "like", "%".\$name."%"},
+    filepath 	=> { "like", "%".\$contig."%"}
+    },
+    {
+    columns => qw/filepath/,
+    rows    => 1
+    }
+    )->single->get_column(qw/filepath/)
+    );
+    open( my \$FILEHANDLER, "<", \$c->path_to('root') . "/" . \$filepath ); 
+    my \$content = do { local(\$/); <\$FILEHANDLER> };;
+    close(\$FILEHANDLER); 
     \$c->response->body(\$content); 
     \$c->response->headers->content_type('text/plain'); 
-} 
+    } 
 
-sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : CaptureArgs(2) {
-	my (\$self, \$c, \$contig, \$type) = \@_;
-	if ( !\$type and defined \$c->request->param("type") ) {
-		\$type = \$c->request->param("type");
-	}
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	my \$name = "";
-	if(\$type eq "rna") {
-		\$name = "infernal";
-	} elsif(\$type eq "rrna_prediction") {
-		\$name = "rnammer";
-	} elsif(\$type =~ "trna") {
-		\$name = "trna";
-	} else {
-		\$name = \$type;
-	}
-	
-	my \$filepath = (
-		\$c->model('Basic::Component')->search(
-			{
-				name 		=> {  "like", "%".\$name."%"},
-				filepath 	=> { "like", "%".\$contig."%"}
-			},
-			{
-				columns => qw/filepath/,
-				rows    => 1
-			}
-		)->single->get_column(qw/filepath/)
-	);
-	open( my \$FILEHANDLER, "<", \$filepath );
-	binmode \$FILEHANDLER;
-	my \$file;
+    sub downloadFileByContigAndType : Path("/DownloadFileByContigAndType") : CaptureArgs(2) {
+    my (\$self, \$c, \$contig, \$type) = \@_;
+    if ( !\$type and defined \$c->request->param("type") ) {
+    \$type = \$c->request->param("type");
+    }
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+    \$contig = \$c->request->param("contig");
+    }
+    my \$name = "";
+    if(\$type eq "rna") {
+    \$name = "infernal";
+    } elsif(\$type eq "rrna_prediction") {
+    \$name = "rnammer";
+    } elsif(\$type =~ "trna") {
+    \$name = "trna";
+    } else {
+    \$name = \$type;
+    }
 
-	local \$/ = \\10240;
-	while (<\$FILEHANDLER>) {
-		\$file .= \$_;
-	}
+    my \$filepath = (
+    \$c->model('Basic::Component')->search(
+    {
+    name 		=> {  "like", "%".\$name."%"},
+    filepath 	=> { "like", "%".\$contig."%"}
+    },
+    {
+    columns => qw/filepath/,
+    rows    => 1
+    }
+    )->single->get_column(qw/filepath/)
+    );
+    open( my \$FILEHANDLER, "<", \$c->path_to('root') . "/" . \$filepath );
+    binmode \$FILEHANDLER;
+    my \$file;
+
+    local \$/ = \\10240;
+    while (<\$FILEHANDLER>) {
+    \$file .= \$_;
+    }
     \$c->response->headers->content_type('text/plain'); 
-	\$c->response->body(\$file);
-	close \$FILEHANDLER;
-}
-	 
+    \$c->response->body(\$file);
+    close \$FILEHANDLER;
+    }
+
 
 =head2
 
@@ -5079,13 +4922,13 @@ Method used to get filename by filepath
 =cut
 
 sub getFilenameByFilepath {
-	my (\$filepath) = \@_;
-	my \$filename = "";
-	if ( \$filepath =~ /\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_.]+)/g ) {
-		\$filename = \$1;
-	}
-	return \$filename;
-}
+    my (\$filepath) = \@_;
+    my \$filename = "";
+    if ( \$filepath =~ /\\/([\\w\\s\\-_]+\\.[\\w\\s\\-_.]+)/g ) {
+                    \$filename = \$1;
+                }
+                return \$filename;
+            }
 
 =head2 searchContig
 
@@ -5094,66 +4937,66 @@ Method used to realize search by contigs, optional return a stretch or a reverse
 =cut
 
 sub searchContig : Path("/Contig") : CaptureArgs(4) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub searchContig_GET {
-	my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	if ( !\$start and defined \$c->request->param("contigStart") ) {
-		\$start = \$c->request->param("contigStart");
-	}
-	if ( !\$end and defined \$c->request->param("contigEnd") ) {
-		\$end = \$c->request->param("contigEnd");
-	}
-	if ( !\$reverseComplement
-		and defined \$c->request->param("revCompContig") )
-	{
-		\$reverseComplement = \$c->request->param("revCompContig");
-	}
+my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+if ( !\$contig and defined \$c->request->param("contig") ) {
+\$contig = \$c->request->param("contig");
+}
+if ( !\$start and defined \$c->request->param("contigStart") ) {
+\$start = \$c->request->param("contigStart");
+}
+if ( !\$end and defined \$c->request->param("contigEnd") ) {
+\$end = \$c->request->param("contigEnd");
+}
+if ( !\$reverseComplement
+    and defined \$c->request->param("revCompContig") )
+{
+\$reverseComplement = \$c->request->param("revCompContig");
+}
 
-	my \@list = ();
-	push \@list, sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
-	standardStatusOk( \$self, \$c, \@list );
+my \@list = ();
+push \@list, sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
+standardStatusOk( \$self, \$c, \@list );
 }
 
 sub sequenceContig {
-	my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-	use File::Basename;
-	my \$data     = "";
-	my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
+my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+use File::Basename;
+my \$data     = "";
+my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
 
-	open( my \$FILEHANDLER,
-		"<", \$c->path_to('root') . "/" . \$sequence->filepath );
+open( my \$FILEHANDLER,
+"<", \$c->path_to('root') . "/" . \$sequence->filepath );
 
-	my \$content = do { local \$/; <\$FILEHANDLER> };
+my \$content = do { local \$/; <\$FILEHANDLER> };
 
-	my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
-	\$data = join("", \@lines);
-	
-	close(\$FILEHANDLER);
+my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
+\$data = join("", \@lines);
 
-	if ( \$start && \$end ) {
-		\$start += -1;
-		\$data = substr( \$data, \$start, ( \$end - \$start ) );
-		\$c->stash->{start}     = \$start;
-		\$c->stash->{end}       = \$end;
-		\$c->stash->{hadLimits} = 1;
-	}
-	if ( \$reverseComplement ) {
-		\$data = reverseComplement(\$data);
-		\$c->stash->{hadReverseComplement} = 1;
-	}
-	\$data = formatSequence(\$data);
-	my \$result = \$data;
-	
-	my \%hash = ();
-	\$hash{'geneID'} = \$sequence->id;
-	\$hash{'gene'}   = \$sequence->name;
-	\$hash{'contig'} = \$result;
-	\$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
-	return \\\%hash;
+close(\$FILEHANDLER);
+
+if ( \$start && \$end ) {
+\$start += -1;
+\$data = substr( \$data, \$start, ( \$end - \$start ) );
+\$c->stash->{start}     = \$start;
+\$c->stash->{end}       = \$end;
+\$c->stash->{hadLimits} = 1;
+}
+if ( \$reverseComplement ) {
+\$data = reverseComplement(\$data);
+\$c->stash->{hadReverseComplement} = 1;
+}
+\$data = formatSequence(\$data);
+my \$result = \$data;
+
+my \%hash = ();
+\$hash{'geneID'} = \$sequence->id;
+\$hash{'gene'}   = \$sequence->name;
+\$hash{'contig'} = \$result;
+\$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
+return \\\%hash;
 }
 
 =head2 reverseComplement
@@ -5163,10 +5006,10 @@ Method used to return the reverse complement of a sequence
 =cut
 
 sub reverseComplement {
-	my (\$sequence) = \@_;
-	my \$reverseComplement = reverse(\$sequence);
-	\$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
-	return \$reverseComplement;
+    my (\$sequence) = \@_;
+    my \$reverseComplement = reverse(\$sequence);
+    \$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+    return \$reverseComplement;
 }
 
 =head2 formatSequence
@@ -5188,31 +5031,31 @@ Standard return of status ok
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
-	if (   ( defined \$total || \$total )
-		&& ( defined \$pageSize || \$pageSize )
-		&& ( defined \$offset   || \$offset ) )
-	{
-		my \$pagedResponse = \$c->model('PagedResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response,
-			total       => \$total,
-			pageSize    => \$pageSize,
-			offset      => \$offset,
-		);
-		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
-	}
-	else {
-		my \$baseResponse = \$c->model('BaseResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response
-		);
-		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
-	}
+    my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+    if (   ( defined \$total || \$total )
+        && ( defined \$pageSize || \$pageSize )
+        && ( defined \$offset   || \$offset ) )
+    {
+        my \$pagedResponse = \$c->model('PagedResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response,
+            total       => \$total,
+            pageSize    => \$pageSize,
+            offset      => \$offset,
+        );
+        \$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+    }
+    else {
+        my \$baseResponse = \$c->model('BaseResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response
+        );
+        \$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+    }
 }
 
 =encoding utf8
@@ -5264,112 +5107,112 @@ Method used to realize search blast
 sub search : Path("/Blast/search") : CaptureArgs(18) : ActionClass('REST') { }
 
 sub search_POST {
-	my ( \$self, \$c ) = \@_;
+my ( \$self, \$c ) = \@_;
 
-	open( my \$FILEHANDLER, "<", \$c->req->body );
-	my \$formData = do { local \$/; <\$FILEHANDLER> };
-	close(\$FILEHANDLER);
-	use JSON;
-	my \%hash = \%{ decode_json(\$formData) };
+open( my \$FILEHANDLER, "<", \$c->req->body );
+my \$formData = do { local \$/; <\$FILEHANDLER> };
+close(\$FILEHANDLER);
+use JSON;
+my \%hash = \%{ decode_json(\$formData) };
 
-	foreach my \$key ( keys \%hash ) {
-		if (\$key) {
-			\$hash{\$key} =~ s/['"&.|]//g;
-			chomp( \$hash{\$key} ) if \$key ne "SEQUENCE";
-		}
-	}
+foreach my \$key ( keys \%hash ) {
+    if (\$key) {
+        \$hash{\$key} =~ s/['"&.|]//g;
+        chomp( \$hash{\$key} ) if \$key ne "SEQUENCE";
+    }
+}
 
-	use File::Temp ();
-	my \$fh    = File::Temp->new();
-	my \$fname = \$fh->filename;
-	open( \$FILEHANDLER, ">", \$fname );
-	my \@fuckingSequence = split( /\\\\n/, \$hash{SEQUENCE} );
-	\$hash{SEQUENCE} = join( "\\n", \@fuckingSequence );
-	print \$FILEHANDLER \$hash{SEQUENCE};
-	close(\$FILEHANDLER);
+use File::Temp ();
+my \$fh    = File::Temp->new();
+my \$fname = \$fh->filename;
+open( \$FILEHANDLER, ">", \$fname );
+my \@fuckingSequence = split( /\\\\n/, \$hash{SEQUENCE} );
+\$hash{SEQUENCE} = join( "\\n", \@fuckingSequence );
+print \$FILEHANDLER \$hash{SEQUENCE};
+close(\$FILEHANDLER);
 
-	\$hash{DATALIB} = \$c->path_to("root") . "/seq/Sequences"
-	  if ( \$hash{DATALIB} eq "PMN_genome_1" );
-	\$hash{DATALIB} = \$c->path_to("root") . "/orfs_nt/Sequences_NT"
-	  if ( \$hash{DATALIB} eq "PMN_genes_1" );
-	\$hash{DATALIB} = \$c->path_to("root") . "/orfs_aa/Sequences_AA"
-	  if ( \$hash{DATALIB} eq "PMN_prot_1" );
-	my \$content = "";
-	if ( exists \$hash{PROGRAM} ) {
-		if (   \$hash{PROGRAM} eq "blastn"
-			|| \$hash{PROGRAM} eq "blastp"
-			|| \$hash{PROGRAM} eq "blastx"
-			|| \$hash{PROGRAM} eq "tblastn"
-			|| \$hash{PROGRAM} eq "tblastx" )
-		{
-			my \@response = \@{
-				\$c->model('BlastRepository')->executeBlastSearch(
-					\$hash{PROGRAM},            \$hash{DATALIB},
-					\$fname,                    \$hash{QUERY_FROM},
-					\$hash{QUERY_TO},           \$hash{FILTER},
-					\$hash{EXPECT},             \$hash{MAT_PARAM},
-					\$hash{UNGAPPED_ALIGNMENT}, \$hash{GENETIC_CODE},
-					\$hash{DB_GENETIC_CODE},    
-					\$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
-					\$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
-					\$hash{ALIGNMENTS},         \$hash{COST_OPEN_GAP},
-                    \$hash{COST_EXTEND_GAP},    \$hash{WORD_SIZE}
-				)
-			};
-			\$content = join( "", \@response );
-		}
-		else {
-			\$content = "PROGRAM NOT IN THE LIST";
-		}
-	}
-	else {
-		\$content = "NO PROGRAM DEFINED";
-	}
+\$hash{DATALIB} = \$c->path_to("root") . "/seq/Sequences"
+if ( \$hash{DATALIB} eq "PMN_genome_1" );
+\$hash{DATALIB} = \$c->path_to("root") . "/orfs_nt/Sequences_NT"
+if ( \$hash{DATALIB} eq "PMN_genes_1" );
+\$hash{DATALIB} = \$c->path_to("root") . "/orfs_aa/Sequences_AA"
+if ( \$hash{DATALIB} eq "PMN_prot_1" );
+my \$content = "";
+if ( exists \$hash{PROGRAM} ) {
+    if (   \$hash{PROGRAM} eq "blastn"
+        || \$hash{PROGRAM} eq "blastp"
+        || \$hash{PROGRAM} eq "blastx"
+        || \$hash{PROGRAM} eq "tblastn"
+        || \$hash{PROGRAM} eq "tblastx" )
+    {
+        my \@response = \@{
+        \$c->model('BlastRepository')->executeBlastSearch(
+        \$hash{PROGRAM},            \$hash{DATALIB},
+        \$fname,                    \$hash{QUERY_FROM},
+        \$hash{QUERY_TO},           \$hash{FILTER},
+        \$hash{EXPECT},             \$hash{MAT_PARAM},
+        \$hash{UNGAPPED_ALIGNMENT}, \$hash{GENETIC_CODE},
+        \$hash{DB_GENETIC_CODE},    
+        \$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
+        \$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
+        \$hash{ALIGNMENTS},         \$hash{COST_OPEN_GAP},
+        \$hash{COST_EXTEND_GAP},    \$hash{WORD_SIZE}
+        )
+        };
+        \$content = join( "", \@response );
+    }
+    else {
+        \$content = "PROGRAM NOT IN THE LIST";
+    }
+}
+else {
+    \$content = "NO PROGRAM DEFINED";
+}
 
-	return standardStatusOk( \$self, \$c, \$content );
+return standardStatusOk( \$self, \$c, \$content );
 }
 
 sub fancy : Path("/Blast/fancy") : CaptureArgs(3) : ActionClass('REST') { }
 
 sub fancy_POST {
-	my ( \$self, \$c ) = \@_;
-	open( my \$FILEHANDLER, "<", \$c->req->body );
-	my \$formData = do { local \$/; <\$FILEHANDLER> };
-	close(\$FILEHANDLER);
-	use JSON;
-	my \%hash = \%{ decode_json(\$formData) };
+    my ( \$self, \$c ) = \@_;
+    open( my \$FILEHANDLER, "<", \$c->req->body );
+    my \$formData = do { local \$/; <\$FILEHANDLER> };
+    close(\$FILEHANDLER);
+    use JSON;
+    my \%hash = \%{ decode_json(\$formData) };
 
-	use File::Temp ();
-	my \$fh    = File::Temp->new();
-	my \$fname = \$fh->filename;
-	open( \$FILEHANDLER, ">", \$fname );
-	print \$FILEHANDLER \$hash{blast};
-	close(\$FILEHANDLER);
-	use File::Temp qw/ :mktemp  /;
-	my \$tmpdir_name = mkdtemp("/tmp/XXXXXX");
-	\%hash = ();
-	if (\$c->model('BlastRepository')->fancyBlast(\$fname, \$tmpdir_name)) {
-		my \@files = ();
-		opendir(my \$DIR, \$tmpdir_name);
-		\@files = grep(!/^\\./, readdir(\$DIR));
-		closedir(\$DIR);
-		use MIME::Base64;
-		for(my \$i = 0; \$i < scalar \@files; \$i++) 
-		{
-			open(\$FILEHANDLER, "<", \$tmpdir_name . "/" . \$files[\$i]);
-			my \$content = do { local \$/; <\$FILEHANDLER> };
-			if(\$files[\$i] =~ /\\.html/g) {
-				\$hash{html} = \$content;
-			}
-			elsif(\$files[\$i] =~ /\\.png/g) {
-				\$hash{image} = MIME::Base64::encode_base64(\$content);
-			}
-			close(\$FILEHANDLER);
-		}
-	}
-	use File::Path;
-	rmtree(\$tmpdir_name);
-	return standardStatusOk(\$self, \$c, \\\%hash);
+    use File::Temp ();
+    my \$fh    = File::Temp->new();
+    my \$fname = \$fh->filename;
+    open( \$FILEHANDLER, ">", \$fname );
+    print \$FILEHANDLER \$hash{blast};
+    close(\$FILEHANDLER);
+    use File::Temp qw/ :mktemp  /;
+    my \$tmpdir_name = mkdtemp("/tmp/XXXXXX");
+    \%hash = ();
+    if (\$c->model('BlastRepository')->fancyBlast(\$fname, \$tmpdir_name)) {
+        my \@files = ();
+        opendir(my \$DIR, \$tmpdir_name);
+        \@files = grep(!/^\\./, readdir(\$DIR));
+        closedir(\$DIR);
+        use MIME::Base64;
+        for(my \$i = 0; \$i < scalar \@files; \$i++) 
+        {
+            open(\$FILEHANDLER, "<", \$tmpdir_name . "/" . \$files[\$i]);
+            my \$content = do { local \$/; <\$FILEHANDLER> };
+            if(\$files[\$i] =~ /\\.html/g) {
+                \$hash{html} = \$content;
+            }
+            elsif(\$files[\$i] =~ /\\.png/g) {
+                \$hash{image} = MIME::Base64::encode_base64(\$content);
+            }
+            close(\$FILEHANDLER);
+        }
+    }
+    use File::Path;
+    rmtree(\$tmpdir_name);
+    return standardStatusOk(\$self, \$c, \\\%hash);
 }
 
 =head2
@@ -5379,31 +5222,31 @@ Method used to make a default return of every ok request using BaseResponse mode
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
-	if (   ( defined \$total || \$total )
-		&& ( defined \$pageSize || \$pageSize )
-		&& ( defined \$offset   || \$offset ) )
-	{
-		my \$pagedResponse = \$c->model('PagedResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response,
-			total       => \$total,
-			pageSize    => \$pageSize,
-			offset      => \$offset,
-		);
-		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
-	}
-	else {
-		my \$baseResponse = \$c->model('BaseResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response
-		);
-		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
-	}
+    my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+    if (   ( defined \$total || \$total )
+        && ( defined \$pageSize || \$pageSize )
+        && ( defined \$offset   || \$offset ) )
+    {
+        my \$pagedResponse = \$c->model('PagedResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response,
+            total       => \$total,
+            pageSize    => \$pageSize,
+            offset      => \$offset,
+        );
+        \$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+    }
+    else {
+        my \$baseResponse = \$c->model('BaseResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response
+        );
+        \$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+    }
 }
 
 =encoding utf8
@@ -5428,7 +5271,7 @@ CONTENT
 
 $temporaryPackage = $packageServices . '::Controller::SearchDatabase';
 writeFile( "$services_dir/lib/$libDirectoryServices/Controller/SearchDatabase.pm",
-	<<CONTENT);
+    <<CONTENT);
 package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
@@ -5457,37 +5300,37 @@ Method used to get feature id
 =cut
 
 sub getFeatureID : Path("/SearchDatabase/GetFeatureID") : CaptureArgs(1) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub getFeatureID_GET {
-	my (\$self, \$c, \$uniquename) = \@_;
-	if ( !\$uniquename and defined \$c->request->param("uniquename") ) {
-		\$uniquename = \$c->request->param("uniquename");
-	}
-	return standardStatusOk( \$self, \$c,
-		\$c->model('SearchDatabaseRepository')->get_feature_id(\$uniquename));
+    my (\$self, \$c, \$uniquename) = \@_;
+    if ( !\$uniquename and defined \$c->request->param("uniquename") ) {
+        \$uniquename = \$c->request->param("uniquename");
+    }
+    return standardStatusOk( \$self, \$c,
+        \$c->model('SearchDatabaseRepository')->get_feature_id(\$uniquename));
 }
 
 sub getPipeline : Path("/SearchDatabase/GetPipeline") : CaptureArgs(0) : ActionClass('REST') { }
 
 sub getPipeline_GET {
-	my ( \$self, \$c ) = \@_;
-	return standardStatusOk( \$self, \$c, \$c->model('SearchDatabaseRepository')->getPipeline() );
+    my ( \$self, \$c ) = \@_;
+    return standardStatusOk( \$self, \$c, \$c->model('SearchDatabaseRepository')->getPipeline() );
 }
 
 sub getRibosomalRNAs : Path("/SearchDatabase/GetRibosomalRNAs") : CaptureArgs(1) : ActionClass('REST') { }
 
 sub getRibosomalRNAs_GET {
-	my (\$self, \$c, \$pipeline) = \@_;
-	
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	
-	my \%hash = ();
-	\$hash{pipeline}        = \$pipeline;
+    my (\$self, \$c, \$pipeline) = \@_;
 
-	standardStatusOk( \$self, \$c, \$c->model('SearchDatabaseRepository')->getRibosomalRNAs( \\\%hash ) );
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
+
+    my \%hash = ();
+    \$hash{pipeline}        = \$pipeline;
+
+    standardStatusOk( \$self, \$c, \$c->model('SearchDatabaseRepository')->getRibosomalRNAs( \\\%hash ) );
 }
 
 =head2
@@ -5499,37 +5342,37 @@ Method used to realize search of rRNA
 sub rRNA_search : Path("/SearchDatabase/rRNA_search") : CaptureArgs(5) : ActionClass('REST') { }
 
 sub rRNA_search_GET {
-	my (\$self, \$c, \$contig, \$type, \$pageSize, \$offset, \$pipeline) = \@_;
-	
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	if ( !\$type and defined \$c->request->param("type") ) {
-		\$type = \$c->request->param("type");
-	}
-	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
-		\$pageSize = \$c->request->param("pageSize");
-	}
-	if ( !\$offset and defined \$c->request->param("offset") ) {
-		\$offset = \$c->request->param("offset");
-	}
-	
-	my \%hash = ();
-	
-	\$hash{pipeline} = \$pipeline;
-	\$hash{contig} = \$contig;
-	\$hash{type} = \$type;
-	\$hash{pageSize} = \$pageSize;
-	\$hash{offset} = \$offset;
-	
-	my \$result = \$c->model('SearchDatabaseRepository')->rRNA_search( \\\%hash );
-	
-	my \@resultList = \@{ \$result->{list} };
+    my (\$self, \$c, \$contig, \$type, \$pageSize, \$offset, \$pipeline) = \@_;
 
-	standardStatusOk( \$self, \$c, \\\@resultList, \$result->{total}, \$pageSize, \$offset );
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
+    if ( !\$type and defined \$c->request->param("type") ) {
+        \$type = \$c->request->param("type");
+    }
+    if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+        \$pageSize = \$c->request->param("pageSize");
+    }
+    if ( !\$offset and defined \$c->request->param("offset") ) {
+        \$offset = \$c->request->param("offset");
+    }
+
+    my \%hash = ();
+
+    \$hash{pipeline} = \$pipeline;
+    \$hash{contig} = \$contig;
+    \$hash{type} = \$type;
+    \$hash{pageSize} = \$pageSize;
+    \$hash{offset} = \$offset;
+
+    my \$result = \$c->model('SearchDatabaseRepository')->rRNA_search( \\\%hash );
+
+    my \@resultList = \@{ \$result->{list} };
+
+    standardStatusOk( \$self, \$c, \\\@resultList, \$result->{total}, \$pageSize, \$offset );
 }
 
 =head2 searchGene
@@ -5539,62 +5382,62 @@ Method used to search on database genes
 =cut
 
 sub searchGene : Path("/SearchDatabase/Gene") : CaptureArgs(6) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub searchGene_GET {
-	my ( \$self, 	\$c, 	\$pipeline, 	\$geneID, 
-		\$geneDescription, 	\$noDescription, \$individually,	\$featureId,
-		\$pageSize,        \$offset, \$contig )
-	  = \@_;
+    my ( \$self, 	\$c, 	\$pipeline, 	\$geneID, 
+        \$geneDescription, 	\$noDescription, \$individually,	\$featureId,
+        \$pageSize,        \$offset, \$contig )
+    = \@_;
 
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	if ( !\$geneID and defined \$c->request->param("geneID") ) {
-		\$geneID = \$c->request->param("geneID");
-	}
-	if ( !\$geneDescription and defined \$c->request->param("geneDesc") ) {
-		\$geneDescription = \$c->request->param("geneDesc");
-	}
-	if ( !\$noDescription and defined \$c->request->param("noDesc") ) {
-		\$noDescription = \$c->request->param("noDesc");
-	}
-	if ( !\$individually and defined \$c->request->param("individually") ) {
-		\$individually = \$c->request->param("individually");
-	}
-	if ( !\$featureId and defined \$c->request->param("featureId") ) {
-		\$featureId = \$c->request->param("featureId");
-	}
-	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
-		\$pageSize = \$c->request->param("pageSize");
-	}
-	if ( !\$offset and defined \$c->request->param("offset") ) {
-		\$offset = \$c->request->param("offset");
-	}
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
+    if ( !\$geneID and defined \$c->request->param("geneID") ) {
+        \$geneID = \$c->request->param("geneID");
+    }
+    if ( !\$geneDescription and defined \$c->request->param("geneDesc") ) {
+        \$geneDescription = \$c->request->param("geneDesc");
+    }
+    if ( !\$noDescription and defined \$c->request->param("noDesc") ) {
+        \$noDescription = \$c->request->param("noDesc");
+    }
+    if ( !\$individually and defined \$c->request->param("individually") ) {
+        \$individually = \$c->request->param("individually");
+    }
+    if ( !\$featureId and defined \$c->request->param("featureId") ) {
+        \$featureId = \$c->request->param("featureId");
+    }
+    if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+        \$pageSize = \$c->request->param("pageSize");
+    }
+    if ( !\$offset and defined \$c->request->param("offset") ) {
+        \$offset = \$c->request->param("offset");
+    }
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
 
-	my \@list = ();
-	my \%hash = ();
-	\$hash{pipeline}        = \$pipeline;
-	\$hash{featureId}       = \$featureId;
-	\$hash{geneID}          = \$geneID;
-	\$hash{geneDescription} = \$geneDescription;
-	\$hash{noDescription}   = \$noDescription;
-	\$hash{individually}    = \$individually;
-	\$hash{pageSize}        = \$pageSize;
-	\$hash{offset}          = \$offset;
-	\$hash{contig}		    = \$contig if \$contig;
+    my \@list = ();
+    my \%hash = ();
+    \$hash{pipeline}        = \$pipeline;
+    \$hash{featureId}       = \$featureId;
+    \$hash{geneID}          = \$geneID;
+    \$hash{geneDescription} = \$geneDescription;
+    \$hash{noDescription}   = \$noDescription;
+    \$hash{individually}    = \$individually;
+    \$hash{pageSize}        = \$pageSize;
+    \$hash{offset}          = \$offset;
+    \$hash{contig}		    = \$contig if \$contig;
 
-	my \$result     = \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash );
-	my \@resultList = \@{ \$result->{list} };
+    my \$result     = \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash );
+    my \@resultList = \@{ \$result->{list} };
 
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$pageSize, \$offset );
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$pageSize, \$offset );
 }
 
 =head2 encodingCorrection
@@ -5604,20 +5447,20 @@ Method used to correct encoding strings come from SQLite
 =cut
 
 sub encodingCorrection {
-	my (\@texts) = \@_;
+    my (\@texts) = \@_;
 
-	use utf8;
-	use Encode qw( decode encode );
-	foreach my \$text (\@texts) {
-		foreach my \$key ( keys \%\$text ) {
-			if ( \$text->{\$key} != 1 ) {
-				my \$string = decode( 'utf-8', \$text->{\$key}{value} );
-				\$string = encode( 'iso-8859-1', \$string );
-				\$text->{\$key}{value} = \$string;
-			}
-		}
-	}
-	return \@texts;
+    use utf8;
+    use Encode qw( decode encode );
+    foreach my \$text (\@texts) {
+        foreach my \$key ( keys \%\$text ) {
+            if ( \$text->{\$key} != 1 ) {
+                my \$string = decode( 'utf-8', \$text->{\$key}{value} );
+                \$string = encode( 'iso-8859-1', \$string );
+                \$text->{\$key}{value} = \$string;
+            }
+        }
+    }
+    return \@texts;
 }
 
 =head2 getGeneBasics
@@ -5627,30 +5470,30 @@ return a list of hash containing the basic data
 =cut
 
 sub getGeneBasics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(2) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub getGeneBasics_GET {
-	my ( \$self, \$c, \$id, \$pipeline ) = \@_;
+    my ( \$self, \$c, \$id, \$pipeline ) = \@_;
 
-	#verify if the id exist and set
-	if ( !\$id and defined \$c->request->param("id") ) {
-		\$id = \$c->request->param("id");
-	}
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	
-	my \%hash = ();
-	\$hash{pipeline}   = \$pipeline;
-	\$hash{feature_id} = \$id;
+    #verify if the id exist and set
+    if ( !\$id and defined \$c->request->param("id") ) {
+        \$id = \$c->request->param("id");
+    }
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
 
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->geneBasics( \\\%hash ) };
-	my \@list       = ();
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+    my \%hash = ();
+    \$hash{pipeline}   = \$pipeline;
+    \$hash{feature_id} = \$id;
 
-	standardStatusOk( \$self, \$c, \\\@list );
+    my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->geneBasics( \\\%hash ) };
+    my \@list       = ();
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
+
+    standardStatusOk( \$self, \$c, \\\@list );
 }
 
 =head2 getSubsequence
@@ -5660,78 +5503,78 @@ Method used to get subsequence stretch of gene, returning the sequence, had to r
 =cut
 
 sub getSubsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(6) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub getSubsequence_GET {
-	my ( \$self, \$c, \$type, \$contig, \$sequenceName, \$start, \$end, \$pipeline ) = \@_;
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	if ( !\$type and defined \$c->request->param("type") ) {
-		\$type = \$c->request->param("type");
-	}
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	if ( !\$sequenceName and defined \$c->request->param("sequenceName") ) {
-		\$sequenceName = \$c->request->param("sequenceName");
-	}
-	if ( !\$start and defined \$c->request->param("start") ) {
-		\$start = \$c->request->param("start");
-	}
-	if ( !\$end and defined \$c->request->param("end") ) {
-		\$end = \$c->request->param("end");
-	}
+    my ( \$self, \$c, \$type, \$contig, \$sequenceName, \$start, \$end, \$pipeline ) = \@_;
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
+    if ( !\$type and defined \$c->request->param("type") ) {
+        \$type = \$c->request->param("type");
+    }
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
+    if ( !\$sequenceName and defined \$c->request->param("sequenceName") ) {
+        \$sequenceName = \$c->request->param("sequenceName");
+    }
+    if ( !\$start and defined \$c->request->param("start") ) {
+        \$start = \$c->request->param("start");
+    }
+    if ( !\$end and defined \$c->request->param("end") ) {
+        \$end = \$c->request->param("end");
+    }
 
-	my \$content = "";
-	use File::Basename;
+    my \$content = "";
+    use File::Basename;
 
-	if ( \$type ne "CDS" ) {
-		open(
-			my \$FILEHANDLER,
-			"<",
-			  \$c->path_to('root') 
-              ."/seq/"
-			  . \$sequenceName
-			  . ".fasta"
-		);
+    if ( \$type ne "CDS" ) {
+        open(
+            my \$FILEHANDLER,
+            "<",
+            \$c->path_to('root') 
+            ."/seq/"
+            . \$sequenceName
+            . ".fasta"
+        );
 
-		for my \$line (<\$FILEHANDLER>) {
-                        if ( \$line !~ /^>[\\w.-_]+\$/g )  {
-                                \$content .= \$line;
-                        }
-                }
+        for my \$line (<\$FILEHANDLER>) {
+            if ( \$line !~ /^>[\\w.-_]+\$/g )  {
+                \$content .= \$line;
+            }
+        }
 
-                close(\$FILEHANDLER);
+        close(\$FILEHANDLER);
 
-		\$content =~ s/\\n//g;
+        \$content =~ s/\\n//g;
 
-		if ( \$start && \$end ) {
-			\$content = substr( \$content, \$start, ( \$end - ( \$start + 1 ) ) );
-		}
-		my \$result = "";
-		for ( my \$i = 0 ; \$i < length(\$content) ; \$i += 60 ) {
-			my \$line = substr( \$content, \$i, 60 );
-			\$result .= "\$line<br />";
-		}
-		\$content = \$result;
-	}
-	else {
-		open(
-			my \$FILEHANDLER,
-			"<",
-			\$c->path_to('root') . "/orfs_aa/" . \$contig . ".fasta"
-		);
+        if ( \$start && \$end ) {
+            \$content = substr( \$content, \$start, ( \$end - ( \$start + 1 ) ) );
+        }
+        my \$result = "";
+        for ( my \$i = 0 ; \$i < length(\$content) ; \$i += 60 ) {
+            my \$line = substr( \$content, \$i, 60 );
+            \$result .= "\$line<br />";
+        }
+        \$content = \$result;
+    }
+    else {
+        open(
+            my \$FILEHANDLER,
+            "<",
+            \$c->path_to('root') . "/orfs_aa/" . \$contig . ".fasta"
+        );
 
-		for my \$line (<\$FILEHANDLER>) {
-			if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
-				\$content .= \$line;
-			}
-		}
-		close(\$FILEHANDLER);
-		\$content =~ s/\\n/<br \\/>/g;
-	}
-	standardStatusOk( \$self, \$c, { "sequence" => \$content } );
+        for my \$line (<\$FILEHANDLER>) {
+            if ( !( \$line =~ /^>\\w+\\n\$/g ) ) {
+                \$content .= \$line;
+            }
+        }
+        close(\$FILEHANDLER);
+        \$content =~ s/\\n/<br \\/>/g;
+    }
+    standardStatusOk( \$self, \$c, { "sequence" => \$content } );
 }
 
 =head2 ncRNA_desc  
@@ -5741,18 +5584,18 @@ Method used to return nc rna description
 =cut
 
 sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(2) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub ncRNA_desc_GET {
-	my ( \$self, \$c, \$feature, \$pipeline ) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	standardStatusOk( \$self, \$c,
-		\$c->model('SearchDatabaseRepository')->ncRNA_description( \$feature, \$pipeline ) );
+    my ( \$self, \$c, \$feature, \$pipeline ) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
+    standardStatusOk( \$self, \$c,
+        \$c->model('SearchDatabaseRepository')->ncRNA_description( \$feature, \$pipeline ) );
 
 }
 
@@ -5763,22 +5606,22 @@ Method used to return subevidences based on feature id
 =cut
 
 sub subEvidences : Path("/SearchDatabase/subEvidences") : CaptureArgs(2) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub subEvidences_GET {
-	my ( \$self, \$c, \$feature, \$pipeline ) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	my \@list       = ();
-	my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->subevidences(\$feature) };
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
-	standardStatusOk( \$self, \$c, \\\@list );
+    my ( \$self, \$c, \$feature, \$pipeline ) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
+    my \@list       = ();
+    my \@resultList = \@{ \$c->model('SearchDatabaseRepository')->subevidences(\$feature) };
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
+    standardStatusOk( \$self, \$c, \\\@list );
 }
 
 =head2
@@ -5788,100 +5631,100 @@ Method used to return properties of evidences that the type is interval and basi
 =cut
 
 sub getIntervalEvidenceProperties :
-  Path("/SearchDatabase/getIntervalEvidenceProperties") : CaptureArgs(3) :
-  ActionClass('REST') { }
+Path("/SearchDatabase/getIntervalEvidenceProperties") : CaptureArgs(3) :
+ActionClass('REST') { }
 
 sub getIntervalEvidenceProperties_GET {
-	my ( \$self, \$c, \$feature, \$typeFeature, \$pipeline ) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
-	if ( !\$typeFeature and defined \$c->request->param("typeFeature") ) {
-		\$typeFeature = \$c->request->param("typeFeature");
-	}
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
+    my ( \$self, \$c, \$feature, \$typeFeature, \$pipeline ) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
+    if ( !\$typeFeature and defined \$c->request->param("typeFeature") ) {
+        \$typeFeature = \$c->request->param("typeFeature");
+    }
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
 
-	my \%hash = ();
-	\$hash{properties} = \$c->model('SearchDatabaseRepository')->intervalEvidenceProperties(\$feature);
-	if ( exists \$hash{intron} ) {
-		if ( \$hash{intron} eq 'yes' ) {
-			\$hash{coordinatesGene} = \$hash{intron_start} - \$hash{intron_end};
-			\$hash{coordinatesGenome} =
-			  \$hash{intron_start_seq} - \$hash{intron_end_seq};
-		}
-	}
-	if ( \$typeFeature eq 'annotation_pathways' ) {
-		my \@pathways        = ();
-		my \@ids             = ();
-		my \@descriptions    = ();
-		my \@classifications = ();
-		for ( my \$i = 0 ; \$i < scalar \@{ \$hash{properties} } ; \$i++ ) {
-			while ( \$hash{properties}[\$i]->{metabolic_pathway_classification} =~
-				/([\\w\\s]+)/g )
-			{
-				push \@classifications, \$1;
-			}
-			while ( \$hash{properties}[\$i]->{metabolic_pathway_description} =~
-				/([\\w\\s]+)/g )
-			{
-				push \@descriptions, \$1;
-			}
-			while (
-				\$hash{properties}[\$i]->{metabolic_pathway_id} =~ /([\\w\\s]+)/g )
-			{
-				push \@ids, \$1;
-			}
-			for ( my \$j = 0 ; \$j < scalar \@ids ; \$j++ ) {
-				my \%pathway = ();
-				\$pathway{id}            = \$ids[\$j];
-				\$pathway{description}   = \$descriptions[\$j];
-				\$pathway{classfication} = \$classifications[\$j];
-				push \@pathways, \\\%pathway;
-			}
-		}
+    my \%hash = ();
+    \$hash{properties} = \$c->model('SearchDatabaseRepository')->intervalEvidenceProperties(\$feature);
+    if ( exists \$hash{intron} ) {
+        if ( \$hash{intron} eq 'yes' ) {
+            \$hash{coordinatesGene} = \$hash{intron_start} - \$hash{intron_end};
+            \$hash{coordinatesGenome} =
+            \$hash{intron_start_seq} - \$hash{intron_end_seq};
+        }
+    }
+    if ( \$typeFeature eq 'annotation_pathways' ) {
+        my \@pathways        = ();
+        my \@ids             = ();
+        my \@descriptions    = ();
+        my \@classifications = ();
+        for ( my \$i = 0 ; \$i < scalar \@{ \$hash{properties} } ; \$i++ ) {
+            while ( \$hash{properties}[\$i]->{metabolic_pathway_classification} =~
+                /([\\w\\s]+)/g )
+            {
+                push \@classifications, \$1;
+            }
+            while ( \$hash{properties}[\$i]->{metabolic_pathway_description} =~
+                /([\\w\\s]+)/g )
+            {
+                push \@descriptions, \$1;
+            }
+            while (
+                \$hash{properties}[\$i]->{metabolic_pathway_id} =~ /([\\w\\s]+)/g )
+            {
+                push \@ids, \$1;
+            }
+            for ( my \$j = 0 ; \$j < scalar \@ids ; \$j++ ) {
+                my \%pathway = ();
+                \$pathway{id}            = \$ids[\$j];
+                \$pathway{description}   = \$descriptions[\$j];
+                \$pathway{classfication} = \$classifications[\$j];
+                push \@pathways, \\\%pathway;
+            }
+        }
 
-		\$hash{pathways} = \\\@pathways;
-		\$hash{id}       = \$feature;
-	}
-	elsif ( \$typeFeature eq 'annotation_orthology' ) {
-		my \@orthologous_groups = ();
-		my \@groups             = ();
-		my \@descriptions       = ();
-		my \@classifications    = ();
-		for ( my \$i = 0 ; \$i < scalar \@{ \$hash{properties} } ; \$i++ ) {
-			while ( \$hash{properties}[\$i]->{orthologous_group} =~
-				/([\\w\\s.\\-(),]+)/g )
-			{
-				push \@groups, \$1;
-			}
-			while ( \$hash{properties}[\$i]->{orthologous_group_description} =~
-				/([\\w\\s.\\-(),]+)/g )
-			{
-				push \@descriptions, \$1;
-			}
-			while ( \$hash{properties}[\$i]->{orthologous_group_classification} =~
-				/([\\w\\s.\\-(),]+)/g )
-			{
-				push \@classifications, \$1;
-			}
-			for ( my \$j = 0 ; \$j < scalar \@groups ; \$j++ ) {
-				my \%group = ();
-				\$group{group}          = \$groups[\$j];
-				\$group{description}    = \$descriptions[\$j];
-				\$group{classification} = \$classifications[\$j];
-				push \@orthologous_groups, \\\%group;
-			}
-		}
-		\$hash{orthologous_groups} = \\\@orthologous_groups;
-		\$hash{id}                 = \$feature;
-	}
-	if ( !( exists \$hash{id} ) ) {
-		\$hash{id} = \$feature;
-	}
+        \$hash{pathways} = \\\@pathways;
+        \$hash{id}       = \$feature;
+    }
+    elsif ( \$typeFeature eq 'annotation_orthology' ) {
+        my \@orthologous_groups = ();
+        my \@groups             = ();
+        my \@descriptions       = ();
+        my \@classifications    = ();
+        for ( my \$i = 0 ; \$i < scalar \@{ \$hash{properties} } ; \$i++ ) {
+            while ( \$hash{properties}[\$i]->{orthologous_group} =~
+                /([\\w\\s.\\-(),]+)/g )
+            {
+                push \@groups, \$1;
+            }
+            while ( \$hash{properties}[\$i]->{orthologous_group_description} =~
+                /([\\w\\s.\\-(),]+)/g )
+            {
+                push \@descriptions, \$1;
+            }
+            while ( \$hash{properties}[\$i]->{orthologous_group_classification} =~
+                /([\\w\\s.\\-(),]+)/g )
+            {
+                push \@classifications, \$1;
+            }
+            for ( my \$j = 0 ; \$j < scalar \@groups ; \$j++ ) {
+                my \%group = ();
+                \$group{group}          = \$groups[\$j];
+                \$group{description}    = \$descriptions[\$j];
+                \$group{classification} = \$classifications[\$j];
+                push \@orthologous_groups, \\\%group;
+            }
+        }
+        \$hash{orthologous_groups} = \\\@orthologous_groups;
+        \$hash{id}                 = \$feature;
+    }
+    if ( !( exists \$hash{id} ) ) {
+        \$hash{id} = \$feature;
+    }
 
-	standardStatusOk( \$self, \$c, \\\%hash );
+    standardStatusOk( \$self, \$c, \\\%hash );
 }
 
 =head2
@@ -5891,30 +5734,30 @@ Method used to return properties of evidence typed like similarity
 =cut
 
 sub getSimilarityEvidenceProperties :
-  Path("/SearchDatabase/getSimilarityEvidenceProperties") : CaptureArgs(1) :
-  ActionClass('REST') { }
+Path("/SearchDatabase/getSimilarityEvidenceProperties") : CaptureArgs(1) :
+ActionClass('REST') { }
 
 sub getSimilarityEvidenceProperties_GET {
-	my ( \$self, \$c, \$feature ) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
+    my ( \$self, \$c, \$feature ) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
 
-	standardStatusOk( \$self, \$c,
-		\$c->model('SearchDatabaseRepository')->similarityEvidenceProperties(\$feature) );
+    standardStatusOk( \$self, \$c,
+        \$c->model('SearchDatabaseRepository')->similarityEvidenceProperties(\$feature) );
 }
 
 sub getIdentifierAndDescriptionSimilarity :
-  Path("/SearchDatabase/getIdentifierAndDescriptionSimilarity") : CaptureArgs(1) :
-  ActionClass('REST') { }
-  
+Path("/SearchDatabase/getIdentifierAndDescriptionSimilarity") : CaptureArgs(1) :
+ActionClass('REST') { }
+
 sub getIdentifierAndDescriptionSimilarity_GET {
-	my ( \$self, \$c, \$feature_id ) = \@_;
-	if ( !\$feature_id and defined \$c->request->param("feature_id") ) {
-		\$feature_id = \$c->request->param("feature_id");
-	}
-	standardStatusOk( \$self, \$c,
-		\$c->model('SearchDatabaseRepository')->getIdentifierAndDescriptionSimilarity(\$feature_id) );
+    my ( \$self, \$c, \$feature_id ) = \@_;
+    if ( !\$feature_id and defined \$c->request->param("feature_id") ) {
+        \$feature_id = \$c->request->param("feature_id");
+    }
+    standardStatusOk( \$self, \$c,
+        \$c->model('SearchDatabaseRepository')->getIdentifierAndDescriptionSimilarity(\$feature_id) );
 }  
 
 =head2 reverseComplement
@@ -5924,10 +5767,10 @@ Method used to return the reverse complement of a sequence
 =cut
 
 sub reverseComplement {
-	my (\$sequence) = \@_;
-	my \$reverseComplement = reverse(\$sequence);
-	\$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
-	return \$reverseComplement;
+    my (\$sequence) = \@_;
+    my \$reverseComplement = reverse(\$sequence);
+    \$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+    return \$reverseComplement;
 }
 
 =head2 formatSequence
@@ -5951,25 +5794,25 @@ Method used to make search of analyses of protein-coding genes
 =cut
 
 sub analysesCDS : Path("/SearchDatabase/analysesCDS") : CaptureArgs(32) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub analysesCDS_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	my \@list = ();
+    my \%hash = ();
+    my \@list = ();
 
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	my \$result = \$c->model('SearchDatabaseRepository')->analyses_CDS( \\\%hash );
-	foreach my \$value ( \@{ \$result->{list} } ) {
-		push \@list, \$value;
-	}
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize},
-		\$hash{offset} );
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    my \$result = \$c->model('SearchDatabaseRepository')->analyses_CDS( \\\%hash );
+    foreach my \$value ( \@{ \$result->{list} } ) {
+        push \@list, \$value;
+    }
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize},
+        \$hash{offset} );
 }
 
 =head2
@@ -5979,27 +5822,27 @@ Method used to realize search of tRNA
 =cut
 
 sub trnaSearch : Path("/SearchDatabase/trnaSearch") : CaptureArgs(5) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub trnaSearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	my \@list       = ();
-	my \$result     = \$c->model('SearchDatabaseRepository')->tRNA_search( \\\%hash );
-	my \@resultList = \@{ \$result->{list} };
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    my \@list       = ();
+    my \$result     = \$c->model('SearchDatabaseRepository')->tRNA_search( \\\%hash );
+    my \@resultList = \@{ \$result->{list} };
 
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize},
-		\$hash{offset} );
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize},
+        \$hash{offset} );
 }
 
 =head2
@@ -6009,27 +5852,27 @@ Method used to get data of tandem repeats
 =cut
 
 sub tandemRepeatsSearch : Path("/SearchDatabase/tandemRepeatsSearch") :
-  CaptureArgs(6) : ActionClass('REST') { }
+CaptureArgs(6) : ActionClass('REST') { }
 
 sub tandemRepeatsSearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	my \@list = ();
+    my \%hash = ();
+    my \@list = ();
 
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	my \$result = \$c->model('SearchDatabaseRepository')->trf_search( \\\%hash );
-	my \@resultList = \@{ \$result->{list} };
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    my \$result = \$c->model('SearchDatabaseRepository')->trf_search( \\\%hash );
+    my \@resultList = \@{ \$result->{list} };
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, 
-		\$hash{offset} );
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, 
+        \$hash{offset} );
 }
 
 =head2
@@ -6039,29 +5882,29 @@ Method used to get data of non coding RNAs
 =cut
 
 sub ncRNASearch : Path("/SearchDatabase/ncRNASearch") : CaptureArgs(8) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub ncRNASearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	my \@list = ();
+    my \%hash = ();
+    my \@list = ();
 
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
 
-	my \$result = \$c->model('SearchDatabaseRepository')->ncRNA_search( \\\%hash );
-	my \@resultList = \@{ \$result->{list} };
+    my \$result = \$c->model('SearchDatabaseRepository')->ncRNA_search( \\\%hash );
+    my \@resultList = \@{ \$result->{list} };
 
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, 
-		\$hash{offset} );
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, 
+        \$hash{offset} );
 }
 
 =head2
@@ -6071,31 +5914,31 @@ Method used to get data of transcriptional terminators
 =cut
 
 sub transcriptionalTerminatorSearch :
-  Path("/SearchDatabase/transcriptionalTerminatorSearch") : CaptureArgs(7) :
-  ActionClass('REST') { }
+Path("/SearchDatabase/transcriptionalTerminatorSearch") : CaptureArgs(7) :
+ActionClass('REST') { }
 
 sub transcriptionalTerminatorSearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	my \@list = ();
+    my \%hash = ();
+    my \@list = ();
 
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
 
-	my \$result = \$c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \\\%hash );
-	my \@resultList =
-	  \@{ \$result->{list} };
+    my \$result = \$c->model('SearchDatabaseRepository')->transcriptional_terminator_search( \\\%hash );
+    my \@resultList =
+    \@{ \$result->{list} };
 
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total},  \$hash{pageSize}, 
-		\$hash{offset} );
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total},  \$hash{pageSize}, 
+        \$hash{offset} );
 }
 
 =head2
@@ -6105,29 +5948,29 @@ Method used to get data of ribosomal binding sites
 =cut
 
 sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(5) :
-  ActionClass('REST') {
+ActionClass('REST') {
 }
 
 sub rbsSearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	my \@list = ();
+    my \%hash = ();
+    my \@list = ();
 
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
 
-	my \$result = \$c->model('SearchDatabaseRepository')->rbs_search( \\\%hash );
-	my \@resultList = \@{ \$result->{list} };
+    my \$result = \$c->model('SearchDatabaseRepository')->rbs_search( \\\%hash );
+    my \@resultList = \@{ \$result->{list} };
 
     for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+        push \@list, \$resultList[\$i]->pack();
+    }
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, \$hash{offset} );
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, \$hash{offset} );
 }
 
 =head2
@@ -6137,42 +5980,42 @@ Method used to get data of horizontal gene transfers
 =cut
 
 sub alienhunterSearch : Path("/SearchDatabase/alienhunterSearch") :
-  CaptureArgs(7) : ActionClass('REST') { }
+CaptureArgs(7) : ActionClass('REST') { }
 
 sub alienhunterSearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	my \@list = ();
+    my \%hash = ();
+    my \@list = ();
 
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
 
-	my \$result = \$c->model('SearchDatabaseRepository')->alienhunter_search( \\\%hash );
-	my \@resultList = \@{ \$result->{list} };
-	
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		my \%object = (
-			id     => \$resultList[\$i]->getID,
-			contig => \$resultList[\$i]->getContig,
-			start  => \$resultList[\$i]->getStart,
-			end    => \$resultList[\$i]->getEnd,
-		);
+    my \$result = \$c->model('SearchDatabaseRepository')->alienhunter_search( \\\%hash );
+    my \@resultList = \@{ \$result->{list} };
 
-		\$object{length} = \$resultList[\$i]->getLength
-		  if \$resultList[\$i]->getLength;
-		\$object{score} = \$resultList[\$i]->getScore
-		  if \$resultList[\$i]->getScore;
-		\$object{threshold} = \$resultList[\$i]->getThreshold
-		  if \$resultList[\$i]->getThreshold;
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        my \%object = (
+            id     => \$resultList[\$i]->getID,
+            contig => \$resultList[\$i]->getContig,
+            start  => \$resultList[\$i]->getStart,
+            end    => \$resultList[\$i]->getEnd,
+        );
 
-		push \@list, \\\%object;
-	}
+        \$object{length} = \$resultList[\$i]->getLength
+        if \$resultList[\$i]->getLength;
+        \$object{score} = \$resultList[\$i]->getScore
+        if \$resultList[\$i]->getScore;
+        \$object{threshold} = \$resultList[\$i]->getThreshold
+        if \$resultList[\$i]->getThreshold;
 
-	standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, \$hash{offset} );
+        push \@list, \\\%object;
+    }
+
+    standardStatusOk( \$self, \$c, \\\@list, \$result->{total}, \$hash{pageSize}, \$hash{offset} );
 }
 
 =head2
@@ -6182,62 +6025,62 @@ Method used to get feature by position
 =cut
 
 sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
-  CaptureArgs(6) : ActionClass('REST') { }
+CaptureArgs(6) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
-	my ( \$self, \$c, \$start, \$end, \$contig, \$pipeline_id, \$pageSize, \$offset ) = \@_;
-	if ( !\$start and defined \$c->request->param("start") ) {
-		\$start = \$c->request->param("start");
-	}
-	if ( !\$end and defined \$c->request->param("end") ) {
-		\$end = \$c->request->param("end");
-	}
-	if ( !\$pipeline_id and defined \$c->request->param("pipeline_id") ) {
-		\$pipeline_id = \$c->request->param("pipeline_id");
-	}
-	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
-		\$pageSize = \$c->request->param("pageSize");
-	}
-	if ( !\$offset and defined \$c->request->param("offset") ) {
-		\$offset = \$c->request->param("offset");
-	}
-	if ( !\$contig and defined \$c->request->param("contig") ) {
+    my ( \$self, \$c, \$start, \$end, \$contig, \$pipeline_id, \$pageSize, \$offset ) = \@_;
+    if ( !\$start and defined \$c->request->param("start") ) {
+        \$start = \$c->request->param("start");
+    }
+    if ( !\$end and defined \$c->request->param("end") ) {
+        \$end = \$c->request->param("end");
+    }
+    if ( !\$pipeline_id and defined \$c->request->param("pipeline_id") ) {
+        \$pipeline_id = \$c->request->param("pipeline_id");
+    }
+    if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+        \$pageSize = \$c->request->param("pageSize");
+    }
+    if ( !\$offset and defined \$c->request->param("offset") ) {
+        \$offset = \$c->request->param("offset");
+    }
+    if ( !\$contig and defined \$c->request->param("contig") ) {
         \$contig = \$c->request->param("contig");   
-	}
-	my \@list = ();
+    }
+    my \@list = ();
 
-	my \%hash = ();
-	\$hash{pipeline} = \$pipeline_id;
-	\$hash{start}    = \$start;
-	\$hash{end}      = \$end;
-	\$hash{pageSize} = \$pageSize;
-	\$hash{offset}	= \$offset;
-	\$hash{contig}	= \$contig;
-	my \$result = \$c->model('SearchDatabaseRepository')->geneByPosition( \\\%hash );
-	my \$total = \$result->{total};
-	my \@ids = \@{ \$result->{list} };
-	my \$featureId = join( " ", \@ids );
-	\%hash            = ();
-	\$hash{pipeline}  = \$pipeline_id;
-	\$hash{featureId} = \$featureId;
-	
-	my \$result = \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash );
-	my \@resultList = \@{ \$result->{list} };
-	for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
-		push \@list, \$resultList[\$i]->pack();
-	}
+    my \%hash = ();
+    \$hash{pipeline} = \$pipeline_id;
+    \$hash{start}    = \$start;
+    \$hash{end}      = \$end;
+    \$hash{pageSize} = \$pageSize;
+    \$hash{offset}	= \$offset;
+    \$hash{contig}	= \$contig;
+    my \$result = \$c->model('SearchDatabaseRepository')->geneByPosition( \\\%hash );
+    my \$total = \$result->{total};
+    my \@ids = \@{ \$result->{list} };
+    my \$featureId = join( " ", \@ids );
+    \%hash            = ();
+    \$hash{pipeline}  = \$pipeline_id;
+    \$hash{featureId} = \$featureId;
 
-	standardStatusOk( \$self, \$c, \\\@list, \$total, \$pageSize, \$offset );
+    my \$result = \$c->model('SearchDatabaseRepository')->searchGene( \\\%hash );
+    my \@resultList = \@{ \$result->{list} };
+    for ( my \$i = 0 ; \$i < scalar \@resultList ; \$i++ ) {
+        push \@list, \$resultList[\$i]->pack();
+    }
+
+    standardStatusOk( \$self, \$c, \\\@list, \$total, \$pageSize, \$offset );
 }
 
 sub targetClass : Path("/SearchDatabase/targetClass") : CaptureArgs(1) : ActionClass('REST') { }
 
 sub targetClass_GET {
-	my(\$self, \$c, \$pipeline_id) = \@_;
-	if ( !\$pipeline_id and defined \$c->request->param("pipeline_id") ) {
-		\$pipeline_id = \$c->request->param("pipeline_id");
-	}
-	standardStatusOk(\$self, \$c, \$c->model('SearchDatabaseRepository')->get_target_class(\$pipeline_id));
+    my(\$self, \$c, \$pipeline_id) = \@_;
+    if ( !\$pipeline_id and defined \$c->request->param("pipeline_id") ) {
+        \$pipeline_id = \$c->request->param("pipeline_id");
+    }
+    standardStatusOk(\$self, \$c, \$c->model('SearchDatabaseRepository')->get_target_class(\$pipeline_id));
 }
 
 =head2
@@ -6247,31 +6090,31 @@ Method used to make a default return of every ok request using BaseResponse mode
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
-	if (   ( defined \$total || \$total )
-		&& ( defined \$pageSize || \$pageSize )
-		&& ( defined \$offset   || \$offset ) )
-	{
-		my \$pagedResponse = \$c->model('PagedResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response,
-			total       => \$total,
-			pageSize    => \$pageSize,
-			offset      => \$offset,
-		);
-		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
-	}
-	else {
-		my \$baseResponse = \$c->model('BaseResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response
-		);
-		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
-	}
+    my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+    if (   ( defined \$total || \$total )
+        && ( defined \$pageSize || \$pageSize )
+        && ( defined \$offset   || \$offset ) )
+    {
+        my \$pagedResponse = \$c->model('PagedResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response,
+            total       => \$total,
+            pageSize    => \$pageSize,
+            offset      => \$offset,
+        );
+        \$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+    }
+    else {
+        my \$baseResponse = \$c->model('BaseResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response
+        );
+        \$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+    }
 }
 
 =encoding utf8
@@ -6315,253 +6158,253 @@ use base 'Catalyst::Controller::REST';
 BEGIN { extends 'Catalyst::Controller::REST'; }
 
 sub gene : Path("/SearchDatabase/GetGene") : CaptureArgs(7) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub gene_GET {
-	my ( 
-		\$self,            \$c,             \$pipeline,     \$geneID,
-		\$geneDescription, \$noDescription, \$individually, \$featureId,
-		\$pageSize,        \$offset, \$contig )
-	  = \@_;
-	if ( !\$geneID and defined \$c->request->param("geneID") ) {
-		\$geneID = \$c->request->param("geneID");
-	}
-	if ( !\$geneDescription and defined \$c->request->param("geneDesc") ) {
-		\$geneDescription = \$c->request->param("geneDesc");
-	}
-	if ( !\$noDescription and defined \$c->request->param("noDesc") ) {
-		\$noDescription = \$c->request->param("noDesc");
-	}
-	if ( !\$individually and defined \$c->request->param("individually") ) {
-		\$individually = \$c->request->param("individually");
-	}
-	if ( !\$featureId and defined \$c->request->param("featureId") ) {
-		\$featureId = \$c->request->param("featureId");
-	}
-	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
-		\$pageSize = \$c->request->param("pageSize");
-	}
-	if ( !\$offset and defined \$c->request->param("offset") ) {
-		\$offset = \$c->request->param("offset");
-	}
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$pagedResponse = \$searchDBClient->getGene( \$c->config->{pipeline_id},
-		\$geneID, \$geneDescription,
-		\$noDescription, \$individually, \$featureId, \$pageSize, \$offset, \$contig );
-	standardStatusOk(
-		\$self, \$c, \$pagedResponse->{response}, \$pagedResponse->{"total"},
-		\$pageSize, \$offset
+    my ( 
+        \$self,            \$c,             \$pipeline,     \$geneID,
+        \$geneDescription, \$noDescription, \$individually, \$featureId,
+        \$pageSize,        \$offset, \$contig )
+      = \@_;
+    if ( !\$geneID and defined \$c->request->param("geneID") ) {
+        \$geneID = \$c->request->param("geneID");
+    }
+    if ( !\$geneDescription and defined \$c->request->param("geneDesc") ) {
+        \$geneDescription = \$c->request->param("geneDesc");
+    }
+    if ( !\$noDescription and defined \$c->request->param("noDesc") ) {
+        \$noDescription = \$c->request->param("noDesc");
+    }
+    if ( !\$individually and defined \$c->request->param("individually") ) {
+        \$individually = \$c->request->param("individually");
+    }
+    if ( !\$featureId and defined \$c->request->param("featureId") ) {
+        \$featureId = \$c->request->param("featureId");
+    }
+    if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+        \$pageSize = \$c->request->param("pageSize");
+    }
+    if ( !\$offset and defined \$c->request->param("offset") ) {
+        \$offset = \$c->request->param("offset");
+    }
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$pagedResponse = \$searchDBClient->getGene( \$c->config->{pipeline_id},
+        \$geneID, \$geneDescription,
+        \$noDescription, \$individually, \$featureId, \$pageSize, \$offset, \$contig );
+    standardStatusOk(
+        \$self, \$c, \$pagedResponse->{response}, \$pagedResponse->{"total"},
+        \$pageSize, \$offset
 
-	);
+    );
 }
 
 sub gene_basics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(1) :
   ActionClass('REST') { }
 
 sub gene_basics_GET {
-	my ( \$self, \$c, \$id ) = \@_;
-	if ( !\$id and defined \$c->request->param("id") ) {
-		\$id = \$c->request->param("id");
-	}
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	standardStatusOk(
-		\$self, \$c,
-		\$searchDBClient->getGeneBasics(
-			\$id, \$c->config->{pipeline_id}
-		)->{response}
-	);
+    my ( \$self, \$c, \$id ) = \@_;
+    if ( !\$id and defined \$c->request->param("id") ) {
+        \$id = \$c->request->param("id");
+    }
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    standardStatusOk(
+        \$self, \$c,
+        \$searchDBClient->getGeneBasics(
+            \$id, \$c->config->{pipeline_id}
+        )->{response}
+    );
 }
 
 sub subsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(5) :
   ActionClass('REST') { }
-  
+
 sub subsequence_GET {
-	my ( \$self, \$c, \$type, \$contig, \$sequenceName, \$start, \$end ) = \@_;
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	if ( !\$type and defined \$c->request->param("type") ) {
-		\$type = \$c->request->param("type");
-	}
-	if ( !\$sequenceName and defined \$c->request->param("sequenceName") ) {
-		\$sequenceName = \$c->request->param("sequenceName");
-	}
-	if ( !\$start and defined \$c->request->param("start") ) {
-		\$start = \$c->request->param("start");
-	}
-	if ( !\$end and defined \$c->request->param("end") ) {
-		\$end = \$c->request->param("end");
-	}
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	standardStatusOk(
-		\$self, \$c,
-		\$searchDBClient->getSubsequence(
-			\$type, \$contig, \$sequenceName, \$start, \$end, \$c->config->{pipeline_id}
-		)->{response}
-	);
+    my ( \$self, \$c, \$type, \$contig, \$sequenceName, \$start, \$end ) = \@_;
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
+    if ( !\$type and defined \$c->request->param("type") ) {
+        \$type = \$c->request->param("type");
+    }
+    if ( !\$sequenceName and defined \$c->request->param("sequenceName") ) {
+        \$sequenceName = \$c->request->param("sequenceName");
+    }
+    if ( !\$start and defined \$c->request->param("start") ) {
+        \$start = \$c->request->param("start");
+    }
+    if ( !\$end and defined \$c->request->param("end") ) {
+        \$end = \$c->request->param("end");
+    }
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    standardStatusOk(
+        \$self, \$c,
+        \$searchDBClient->getSubsequence(
+            \$type, \$contig, \$sequenceName, \$start, \$end, \$c->config->{pipeline_id}
+        )->{response}
+    );
 }
 
 sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) :
   ActionClass('REST') { }
-  
+
 sub ncRNA_desc_GET {
-	my ( \$self, \$c, \$feature ) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	standardStatusOk(
-		\$self, \$c,
-		\$searchDBClient->getncRNA_desc(
-			\$feature, \$c->config->{pipeline_id}
-		)->{response}
-	); 
+    my ( \$self, \$c, \$feature ) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    standardStatusOk(
+        \$self, \$c,
+        \$searchDBClient->getncRNA_desc(
+            \$feature, \$c->config->{pipeline_id}
+        )->{response}
+    ); 
 }
 
 sub subEvidences : Path("/SearchDatabase/SubEvidences") : CaptureArgs(1) :
   ActionClass('REST') { }
 
 sub subEvidences_GET {
-	my ( \$self, \$c, \$feature) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	standardStatusOk(
-		\$self, \$c,
-		\$searchDBClient->getSubevidences(
-			\$feature, \$c->config->{pipeline_id}
-		)->{response}
-	);
+    my ( \$self, \$c, \$feature) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    standardStatusOk(
+        \$self, \$c,
+        \$searchDBClient->getSubevidences(
+            \$feature, \$c->config->{pipeline_id}
+        )->{response}
+    );
 }
 
 sub analysesCDS : Path("/SearchDatabase/analysesCDS") : CaptureArgs(31) :
   ActionClass('REST') { }
 
 sub analysesCDS_GET {
-	my ( \$self, \$c) = \@_;
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$pagedResponse = \$searchDBClient->getAnalysesCDS( \\\%hash );
-	standardStatusOk(
-		\$self, \$c,
-		\$pagedResponse->{response},
-		\$pagedResponse->{total},
-		\$hash{pageSize}, \$hash{offset}
-	);
+    my ( \$self, \$c) = \@_;
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$pagedResponse = \$searchDBClient->getAnalysesCDS( \\\%hash );
+    standardStatusOk(
+        \$self, \$c,
+        \$pagedResponse->{response},
+        \$pagedResponse->{total},
+        \$hash{pageSize}, \$hash{offset}
+    );
 }
 
 sub trnaSearch : Path("/SearchDatabase/trnaSearch") : CaptureArgs(4) :
   ActionClass('REST') { }
 
 sub trnaSearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getTRNA( \\\%hash );
-	standardStatusOk(
-		\$self, \$c, \$response->{response}, \$response->{total}, \$hash{pageSize},
-		\$hash{offset}
-	);
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$response = \$searchDBClient->getTRNA( \\\%hash );
+    standardStatusOk(
+        \$self, \$c, \$response->{response}, \$response->{total}, \$hash{pageSize},
+        \$hash{offset}
+    );
 }
 
 sub tandemRepeatsSearch : Path("/SearchDatabase/tandemRepeatsSearch") :
   CaptureArgs(5) : ActionClass('REST') { }
 
 sub tandemRepeatsSearch_GET {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getTandemRepeats( \\\%hash ); 
-	standardStatusOk(
-		\$self, \$c,
-		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
-	);
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$response = \$searchDBClient->getTandemRepeats( \\\%hash ); 
+    standardStatusOk(
+        \$self, \$c,
+        \$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
+    );
 }
 
 sub getrRNASearch : Path("/SearchDatabase/rRNA_search") : CaptureArgs(4) : ActionClass('REST') { }
 
 sub getrRNASearch_GET {
-	my ( \$self, \$c ) = \@_;
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-		
-	my \$response = \$searchDBClient->getrRNASearch(\\\%hash);
-		
-	standardStatusOk(
-		\$self, \$c, \$response->{response}, \$response->{total},  
-		\$hash{pageSize}, \$hash{offset}
-	);
+    my ( \$self, \$c ) = \@_;
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+
+    my \$response = \$searchDBClient->getrRNASearch(\\\%hash);
+
+    standardStatusOk(
+        \$self, \$c, \$response->{response}, \$response->{total},  
+        \$hash{pageSize}, \$hash{offset}
+    );
 }
 
 sub ncRNASearch : Path("/SearchDatabase/ncRNASearch") : CaptureArgs(7) :
   ActionClass('REST') { }
 
 sub ncRNASearch_GET {
-	my ( \$self, \$c ) = \@_;
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getncRNA( \\\%hash );
-	standardStatusOk(
-		\$self, \$c,
-		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
-	);
+    my ( \$self, \$c ) = \@_;
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$response = \$searchDBClient->getncRNA( \\\%hash );
+    standardStatusOk(
+        \$self, \$c,
+        \$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
+    );
 }
 
 sub transcriptionalTerminatorSearch :
@@ -6569,22 +6412,22 @@ sub transcriptionalTerminatorSearch :
   ActionClass('REST') { }
 
 sub transcriptionalTerminatorSearch_GET {
-	my ( \$self, \$c ) = \@_;
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getTranscriptionalTerminator( \\\%hash );
-	standardStatusOk(
-		\$self, \$c,
-		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
-	);
+    my ( \$self, \$c ) = \@_;
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$response = \$searchDBClient->getTranscriptionalTerminator( \\\%hash );
+    standardStatusOk(
+        \$self, \$c,
+        \$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
+    );
 }
 
 sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(4) :
@@ -6592,78 +6435,78 @@ sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(4) :
 }
 
 sub rbsSearch_GET {
-	my ( \$self, \$c ) = \@_;
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getRBSSearch( \\\%hash );
-	standardStatusOk(
-		\$self, \$c,
-		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
-	);
+    my ( \$self, \$c ) = \@_;
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$response = \$searchDBClient->getRBSSearch( \\\%hash );
+    standardStatusOk(
+        \$self, \$c,
+        \$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
+    );
 }
 
 sub alienhunterSearch : Path("/SearchDatabase/alienhunterSearch") :
   CaptureArgs(6) : ActionClass('REST') { }
 
 sub alienhunterSearch_GET {
-	my ( \$self, \$c ) = \@_;
-	my \%hash = ();
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-		}
-	}
-	\$hash{pipeline} = \$c->config->{pipeline_id};
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getAlienHunter( \\\%hash );
-	standardStatusOk(
-		\$self, \$c,
-		\$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
-	);
+    my ( \$self, \$c ) = \@_;
+    my \%hash = ();
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+        }
+    }
+    \$hash{pipeline} = \$c->config->{pipeline_id};
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$response = \$searchDBClient->getAlienHunter( \\\%hash );
+    standardStatusOk(
+        \$self, \$c,
+        \$response->{response}, \$response->{total}, \$hash{pageSize}, \$hash{offset}
+    );
 }
 
 sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
   CaptureArgs(3) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
-	my ( \$self, \$c, \$start, \$end, \$contig, \$pageSize, \$offset ) = \@_;
-	if ( !\$start and defined \$c->request->param("start") ) {
-		\$start = \$c->request->param("start");
-	}
-	if ( !\$end and defined \$c->request->param("end") ) {
-		\$end = \$c->request->param("end");
-	}
-	if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
-		\$pageSize = \$c->request->param("pageSize");
-	}
-	if ( !\$offset and defined \$c->request->param("offset") ) {
-		\$offset = \$c->request->param("offset");
-	}
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	        
+    my ( \$self, \$c, \$start, \$end, \$contig, \$pageSize, \$offset ) = \@_;
+    if ( !\$start and defined \$c->request->param("start") ) {
+        \$start = \$c->request->param("start");
+    }
+    if ( !\$end and defined \$c->request->param("end") ) {
+        \$end = \$c->request->param("end");
+    }
+    if ( !\$pageSize and defined \$c->request->param("pageSize") ) {
+        \$pageSize = \$c->request->param("pageSize");
+    }
+    if ( !\$offset and defined \$c->request->param("offset") ) {
+        \$offset = \$c->request->param("offset");
+    }
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
+
         \$contig = \$c->model('Basic::Sequence')->search({ name => \$contig}, { columns => [ qw/ id / ] })->first()->{_column_data}->{"id"};
 
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$response = \$searchDBClient->getGeneByPosition(
-			\$start, \$end, \$contig, \$c->config->{pipeline_id}, \$pageSize, \$offset
-		);
-	standardStatusOk(
-		\$self, \$c, \$response->{response}, \$response->{total}, \$pageSize, \$offset
-	);
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$response = \$searchDBClient->getGeneByPosition(
+            \$start, \$end, \$contig, \$c->config->{pipeline_id}, \$pageSize, \$offset
+        );
+    standardStatusOk(
+        \$self, \$c, \$response->{response}, \$response->{total}, \$pageSize, \$offset
+    );
 }
 
 sub getSimilarityEvidenceProperties :
@@ -6671,20 +6514,20 @@ sub getSimilarityEvidenceProperties :
   ActionClass('REST') { }
 
 sub getSimilarityEvidenceProperties_GET {
-	my ( \$self, \$c, \$feature ) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	
-	my \%hash = \%{\$searchDBClient->getSimilarityEvidenceProperties(\$feature)->{response}};
-	my \%returnedHash = \%{\$searchDBClient->getIdentifierAndDescriptionSimilarity(\$feature)->{response}};
-	foreach my \$key (keys \%returnedHash) {
-		\$hash{\$key} = \$returnedHash{\$key};
-	}
-	standardStatusOk( \$self, \$c, \\\%hash );
+    my ( \$self, \$c, \$feature ) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+
+    my \%hash = \%{\$searchDBClient->getSimilarityEvidenceProperties(\$feature)->{response}};
+    my \%returnedHash = \%{\$searchDBClient->getIdentifierAndDescriptionSimilarity(\$feature)->{response}};
+    foreach my \$key (keys \%returnedHash) {
+        \$hash{\$key} = \$returnedHash{\$key};
+    }
+    standardStatusOk( \$self, \$c, \\\%hash );
 }
 
 sub getIntervalEvidenceProperties :
@@ -6692,21 +6535,21 @@ sub getIntervalEvidenceProperties :
   ActionClass('REST') { }
 
 sub getIntervalEvidenceProperties_GET {
-	my ( \$self, \$c, \$feature, \$typeFeature, \$pipeline ) = \@_;
-	if ( !\$feature and defined \$c->request->param("feature") ) {
-		\$feature = \$c->request->param("feature");
-	}
-	if ( !\$typeFeature and defined \$c->request->param("typeFeature") ) {
-		\$typeFeature = \$c->request->param("typeFeature");
-	}
-	if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-		\$pipeline = \$c->request->param("pipeline");
-	}
-	my \$searchDBClient =
-	  Report_HTML_DB::Clients::SearchDBClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	standardStatusOk( \$self, \$c,
-		\$searchDBClient->getIntervalEvidenceProperties(\$feature, \$typeFeature, \$pipeline)->{response} );
+    my ( \$self, \$c, \$feature, \$typeFeature, \$pipeline ) = \@_;
+    if ( !\$feature and defined \$c->request->param("feature") ) {
+        \$feature = \$c->request->param("feature");
+    }
+    if ( !\$typeFeature and defined \$c->request->param("typeFeature") ) {
+        \$typeFeature = \$c->request->param("typeFeature");
+    }
+    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
+        \$pipeline = \$c->request->param("pipeline");
+    }
+    my \$searchDBClient =
+      Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    standardStatusOk( \$self, \$c,
+        \$searchDBClient->getIntervalEvidenceProperties(\$feature, \$typeFeature, \$pipeline)->{response} );
 }
 
 =head2
@@ -6714,31 +6557,31 @@ Standard return of status ok
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
-	if (   ( defined \$total || \$total )
-		&& ( defined \$pageSize || \$pageSize )
-		&& ( defined \$offset   || \$offset ) )
-	{
-		my \$pagedResponse = \$c->model('PagedResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response,
-			total       => \$total,
-			pageSize    => \$pageSize,
-			offset      => \$offset,
-		);
-		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
-	}
-	else {
-		my \$baseResponse = \$c->model('BaseResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response
-		);
-		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
-	}
+    my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+    if (   ( defined \$total || \$total )
+        && ( defined \$pageSize || \$pageSize )
+        && ( defined \$offset   || \$offset ) )
+    {
+        my \$pagedResponse = \$c->model('PagedResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response,
+            total       => \$total,
+            pageSize    => \$pageSize,
+            offset      => \$offset,
+        );
+        \$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+    }
+    else {
+        my \$baseResponse = \$c->model('BaseResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response
+        );
+        \$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+    }
 }
 
 =encoding utf8
@@ -6760,8 +6603,8 @@ __PACKAGE__->meta->make_immutable;
 
 SEARCHDBCONTENT
 writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/SearchDatabase.pm",
-	$searchDBContent );
-	
+    $searchDBContent );
+
 $temporaryPackage = $packageWebsite . '::Controller::Blast';
 my $blastContent = <<BLAST;
 package $temporaryPackage;
@@ -6788,73 +6631,73 @@ BEGIN { extends 'Catalyst::Controller::REST'; }
 sub search : Path("/Blast/search") : CaptureArgs(7) : ActionClass('REST') { }
 
 sub search_POST {
-	my (
-		\$self,                \$c,                  \$blast,
-		\$database,            \$fastaSequence,      \$from,
-		\$to,                  \$filter,             \$expect,
-		\$matrix,              \$ungappedAlignment,  \$geneticCode,
-		\$databaseGeneticCode, \$frameShiftPenality, \$otherAdvanced,
-		\$graphicalOverview,   \$alignmentView,      \$descriptions,
-		\$alignments,          \$colorSchema,        \$fastaFile,
+    my (
+        \$self,                \$c,                  \$blast,
+        \$database,            \$fastaSequence,      \$from,
+        \$to,                  \$filter,             \$expect,
+        \$matrix,              \$ungappedAlignment,  \$geneticCode,
+        \$databaseGeneticCode, \$frameShiftPenality, \$otherAdvanced,
+        \$graphicalOverview,   \$alignmentView,      \$descriptions,
+        \$alignments,          \$colorSchema,        \$fastaFile,
         \$costOpenGap,          \$costToExtendGap,  \$wordSize
-	) = \@_;
-	if ( !\$blast and defined \$c->request->param("PROGRAM") ) {
-		\$blast = \$c->request->param("PROGRAM");
-	}
-	if ( !\$database and defined \$c->request->param("DATALIB") ) {
-		\$database = \$c->request->param("DATALIB");
-	}
-	if ( !\$fastaSequence and defined \$c->request->param("SEQUENCE") ) {
-		\$fastaSequence = \$c->request->param("SEQUENCE");
-	}
-	if ( !\$fastaFile and defined \$c->request->param("SEQFILE") ) {
-		\$fastaFile = \$c->request->param("SEQFILE");
-	}
-	if ( !\$from and defined \$c->request->param("QUERY_FROM") ) {
-		\$from = \$c->request->param("QUERY_FROM");
-	}
-	if ( !\$to and defined \$c->request->param("QUERY_TO") ) {
-		\$to = \$c->request->param("QUERY_TO");
-	}
-	if ( !\$filter and defined \$c->request->param("FILTER") ) {
-		\$filter = \$c->request->param("FILTER");
-	}
-	if ( !\$expect and defined \$c->request->param("EXPECT") ) {
-		\$expect = \$c->request->param("EXPECT");
-	}
-	if ( !\$matrix and defined \$c->request->param("MAT_PARAM") ) {
-		\$matrix = \$c->request->param("MAT_PARAM");
-	}
-	if ( !\$ungappedAlignment
-		and defined \$c->request->param("UNGAPPED_ALIGNMENT") )
-	{
-		\$ungappedAlignment = \$c->request->param("UNGAPPED_ALIGNMENT");
-	}
-	if ( !\$geneticCode and defined \$c->request->param("GENETIC_CODE") ) {
-		\$geneticCode = \$c->request->param("GENETIC_CODE");
-	}
-	if ( !\$databaseGeneticCode
-		and defined \$c->request->param("DB_GENETIC_CODE") )
-	{
-		\$databaseGeneticCode = \$c->request->param("DB_GENETIC_CODE");
-	}
-	if ( !\$otherAdvanced and defined \$c->request->param("OTHER_ADVANCED") ) {
-		\$otherAdvanced = \$c->request->param("OTHER_ADVANCED");
-	}
-	if ( !\$graphicalOverview
-		and defined \$c->request->param("OVERVIEW") )
-	{
-		\$graphicalOverview = \$c->request->param("OVERVIEW");
-	}
-	if ( !\$alignmentView and defined \$c->request->param("ALIGNMENT_VIEW") ) {
-		\$alignmentView = \$c->request->param("ALIGNMENT_VIEW");
-	}
-	if ( !\$descriptions and defined \$c->request->param("DESCRIPTIONS") ) {
-		\$descriptions = \$c->request->param("DESCRIPTIONS");
-	}
-	if ( !\$alignments and defined \$c->request->param("ALIGNMENTS") ) {
-		\$alignments = \$c->request->param("ALIGNMENTS");
-	}
+    ) = \@_;
+    if ( !\$blast and defined \$c->request->param("PROGRAM") ) {
+        \$blast = \$c->request->param("PROGRAM");
+    }
+    if ( !\$database and defined \$c->request->param("DATALIB") ) {
+        \$database = \$c->request->param("DATALIB");
+    }
+    if ( !\$fastaSequence and defined \$c->request->param("SEQUENCE") ) {
+        \$fastaSequence = \$c->request->param("SEQUENCE");
+    }
+    if ( !\$fastaFile and defined \$c->request->param("SEQFILE") ) {
+        \$fastaFile = \$c->request->param("SEQFILE");
+    }
+    if ( !\$from and defined \$c->request->param("QUERY_FROM") ) {
+        \$from = \$c->request->param("QUERY_FROM");
+    }
+    if ( !\$to and defined \$c->request->param("QUERY_TO") ) {
+        \$to = \$c->request->param("QUERY_TO");
+    }
+    if ( !\$filter and defined \$c->request->param("FILTER") ) {
+        \$filter = \$c->request->param("FILTER");
+    }
+    if ( !\$expect and defined \$c->request->param("EXPECT") ) {
+        \$expect = \$c->request->param("EXPECT");
+    }
+    if ( !\$matrix and defined \$c->request->param("MAT_PARAM") ) {
+        \$matrix = \$c->request->param("MAT_PARAM");
+    }
+    if ( !\$ungappedAlignment
+        and defined \$c->request->param("UNGAPPED_ALIGNMENT") )
+    {
+        \$ungappedAlignment = \$c->request->param("UNGAPPED_ALIGNMENT");
+    }
+    if ( !\$geneticCode and defined \$c->request->param("GENETIC_CODE") ) {
+        \$geneticCode = \$c->request->param("GENETIC_CODE");
+    }
+    if ( !\$databaseGeneticCode
+        and defined \$c->request->param("DB_GENETIC_CODE") )
+    {
+        \$databaseGeneticCode = \$c->request->param("DB_GENETIC_CODE");
+    }
+    if ( !\$otherAdvanced and defined \$c->request->param("OTHER_ADVANCED") ) {
+        \$otherAdvanced = \$c->request->param("OTHER_ADVANCED");
+    }
+    if ( !\$graphicalOverview
+        and defined \$c->request->param("OVERVIEW") )
+    {
+        \$graphicalOverview = \$c->request->param("OVERVIEW");
+    }
+    if ( !\$alignmentView and defined \$c->request->param("ALIGNMENT_VIEW") ) {
+        \$alignmentView = \$c->request->param("ALIGNMENT_VIEW");
+    }
+    if ( !\$descriptions and defined \$c->request->param("DESCRIPTIONS") ) {
+        \$descriptions = \$c->request->param("DESCRIPTIONS");
+    }
+    if ( !\$alignments and defined \$c->request->param("ALIGNMENTS") ) {
+        \$alignments = \$c->request->param("ALIGNMENTS");
+    }
     if ( !\$costOpenGap and defined \$c->request->param("COST_OPEN_GAP") ) {
         \$costOpenGap = \$c->request->param("COST_OPEN_GAP");
     }
@@ -6865,48 +6708,48 @@ sub search_POST {
         \$wordSize = \$c->request->param("WORD_SIZE");
     }
 
-	my \%hash = ();
+    my \%hash = ();
 
-	foreach my \$key ( keys \%{ \$c->request->params } ) {
-		if ( \$key && \$key ne "0" ) {
-			\$hash{\$key} = \$c->request->params->{\$key};
-			\$hash{\$key} =~ s/['"&.|]//g;
-		}
-	}
-	
-	unless ( exists \$hash{SEQUENCE} ) {
-		\$hash{SEQUENCE} = \$hash{SEQFILE};
-		delete \$hash{SEQFILE};
-	}
-	my \$content = "";
-	my \@fuckingSequence = split(/\\s+/, \$hash{SEQUENCE});
-	 \$hash{SEQUENCE} = join('\\n', \@fuckingSequence);
-	print "\\n".\$hash{SEQUENCE}."\\n";
-	if(\$hash{SEQUENCE} !~ />/) {
-		\$hash{SEQUENCE} = ">Sequence\\n" . \$hash{SEQUENCE};
-	}
+    foreach my \$key ( keys \%{ \$c->request->params } ) {
+        if ( \$key && \$key ne "0" ) {
+            \$hash{\$key} = \$c->request->params->{\$key};
+            \$hash{\$key} =~ s/['"&.|]//g;
+        }
+    }
+
+    unless ( exists \$hash{SEQUENCE} ) {
+        \$hash{SEQUENCE} = \$hash{SEQFILE};
+        delete \$hash{SEQFILE};
+    }
+    my \$content = "";
+    my \@fuckingSequence = split(/\\s+/, \$hash{SEQUENCE});
+     \$hash{SEQUENCE} = join('\\n', \@fuckingSequence);
+    print "\\n".\$hash{SEQUENCE}."\\n";
+    if(\$hash{SEQUENCE} !~ />/) {
+        \$hash{SEQUENCE} = ">Sequence\\n" . \$hash{SEQUENCE};
+    }
     foreach my \$header (\$hash{SEQUENCE} =~ /^(>[\\w \\-\\(\\)\\[\\];.]*)+\\n/gm) {
         my \$auxHeader = \$header;
         \$header =~ s/ /_/g;
         \$hash{SEQUENCE} =~ s/\$auxHeader/\$header/g;
     }
-	my \$blastClient =
-	  Report_HTML_DB::Clients::BlastClient->new(
-		rest_endpoint => \$c->config->{rest_endpoint} );
-	my \$baseResponse = \$blastClient->search( \\\%hash );
-	\%hash = ();
-	\$baseResponse = \$blastClient->fancy( \$baseResponse->{response} );
-	my \$returnedHash = \$baseResponse->{response};
-	use MIME::Base64;
-	foreach my \$key (keys \%\$returnedHash) {
-		if(\$key =~ /\.html/ ) {
-			\$hash{\$key} = MIME::Base64::decode_base64(\$returnedHash->{\$key});
-		} else {
-			\$hash{\$key} = \$returnedHash->{\$key};
-		}
-	}
-	
-	standardStatusOk(\$self, \$c, \\\%hash);
+    my \$blastClient =
+      Report_HTML_DB::Clients::BlastClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    my \$baseResponse = \$blastClient->search( \\\%hash );
+    \%hash = ();
+    \$baseResponse = \$blastClient->fancy( \$baseResponse->{response} );
+    my \$returnedHash = \$baseResponse->{response};
+    use MIME::Base64;
+    foreach my \$key (keys \%\$returnedHash) {
+        if(\$key =~ /\.html/ ) {
+            \$hash{\$key} = MIME::Base64::decode_base64(\$returnedHash->{\$key});
+        } else {
+            \$hash{\$key} = \$returnedHash->{\$key};
+        }
+    }
+
+    standardStatusOk(\$self, \$c, \\\%hash);
 }
 
 =head2
@@ -6914,31 +6757,31 @@ Standard return of status ok
 =cut
 
 sub standardStatusOk {
-	my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
-	if (   ( defined \$total || \$total )
-		&& ( defined \$pageSize || \$pageSize )
-		&& ( defined \$offset   || \$offset ) )
-	{
-		my \$pagedResponse = \$c->model('PagedResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response,
-			total       => \$total,
-			pageSize    => \$pageSize,
-			offset      => \$offset,
-		);
-		\$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
-	}
-	else {
-		my \$baseResponse = \$c->model('BaseResponse')->new(
-			status_code => 200,
-			message     => "Ok",
-			elapsed_ms  => \$c->stats->elapsed,
-			response    => \$response
-		);
-		\$self->status_ok( \$c, entity => \$baseResponse->pack(), );
-	}
+    my ( \$self, \$c, \$response, \$total, \$pageSize, \$offset ) = \@_;
+    if (   ( defined \$total || \$total )
+        && ( defined \$pageSize || \$pageSize )
+        && ( defined \$offset   || \$offset ) )
+    {
+        my \$pagedResponse = \$c->model('PagedResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response,
+            total       => \$total,
+            pageSize    => \$pageSize,
+            offset      => \$offset,
+        );
+        \$self->status_ok( \$c, entity => \$pagedResponse->pack(), );
+    }
+    else {
+        my \$baseResponse = \$c->model('BaseResponse')->new(
+            status_code => 200,
+            message     => "Ok",
+            elapsed_ms  => \$c->stats->elapsed,
+            response    => \$response
+        );
+        \$self->status_ok( \$c, entity => \$baseResponse->pack(), );
+    }
 }
 
 =encoding utf8
@@ -6960,11 +6803,11 @@ __PACKAGE__->meta->make_immutable;
 
 BLAST
 
-writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Blast.pm",
-	$blastContent );
+            writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Blast.pm",
+                $blastContent );
 
-$temporaryPackage = $packageWebsite . '::Controller::Root';
-my $rootContent = <<ROOT;
+            $temporaryPackage = $packageWebsite . '::Controller::Root';
+            my $rootContent = <<ROOT;
 package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
@@ -6996,8 +6839,8 @@ ROOT
 #my @controllers = (
 #	"Home", "Blast", "Downloads", "Help", "About"
 #);
-if ($hadGlobal) {
-	$rootContent .= <<ROOT;
+            if ($hadGlobal) {
+                $rootContent .= <<ROOT;
 
 =head2 globalAnalyses
 
@@ -7006,36 +6849,36 @@ Global analyses page
 =cut
 
 sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
-	my ( \$self, \$c ) = \@_;
-	\$c->stash->{titlePage} = 'Global Analyses';
-	\$c->stash(currentPage => 'global-analyses');
-	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
-		-or => [
-			tag => {'like', 'header%'},
-			tag => 'menu',
-			tag => 'footer',
-			tag => {'like', 'global-analyses%'}
-		]
-	}))]);
-	
-	\$c->stash(template => '$lowCaseName/global-analyses/index.tt');
+    my ( \$self, \$c ) = \@_;
+    \$c->stash->{titlePage} = 'Global Analyses';
+    \$c->stash(currentPage => 'global-analyses');
+    \$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
+                        -or => [
+                            tag => {'like', 'header%'},
+                            tag => 'menu',
+                            tag => 'footer',
+            tag => {'like', 'global-analyses%'}
+        ]
+    }))]);
+
+    \$c->stash(template => '$lowCaseName/global-analyses/index.tt');
     my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
-	\$c->stash(components => \$components);
+    \$c->stash(components => \$components);
 
     \$c->stash->{go_expansible_tree} = -e \$components->{report_go} ? 1 : 0;
-	\$c->stash->{hadGlobal} = 1;
-	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
-	
+    \$c->stash->{hadGlobal} = 1;
+    \$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+
 
 }
 
 ROOT
 
-	#	push @controllers, "GlobalAnalyses";
-}
-if ($hadSearchDatabase) {
-	$rootContent .= <<ROOT;
-	
+                            #	push @controllers, "GlobalAnalyses";
+                        }
+                        if ($hadSearchDatabase) {
+                            $rootContent .= <<ROOT;
+
 =head2 searchDatabase
 
 Search database page (/SearchDatabase)
@@ -7046,17 +6889,17 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
     if(defined \$c->request->param("id")) {
         \$id = \$c->request->param("id");
     }
-	\$c->stash->{titlePage} = 'Search Database';
-	\$c->stash(currentPage => 'search-database');
-	\$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
-				-or => [
-					tag => {'like', 'header%'},
-					tag => 'menu',
-					tag => 'footer',
-				]
-	}))]);
-	
-	my \%hash = ();
+    \$c->stash->{titlePage} = 'Search Database';
+    \$c->stash(currentPage => 'search-database');
+    \$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
+                -or => [
+                    tag => {'like', 'header%'},
+                    tag => 'menu',
+                    tag => 'footer',
+                ]
+    }))]);
+
+    my \%hash = ();
 
         my \@texts = encodingCorrection (
                 \$c->model('Basic::Text')->search({
@@ -7067,58 +6910,58 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
         );
 
         \$c->stash(searchDBTexts => resultsetListToHash(\\\@texts, "tag", "value"));
-	
-	my \$searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => \$c->config->{rest_endpoint});
-	my \$pipeline;
-	
-	if(!\$c->config->{pipeline_id}) {
-		my \$response = \$searchDBClient->getPipeline()->getResponse()->{pipeline_id};
-		use File::Basename;
-		open( my \$FILEHANDLER,
-			">>", \$c->path_to('.') . "/" . "$lowCaseName.conf");
-		print \$FILEHANDLER "\npipeline_id \$response\n";
-		close(\$FILEHANDLER);
-		\$pipeline = \$response;
-	} else {
-		\$pipeline = \$c->config->{pipeline_id};
-	}
-	
+
+    my \$searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => \$c->config->{rest_endpoint});
+    my \$pipeline;
+
+    if(!\$c->config->{pipeline_id}) {
+        my \$response = \$searchDBClient->getPipeline()->getResponse()->{pipeline_id};
+        use File::Basename;
+        open( my \$FILEHANDLER,
+            ">>", \$c->path_to('.') . "/" . "$lowCaseName.conf");
+        print \$FILEHANDLER "\npipeline_id \$response\n";
+        close(\$FILEHANDLER);
+        \$pipeline = \$response;
+    } else {
+        \$pipeline = \$c->config->{pipeline_id};
+    }
+
     \$c->stash(id => \$id);
 
-	\$c->stash(
-		targetClass => \$searchDBClient->getTargetClass(\$pipeline)->getResponse()  
-	);
-	
-	\$c->stash(
-		rRNAsAvailable => [sort { \$a <=> \$b } \@{\$searchDBClient->getRibosomalRNAs(\$pipeline)->getResponse()}]
-	);
-	
-		\$c->stash(
+    \$c->stash(
+        targetClass => \$searchDBClient->getTargetClass(\$pipeline)->getResponse()  
+    );
+
+    \$c->stash(
+        rRNAsAvailable => [sort { \$a <=> \$b } \@{\$searchDBClient->getRibosomalRNAs(\$pipeline)->getResponse()}]
+    );
+
+        \$c->stash(
                 sequences => [
                         \$c->model('Basic::Sequence')->search({}, { columns => [ qw/ id name / ] })
                 ]
         );
-	
-	\$c->stash(template => '$lowCaseName/search-database/index.tt');
-	my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
-	\$c->stash(components => \$components);
-	if(\$components->{"pathways"}) {
-		my \$filepath = \$c->model('Basic::Component')->search({ component => 'report_pathways' }, { columns => [ qw/filepath/ ], group_by => [ qw/filepath/ ] })->
-			first()->{_column_data}->{"filepath"};
-		#\$filepath =~ /(reports[\\w\\/]+\\/)/g;
-		\$c->stash->{report_pathways} = \$filepath;
-	}
-	\$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
-	\$c->stash->{hadSearchDatabase} = 1;
+
+    \$c->stash(template => '$lowCaseName/search-database/index.tt');
+    my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
+    \$c->stash(components => \$components);
+    if(\$components->{"pathways"}) {
+        my \$filepath = \$c->model('Basic::Component')->search({ component => 'report_pathways' }, { columns => [ qw/filepath/ ], group_by => [ qw/filepath/ ] })->
+            first()->{_column_data}->{"filepath"};
+        #\$filepath =~ /(reports[\\w\\/]+\\/)/g;
+        \$c->stash->{report_pathways} = \$c->path_to('root') . "/" . \$filepath;
+    }
+    \$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
+    \$c->stash->{hadSearchDatabase} = 1;
 
 }
 
 ROOT
 
-	#	push @controllers, "SearchDatabase";
-}
+        #	push @controllers, "SearchDatabase";
+    }
 
-$rootContent .= <<ROOT;
+    $rootContent .= <<ROOT;
 
 sub resultsetListToHash {
         my (\$list, \$keyColumn, \$valueColumn) = \@_;
@@ -7146,28 +6989,28 @@ About page (/About)
 =cut
 
 sub about : Path("About") : Args(0) {
-	my ( \$self, \$c ) = \@_;
-	\$c->stash->{titlePage} = 'About';
-	\$c->stash( currentPage => 'about' );
-	\$c->stash(
-		texts => [
-			encodingCorrection(
-				\$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header\%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'about\%' }
-						]
-					}
-				)
-			)
-		]
-	);
-	\$c->stash( template => '$lowCaseName/about/index.tt' );
-	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
-	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+    my ( \$self, \$c ) = \@_;
+    \$c->stash->{titlePage} = 'About';
+    \$c->stash( currentPage => 'about' );
+    \$c->stash(
+        texts => [
+            encodingCorrection(
+                \$c->model('Basic::Text')->search(
+                    {
+                        -or => [
+                            tag => { 'like', 'header\%' },
+                            tag => 'menu',
+                            tag => 'footer',
+                            tag => { 'like', 'about\%' }
+                        ]
+                    }
+                )
+            )
+        ]
+    );
+    \$c->stash( template => '$lowCaseName/about/index.tt' );
+    \$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+    \$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -7178,29 +7021,29 @@ The blast page (/Blast)
 =cut
 
 sub blast : Path("Blast") : Args(0) {
-	my ( \$self, \$c ) = \@_;
-	\$c->stash->{titlePage} = 'Blast';
-	\$c->stash( currentPage => 'blast' );
-	\$c->stash(
-		texts => [
-			encodingCorrection(
-				\$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header\%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'blast\%' }
-						]
-					}
-				)
-			)
-		]
-	);
-	
-	\$c->stash( template => '$lowCaseName/blast/index.tt' );
-	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
-	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+    my ( \$self, \$c ) = \@_;
+    \$c->stash->{titlePage} = 'Blast';
+    \$c->stash( currentPage => 'blast' );
+    \$c->stash(
+        texts => [
+            encodingCorrection(
+                \$c->model('Basic::Text')->search(
+                    {
+                        -or => [
+                            tag => { 'like', 'header\%' },
+                            tag => 'menu',
+                            tag => 'footer',
+                            tag => { 'like', 'blast\%' }
+                        ]
+                    }
+                )
+            )
+        ]
+    );
+
+    \$c->stash( template => '$lowCaseName/blast/index.tt' );
+    \$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+    \$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -7211,29 +7054,29 @@ The download page (/Downloads)
 =cut
 
 sub downloads : Path("Downloads") : Args(0) {
-	my ( \$self, \$c ) = \@_;
-	\$c->stash->{titlePage} = 'Downloads';
-	\$c->stash( currentPage => 'downloads' );
-	\$c->stash(
-		texts => [
-			encodingCorrection(
-				\$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header\%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'downloads\%' }
-						]
-					}
-				)
-			)
-		]
-	);
-	
-	\$c->stash( template => '$lowCaseName/downloads/index.tt' );
-	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
-	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+    my ( \$self, \$c ) = \@_;
+    \$c->stash->{titlePage} = 'Downloads';
+    \$c->stash( currentPage => 'downloads' );
+    \$c->stash(
+        texts => [
+            encodingCorrection(
+                \$c->model('Basic::Text')->search(
+                    {
+                        -or => [
+                            tag => { 'like', 'header\%' },
+                            tag => 'menu',
+                            tag => 'footer',
+                            tag => { 'like', 'downloads\%' }
+                        ]
+                    }
+                )
+            )
+        ]
+    );
+
+    \$c->stash( template => '$lowCaseName/downloads/index.tt' );
+    \$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+    \$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -7244,20 +7087,20 @@ Method used to correct encoding strings come from SQLite
 =cut
 
 sub encodingCorrection {
-	my (\@texts) = \@_;
+    my (\@texts) = \@_;
 
-	use utf8;
-	use Encode qw( decode encode );
-	foreach my \$text (\@texts) {
-		foreach my \$key ( keys \%\$text ) {
-			if ( \$text->{\$key} != 1 ) {
-				my \$string = decode( 'utf-8', \$text->{\$key}{value} );
-				\$string = encode( 'iso-8859-1', \$string );
-				\$text->{\$key}{value} = \$string;
-			}
-		}
-	}
-	return \@texts;
+    use utf8;
+    use Encode qw( decode encode );
+    foreach my \$text (\@texts) {
+        foreach my \$key ( keys \%\$text ) {
+            if ( \$text->{\$key} != 1 ) {
+                my \$string = decode( 'utf-8', \$text->{\$key}{value} );
+                \$string = encode( 'iso-8859-1', \$string );
+                \$text->{\$key}{value} = \$string;
+            }
+        }
+    }
+    return \@texts;
 }
 
 =head2
@@ -7278,32 +7121,32 @@ The help page (/Help)
 =cut
 
 sub help : Path("Help") : Args(0) {
-	my ( \$self, \$c ) = \@_;
-	\$c->stash->{titlePage} = 'Help';
-	\$c->stash( currentPage => 'help' );
-	\$c->stash(
-		texts => [
-			encodingCorrection(
-				\$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header\%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'help\%' }
-						]
-					}
-				)
-			)
-		]
-	);
-	#if ( !defined \$feature_id ) {
-	#	\$feature_id = get_feature_id(\$c);
-	#}
-	#\$c->stash( teste    => \$feature_id );
-	\$c->stash( template => '$lowCaseName/help/index.tt' );
-	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
-	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+    my ( \$self, \$c ) = \@_;
+    \$c->stash->{titlePage} = 'Help';
+    \$c->stash( currentPage => 'help' );
+    \$c->stash(
+        texts => [
+            encodingCorrection(
+                \$c->model('Basic::Text')->search(
+                    {
+                        -or => [
+                            tag => { 'like', 'header\%' },
+                            tag => 'menu',
+                            tag => 'footer',
+                            tag => { 'like', 'help\%' }
+                        ]
+                    }
+                )
+            )
+        ]
+    );
+    #if ( !defined \$feature_id ) {
+    #	\$feature_id = get_feature_id(\$c);
+    #}
+    #\$c->stash( teste    => \$feature_id );
+    \$c->stash( template => '$lowCaseName/help/index.tt' );
+    \$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+    \$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
@@ -7314,156 +7157,156 @@ The root page (/)
 =cut
 
 sub index : Path : Args(0) {
-	my ( \$self, \$c ) = \@_;
-	\$c->stash->{titlePage} = 'Home';
-	\$c->stash( currentPage => 'home' );
-	\$c->stash(
-		texts => [
-			encodingCorrection(
-				\$c->model('Basic::Text')->search(
-					{
-						-or => [
-							tag => { 'like', 'header\%' },
-							tag => 'menu',
-							tag => 'footer',
-							tag => { 'like', 'home\%' }
-						]
-					}
-				)
-			)
-		]
-	);
-	#if ( !defined \$feature_id ) {
-	#	\$feature_id = get_feature_id(\$c);
-	#}
-	\$c->stash( template => '$lowCaseName/home/index.tt' );
-	\$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
-	\$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
+    my ( \$self, \$c ) = \@_;
+    \$c->stash->{titlePage} = 'Home';
+    \$c->stash( currentPage => 'home' );
+    \$c->stash(
+        texts => [
+            encodingCorrection(
+                \$c->model('Basic::Text')->search(
+                    {
+                        -or => [
+                            tag => { 'like', 'header\%' },
+                            tag => 'menu',
+                            tag => 'footer',
+                            tag => { 'like', 'home\%' }
+                        ]
+                    }
+                )
+            )
+        ]
+    );
+    #if ( !defined \$feature_id ) {
+    #	\$feature_id = get_feature_id(\$c);
+    #}
+    \$c->stash( template => '$lowCaseName/home/index.tt' );
+    \$c->stash->{hadGlobal}         = {{valorGlobalSubstituir}};
+    \$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
 }
 
 sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
-	my ( \$self, \$c, \$type ) = \@_;
-	if ( !\$type and defined \$c->request->param("type") ) {
-		\$type = \$c->request->param("type");
-	}
-	my \$filepath = (
-		\$c->model('Basic::File')->search(
-			{
-				tag => "\$type"
-			},
-			{
-				columns => qw/filepath/,
-				rows    => 1
-			}
-		)->single->get_column(qw/filepath/)
-	);
+    my ( \$self, \$c, \$type ) = \@_;
+    if ( !\$type and defined \$c->request->param("type") ) {
+        \$type = \$c->request->param("type");
+    }
+    my \$filepath = (
+        \$c->model('Basic::File')->search(
+            {
+                tag => "\$type"
+            },
+            {
+                columns => qw/filepath/,
+                rows    => 1
+            }
+        )->single->get_column(qw/filepath/)
+    );
 
-	open( my \$FILEHANDLER, "<", \$c->path_to('root') . "/" . \$filepath );
-	binmode \$FILEHANDLER;
-	my \$file;
+    open( my \$FILEHANDLER, "<", \$c->path_to('root') . "/" . \$filepath );
+    binmode \$FILEHANDLER;
+    my \$file;
 
-	local \$/ = \\10240;
-	while (<\$FILEHANDLER>) {
-		\$file .= \$_;
-	}
-	\$c->response->body(\$file);
-	\$c->response->headers->content_type('application/x-download');
-	my \$filename = "";
-	if(\$filepath =~ /\\/*([\\w\\s\\-_]*\\.[\\w\\s\\-_]+)/g) {
-		\$filename = \$1;
-	}
-	\$c->response->body(\$file);
-	\$c->response->header('Content-Disposition' => 'attachment; filename='.\$filename);
-	close \$FILEHANDLER;
+    local \$/ = \\10240;
+    while (<\$FILEHANDLER>) {
+        \$file .= \$_;
+    }
+    \$c->response->body(\$file);
+    \$c->response->headers->content_type('application/x-download');
+    my \$filename = "";
+    if(\$filepath =~ /\\/*([\\w\\s\\-_]*\\.[\\w\\s\\-_]+)/g) {
+        \$filename = \$1;
+    }
+    \$c->response->body(\$file);
+    \$c->response->header('Content-Disposition' => 'attachment; filename='.\$filename);
+    close \$FILEHANDLER;
 }
 
 sub downloadSequence : Path("DownloadSequence") : CaptureArgs(4) {
-	my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-	if ( !\$contig and defined \$c->request->param("contig") ) {
-		\$contig = \$c->request->param("contig");
-	}
-	if ( !\$start and defined \$c->request->param("start") ) {
-		\$start = \$c->request->param("start");
-	}
-	if ( !\$end and defined \$c->request->param("end") ) {
-		\$end = \$c->request->param("end");
-	}
-	if ( !\$reverseComplement
-		and defined \$c->request->param("reverseComplement") )
-	{
-		\$reverseComplement = \$c->request->param("reverseComplement");
-	}
-	
-	my \$sequence = sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
-	
-	use File::Temp ();
-	my \$fh    = File::Temp->new();
-	my \$fname = \$fh->filename;
-	open(my \$FILEHANDLER, ">", \$fname );
-	my \$fastaHeader = ">".\$sequence->{gene};
-	if(\$start && \$end) {
-		\$fastaHeader .= "_(".\$start."-".\$end.")";
-	}
-	if(\$reverseComplement) {
-		\$fastaHeader .= "_reverse_complemented";
-	}
-	print \$FILEHANDLER \$fastaHeader ."\n".\$sequence->{contig};
-	close(\$FILEHANDLER);
-	
-	open( \$FILEHANDLER, "<", \$fname );
-	binmode \$FILEHANDLER;
-	my \$file;
+    my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
+    if ( !\$start and defined \$c->request->param("start") ) {
+        \$start = \$c->request->param("start");
+    }
+    if ( !\$end and defined \$c->request->param("end") ) {
+        \$end = \$c->request->param("end");
+    }
+    if ( !\$reverseComplement
+        and defined \$c->request->param("reverseComplement") )
+    {
+        \$reverseComplement = \$c->request->param("reverseComplement");
+    }
 
-	local \$/ = \\10240;
-	while (<\$FILEHANDLER>) {
-		\$file .= \$_;
-	}
-	\$c->response->body(\$file);
-	\$c->response->headers->content_type('application/x-download');
-	
-	\$c->response->body(\$file);
-	\$fastaHeader =~ s/>//g;
-	\$c->response->header('Content-Disposition' => 'attachment; filename='.\$fastaHeader . ".fasta");
-	close \$FILEHANDLER;
+    my \$sequence = sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
+
+    use File::Temp ();
+    my \$fh    = File::Temp->new();
+    my \$fname = \$fh->filename;
+    open(my \$FILEHANDLER, ">", \$fname );
+    my \$fastaHeader = ">".\$sequence->{gene};
+    if(\$start && \$end) {
+        \$fastaHeader .= "_(".\$start."-".\$end.")";
+    }
+    if(\$reverseComplement) {
+        \$fastaHeader .= "_reverse_complemented";
+    }
+    print \$FILEHANDLER \$fastaHeader ."\n".\$sequence->{contig};
+    close(\$FILEHANDLER);
+
+    open( \$FILEHANDLER, "<", \$fname );
+    binmode \$FILEHANDLER;
+    my \$file;
+
+    local \$/ = \\10240;
+    while (<\$FILEHANDLER>) {
+        \$file .= \$_;
+    }
+    \$c->response->body(\$file);
+    \$c->response->headers->content_type('application/x-download');
+
+    \$c->response->body(\$file);
+    \$fastaHeader =~ s/>//g;
+    \$c->response->header('Content-Disposition' => 'attachment; filename='.\$fastaHeader . ".fasta");
+    close \$FILEHANDLER;
 }
 
 sub sequenceContig {
-	my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-	use File::Basename;
-	my \$data     = "";
-	my \$sequence = \$c->model('Basic::Sequence')->search({ "name" => \$contig}, {})->first;
+    my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+    use File::Basename;
+    my \$data     = "";
+    my \$sequence = \$c->model('Basic::Sequence')->search({ "name" => \$contig}, {})->first;
 
-	open( my \$FILEHANDLER,
-		"<", \$c->path_to('root') . "/" . \$sequence->filepath );
+    open( my \$FILEHANDLER,
+        "<", \$c->path_to('root') . "/" . \$sequence->filepath );
 
-	my \$content = do { local \$/; <\$FILEHANDLER> };
+    my \$content = do { local \$/; <\$FILEHANDLER> };
 
-	my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
-	\$data = join("", \@lines);
-	
-	close(\$FILEHANDLER);
+    my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
+    \$data = join("", \@lines);
 
-	if ( \$start && \$end ) {
-		\$start += -1;
-		\$data = substr( \$data, \$start, ( \$end - \$start ) );
-		\$c->stash->{start}     = \$start;
-		\$c->stash->{end}       = \$end;
-		\$c->stash->{hadLimits} = 1;
-	}
-	if ( \$reverseComplement ) {
-		\$data = reverseComplement(\$data);
-		\$c->stash->{hadReverseComplement} = 1;
-	}
-	\$data = formatSequence(\$data);
-	my \$result = \$data;
-	
-	my \%hash = ();
-	\$hash{'geneID'} = \$sequence->id;
-	\$hash{'gene'}   = \$sequence->name;
-	\$hash{'contig'} = \$result;
-	\$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
-	return \\\%hash;
+    close(\$FILEHANDLER);
+
+    if ( \$start && \$end ) {
+        \$start += -1;
+        \$data = substr( \$data, \$start, ( \$end - \$start ) );
+        \$c->stash->{start}     = \$start;
+        \$c->stash->{end}       = \$end;
+        \$c->stash->{hadLimits} = 1;
+    }
+    if ( \$reverseComplement ) {
+        \$data = reverseComplement(\$data);
+        \$c->stash->{hadReverseComplement} = 1;
+    }
+    \$data = formatSequence(\$data);
+    my \$result = \$data;
+
+    my \%hash = ();
+    \$hash{'geneID'} = \$sequence->id;
+    \$hash{'gene'}   = \$sequence->name;
+    \$hash{'contig'} = \$result;
+    \$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
+    return \\\%hash;
 }
 
 =head2 reverseComplement
@@ -7473,10 +7316,10 @@ Method used to return the reverse complement of a sequence
 =cut
 
 sub reverseComplement {
-	my (\$sequence) = \@_;
-	my \$reverseComplement = reverse(\$sequence);
-	\$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
-	return \$reverseComplement;
+    my (\$sequence) = \@_;
+    my \$reverseComplement = reverse(\$sequence);
+    \$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+    return \$reverseComplement;
 }
 
 =head2 formatSequence
@@ -7494,25 +7337,25 @@ sub formatSequence {
 }
 
 sub reports : Path("reports") : CaptureArgs(3) {
-	my ( \$self, \$c, \$type, \@files ) = \@_;
+    my ( \$self, \$c, \$type, \@files ) = \@_;
         my \$filepath = "\$type";
         \$filepath .= "/". \$_ foreach (\@files);
-	#my \$filepath = "\$type/\$file";
-	#\$filepath .= "/\$file2" if \$file2;
-	
-	\$self->status_bad_request( \$c, message => "Invalid request" )
-	  if ( \$filepath =~ m/\\.\\.\\// );
-	
-	open( my \$FILEHANDLER,
-		"<", \$c->path_to('root') . "/" . \$filepath );
-	my \$content = "";
-	while ( my \$line = <\$FILEHANDLER> ) {
-		#\$line =~ s/href="/href="\\/reports\\/\$type\\//
-		  #if ( \$line =~ /href="/ && \$line !~ /href="http\\:\\/\\// );
-		\$content .= \$line . "\\n";
-	}
-	close(\$FILEHANDLER);
-	if(\$filepath =~ /\\.png/g) {
+    #my \$filepath = "\$type/\$file";
+    #\$filepath .= "/\$file2" if \$file2;
+
+    \$self->status_bad_request( \$c, message => "Invalid request" )
+      if ( \$filepath =~ m/\\.\\.\\// );
+
+    open( my \$FILEHANDLER,
+        "<", \$c->path_to('root') . "/" . \$filepath );
+    my \$content = "";
+    while ( my \$line = <\$FILEHANDLER> ) {
+        #\$line =~ s/href="/href="\\/reports\\/\$type\\//
+          #if ( \$line =~ /href="/ && \$line !~ /href="http\\:\\/\\// );
+        \$content .= \$line . "\\n";
+    }
+    close(\$FILEHANDLER);
+    if(\$filepath =~ /\\.png/g) {
         use MIME::Base64;
         \$content = MIME::Base64::encode_base64(\$content);
     } elsif(\$filepath =~ /\.html/g) {
@@ -7550,7 +7393,7 @@ sub reports : Path("reports") : CaptureArgs(3) {
         \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\\/a>\$2/g if(\$type eq "go_report");
         \$content =~ s/(\\/kegg_organism_report\\/)([\\w.]+)+"/\$1\$files[0]\\/\$2"/;
     }
-	\$c->response->body(\$content);
+    \$c->response->body(\$content);
 }
 
 =head2 default
@@ -7561,9 +7404,9 @@ Standard 404 error page
 =cut
 
 sub default : Path {
-	my ( \$self, \$c ) = \@_;
-	\$c->response->body('Oops, page not found');
-	\$c->response->status(404);
+    my ( \$self, \$c ) = \@_;
+    \$c->response->body('Oops, page not found');
+    \$c->response->status(404);
 }
 
 =head2 renderView
@@ -7575,43 +7418,43 @@ Attempt to render a view, if needed.
 sub renderView : ActionClass('RenderView') { }
 
 sub end : Private {
-	my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-	if ( scalar \@{ \$c->error } ) {
-		\$c->stash->{errors}   = \$c->error;
-		for my \$error ( \@{ \$c->error } ) {
-			\$c->log->error(\$error);
-		}
-		\$c->stash(
-			texts => [
-				encodingCorrection(
-					\$c->model('Basic::Text')->search(
-						{
-							-or => [
-								tag => { 'like', 'header%' },
-								tag => 'menu',
-								tag => 'footer',
-							]
-						}
-					)
-				)
-			]
-		);
-		\$c->stash->{hadGlobal}         = 1;
-		\$c->stash->{hadSearchDatabase} = 1;
-		\$c->stash->{template} = '$lowCaseName/errors.tt';
-		\$c->forward('$packageWebsite\::View::TT');
-		\$c->clear_errors;
-	}
+    if ( scalar \@{ \$c->error } ) {
+        \$c->stash->{errors}   = \$c->error;
+        for my \$error ( \@{ \$c->error } ) {
+            \$c->log->error(\$error);
+        }
+        \$c->stash(
+            texts => [
+                encodingCorrection(
+                    \$c->model('Basic::Text')->search(
+                        {
+                            -or => [
+                                tag => { 'like', 'header%' },
+                                tag => 'menu',
+                                tag => 'footer',
+                            ]
+                        }
+                    )
+                )
+            ]
+        );
+        \$c->stash->{hadGlobal}         = 1;
+        \$c->stash->{hadSearchDatabase} = 1;
+        \$c->stash->{template} = '$lowCaseName/errors.tt';
+        \$c->forward('$packageWebsite\::View::TT');
+        \$c->clear_errors;
+    }
 
-	return 1 if \$c->response->status =~ /^3\\d\\d\$/;
-	return 1 if \$c->response->body;
+    return 1 if \$c->response->status =~ /^3\\d\\d\$/;
+    return 1 if \$c->response->body;
 
-	unless ( \$c->response->content_type ) {
-		\$c->response->content_type('text/html; charset=utf-8');
-	}
+    unless ( \$c->response->content_type ) {
+        \$c->response->content_type('text/html; charset=utf-8');
+    }
 
-	\$c->forward('$packageWebsite\::View::TT');
+    \$c->forward('$packageWebsite\::View::TT');
 }
 
 =head1 AUTHOR
@@ -7633,52 +7476,52 @@ __PACKAGE__->meta->make_immutable;
 ROOT
 
 if ( $rootContent =~ /\{\{valorGlobalSubstituir\}\}/g && $hadGlobal ) {
-	$rootContent =~ s/\{\{valorGlobalSubstituir\}\}/1/g;
+    $rootContent =~ s/\{\{valorGlobalSubstituir\}\}/1/g;
 }
 else {
-	$rootContent =~ s/\{\{valorGlobalSubstituir\}\}/0/g;
+    $rootContent =~ s/\{\{valorGlobalSubstituir\}\}/0/g;
 }
 
 if ( $rootContent =~ /\{\{valorSearchSubtituir\}\}/g && $hadSearchDatabase ) {
-	$rootContent =~ s/\{\{valorSearchSubtituir\}\}/1/g;
+    $rootContent =~ s/\{\{valorSearchSubtituir\}\}/1/g;
 }
 else {
-	$rootContent =~ s/\{\{valorSearchSubtituir\}\}/0/g;
+    $rootContent =~ s/\{\{valorSearchSubtituir\}\}/0/g;
 }
 my %hashDirectories = ();
 foreach my $filepathComponent (@filepathsComponents) {
-	if ($filepathComponent) {
-		print $LOG "\nFilepath component:\t" . $filepathComponent . "\n";
-		if ( $filepathComponent =~ /([\.\/\w]+)\//g ) {
-			print $LOG "\nDir:\t" . $1 . "\n";
-			`mkdir -p $standard_dir/$html_dir/root/`
-			  if !-e "$standard_dir/$html_dir/root/";
-			if ( $1 ne '_dir' ) {
-				my $directory = $1;
-				print $LOG "\n[6356]\tDirectory:-\t$directory\n";
-				if ( $1 !~ m/report/g ) {
-`ln -f -s $directory $standard_dir/$html_dir/root/` if (!(-e "$standard_dir/$html_dir/root/$directory"));
-				}
-				else {
-					my $test = "";
-					#\/([\w._]+\/[\w._]*)$
-					$test = $_ foreach($directory =~ /\/([\w._]+)+$/img);
-					print $LOG "\n[7365] - $test\n" ;
-					unless(
--d "$standard_dir/$html_dir/root/$test" && 
--e "$standard_dir/$html_dir/root/$test" && 
-exists $hashDirectories{"$standard_dir/$html_dir/root/$test"} && 
-defined $hashDirectories{"$standard_dir/$html_dir/root/$test"} ) 
-					{
-						
-						`ln -f -s $directory $standard_dir/$html_dir/root/` if !$hashDirectories{"$standard_dir/$html_dir/root/$test"};
-						$hashDirectories{"$standard_dir/$html_dir/root/$test"} = 1;
-						
-					} else { print $LOG "\n[6481]Escapou do ln $test\n"; }
-				}
-			}
-		}
-	}
+    if ($filepathComponent) {
+        print $LOG "\nFilepath component:\t" . $filepathComponent . "\n";
+        if ( $filepathComponent =~ /([\.\/\w]+)\//g ) {
+            print $LOG "\nDir:\t" . $1 . "\n";
+            `mkdir -p $standard_dir/$html_dir/root/`
+            if !-e "$standard_dir/$html_dir/root/";
+            if ( $1 ne '_dir' ) {
+                my $directory = $1;
+                print $LOG "\n[6356]\tDirectory:-\t$directory\n";
+                if ( $1 !~ m/report/g ) {
+                    `ln -f -s $directory $standard_dir/$html_dir/root/` if (!(-e "$standard_dir/$html_dir/root/$directory"));
+                }
+                else {
+                    my $test = "";
+                    #\/([\w._]+\/[\w._]*)$
+                    $test = $_ foreach($directory =~ /\/([\w._]+)+$/img);
+                    print $LOG "\n[7365] - $test\n" ;
+                    unless(
+                        -d "$standard_dir/$html_dir/root/$test" && 
+                        -e "$standard_dir/$html_dir/root/$test" && 
+                        exists $hashDirectories{"$standard_dir/$html_dir/root/$test"} && 
+                        defined $hashDirectories{"$standard_dir/$html_dir/root/$test"} ) 
+                    {
+
+                        `ln -f -s $directory $standard_dir/$html_dir/root/` if !$hashDirectories{"$standard_dir/$html_dir/root/$test"};
+                        $hashDirectories{"$standard_dir/$html_dir/root/$test"} = 1;
+
+                    } else { print $LOG "\n[6481]Escapou do ln $test\n"; }
+                }
+            }
+        }
+    }
 }
 
 #Descompacta assets
@@ -7698,119 +7541,119 @@ $titlePage =~ s/"//g;
 open (my $FILEHANDLER, ">>", "$html_dir/root/assets/css/style.css");
 print $FILEHANDLER "\n
 #informationPanel {
-    text-align: justify;
-    text-justify: inter-word;
+text-align: justify;
+text-justify: inter-word;
 }
-                
+
 .panel-body {
-    background-color: #fff;
+background-color: #fff;
 }
 
 #organismImage {
-    width:100%;
-    height:100%;
+width:100%;
+height:100%;
 }
 
 header {
-    background-color: $color_accent;
-    color: $color_accent_text; 
+background-color: $color_accent;
+color: $color_accent_text; 
 }
 
 .navbar-inverse {
-    background-color: $color_primary;
+background-color: $color_primary;
 }
 
 .navbar-inverse .navbar-brand {
-    color: $color_primary_text;
+color: $color_primary_text;
 }
 
 .menu-section {
-    background-color: $color_menu;
+background-color: $color_menu;
 }
 
 .menu-top-active {
-    background-color: $color_primary;
+background-color: $color_primary;
 }
 
 .menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
-    background-color: $color_accent!important;
+background-color: $color_accent!important;
 }
 
 footer {
-    background-color: $color_primary;
-    color: $color_primary_text;
+background-color: $color_primary;
+color: $color_primary_text;
 }
 
 .page-head-line {
-    color: $color_accent;
-    border-bottom: 2px solid $color_accent;
+color: $color_accent;
+border-bottom: 2px solid $color_accent;
 }                                        
 
 .navbar-toggle {
-    background-color: $color_accent;
+background-color: $color_accent;
 }
 
 ";
 close($FILEHANDLER);
 
 if ($banner) {
-	`cp $banner $html_dir/root/assets/img/logo.png`;
+    `cp $banner $html_dir/root/assets/img/logo.png`;
 }
 
 my $menu = "<!DOCTYPE html>
 <div class='navbar navbar-inverse set-radius-zero'>
-    <div class='container'>
-        <div class='navbar-header'>
-            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-                <span class='icon-bar'></span>
-            </button>";
-            ;
+<div class='container'>
+<div class='navbar-header'>
+<button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+<span class='icon-bar'></span>
+</button>";
+;
 
 if($banner)  {
     $menu .= "<a class='navbar-brand' href='[% c.uri_for(\"/\") %]'>
-                <img src='/assets/img/logo.png' />
-            </a>";
+    <img src='/assets/img/logo.png' />
+    </a>";
 } elsif ($titlePage) {
     $menu .= "<div class='row'>
-                <div class='col-md-12'>
-                    <a class='navbar-brand' href=\"[% c.uri_for('/') %]\">$titlePage</a>                                                                                        
-                </div>
-             </div>";
+    <div class='col-md-12'>
+    <a class='navbar-brand' href=\"[% c.uri_for('/') %]\">$titlePage</a>                                                                                        
+    </div>
+    </div>";
 }
 
 $menu .=  "</div>
-    </div>
+</div>
 </div>
 <!-- LOGO HEADER END-->
 <section class='menu-section'>
-    <div class='container'>
-        <div class='row'>
-            <div class='col-md-12'>
-                <div class='navbar-collapse collapse '>
-                    <ul id='menu-top' class='nav navbar-nav navbar-right'>
-                        [% FOREACH text IN texts %]
-                            [% IF text.tag.search('menu') %]
-                                [% IF text.value == currentPage %]
-                                    <li><a class='menu-top-active' href='[% c.uri_for(text.details) %]'>[% text.value %]</a></li>
-                                [% ELSE %]
-                                	[% IF hadSearchDatabase && text.value.match('search database') %]
-			                        	<li><a  href='[% c.uri_for(\"/SearchDatabase\") %]'>Search database</a></li>
-			                        [% ELSIF hadGlobal && text.value.match('global analyses') %]
-			                        	<li><a	href='[% c.uri_for(\"/GlobalAnalyses\") %]'>Global analyses</a></li>
-			                        [% ELSIF !text.value.match('global analyses') && !text.value.match('search database') %]
-			                        	<li><a href='[% c.uri_for(text.details) %]'>[% text.value %]</a></li>
-			                        [% END %]
-                                [% END %]
-                            [% END %]
-                        [% END %]
-                    </ul>
-                </div>
-            </div>
+<div class='container'>
+<div class='row'>
+<div class='col-md-12'>
+<div class='navbar-collapse collapse '>
+<ul id='menu-top' class='nav navbar-nav navbar-right'>
+[% FOREACH text IN texts %]
+[% IF text.tag.search('menu') %]
+[% IF text.value == currentPage %]
+<li><a class='menu-top-active' href='[% c.uri_for(text.details) %]'>[% text.value %]</a></li>
+[% ELSE %]
+[% IF hadSearchDatabase && text.value.match('search database') %]
+<li><a  href='[% c.uri_for(\"/SearchDatabase\") %]'>Search database</a></li>
+[% ELSIF hadGlobal && text.value.match('global analyses') %]
+<li><a	href='[% c.uri_for(\"/GlobalAnalyses\") %]'>Global analyses</a></li>
+[% ELSIF !text.value.match('global analyses') && !text.value.match('search database') %]
+<li><a href='[% c.uri_for(text.details) %]'>[% text.value %]</a></li>
+[% END %]
+[% END %]
+[% END %]
+[% END %]
+</ul>
+</div>
+</div>
 
-        </div>
-    </div>
+</div>
+</div>
 </section>
 
 ";
@@ -7818,78 +7661,78 @@ $menu .=  "</div>
 my $panelInformation = "
 <!DOCTYPE html>
 <div class='content-wrapper'>
-    <div class='container'>	
-        <div class='row'>
-            <div class='col-md-12'>
-                <div class='panel panel-info'>
-                    <div class='panel-heading'>
-                        [% FOREACH text IN texts %]
-                            [% IF text.tag.search('home') && !text.tag.search('value') %]
-                                [% text.value %]
-                            [% END %]
-                        [% END %]
-                    </div>
-                    <div class='panel-body'>";
+<div class='container'>	
+<div class='row'>
+<div class='col-md-12'>
+<div class='panel panel-info'>
+<div class='panel-heading'>
+[% FOREACH text IN texts %]
+[% IF text.tag.search('home') && !text.tag.search('value') %]
+[% text.value %]
+[% END %]
+[% END %]
+</div>
+<div class='panel-body'>";
 
 unless($homepage_image_organism) {
     $panelInformation .= "
-                        <div class='row'>
-                            <div id='informationPanel' class='col-md-12'>
-                                [% FOREACH text IN texts %]
-                                    [% IF text.tag.search('home-value')%]
-                                        [% text.value %]
-                                    [% END %]
-                                [% END %]
-                            </div>
-                        </div>";
+    <div class='row'>
+    <div id='informationPanel' class='col-md-12'>
+    [% FOREACH text IN texts %]
+    [% IF text.tag.search('home-value')%]
+    [% text.value %]
+    [% END %]
+    [% END %]
+    </div>
+    </div>";
 } else {
     `cp $homepage_image_organism $html_dir/assets/img/`;
     $homepage_image_organism = getFilenameByFilepath($homepage_image_organism);
     $panelInformation .= "
-                        <div class='row'>
-                            <div id='informationPanel' class='col-md-6'>
-                                [% FOREACH text IN texts %]
-                                    [% IF text.tag.search('home-value')%]
-                                        [% text.value %]
-                                    [% END %]
-                                [% END %]
-                            </div> 
-                            <div class='col-md-6'>
-                                <img id='organismImage' src='/assets/img/$homepage_image_organism' />
-                                
-                            </div>
-                        </div>"; 
-}
-$panelInformation .="</div>
-                    <div class='panel-footer'> 
-                        <div class='row'>
-                            <div class='col-md-12'>
-                                [% FOREACH text IN texts %]
-                                    [% IF text.tag.search('home-sub')%]
-                                        <sub>[% text.value %]</sub>
-                                    [% END %]
-                                [% END %] 
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class='row'>
+    <div id='informationPanel' class='col-md-6'>
+    [% FOREACH text IN texts %]
+    [% IF text.tag.search('home-value')%]
+    [% text.value %]
+    [% END %]
+    [% END %]
+    </div> 
+    <div class='col-md-6'>
+    <img id='organismImage' src='/assets/img/$homepage_image_organism' />
 
     </div>
+    </div>"; 
+}
+$panelInformation .="</div>
+<div class='panel-footer'> 
+<div class='row'>
+<div class='col-md-12'>
+[% FOREACH text IN texts %]
+[% IF text.tag.search('home-sub')%]
+<sub>[% text.value %]</sub>
+[% END %]
+[% END %] 
+</div>
+</div> 
+</div>
+</div>
+</div>
+</div>
+
+</div>
 </div> ";
 
 
 #Conteúdo HTML da pasta root, primeira chave refere-se ao nome do diretório
 #O valor do vetor possuí o primeiro valor como nome do arquivo, e os demais como conteúdo do arquivo
 my %contentHTML = (
-	"about" => {
-		"_content.tt" => <<CONTENTABOUT
+    "about" => {
+        "_content.tt" => <<CONTENTABOUT
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
-            
+
             [% counter = 1 %]
             [% FOREACH text IN texts %]
                 [% IF text.tag == 'about-table-content-'_ counter %]
@@ -7930,13 +7773,13 @@ my %contentHTML = (
                     [% counter = counter + 1 %]
                  [% END %]
              [% END %]
-             
+
         </div>
     </div>
 </div>
 CONTENTABOUT
-		,
-		"index.tt" => <<CONTENTABOUTINDEX
+        ,
+        "index.tt" => <<CONTENTABOUTINDEX
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">		
@@ -7944,9 +7787,9 @@ CONTENTABOUT
     </div>
 </div>
 CONTENTABOUTINDEX
-	},
-	"blast" => {
-		"_forms.tt" => <<CONTENTBLAST
+    },
+    "blast" => {
+        "_forms.tt" => <<CONTENTBLAST
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
@@ -8152,14 +7995,14 @@ CONTENTABOUTINDEX
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                	<div class="form-group">
-                                    	<label>Contig: </label>
-                                      	<select name="contig">
-                                      		<option value="">Select</option>
-                                      		[% FOREACH sequence IN sequences %]
-                                      			<option value="[% sequence.id %]">[% sequence.name %]</option>
-                                      		[% END %]
-                                    	</select>
+                                    <div class="form-group">
+                                        <label>Contig: </label>
+                                        <select name="contig">
+                                            <option value="">Select</option>
+                                            [% FOREACH sequence IN sequences %]
+                                                <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                            [% END %]
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox">
@@ -8230,16 +8073,16 @@ CONTENTABOUTINDEX
 </div>
 
 CONTENTBLAST
-		,
-		"index.tt" => <<CONTENTINDEXBLAST
+        ,
+        "index.tt" => <<CONTENTINDEXBLAST
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div id="containerBlast" class="container">	
-    	<div class="row">
-    		<div class="col-md-12">
-    			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
-    		</div>
-    	</div>
+        <div class="row">
+            <div class="col-md-12">
+                <input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
+            </div>
+        </div>
         [% INCLUDE '$lowCaseName/blast/_forms.tt' %]
     </div>
 </div>
@@ -8247,9 +8090,9 @@ CONTENTBLAST
 <script type="text/javascript" src="/assets/js/site-client.js"></script>
 <script type="text/javascript" src="/assets/js/blast.js"></script>
 CONTENTINDEXBLAST
-	},
-	"downloads" => {
-		"_content.tt" => <<CONTENTDOWNLOADS
+    },
+    "downloads" => {
+        "_content.tt" => <<CONTENTDOWNLOADS
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
@@ -8271,7 +8114,7 @@ CONTENTINDEXBLAST
                             <ul>
                                 [% FOREACH text IN texts %]
                                     [% IF text.tag.search('downloads-genes-links-') %]
-				    <li><a href="[% c.uri_for(text.details).replace('%3F', '?') %]">[% text.value %]</a></li>
+                    <li><a href="[% c.uri_for(text.details).replace('%3F', '?') %]">[% text.value %]</a></li>
                                     [% END %]
                                 [% END %]
                             </ul>
@@ -8321,7 +8164,7 @@ CONTENTINDEXBLAST
                             <ul>
                                 [% FOREACH text IN texts %]
                                     [% IF text.tag.search('downloads-annotations-') %]
-				    <li><a href="[% c.uri_for(text.details).replace('%3F', '?') %]">[% text.value %]</a></li>
+                    <li><a href="[% c.uri_for(text.details).replace('%3F', '?') %]">[% text.value %]</a></li>
                                     [% END %]
                                 [% END %]
                             </ul>
@@ -8335,8 +8178,8 @@ CONTENTINDEXBLAST
 </div>
 
 CONTENTDOWNLOADS
-		,
-		"index.tt" => <<CONTENTINDEXDOWNLOADS
+        ,
+        "index.tt" => <<CONTENTINDEXDOWNLOADS
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">		
@@ -8344,129 +8187,129 @@ CONTENTDOWNLOADS
     </div>
 </div>
 CONTENTINDEXDOWNLOADS
-	},
-	"global-analyses" => {
-		"_content.tt" => <<CONTENTGLOBALANALYSES
+    },
+    "global-analyses" => {
+        "_content.tt" => <<CONTENTGLOBALANALYSES
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
-			[%
-				go_mapping = 0
-				orthology = 0 
-				pathways = 0
-				organism = 0 
-			%]
-				[% IF components.item("go") %]
-					[% go_mapping = 1 %]
-				[% END %]
-				[% IF components.item("eggnog") %]
-					[% orthology = 1 %]
-				[% END %]
-				[% IF components.item("pathways") %]
-					[% pathways = 1 %]
-				[% END %]
-				[% IF components.item("kegg_organism") %]
-					[% organism = 1 %]
-				[% END %]
-			[% IF go_mapping %]
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    <h4 class="panel-title">
-	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag == 'global-analyses-go-terms-mapping' %]
-	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
-	                            [% END %]
-	                        [% END %]
-	                    </h4>
-	                </div>
-	                <div id="collapseOne" class="panel-collapse collapse">
-	                    <div class="panel-body">
-	                        <div class="form-group">
-	                            [% FOREACH text IN texts %]
-	                                [% IF text.tag == 'global-analyses-expansible-tree' %]
-	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-	                                [% END %]
-	                            [% END %]
-	                        </div>
-	                        <div class="form-group">
-	                            [% FOREACH text IN texts %]
-	                                [% IF text.tag == 'global-analyses-table-ontologies' %]
-	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-	                                [% END %]
-	                            [% END %]
-	                        </div>
-	                    </div>
+            [%
+                go_mapping = 0
+                orthology = 0 
+                pathways = 0
+                organism = 0 
+            %]
+                [% IF components.item("go") %]
+                    [% go_mapping = 1 %]
+                [% END %]
+                [% IF components.item("eggnog") %]
+                    [% orthology = 1 %]
+                [% END %]
+                [% IF components.item("pathways") %]
+                    [% pathways = 1 %]
+                [% END %]
+                [% IF components.item("kegg_organism") %]
+                    [% organism = 1 %]
+                [% END %]
+            [% IF go_mapping %]
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag == 'global-analyses-go-terms-mapping' %]
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
+                                [% END %]
+                            [% END %]
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag == 'global-analyses-expansible-tree' %]
+                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
+                                    [% END %]
+                                [% END %]
+                            </div>
+                            <div class="form-group">
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag == 'global-analyses-table-ontologies' %]
+                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
+                                    [% END %]
+                                [% END %]
+                            </div>
+                        </div>
                         [% IF go_expansible_tree %]
-	                    <div class="panel-footer">
-	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag == 'global-analyses-go-terms-mapping-footer' %]
-	                                [% text.value %]
-	                            [% END %]
-	                        [% END %]
-	                    </div>
+                        <div class="panel-footer">
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag == 'global-analyses-go-terms-mapping-footer' %]
+                                    [% text.value %]
+                                [% END %]
+                            [% END %]
+                        </div>
                         [% END %]
-	                </div>
-	            </div>
-            [% END %]
-            
-            [% IF orthology %]
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    <h4 class="panel-title">
-	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag == 'global-analyses-eggNOG' %]
-	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">[% text.value %]</a>
-	                            [% END %]
-	                        [% END %]
-	                    </h4>
-	                </div>
-	                <div id="collapseTwo" class="panel-collapse collapse">
-	                    <div class="panel-body">
-	                        <div class="form-group">
-	                            [% FOREACH text IN texts %]
-	                                [% IF text.tag == 'global-analyses-orthology-analysis-classes' %]
-	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-	                                [% END %]
-	                            [% END %]
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
+                    </div>
+                </div>
             [% END %]
 
-			[% IF pathways %]
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    <h4 class="panel-title">
-	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag == 'global-analyses-kegg-pathways' %]
-	                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
-	                            [% END %]
-	                        [% END %]
-	                    </h4>
-	                </div>
-	                <div id="collapseThree" class="panel-collapse collapse">
-	                    <div class="panel-body">
-	                        [% FOREACH text IN texts %]
-	                            [% IF text.tag.search('global-analyses-kegg-report') || text.tag.search('global-analyses-kegg-organism-report') %]
-	                                <div class="form-group">
-	                                    <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-	                                </div>
-	                            [% END %]
-	                        [% END %]
-	                    </div>
-	                </div>
-	            </div>
-	        [% END %]
-            
+            [% IF orthology %]
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag == 'global-analyses-eggNOG' %]
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">[% text.value %]</a>
+                                [% END %]
+                            [% END %]
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                [% FOREACH text IN texts %]
+                                    [% IF text.tag == 'global-analyses-orthology-analysis-classes' %]
+                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
+                                    [% END %]
+                                [% END %]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            [% END %]
+
+            [% IF pathways %]
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag == 'global-analyses-kegg-pathways' %]
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
+                                [% END %]
+                            [% END %]
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            [% FOREACH text IN texts %]
+                                [% IF text.tag.search('global-analyses-kegg-report') || text.tag.search('global-analyses-kegg-organism-report') %]
+                                    <div class="form-group">
+                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
+                                    </div>
+                                [% END %]
+                            [% END %]
+                        </div>
+                    </div>
+                </div>
+            [% END %]
+
         </div>
     </div>
 </div>
 
 CONTENTGLOBALANALYSES
-		,
-		"index.tt" => <<CONTENTGLOBALANALYSESINDEX
+        ,
+        "index.tt" => <<CONTENTGLOBALANALYSESINDEX
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
@@ -8476,10 +8319,10 @@ CONTENTGLOBALANALYSES
 <script type="text/javascript" src="/assets/js/site-client.js"></script>
 <script type="text/javascript" src="/assets/js/search-database.js"></script>
 CONTENTGLOBALANALYSESINDEX
-	},
-	"help" => {
-		"_content.tt",
-		<<CONTENTHELP
+    },
+    "help" => {
+        "_content.tt",
+        <<CONTENTHELP
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
@@ -8505,7 +8348,7 @@ CONTENTGLOBALANALYSESINDEX
                                     [% END %]
                                 [% END %]
                             [% END %]
-                        
+
                             <ul>
                                 [% FOREACH text IN texts %]
                                     [% IF text.tag.search('help-questions-feedback-')  %]
@@ -8590,7 +8433,7 @@ CONTENTGLOBALANALYSESINDEX
     </div>
 </div>
 CONTENTHELP
-		, "index.tt" => <<CONTENTINDEXHELP
+        , "index.tt" => <<CONTENTINDEXHELP
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">		
@@ -8598,10 +8441,10 @@ CONTENTHELP
     </div>
 </div>
 CONTENTINDEXHELP
-	},
-	"home" => {
-		"_panelInformation.tt" => $panelInformation,
-		"index.tt" => <<CONTENTINDEXHOME
+    },
+    "home" => {
+        "_panelInformation.tt" => $panelInformation,
+        "index.tt" => <<CONTENTINDEXHOME
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
@@ -8609,134 +8452,138 @@ CONTENTINDEXHELP
     </div>
 </div>
 CONTENTINDEXHOME
-	},
-	"search-database" => {
-		"_forms.tt" => <<CONTENTSEARCHDATABASE
+    },
+    "search-database" => {
+        "_forms.tt" => <<CONTENTSEARCHDATABASE
 <!DOCTYPE html>
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default" id="searchPanel">
             <div class="panel-heading">
-		[% searchDBTexts.item('search-database-form-title')  %]
+        [% searchDBTexts.item('search-database-form-title')  %]
             </div>
             <div class="panel-body">
                 <div class="panel-group" id="accordion">
-                	[% 
-                		section_protein_coding = 0 
-                		section_dna_based = 0
-                		blast = 0
-                		interpro = 0 
-                		tcdb = 0
-                		phobius = 0
-                		rpsblast = 0
-                		pathways = 0
-                		orthology = 0
-                		trna = 0
-                		trf = 0
-                		mreps = 0
-                		string = 0
-                		infernal = 0
-                		rbs = 0
-                		transterm = 0
-                		alienhunter = 0
-                		rnammer = 0
-                		tmhmm = 0
-                		dgpi = 0
-                		bigpi = 0
-                		predgpi = 0
-                	%]
-                	
-                	[% IF components.item('annotation_glimmer3') OR  
-                		components.item('annotation_glimmerm') OR 
-                		components.item('annotation_augustus') OR 
-                		components.item('annotation_myop') OR 
-                		components.item('annotation_glimmerhmm') OR 
-                		components.item('annotation_phat') OR 
-                		components.item('annotation_snap') OR 
-                		components.item('annotation_orf') OR
-                		components.item('upload_gtf') OR
+                    [% 
+                        section_protein_coding = 0 
+                        section_dna_based = 0
+                        blast = 0
+                        interpro = 0 
+                        tcdb = 0
+                        phobius = 0
+                        rpsblast = 0
+                        pathways = 0
+                        orthology = 0
+                        trna = 0
+                        trf = 0
+                        mreps = 0
+                        string = 0
+                        infernal = 0
+                        rbs = 0
+                        transterm = 0
+                        alienhunter = 0
+                        rnammer = 0
+                        tmhmm = 0
+                        dgpi = 0
+                        bigpi = 0
+                        predgpi = 0
+                        signalP = 0
+                    %]
+
+                    [% IF components.item('annotation_glimmer3') OR  
+                        components.item('annotation_glimmerm') OR 
+                        components.item('annotation_augustus') OR 
+                        components.item('annotation_myop') OR 
+                        components.item('annotation_glimmerhmm') OR 
+                        components.item('annotation_phat') OR 
+                        components.item('annotation_snap') OR 
+                        components.item('annotation_orf') OR
+                        components.item('upload_gtf') OR
                         components.item('upload_prediction') %]
-                		[% section_protein_coding = 1 %]
-                	[% END %]
-                	[% IF components.item('annotation_trna') OR 
-                		components.item('annotation_mreps') OR 
-                		components.item('annotation_string') OR 
-                		components.item('annotation_infernal') OR 
-                		components.item('annotation_rbs') OR 
-                		components.item('annotation_transterm') OR 
-                		components.item('annotation_alienhunter') OR
-                		components.item('annotation_rnammer') %]
-                		[% section_dna_based = 1 %]
-                	[% END %]
-                	[% IF components.item('annotation_blast') %]
-                		[% blast = 1 %]
-                	[% END %]
-                	[% IF components.item('annotation_interpro') %]
-                		[% interpro = 1 %]
-                	[% END %]
-                		[% IF components.item('annotation_tcdb') %]
-                			[% tcdb = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_phobius') %]
-                			[% phobius = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_rpsblast') %]
-                			[% rpsblast = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_pathways') %]
-                			[% pathways = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_orthology') %]
-                			[% orthology = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_trna') %]
-                			[% trna = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_trf') %]
-                			[% trf = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_mreps') %]
-                			[% mreps = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_string') %]
-                			[% string = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_infernal') %]
-                			[% infernal = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_rbsfinder') %]
-                			[% rbs = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_transterm') %]
-                			[% transterm = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_alienhunter') %]
-                			[% alienhunter = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_rnammer') %]
-                			[% rnammer = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_tmhmm') %]
-                			[% tmhmm = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_dgpi') %]
-                			[% dgpi = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_predgpi') %]
-                			[% predgpi = 1 %]
-                		[% END %]
-                		[% IF components.item('annotation_bigpi') %]
-                			[% bigpi = 1 %]
-                		[% END %]
-                		[% IF report_pathways %]
-                			<input type="hidden" id="report_pathways" value="[% report_pathways %]" />
-                		[% END %]
-                	
+                        [% section_protein_coding = 1 %]
+                    [% END %]
+                    [% IF components.item('annotation_trna') OR 
+                        components.item('annotation_mreps') OR 
+                        components.item('annotation_string') OR 
+                        components.item('annotation_infernal') OR 
+                        components.item('annotation_rbs') OR 
+                        components.item('annotation_transterm') OR 
+                        components.item('annotation_alienhunter') OR
+                        components.item('annotation_rnammer') %]
+                        [% section_dna_based = 1 %]
+                    [% END %]
+                    [% IF components.item('annotation_blast') %]
+                        [% blast = 1 %]
+                    [% END %]
+                    [% IF components.item('annotation_interpro') %]
+                        [% interpro = 1 %]
+                    [% END %]
+                        [% IF components.item('annotation_tcdb') %]
+                            [% tcdb = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_phobius') %]
+                            [% phobius = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_signalP') %]
+                            [% signalP = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_rpsblast') %]
+                            [% rpsblast = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_pathways') %]
+                            [% pathways = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_orthology') %]
+                            [% orthology = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_trna') %]
+                            [% trna = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_trf') %]
+                            [% trf = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_mreps') %]
+                            [% mreps = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_string') %]
+                            [% string = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_infernal') %]
+                            [% infernal = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_rbsfinder') %]
+                            [% rbs = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_transterm') %]
+                            [% transterm = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_alienhunter') %]
+                            [% alienhunter = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_rnammer') %]
+                            [% rnammer = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_tmhmm') %]
+                            [% tmhmm = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_dgpi') %]
+                            [% dgpi = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_predgpi') %]
+                            [% predgpi = 1 %]
+                        [% END %]
+                        [% IF components.item('annotation_bigpi') %]
+                            [% bigpi = 1 %]
+                        [% END %]
+                        [% IF report_pathways %]
+                            <input type="hidden" id="report_pathways" value="[% report_pathways %]" />
+                        [% END %]
+
                     [% IF section_protein_coding %]
                      <div id="parentCollapseOne" class="panel panel-default">
                          <div class="panel-heading">
                              <h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed"> [% searchDBTexts.item('search-database-gene-ids-descriptions-title') %] </a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed"> [% searchDBTexts.item('search-database-gene-ids-descriptions-title') %] </a>
                              </h4>
                          </div>
                          <div id="collapseOne" class="panel-collapse collapse">
@@ -8745,17 +8592,17 @@ CONTENTINDEXHOME
                                      <div id="geneIdentifier" class="tab-pane fade active in">
                                          <h4></h4>
                                          <form id="formGeneIdentifier">
-                                         	<div class="form-group">
-                                         		<label>Contig: </label>
-                                         		<select name="contig">
-                                         			<option value="">Select</option>
-                                         			[% FOREACH sequence IN sequences %]
-                                         				<option value="[% sequence.id %]">[% sequence.name %]</option>
-                                         			[% END %]
-                                         		</select>
-                                         	</div>
+                                            <div class="form-group">
+                                                <label>Contig: </label>
+                                                <select name="contig">
+                                                    <option value="">Select</option>
+                                                    [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                    [% END %]
+                                                </select>
+                                            </div>
                                              <div class="form-group">
-						[% searchDBTexts.item('search-database-gene-ids-descriptions-gene-id') %]
+                        [% searchDBTexts.item('search-database-gene-ids-descriptions-gene-id') %]
                                                  <input class="form-control" type="text" name="geneID">
                                              </div>
                                              <input class="btn btn-primary btn-sm" type="submit" value="Search">  
@@ -8766,330 +8613,342 @@ CONTENTINDEXHOME
                              </div>
                          </div>
                      </div>
-                 
+
                      <div id="parentCollapseTwo" class="panel panel-default">
                          <div class="panel-heading">
                              <h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"> [% searchDBTexts.item('search-database-analyses-protein-code-title') %] </a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed"> [% searchDBTexts.item('search-database-analyses-protein-code-title') %] </a>
                              </h4>
                          </div>
                          <div id="collapseTwo" class="panel-collapse collapse">
                              <div class="panel-body">
                                  <form id="formAnalysesProteinCodingGenes">
-                                 	<div class="form-group">
+                                    <div class="form-group">
                                         <label>Contig: </label>
                                         <select name="contig">
-                                        	<option value="">All</option>
-                                        		[% FOREACH sequence IN sequences %]
-                                        			<option value="[% sequence.id %]">[% sequence.name %]</option>
-                                        		[% END %]
-                                        	</select>
+                                            <option value="">All</option>
+                                                [% FOREACH sequence IN sequences %]
+                                                    <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                [% END %]
+                                            </select>
                                     </div>
-                                 	[% IF blast %]
+                                    [% IF blast %]
                                       <div class="form-group">
-					<label>[% searchDBTexts.item('search-database-analyses-protein-code-limit') %]</label>
+                    <label>[% searchDBTexts.item('search-database-analyses-protein-code-limit') %]</label>
                                           <input class="form-control" type="text" name="geneDesc">
                                       </div>
                                       <div class="form-group">
-					<label>[% searchDBTexts.item('search-database-analyses-protein-code-excluding') %]</label>
+                    <label>[% searchDBTexts.item('search-database-analyses-protein-code-excluding') %]</label>
                                           <input class="form-control" type="text" name="noDesc">
                                       </div>
                                       <div class="form-group">
-	                                      <div class="checkbox">
-	                                      	  <label><input type="checkbox" name="individually" > [% searchDBTexts.item('search-database-analyses-protein-code-match-all') %]</label> 
-	                                      </div>
+                                          <div class="checkbox">
+                                              <label><input type="checkbox" name="individually" > [% searchDBTexts.item('search-database-analyses-protein-code-match-all') %]</label> 
+                                          </div>
                                       </div>
                                   [% END %]
                                      <ul class="nav nav-pills">
-					[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-tab') %]
-	                                     	<li class="">[% text %]</li>
-					[% END %]
+                    [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-tab') %]
+                                            <li class="">[% text %]</li>
+                    [% END %]
                                      </ul>
                                      <h4></h4>
                                      <div class="tab-content">
-                                     	[% IF tmhmm %]
-                                     		<div id="tmhmm" class="tab-pane fade">
-                                     			<div class="form-group">
+                                        [% IF tmhmm %]
+                                            <div id="tmhmm" class="tab-pane fade">
+                                                <div class="form-group">
                                                   <div class="checkbox">
-                                                  	<label><input type="checkbox" name="noTMHMM">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-tmhmm') %]</label>
+                                                    <label><input type="checkbox" name="noTMHMM">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-tmhmm') %]</label>
                                                   </div>
-                                              	</div>
-                                              	<div class="form-group">
-                                                	<label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domains') %]</label>
-                                                  	<input class="form-control" type="number" name="TMHMMdom">
-							[% FOREACH text IN searchDBTexts.item('search-database-quantity-tmhmmQuant') %]
-							<div class="radio">
-								<label>[% text %]</label>
-							</div>
-							[% END %]
-                                              	</div>
-                                              	
-                                     		</div>
-                                     	[% END %]
-                                     	[% IF dgpi %]
-                                     		<div id="dgpi" class="tab-pane fade">
-                                     			<div class="form-group">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domains') %]</label>
+                                                    <input class="form-control" type="number" name="TMHMMdom">
+                            [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmhmmQuant') %]
+                            <div class="radio">
+                                <label>[% text %]</label>
+                            </div>
+                            [% END %]
+                                                </div>
+
+                                            </div>
+                                        [% END %]
+                                        [% IF dgpi %]
+                                            <div id="dgpi" class="tab-pane fade">
+                                                <div class="form-group">
                                                   <div class="checkbox">
-                                                  	<label><input type="checkbox" name="noDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-dgpi') %]</label>
+                                                    <label><input type="checkbox" name="noDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-dgpi') %]</label>
                                                   </div>
-                                              	</div>
-                                              	<div class="form-group">
+                                                </div>
+                                                <div class="form-group">
                                                         <label>[% searchDBTexts.item('search-database-analyses-protein-code-cleavage-site-dgpi') %]</label>
-                                                  	<input class="form-control" type="number" name="cleavageSiteDGPI">
-							[% FOREACH text IN searchDBTexts.item('search-database-quantity-cleavageQuant') %]
+                                                    <input class="form-control" type="number" name="cleavageSiteDGPI">
+                            [% FOREACH text IN searchDBTexts.item('search-database-quantity-cleavageQuant') %]
                                                         <div class="radio">
                                                                 <label>[% text %]</label>
                                                         </div>
                                                         [% END %]
-                                              	</div>
-                                              	<div class="form-group">
-							<label><input type="checkbox" name="noDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-score-dgpi') %]</label>                                                  
-							<input class="form-control" type="number" name="scoreDGPI">
-							[% FOREACH text IN searchDBTexts.item('search-database-quantity-scoreQuant') %]
+                                                </div>
+                                                <div class="form-group">
+                            <label><input type="checkbox" name="noDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-score-dgpi') %]</label>                                                  
+                            <input class="form-control" type="number" name="scoreDGPI">
+                            [% FOREACH text IN searchDBTexts.item('search-database-quantity-scoreQuant') %]
                                                         <div class="radio">
                                                                 <label>[% text %]</label>
                                                         </div>
                                                         [% END %]
-                                     		</div>
-						</div>
-                                     	[% END %]
-                                     	[% IF predgpi %]
-                                     		<div id="predgpi" class="tab-pane fade">
-                                     			<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noPreDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-predgpi') %]</label>
-                                                  		</div>
-                                              		</div>
-                                              		<div class="form-group">
-		                                        	<label>[% searchDBTexts.item('search-database-analyses-protein-code-name-predgpi') %]</label>
-		                                		<input class="form-control" type="text" name="namePreDGPI">
-		                                	</div>
-		                                      	<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-position-predgpi') %]</label>
-                                                  		<input class="form-control" type="number" name="positionPreDGPI">
-								[% FOREACH text IN searchDBTexts.item('search-database-quantity-positionQuantPreDGPI') %]
-                                                        	<div class="radio">
-                                                                	<label>[% text %]</label>
-                                                        	</div>
-                                                        	[% END %]
-                                              		</div>
-	                                              	<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-specificity-predgpi') %]</label>
-	                                                  	<input class="form-control" type="number" name="specificityPreDGPI">
-								[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                            </div>
+                        </div>
+                                        [% END %]
+                                        [% IF predgpi %]
+                                            <div id="predgpi" class="tab-pane fade">
+                                                <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noPreDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-predgpi') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <label>[% searchDBTexts.item('search-database-analyses-protein-code-name-predgpi') %]</label>
+                                                <input class="form-control" type="text" name="namePreDGPI">
+                                            </div>
+                                                <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-position-predgpi') %]</label>
+                                                        <input class="form-control" type="number" name="positionPreDGPI">
+                                [% FOREACH text IN searchDBTexts.item('search-database-quantity-positionQuantPreDGPI') %]
+                                                            <div class="radio">
+                                                                    <label>[% text %]</label>
+                                                            </div>
+                                                            [% END %]
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-specificity-predgpi') %]</label>
+                                                        <input class="form-control" type="number" name="specificityPreDGPI">
+                                [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
                                                                 <div class="radio">
                                                                         <label>[% text %]</label>
                                                                 </div>
                                                                 [% END %]
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-sequence-predgpi') %]</label>
-		                                          	<input class="form-control" type="text" name="sequencePreDGPI">
-		                                      	</div>
-                                     		</div>
-                                     	[% END %]
-                                     	[% IF bigpi %]
-                                     		<div id="bigpi" class="tab-pane fade">
-                                     			<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noBigGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-bigpi') %]</label>
-                                                  		</div>
-	                                              	</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-value-bigpi') %]</label>
-                                                  		<input class="form-control" type="number" name="pvalueBigpi">
-                                                  		[% FOREACH text IN searchDBTexts.item('search-database-quantity-pvalueQuantBigpi') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-								[% END %]
-	                                              	</div>
-	                                              	<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-position-bigpi') %]</label>
-                                                  		<input class="form-control" type="number" name="positionBigpi">
-	                                                  	[% FOREACH text IN searchDBTexts.item('search-database-quantity-positionQuantBigpi') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-								[% END %]
-                                              		</div>
-                                            	</div>
-                                     	[% END %]
-                                     	[% IF interpro %]
-	                                        <div id="geneOntology" class="tab-pane fade">
-          	                                      	<div class="form-group">
-								<div class="checkbox">
-									<label><input type="checkbox" name="noGO">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification') %]</label>
-								</div>
-							</div>
-                                        		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-sequence') %]</label>
-                                              			<input class="form-control" type="text" name="goID">
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                  		<input class="form-control" type="text" name="goDesc">
-                                              		</div>
-                                          	</div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-sequence-predgpi') %]</label>
+                                                    <input class="form-control" type="text" name="sequencePreDGPI">
+                                                </div>
+                                            </div>
+                                        [% END %]
+                                        [% IF bigpi %]
+                                            <div id="bigpi" class="tab-pane fade">
+                                                <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noBigGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-bigpi') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-value-bigpi') %]</label>
+                                                        <input class="form-control" type="number" name="pvalueBigpi">
+                                                        [% FOREACH text IN searchDBTexts.item('search-database-quantity-pvalueQuantBigpi') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                [% END %]
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-position-bigpi') %]</label>
+                                                        <input class="form-control" type="number" name="positionBigpi">
+                                                        [% FOREACH text IN searchDBTexts.item('search-database-quantity-positionQuantBigpi') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                [% END %]
+                                                    </div>
+                                                </div>
+                                        [% END %]
+                                        [% IF interpro %]
+                                            <div id="geneOntology" class="tab-pane fade">
+                                                    <div class="form-group">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="noGO">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification') %]</label>
+                                </div>
+                            </div>
+                                                <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-sequence') %]</label>
+                                                        <input class="form-control" type="text" name="goID">
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
+                                                        <input class="form-control" type="text" name="goDesc">
+                                                    </div>
+                                            </div>
                                       [% END %]
                                       [% IF tcdb %]
-                                          	<div id="transporterClassification" class="tab-pane fade">
-                                              		<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noTC">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-tcdb') %]</label>
-                                                  		</div>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-identifier') %]</label>
-                                                  		<input class="form-control" type="text" name="tcdbID">
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-family') %]</label>
-                                                  		<input class="form-control" type="text" name="tcdbFam">
-                                              		</div>
-                                              		<div class="form-group">
-								 <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-subclass') %]</label>
-                                                  		<select class="form-control" name="tcdbSubclass">
-                                                      			<option value="">All</option>
-                                                      			[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-subclass-option') %]
-                                                              		<option value='[% text %]'>[% text %]</option>
-                                                          		[% END %]
-                                                  		</select>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-class') %]</label>
-                                                  		<select class="form-control" name="tcdbClass">
-                                                      			<option value="">All</option>
-                                                      			[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-class-option') %]
-                                                              		<option value="[% text %]">[% text %]</option>
-                                                          		[% END %]
-                                                  		</select>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                  		<input class="form-control" type="text" name="tcdbDesc">
-                                              		</div>
-                                          	</div>
+                                            <div id="transporterClassification" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noTC">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-tcdb') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-identifier') %]</label>
+                                                        <input class="form-control" type="text" name="tcdbID">
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-family') %]</label>
+                                                        <input class="form-control" type="text" name="tcdbFam">
+                                                    </div>
+                                                    <div class="form-group">
+                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-subclass') %]</label>
+                                                        <select class="form-control" name="tcdbSubclass">
+                                                                <option value="">All</option>
+                                                                [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-subclass-option') %]
+                                                                    <option value='[% text %]'>[% text %]</option>
+                                                                [% END %]
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-class') %]</label>
+                                                        <select class="form-control" name="tcdbClass">
+                                                                <option value="">All</option>
+                                                                [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-search-by-transporter-class-option') %]
+                                                                    <option value="[% text %]">[% text %]</option>
+                                                                [% END %]
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
+                                                        <input class="form-control" type="text" name="tcdbDesc">
+                                                    </div>
+                                            </div>
                                          [% END %]
                                          [% IF phobius %]
-                                          	<div id="phobius" class="tab-pane fade">
-                                              		<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noPhobius">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-phobius') %]</label>
-                                                  		</div>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain') %]</label>
-                                                  		<input class="form-control" type="number" name="TMdom">
-                                                  		[% FOREACH text IN searchDBTexts.item('search-database-quantity-tmQuant') %]
-                                                          	<div class="radio">
-                                                              		<label>[% text %] </label>
-                                                  	    	</div>
-                                                  		[% END %]
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-signal-peptide') %]</label>
-                                                  		[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-signal-peptide-option') %]
-                                                          	<div class="radio">
-                                                              		<label>[% text %]</label>
-                                                          	</div>
-                                                  		[% END %]
-                                              		</div>
-                                          	</div>
-					[% END %]
+                                            <div id="phobius" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noPhobius">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-phobius') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain') %]</label>
+                                                        <input class="form-control" type="number" name="TMdom">
+                                                        [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmQuant') %]
+                                                            <div class="radio">
+                                                                    <label>[% text %] </label>
+                                                            </div>
+                                                        [% END %]
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-signal-peptide') %]</label>
+                                                        [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-signal-peptide-option') %]
+                                                            <div class="radio">
+                                                                    <label>[% text %]</label>
+                                                            </div>
+                                                        [% END %]
+                                                    </div>
+                                            </div>
+                                        [% END %]
+                                        [% IF signalP %]
+                                            <div id="phobius" class="tab-pane fade">
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-signal-peptide') %]</label>
+                                                        [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-signal-peptide-option-signalP') %]
+                                                            <div class="radio">
+                                                                    <label>[% text %]</label>
+                                                            </div>
+                                                        [% END %]
+                                                    </div>
+                                            </div> 
+                                        [% END %]
                                         [% IF blast %]
-                                          	<div id="blast" class="tab-pane fade">
-                                              		<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noBlast">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-blast') %]</label>
-                                                  		</div>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-sequence') %]</label>
-                                                  		<input class="form-control" type="text" name="blastID">
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                  		<input class="form-control" type="text" name="blastDesc">
-                                              		</div>
-                                          	</div>
+                                            <div id="blast" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noBlast">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-blast') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-sequence') %]</label>
+                                                        <input class="form-control" type="text" name="blastID">
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
+                                                        <input class="form-control" type="text" name="blastDesc">
+                                                    </div>
+                                            </div>
                                       [% END %]
                                       [% IF rpsblast %]
-                                          	<div id="rpsblast" class="tab-pane fade">
-                                              		<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noRps">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-rpsblast') %]</label>
-                                                  		</div>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-sequence') %]</label>
-                                                  		<input class="form-control" type="text" name="rpsID">
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                  		<input class="form-control" type="text" name="rpsDesc">
-                                              		</div>
-                                          	</div>
+                                            <div id="rpsblast" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noRps">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-rpsblast') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-sequence') %]</label>
+                                                        <input class="form-control" type="text" name="rpsID">
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
+                                                        <input class="form-control" type="text" name="rpsDesc">
+                                                    </div>
+                                            </div>
                                       [% END %]
                                       [% IF pathways %]
-                                          	<div id="kegg" class="tab-pane fade">
-                                              		<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noKEGG">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-kegg') %]</label>
-                                                	  	</div>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-by-orthology-identifier-kegg') %]</label>
-                                                  		<input class="form-control" type="text" name="koID">
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-by-kegg-pathway') %]</label>
-                                                  		<select class="form-control" name="keggPath">
-                                                      			<option value="">All</option>
-                                                      			[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-by-kegg-pathway-options') %]
-                                                              			[% text %]
-                                                      			[% END %]
-                                                  		</select>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                  		<input class="form-control" type="text" name="keggDesc">
-                                              		</div>
-                                          	</div>
+                                            <div id="kegg" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noKEGG">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-kegg') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-by-orthology-identifier-kegg') %]</label>
+                                                        <input class="form-control" type="text" name="koID">
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-by-kegg-pathway') %]</label>
+                                                        <select class="form-control" name="keggPath">
+                                                                <option value="">All</option>
+                                                                [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-by-kegg-pathway-options') %]
+                                                                        [% text %]
+                                                                [% END %]
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
+                                                        <input class="form-control" type="text" name="keggDesc">
+                                                    </div>
+                                            </div>
                                       [% END %]
                                       [% IF orthology %]
-                                          	<div id="orthologyAnalysis" class="tab-pane fade">
-                                              		<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noOrth">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-eggNOG') %]</label>
-                                                  		</div>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-eggNOG') %]</label>
-                                                  		<input class="form-control" type="text" name="orthID">
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                  		<input class="form-control" type="text" name="orthDesc">
-                                              		</div>
-                                          	</div>
+                                            <div id="orthologyAnalysis" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noOrth">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-eggNOG') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-eggNOG') %]</label>
+                                                        <input class="form-control" type="text" name="orthID">
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
+                                                        <input class="form-control" type="text" name="orthDesc">
+                                                    </div>
+                                            </div>
                                       [% END %]
                                       [% IF interpro %]
-                                          	<div id="interpro" class="tab-pane fade">
-                                              		<div class="form-group">
-                                                  		<div class="checkbox">
-									<label><input type="checkbox" name="noOrth">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-interpro') %]</label>
-                                                  		</div>
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-interpro') %]</label>
-                                                  		<input class="form-control" type="text" name="interproID">
-                                              		</div>
-                                              		<div class="form-group">
-								<label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                  		<input class="form-control" type="text" name="interproDesc">
-                                              		</div>
-                                          	</div>
+                                            <div id="interpro" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noOrth">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-interpro') %]</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-interpro') %]</label>
+                                                        <input class="form-control" type="text" name="interproID">
+                                                    </div>
+                                                    <div class="form-group">
+                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
+                                                        <input class="form-control" type="text" name="interproDesc">
+                                                    </div>
+                                            </div>
                                       [% END %]
                                      </div>
                                      <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
@@ -9101,338 +8960,338 @@ CONTENTINDEXHOME
                     [% END %]
                     [% IF section_dna_based %]
                      <div id="parentCollapseThree" class="panel panel-default">
-                     	<div class="panel-heading">
-                        	<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"> [% searchDBTexts.item('search-database-dna-based-analyses-title') %] </a>
-                             	</h4>
-                    	</div>
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed"> [% searchDBTexts.item('search-database-dna-based-analyses-title') %] </a>
+                                </h4>
+                        </div>
                         <div id="collapseThree" class="panel-collapse collapse">
-                        	<div class="panel-body">
-					<ul class="nav nav-pills">
-						[% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-tab') %]
-						<li class="">[% text %]</li>
-						[% END %]
-					</ul>
-					<h4></h4>
-					<div class="tab-content">
-						<div id="contigs" class="tab-pane fade">
-							<form id="formSearchContig">
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-only-contig-title') %]</label>
-									<select class="form-control"  name="contig" required="required">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-										<option value="[% sequence.id %]">[% sequence.name %]</option>
-										[% END %]
-									</select>
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-from-base') %]</label>
-									<input class="form-control" type="number" min="1" name="contigStart">
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-to') %]</label>
-									<input class="form-control" type="number" min="1" name="contigEnd">
-								</div>
-								<div class="form-group">
-									<div class="checkbox">
-										<label><input type="checkbox" name="revCompContig">[% searchDBTexts.item('search-database-dna-based-analyses-reverse-complement') %]</label>
-									</div>
-								</div>
-								<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-								<input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-					[% IF trna %]
-						<div id="trna" class="tab-pane fade">
-							<form id="trna-form">
-								<div class="form-group">
-									<label>Contig: </label>
-									<select name="contig">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-                                						<option value="[% sequence.id %]">[% sequence.name %]</option>
-                                						[% END %]
-                            						</select>
-                        					</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-get-by-amino-acid') %]</label>
-									<select class="form-control" name="tRNAaa">
-										<option value="">All</option>
-										[% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-get-by-amino-acid-options') %]
-										[% text %]
-										[% END %]
-									</select>
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-get-by-codon') %]</label>
-									<select class="form-control" name="tRNAcd">
-										<option value="">All</option>
-										[% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-get-by-codon-options') %]
-										[% text %]
-										[% END %]
-									</select>
-								</div>
-								<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-								<input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-			
-					[% END %]
-					[% IF trf OR mreps OR string %]
-						<div id="tandemRepeats" class="tab-pane fade">
-							<form id="tandemRepeats-form">
-								<div class="alert alert-info">
-									[% searchDBTexts.item('search-database-dna-based-analyses-tandem-repeats') %]
-								</div>
-								<div class="form-group">
-									<label>Contig: </label>
-									<select name="contig">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-                               							<option value="[% sequence.id %]">[% sequence.name %]</option>
-                               							[% END %]
-                        						</select>
-                    						</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-contain-sequence-repetition-unit') %]</label>
-									<input class="form-control" type="text" name="TRFrepSeq">
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-repetition-unit-bases') %]</label>
-									<input class="form-control" type="number" name="TRFrepSize" min="1">
-									[% FOREACH text IN searchDBTexts.item('search-database-quantity-trf') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-occours-between') %]</label>
-									<input class="form-control" type="number" step="any" min="0" name="TRFrepNumMin">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-occours-between-and') %]</label>
-									<input class="form-control" type="number" step="any" name="TRFrepNumMax">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-occours-between-and-times') %]</label>
-								</div>
-								<div class="alert alert-warning">
-									[% searchDBTexts.item('search-database-dna-based-analyses-tandem-repeats-note') %]
-								</div>
-								<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-								<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-					[% END %]
-					[% IF infernal %]
-						<div id="otherNonCodingRNAs" class="tab-pane fade">
-							<form id="otherNonCodingRNAs-form">
-								<div class="form-group">
-									<label>Contig: </label>
-									<select name="contig">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-                               							<option value="[% sequence.id %]">[% sequence.name %]</option>
-                               							[% END %]
-                           						</select>
-                       						</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-search-ncrna-by-target-identifier') %]</label>
-									<input class="form-control" type="text" name="ncRNAtargetID">
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-evalue-match') %]</label>
-									<input class="form-control" type="number" step="any" min="0" name="ncRNAevalue">
-									[% FOREACH text IN searchDBTexts.item('search-database-quantity-ncrna') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-name') %]</label>
-									<input class="form-control" type="text" name="ncRNAtargetName">
-								</div>
-								[% IF targetClass.size > 0 %]
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-class') %]</label>
-									<select class="form-control"  name="ncRNAtargetClass">
-										<option value=""></option>
-										[% FOREACH text IN targetClass %]
-										<option value="[% text %]">[% text %]</option>
-										[% END %]
-									</select>
-								</div>
-								[% END %]
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-type') %]</label>
-									<input class="form-control" type="text" name="ncRNAtargetType">
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-description') %]</label>
-									<input class="form-control" type="text" name="ncRNAtargetDesc">
-								</div>
-								<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-								<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-					[% END %]
-					[% IF rbs %]
-						<div id="ribosomalBindingSites" class="tab-pane fade">
-							<form id="ribosomalBindingSites-form">
-								<div class="form-group">
-									<label>Contig: </label>
-									<select name="contig">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-                               							<option value="[% sequence.id %]">[% sequence.name %]</option>
-                            							[% END %]
-                        						</select>							
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-ribosomal-binding') %]</label>
-									<input class="form-control" type="text" name="RBSpattern">
-								</div>
-								<div class="form-group">
-									<div class="checkbox">
-										<label><input type="checkbox" name="RBSshift">[% searchDBTexts.item('search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift') %]</label>
-									</div>
-									[% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-or-search-all-ribosomal-binding-options') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<div class="form-group">
-									<div class="checkbox">
-										<label><input type="checkbox" name="RBSnewcodon">[% searchDBTexts.item('search-database-dna-based-analyses-or-search-all-ribosomal-binding-start') %]</label>
-									</div>
-								</div>
-								<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-								<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-					[% END %]
-					[% IF transterm %]
-						<div id="transcriptionalTerminators" class="tab-pane fade">
-							<form id="transcriptionalTerminators-form">
-								<div class="form-group">
-									<label>Contig: </label>
-									<select name="contig">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-                               							<option value="[% sequence.id %]">[% sequence.name %]</option>
-                            							[% END %]
-                        						</select>
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-transcriptional-terminators-confidence-score') %]</label>
-									<input class="form-control" type="number" step="any" min="1" name="TTconf">
-									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-TTconfM') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-hairpin-score') %]</label>
-									<input class="form-control" type="number" step="any" name="TThp">
-									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-TThpM') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-tail-score') %]</label>
-									<input class="form-control" type="number" step="any" name="TTtail">
-									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-TTtailM') %]
-										<div class="radio">
-											<label>[% text %]</label>
-										</div>
-									[% END %]
-								</div>
-								<div class="alert alert-warning">
-									[% searchDBTexts.item('search-database-dna-based-analyses-hairpin-note') %]
-								</div>
-								<input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-								<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-					[% END %]
-					[% IF alienhunter %]
-						<div id="horizontalGeneTransfers" class="tab-pane fade">
-							<form id="horizontalGeneTransfers-form">
-								<div class="form-group">
-									<label>Contig: </label>
-									<select name="contig">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-                               							<option value="[% sequence.id %]">[% sequence.name %]</option>
-                            							[% END %]
-                        						</select>
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-predicted-alienhunter') %]</label>
-									<input class="form-control" type="number" min="0" step="any" name="AHlen">
-									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHlenM') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-score') %]</label>
-									<input class="form-control" type="number" min="0" step="any" name="AHscore">
-									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHscM') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-threshold') %]</label>
-									<input class="form-control" type="number" min="0" step="any" name="AHthr">
-									[% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHthrM') %]
-									<div class="radio">
-										<label>[% text %]</label>
-									</div>
-									[% END %]
-								</div>
-								<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-								<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-					[% END %]
-					[% IF rnammer %]
-						<div id="rrna" class="tab-pane fade">
-							<form id="rRNA-form">
-								<div class="form-group">
-									<label>Contig: </label>
-									<select name="contig">
-										<option value="">All</option>
-										[% FOREACH sequence IN sequences %]
-                               							<option value="[% sequence.id %]">[% sequence.name %]</option>
-                            							[% END %]
-                        						</select>
-								</div>
-								<div class="form-group">
-									<label>[% searchDBTexts.item('search-database-dna-based-analyses-get-by-rrna-type') %]</label>
-									<select name="type">
-										<option value="">All</option>
-										[% FOREACH rrna IN rRNAsAvailable %]
-                               							<option value="[% rrna %]">[% rrna %]</option>
-                            							[% END %]
-                        						</select>
-								</div>
-					
-								<input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-								<input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
-							</form>
-						</div>
-					[% END %]
-					</div>
+                            <div class="panel-body">
+                    <ul class="nav nav-pills">
+                        [% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-tab') %]
+                        <li class="">[% text %]</li>
+                        [% END %]
+                    </ul>
+                    <h4></h4>
+                    <div class="tab-content">
+                        <div id="contigs" class="tab-pane fade">
+                            <form id="formSearchContig">
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-only-contig-title') %]</label>
+                                    <select class="form-control"  name="contig" required="required">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                        [% END %]
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-from-base') %]</label>
+                                    <input class="form-control" type="number" min="1" name="contigStart">
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-to') %]</label>
+                                    <input class="form-control" type="number" min="1" name="contigEnd">
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="revCompContig">[% searchDBTexts.item('search-database-dna-based-analyses-reverse-complement') %]</label>
+                                    </div>
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+                    [% IF trna %]
+                        <div id="trna" class="tab-pane fade">
+                            <form id="trna-form">
+                                <div class="form-group">
+                                    <label>Contig: </label>
+                                    <select name="contig">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                        [% END %]
+                                                    </select>
+                                            </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-get-by-amino-acid') %]</label>
+                                    <select class="form-control" name="tRNAaa">
+                                        <option value="">All</option>
+                                        [% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-get-by-amino-acid-options') %]
+                                        [% text %]
+                                        [% END %]
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-get-by-codon') %]</label>
+                                    <select class="form-control" name="tRNAcd">
+                                        <option value="">All</option>
+                                        [% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-get-by-codon-options') %]
+                                        [% text %]
+                                        [% END %]
+                                    </select>
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+
+                    [% END %]
+                    [% IF trf OR mreps OR string %]
+                        <div id="tandemRepeats" class="tab-pane fade">
+                            <form id="tandemRepeats-form">
+                                <div class="alert alert-info">
+                                    [% searchDBTexts.item('search-database-dna-based-analyses-tandem-repeats') %]
+                                </div>
+                                <div class="form-group">
+                                    <label>Contig: </label>
+                                    <select name="contig">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                        [% END %]
+                                                </select>
+                                            </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-contain-sequence-repetition-unit') %]</label>
+                                    <input class="form-control" type="text" name="TRFrepSeq">
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-repetition-unit-bases') %]</label>
+                                    <input class="form-control" type="number" name="TRFrepSize" min="1">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-quantity-trf') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-occours-between') %]</label>
+                                    <input class="form-control" type="number" step="any" min="0" name="TRFrepNumMin">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-occours-between-and') %]</label>
+                                    <input class="form-control" type="number" step="any" name="TRFrepNumMax">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-occours-between-and-times') %]</label>
+                                </div>
+                                <div class="alert alert-warning">
+                                    [% searchDBTexts.item('search-database-dna-based-analyses-tandem-repeats-note') %]
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+                    [% END %]
+                    [% IF infernal %]
+                        <div id="otherNonCodingRNAs" class="tab-pane fade">
+                            <form id="otherNonCodingRNAs-form">
+                                <div class="form-group">
+                                    <label>Contig: </label>
+                                    <select name="contig">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                        [% END %]
+                                                </select>
+                                            </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-search-ncrna-by-target-identifier') %]</label>
+                                    <input class="form-control" type="text" name="ncRNAtargetID">
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-evalue-match') %]</label>
+                                    <input class="form-control" type="number" step="any" min="0" name="ncRNAevalue">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-quantity-ncrna') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-name') %]</label>
+                                    <input class="form-control" type="text" name="ncRNAtargetName">
+                                </div>
+                                [% IF targetClass.size > 0 %]
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-class') %]</label>
+                                    <select class="form-control"  name="ncRNAtargetClass">
+                                        <option value=""></option>
+                                        [% FOREACH text IN targetClass %]
+                                        <option value="[% text %]">[% text %]</option>
+                                        [% END %]
+                                    </select>
+                                </div>
+                                [% END %]
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-type') %]</label>
+                                    <input class="form-control" type="text" name="ncRNAtargetType">
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-description') %]</label>
+                                    <input class="form-control" type="text" name="ncRNAtargetDesc">
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+                    [% END %]
+                    [% IF rbs %]
+                        <div id="ribosomalBindingSites" class="tab-pane fade">
+                            <form id="ribosomalBindingSites-form">
+                                <div class="form-group">
+                                    <label>Contig: </label>
+                                    <select name="contig">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                        [% END %]
+                                                </select>							
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-ribosomal-binding') %]</label>
+                                    <input class="form-control" type="text" name="RBSpattern">
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="RBSshift">[% searchDBTexts.item('search-database-dna-based-analyses-or-search-all-ribosomal-binding-shift') %]</label>
+                                    </div>
+                                    [% FOREACH text IN searchDBTexts.item('search-database-dna-based-analyses-or-search-all-ribosomal-binding-options') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" name="RBSnewcodon">[% searchDBTexts.item('search-database-dna-based-analyses-or-search-all-ribosomal-binding-start') %]</label>
+                                    </div>
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+                    [% END %]
+                    [% IF transterm %]
+                        <div id="transcriptionalTerminators" class="tab-pane fade">
+                            <form id="transcriptionalTerminators-form">
+                                <div class="form-group">
+                                    <label>Contig: </label>
+                                    <select name="contig">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                        [% END %]
+                                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-transcriptional-terminators-confidence-score') %]</label>
+                                    <input class="form-control" type="number" step="any" min="1" name="TTconf">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-TTconfM') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-hairpin-score') %]</label>
+                                    <input class="form-control" type="number" step="any" name="TThp">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-TThpM') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-tail-score') %]</label>
+                                    <input class="form-control" type="number" step="any" name="TTtail">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-TTtailM') %]
+                                        <div class="radio">
+                                            <label>[% text %]</label>
+                                        </div>
+                                    [% END %]
+                                </div>
+                                <div class="alert alert-warning">
+                                    [% searchDBTexts.item('search-database-dna-based-analyses-hairpin-note') %]
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+                    [% END %]
+                    [% IF alienhunter %]
+                        <div id="horizontalGeneTransfers" class="tab-pane fade">
+                            <form id="horizontalGeneTransfers-form">
+                                <div class="form-group">
+                                    <label>Contig: </label>
+                                    <select name="contig">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                        [% END %]
+                                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-predicted-alienhunter') %]</label>
+                                    <input class="form-control" type="number" min="0" step="any" name="AHlen">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHlenM') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-score') %]</label>
+                                    <input class="form-control" type="number" min="0" step="any" name="AHscore">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHscM') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-threshold') %]</label>
+                                    <input class="form-control" type="number" min="0" step="any" name="AHthr">
+                                    [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHthrM') %]
+                                    <div class="radio">
+                                        <label>[% text %]</label>
+                                    </div>
+                                    [% END %]
+                                </div>
+                                <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+                    [% END %]
+                    [% IF rnammer %]
+                        <div id="rrna" class="tab-pane fade">
+                            <form id="rRNA-form">
+                                <div class="form-group">
+                                    <label>Contig: </label>
+                                    <select name="contig">
+                                        <option value="">All</option>
+                                        [% FOREACH sequence IN sequences %]
+                                                        <option value="[% sequence.id %]">[% sequence.name %]</option>
+                                                        [% END %]
+                                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>[% searchDBTexts.item('search-database-dna-based-analyses-get-by-rrna-type') %]</label>
+                                    <select name="type">
+                                        <option value="">All</option>
+                                        [% FOREACH rrna IN rRNAsAvailable %]
+                                                        <option value="[% rrna %]">[% rrna %]</option>
+                                                        [% END %]
+                                                </select>
+                                </div>
+
+                                <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                            </form>
+                        </div>
+                    [% END %]
+                    </div>
                              </div>
                              <div class="panel-footer">
-                             	[% searchDBTexts.item('search-database-dna-based-analyses-footer') %]
+                                [% searchDBTexts.item('search-database-dna-based-analyses-footer') %]
                              </div>
                          </div>
                      </div>
@@ -9452,52 +9311,52 @@ CONTENTINDEXHOME
 
 
 CONTENTSEARCHDATABASE
-		,
-		"index.tt" => <<CONTENTINDEXSEARCHDATABASE
+        ,
+        "index.tt" => <<CONTENTINDEXSEARCHDATABASE
 <!DOCTYPE html>
 <input type="hidden" id="id" value="[% id %]" />
 <div class="content-wrapper">
     <div class="container">
-    	<div class="row">
-    		<div class="col-md-1">
-    			<input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
-    		</div>
-    		<div class="col-md-11">
-    			<span id="totalResults"></span>
-    		</div>
-    	</div>
+        <div class="row">
+            <div class="col-md-1">
+                <input type="button" id="back" value="Back" class="btn btn-danger btn-lg" />
+            </div>
+            <div class="col-md-11">
+                <span id="totalResults"></span>
+            </div>
+        </div>
         [% INCLUDE '$lowCaseName/search-database/_forms.tt' %]
         <section class="pagination-section">
-	    	<div class="row">
-	    		<div class="col-sm-2">
-	    			<input type="button" id="begin" value="<<" class="btn btn-info btn-lg" />
-	    		</div>
-	    		<div class="col-sm-2">
-	    			<input type="button" id="less" value="<" class="btn btn-info btn-lg" />
-	    		</div>
-	    		<form id="skipPagination">
-		    		<div class="col-sm-2">
-		    			<div class="row">
-		    				<div class="col-md-6">
-		    					<input type="number" id="numberPage" value="1" min="1" class="form-control" />
-		    				</div>
-		    				<div class="col-md-6"> 
-		    					<p>pages of <span id="totalNumberPages" /></p>	
-		    				</div>
-		    			</div>
-		    		</div>
-		    		<div class="col-sm-2">
-		    			<input type="submit" id="goPage" value="Go" class="btn btn-info btn-lg" />
-		    		</div>
-		    	</form>
-	    		<div class="col-sm-2">
-	    			<input type="button" id="more" value=">" class="btn btn-info btn-lg" />
-	    		</div>
-	    		<div class="col-sm-2">
-	    			<input type="button" id="last" value=">>" class="btn btn-info btn-lg" />
-	    		</div>
-	    	</div>
-    	</section>
+            <div class="row">
+                <div class="col-sm-2">
+                    <input type="button" id="begin" value="<<" class="btn btn-info btn-lg" />
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" id="less" value="<" class="btn btn-info btn-lg" />
+                </div>
+                <form id="skipPagination">
+                    <div class="col-sm-2">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="number" id="numberPage" value="1" min="1" class="form-control" />
+                            </div>
+                            <div class="col-md-6"> 
+                                <p>pages of <span id="totalNumberPages" /></p>	
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="submit" id="goPage" value="Go" class="btn btn-info btn-lg" />
+                    </div>
+                </form>
+                <div class="col-sm-2">
+                    <input type="button" id="more" value=">" class="btn btn-info btn-lg" />
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" id="last" value=">>" class="btn btn-info btn-lg" />
+                </div>
+            </div>
+        </section>
     </div>
 </div>
 <script>
@@ -9534,156 +9393,156 @@ CONTENTSEARCHDATABASE
 <script type="text/javascript" src="/assets/js/search-database.js"></script>
 
 CONTENTINDEXSEARCHDATABASE
-		,
-		"contigs.tt" => <<CONTENT
+        ,
+        "contigs.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default result">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<div class='row'>
-				<div class='col-md-10'>
-					<a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results
-				</div>
-				<div class='col-md-2'>
-					<a href="[% sequence.path %]/DownloadSequence?contig=[% sequence.name %]&start=[% start %]&end=[% end %]&reverseComplement=[% hadReverseComplement %]">Download FASTA</a>
-				</div>
-			</div>			
-		</div>
-	</div>
-	<div id="[% sequence.id %]" class="panel-collapse collapse in">
-		<div class="panel-body">
-			<div class="sequence">
-				<div class="row">
-					<div class="col-md-6">
-						[% contig %]
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            <div class='row'>
+                <div class='col-md-10'>
+                    <a id="title-panel" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results
+                </div>
+                <div class='col-md-2'>
+                    <a href="[% sequence.path %]/DownloadSequence?contig=[% sequence.name %]&start=[% start %]&end=[% end %]&reverseComplement=[% hadReverseComplement %]">Download FASTA</a>
+                </div>
+            </div>			
+        </div>
+    </div>
+    <div id="[% sequence.id %]" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <div class="sequence">
+                <div class="row">
+                    <div class="col-md-6">
+                        [% contig %]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 CONTENT
-		,
-		"dgpiBasicResult.tt" => <<CONTENT
+        ,
+        "dgpiBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
-		</div>
-	</div>
-	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
-		<div class="row">
-			<div class="col-md-3">
-				<p>Cleavage site:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.cleavage_site %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Score:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.score %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Start:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.start %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>End:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.end %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Strand:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.strand %]</p>
-			</div>
-		</div>
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+        </div>
+    </div>
+    <div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Cleavage site:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.cleavage_site %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Score:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.score %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Start:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.start %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>End:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.end %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Strand:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.strand %]</p>
+            </div>
+        </div>
+    </div>
 </div>
 CONTENT
-		,
-		"bigpiBasicResult.tt" => <<CONTENT
+        ,
+        "bigpiBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
-		</div>
-	</div>
-	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
-		<div class="row">
-			<div class="col-md-3">
-				<p>Value:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.pvalue %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Position:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.position %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Start:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.start %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>End:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.end %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Strand:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.strand %]</p>
-			</div>
-		</div>
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+        </div>
+    </div>
+    <div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Value:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.pvalue %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Position:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.position %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Start:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.start %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>End:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.end %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Strand:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.strand %]</p>
+            </div>
+        </div>
+    </div>
 </div>
 CONTENT
-		,
-		"dgpiNoResult.tt" => <<CONTENT
+        ,
+        "dgpiNoResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Result:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.result %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Result:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.result %]</p>
+    </div>
 </div>		
 CONTENT
-		,		
-		"signalPBasicResult.tt" => <<CONTENT
+        ,		
+        "signalPBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
         <div class="col-md-3">
@@ -9726,30 +9585,30 @@ CONTENT
         </div>
 </div>
 CONTENT
-		,
-		"evidences.tt" => <<CONTENT
+        ,
+        "evidences.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="panel-title">
-			[% result.descriptionComponent %]
-		</div>
-	</div>
-	<div id="evidence-[% result.componentName %]-[% result.id %]" class="panel-body collapse">
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            [% result.descriptionComponent %]
+        </div>
+    </div>
+    <div id="evidence-[% result.componentName %]-[% result.id %]" class="panel-body collapse">
+    </div>
 </div>
 
 CONTENT
-		,
-		"hmmerBasicResult.tt" => <<CONTENT
+        ,
+        "hmmerBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Sequence name:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.seq_name %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Sequence name:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.seq_name %]</p>
+    </div>
 </div>
 <div class="row">
         <div class="col-md-3">
@@ -9784,389 +9643,389 @@ CONTENT
         </div>
 </div>
 CONTENT
-		,
-		"gene.tt" => <<CONTENT
+        ,
+        "gene.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default result">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<a id="result-panel-title-[% result.feature_id %]" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
-		</div>
-	</div>
-	<div id="[% result.feature_id %]" class="panel-body collapse">
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a id="result-panel-title-[% result.feature_id %]" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
+        </div>
+    </div>
+    <div id="[% result.feature_id %]" class="panel-body collapse">
+    </div>
 </div>
 CONTENT
-		,
-		"geneBasics.tt" => <<CONTENT
+        ,
+        "geneBasics.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Gene predictor:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.type %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Gene predictor:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.type %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Located in:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.uniquename %] (from position [% result.fstart %] to [% result.fend %])</p>
-	</div>
+    <div class="col-md-3">
+        <p>Located in:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.uniquename %] (from position [% result.fstart %] to [% result.fend %])</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Gene length:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.length %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Gene length:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.length %]</p>
+    </div>
 </div>
 CONTENT
-		,
-		"interproBasicResult.tt" => <<CONTENT
+        ,
+        "interproBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
-		</div>
-	</div>
-	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
-		<div class="row">
-			<div class="col-md-3">
-				<p>InterPro identifier:</p>
-			</div>
-			<div class="col-md-9">
-				<p><a href="http://www.ebi.ac.uk/interpro/entry/[% result.interpro_id %]" target='_blank'>[% result.interpro_id %]</a></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>InterPro description:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.description_interpro %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Database identifier and database:</p>
-			</div>
-			<div class="col-md-9">
-				<p><a href="http://www.ebi.ac.uk/interpro/search?q=[% result.DB_id %]" target='_blank'>[% result.DB_id %]</a> ([% result.DB_name %])</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Database match description:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.description %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>GO process:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.evidence_process %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>GO function:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.evidence_function %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>GO component:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.evidence_component %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Match score:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.score %]</p>
-			</div>
-		</div>
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+        </div>
+    </div>
+    <div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+        <div class="row">
+            <div class="col-md-3">
+                <p>InterPro identifier:</p>
+            </div>
+            <div class="col-md-9">
+                <p><a href="http://www.ebi.ac.uk/interpro/entry/[% result.interpro_id %]" target='_blank'>[% result.interpro_id %]</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>InterPro description:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.description_interpro %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Database identifier and database:</p>
+            </div>
+            <div class="col-md-9">
+                <p><a href="http://www.ebi.ac.uk/interpro/search?q=[% result.DB_id %]" target='_blank'>[% result.DB_id %]</a> ([% result.DB_name %])</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Database match description:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.description %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>GO process:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.evidence_process %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>GO function:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.evidence_function %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>GO component:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.evidence_component %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Match score:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.score %]</p>
+            </div>
+        </div>
+    </div>
 </div>
 CONTENT
-		,
-		"orthologies.tt" => <<CONTENT
+        ,
+        "orthologies.tt" => <<CONTENT
 <tr>
-	<td><a href="http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=[% result.orthologous_group %]" target='_blank'>[% result.orthologous_group %]</a> - [% result.orthologous_group_description %]</td>
+    <td><a href="http://eggnog.embl.de/version_3.0/cgi/search.py?search_term_0=[% result.orthologous_group %]" target='_blank'>[% result.orthologous_group %]</a> - [% result.orthologous_group_description %]</td>
 </tr>
 CONTENT
-		,
-		"orthologyBasicResult.tt" => <<CONTENT
+        ,
+        "orthologyBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		Match identifier:
-	</div>
-	<div class="col-md-9">
-		[% result.orthologous_hit %]
-	</div>
+    <div class="col-md-3">
+        Match identifier:
+    </div>
+    <div class="col-md-9">
+        [% result.orthologous_hit %]
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-12">
-		<div class="table-responsive">
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>Orthologous group:</th>
-					</tr>
-				</thead>
-				<tbody id="orthology-[% result.id %]">
-					
-				</tbody>
-			</table>
-		</div>
-	</div>
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Orthologous group:</th>
+                    </tr>
+                </thead>
+                <tbody id="orthology-[% result.id %]">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 CONTENT
-		,
-		"pathways.tt" => <<CONTENT
+        ,
+        "pathways.tt" => <<CONTENT
 <tr>
-	<td><a href="http://www.genome.jp/dbget-bin/www_bget?[% result.metabolic_pathway_id %]" target='_blank'>[% result.metabolic_pathway_id %]</a> - [% result.metabolic_pathway_description %]</td>
-	<td>[% result.viewmap %]</td>
+    <td><a href="http://www.genome.jp/dbget-bin/www_bget?[% result.metabolic_pathway_id %]" target='_blank'>[% result.metabolic_pathway_id %]</a> - [% result.metabolic_pathway_description %]</td>
+    <td>[% result.viewmap %]</td>
 </tr>
 CONTENT
-		,
-		"pathwaysBasicResult.tt" => <<CONTENT
+        ,
+        "pathwaysBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		Orthologous group:
-	</div>
-	<div class="col-md-9">
-		<a href="http://www.genome.jp/dbget-bin/www_bget?[% result.orthologous_group_id %]" target='_blank'>[% result.orthologous_group_id %]</a> - [% result.orthologous_group_description %]
-	</div>
+    <div class="col-md-3">
+        Orthologous group:
+    </div>
+    <div class="col-md-9">
+        <a href="http://www.genome.jp/dbget-bin/www_bget?[% result.orthologous_group_id %]" target='_blank'>[% result.orthologous_group_id %]</a> - [% result.orthologous_group_description %]
+    </div>
 </div>
 
 CONTENT
-		,
-		"predgpiBasicResult.tt" => <<CONTENT
+        ,
+        "predgpiBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
-		</div>
-	</div>
-	<div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
-		<div class="row">
-			<div class="col-md-3">
-				<p>Name:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.name %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Position:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.position %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Specificity:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.specificity %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Sequence:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.sequence %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Start:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.start %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>End:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.end %]</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<p>Strand:</p>
-			</div>
-			<div class="col-md-9">
-				<p>[% result.strand %]</p>
-			</div>
-		</div>
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
+        </div>
+    </div>
+    <div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Name:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.name %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Position:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.position %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Specificity:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.specificity %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Sequence:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.sequence %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Start:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.start %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>End:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.end %]</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Strand:</p>
+            </div>
+            <div class="col-md-9">
+                <p>[% result.strand %]</p>
+            </div>
+        </div>
+    </div>
 </div>
 CONTENT
-		,
-		"properties.tt" => <<CONTENT
+        ,
+        "properties.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		[% result.key %]
-	</div>
-	<div class="col-md-9">
-		[% result.value %]
-	</div>
+    <div class="col-md-3">
+        [% result.key %]
+    </div>
+    <div class="col-md-9">
+        [% result.value %]
+    </div>
 </div>
 CONTENT
-		,
-		"rnaPredictionBasicResult.tt" => <<CONTENT
+        ,
+        "rnaPredictionBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Molecule type:</p>
-	</div
-	<div class="col-md-9">
-		<p>[% result.molecule_type %]</p>
-	</div
+    <div class="col-md-3">
+        <p>Molecule type:</p>
+    </div
+    <div class="col-md-9">
+        <p>[% result.molecule_type %]</p>
+    </div
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Prediction score:</p>
-	</div
-	<div class="col-md-9">
-		<p>[% result.score %]</p>
-	</div
+    <div class="col-md-3">
+        <p>Prediction score:</p>
+    </div
+    <div class="col-md-9">
+        <p>[% result.score %]</p>
+    </div
 </div>
 CONTENT
-		,
-		"rnaScanBasicResult.tt" => <<CONTENT
+        ,
+        "rnaScanBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Product description:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.target_description %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Product description:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.target_description %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Prediction score:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.score %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Prediction score:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.score %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>E-value of match:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.evalue %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>E-value of match:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.evalue %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Identifier of match:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.target_identifier %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Identifier of match:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.target_identifier %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Target name:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.target_name %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Target name:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.target_name %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Target class:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.target_class %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Target class:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.target_class %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Bias:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.bias %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Bias:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.bias %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Truncated:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.truncated %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Truncated:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.truncated %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Component result:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.download %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Component result:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.download %]</p>
+    </div>
 </div>
 CONTENT
-		,
-		"rRNAPredictionBasicResult.tt" => <<CONTENT
+        ,
+        "rRNAPredictionBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Molecule type:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.molecule_type %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Molecule type:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.molecule_type %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Prediction score:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.score %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Prediction score:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.score %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Component result:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.download %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Component result:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.download %]</p>
+    </div>
 </div>
 CONTENT
-		,
-		"sequence.tt" => <<CONTENT
+        ,
+        "sequence.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default sequences">
-	<div class="panel-heading">
-		<div class="panel-title">
+    <div class="panel-heading">
+        <div class="panel-title">
             <div class="row">
                 <div class="col-md-10">
                     <a data-toggle="collapse" data-parent="#accordion" href="#sequence-[% result.feature_id %]">Sequence</a> 
@@ -10175,327 +10034,327 @@ CONTENT
                     <a href="[% result.pathname %]/DownloadSequence?contig=[% result.contig %]&start=[% result.start %]&end=[% result.end %]&reverseComplement=[% result.reverseComplement %]">Download FASTA</a>
                 </div>
             </div>
-		</div>
-	</div>
-	<div id="sequence-[% result.feature_id %]" class="panel-body collapse sequence">
-		<div class="row">
-			<div class="col-md-12">
-				[% result.sequence %]
-			</div>
-		</div>
-	</div>
+        </div>
+    </div>
+    <div id="sequence-[% result.feature_id %]" class="panel-body collapse sequence">
+        <div class="row">
+            <div class="col-md-12">
+                [% result.sequence %]
+            </div>
+        </div>
+    </div>
 </div>
 CONTENT
-		,
-		"similarityBasicResult.tt" => <<CONTENT
+        ,
+        "similarityBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Identifier</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.identifier %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Identifier</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.identifier %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Description</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.description %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Description</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.description %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>E-value of match</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.evalue %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>E-value of match</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.evalue %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Percent identity</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.percent_id %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Percent identity</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.percent_id %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Percent similarity</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.similarity %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Percent similarity</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.similarity %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Alignment score</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.score %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Alignment score</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.score %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Alignment length</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.block_size %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Alignment length</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.block_size %]</p>
+    </div>
 </div>
 CONTENT
-		,
-		"subEvidences.tt" => <<CONTENT
+        ,
+        "subEvidences.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<div class="panel-title">
-			<a data-toggle="collapse" data-parent="#accordion" href="#subevidence-[% result.feature_id %]">[% result.feature_id %]</a>
-		</div>
-	</div>
-	<div id="subevidence-[% result.feature_id %]" class="panel-body collapse">
-	</div>
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#subevidence-[% result.feature_id %]">[% result.feature_id %]</a>
+        </div>
+    </div>
+    <div id="subevidence-[% result.feature_id %]" class="panel-body collapse">
+    </div>
 </div>
 CONTENT
-		,
-		"tcdbBasicResult.tt" => <<CONTENT
+        ,
+        "tcdbBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Transporter classification:</p>
-	</div>
-	<div class="col-md-9">
-		<p><a href="http://tcdb.org/search/result.php?tc=[% result.TCDB_ID %]" target='_blank'>[% result.hit_description %]</a></p>
-	</div>
+    <div class="col-md-3">
+        <p>Transporter classification:</p>
+    </div>
+    <div class="col-md-9">
+        <p><a href="http://tcdb.org/search/result.php?tc=[% result.TCDB_ID %]" target='_blank'>[% result.hit_description %]</a></p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Class:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.TCDB_class %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Class:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.TCDB_class %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Subclass:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.TCDB_subclass %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Subclass:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.TCDB_subclass %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Family:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.TCDB_family %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Family:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.TCDB_family %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Match identifier:</p>
-	</div>
-	<div class="col-md-9">
-		<p><a href="http://www.uniprot.org/uniprot/[% result.hit_name %]" target='_blank'>[% result.hit_name %]</a></p>
-	</div>
+    <div class="col-md-3">
+        <p>Match identifier:</p>
+    </div>
+    <div class="col-md-9">
+        <p><a href="http://www.uniprot.org/uniprot/[% result.hit_name %]" target='_blank'>[% result.hit_name %]</a></p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>E-value of match:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.evalue %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>E-value of match:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.evalue %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Percent identity:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.percent_id %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Percent identity:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.percent_id %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Percent similarity:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.similarity %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Percent similarity:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.similarity %]</p>
+    </div>
 </div>
 CONTENT
-		,
-		"tmhmmBasicResult.tt" => <<CONTENT
+        ,
+        "tmhmmBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		Predicted Transmembrane domains
-	</div>
-	<div class="col-md-9">
-		[% result.predicted_TMHs %]
-	</div>
+    <div class="col-md-3">
+        Predicted Transmembrane domains
+    </div>
+    <div class="col-md-9">
+        [% result.predicted_TMHs %]
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		Direction
-	</div>
-	<div class="col-md-9">
-		[% result.direction %]
-	</div>
+    <div class="col-md-3">
+        Direction
+    </div>
+    <div class="col-md-9">
+        [% result.direction %]
+    </div>
 </div>
 CONTENT
-		,
-		"tRNABasicResult.tt" => <<CONTENT
+        ,
+        "tRNABasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Gene name:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.type %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Gene name:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.type %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Amino acid:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.aminoacid %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Amino acid:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.aminoacid %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Anticodon:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.anticodon %] (from position [% result.anticodon_start %] to [% result.anticodon_end %])  </p>
-	</div>
+    <div class="col-md-3">
+        <p>Anticodon:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.anticodon %] (from position [% result.anticodon_start %] to [% result.anticodon_end %])  </p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Codon:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.codon %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Codon:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.codon %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Prediction score:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.score %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Prediction score:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.score %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Is pseudogene:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.pseudogene %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Is pseudogene:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.pseudogene %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Component result:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.download %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Component result:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.download %]</p>
+    </div>
 </div>
 CONTENT
-		,
-		"tRNABasicResultHasIntron.tt" => <<CONTENT
+        ,
+        "tRNABasicResultHasIntron.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="row">
-	<div class="col-md-3">
-		<p>Intron predicted:</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.intron %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Intron predicted:</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.intron %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Coordinates (gene):</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.coordinatesGene %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Coordinates (gene):</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.coordinatesGene %]</p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-3">
-		<p>Coordinates (genome):</p>
-	</div>
-	<div class="col-md-9">
-		<p>[% result.coordinatesGenome %]</p>
-	</div>
+    <div class="col-md-3">
+        <p>Coordinates (genome):</p>
+    </div>
+    <div class="col-md-9">
+        <p>[% result.coordinatesGenome %]</p>
+    </div>
 </div>
 CONTENT
-		,
-		"result.tt" => <<CONTENT
+        ,
+        "result.tt" => <<CONTENT
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
-    	[% SWITCH type_search %]
-    		[% CASE 0 %]
-		    	[% FOREACH result IN searchResult %]
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
-							</div>
-						</div>
-						<div id="[% result.feature_id %]" class="panel-collapse collapse">
-							<div class="panel-body">
-							</div>
-						</div>
-					</div>
-		    	[% END %]
-	    	[% CASE 1 %]
-	    		[% IF contig %]
-		    		<div class="panel panel-default">
-						<div class="panel-heading">
-							<div class="panel-title">
-								<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
-								[% IF hadLimits %]
-									from [% start %] to [% end %] of 
-								[% END %]
-								[% sequence.name %]
-								[% IF hadReverseComplement %]
-									, reverse complemented
-								[% END %]
-								)</a>
-							</div>
-						</div>
-						<div id="[% sequence.id %]" class="panel-collapse collapse">
-							<div class="panel-body">
-								<div class="sequence">
-									[% contig %]
-								</div>
-							</div>
-						</div>
-					</div>
-				[% ELSE %]
-					<div class="alert alert-danger">
-						[% FOREACH text IN texts %]
-							[% IF text.tag == 'result-warning-contigs' %]
-								[% text.value %]
-							[% END %]
-						[% END %]
-					</div>
-				[% END %]
-	    [% END %]
+        [% SWITCH type_search %]
+            [% CASE 0 %]
+                [% FOREACH result IN searchResult %]
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% result.feature_id %]">[% result.name %] - [% result.uniquename %]</a>
+                            </div>
+                        </div>
+                        <div id="[% result.feature_id %]" class="panel-collapse collapse">
+                            <div class="panel-body">
+                            </div>
+                        </div>
+                    </div>
+                [% END %]
+            [% CASE 1 %]
+                [% IF contig %]
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#[% sequence.id %]">Contig search results - Retrieved sequence(
+                                [% IF hadLimits %]
+                                    from [% start %] to [% end %] of 
+                                [% END %]
+                                [% sequence.name %]
+                                [% IF hadReverseComplement %]
+                                    , reverse complemented
+                                [% END %]
+                                )</a>
+                            </div>
+                        </div>
+                        <div id="[% sequence.id %]" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="sequence">
+                                    [% contig %]
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                [% ELSE %]
+                    <div class="alert alert-danger">
+                        [% FOREACH text IN texts %]
+                            [% IF text.tag == 'result-warning-contigs' %]
+                                [% text.value %]
+                            [% END %]
+                        [% END %]
+                    </div>
+                [% END %]
+        [% END %]
     </div>
 </div>
 
 CONTENT
-	},
-	shared => {
-		"_footer.tt" => <<FOOTER
+    },
+    shared => {
+        "_footer.tt" => <<FOOTER
 <footer>
     <div class="container">
         <div class="row">
@@ -10512,8 +10371,8 @@ CONTENT
     </div>
 </footer>
 FOOTER
-		,
-		"_head.tt" => <<HEAD
+        ,
+        "_head.tt" => <<HEAD
 <!DOCTYPE html>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -10542,8 +10401,8 @@ FOOTER
 
 
 HEAD
-		,
-		"_header.tt" => <<HEADER
+        ,
+        "_header.tt" => <<HEADER
 <!DOCTYPE html>
 <header>
     <div class="container">
@@ -10551,10 +10410,10 @@ HEAD
             <div class="col-md-12">
                 [% FOREACH text IN texts %]
                     [% IF text.tag.search('header') %]
-                        
+
                         [% text.value %]
                         &nbsp;&nbsp;
-                        
+
                     [% END %]
                 [% END %]
             </div>
@@ -10563,32 +10422,32 @@ HEAD
     </div>
 </header>
 HEADER
-		,
-		"_menu.tt" => $menu
+        ,
+        "_menu.tt" => $menu
 
-	}
+    }
 );
 
 unless ($hadGlobal) {
-	delete $contentHTML{"global-analyses"};
+    delete $contentHTML{"global-analyses"};
 }
 unless ($hadSearchDatabase) {
-	delete $contentHTML{"search-database"};
+    delete $contentHTML{"search-database"};
 }
 
 #writeFile("log-report-html-db.log", $scriptSQL);
 
 print $LOG "\nCreating html views\n";
 foreach my $directory ( keys %contentHTML ) {
-	if ( !( -e "$html_dir/root/$lowCaseName/$directory" ) ) {
-		print $LOG "\nCriando diretorio $directory\n";
-		`mkdir -p "$html_dir/root/$lowCaseName/$directory"`;
-	}
-	foreach my $file ( keys %{ $contentHTML{$directory} } ) {
-		print $LOG "\nCriando arquivo $file\n";
-		writeFile( "$html_dir/root/$lowCaseName/$directory/$file",
-			$contentHTML{$directory}{$file} );
-	}
+    if ( !( -e "$html_dir/root/$lowCaseName/$directory" ) ) {
+        print $LOG "\nCriando diretorio $directory\n";
+        `mkdir -p "$html_dir/root/$lowCaseName/$directory"`;
+    }
+    foreach my $file ( keys %{ $contentHTML{$directory} } ) {
+        print $LOG "\nCriando arquivo $file\n";
+        writeFile( "$html_dir/root/$lowCaseName/$directory/$file",
+            $contentHTML{$directory}{$file} );
+    }
 }
 
 #Create file wrapper
@@ -10622,23 +10481,23 @@ my $errorPage = <<ERROR;
 <!DOCTYPE html>
 <div class="content-wrapper">
     <div class="container">
-    	<div class="row">
-    		<div class="col-md-9">
-    			<div class="row">
-		    		<div class="col-md-12">
-		    			<h2>Oops, we're having some troubles.</h2><br />
-		    		</div>
-		    	</div>
-		    	<div class="row">
-		    		<div class="col-md-12">
-		    			<p>Please, comeback later.</p>
-		    		</div>
-		    	</div>
-    		</div>
-    		<div class="col-md-3">
-    			<img src="/assets/img/platypuslogo.png" style="width:800;height:600px;" />
-    		</div>
-    	</div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Oops, we're having some troubles.</h2><br />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Please, comeback later.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img src="/assets/img/platypuslogo.png" style="width:800;height:600px;" />
+            </div>
+        </div>
     </div>
 </div>
 ERROR
@@ -10651,9 +10510,9 @@ writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Root.pm", $rootContent
 #inicialize server project
 #`./$nameProject/script/"$lowCaseName"_server.pl -r`;
 print $LOG "Done\nTurn on the server with this command:\n./$html_dir/script/"
-  . $lowCaseName
-  . "_server.pl -r\n"
-  . "http://localhost:3000\n";
+. $lowCaseName
+. "_server.pl -r\n"
+. "http://localhost:3000\n";
 close($LOG);
 
 `cp -r $html_dir "$standard_dir"/`;
@@ -10668,13 +10527,13 @@ exit;
 #   @param $content => content to be insert
 #
 sub writeFile {
-	my ( $filepath, $content ) = @_;
-	open( my $FILEHANDLER, ">:encoding(UTF-8)", $filepath )
-	  or die "Error opening file";
+    my ( $filepath, $content ) = @_;
+    open( my $FILEHANDLER, ">:encoding(UTF-8)", $filepath )
+        or die "Error opening file";
 
-	#	binmode($FILEHANDLER, ":utf8");
-	print $FILEHANDLER $content;
-	close($FILEHANDLER);
+    #	binmode($FILEHANDLER, ":utf8");
+    print $FILEHANDLER $content;
+    close($FILEHANDLER);
 }
 
 ###
@@ -10683,24 +10542,24 @@ sub writeFile {
 #	return data in SQL
 #
 sub readJSON {
-	my ($file) = @_;
-	open( my $FILEHANDLER, "<", $file );
-	my $content = do { local $/; <$FILEHANDLER> };
-	my $sql = "";
-	while ( $content =~
-/^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:;?+(),'=&ããàâáéêíóõú#|]*)"/gm
-	  )
-	{
-		my $tag   = $1;
-		my $value = $2;
-		$tag =~ s/"//g;
-		$value =~ s/"//g;
-		$sql .= <<SQL;
-			INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
+    my ($file) = @_;
+    open( my $FILEHANDLER, "<", $file );
+    my $content = do { local $/; <$FILEHANDLER> };
+    my $sql = "";
+    while ( $content =~
+        /^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:;?+(),'=&ããàâáéêíóõú#|&~]*)"/gm
+    )
+    {
+        my $tag   = $1;
+        my $value = $2;
+        $tag =~ s/"//g;
+        $value =~ s/"//g;
+        $sql .= <<SQL;
+            INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
 SQL
-	}
-	close($FILEHANDLER);
-	return $sql;
+    }
+    close($FILEHANDLER);
+    return $sql;
 }
 
 =head2
@@ -10710,27 +10569,27 @@ return sql to be used
 =cut
 
 sub readTCDBFile {
-	my ($tcdb_file) = @_;
-	open( my $FILEHANDLER, "<", $tcdb_file );
-	my $sql = "";
-	while ( my $line = <$FILEHANDLER> ) {
-		if ( $line =~ /^(\d\t[\w\/\s\-]*)[^\n]\v/gm ) {
-			my $change = $1;
-			$change =~ s/\t/\ /;
-			$sql .= <<SQL;
-			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "$change");
+    my ($tcdb_file) = @_;
+    open( my $FILEHANDLER, "<", $tcdb_file );
+    my $sql = "";
+    while ( my $line = <$FILEHANDLER> ) {
+        if ( $line =~ /^(\d\t[\w\/\s\-]*)[^\n]\v/gm ) {
+            my $change = $1;
+            $change =~ s/\t/\ /;
+            $sql .= <<SQL;
+            INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "$change");
 SQL
-		}
-		elsif ( $line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/ ) {
-			my $change = $1;
-			$change =~ s/\t/\ /;
-			$sql .= <<SQL;
-			INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "$change");
+        }
+        elsif ( $line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/ ) {
+            my $change = $1;
+            $change =~ s/\t/\ /;
+            $sql .= <<SQL;
+            INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "$change");
 SQL
-		}
-	}
-	close($FILEHANDLER);
-	return $sql;
+        }
+    }
+    close($FILEHANDLER);
+    return $sql;
 }
 
 =head2
@@ -10740,31 +10599,31 @@ return list with code number and product
 =cut
 
 sub get_code_number_product {
-	my $subject_id = shift;
-	my $code_number;
-	my $product;
+    my $subject_id = shift;
+    my $code_number;
+    my $product;
 
-	if ( $subject_id =~ m/\S+\|(\S+)\|(.*)/ ) {
-		$code_number = $1;
-		$product     = $2;
-	}
-	elsif ( $subject_id =~ m/(\S+)_(\S+) (.*)/ ) {
-		$code_number = $2;
-		$product     = $3;
-	}
-	elsif ( $subject_id =~ m/(\S+)/ ) {
-		$code_number = $1;
+    if ( $subject_id =~ m/\S+\|(\S+)\|(.*)/ ) {
+        $code_number = $1;
+        $product     = $2;
+    }
+    elsif ( $subject_id =~ m/(\S+)_(\S+) (.*)/ ) {
+        $code_number = $2;
+        $product     = $3;
+    }
+    elsif ( $subject_id =~ m/(\S+)/ ) {
+        $code_number = $1;
 
-		if ( $code_number =~ m/(\S+)\_\[(\S+)\_\[/ ) {
-			$code_number = $1;
-			$product     = "similar to " . $code_number;
-		}
-	}
+        if ( $code_number =~ m/(\S+)\_\[(\S+)\_\[/ ) {
+            $code_number = $1;
+            $product     = "similar to " . $code_number;
+        }
+    }
 
-	$product =~ s/^ //g;
-	$product =~ s/ $//g;
+    $product =~ s/^ //g;
+    $product =~ s/ $//g;
 
-	return ( $code_number, $product );
+    return ( $code_number, $product );
 }
 
 =head2 reverseComplement
@@ -10774,10 +10633,10 @@ Method used to return the reverse complement of a sequence
 =cut
 
 sub reverseComplement {
-	my ($sequence) = @_;
-	my $reverseComplement = reverse($sequence);
-	$reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
-	return $reverseComplement;
+    my ($sequence) = @_;
+    my $reverseComplement = reverse($sequence);
+    $reverseComplement =~ tr/ACGTacgt/TGCAtgca/;
+    return $reverseComplement;
 }
 
 =head2 formatSequence
@@ -10787,11 +10646,11 @@ Method used to format sequence
 =cut
 
 sub formatSequence {
-	my $seq = shift;
-	my $block = shift || 80;
-	$seq =~ s/.{$block}/$&\n/gs;
-	chomp $seq;
-	return $seq;
+    my $seq = shift;
+    my $block = shift || 80;
+    $seq =~ s/.{$block}/$&\n/gs;
+    chomp $seq;
+    return $seq;
 }
 
 =head2 verify_element
@@ -10801,16 +10660,16 @@ Method used to verify if element exists in list reference
 =cut
 
 sub verify_element {
-	my $element = shift;
-	my $vector  = shift;
-	my @array   = grep /\S/, @{$vector};
+    my $element = shift;
+    my $vector  = shift;
+    my @array   = grep /\S/, @{$vector};
     my %params  = map { $_ => 1 } @array;
 
-	if ( exists( $params{$element} ) ) {
-		return 1;
-	}
+    if ( exists( $params{$element} ) ) {
+        return 1;
+    }
 
-	return 0;
+    return 0;
 
 }
 =head2
@@ -10820,10 +10679,10 @@ Method used to get filename by filepath
 =cut
 
 sub getFilenameByFilepath {
-	my ($filepath) = @_;
-	my $filename = "";
-	if ( $filepath =~ /\/([\w\s\-_]+\.[\w\s\-_.]+)/g ) {
-		$filename = $1;
-	}
-	return $filename;
+    my ($filepath) = @_;
+    my $filename = "";
+    if ( $filepath =~ /\/([\w\s\-_]+\.[\w\s\-_.]+)/g ) {
+        $filename = $1;
+    }
+    return $filename;
 }
