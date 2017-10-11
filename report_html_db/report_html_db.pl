@@ -307,16 +307,10 @@ if ( defined( $config->{"mreps_dir"} ) ) {
     $mreps_dir = $config->{"mreps_dir"};
 }
 
-if ( defined( $config->{"report_go_dir"} ) ) {
-    @report_go_dir = split( ";", $config->{"report_go_dir"} );
+if ( defined( $config->{"reports_global_analyses"} ) ) {
+    @reports_global_analyses = split( ";", $config->{"reports_global_analyses"} );
 }
 
-if ( defined( $config->{"report_eggnog_dir"} ) ) {
-    @report_eggnog_dir = split( ";", $config->{"report_eggnog_dir"} );
-}
-if ( defined( $config->{"report_pathways_dir"} ) ) {
-    @report_pathways_dir = split( ";", $config->{"report_pathways_dir"} );
-}
 if ( defined( $config->{"report_feature_table_submission_dir"} ) ) {
     $report_feature_table_submission = $config->{"report_feature_table_submission_dir"};
 }
@@ -326,10 +320,6 @@ if ( defined( $config->{"report_feature_table_artemis_dir"} ) ) {
 if ( defined( $config->{"report_gff_dir"} ) ) {
     $report_gff = $config->{"report_gff_dir"};
 } 
-if ( defined( $config->{"report_kegg_organism_dir"} ) ) {
-    @report_kegg_organism_dir =
-    split( ";", $config->{"report_kegg_organism_dir"} );
-}
 if ( defined( $config->{"database_code_list"} ) ) {
     $databases_code = $config->{"database_code_list"};
 }
@@ -900,53 +890,19 @@ my $dbUser              = "";
 my $dbPassword          = "";
 my $locus               = 0;
 
-if ( scalar @report_go_dir > 0 ) {
-    foreach my $path (@report_go_dir) {
+if ( scalar @reports_global_analyses > 0 ) {
+    foreach my $path (@reports_global_analyses) {
+        my $key = "";
         if($path =~ /([\.\/\w]+)\//) {
             my $directory = $1;
-            $components{"report_go"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);	
-
+            $key = $_ foreach($directory =~ /\/([\w._]+)+$/img);	 
         }
+        my $name = $_ foreach($key =~ /([\w]*)+_report/g);
         $scriptSQL .=
-        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('go', 'report_go', '$components{report_go}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-expansible-tree', 'Table of ontologies', '/reports/".$components{report_go}."/go_mapping.html');\n";
-        $components{report_go} = $path;
+            "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('$name', 'report_$name', '$key');\n";
+        $components{$name} = $path;
     }
 }
-if ( scalar @report_eggnog_dir > 0 ) {
-    foreach my $path (@report_eggnog_dir) {
-        if($path =~ /([\.\/\w]+)\//) {
-            my $directory = $1;
-            $components{"report_eggnog"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
-        }
-        $scriptSQL .=
-        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('eggnog', 'report_eggnog', '$components{report_eggnog}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-orthology-analysis-classes', 'Orthology analysis by evolutionary genealogy of genes: Non-supervised Orthologous Groups', '/reports/".$components{report_eggnog}."/classes.html');\n";
-        $components{report_eggnog} = $path;
-    }
-}
-if ( scalar @report_pathways_dir > 0 ) {
-    foreach my $path (@report_pathways_dir) {
-        if($path =~ /([\.\/\w]+)\//) {
-            my $directory = $1;
-            $components{"report_pathways"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
-        }
-        $scriptSQL .=
-        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('pathways', 'report_pathways', '$components{report_pathways}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-report', 'Enzyme by enzyme report of KEGG results', '/reports/".$components{"report_pathways"}."/classes.html'); \n";
-        $components{report_pathways} = $path;
-    }
-}
-if ( scalar @report_kegg_organism_dir > 0 ) {
-    foreach my $path (@report_kegg_organism_dir) {
-        if($path =~ /([\.\/\w]+)\//) {
-            my $directory = $1;
-            $components{"report_kegg_organism"} = $_ foreach($directory =~ /\/([\w._]+)+$/img);
-        } 
-        $scriptSQL .=
-        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('kegg_organism', 'report_kegg_organism', '$components{report_kegg_organism}');\nINSERT INTO TEXTS(tag, value, details) VALUES ('global-analyses-kegg-organism-report', 'Map by map report of KEGG results', '/reports/".$components{report_kegg_organism}."/html_page/classes.html');\n";
-        $components{"report_kegg_organism"} = $path;
-    }
-}
-
-
 
 print $LOG "\nReading sequences\n";
 
@@ -6865,7 +6821,6 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
     my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
     \$c->stash(components => \$components);
 
-    \$c->stash->{go_expansible_tree} = -e \$components->{report_go} ? 1 : 0;
     \$c->stash->{hadGlobal} = 1;
     \$c->stash->{hadSearchDatabase} = {{valorSearchSubtituir}};
 
@@ -6946,7 +6901,7 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
     my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
     \$c->stash(components => \$components);
     if(\$components->{"pathways"}) {
-        my \$filepath = \$c->model('Basic::Component')->search({ component => 'report_pathways' }, { columns => [ qw/filepath/ ], group_by => [ qw/filepath/ ] })->
+        my \$filepath = \$c->model('Basic::Component')->search({ component => { 'like', '%report%pathways%'} }, { columns => [ qw/filepath/ ], group_by => [ qw/filepath/ ] })->
             first()->{_column_data}->{"filepath"};
         #\$filepath =~ /(reports[\\w\\/]+\\/)/g;
         \$c->stash->{report_pathways} = \$c->path_to('root') . "/" . \$filepath;
@@ -8194,113 +8149,43 @@ CONTENTINDEXDOWNLOADS
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group" id="accordion">
-            [%
-                go_mapping = 0
-                orthology = 0 
-                pathways = 0
-                organism = 0 
-            %]
-                [% IF components.item("go") %]
-                    [% go_mapping = 1 %]
-                [% END %]
-                [% IF components.item("eggnog") %]
-                    [% orthology = 1 %]
-                [% END %]
-                [% IF components.item("pathways") %]
-                    [% pathways = 1 %]
-                [% END %]
-                [% IF components.item("kegg_organism") %]
-                    [% organism = 1 %]
-                [% END %]
-            [% IF go_mapping %]
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            [% FOREACH text IN texts %]
-                                [% IF text.tag == 'global-analyses-go-terms-mapping' %]
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="collapsed">[% text.value %]</a>
-                                [% END %]
-                            [% END %]
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                [% FOREACH text IN texts %]
-                                    [% IF text.tag == 'global-analyses-expansible-tree' %]
-                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-                                    [% END %]
-                                [% END %]
-                            </div>
-                            <div class="form-group">
-                                [% FOREACH text IN texts %]
-                                    [% IF text.tag == 'global-analyses-table-ontologies' %]
-                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-                                    [% END %]
-                                [% END %]
-                            </div>
-                        </div>
-                        [% IF go_expansible_tree %]
-                        <div class="panel-footer">
-                            [% FOREACH text IN texts %]
-                                [% IF text.tag == 'global-analyses-go-terms-mapping-footer' %]
-                                    [% text.value %]
-                                [% END %]
-                            [% END %]
-                        </div>
+            [% counter = 1 %]
+            [% FOREACH text IN texts %]
+            [% IF text.tag.search("global-analyses-panel-" _ counter) %]
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        [% FOREACH content IN texts %]
+                        [% IF content.tag == "global-analyses-panel-" _ counter _ "-title" %]
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse[% counter %]" class="collapsed">[% content.value %]</a>
                         [% END %]
-                    </div>
+                        [% END %]
+                    </h4>
                 </div>
-            [% END %]
-
-            [% IF orthology %]
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            [% FOREACH text IN texts %]
-                                [% IF text.tag == 'global-analyses-eggNOG' %]
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">[% text.value %]</a>
+                <div id="collapse[% counter %]" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        [% counterTexts = 0 %]
+                        <div class="form-group">
+                        [% FOREACH content IN texts %]
+                            [% IF content.tag == "global-analyses-panel-" _ counter _ "-" _ counterTexts %]
+                            [% IF content.tag == "global-analyses-panel-" _ counter _ "-" _ counterTexts _ "-link" %]
+                                <label><a href="[% c.uri_for(text.details) %]">
+                                [% FOREACH content2 IN texts %]
+                                [% IF content.tag == "global-analyses-panel-" _ counter _ "-" _ counterTexts _ "-paragraph" %]
+                                [% text.value %] 
                                 [% END %]
+                                [% END %]
+                                </a></label> 
                             [% END %]
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                [% FOREACH text IN texts %]
-                                    [% IF text.tag == 'global-analyses-orthology-analysis-classes' %]
-                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-                                    [% END %]
-                                [% END %]
-                            </div>
+                            [% counterTexts = counterTexts + 1 %]
+                            [% END %]
+                        [% END %]
                         </div>
                     </div>
                 </div>
+            </div>
+            [% counter = counter + 1 %]
             [% END %]
-
-            [% IF pathways %]
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            [% FOREACH text IN texts %]
-                                [% IF text.tag == 'global-analyses-kegg-pathways' %]
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">[% text.value %]</a>
-                                [% END %]
-                            [% END %]
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            [% FOREACH text IN texts %]
-                                [% IF text.tag.search('global-analyses-kegg-report') || text.tag.search('global-analyses-kegg-organism-report') %]
-                                    <div class="form-group">
-                                        <label><a href="[% c.uri_for(text.details) %]">[% text.value %]</a></label>
-                                    </div>
-                                [% END %]
-                            [% END %]
-                        </div>
-                    </div>
-                </div>
             [% END %]
 
         </div>
