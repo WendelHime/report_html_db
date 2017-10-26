@@ -875,7 +875,29 @@ function dealDataResults(href, featureName, data, product) {
 										html = html.replace("[% result.orthologous_group_id %]", responseIntervals.properties[j].orthologous_group_id);
 										html = html.replace("[% result.orthologous_group_id %]", responseIntervals.properties[j].orthologous_group_id);
 										html = html.replace("[% result.orthologous_group_description %]", responseIntervals.properties[j].orthologous_group_description);
+
+if(responseIntervals.pathways.length > 0) {
+   html += "<div class='row'>"+
+	"<div class='col-md-12'>"+
+	"	<div class='table-responsive'>"+
+	"		<table class='table table-striped table-hover'>"+
+	"			<thead>"+
+	"				<tr>"+
+	"					<th>Pathways:</th>"+
+	"					<th>View map:</th>"+
+	"				</tr>"+	
+	"			</thead>"+
+	"			<tbody id='pathways-[% result.orthologous_group_id %]'>"+					
+	"			</tbody>"+
+	"		</table>"+
+	"	</div>"+
+	"</div>"+
+"</div>"; 
+    html = html.replace("[% result.orthologous_group_id %]", responseIntervals.properties[j].orthologous_group_id);
+}
 										addPanelResult("#evidence-" + componentTemp + "-" + href.replace("#", ""), html);
+
+if(responseIntervals.pathways.length > 0) {
 										for (var pathway in responseIntervals.pathways) {
 											var htmlPathway = getHTMLContent("search-database/pathways.tt").responseJSON.response;
 											htmlPathway = htmlPathway.replace("[% result.metabolic_pathway_id %]", responseIntervals.pathways[pathway].id);
@@ -885,7 +907,7 @@ function dealDataResults(href, featureName, data, product) {
 											listHTMLs[counterHTMLs] = htmlPathway;
 											counterHTMLs++;
 										}
-										idTable = "#pathways-" + responseIntervals.properties[j].orthologous_group_id;
+}										idTable = "#pathways-" + responseIntervals.properties[j].orthologous_group_id;
 									}
 								} else if (componentTemp == 'annotation_orthology') {
 									for (var j = 0; j < responseIntervals.properties.length; j++) {

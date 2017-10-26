@@ -1,5 +1,4 @@
-#!/usr/bin/perl
-#
+#!/usr/bin/perl 
 # @File report_html_db.pl
 # @Author Wendel Hime Lino Castro
 # @Created Jul 19, 2016 10:45:01 AM
@@ -139,17 +138,11 @@ my $aa_orf_file = "";
 #my $index_file="";
 #my $export_subgroup="yes";
 #my $overwrite_output="yes";
-my @report_pathways_dir = ();
 
-#my $report_orthology_dir;
-my @report_eggnog_dir;
-my @report_go_dir = ();
+my @reports_global_analyses = ();
 my $report_feature_table_submission = "";
 my $report_feature_table_artemis = "";
 my $report_gff = "";
-
-#my $eggnog_file;
-my @report_kegg_organism_dir = ();
 
 #my $report_cog_dir;
 #my $report_kog_dir;
@@ -194,6 +187,9 @@ my $color_accent;
 my $color_primary_text;
 my $color_accent_text;
 my $color_menu;
+my $color_background;
+my $color_footer;
+my $color_footer_text;
 my $tcdb_file = "";
 my $ko_file;
 #my $uniquename;
@@ -350,6 +346,15 @@ if (defined( $config->{"color_primary_text"} ) ) {
 }
 if (defined( $config->{"color_accent_text"} ) ) {
     $color_accent_text = $config->{"color_accent_text"};
+}  
+if (defined( $config->{"color_background"} ) ) {
+    $color_background = $config->{"color_background"};
+}  
+if (defined( $config->{"color_footer"} ) ) {
+    $color_footer = $config->{"color_footer"};
+}  
+if (defined( $config->{"color_footer_text"} ) ) {
+    $color_footer_text = $config->{"color_footer_text"};
 }  
 if ( defined( $config->{"TCDB_file"} ) ) {
     $tcdb_file = $config->{"TCDB_file"};
@@ -529,7 +534,6 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-limit", "Limit by term(s) in gene description(optional): ", ""),
         ("search-database-analyses-protein-code-match-all", "Match all terms", ""),
         ("search-database-analyses-protein-code-excluding", "Excluding: ", ""),
-        ("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>Orthology analysis (eggNOG)</a>", ""),
         ("search-database-analyses-protein-code-tab", "<a href='#interpro' data-toggle='tab'>Interpro</a>", "#interpro"),
 
 
@@ -555,11 +559,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-dna-based-analyses-tandem-repeats-note", "NOTE: to get an exact number of repetitions, enter the same number in both boxes (numbers can have decimal places). Otherwise, to get 5 or more repetitions, enter 5 in the first box and nothing in the second; for 5 or less repetitions, enter 5 in the second box and nothing in the first. See the 'Help' section for further instructions.", ""),
 
         ("search-database-dna-based-analyses-footer", "Search categories in the DNA-based analyses are <b>not</b> additive, i.e. only the category whose ""Search"" button has been pressed will be searched.", ""),
-        ("global-analyses-go-terms-mapping", "GO term mapping", ""),
         ("global-analyses-go-terms-mapping-footer", "NOTE: Please use Mozilla Firefox, Safari or Opera browser to visualize the expansible trees. If you are using Internet Explorer, please use the links to ""Table of ontologies"" to visualize the results.", ""),
-        ("global-analyses-eggNOG", "eggNOG", ""),
-        ("global-analyses-kegg-pathways", "KEGG Pathways", ""),
-        ("global-analyses-comparative-metabolic-reconstruction", "Comparative Metabolic Reconstruction", ""),
         ("downloads-genes", "Genes", ""),
         ("downloads-other-sequences", "Other sequences", ""),
 
@@ -701,6 +701,8 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", ""),
         ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", ""),
         ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
+        ("search-database-analyses-protein-code-not-containing-signalP", " not containing SignalP results", ""),
+
         ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains: ", ""),
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='orMore'> or more", ""),
@@ -771,9 +773,9 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='sigP' value='sigPyes' >  yes", ""),
         ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='sigP' value='sigPno'> no", ""),
         ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='sigP' value='sigPwhatever' checked='checked'> do not care", ""),
-        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='signalP' value='YES' >  yes", ""),
-        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='signalP' value='NO'> no", ""),
-        ("search-database-analyses-protein-code-signal-peptide-option", "<input type='radio' name='signalP' value='whatever' checked='checked'> do not care", "");
+        ("search-database-analyses-protein-code-signal-peptide-option-signalP", "<input type='radio' name='signalP' value='YES' >  yes", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option-signalP", "<input type='radio' name='signalP' value='NO'> no", ""),
+        ("search-database-analyses-protein-code-signal-peptide-option-signalP", "<input type='radio' name='signalP' value='whatever' checked='checked'> do not care", "");
 SQL
 
 
@@ -897,9 +899,11 @@ if ( scalar @reports_global_analyses > 0 ) {
             my $directory = $1;
             $key = $_ foreach($directory =~ /\/([\w._]+)+$/img);	 
         }
-        my $name = $_ foreach($key =~ /([\w]*)+_report/g);
+        my $name = $key;
+        $name =~ s/([\w_]+)+_report/$1/;
+        print $LOG "\n[908] $key - $name\n";
         $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('$name', 'report_$name', '$key');\n";
+        "\nINSERT INTO COMPONENTS(name, component, filepath) VALUES('$name', 'report_$name', '$key');\n";
         $components{$name} = $path;
     }
 }
@@ -933,6 +937,7 @@ my $tRNASequences = 0;
 my $nonCodingSequences = 0;
 my $allContigs = 0;
 my $ttSequences = 0;
+my %hash_ev = ();
 
 open(my $SEQUENCES, ">", "$html_dir/root/Sequences.fasta");
 open(my $SEQUENCES_NT, ">", "$html_dir/root/Sequences_NT.fasta");
@@ -1038,6 +1043,53 @@ while ( $sequence_object->read() ) {
             else {
                 $locus++;
                 $locus_tag = "NOLOCUSTAG_$locus";
+            }
+
+            $fasta_header_evidence =~ s/>//g;
+            $fasta_header_evidence =~ s/>//g;
+            $fasta_header_evidence =~ s/\|/_/g;
+            $fasta_header_evidence =~ s/__/_/g;
+            print $LOG "\n[1186]\tFastaHeaderEvidence\t-\t$fasta_header_evidence\n";
+            my $html_file = $fasta_header_evidence . ".html";
+            my $txt_file  = $fasta_header_evidence . ".txt";
+            my $png_file  = $fasta_header_evidence . ".png";
+            #$component_name = $evidence->{log}{name};
+            $fasta_header_evidence =~ s/>//g;
+
+            my %hashSQL = ();
+            my @logs = @{$sequence_object->get_logs_hash()};
+
+            if ( $evidence->{tag} eq "CDS" ) {
+                foreach my $log (@logs){
+                    my $log_name = $log->{program};
+                    $log_name =~ s/\.pl//g;
+                    $log_name =~ s/$annotation_dir//g;
+                    $log_name =~ s/\///g;
+                    #my $resp1 = verify_element($log_name, \@comp_dna);
+                    my $resp2 = verify_element($log_name, \@comp_ev);
+                    print $LOG "\n[1056] $log_name\n";
+                    #if(!$resp1 and !$resp2){ 
+                    if($resp2) {
+                        my $file = "";
+                        $file = "$html_file" if($log_name eq "annotation_blast");
+                        $file = "$html_file" if($log_name eq "annotation_interpro" || $log_name eq "annotation_pathways" || $log_name eq "annotation_tcdb");
+                        if($log_name eq "annotation_orthology") {
+                            my $code;
+                            $code = $_ foreach ($log->{arguments} =~ /database_code\s*=\s*(\w+)+\s*/ig);
+                            my $aux_html = $html_file;				
+                            $code = ".".$code.".html";
+                            $aux_html =~ s/\.html/$code/g;
+                            $file = $aux_html;
+                        }
+                        $file = "$png_file" if($log_name eq "annotation_phobius" || $log_name eq "annotation_signalP" || $log_name eq "annotation_tmhmm");
+                        $file = "$txt_file" if($log_name eq "annotation_rpsblast");
+
+                        $hashSQL{$log_name} = 
+                        "\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$log_name', '$locus_tag', '$log_name.pl', '".$log->{program}."_log_".$log->{log_number}."/$file');\n";
+                        print $LOG "\n[1087] - ".$hashSQL{$log_name}."\n";
+                        $hash_ev{$log_name} = 1;
+                    }
+                }
             }
 
             #				print STDERR "\nNumber:\t$number\nStart:\t$start\nEnd:\t$end\n";
@@ -1163,29 +1215,31 @@ while ( $sequence_object->read() ) {
 
             if ( $component && $component_name ) {
                 my $resp = verify_element( $component_name, \@comp_dna );
-                $locus_tag = $evidence->{evidence_id};
-#				print $LOG "\n[961]\t-\t$locus_tag\n";
                 print $LOG "\n[962] $component_name -  resp = $resp\n";
                 if ($resp) {
-
+                    my $relative_path = "";
                     if ( $component_name eq "annotation_trf" ) {
                         my $file = $name . "_trf.txt";
                         $components{$component} = "$annotation_dir/$component/$file";
+                        $relative_path = "$component/$file";
                         $annotation_trf = 1;
                     }
                     elsif ( $component_name eq "annotation_trna" ) {
                         my $file = $name . "_trna.txt";
                         $components{$component} = "$annotation_dir/$component/$file";
+                        $relative_path = "$component/$file";
                         $annotation_trna = 1;
                     }
                     elsif ( $component_name eq "annotation_alienhunter" ) {
                         my $file = $alienhunter_output_file . "_" . $name;
                         $components{$component} = "$annotation_dir/" . $component . "/" . $file;
+                        $relative_path = "$component/$file";
                         $annotation_alienhunter = 1;
                     }
                     elsif ( $component_name eq "annotation_infernal" ) {
                         my $file = $infernal_output_file . "_" . $name;
                         $components{$component} = "$annotation_dir/$component/$file";
+                        $relative_path = "$component/$file";
                         $annotation_infernal = 1;
                     }
                     elsif ( $component_name eq "annotation_skews" ) {
@@ -1197,45 +1251,55 @@ while ( $sequence_object->read() ) {
                                     and $file =~ m/.png/ )
                             {
                                 $aux .= "$annotation_dir/$component/$file\n";
+                                $relative_path .= "$component/$file\n"; 
                             }
                         }
+
                         $components{$component} = $aux;
                     }
                     elsif ( $component_name eq "annotation_rbsfinder" ) {
                         my $file = $name . ".txt";
                         $components{$component} = "$annotation_dir/$component/$file";
+                        $relative_path = "$component/$file";
                         $annotation_rbs = 1;
                     }
                     elsif ( $component_name eq "annotation_rnammer" ) {
                         my $file = $name . "_rnammer.gff";
                         $components{$component} = "$annotation_dir/$component/$file";
+                        $relative_path = "$component/$file";
                         $annotation_rnammer = 1;
                     }
                     elsif ( $component_name eq "annotation_glimmer3" ) {
                         $components{$component} =
                         "$annotation_dir/$component/glimmer3.txt";
+                        $relative_path = "$component/glimmer3.txt";
                     }
                     elsif ( $component_name eq "upload_gtf" ) {
                         $components{$component} =
                         "$annotation_dir/$component/upload_gtf.txt";
+                        $relative_path = "$component/upload_gtf.txt";
                     }
                     elsif ( $component_name eq "upload_prediction" ) {
                         $components{$component} =
                         "$annotation_dir/$component/upload_prediction.txt";
+                        $relative_path = "$component/upload_prediction.txt";
                     }
                     elsif ( $component_name eq "annotation_transterm" ) {
                         my $file = $name . ".txt";
                         $components{$component} = "$annotation_dir/$component/$file";
                         $annotation_transterm = 1;
+                        $relative_path = "$component/$file";
                     }
                     elsif ( $component_name eq "annotation_mreps" ) {
                         my $file = "$annotation_dir/" . $component . "/" . $name . "_mreps.txt";
                         $components{$component} = "$file";
+                        $relative_path = "$component/" . $name . "_mreps.txt";;
                     }
                     elsif ( $component_name eq "annotation_string" ) {
                         my $file =
                         $string_dir . "/" . $name . "_string.txt";
                         $components{$component} = "$annotation_dir/$component/$file";
+                        $relative_path = "$component/$file";
                     }
 
 #					if ( $component_name =~ /annotation_/g ) {
@@ -1250,21 +1314,11 @@ while ( $sequence_object->read() ) {
 
 #					print STDERR "\n[1119] Name:\t$component_name\nComponent:\t$component\nfilepath:\t$components{$component}\n\n";
                     $scriptSQL .=
-                    "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$components{$component}');\n";
+                    "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$relative_path');\n";
                 }
 
             }
 
-            $fasta_header_evidence =~ s/>//g;
-            $fasta_header_evidence =~ s/>//g;
-            $fasta_header_evidence =~ s/\|/_/g;
-            $fasta_header_evidence =~ s/__/_/g;
-            print $LOG "\n[1186]\tFastaHeaderEvidence\t-\t$fasta_header_evidence\n";
-            my $html_file = $fasta_header_evidence . ".html";
-            my $txt_file  = $fasta_header_evidence . ".txt";
-            my $png_file  = $fasta_header_evidence . ".png";
-            $component_name = $evidence->{log}{name};
-            $fasta_header_evidence =~ s/>//g;
 
             if ( $evidence->{tag} eq "CDS" ) {
 
@@ -1276,124 +1330,121 @@ while ( $sequence_object->read() ) {
 
                 print $LOG "\nLocus tag: " . $locus_tag . "\n";
 
-=pod
-Sequência da evidência: verificar o campo strand (tag intervals) e calcular o reverso complementar da sequência caso a fita seja negativa (verificar se a strand é ‘-1’ ou ‘-’)
-=cut
-my @sub_evidences = @{ $evidence->{evidences} };
+                my @sub_evidences = @{ $evidence->{evidences} };
 
-foreach my $sub_evidence (@sub_evidences) {
-    $locus_tag = $sub_evidence->{evidence_id};
-    my $component_name = $sub_evidence->{log}{name};
-    $component_name =~ s/.pl//g;
-    my $component =
-    $sequence_object->fasta_header_program($sub_evidence);
+                foreach my $sub_evidence (@sub_evidences) {
+                    my $component_name = $sub_evidence->{log}{name};
+                    $component_name =~ s/.pl//g;
+                    my $component =
+                    $sequence_object->fasta_header_program($sub_evidence);
 
-    my $resp = verify_element( $component_name, \@comp_ev );
-    print $LOG "\n[1263] - $component - $component_name - resp = $resp - locus_tag = $locus_tag\n";
+                    my $resp = verify_element( $component_name, \@comp_ev );
+                    print $LOG "\n[1263] - $component - $component_name - resp = $resp - locus_tag = $locus_tag\n";
 
-    if (  $resp  )
-    {
-        if ( $component_name eq "annotation_blast" ) {
-            $components{$component} = "$annotation_dir/$component/$html_file";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
-            $annotation_blast = 1;
-        }
-        elsif ( $component_name eq "annotation_glimmer3" ) {
-            $components{$component} =
-            "$annotation_dir/". $component . "/glimmer3.txt";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/glimmer3.txt');\n";
-        }
-        elsif ( $component_name eq "upload_gtf" ) {
-            $components{$component} =
-            "$annotation_dir/$component/upload_gtf.txt";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/upload_gtf.txt');\n";  
-        }
-        elsif ( $component_name eq "upload_prediction" ) {
-            $components{$component} =
-            "$annotation_dir/$component/upload_prediction.txt";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/upload_prediction.txt');\n";  
-        }
-        elsif ( $component_name eq "annotation_interpro" ) {
-            $components{$component} = "$annotation_dir/$component/";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/HTML/$html_file');\n";
-            $annotation_interpro = 1;
-        }
-        elsif ( $component_name eq "annotation_orthology" ) {
-            my $code;
+                    if (  $resp  )
+                    {
+                        if ( $component_name eq "annotation_blast" ) {
+                            $components{$component} = "$annotation_dir/$component/$html_file";
 
-            while ( $sub_evidence->{log}{arguments} =~
-                /database_code\s*=\s*(\w+)+\s*/ig )
-            {
-                $code = $1;
-            }
-            my $aux_html = $html_file;
-            $code = "." . $code . ".html";
-            $aux_html =~ s/.html/$code/g;
-            $components{$component} = "$annotation_dir/$component/$aux_html";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$aux_html');\n";
-            $annotation_orthology = 1;
-        }
-        elsif ( $component_name eq "annotation_pathways" ) {
-            $components{$component} = "$annotation_dir/$component/$html_file";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
-            $annotation_pathways = 1;
-        }
-        elsif ( $component_name eq "annotation_phobius" ) {
-            $components{$component} = "$annotation_dir/$component/$png_file";
-            $annotation_phobius = 1;
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
-        }
-        elsif ( $component_name eq "annotation_signalP" ) {
-            $components{$component} = "$annotation_dir/$component/$png_file";
-            $annotation_signalP = 1;
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
-        }
-        elsif ( $component_name eq "annotation_rpsblast" ) {
-            $components{$component} = "$annotation_dir/$component/$txt_file";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$txt_file');\n";
-            $annotation_rpsblast = 1;
-        }
-        elsif( $component_name eq "annotation_tmhmm" ) {
-            $components{$component} = "$annotation_dir/$component/$png_file";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
-            $annotation_tmhmm = 1;
-        }
-        elsif($component_name eq "annotation_predgpi" || $component_name eq "annotation_dgpi" || $component_name eq "annotation_bigpi" || $component_name eq "annotation_tcdb") {
-            $components{$component} = "$annotation_dir/$component/$html_file";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+                            $hashSQL{$component_name} = 
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+                            $annotation_blast = 1;
+                        }
+                        elsif ( $component_name eq "annotation_glimmer3" ) {
+                            $components{$component} =
+                            "$annotation_dir/". $component . "/glimmer3.txt";
+                            $scriptSQL .=
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/glimmer3.txt');\n";
+                        }
+                        elsif ( $component_name eq "upload_gtf" ) {
+                            $components{$component} =
+                            "$annotation_dir/$component/upload_gtf.txt";
+                            $scriptSQL .=
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/upload_gtf.txt');\n";  
+                        }
+                        elsif ( $component_name eq "upload_prediction" ) {
+                            $components{$component} =
+                            "$annotation_dir/$component/upload_prediction.txt";                                                                                          
+                            $scriptSQL .=
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/upload_prediction.txt');\n";  
+                        }
+                        elsif ( $component_name eq "annotation_interpro" ) {
+                            $components{$component} = "$annotation_dir/$component/";
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/HTML/$html_file');\n";
+                            $annotation_interpro = 1;
+                        }
+                        elsif ( $component_name eq "annotation_orthology" ) {
+                            my $code;
 
-            if($component_name eq "annotation_dgpi") {
-                $annotation_dgpi = 1;
-            } elsif($component_name eq "annotation_predgpi"){
-                $annotation_predgpi = 1;
-            } elsif($component_name eq "annotation_bigpi") {
-                $annotation_bigpi = 1;
-            } elsif($component_name eq "annotation_tcdb") {
-                $annotation_tcdb = 1;
-            }
-        }
-        elsif ( $component_name eq "annotation_hmmer" ) {
-            $components{$component} = "$annotation_dir/" .
-            $component . "/hmmer.txt";
-            $scriptSQL .=
-            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/hmmer.txt');\n";
-        }
-    }
-    push @filepathsComponents, $components{$component};
-}
+                            while ( $sub_evidence->{log}{arguments} =~
+                                /database_code\s*=\s*(\w+)+\s*/ig )
+                            {
+                                $code = $1;
+                            }
+                            my $aux_html = $html_file;
+                            $code = "." . $code . ".html";
+                            $aux_html =~ s/.html/$code/g;
+                            $components{$component} = "$annotation_dir/$component/$aux_html";
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$aux_html');\n";
+                            $annotation_orthology = 1;
+                        }
+                        elsif ( $component_name eq "annotation_pathways" ) {
+                            $components{$component} = "$annotation_dir/$component/$html_file";
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag,  component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
+                            $annotation_pathways = 1;
+                        }
+                        elsif ( $component_name eq "annotation_phobius" ) {
+                            $components{$component} = "$annotation_dir/$component/$png_file";
+                            $annotation_phobius = 1;
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
+                        }
+                        elsif ( $component_name eq "annotation_signalP" ) {
+                            $components{$component} = "$annotation_dir/$component/$png_file";
+                            $annotation_signalP = 1;
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
+                        }
+                        elsif ( $component_name eq "annotation_rpsblast" ) {
+                            $components{$component} = "$annotation_dir/$component/$txt_file";
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$txt_file');\n";
+                            $annotation_rpsblast = 1;
+                        }
+                        elsif( $component_name eq "annotation_tmhmm" ) {
+                            $components{$component} = "$annotation_dir/$component/$png_file";
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$png_file');\n";
+                            $annotation_tmhmm = 1;
+                        }
+                        elsif($component_name eq "annotation_predgpi" || $component_name eq "annotation_dgpi" || $component_name eq "annotation_bigpi" || $component_name eq "annotation_tcdb") {
+                            $components{$component} = "$annotation_dir/$component/$html_file";
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/$html_file');\n";
 
+                            if($component_name eq "annotation_dgpi") {
+                                $annotation_dgpi = 1;
+                            } elsif($component_name eq "annotation_predgpi"){
+                                $annotation_predgpi = 1;
+                            } elsif($component_name eq "annotation_bigpi") {
+                                $annotation_bigpi = 1;
+                            } elsif($component_name eq "annotation_tcdb") {
+                                $annotation_tcdb = 1;
+                            }
+                        }
+                        elsif ( $component_name eq "annotation_hmmer" ) {
+                            $components{$component} = "$annotation_dir/" .
+                            $component . "/hmmer.txt";
+                            $hashSQL{$component_name} =
+                            "\nINSERT INTO COMPONENTS(name, locus_tag, component, filepath) VALUES('$component_name', '$locus_tag', '$component', '$component/hmmer.txt');\n";
+                        }
+                    }
+                    push @filepathsComponents, $components{$component};
+                }
+                $scriptSQL .= "\n".$hashSQL{$_}."\n" foreach(keys %hashSQL);
 
             }
 
@@ -1441,12 +1492,6 @@ $scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-genes-
 $scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-other-sequences-links-1', 'Get all contigs', '/DownloadFile?type=ac');\n" if ($allContigs);
 $scriptSQL .= " INSERT INTO TEXTS(tag, value, details) VALUES ('downloads-other-sequences-links-2', 'All transcriptional terminators (predicted by TransTermHP)', '/DownloadFile?type=tt');\n" if ($ttSequences);
 
-if($annotation_blast) {
-    $scriptSQL .= <<SQL;
-                INSERT INTO TEXTS(tag, value, details) VALUES
-                    ("search-database-analyses-protein-code-tab", "<a href='#blast' data-toggle='tab'>BLAST"</a>, "");
-SQL
-}
 if($annotation_trf) {
     $scriptSQL .= <<SQL;
                 INSERT INTO TEXTS(tag, value, details) VALUES 
@@ -1489,7 +1534,14 @@ SQL
 if($annotation_orthology) {
     $scriptSQL .= <<SQL;
                 INSERT INTO TEXTS(tag, value, details) VALUES
-                    ("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>Orthology</a>", "");
+                    ("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>Orthology analysis (eggNOG)</a>", "");
+SQL
+}
+if($annotation_blast) {
+    print $LOG "\n[1505] Inseriu BLAST tab\n";
+    $scriptSQL .= <<SQL;
+                INSERT INTO TEXTS(tag, value, details) VALUES
+                    ("search-database-analyses-protein-code-tab", "<a href='#blast' data-toggle='tab'>BLAST"</a>, "");
 SQL
 }
 if($annotation_pathways) {
@@ -1787,6 +1839,9 @@ $lowCaseName =~ s/-/_/g;
 #chmod("111", "$nameProject/script/".$lowCaseName."_server.pl");
 #chmod("111", "$nameProject/script/".$lowCaseName."_create.pl");
 #create view
+open(my $FILEHANDLER, ">>", "$html_dir/$lowCaseName.conf");
+print $FILEHANDLER "\ncomponents_ev " . join(" ", keys %hash_ev) . "\n";
+close($FILEHANDLER);
 print $LOG "\nCreating view\n";
 `./$html_dir/script/"$lowCaseName"_create.pl view TT TT`;
 if($report_feature_table_submission) {
@@ -1999,10 +2054,7 @@ foreach my $key ( keys %models ) {
 my $hadGlobal         = 0;
 my $hadSearchDatabase = 0;
 foreach my $component ( sort keys %components ) {
-    if (   scalar @report_go_dir > 0
-        || scalar @report_eggnog_dir > 0
-        || scalar @report_pathways_dir > 0
-        || scalar @report_kegg_organism_dir > 0 )
+    if ( scalar @reports_global_analyses > 0 )
     {
         $hadGlobal = 1;
     }
@@ -2043,20 +2095,20 @@ sub getPipeline {
     my \$query = "select distinct p.value as value
     from feature_relationship r
     join featureloc l on (r.subject_id = l.feature_id)
-            join featureprop p on (p.feature_id = l.srcfeature_id)
-            join cvterm cp on (p.type_id = cp.cvterm_id)
-            WHERE cp.name='pipeline_id';";
+    join featureprop p on (p.feature_id = l.srcfeature_id)
+    join cvterm cp on (p.type_id = cp.cvterm_id)
+    WHERE cp.name='pipeline_id';";
     my \$sth = \$dbh->prepare(\$query);
-        print STDERR \$query;
-        \$sth->execute();
-        my \@rows = \@{ \$sth->fetchall_arrayref() };
-        my \%returnedHash = ();
+    print STDERR \$query;
+    \$sth->execute();
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \%returnedHash = ();
 
-        for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-                \$returnedHash{pipeline_id} = \$rows[\$i][0];
-        }
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        \$returnedHash{pipeline_id} = \$rows[\$i][0];
+    }
 
-        return \\\%returnedHash;
+    return \\\%returnedHash;
 }
 
 =head2
@@ -2070,19 +2122,19 @@ sub getRibosomalRNAs {
     my \$dbh = \$self->dbh;
     my \@args = ();
     my \$query = "select distinct pd.value AS name 
-from feature f 
-join feature_relationship r on (f.feature_id = r.object_id) 
-join cvterm cr on (r.type_id = cr.cvterm_id) 
-join featureprop ps on (r.subject_id = ps.feature_id) 
-join cvterm cs on (ps.type_id = cs.cvterm_id) 
-join featureprop pf on (f.feature_id = pf.feature_id) 
-join cvterm cf on (pf.type_id = cf.cvterm_id) 
-join featureloc l on (l.feature_id = f.feature_id) 
-join featureprop pl on (l.srcfeature_id = pl.feature_id) 
-join cvterm cp on (pl.type_id = cp.cvterm_id) 
-join featureprop pd on (r.subject_id = pd.feature_id) 
-join cvterm cd on (pd.type_id = cd.cvterm_id) 
-where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ORDER BY pd.value ASC ;";
+    from feature f 
+    join feature_relationship r on (f.feature_id = r.object_id) 
+    join cvterm cr on (r.type_id = cr.cvterm_id) 
+    join featureprop ps on (r.subject_id = ps.feature_id) 
+    join cvterm cs on (ps.type_id = cs.cvterm_id) 
+    join featureprop pf on (f.feature_id = pf.feature_id) 
+    join cvterm cf on (pf.type_id = cf.cvterm_id) 
+    join featureloc l on (l.feature_id = f.feature_id) 
+    join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+    join cvterm cp on (pl.type_id = cp.cvterm_id) 
+    join featureprop pd on (r.subject_id = pd.feature_id) 
+    join cvterm cd on (pd.type_id = cd.cvterm_id) 
+    where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ORDER BY pd.value ASC ;";
     push \@args, \$hash->{pipeline};
     my \$sth = \$dbh->prepare(\$query);
     print STDERR \$query;
@@ -2106,20 +2158,20 @@ sub analyses_CDS {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$query = "SELECT motherfuckerquery.feature_id, COUNT(*) OVER() FROM "
-      . "((select distinct f.feature_id "
-      . "from feature f "
-      . "join feature_relationship r on (f.feature_id = r.object_id) "
-      . "join cvterm cr on (r.type_id = cr.cvterm_id) "
-      . "join featureprop ps on (r.subject_id = ps.feature_id) "
-      . "join cvterm cs on (ps.type_id = cs.cvterm_id) "
-      . "join featureprop pf on (f.feature_id = pf.feature_id) "
-      . "join cvterm cf on (pf.type_id = cf.cvterm_id) "
-      . "join featureloc l on (l.feature_id = f.feature_id) "
-      . "join featureprop pl on (l.srcfeature_id = pl.feature_id) "
-      . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
-      . "join featureprop pd on (r.subject_id = pd.feature_id) "
-      . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
-      . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ";
+    . "((select distinct f.feature_id "
+    . "from feature f "
+    . "join feature_relationship r on (f.feature_id = r.object_id) "
+    . "join cvterm cr on (r.type_id = cr.cvterm_id) "
+    . "join featureprop ps on (r.subject_id = ps.feature_id) "
+    . "join cvterm cs on (ps.type_id = cs.cvterm_id) "
+    . "join featureprop pf on (f.feature_id = pf.feature_id) "
+    . "join cvterm cf on (pf.type_id = cf.cvterm_id) "
+    . "join featureloc l on (l.feature_id = f.feature_id) "
+    . "join featureprop pl on (l.srcfeature_id = pl.feature_id) "
+    . "join cvterm cp on (pl.type_id = cp.cvterm_id) "
+    . "join featureprop pd on (r.subject_id = pd.feature_id) "
+    . "join cvterm cd on (pd.type_id = cd.cvterm_id) "
+    . "where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -2151,15 +2203,15 @@ sub analyses_CDS {
     {
         my \$and = "";
         \$query_gene =
-            "(SELECT DISTINCT f.feature_id "
-          . "FROM feature f JOIN feature_relationship r ON (f.feature_id = r.object_id) "
-          . "JOIN cvterm cr ON (r.type_id = cr.cvterm_id) "
-          . "JOIN featureloc l ON (l.feature_id = f.feature_id) "
-          . "JOIN featureprop pl ON (l.srcfeature_id = pl.feature_id) "
-          . "JOIN cvterm cp ON (pl.type_id = cp.cvterm_id) "
-          . "JOIN featureprop pd ON (r.subject_id = pd.feature_id) "
-          . "JOIN cvterm cd ON (pd.type_id = cd.cvterm_id) "
-          . "WHERE cr.name = 'based_on' AND cd.name = 'description' AND cp.name = 'pipeline_id' AND pl.value=? AND ";
+        "(SELECT DISTINCT f.feature_id "
+        . "FROM feature f JOIN feature_relationship r ON (f.feature_id = r.object_id) "
+        . "JOIN cvterm cr ON (r.type_id = cr.cvterm_id) "
+        . "JOIN featureloc l ON (l.feature_id = f.feature_id) "
+        . "JOIN featureprop pl ON (l.srcfeature_id = pl.feature_id) "
+        . "JOIN cvterm cp ON (pl.type_id = cp.cvterm_id) "
+        . "JOIN featureprop pd ON (r.subject_id = pd.feature_id) "
+        . "JOIN cvterm cd ON (pd.type_id = cd.cvterm_id) "
+        . "WHERE cr.name = 'based_on' AND cd.name = 'description' AND cp.name = 'pipeline_id' AND pl.value=? AND ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
 
@@ -2170,37 +2222,37 @@ sub analyses_CDS {
         }
         if ( exists \$hash->{noDesc} && \$hash->{noDesc} ) {
             \$query_gene .=
-              generate_clause( "?", "NOT", \$and, "lower(pd.value)" );
+            generate_clause( "?", "NOT", \$and, "lower(pd.value)" );
             push \@args, "\%" . lc( \$hash->{noDesc} ) . "\%";
         }
 
         if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
-        || ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
+            || ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
         {
             my \@likesDescription   = ();
             my \@likesNoDescription = ();
             if ( \$hash->{geneDescription} ) {
                 while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
                     push \@likesDescription,
-                      generate_clause( "?", "", "",
+                    generate_clause( "?", "", "",
                         "lower(pd.value)"
-                      );
+                    );
                     push \@args, lc( "\%" . \$1 . "\%" );
                 }
             }
             if ( \$hash->{noDescription} ) {
                 while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
                     push \@likesNoDescription,
-                      generate_clause( "?", "NOT", "",
+                    generate_clause( "?", "NOT", "",
                         "lower(pd.value)"
-                      );
+                    );
                     push \@args, lc( "\%" . \$1 . "\%" );
                 }
             }
 
             if (    exists \$hash->{individually}
-                and \$hash->{individually}
-                and scalar(\@likesDescription) > 0 )
+                    and \$hash->{individually}
+                    and scalar(\@likesDescription) > 0 )
             {
                 if ( scalar(\@likesNoDescription) > 0 ) {
                     foreach my \$like (\@likesDescription) {
@@ -2244,7 +2296,7 @@ sub analyses_CDS {
                 \$query_gene .= " ) ";
             }
             elsif ( scalar(\@likesDescription) <= 0
-                and scalar(\@likesNoDescription) > 0 )
+                    and scalar(\@likesNoDescription) > 0 )
             {
                 foreach my \$like (\@likesNoDescription) {
                     \$query_gene .= " AND " . \$like;
@@ -2261,15 +2313,15 @@ sub analyses_CDS {
         || ( exists \$hash->{goDesc} && \$hash->{goDesc} ) )
     {
         \$query_GO =
-            "(SELECT DISTINCT r.object_id "
-          . "FROM feature_relationship r "
-          . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-          . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-          . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
-          . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-          . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
-          . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-          . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+        "(SELECT DISTINCT r.object_id "
+        . "FROM feature_relationship r "
+        . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+        . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+        . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
+        . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+        . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
+        . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
+        . "WHERE c.name ='pipeline_id' AND p.value = ? ";
 
         push \@args, \$hash->{pipeline};
 
@@ -2281,13 +2333,12 @@ sub analyses_CDS {
         }
         elsif ( exists \$hash->{goID} && \$hash->{goID} ) {
             \$query_GO .=
-              "AND cpd.name LIKE 'evidence_\%' AND lower(pd.value) LIKE ?)";
+            "AND cpd.name LIKE 'evidence_\%' AND lower(pd.value) LIKE ? ";
             push \@args, "\%" . lc( \$hash->{'goID'} ) . "\%";
         }
         elsif ( exists \$hash->{goDesc} && \$hash->{goDesc} ) {
             \$query_GO .=
-              "and cpd.name like 'evidence_\%' and "
-              . generate_clause( "?", "", "", "lower(pd.value)" ) . " )";
+            "and cpd.name like 'evidence_\%' and lower(pd.value) LIKE ? ";
             push \@args, "\%" . lc( \$hash->{'goDesc'} ) . "\%";
         }
         \$query_GO  = \$connector . \$query_GO . ")";
@@ -2301,16 +2352,16 @@ sub analyses_CDS {
         || ( exists \$hash->{'tcdbDesc'}     && \$hash->{'tcdbDesc'} ) )
     {
         \$query_TCDB =
-            "(SELECT DISTINCT r.object_id "
-          . "FROM feature_relationship r "
-          . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-          . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-          . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
-          . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-          . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
-          . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
-          . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-          . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+        "(SELECT DISTINCT r.object_id "
+        . "FROM feature_relationship r "
+        . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+        . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+        . "JOIN cvterm c ON (p.type_id = c.cvterm_id) "
+        . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+        . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+        . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
+        . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
+        . "WHERE c.name ='pipeline_id' AND p.value = ? ";
         push \@args, \$hash->{pipeline};
 
         \$connector = " INTERSECT " if \$connector;
@@ -2325,23 +2376,23 @@ sub analyses_CDS {
         }
         elsif ( \$hash->{'tcdbFam'} ) {
             \$query_TCDB .=
-              "AND cpd.name = 'TCDB_family' AND lower(pd.value) LIKE ?";
+            "AND cpd.name = 'TCDB_family' AND lower(pd.value) LIKE ?";
             push \@args, "\%" . lc( \$hash->{'tcdbFam'} ) . "\%";
         }
         elsif ( \$hash->{'tcdbSubclass'} ) {
             \$query_TCDB .=
-              "AND cpd.name = 'TCDB_subclass' AND lower(pd.value) LIKE ?";
+            "AND cpd.name = 'TCDB_subclass' AND lower(pd.value) LIKE ?";
             push \@args, "\%" . lc( \$hash->{'tcdbSubclass'} ) . "\%";
         }
         elsif ( \$hash->{'tcdbClass'} ) {
             \$query_TCDB .=
-              "AND cpd.name = 'TCDB_class' AND lower(pd.value) LIKE ?";
+            "AND cpd.name = 'TCDB_class' AND lower(pd.value) LIKE ?";
             push \@args, "\%" . lc( \$hash->{'tcdbClass'} ) . "\%";
         }
         elsif ( \$hash->{'tcdbDesc'} ) {
             \$query_TCDB .=
-              "and cpd.name = 'hit_description' and "
-              . generate_clause( "?", "", "", "lower(pd.value)" );
+            "and cpd.name = 'hit_description' and "
+            . generate_clause( "?", "", "", "lower(pd.value)" );
             push \@args, lc( \$hash->{'tcdbDesc'} );
         }
         \$query_TCDB = \$connector . \$query_TCDB . ")";
@@ -2352,21 +2403,21 @@ sub analyses_CDS {
         || ( exists \$hash->{'blastDesc'} && \$hash->{'blastDesc'} ) )
     {
         \$query_blast = "(SELECT DISTINCT r.object_id " . " FROM feature f
-                JOIN feature_relationship r ON (r.subject_id = f.feature_id)
-                JOIN feature fo ON (r.object_id = fo.feature_id)
-                JOIN analysisfeature af ON (f.feature_id = af.feature_id)
-                JOIN analysis a ON (a.analysis_id = af.analysis_id)
-                JOIN featureloc l ON (r.object_id = l.feature_id)
-                JOIN featureprop p ON (p.feature_id = srcfeature_id)
-                JOIN cvterm c ON (p.type_id = c.cvterm_id)
-                JOIN feature_relationship ra ON (ra.object_id = f.feature_id)
-                JOIN cvterm cra ON (ra.type_id = cra.cvterm_id)
-                JOIN featureprop pfo ON (ra.subject_id = pfo.feature_id)
-                JOIN cvterm cpfo ON (cpfo.cvterm_id = pfo.type_id)
-                JOIN featureprop pr ON (r.object_id = pr.feature_id)
-                JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id) ";
+        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+        JOIN feature fo ON (r.object_id = fo.feature_id)
+        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+        JOIN analysis a ON (a.analysis_id = af.analysis_id)
+        JOIN featureloc l ON (r.object_id = l.feature_id)
+        JOIN featureprop p ON (p.feature_id = srcfeature_id)
+        JOIN cvterm c ON (p.type_id = c.cvterm_id)
+        JOIN feature_relationship ra ON (ra.object_id = f.feature_id)
+        JOIN cvterm cra ON (ra.type_id = cra.cvterm_id)
+        JOIN featureprop pfo ON (ra.subject_id = pfo.feature_id)
+        JOIN cvterm cpfo ON (cpfo.cvterm_id = pfo.type_id)
+        JOIN featureprop pr ON (r.object_id = pr.feature_id)
+        JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id) ";
         my \$conditional =
-"WHERE a.program = 'annotation_blast.pl' AND c.name ='pipeline_id' AND p.value = ? AND cra.name = 'alignment' AND cpfo.name = 'subject_id'";
+        "WHERE a.program = 'annotation_blast.pl' AND c.name ='pipeline_id' AND p.value = ? AND cra.name = 'alignment' AND cpfo.name = 'subject_id'";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if ( \$hash->{'noBlast'} ) {
@@ -2378,7 +2429,7 @@ sub analyses_CDS {
         }
         elsif ( \$hash->{'blastDesc'} ) {
             \$conditional .=
-              " AND " . generate_clause( "?", "", "", "lower(pfo.value)" );
+            " AND " . generate_clause( "?", "", "", "lower(pfo.value)" );
             push \@args, \$hash->{'blastDesc'};
         }
         \$query_blast = \$connector . \$query_blast . \$conditional . ")";
@@ -2389,23 +2440,23 @@ sub analyses_CDS {
         || ( exists \$hash->{'rpsDesc'} && \$hash->{'rpsDesc'} ) )
     {
         \$query_RPS =
-            "(select distinct r.object_id "
-          . " from feature f "
-          . "join feature_relationship r on (r.subject_id = f.feature_id) "
-          . "join feature fo on (r.object_id = fo.feature_id) "
-          . "join analysisfeature af on (f.feature_id = af.feature_id) "
-          . "join analysis a on (a.analysis_id = af.analysis_id) "
-          . "join featureloc l on (r.object_id = l.feature_id) "
-          . "join featureprop p on (p.feature_id = srcfeature_id) "
-          . "join cvterm c on (p.type_id = c.cvterm_id) "
-          . "join feature_relationship ra on (ra.object_id = f.feature_id) "
-          . "join cvterm cra on (ra.type_id = cra.cvterm_id) "
-          . "join featureprop pfo on (ra.subject_id = pfo.feature_id) "
-          . "join cvterm cpfo on (cpfo.cvterm_id = pfo.type_id) "
-          . "join featureprop pr on (r.object_id = pr.feature_id) "
-          . "join cvterm cpr on (pr.type_id = cpr.cvterm_id) ";
+        "(select distinct r.object_id "
+        . " from feature f "
+        . "join feature_relationship r on (r.subject_id = f.feature_id) "
+        . "join feature fo on (r.object_id = fo.feature_id) "
+        . "join analysisfeature af on (f.feature_id = af.feature_id) "
+        . "join analysis a on (a.analysis_id = af.analysis_id) "
+        . "join featureloc l on (r.object_id = l.feature_id) "
+        . "join featureprop p on (p.feature_id = srcfeature_id) "
+        . "join cvterm c on (p.type_id = c.cvterm_id) "
+        . "join feature_relationship ra on (ra.object_id = f.feature_id) "
+        . "join cvterm cra on (ra.type_id = cra.cvterm_id) "
+        . "join featureprop pfo on (ra.subject_id = pfo.feature_id) "
+        . "join cvterm cpfo on (cpfo.cvterm_id = pfo.type_id) "
+        . "join featureprop pr on (r.object_id = pr.feature_id) "
+        . "join cvterm cpr on (pr.type_id = cpr.cvterm_id) ";
         my \$conditional =
-"where a.program = 'annotation_rpsblast.pl' and c.name ='pipeline_id' and p.value = ? and cra.name = 'alignment' and cpfo.name = 'subject_id' ";
+        "where a.program = 'annotation_rpsblast.pl' and c.name ='pipeline_id' and p.value = ? and cra.name = 'alignment' and cpfo.name = 'subject_id' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
 
@@ -2418,7 +2469,7 @@ sub analyses_CDS {
         }
         elsif ( \$hash->{'rpsDesc'} ) {
             \$conditional .=
-              " and " . generate_clause( "?", "", "", "lower(pfo.value)" );
+            " and " . generate_clause( "?", "", "", "lower(pfo.value)" );
             push \@args, "\%" . lc( \$hash->{'rpsDesc'} ) . "\%";
         }
         \$query_RPS = \$connector . \$query_RPS . \$conditional . ")";
@@ -2430,40 +2481,48 @@ sub analyses_CDS {
         || \$hash->{'keggDesc'} )
     {
         \$query_KEGG =
-            "(select distinct r.object_id "
-          . "from feature_relationship r "
-          . "join featureloc l on (r.object_id = l.feature_id)"
-          . "join featureprop p on (p.feature_id = l.srcfeature_id)"
-          . "join cvterm c on (p.type_id = c.cvterm_id)"
-          . "join feature_relationship pr on (r.subject_id = pr.object_id)"
-          . "join featureprop ppr on (pr.subject_id = ppr.feature_id)"
-          . "join featureprop pd on (pr.subject_id = pd.feature_id)"
-          . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
-        my \$conditional = " where c.name ='pipeline_id' and p.value = ? ";
+        "(select distinct r.object_id "
+        . "from feature_relationship r "
+        . "join featureloc l on (r.object_id = l.feature_id)"
+        . "join featureprop p on (p.feature_id = l.srcfeature_id)"
+        . "join cvterm c on (p.type_id = c.cvterm_id)"
+        . "join feature_relationship pr on (r.subject_id = pr.object_id)"
+        . "join featureprop ppr on (pr.subject_id = ppr.feature_id)"
+        . "join featureprop pd on (pr.subject_id = pd.feature_id)"
+        . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) "
+        . "join featureprop pd2 on (pr.subject_id = pd2.feature_id)"
+        . "join cvterm cpd2 on (pd2.type_id = cpd2.cvterm_id) "
+        . "join featureprop pd3 on (pr.subject_id = pd3.feature_id)"
+        . "join cvterm cpd3 on (pd3.type_id = cpd3.cvterm_id) ";
+        my \$conditional = " where c.name ='pipeline_id' and p.value = ? and cpd.name = 'orthologous_group_id' and cpd2.name = 'metabolic_pathway_id' and cpd3.name = 'orthologous_group_description' ";
         push \@args, \$hash->{pipeline};
         \$connector = " intersect " if \$connector;
         if ( \$hash->{'noKEGG'} ) {
             \$connector = " except " if \$connector;
-            \$conditional .= " and cpd.name = 'orthologous_group_id'";
-        }
-        elsif ( \$hash->{'koID'} ) {
-            \$conditional .=
-" and cpd.name = 'orthologous_group_id' and lower(pd.value) LIKE ? ";
-            push \@args, "\%" . lc( \$hash->{'koID'} ) . "\%";
-        }
-        elsif ( \$hash->{'keggPath'} ) {
-            \$conditional .=
-" and cpd.name = 'metabolic_pathway_id' and lower(pd.value) like ? ";
-            push \@args, "\%" . lc( \$hash->{'keggPath'} ) . "\%";
-        }
-        elsif ( \$hash->{'keggDesc'} ) {
-            \$query_KEGG .=
+        } else {
+            if ( \$hash->{'koID'} ) {
+                \$conditional .= " and lower(pd.value) LIKE ? ";
+                push \@args, "\%" . lc( \$hash->{'koID'} ) . "\%";
+            }
+            if ( \$hash->{'keggPath'} ) {
+                \$conditional .=
+                " and lower(pd2.value) like ? ";
+                push \@args, "\%" . lc( \$hash->{'keggPath'} ) . "\%";
+            }
+            if ( \$hash->{'keggDesc'} ) {
+                \$query_KEGG .=
                 " join analysisfeature af on (r.subject_id = af.feature_id)"
-              . "join analysis a on (a.analysis_id = af.analysis_id) ";
-            \$conditional .=
-" and a.program = 'annotation_pathways.pl' and cpd.name = 'orthologous_group_description' and "
-              . generate_clause( "?", "", "", "pd.value" );
-            push \@args, "\%" . lc( \$hash->{'keggDesc'} ) . "\%";
+                . "join analysis a on (a.analysis_id = af.analysis_id) ";
+                \$conditional .=
+                " and a.program = 'annotation_pathways.pl' ";
+                while ( \$hash->{keggDesc} =~ /(\\S+)/g ) {
+                    \$conditional .= " and ". 
+                    generate_clause( "?", "", "",
+                        "lower(pd3.value)"
+                    );
+                    push \@args, lc( "\%" . \$1 . "\%" );
+                }
+            }
         }
         \$query_KEGG = \$connector . \$query_KEGG . \$conditional . ")";
         \$connector  = "1";
@@ -2473,15 +2532,15 @@ sub analyses_CDS {
         || ( exists \$hash->{'orthDesc'} && \$hash->{'orthDesc'} ) )
     {
         \$query_ORTH =
-            "(select distinct r.object_id"
-          . " from feature_relationship r "
-          . "join featureloc l on (r.object_id = l.feature_id) "
-          . "join featureprop p on (p.feature_id = l.srcfeature_id) "
-          . "join cvterm c on (p.type_id = c.cvterm_id) "
-          . "join feature_relationship pr on (r.subject_id = pr.object_id) "
-          . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
-          . "join featureprop pd on (pr.subject_id = pd.feature_id) "
-          . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
+        "(select distinct r.object_id"
+        . " from feature_relationship r "
+        . "join featureloc l on (r.object_id = l.feature_id) "
+        . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+        . "join cvterm c on (p.type_id = c.cvterm_id) "
+        . "join feature_relationship pr on (r.subject_id = pr.object_id) "
+        . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
+        . "join featureprop pd on (pr.subject_id = pd.feature_id) "
+        . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
         my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
         push \@args, \$hash->{pipeline};
         \$connector = " intersect " if \$connector;
@@ -2491,17 +2550,23 @@ sub analyses_CDS {
         }
         elsif ( \$hash->{'orthID'} ) {
             \$conditional =
-              "and cpd.name = 'orthologous_group' and lower(pd.value) like ? ";
+            "and cpd.name = 'orthologous_group' and lower(pd.value) like ? ";
             push \@args, "\%" . lc( \$hash->{'orthID'} ) . "\%";
         }
         elsif ( \$hash->{'orthDesc'} ) {
             \$query_ORTH .=
-                " join analysisfeature af on (r.subject_id = af.feature_id) "
-              . " join analysis a on (a.analysis_id = af.analysis_id) ";
+            " join analysisfeature af on (r.subject_id = af.feature_id) "
+            . " join analysis a on (a.analysis_id = af.analysis_id) ";
             \$conditional .=
-" and a.program = 'annotation_orthology.pl' and cpd.name = 'orthologous_group_description' and "
-              . generate_clause( "?", "", "", "lower(pd.value)" );
-            push \@args, "\%" . \$hash->{'orthDesc'} . "\%";
+            " and a.program = 'annotation_orthology.pl' and cpd.name = 'orthologous_group_description' "; 
+
+            while ( \$hash->{orthDesc} =~ /(\\S+)/g ) {
+                \$conditional .= " and ". 
+                generate_clause( "?", "", "",
+                    "lower(pd.value)"
+                );
+                push \@args, lc( "\%" . \$1 . "\%" );
+            }
         }
         \$query_ORTH = \$connector . \$query_ORTH . \$conditional . ")";
         \$connector  = "1";
@@ -2511,15 +2576,15 @@ sub analyses_CDS {
         || ( exists \$hash->{'interproDesc'} && \$hash->{'interproDesc'} ) )
     {
         \$query_interpro =
-            "(select distinct r.object_id "
-          . " from feature f "
-          . "join feature_relationship r on (r.subject_id = f.feature_id) "
-          . "join featureloc l on (r.object_id = l.feature_id) "
-          . "join featureprop p on (p.feature_id = l.srcfeature_id) "
-          . "join cvterm c on (p.type_id = c.cvterm_id) "
-          . "join feature_relationship pr on (r.subject_id = pr.object_id) "
-          . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
-          . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) ";
+        "(select distinct r.object_id "
+        . " from feature f "
+        . "join feature_relationship r on (r.subject_id = f.feature_id) "
+        . "join featureloc l on (r.object_id = l.feature_id) "
+        . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+        . "join cvterm c on (p.type_id = c.cvterm_id) "
+        . "join feature_relationship pr on (r.subject_id = pr.object_id) "
+        . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
+        . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) ";
         my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
         push \@args, \$hash->{pipeline};
         \$connector = " intersect " if \$connector;
@@ -2529,12 +2594,12 @@ sub analyses_CDS {
         }
         elsif ( \$hash->{'interproID'} ) {
             \$conditional .=
-              "and cpr.name like 'interpro_id' and ppr.value LIKE ? ";
+            "and cpr.name like 'interpro_id' and ppr.value LIKE ? ";
             push \@args, "\%" . \$hash->{'interproID'} . "\%";
         }
         elsif ( \$hash->{'interproDesc'} ) {
             \$conditional .=
-              "and cpr.name like 'description\%' and ppr.value like ? ";
+            "and cpr.name like 'description\%' and ppr.value like ? ";
             push \@args, "\%" . \$hash->{'interproDesc'} . "\%";
         }
         \$query_interpro = \$connector . \$query_interpro . \$conditional . ")";
@@ -2544,26 +2609,27 @@ sub analyses_CDS {
         || ( exists \$hash->{'TMHMMdom'}   && \$hash->{'TMHMMdom'}   ) )
     {
         my \$select = "(SELECT DISTINCT r.object_id       
-FROM feature f 
-JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
-JOIN feature fo ON (r.object_id = fo.feature_id) 
-JOIN featureloc l ON (r.object_id = l.feature_id) 
-JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
-JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
-JOIN analysis a ON (a.analysis_id = af.analysis_id) 
-JOIN cvterm c ON (p.type_id = c.cvterm_id)  
-JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
-JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
-JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)  
-JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
-JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) 
-JOIN featureprop ppp ON (pr.subject_id = ppp.feature_id)       
-JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id)
-WHERE a.program = 'annotation_tmhmm.pl' AND c.name ='pipeline_id' AND p.value=? AND cpr.name ='version' AND cpp.name='direction' AND cppp.name='predicted_TMHs' ";
+        FROM feature f 
+        JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
+        JOIN feature fo ON (r.object_id = fo.feature_id) 
+        JOIN featureloc l ON (r.object_id = l.feature_id) 
+        JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
+        JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
+        JOIN analysis a ON (a.analysis_id = af.analysis_id) 
+        JOIN cvterm c ON (p.type_id = c.cvterm_id)  
+        JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
+        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
+        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)  
+        JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
+        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) 
+        JOIN featureprop ppp ON (pr.subject_id = ppp.feature_id)       
+        JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id)
+        WHERE a.program = 'annotation_tmhmm.pl' AND c.name ='pipeline_id' AND p.value=? AND cpr.name ='version' AND cpp.name='direction' AND cppp.name='predicted_TMHs' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noTMHMM'}) {
-            \$connector = " EXCEPT " if \$connector;
+            $select .= " AND my_to_decimal(ppp.value) = ? ";
+            push @args, "-0";
             \$query_tmhmm = \$connector . \$select . ")";
         } elsif(\$hash->{'TMHMMdom'}) {
             \$select .= " AND my_to_decimal(ppp.value) ";
@@ -2577,7 +2643,7 @@ WHERE a.program = 'annotation_tmhmm.pl' AND c.name ='pipeline_id' AND p.value=? 
                 \$select .= ">= ? ";
             }
             push \@args, \$hash->{'TMHMMdom'} if \$hash->{'tmhmmQuant'};
-            \$query_Phobius = \$connector . \$select . ")";
+            \$query_tmhmm = \$connector . \$select . ")";
             \$connector     = "1";
         } else {
             \$query_tmhmm = "";
@@ -2589,20 +2655,20 @@ WHERE a.program = 'annotation_tmhmm.pl' AND c.name ='pipeline_id' AND p.value=? 
         ||  ( exists \$hash->{'scoreDGPI'}   && \$hash->{'scoreDGPI'}   )  )
     {
         my \$select = "(SELECT DISTINCT r.object_id       
-FROM feature f 
-JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
-JOIN feature fo ON (r.object_id = fo.feature_id) 
-JOIN featureloc l ON (r.object_id = l.feature_id) 
-JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
-JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
-JOIN analysis a ON (a.analysis_id = af.analysis_id) 
-JOIN cvterm c ON (p.type_id = c.cvterm_id)  
-JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
-JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
-JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
-JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
-JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
-WHERE a.program = 'annotation_dgpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='cleavage_site' AND cpp.name='score' ";
+        FROM feature f 
+        JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
+        JOIN feature fo ON (r.object_id = fo.feature_id) 
+        JOIN featureloc l ON (r.object_id = l.feature_id) 
+        JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
+        JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
+        JOIN analysis a ON (a.analysis_id = af.analysis_id) 
+        JOIN cvterm c ON (p.type_id = c.cvterm_id)  
+        JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
+        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
+        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
+        JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
+        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
+        WHERE a.program = 'annotation_dgpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='cleavage_site' AND cpp.name='score' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noDGPI'}) {
@@ -2647,24 +2713,24 @@ WHERE a.program = 'annotation_dgpi.pl' AND c.name='pipeline_id' AND p.value=? AN
         ||  ( exists \$hash->{'specificityPreDGPI'} && \$hash->{'specificityPreDGPI'} ) 
         ||  ( exists \$hash->{'sequencePreDGPI'} && \$hash->{'sequencePreDGPI'} )  ) {
         my \$select = "(SELECT DISTINCT r.object_id       
-FROM feature f 
-JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
-JOIN feature fo ON (r.object_id = fo.feature_id) 
-JOIN featureloc l ON (r.object_id = l.feature_id) 
-JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
-JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
-JOIN analysis a ON (a.analysis_id = af.analysis_id) 
-JOIN cvterm c ON (p.type_id = c.cvterm_id)  
-JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
-JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
-JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)  
-JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
-JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
-JOIN featureprop ppp ON (pr.subject_id = ppp.feature_id) 
-JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id) 
-JOIN featureprop pppp ON (pr.subject_id = pppp.feature_id) 
-JOIN cvterm cpppp ON (pppp.type_id = cpppp.cvterm_id)      
-WHERE a.program = 'annotation_predgpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='name' AND cpp.name='position' AND cppp.name='specificity' AND cpppp.name='sequence' ";
+        FROM feature f 
+        JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
+        JOIN feature fo ON (r.object_id = fo.feature_id) 
+        JOIN featureloc l ON (r.object_id = l.feature_id) 
+        JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
+        JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
+        JOIN analysis a ON (a.analysis_id = af.analysis_id) 
+        JOIN cvterm c ON (p.type_id = c.cvterm_id)  
+        JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
+        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
+        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)  
+        JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
+        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
+        JOIN featureprop ppp ON (pr.subject_id = ppp.feature_id) 
+        JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id) 
+        JOIN featureprop pppp ON (pr.subject_id = pppp.feature_id) 
+        JOIN cvterm cpppp ON (pppp.type_id = cpppp.cvterm_id)      
+        WHERE a.program = 'annotation_predgpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='name' AND cpp.name='position' AND cppp.name='specificity' AND cpppp.name='sequence' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noPreDGPI'}) {
@@ -2720,20 +2786,20 @@ WHERE a.program = 'annotation_predgpi.pl' AND c.name='pipeline_id' AND p.value=?
         ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  )
     {
         my \$select = "(SELECT DISTINCT r.object_id       
-FROM feature f 
-JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
-JOIN feature fo ON (r.object_id = fo.feature_id) 
-JOIN featureloc l ON (r.object_id = l.feature_id) 
-JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
-JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
-JOIN analysis a ON (a.analysis_id = af.analysis_id) 
-JOIN cvterm c ON (p.type_id = c.cvterm_id)  
-JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
-JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
-JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
-JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
-JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
-WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='pvalue' AND cpp.name='position' ";
+        FROM feature f 
+        JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
+        JOIN feature fo ON (r.object_id = fo.feature_id) 
+        JOIN featureloc l ON (r.object_id = l.feature_id) 
+        JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
+        JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
+        JOIN analysis a ON (a.analysis_id = af.analysis_id) 
+        JOIN cvterm c ON (p.type_id = c.cvterm_id)  
+        JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
+        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
+        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
+        JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
+        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
+        WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='pvalue' AND cpp.name='position' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noBigGPI'}) {
@@ -2770,36 +2836,38 @@ WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? A
         }
     }
     if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
-        || ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) )
+        || ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) 
+        || ( exists \$hash->{'sigP'} && \$hash->{'sigP'} ) )
     {
         my \$select = "(SELECT DISTINCT r.object_id ";
         my \$join =
-            "FROM feature f "
-          . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
-          . "JOIN feature fo ON (r.object_id = fo.feature_id) "
-          . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-          . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-          . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
-          . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
-          . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
+        "FROM feature f "
+        . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
+        . "JOIN feature fo ON (r.object_id = fo.feature_id) "
+        . "JOIN featureloc l ON (r.object_id = l.feature_id) "
+        . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
+        . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
+        . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
+        . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
         my \$conditional =
-"WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
-        push \@args, \$hash->{pipeline};
+        "WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
 
         \$connector = " INTERSECT " if \$connector;
         if ( \$hash->{noPhobius} ) {
+            push \@args, \$hash->{pipeline};
             \$connector = " EXCEPT " if \$connector;
             \$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
         }
         elsif ( \$hash->{'TMdom'} ) {
+            push \@args, \$hash->{pipeline};
             \$join .=
-                "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-              . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
-              . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
-              . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
-              . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
+            "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
+            . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
+            . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
+            . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
+            . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
             \$conditional .=
-" AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
+            " AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
 
             if ( \$hash->{'tmQuant'} eq "exact" ) {
                 \$conditional .= "= ? ";
@@ -2830,69 +2898,73 @@ WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? A
                 }
 
                 \$query_Phobius .=
-                  " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
-                        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
-                        JOIN feature fo ON (r.object_id = fo.feature_id)
-                        JOIN featureloc l ON (r.object_id = l.feature_id)
-                        JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
-                        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
-                        JOIN analysis a ON (a.analysis_id = af.analysis_id)
-                        JOIN cvterm c ON (p.type_id = c.cvterm_id)
-                        JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
-                        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
-                        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
-                        JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
-                        JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
-                        where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
+                " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
+                JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+                JOIN feature fo ON (r.object_id = fo.feature_id)
+                JOIN featureloc l ON (r.object_id = l.feature_id)
+                JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
+                JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+                JOIN analysis a ON (a.analysis_id = af.analysis_id)
+                JOIN cvterm c ON (p.type_id = c.cvterm_id)
+                JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
+                JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
+                JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
+                JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
+                JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
+                where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
                 push \@args, \$hash->{pipeline};
             }
             \$connector = "1";
         }
     }
-    if (exists \$hash->{'signalP'} && \$hash->{'signalP'} ne "whatever") {
-        if ( \$hash->{'signalP'} eq "yes" ) {
+    if ((exists \$hash->{'signalP'} && \$hash->{'signalP'} ne "whatever") ||
+        (exists \$hash->{'noSignalP'} && \$hash->{'noSignalP'})
+    ) {
+        if ( \$hash->{'signalP'} eq "YES" ) {
             \$query_sigP = " INTERSECT " if \$connector;
-        } else {
+
+        }elsif (\$hash->{'signalP'} eq "NO" || \$hash->{'noSignalP'}) {
             \$query_sigP = " EXCEPT " if \$connector;
         }
         \$query_sigP .= " (SELECT DISTINCT r.object_id       
-                            FROM feature f 
-                            JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
-                            JOIN feature fo ON (r.object_id = fo.feature_id) 
-                            JOIN featureloc l ON (r.object_id = l.feature_id) 
-                            JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
-                            JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
-                            JOIN analysis a ON (a.analysis_id = af.analysis_id) 
-                            JOIN cvterm c ON (p.type_id = c.cvterm_id)  
-                            JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
-                            JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
-                            JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)  
-                            WHERE a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'pep_sig' AND ppr.value = 'YES')";
+        FROM feature f 
+        JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
+        JOIN feature fo ON (r.object_id = fo.feature_id) 
+        JOIN featureloc l ON (r.object_id = l.feature_id) 
+        JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
+        JOIN analysisfeature af ON (f.feature_id = af.feature_id) 
+        JOIN analysis a ON (a.analysis_id = af.analysis_id) 
+        JOIN cvterm c ON (p.type_id = c.cvterm_id)  
+        JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
+        JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) 
+        JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)  
+        WHERE a.program = 'annotation_signalP.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'pep_sig' AND ppr.value = 'YES')";
+        push \@args, \$hash->{pipeline};
         \$connector = "1"; 
     }
 
     \$query =
-        \$query
-      . \$query_gene
-      . \$query_GO
-      . \$query_TCDB
-      . \$query_Phobius
-      . \$query_sigP
-      . \$query_blast
-      . \$query_RPS
-      . \$query_KEGG
-      . \$query_ORTH
-      . \$query_interpro
-      . \$query_tmhmm
-      . \$query_dgpi
-      . \$query_bigpi
-      . \$query_predgpi
-      . " ) as motherfuckerquery 
-            LEFT JOIN feature_relationship fr ON (fr.object_id = motherfuckerquery.feature_id) 
-            LEFT JOIN featureprop fp ON (fp.feature_id = fr.subject_id) 
-            LEFT JOIN cvterm cv ON (cv.cvterm_id = fp.type_id) 
-            WHERE cv.name = 'locus_tag' 
-            GROUP BY motherfuckerquery.feature_id, fp.value ORDER BY fp.value ASC ";
+    \$query
+    . \$query_gene
+    . \$query_GO
+    . \$query_TCDB
+    . \$query_Phobius
+    . \$query_sigP
+    . \$query_blast
+    . \$query_RPS
+    . \$query_KEGG
+    . \$query_ORTH
+    . \$query_interpro
+    . \$query_tmhmm
+    . \$query_dgpi
+    . \$query_bigpi
+    . \$query_predgpi
+    . " ) as motherfuckerquery 
+    LEFT JOIN feature_relationship fr ON (fr.object_id = motherfuckerquery.feature_id) 
+    LEFT JOIN featureprop fp ON (fp.feature_id = fr.subject_id) 
+    LEFT JOIN cvterm cv ON (cv.cvterm_id = fp.type_id) 
+    WHERE cv.name = 'locus_tag' 
+    GROUP BY motherfuckerquery.feature_id, fp.value ORDER BY fp.value ASC ";
 
     if (!\$query_Phobius) {
         my \$quantityParameters = () = \$query =~ /\\?/g;
@@ -2979,16 +3051,16 @@ sub rRNA_search {
     from feature f 
     join feature_relationship r on (f.feature_id = r.object_id) 
     join cvterm cr on (r.type_id = cr.cvterm_id) 
-join featureprop ps on (r.subject_id = ps.feature_id) 
-join cvterm cs on (ps.type_id = cs.cvterm_id) 
-join featureprop pf on (f.feature_id = pf.feature_id) 
-join cvterm cf on (pf.type_id = cf.cvterm_id) 
-join featureloc l on (l.feature_id = f.feature_id) 
-join featureprop pl on (l.srcfeature_id = pl.feature_id) 
-join cvterm cp on (pl.type_id = cp.cvterm_id) 
-join featureprop pd on (r.subject_id = pd.feature_id) 
-join cvterm cd on (pd.type_id = cd.cvterm_id) 
-where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?";
+    join featureprop ps on (r.subject_id = ps.feature_id) 
+    join cvterm cs on (ps.type_id = cs.cvterm_id) 
+    join featureprop pf on (f.feature_id = pf.feature_id) 
+    join cvterm cf on (pf.type_id = cf.cvterm_id) 
+    join featureloc l on (l.feature_id = f.feature_id) 
+    join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+    join cvterm cp on (pl.type_id = cp.cvterm_id) 
+    join featureprop pd on (r.subject_id = pd.feature_id) 
+    join cvterm cd on (pd.type_id = cd.cvterm_id) 
+    where cr.name = 'based_on' and cf.name = 'tag' and pf.value='rRNA_prediction' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=?";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3046,22 +3118,22 @@ sub tRNA_search {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$query =
-"select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon, COUNT(*) OVER() AS total "
-      . "from feature_relationship r "
-      . "join cvterm c on (r.type_id = c.cvterm_id) "
-      . "join featureloc l on (r.subject_id = l.feature_id) "
-      . "join feature fl on (fl.feature_id = l.srcfeature_id) "
-      . "join analysisfeature af on (af.feature_id = r.object_id) "
-      . "join analysis a on (a.analysis_id = af.analysis_id) "
-      . "join featureprop p on (p.feature_id = l.srcfeature_id) "
-      . "join cvterm cp on (p.type_id = cp.cvterm_id) "
-      . "join featureprop pt on (r.subject_id = pt.feature_id) "
-      . "join cvterm cpt on (pt.type_id = cpt.cvterm_id) "
-      . "join featureprop pa on (r.subject_id = pa.feature_id) "
-      . "join cvterm cpa on (pa.type_id = cpa.cvterm_id) "
-      . "join featureprop fp on (r.subject_id = fp.feature_id) "
-      . "join cvterm cfp on (fp.type_id = cfp.cvterm_id) "
-      . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value=? and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
+    "select r.object_id AS id, fp.value AS sequence, pt.value AS amino_acid, pa.value AS codon, COUNT(*) OVER() AS total "
+    . "from feature_relationship r "
+    . "join cvterm c on (r.type_id = c.cvterm_id) "
+    . "join featureloc l on (r.subject_id = l.feature_id) "
+    . "join feature fl on (fl.feature_id = l.srcfeature_id) "
+    . "join analysisfeature af on (af.feature_id = r.object_id) "
+    . "join analysis a on (a.analysis_id = af.analysis_id) "
+    . "join featureprop p on (p.feature_id = l.srcfeature_id) "
+    . "join cvterm cp on (p.type_id = cp.cvterm_id) "
+    . "join featureprop pt on (r.subject_id = pt.feature_id) "
+    . "join cvterm cpt on (pt.type_id = cpt.cvterm_id) "
+    . "join featureprop pa on (r.subject_id = pa.feature_id) "
+    . "join cvterm cpa on (pa.type_id = cpa.cvterm_id) "
+    . "join featureprop fp on (r.subject_id = fp.feature_id) "
+    . "join cvterm cfp on (fp.type_id = cfp.cvterm_id) "
+    . "where c.name='interval' and a.program = 'annotation_trna.pl' and cp.name='pipeline_id' and p.value=? and cpt.name='type' and cpa.name='anticodon' and cfp.name = 'sequence' ";
     push \@args, \$hash->{pipeline};
     my \$anticodon = "";
 
@@ -3135,19 +3207,19 @@ sub trf_search {
     "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, pp.value AS length, pc.value AS copy_number, pur.value AS sequence, fl.feature_id, COUNT(*) OVER() AS total ";
     my \$join = "from feature_relationship r
     join featureloc l on (r.subject_id = l.feature_id)
-                 join feature fl on (fl.feature_id = l.srcfeature_id)
-                 join featureprop pp on (r.subject_id = pp.feature_id)
-                 join cvterm cp on (pp.type_id = cp.cvterm_id)
-                 join featureprop pc on (r.subject_id = pc.feature_id)
-                 join cvterm cc on (pc.type_id = cc.cvterm_id)
-                 join featureprop pur on (pur.feature_id = r.subject_id)
-                 join cvterm cpur on (pur.type_id = cpur.cvterm_id)
-                 join analysisfeature af on (r.object_id = af.feature_id)
-                 join analysis a on (af.analysis_id = a.analysis_id)
-                 join featureprop ps on (ps.feature_id = l.srcfeature_id)
-                 join cvterm cps on (ps.type_id = cps.cvterm_id) ";
+    join feature fl on (fl.feature_id = l.srcfeature_id)
+    join featureprop pp on (r.subject_id = pp.feature_id)
+    join cvterm cp on (pp.type_id = cp.cvterm_id)
+    join featureprop pc on (r.subject_id = pc.feature_id)
+    join cvterm cc on (pc.type_id = cc.cvterm_id)
+    join featureprop pur on (pur.feature_id = r.subject_id)
+    join cvterm cpur on (pur.type_id = cpur.cvterm_id)
+    join analysisfeature af on (r.object_id = af.feature_id)
+    join analysis a on (af.analysis_id = a.analysis_id)
+    join featureprop ps on (ps.feature_id = l.srcfeature_id)
+    join cvterm cps on (ps.type_id = cps.cvterm_id) ";
     my \$query =
-"where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value=? ";
+    "where a.program = 'annotation_trf.pl' and cp.name = 'period_size' and cc.name = 'copy_number' and cpur.name='sequence' and cps.name='pipeline_id' and ps.value=? ";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3203,7 +3275,7 @@ sub trf_search {
             }
             elsif ( \$hash->{'TRFrepNumMin'} < \$hash->{'TRFrepNumMax'} ) {
                 \$query .=
-"and my_to_decimal(pc.value) >= ? and my_to_decimal(pc.value) <= ? ";
+                "and my_to_decimal(pc.value) >= ? and my_to_decimal(pc.value) <= ? ";
                 push \@args, \$hash->{'TRFrepNumMin'};
                 push \@args, \$hash->{'TRFrepNumMax'};
             }
@@ -3273,20 +3345,20 @@ sub ncRNA_search {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$select =
-"select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description, COUNT(*) OVER() AS total ";
+    "select distinct r.object_id AS id, fl.uniquename AS contig, l.fstart AS end, l.fend AS start, pp.value AS description, COUNT(*) OVER() AS total ";
     my \$join = " from feature_relationship r 
-                join featureloc lc on (r.subject_id = lc.feature_id)
-                join feature fl on (fl.feature_id = lc.srcfeature_id)
-                join cvterm c on (r.type_id = c.cvterm_id)
-                join featureloc l on (r.subject_id = l.feature_id)
-                join analysisfeature af on (af.feature_id = r.object_id)
-                join analysis a on (a.analysis_id = af.analysis_id)
-                join featureprop p on (p.feature_id = l.srcfeature_id) 
-                join cvterm cp on (p.type_id = cp.cvterm_id) 
-                join featureprop pp on (pp.feature_id = r.subject_id) 
-                join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
+    join featureloc lc on (r.subject_id = lc.feature_id)
+    join feature fl on (fl.feature_id = lc.srcfeature_id)
+    join cvterm c on (r.type_id = c.cvterm_id)
+    join featureloc l on (r.subject_id = l.feature_id)
+    join analysisfeature af on (af.feature_id = r.object_id)
+    join analysis a on (a.analysis_id = af.analysis_id)
+    join featureprop p on (p.feature_id = l.srcfeature_id) 
+    join cvterm cp on (p.type_id = cp.cvterm_id) 
+    join featureprop pp on (pp.feature_id = r.subject_id) 
+    join cvterm cpp on (pp.type_id = cpp.cvterm_id) ";
     my \$query =
-"where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value=? and cpp.name='target_description' ";
+    "where c.name='interval' and a.program = 'annotation_infernal.pl' and cp.name='pipeline_id' and p.value=? and cpp.name='target_description' ";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3298,9 +3370,9 @@ sub ncRNA_search {
         \$hash->{'ncRNAtargetID'} =~ s/\\s+//g;
         \$select .= ", ppc.value AS Target_ID";
         \$join .=
-"join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
+        "join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
         \$query .=
-          "and cppc.name = 'target_identifier' and lower(ppc.value) LIKE ? ";
+        "and cppc.name = 'target_identifier' and lower(ppc.value) LIKE ? ";
         push \@args, "\%" . lc( \$hash->{'ncRNAtargetID'} ) . "\%";
     }
 
@@ -3308,18 +3380,18 @@ sub ncRNA_search {
         \$hash->{'ncRNAevalue'} =~ s/\\s+//g;
         \$select .= ", ppe.value AS evalue";
         \$join .=
-"join featureprop ppe on (ppe.feature_id = r.subject_id) join cvterm cppe on (ppe.type_id = cppe.cvterm_id) ";
+        "join featureprop ppe on (ppe.feature_id = r.subject_id) join cvterm cppe on (ppe.type_id = cppe.cvterm_id) ";
         if ( \$hash->{'ncRNAevM'} eq "exact" ) {
             \$query .=
-              "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = ? ";
+            "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = ? ";
         }
         elsif ( \$hash->{'ncRNAevM'} eq "orLess" ) {
             \$query .=
-              "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= ? ";
+            "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= ? ";
         }
         elsif ( \$hash->{'ncRNAevM'} eq "orMore" ) {
             \$query .=
-              "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= ? ";
+            "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= ? ";
         }
         push \@args, \$hash->{'ncRNAevalue'};
     }
@@ -3328,7 +3400,7 @@ sub ncRNA_search {
         \$hash->{'ncRNAtargetName'} =~ s/\\s+\$//;
         \$select .= ", ppn.value AS Target_name";
         \$join .=
-"join featureprop ppn on (ppn.feature_id = r.subject_id) join cvterm cppn on (ppn.type_id = cppn.cvterm_id) ";
+        "join featureprop ppn on (ppn.feature_id = r.subject_id) join cvterm cppn on (ppn.type_id = cppn.cvterm_id) ";
         \$query .= "and cppn.name = 'target_name' and lower(ppn.value) ilike ? ";
         push \@args, lc( "\%" . \$hash->{'ncRNAtargetName'} . "\%" );
     }
@@ -3336,7 +3408,7 @@ sub ncRNA_search {
     elsif ( \$hash->{'ncRNAtargetClass'} !~ /^\\s*\$/ ) {
         \$select .= ", ppc.value AS Target_class";
         \$join .=
-"join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
+        "join featureprop ppc on (ppc.feature_id = r.subject_id) join cvterm cppc on (ppc.type_id = cppc.cvterm_id) ";
         \$query .= "and cppc.name = 'target_class' and ppc.value = ? ";
         push \@args, \$hash->{'ncRNAtargetClass'};
     }
@@ -3346,7 +3418,7 @@ sub ncRNA_search {
         \$hash->{'ncRNAtargetType'} =~ s/\\s+\$//;
         \$select .= ", ppt.value AS Target_type";
         \$join .=
-"join featureprop ppt on (ppt.feature_id = r.subject_id) join cvterm cppt on (ppt.type_id = cppt.cvterm_id) ";
+        "join featureprop ppt on (ppt.feature_id = r.subject_id) join cvterm cppt on (ppt.type_id = cppt.cvterm_id) ";
         \$query .= "and cppt.name = 'target_type' and lower(ppt.value) ilike ? ";
         push \@args, lc( "\%" . \$hash->{'ncRNAtargetType'} . "\%" );
     }
@@ -3414,25 +3486,25 @@ sub transcriptional_terminator_search {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$select =
-"select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppConfidence.value AS confidence, ppHairpinScore.value AS hairpin_score, ppTailScore.value AS tail_score, fl.feature_id, COUNT(*) OVER() AS total ";
+    "select fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppConfidence.value AS confidence, ppHairpinScore.value AS hairpin_score, ppTailScore.value AS tail_score, fl.feature_id, COUNT(*) OVER() AS total ";
 
     my \$join = " from feature_relationship r
-                 join featureloc lc on (r.subject_id = lc.feature_id)
-                 join feature fl on (fl.feature_id = lc.srcfeature_id)
-                 join cvterm c on (r.type_id = c.cvterm_id)
-                 join featureloc l on (r.subject_id = l.feature_id)
-                 join analysisfeature af on (af.feature_id = r.object_id)
-                 join analysis a on (a.analysis_id = af.analysis_id)
-                 join featureprop p on (p.feature_id = l.srcfeature_id)
-                 join cvterm cp on (p.type_id = cp.cvterm_id)
-                 join featureprop ppConfidence on (ppConfidence.feature_id = r.subject_id)
-                 join cvterm cppConfidence on (ppConfidence.type_id = cppConfidence.cvterm_id) 
-                 join featureprop ppHairpinScore on (ppHairpinScore.feature_id = r.subject_id)
-                 join cvterm cppHairpinScore on (ppHairpinScore.type_id = cppHairpinScore.cvterm_id) 
-                 join featureprop ppTailScore on (ppTailScore.feature_id = r.subject_id)
-                 join cvterm cppTailScore on (ppTailScore.type_id = cppTailScore.cvterm_id) ";
+    join featureloc lc on (r.subject_id = lc.feature_id)
+    join feature fl on (fl.feature_id = lc.srcfeature_id)
+    join cvterm c on (r.type_id = c.cvterm_id)
+    join featureloc l on (r.subject_id = l.feature_id)
+    join analysisfeature af on (af.feature_id = r.object_id)
+    join analysis a on (a.analysis_id = af.analysis_id)
+    join featureprop p on (p.feature_id = l.srcfeature_id)
+    join cvterm cp on (p.type_id = cp.cvterm_id)
+    join featureprop ppConfidence on (ppConfidence.feature_id = r.subject_id)
+    join cvterm cppConfidence on (ppConfidence.type_id = cppConfidence.cvterm_id) 
+    join featureprop ppHairpinScore on (ppHairpinScore.feature_id = r.subject_id)
+    join cvterm cppHairpinScore on (ppHairpinScore.type_id = cppHairpinScore.cvterm_id) 
+    join featureprop ppTailScore on (ppTailScore.feature_id = r.subject_id)
+    join cvterm cppTailScore on (ppTailScore.type_id = cppTailScore.cvterm_id) ";
     my \$query =
-"where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? and cppConfidence.name = 'confidence' AND cppHairpinScore.name = 'hairpin' AND cppTailScore.name = 'tail' ";
+    "where c.name='interval' and a.program = 'annotation_transterm.pl' and cp.name='pipeline_id' and p.value=? and cppConfidence.name = 'confidence' AND cppHairpinScore.name = 'hairpin' AND cppTailScore.name = 'tail' ";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3541,27 +3613,27 @@ sub rbs_search {
 #		\$select .= " AS position_shift";
 #	}
     my \$join = " from feature_relationship r
-                join featureloc lc on (r.subject_id = lc.feature_id) 
-                join feature fl on (fl.feature_id = lc.srcfeature_id) 
-                join cvterm c on (r.type_id = c.cvterm_id)
-                join featureloc l on (r.subject_id = l.feature_id)
-                join analysisfeature af on (af.feature_id = r.object_id)
-                join analysis a on (a.analysis_id = af.analysis_id)
-                join featureprop p on (p.feature_id = l.srcfeature_id)
-                join cvterm cp on (p.type_id = cp.cvterm_id)
-                join featureprop ppSitePattern on (ppSitePattern.feature_id = r.subject_id)
-                join cvterm cppSitePattern on (ppSitePattern.type_id = cppSitePattern.cvterm_id) 
-                join featureprop ppOldStart on (ppOldStart.feature_id = r.subject_id)
-                join cvterm cppOldStart on (ppOldStart.type_id = cppOldStart.cvterm_id)
-                join featureprop ppPositionShift on (ppPositionShift.feature_id = r.subject_id)
-                join cvterm cppPositionShift on (ppPositionShift.type_id = cppPositionShift.cvterm_id) 
-                join featureprop pp2 on (pp2.feature_id = r.subject_id) 
-                join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id) 
-                join featureprop ppOldPosition on (ppOldPosition.feature_id = r.subject_id)
-                join cvterm cppOldPosition on (ppOldPosition.type_id = cppOldPosition.cvterm_id) ";
+    join featureloc lc on (r.subject_id = lc.feature_id) 
+    join feature fl on (fl.feature_id = lc.srcfeature_id) 
+    join cvterm c on (r.type_id = c.cvterm_id)
+    join featureloc l on (r.subject_id = l.feature_id)
+    join analysisfeature af on (af.feature_id = r.object_id)
+    join analysis a on (a.analysis_id = af.analysis_id)
+    join featureprop p on (p.feature_id = l.srcfeature_id)
+    join cvterm cp on (p.type_id = cp.cvterm_id)
+    join featureprop ppSitePattern on (ppSitePattern.feature_id = r.subject_id)
+    join cvterm cppSitePattern on (ppSitePattern.type_id = cppSitePattern.cvterm_id) 
+    join featureprop ppOldStart on (ppOldStart.feature_id = r.subject_id)
+    join cvterm cppOldStart on (ppOldStart.type_id = cppOldStart.cvterm_id)
+    join featureprop ppPositionShift on (ppPositionShift.feature_id = r.subject_id)
+    join cvterm cppPositionShift on (ppPositionShift.type_id = cppPositionShift.cvterm_id) 
+    join featureprop pp2 on (pp2.feature_id = r.subject_id) 
+    join cvterm cpp2 on (pp2.type_id = cpp2.cvterm_id) 
+    join featureprop ppOldPosition on (ppOldPosition.feature_id = r.subject_id)
+    join cvterm cppOldPosition on (ppOldPosition.type_id = cppOldPosition.cvterm_id) ";
     my \$query =
-"where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
-" and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift'  and cpp2.name='new_start_codon' and cppOldPosition.name='old_position' ";
+    "where c.name='interval' and a.program = 'annotation_rbsfinder.pl' and cp.name='pipeline_id' and p.value=? ".
+    " and cppSitePattern.name='RBS_pattern' and cppOldStart.name='old_start_codon' and cppPositionShift.name='position_shift'  and cpp2.name='new_start_codon' and cppOldPosition.name='old_position' ";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3580,11 +3652,11 @@ sub rbs_search {
         }
         elsif ( \$hash->{'RBSshiftM'} eq "neg" ) {
             \$query .=
-              " and my_to_decimal(ppPositionShift.value) < '0'";
+            " and my_to_decimal(ppPositionShift.value) < '0'";
         }
         elsif ( \$hash->{'RBSshiftM'} eq "pos" ) {
             \$query .=
-              " and my_to_decimal(ppPositionShift.value) >= '0'";
+            " and my_to_decimal(ppPositionShift.value) >= '0'";
         }
     }
     elsif ( \$hash->{'RBSnewcodon'} ) {
@@ -3652,22 +3724,22 @@ sub alienhunter_search {
     "select r.object_id AS id, fl.uniquename AS contig, l.fstart AS start, l.fend AS end, ppLength.value AS length, ppScore.value AS score, ppThreshold.value AS threshold, fl.feature_id, COUNT(*) OVER() AS total ";
 
     my \$join = " from feature_relationship r
-                join featureloc lc on (r.subject_id = lc.feature_id) 
-                join feature fl on (fl.feature_id = lc.srcfeature_id) 
-                join cvterm c on (r.type_id = c.cvterm_id) 
-                join featureloc l on (r.subject_id = l.feature_id) 
-                join analysisfeature af on (af.feature_id = r.object_id) 
-                join analysis a on (a.analysis_id = af.analysis_id) 
-                join featureprop p on (p.feature_id = l.srcfeature_id) 
-                join cvterm cp on (p.type_id = cp.cvterm_id) 
-                join featureprop ppLength on (ppLength.feature_id = r.subject_id) 
-                join cvterm cppLength on (ppLength.type_id = cppLength.cvterm_id) 
-                join featureprop ppScore on (ppScore.feature_id = r.subject_id) 
-                join cvterm cppScore on (ppScore.type_id = cppScore.cvterm_id) 
-                join featureprop ppThreshold on (ppThreshold.feature_id = r.subject_id) 
-                join cvterm cppThreshold on (ppThreshold.type_id = cppThreshold.cvterm_id) ";
+    join featureloc lc on (r.subject_id = lc.feature_id) 
+    join feature fl on (fl.feature_id = lc.srcfeature_id) 
+    join cvterm c on (r.type_id = c.cvterm_id) 
+    join featureloc l on (r.subject_id = l.feature_id) 
+    join analysisfeature af on (af.feature_id = r.object_id) 
+    join analysis a on (a.analysis_id = af.analysis_id) 
+    join featureprop p on (p.feature_id = l.srcfeature_id) 
+    join cvterm cp on (p.type_id = cp.cvterm_id) 
+    join featureprop ppLength on (ppLength.feature_id = r.subject_id) 
+    join cvterm cppLength on (ppLength.type_id = cppLength.cvterm_id) 
+    join featureprop ppScore on (ppScore.feature_id = r.subject_id) 
+    join cvterm cppScore on (ppScore.type_id = cppScore.cvterm_id) 
+    join featureprop ppThreshold on (ppThreshold.feature_id = r.subject_id) 
+    join cvterm cppThreshold on (ppThreshold.type_id = cppThreshold.cvterm_id) ";
     my \$query =
-"where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? and cppLength.name = 'length' and cppScore.name = 'score' and cppThreshold.name = 'threshold' ";
+    "where c.name='interval' and a.program = 'annotation_alienhunter.pl' and cp.name='pipeline_id' and p.value=? and cppLength.name = 'length' and cppScore.name = 'score' and cppThreshold.name = 'threshold' ";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3778,24 +3850,24 @@ sub searchGene {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$query =
-"SELECT me.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, feature_relationship_props_subject_feature_2.value AS uniquename, "
-      . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type,  COUNT(*) OVER() AS total "
-      . "FROM feature me "
-      . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
-      . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
-      . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
-      . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
-      . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
-      . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
-      . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureloc_featureprop.type_id "
-      . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
-      . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
-      . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-      . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
-      . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id "
-      . "LEFT JOIN feature ff ON ff.feature_id = featureloc_features_2.srcfeature_id ";
+    "SELECT me.feature_id AS feature_id, feature_relationship_props_subject_feature.value AS name, feature_relationship_props_subject_feature_2.value AS uniquename, "
+    . "featureloc_features_2.fstart AS fstart, featureloc_features_2.fend AS fend, featureprops_2.value AS type,  COUNT(*) OVER() AS total "
+    . "FROM feature me "
+    . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
+    . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
+    . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
+    . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
+    . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
+    . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
+    . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureloc_featureprop.type_id "
+    . "LEFT JOIN feature_relationship feature_relationship_objects_4 ON feature_relationship_objects_4.object_id = me.feature_id "
+    . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = feature_relationship_objects_4.subject_id "
+    . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
+    . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
+    . "LEFT JOIN cvterm type_5 ON type_5.cvterm_id = featureprops_2.type_id "
+    . "LEFT JOIN feature ff ON ff.feature_id = featureloc_features_2.srcfeature_id ";
     my \$where =
-"WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = ? ";
+    "WHERE type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'pipeline_id' AND type_4.name = 'description' AND type_5.name = 'tag' AND featureloc_featureprop.value = ? ";
     push \@args, \$hash->{pipeline};
 
     if(exists \$hash->{contig} && \$hash->{contig}) {
@@ -3824,7 +3896,7 @@ sub searchGene {
     }
 
     if (   ( exists \$hash->{geneDescription} && \$hash->{geneDescription} )
-        or ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
+            or ( exists \$hash->{noDescription} && \$hash->{noDescription} ) )
     {
         \$connector = " AND " if \$connector;
         \$where .= \$connector;
@@ -3833,25 +3905,25 @@ sub searchGene {
         if ( \$hash->{geneDescription} ) {
             while ( \$hash->{geneDescription} =~ /(\\S+)/g ) {
                 push \@likesDescription,
-                  generate_clause( "?", "", "",
+                generate_clause( "?", "", "",
                     "lower(feature_relationship_props_subject_feature_2.value)"
-                  );
+                );
                 push \@args, lc( "\%" . \$1 . "\%" );
             }
         }
         if ( \$hash->{noDescription} ) {
             while ( \$hash->{noDescription} =~ /(\\S+)/g ) {
                 push \@likesNoDescription,
-                  generate_clause( "?", "NOT", "",
+                generate_clause( "?", "NOT", "",
                     "lower(feature_relationship_props_subject_feature_2.value)"
-                  );
+                );
                 push \@args, lc( "\%" . \$1 . "\%" );
             }
         }
 
         if (    exists \$hash->{individually}
-            and \$hash->{individually}
-            and scalar(\@likesDescription) > 0 )
+                and \$hash->{individually}
+                and scalar(\@likesDescription) > 0 )
         {
             if ( scalar(\@likesNoDescription) > 0 ) {
                 foreach my \$like (\@likesDescription) {
@@ -3895,7 +3967,7 @@ sub searchGene {
             \$where .= " ) ";
         }
         elsif ( scalar(\@likesDescription) <= 0
-            and scalar(\@likesNoDescription) > 0 )
+                and scalar(\@likesNoDescription) > 0 )
         {
             foreach my \$like (\@likesNoDescription) {
                 \$where .= " AND " . \$like;
@@ -3905,7 +3977,7 @@ sub searchGene {
 
     if ( exists \$hash->{geneID} && \$hash->{geneID} ) {
         \$where .=
-" AND lower(feature_relationship_props_subject_feature.value) LIKE ? ";
+        " AND lower(feature_relationship_props_subject_feature.value) LIKE ? ";
         push \@args, lc( "\%" . \$hash->{geneID} . "\%" );
     }
 
@@ -3981,28 +4053,28 @@ sub getFirstBlastResult {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$query = "SELECT DISTINCT f.feature_id
-        FROM feature f
-        JOIN feature_relationship r ON (r.subject_id = f.feature_id)
-        JOIN feature fo ON (r.object_id = fo.feature_id)
-        JOIN analysisfeature af ON (f.feature_id = af.feature_id)
-        JOIN analysis a ON (a.analysis_id = af.analysis_id)
-        JOIN analysisprop ap ON (ap.analysis_id = a.analysis_id)
-        JOIN featureloc l ON (r.object_id = l.feature_id)
-        JOIN featureprop p ON (p.feature_id = srcfeature_id)
-        JOIN cvterm c ON (p.type_id = c.cvterm_id)
-        JOIN feature_relationship ra ON (ra.object_id = f.feature_id)
-        JOIN cvterm cra ON (ra.type_id = cra.cvterm_id)
-        JOIN featureprop pfo ON (ra.subject_id = pfo.feature_id)
-        JOIN cvterm cpfo ON (cpfo.cvterm_id = pfo.type_id)
-        JOIN featureprop pr ON (r.object_id = pr.feature_id)
-        JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id)
-        WHERE a.program = 'annotation_blast.pl'
-        AND c.name ='pipeline_id'
-        AND p.value = ?
-        AND cra.name = 'alignment'
-        AND cpfo.name = 'subject_id'
-        AND r.object_id = ?
-        AND ap.value LIKE '%database_code=INSD%' LIMIT 1";
+    FROM feature f
+    JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+    JOIN feature fo ON (r.object_id = fo.feature_id)
+    JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+    JOIN analysis a ON (a.analysis_id = af.analysis_id)
+    JOIN analysisprop ap ON (ap.analysis_id = a.analysis_id)
+    JOIN featureloc l ON (r.object_id = l.feature_id)
+    JOIN featureprop p ON (p.feature_id = srcfeature_id)
+    JOIN cvterm c ON (p.type_id = c.cvterm_id)
+    JOIN feature_relationship ra ON (ra.object_id = f.feature_id)
+    JOIN cvterm cra ON (ra.type_id = cra.cvterm_id)
+    JOIN featureprop pfo ON (ra.subject_id = pfo.feature_id)
+    JOIN cvterm cpfo ON (cpfo.cvterm_id = pfo.type_id)
+    JOIN featureprop pr ON (r.object_id = pr.feature_id)
+    JOIN cvterm cpr ON (pr.type_id = cpr.cvterm_id)
+    WHERE a.program = 'annotation_blast.pl'
+    AND c.name ='pipeline_id'
+    AND p.value = ?
+    AND cra.name = 'alignment'
+    AND cpfo.name = 'subject_id'
+    AND r.object_id = ?
+    AND ap.value LIKE '%database_code=INSD%' LIMIT 1";
 
     push \@args, \$hash->{pipeline_id};
     push \@args, \$hash->{feature_id};
@@ -4044,13 +4116,13 @@ sub geneBasics {
     LEFT JOIN analysis_relationship ar ON (ar.object_id = af.analysis_id)
     LEFT JOIN analysis a ON (a.analysis_id = ar.subject_id)
     WHERE ( ( featureloc_featureprop.value = ? AND me.feature_id = ? AND type.name =
-        'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND
-        type_4.name = 'pipeline_id' AND type_5.name = 'description' ) )
+    'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND
+    type_4.name = 'pipeline_id' AND type_5.name = 'description' ) )
     GROUP BY srcfeature.feature_id,
-        feature_relationship_props_subject_feature.value,
-        feature_relationship_props_subject_feature_2.value,
-        featureloc_features_2.fstart, featureloc_features_2.fend,
-        featureprops_2.value, a.program ";
+    feature_relationship_props_subject_feature.value,
+    feature_relationship_props_subject_feature_2.value,
+    featureloc_features_2.fstart, featureloc_features_2.fend,
+    featureprops_2.value, a.program ";
     push \@args, \$hash->{pipeline};
     push \@args, \$hash->{feature_id};
     my \$sth = \$dbh->prepare(\$query);
@@ -4087,21 +4159,21 @@ sub geneByPosition {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$query =
-        "SELECT me.feature_id AS feature_id, COUNT(*) OVER() AS total "
-      . "FROM feature me "
-      . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
-      . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
-      . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
-      . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
-      . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
-      . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id "
-      . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
-      . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
-      . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
-      . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
-      . "WHERE ( ( featureloc_featureprop.value = ? AND featureloc_features_2.fstart >= ? AND featureloc_features_2.fend <= ? AND featureloc_features_2.srcfeature_id = ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
-      . "GROUP BY me.feature_id, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
-      . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
+    "SELECT me.feature_id AS feature_id, COUNT(*) OVER() AS total "
+    . "FROM feature me "
+    . "LEFT JOIN feature_relationship feature_relationship_objects_2 ON feature_relationship_objects_2.object_id = me.feature_id "
+    . "LEFT JOIN featureprop feature_relationship_props_subject_feature ON feature_relationship_props_subject_feature.feature_id = feature_relationship_objects_2.subject_id "
+    . "LEFT JOIN cvterm type ON type.cvterm_id = feature_relationship_props_subject_feature.type_id "
+    . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = feature_relationship_objects_2.type_id "
+    . "LEFT JOIN featureprop featureprops_2 ON featureprops_2.feature_id = me.feature_id "
+    . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = featureprops_2.type_id "
+    . "LEFT JOIN featureloc featureloc_features_2 ON featureloc_features_2.feature_id = me.feature_id "
+    . "LEFT JOIN feature srcfeature ON srcfeature.feature_id = featureloc_features_2.srcfeature_id "
+    . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = featureloc_features_2.srcfeature_id "
+    . "LEFT JOIN cvterm type_4 ON type_4.cvterm_id = featureloc_featureprop.type_id "
+    . "WHERE ( ( featureloc_featureprop.value = ? AND featureloc_features_2.fstart >= ? AND featureloc_features_2.fend <= ? AND featureloc_features_2.srcfeature_id = ? AND type.name = 'locus_tag' AND type_2.name = 'based_on' AND type_3.name = 'tag' AND type_4.name = 'pipeline_id' ) ) "
+    . "GROUP BY me.feature_id, featureloc_features_2.fstart, featureloc_features_2.fend, featureprops_2.value, srcfeature.uniquename, srcfeature.feature_id "
+    . "ORDER BY MIN( feature_relationship_props_subject_feature.value )";
     push \@args, \$hash->{pipeline};
     push \@args, \$hash->{start};
     push \@args, \$hash->{end};
@@ -4150,19 +4222,19 @@ sub ncRNA_description {
     my \$dbh  = \$self->dbh;
     my \@args = ();
     my \$query =
-"SELECT me.object_id AS object_id, feature_relationship_props_subject_feature_2.value AS value "
-      . "FROM feature_relationship me  "
-      . "JOIN cvterm type ON type.cvterm_id = me.type_id "
-      . "LEFT JOIN analysisfeature feature_relationship_analysis_feature_feature_object_2 ON feature_relationship_analysis_feature_feature_object_2.feature_id = me.object_id "
-      . "LEFT JOIN analysis analysis ON analysis.analysis_id = feature_relationship_analysis_feature_feature_object_2.analysis_id "
-      . "LEFT JOIN featureloc feature_relationship_featureloc_subject_feature_2 ON feature_relationship_featureloc_subject_feature_2.feature_id = me.subject_id "
-      . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = feature_relationship_featureloc_subject_feature_2.srcfeature_id "
-      . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = featureloc_featureprop.type_id "
-      . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = me.subject_id "
-      . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-      . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = ? AND me.object_id = ? AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
-      . "GROUP BY me.object_id, feature_relationship_props_subject_feature_2.value "
-      . "ORDER BY feature_relationship_props_subject_feature_2.value ASC";
+    "SELECT me.object_id AS object_id, feature_relationship_props_subject_feature_2.value AS value "
+    . "FROM feature_relationship me  "
+    . "JOIN cvterm type ON type.cvterm_id = me.type_id "
+    . "LEFT JOIN analysisfeature feature_relationship_analysis_feature_feature_object_2 ON feature_relationship_analysis_feature_feature_object_2.feature_id = me.object_id "
+    . "LEFT JOIN analysis analysis ON analysis.analysis_id = feature_relationship_analysis_feature_feature_object_2.analysis_id "
+    . "LEFT JOIN featureloc feature_relationship_featureloc_subject_feature_2 ON feature_relationship_featureloc_subject_feature_2.feature_id = me.subject_id "
+    . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = feature_relationship_featureloc_subject_feature_2.srcfeature_id "
+    . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = featureloc_featureprop.type_id "
+    . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = me.subject_id "
+    . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
+    . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = ? AND me.object_id = ? AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
+    . "GROUP BY me.object_id, feature_relationship_props_subject_feature_2.value "
+    . "ORDER BY feature_relationship_props_subject_feature_2.value ASC";
     push \@args, \$pipeline;
     push \@args, \$feature_id;
     my \$sth = \$dbh->prepare(\$query);
@@ -4203,7 +4275,7 @@ sub subevidences {
         'annotation_blast.pl'    => 'Similarity search - BLAST',
         'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
         'annotation_phobius.pl' =>
-          'Transmembrane domains and signal peptide search - Phobius',
+        'Transmembrane domains and signal peptide search - Phobius',
         'annotation_pathways.pl'  => 'Pathway classification - KEGG',
         'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
         'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
@@ -4251,8 +4323,8 @@ sub intervalEvidenceProperties {
     join cvterm c on (p.type_id = c.cvterm_id) 
     join feature_relationship r on (r.subject_id = p.feature_id) 
     join cvterm cr on (r.type_id = cr.cvterm_id) 
-      join featureloc l on (r.subject_id = l.feature_id)
-      where cr.name='interval' and r.object_id=? ORDER BY r.subject_id ASC;";
+    join featureloc l on (r.subject_id = l.feature_id)
+    where cr.name='interval' and r.object_id=? ORDER BY r.subject_id ASC;";
 
     my \$sth = \$dbh->prepare(\$query);
     print STDERR \$query;
@@ -4317,7 +4389,7 @@ sub similarityEvidenceProperties {
     my \$dbh = \$self->dbh;
 
     my \$query =
-      "SELECT key, key_value FROM get_similarity_evidence_properties(?)";
+    "SELECT key, key_value FROM get_similarity_evidence_properties(?)";
 
     my \$sth = \$dbh->prepare(\$query);
     print STDERR \$query;
@@ -4362,14 +4434,14 @@ sub getIdentifierAndDescriptionSimilarity {
     my \$dbh = \$self->dbh;
 
     my \$query =
-      "select p.value from feature_relationship r 
-join feature q on (r.subject_id = q.feature_id)         
-join featureprop p on (p.feature_id = r.subject_id)
-join cvterm c on (p.type_id = c.cvterm_id)
-join cvterm cr on (r.type_id = cr.cvterm_id)
-join cvterm cq on (q.type_id = cq.cvterm_id)
-where cr.name='alignment' 
-and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
+    "select p.value from feature_relationship r 
+    join feature q on (r.subject_id = q.feature_id)         
+    join featureprop p on (p.feature_id = r.subject_id)
+    join cvterm c on (p.type_id = c.cvterm_id)
+    join cvterm cr on (r.type_id = cr.cvterm_id)
+    join cvterm cq on (q.type_id = cq.cvterm_id)
+    where cr.name='alignment' 
+        and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
 
     my \$sth = \$dbh->prepare(\$query);
     print STDERR \$query;
@@ -4396,9 +4468,13 @@ and cq.name='subject_sequence' and c.name='subject_id' and r.object_id=? ";
                 }
             } 
         } else {
-            while (\$response =~ /(\\w+)([\\w\\s]*)/g) {
-                push \@values, \$1;
-                push \@values, \$2;
+            if(\$response =~ /CDD:(\\w+)+\\s*\\w*[\\s,]*([\\w]+)+,/gmi) {
+                \@values = (\$1, \$2);
+            } else {
+                while (\$response =~ /(\\w+)([\\w\\s]*)/g) {
+                    push \@values, \$1;
+                    push \@values, \$2;
+                }
             }
         }
         \$hash{identifier} = \$values[0];
@@ -4700,15 +4776,21 @@ Method used to view result by component ID
 
 =cut
 
-sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(1) {
-    my ( \$self, \$c, \$id ) = \@_;
-    if ( !\$id and defined \$c->request->param("id") ) {
-        \$id = \$c->request->param("id");
+sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(2) {
+    my ( \$self, \$c, \$id, \$name ) = \@_;
+    if ( !\$id and defined \$c->request->param("locus_tag") ) {
+        \$id = \$c->request->param("locus_tag");
+    }
+    if ( !\$name and defined \$c->request->param("name") ) {
+        \$name = \$c->request->param("name");
     }
 
     my \$resultSet = \$c->model('Basic::Component')->search(
         {
-            'locus_tag' => \$id,
+            -and => [
+                'locus_tag' => \$id,
+                'name'      => \$name
+            ]
         },
         {
             order_by => {
@@ -4729,7 +4811,7 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
 
     use File::Basename;
     open( my \$FILEHANDLER,
-        "<", \$c->path_to('root') . "/" . \$hash{filepath} );
+        "<", \$hash{filepath} );
     my \$content = do { local(\$/); <\$FILEHANDLER> };;
     close(\$FILEHANDLER);
 
@@ -4738,7 +4820,7 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
         || \$hash{name} =~ /annotation\\_orthology/
         || \$hash{name} =~ /annotation\\_tcdb/ )
     {
-        my \$image = \$c->path_to('root') . "/" . \$hash{filepath};
+        my \$image = \$hash{filepath};
         \$image =~ s/\\.html/\\.png/g;
         open( \$FILEHANDLER,
             "<", \$image );
@@ -4749,7 +4831,7 @@ sub getViewResultByComponentID : Path("/ViewResultByComponentID") : CaptureArgs(
         \$content =~ s/\$_/<img src="data:image\\/png;base64,\$contentImage/ foreach (\$content =~ /(<img src="[\\.\\w\\s\\-]*)"/img);
     }
     elsif ( \$hash{name} =~ /annotation\\_interpro/ ) {
-        my \$directory = \$c->path_to('root') . "/" . \$hash{filepath};
+        my \$directory = \$hash{filepath};
         \$directory =~ s/\\/([\\w\\s\\-_\\.]+)\\.html//g;
         foreach (\$content =~ /<img src="([\\.\\w\\s\\-\\/]*)"/img) {
     open( \$FILEHANDLER,
@@ -4896,63 +4978,63 @@ sub searchContig : Path("/Contig") : CaptureArgs(4) :
 ActionClass('REST') { }
 
 sub searchContig_GET {
-my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-if ( !\$contig and defined \$c->request->param("contig") ) {
-\$contig = \$c->request->param("contig");
-}
-if ( !\$start and defined \$c->request->param("contigStart") ) {
-\$start = \$c->request->param("contigStart");
-}
-if ( !\$end and defined \$c->request->param("contigEnd") ) {
-\$end = \$c->request->param("contigEnd");
-}
-if ( !\$reverseComplement
-    and defined \$c->request->param("revCompContig") )
-{
-\$reverseComplement = \$c->request->param("revCompContig");
-}
+    my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+    if ( !\$contig and defined \$c->request->param("contig") ) {
+        \$contig = \$c->request->param("contig");
+    }
+    if ( !\$start and defined \$c->request->param("contigStart") ) {
+        \$start = \$c->request->param("contigStart");
+    }
+    if ( !\$end and defined \$c->request->param("contigEnd") ) {
+        \$end = \$c->request->param("contigEnd");
+    }
+    if ( !\$reverseComplement
+            and defined \$c->request->param("revCompContig") )
+    {
+        \$reverseComplement = \$c->request->param("revCompContig");
+    }
 
-my \@list = ();
-push \@list, sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
-standardStatusOk( \$self, \$c, \@list );
+    my \@list = ();
+    push \@list, sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
+    standardStatusOk( \$self, \$c, \@list );
 }
 
 sub sequenceContig {
-my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-use File::Basename;
-my \$data     = "";
-my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
+    my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+    use File::Basename;
+    my \$data     = "";
+    my \$sequence = \$c->model('Basic::Sequence')->find(\$contig);
 
-open( my \$FILEHANDLER,
-"<", \$c->path_to('root') . "/" . \$sequence->filepath );
+    open( my \$FILEHANDLER,
+        "<", \$c->path_to('root') . "/" . \$sequence->filepath );
 
-my \$content = do { local \$/; <\$FILEHANDLER> };
+    my \$content = do { local \$/; <\$FILEHANDLER> };
 
-my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
-\$data = join("", \@lines);
+    my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
+    \$data = join("", \@lines);
 
-close(\$FILEHANDLER);
+    close(\$FILEHANDLER);
 
-if ( \$start && \$end ) {
-\$start += -1;
-\$data = substr( \$data, \$start, ( \$end - \$start ) );
-\$c->stash->{start}     = \$start;
-\$c->stash->{end}       = \$end;
-\$c->stash->{hadLimits} = 1;
-}
-if ( \$reverseComplement ) {
-\$data = reverseComplement(\$data);
-\$c->stash->{hadReverseComplement} = 1;
-}
-\$data = formatSequence(\$data);
-my \$result = \$data;
+    if ( \$start && \$end ) {
+        \$start += -1;
+        \$data = substr( \$data, \$start, ( \$end - \$start ) );
+        \$c->stash->{start}     = \$start;
+        \$c->stash->{end}       = \$end;
+        \$c->stash->{hadLimits} = 1;
+    }
+    if ( \$reverseComplement ) {
+        \$data = reverseComplement(\$data);
+        \$c->stash->{hadReverseComplement} = 1;
+    }
+    \$data = formatSequence(\$data);
+    my \$result = \$data;
 
-my \%hash = ();
-\$hash{'geneID'} = \$sequence->id;
-\$hash{'gene'}   = \$sequence->name;
-\$hash{'contig'} = \$result;
-\$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
-return \\\%hash;
+    my \%hash = ();
+    \$hash{'geneID'} = \$sequence->id;
+    \$hash{'gene'}   = \$sequence->name;
+    \$hash{'contig'} = \$result;
+    \$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
+    return \\\%hash;
 }
 
 =head2 reverseComplement
@@ -5063,69 +5145,69 @@ Method used to realize search blast
 sub search : Path("/Blast/search") : CaptureArgs(18) : ActionClass('REST') { }
 
 sub search_POST {
-my ( \$self, \$c ) = \@_;
+    my ( \$self, \$c ) = \@_;
 
-open( my \$FILEHANDLER, "<", \$c->req->body );
-my \$formData = do { local \$/; <\$FILEHANDLER> };
-close(\$FILEHANDLER);
-use JSON;
-my \%hash = \%{ decode_json(\$formData) };
+    open( my \$FILEHANDLER, "<", \$c->req->body );
+    my \$formData = do { local \$/; <\$FILEHANDLER> };
+    close(\$FILEHANDLER);
+    use JSON;
+    my \%hash = \%{ decode_json(\$formData) };
 
-foreach my \$key ( keys \%hash ) {
-    if (\$key) {
-        \$hash{\$key} =~ s/['"&.|]//g;
-        chomp( \$hash{\$key} ) if \$key ne "SEQUENCE";
+    foreach my \$key ( keys \%hash ) {
+        if (\$key) {
+            \$hash{\$key} =~ s/['"&.|]//g;
+            chomp( \$hash{\$key} ) if \$key ne "SEQUENCE";
+        }
     }
-}
 
-use File::Temp ();
-my \$fh    = File::Temp->new();
-my \$fname = \$fh->filename;
-open( \$FILEHANDLER, ">", \$fname );
-my \@fuckingSequence = split( /\\\\n/, \$hash{SEQUENCE} );
-\$hash{SEQUENCE} = join( "\\n", \@fuckingSequence );
-print \$FILEHANDLER \$hash{SEQUENCE};
-close(\$FILEHANDLER);
+    use File::Temp ();
+    my \$fh    = File::Temp->new();
+    my \$fname = \$fh->filename;
+    open( \$FILEHANDLER, ">", \$fname );
+    my \@fuckingSequence = split( /\\\\n/, \$hash{SEQUENCE} );
+    \$hash{SEQUENCE} = join( "\\n", \@fuckingSequence );
+    print \$FILEHANDLER \$hash{SEQUENCE};
+    close(\$FILEHANDLER);
 
-\$hash{DATALIB} = \$c->path_to("root") . "/seq/Sequences"
-if ( \$hash{DATALIB} eq "PMN_genome_1" );
-\$hash{DATALIB} = \$c->path_to("root") . "/orfs_nt/Sequences_NT"
-if ( \$hash{DATALIB} eq "PMN_genes_1" );
-\$hash{DATALIB} = \$c->path_to("root") . "/orfs_aa/Sequences_AA"
-if ( \$hash{DATALIB} eq "PMN_prot_1" );
-my \$content = "";
-if ( exists \$hash{PROGRAM} ) {
-    if (   \$hash{PROGRAM} eq "blastn"
-        || \$hash{PROGRAM} eq "blastp"
-        || \$hash{PROGRAM} eq "blastx"
-        || \$hash{PROGRAM} eq "tblastn"
-        || \$hash{PROGRAM} eq "tblastx" )
-    {
-        my \@response = \@{
-        \$c->model('BlastRepository')->executeBlastSearch(
-        \$hash{PROGRAM},            \$hash{DATALIB},
-        \$fname,                    \$hash{QUERY_FROM},
-        \$hash{QUERY_TO},           \$hash{FILTER},
-        \$hash{EXPECT},             \$hash{MAT_PARAM},
-        \$hash{UNGAPPED_ALIGNMENT}, \$hash{GENETIC_CODE},
-        \$hash{DB_GENETIC_CODE},    
-        \$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
-        \$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
-        \$hash{ALIGNMENTS},         \$hash{COST_OPEN_GAP},
-        \$hash{COST_EXTEND_GAP},    \$hash{WORD_SIZE}
-        )
-        };
-        \$content = join( "", \@response );
+    \$hash{DATALIB} = \$c->path_to("root") . "/seq/Sequences"
+    if ( \$hash{DATALIB} eq "PMN_genome_1" );
+    \$hash{DATALIB} = \$c->path_to("root") . "/orfs_nt/Sequences_NT"
+    if ( \$hash{DATALIB} eq "PMN_genes_1" );
+    \$hash{DATALIB} = \$c->path_to("root") . "/orfs_aa/Sequences_AA"
+    if ( \$hash{DATALIB} eq "PMN_prot_1" );
+    my \$content = "";
+    if ( exists \$hash{PROGRAM} ) {
+        if (   \$hash{PROGRAM} eq "blastn"
+            || \$hash{PROGRAM} eq "blastp"
+            || \$hash{PROGRAM} eq "blastx"
+            || \$hash{PROGRAM} eq "tblastn"
+            || \$hash{PROGRAM} eq "tblastx" )
+        {
+            my \@response = \@{
+            \$c->model('BlastRepository')->executeBlastSearch(
+            \$hash{PROGRAM},            \$hash{DATALIB},
+            \$fname,                    \$hash{QUERY_FROM},
+            \$hash{QUERY_TO},           \$hash{FILTER},
+            \$hash{EXPECT},             \$hash{MAT_PARAM},
+            \$hash{UNGAPPED_ALIGNMENT}, \$hash{GENETIC_CODE},
+            \$hash{DB_GENETIC_CODE},    
+            \$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
+            \$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
+            \$hash{ALIGNMENTS},         \$hash{COST_OPEN_GAP},
+            \$hash{COST_EXTEND_GAP},    \$hash{WORD_SIZE}
+            )
+            };
+            \$content = join( "", \@response );
+        }
+        else {
+            \$content = "PROGRAM NOT IN THE LIST";
+        }
     }
     else {
-        \$content = "PROGRAM NOT IN THE LIST";
+        \$content = "NO PROGRAM DEFINED";
     }
-}
-else {
-    \$content = "NO PROGRAM DEFINED";
-}
 
-return standardStatusOk( \$self, \$c, \$content );
+    return standardStatusOk( \$self, \$c, \$content );
 }
 
 sub fancy : Path("/Blast/fancy") : CaptureArgs(3) : ActionClass('REST') { }
@@ -6121,7 +6203,7 @@ sub gene_GET {
         \$self,            \$c,             \$pipeline,     \$geneID,
         \$geneDescription, \$noDescription, \$individually, \$featureId,
         \$pageSize,        \$offset, \$contig )
-      = \@_;
+    = \@_;
     if ( !\$geneID and defined \$c->request->param("geneID") ) {
         \$geneID = \$c->request->param("geneID");
     }
@@ -6147,7 +6229,7 @@ sub gene_GET {
         \$contig = \$c->request->param("contig");
     }
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$pagedResponse = \$searchDBClient->getGene( \$c->config->{pipeline_id},
         \$geneID, \$geneDescription,
@@ -6160,7 +6242,7 @@ sub gene_GET {
 }
 
 sub gene_basics : Path("/SearchDatabase/GetGeneBasics") : CaptureArgs(1) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub gene_basics_GET {
     my ( \$self, \$c, \$id ) = \@_;
@@ -6168,7 +6250,7 @@ sub gene_basics_GET {
         \$id = \$c->request->param("id");
     }
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     standardStatusOk(
         \$self, \$c,
@@ -6179,7 +6261,7 @@ sub gene_basics_GET {
 }
 
 sub subsequence : Path("/SearchDatabase/GetSubsequence") : CaptureArgs(5) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub subsequence_GET {
     my ( \$self, \$c, \$type, \$contig, \$sequenceName, \$start, \$end ) = \@_;
@@ -6199,7 +6281,7 @@ sub subsequence_GET {
         \$end = \$c->request->param("end");
     }
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     standardStatusOk(
         \$self, \$c,
@@ -6210,7 +6292,7 @@ sub subsequence_GET {
 }
 
 sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub ncRNA_desc_GET {
     my ( \$self, \$c, \$feature ) = \@_;
@@ -6218,7 +6300,7 @@ sub ncRNA_desc_GET {
         \$feature = \$c->request->param("feature");
     }
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     standardStatusOk(
         \$self, \$c,
@@ -6229,26 +6311,81 @@ sub ncRNA_desc_GET {
 }
 
 sub subEvidences : Path("/SearchDatabase/SubEvidences") : CaptureArgs(1) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub subEvidences_GET {
-    my ( \$self, \$c, \$feature) = \@_;
+    my ( \$self, \$c, \$feature, \$locus_tag) = \@_;
     if ( !\$feature and defined \$c->request->param("feature") ) {
         \$feature = \$c->request->param("feature");
     }
+    if( !\$locus_tag and defined \$c->request->param("locus_tag") ) {
+        \$locus_tag = \$c->request->param("locus_tag");
+    }
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
-    standardStatusOk(
-        \$self, \$c,
-        \$searchDBClient->getSubevidences(
-            \$feature, \$c->config->{pipeline_id}
-        )->{response}
-    );
+    my \@subevidences = \@{\$searchDBClient->getSubevidences(
+    \$feature, \$c->config->{pipeline_id}
+    )->{response}}; 
+
+    my \%components = map { \$_ => 1 }  split(" ", \$c->config->{components_ev});
+
+    exists \$components{\$_->{program}} ? delete \$components{\$_->{program}} : next foreach (\@subevidences);
+
+    foreach my \$component (keys \%components) {
+        \$component =~ s/\\.pl//;
+        my \$resultSet = \$c->model('Basic::Component')->search(
+            {
+                -and => [
+                    'locus_tag' => \$locus_tag,
+                    'name'      => \$component
+                ]
+            },
+            {
+                order_by => {
+                    -asc => [qw/ component /]
+                },
+            }
+        );
+        my \%hash = ();
+
+        my \%component_name = (
+            'annotation_interpro.pl' => 'Domain search - InterProScan',
+            'annotation_blast.pl'    => 'Similarity search - BLAST',
+            'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
+            'annotation_phobius.pl' =>
+            'Transmembrane domains and signal peptide search - Phobius',
+            'annotation_pathways.pl'  => 'Pathway classification - KEGG',
+            'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
+            'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
+            'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
+            'annotation_predgpi.pl'	=> 'PreDGPI',
+            'annotation_tmhmm.pl'     => 'TMHMM',
+            'annotation_hmmer.pl'	=> 'HMMER',
+            "annotation_signalP.pl" => 'SignalP',
+            'annotation_bigpi.pl'   => 'BIGPI',
+        );
+        while ( my \$result = \$resultSet->next ) {
+            my \$subevidence = Report_HTML_DB::Models::Application::Subevidence->new(
+                id                  => "",
+                type                => "",
+                number              => "",
+                start               => "",
+                end                 => "",
+                strand              => "",
+                is_obsolete         => "",
+                program             => \$component,
+                program_description => \$component_name{\$component . ".pl"},
+            );
+            push \@subevidences, \$subevidence->pack();
+        }
+    }
+
+    standardStatusOk( \$self, \$c, \\\@subevidences );
 }
 
 sub analysesCDS : Path("/SearchDatabase/analysesCDS") : CaptureArgs(31) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub analysesCDS_GET {
     my ( \$self, \$c) = \@_;
@@ -6260,7 +6397,7 @@ sub analysesCDS_GET {
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$pagedResponse = \$searchDBClient->getAnalysesCDS( \\\%hash );
     standardStatusOk(
@@ -6272,7 +6409,7 @@ sub analysesCDS_GET {
 }
 
 sub trnaSearch : Path("/SearchDatabase/trnaSearch") : CaptureArgs(4) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub trnaSearch_GET {
     my ( \$self, \$c ) = \@_;
@@ -6285,7 +6422,7 @@ sub trnaSearch_GET {
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$response = \$searchDBClient->getTRNA( \\\%hash );
     standardStatusOk(
@@ -6295,7 +6432,7 @@ sub trnaSearch_GET {
 }
 
 sub tandemRepeatsSearch : Path("/SearchDatabase/tandemRepeatsSearch") :
-  CaptureArgs(5) : ActionClass('REST') { }
+CaptureArgs(5) : ActionClass('REST') { }
 
 sub tandemRepeatsSearch_GET {
     my ( \$self, \$c ) = \@_;
@@ -6308,7 +6445,7 @@ sub tandemRepeatsSearch_GET {
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$response = \$searchDBClient->getTandemRepeats( \\\%hash ); 
     standardStatusOk(
@@ -6330,7 +6467,7 @@ sub getrRNASearch_GET {
     \$hash{pipeline} = \$c->config->{pipeline_id};
 
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
 
     my \$response = \$searchDBClient->getrRNASearch(\\\%hash);
@@ -6342,7 +6479,7 @@ sub getrRNASearch_GET {
 }
 
 sub ncRNASearch : Path("/SearchDatabase/ncRNASearch") : CaptureArgs(7) :
-  ActionClass('REST') { }
+ActionClass('REST') { }
 
 sub ncRNASearch_GET {
     my ( \$self, \$c ) = \@_;
@@ -6354,7 +6491,7 @@ sub ncRNASearch_GET {
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$response = \$searchDBClient->getncRNA( \\\%hash );
     standardStatusOk(
@@ -6364,8 +6501,8 @@ sub ncRNASearch_GET {
 }
 
 sub transcriptionalTerminatorSearch :
-  Path("/SearchDatabase/transcriptionalTerminatorSearch") : CaptureArgs(6) :
-  ActionClass('REST') { }
+Path("/SearchDatabase/transcriptionalTerminatorSearch") : CaptureArgs(6) :
+ActionClass('REST') { }
 
 sub transcriptionalTerminatorSearch_GET {
     my ( \$self, \$c ) = \@_;
@@ -6377,7 +6514,7 @@ sub transcriptionalTerminatorSearch_GET {
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$response = \$searchDBClient->getTranscriptionalTerminator( \\\%hash );
     standardStatusOk(
@@ -6387,7 +6524,7 @@ sub transcriptionalTerminatorSearch_GET {
 }
 
 sub rbsSearch : Path("/SearchDatabase/rbsSearch") : CaptureArgs(4) :
-  ActionClass('REST') {
+ActionClass('REST') {
 }
 
 sub rbsSearch_GET {
@@ -6400,7 +6537,7 @@ sub rbsSearch_GET {
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$response = \$searchDBClient->getRBSSearch( \\\%hash );
     standardStatusOk(
@@ -6410,7 +6547,7 @@ sub rbsSearch_GET {
 }
 
 sub alienhunterSearch : Path("/SearchDatabase/alienhunterSearch") :
-  CaptureArgs(6) : ActionClass('REST') { }
+CaptureArgs(6) : ActionClass('REST') { }
 
 sub alienhunterSearch_GET {
     my ( \$self, \$c ) = \@_;
@@ -6422,7 +6559,7 @@ sub alienhunterSearch_GET {
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$response = \$searchDBClient->getAlienHunter( \\\%hash );
     standardStatusOk(
@@ -6432,7 +6569,7 @@ sub alienhunterSearch_GET {
 }
 
 sub geneByPosition : Path("/SearchDatabase/geneByPosition") :
-  CaptureArgs(3) : ActionClass('REST') { }
+CaptureArgs(3) : ActionClass('REST') { }
 
 sub geneByPosition_GET {
     my ( \$self, \$c, \$start, \$end, \$contig, \$pageSize, \$offset ) = \@_;
@@ -6452,22 +6589,22 @@ sub geneByPosition_GET {
         \$contig = \$c->request->param("contig");
     }
 
-        \$contig = \$c->model('Basic::Sequence')->search({ name => \$contig}, { columns => [ qw/ id / ] })->first()->{_column_data}->{"id"};
+    \$contig = \$c->model('Basic::Sequence')->search({ name => \$contig}, { columns => [ qw/ id / ] })->first()->{_column_data}->{"id"};
 
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$response = \$searchDBClient->getGeneByPosition(
-            \$start, \$end, \$contig, \$c->config->{pipeline_id}, \$pageSize, \$offset
-        );
+        \$start, \$end, \$contig, \$c->config->{pipeline_id}, \$pageSize, \$offset
+    );
     standardStatusOk(
         \$self, \$c, \$response->{response}, \$response->{total}, \$pageSize, \$offset
     );
 }
 
 sub getSimilarityEvidenceProperties :
-  Path("/SearchDatabase/getSimilarityEvidenceProperties") : CaptureArgs(1) :
-  ActionClass('REST') { }
+Path("/SearchDatabase/getSimilarityEvidenceProperties") : CaptureArgs(1) :
+ActionClass('REST') { }
 
 sub getSimilarityEvidenceProperties_GET {
     my ( \$self, \$c, \$feature ) = \@_;
@@ -6475,7 +6612,7 @@ sub getSimilarityEvidenceProperties_GET {
         \$feature = \$c->request->param("feature");
     }
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
 
     my \%hash = \%{\$searchDBClient->getSimilarityEvidenceProperties(\$feature)->{response}};
@@ -6487,8 +6624,8 @@ sub getSimilarityEvidenceProperties_GET {
 }
 
 sub getIntervalEvidenceProperties :
-  Path("/SearchDatabase/getIntervalEvidenceProperties") : CaptureArgs(3) :
-  ActionClass('REST') { }
+Path("/SearchDatabase/getIntervalEvidenceProperties") : CaptureArgs(3) :
+ActionClass('REST') { }
 
 sub getIntervalEvidenceProperties_GET {
     my ( \$self, \$c, \$feature, \$typeFeature, \$pipeline ) = \@_;
@@ -6502,7 +6639,7 @@ sub getIntervalEvidenceProperties_GET {
         \$pipeline = \$c->request->param("pipeline");
     }
     my \$searchDBClient =
-      Report_HTML_DB::Clients::SearchDBClient->new(
+    Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     standardStatusOk( \$self, \$c,
         \$searchDBClient->getIntervalEvidenceProperties(\$feature, \$typeFeature, \$pipeline)->{response} );
@@ -6625,7 +6762,7 @@ sub search_POST {
         \$matrix = \$c->request->param("MAT_PARAM");
     }
     if ( !\$ungappedAlignment
-        and defined \$c->request->param("UNGAPPED_ALIGNMENT") )
+            and defined \$c->request->param("UNGAPPED_ALIGNMENT") )
     {
         \$ungappedAlignment = \$c->request->param("UNGAPPED_ALIGNMENT");
     }
@@ -6633,7 +6770,7 @@ sub search_POST {
         \$geneticCode = \$c->request->param("GENETIC_CODE");
     }
     if ( !\$databaseGeneticCode
-        and defined \$c->request->param("DB_GENETIC_CODE") )
+            and defined \$c->request->param("DB_GENETIC_CODE") )
     {
         \$databaseGeneticCode = \$c->request->param("DB_GENETIC_CODE");
     }
@@ -6641,7 +6778,7 @@ sub search_POST {
         \$otherAdvanced = \$c->request->param("OTHER_ADVANCED");
     }
     if ( !\$graphicalOverview
-        and defined \$c->request->param("OVERVIEW") )
+            and defined \$c->request->param("OVERVIEW") )
     {
         \$graphicalOverview = \$c->request->param("OVERVIEW");
     }
@@ -6679,7 +6816,7 @@ sub search_POST {
     }
     my \$content = "";
     my \@fuckingSequence = split(/\\s+/, \$hash{SEQUENCE});
-     \$hash{SEQUENCE} = join('\\n', \@fuckingSequence);
+    \$hash{SEQUENCE} = join('\\n', \@fuckingSequence);
     print "\\n".\$hash{SEQUENCE}."\\n";
     if(\$hash{SEQUENCE} !~ />/) {
         \$hash{SEQUENCE} = ">Sequence\\n" . \$hash{SEQUENCE};
@@ -6690,7 +6827,7 @@ sub search_POST {
         \$hash{SEQUENCE} =~ s/\$auxHeader/\$header/g;
     }
     my \$blastClient =
-      Report_HTML_DB::Clients::BlastClient->new(
+    Report_HTML_DB::Clients::BlastClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
     my \$baseResponse = \$blastClient->search( \\\%hash );
     \%hash = ();
@@ -6759,11 +6896,11 @@ __PACKAGE__->meta->make_immutable;
 
 BLAST
 
-            writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Blast.pm",
-                $blastContent );
+writeFile( "$html_dir/lib/$libDirectoryWebsite/Controller/Blast.pm",
+    $blastContent );
 
-            $temporaryPackage = $packageWebsite . '::Controller::Root';
-            my $rootContent = <<ROOT;
+$temporaryPackage = $packageWebsite . '::Controller::Root';
+my $rootContent = <<ROOT;
 package $temporaryPackage;
 use Moose;
 use namespace::autoclean;
@@ -6795,8 +6932,8 @@ ROOT
 #my @controllers = (
 #	"Home", "Blast", "Downloads", "Help", "About"
 #);
-            if ($hadGlobal) {
-                $rootContent .= <<ROOT;
+if ($hadGlobal) {
+    $rootContent .= <<ROOT;
 
 =head2 globalAnalyses
 
@@ -6813,9 +6950,9 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
                             tag => {'like', 'header%'},
                             tag => 'menu',
                             tag => 'footer',
-            tag => {'like', 'global-analyses%'}
-        ]
-    }))]);
+                            tag => {'like', 'global-analyses%'}
+                        ]
+                    }))]);
 
     \$c->stash(template => '$lowCaseName/global-analyses/index.tt');
     my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
@@ -6829,10 +6966,10 @@ sub globalAnalyses :Path("GlobalAnalyses") :Args(0) {
 
 ROOT
 
-                            #	push @controllers, "GlobalAnalyses";
-                        }
-                        if ($hadSearchDatabase) {
-                            $rootContent .= <<ROOT;
+#	push @controllers, "GlobalAnalyses";
+}
+if ($hadSearchDatabase) {
+    $rootContent .= <<ROOT;
 
 =head2 searchDatabase
 
@@ -6847,24 +6984,24 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
     \$c->stash->{titlePage} = 'Search Database';
     \$c->stash(currentPage => 'search-database');
     \$c->stash(texts => [encodingCorrection (\$c->model('Basic::Text')->search({
-                -or => [
-                    tag => {'like', 'header%'},
-                    tag => 'menu',
-                    tag => 'footer',
-                ]
-    }))]);
+                        -or => [
+                            tag => {'like', 'header%'},
+                            tag => 'menu',
+                            tag => 'footer',
+                        ]
+                    }))]);
 
     my \%hash = ();
 
-        my \@texts = encodingCorrection (
-                \$c->model('Basic::Text')->search({
-                        -or => [
-                                tag => {'like', 'search-database%'}
-                        ]
-                })
-        );
+    my \@texts = encodingCorrection (
+        \$c->model('Basic::Text')->search({
+                -or => [
+                    tag => {'like', 'search-database%'}
+                ]
+            })
+    );
 
-        \$c->stash(searchDBTexts => resultsetListToHash(\\\@texts, "tag", "value"));
+    \$c->stash(searchDBTexts => resultsetListToHash(\\\@texts, "tag", "value"));
 
     my \$searchDBClient = Report_HTML_DB::Clients::SearchDBClient->new(rest_endpoint => \$c->config->{rest_endpoint});
     my \$pipeline;
@@ -6891,20 +7028,20 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
         rRNAsAvailable => [sort { \$a <=> \$b } \@{\$searchDBClient->getRibosomalRNAs(\$pipeline)->getResponse()}]
     );
 
-        \$c->stash(
-                sequences => [
-                        \$c->model('Basic::Sequence')->search({}, { columns => [ qw/ id name / ] })
-                ]
-        );
+    \$c->stash(
+        sequences => [
+            \$c->model('Basic::Sequence')->search({}, { columns => [ qw/ id name / ] })
+        ]
+    );
 
     \$c->stash(template => '$lowCaseName/search-database/index.tt');
     my \$components = resultsetListToHash([\$c->model('Basic::Component')->search({}, { columns => [ qw/component name/ ], group_by => [ qw/component name / ] })], "name", "component");
     \$c->stash(components => \$components);
-    if(\$components->{"pathways"}) {
-        my \$filepath = \$c->model('Basic::Component')->search({ component => { 'like', '%report%pathways%'} }, { columns => [ qw/filepath/ ], group_by => [ qw/filepath/ ] })->
-            first()->{_column_data}->{"filepath"};
+    if(\$components->{"annotation_pathways"}) {
+        my \$filepath = \$c->model('Basic::Component')->search({ component => { 'like', 'report%kegg'} }, { columns => [ qw/filepath/ ], group_by => [ qw/filepath/ ] })->
+        first()->{_column_data}->{"filepath"};
         #\$filepath =~ /(reports[\\w\\/]+\\/)/g;
-        \$c->stash->{report_pathways} = \$c->path_to('root') . "/" . \$filepath;
+        \$c->stash->{report_pathways} = \$filepath;
     }
     \$c->stash->{hadGlobal} = {{valorGlobalSubstituir}};
     \$c->stash->{hadSearchDatabase} = 1;
@@ -6913,10 +7050,10 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
 
 ROOT
 
-        #	push @controllers, "SearchDatabase";
-    }
+#	push @controllers, "SearchDatabase";
+}
 
-    $rootContent .= <<ROOT;
+$rootContent .= <<ROOT;
 
 sub resultsetListToHash {
         my (\$list, \$keyColumn, \$valueColumn) = \@_;
@@ -7169,100 +7306,100 @@ sub downloadFile : Path("DownloadFile") : CaptureArgs(1) {
     \$c->response->headers->content_type('application/x-download');
     my \$filename = "";
     if(\$filepath =~ /\\/*([\\w\\s\\-_]*\\.[\\w\\s\\-_]+)/g) {
-        \$filename = \$1;
-    }
-    \$c->response->body(\$file);
-    \$c->response->header('Content-Disposition' => 'attachment; filename='.\$filename);
-    close \$FILEHANDLER;
-}
+                    \$filename = \$1;
+                }
+                \$c->response->body(\$file);
+                \$c->response->header('Content-Disposition' => 'attachment; filename='.\$filename);
+                close \$FILEHANDLER;
+            }
 
-sub downloadSequence : Path("DownloadSequence") : CaptureArgs(4) {
-    my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-    if ( !\$contig and defined \$c->request->param("contig") ) {
-        \$contig = \$c->request->param("contig");
-    }
-    if ( !\$start and defined \$c->request->param("start") ) {
-        \$start = \$c->request->param("start");
-    }
-    if ( !\$end and defined \$c->request->param("end") ) {
-        \$end = \$c->request->param("end");
-    }
-    if ( !\$reverseComplement
-        and defined \$c->request->param("reverseComplement") )
-    {
-        \$reverseComplement = \$c->request->param("reverseComplement");
-    }
+            sub downloadSequence : Path("DownloadSequence") : CaptureArgs(4) {
+                my ( \$self, \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+                if ( !\$contig and defined \$c->request->param("contig") ) {
+                    \$contig = \$c->request->param("contig");
+                }
+                if ( !\$start and defined \$c->request->param("start") ) {
+                    \$start = \$c->request->param("start");
+                }
+                if ( !\$end and defined \$c->request->param("end") ) {
+                    \$end = \$c->request->param("end");
+                }
+                if ( !\$reverseComplement
+                        and defined \$c->request->param("reverseComplement") )
+                {
+                    \$reverseComplement = \$c->request->param("reverseComplement");
+                }
 
-    my \$sequence = sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
+                my \$sequence = sequenceContig(\$c, \$contig, \$start, \$end, \$reverseComplement);
 
-    use File::Temp ();
-    my \$fh    = File::Temp->new();
-    my \$fname = \$fh->filename;
-    open(my \$FILEHANDLER, ">", \$fname );
-    my \$fastaHeader = ">".\$sequence->{gene};
-    if(\$start && \$end) {
-        \$fastaHeader .= "_(".\$start."-".\$end.")";
-    }
-    if(\$reverseComplement) {
-        \$fastaHeader .= "_reverse_complemented";
-    }
-    print \$FILEHANDLER \$fastaHeader ."\n".\$sequence->{contig};
-    close(\$FILEHANDLER);
+                use File::Temp ();
+                my \$fh    = File::Temp->new();
+                my \$fname = \$fh->filename;
+                open(my \$FILEHANDLER, ">", \$fname );
+                my \$fastaHeader = ">".\$sequence->{gene};
+                if(\$start && \$end) {
+                    \$fastaHeader .= "_(".\$start."-".\$end.")";
+                }
+                if(\$reverseComplement) {
+                    \$fastaHeader .= "_reverse_complemented";
+                }
+                print \$FILEHANDLER \$fastaHeader ."\n".\$sequence->{contig};
+                close(\$FILEHANDLER);
 
-    open( \$FILEHANDLER, "<", \$fname );
-    binmode \$FILEHANDLER;
-    my \$file;
+                open( \$FILEHANDLER, "<", \$fname );
+                binmode \$FILEHANDLER;
+                my \$file;
 
-    local \$/ = \\10240;
-    while (<\$FILEHANDLER>) {
-        \$file .= \$_;
-    }
-    \$c->response->body(\$file);
-    \$c->response->headers->content_type('application/x-download');
+                local \$/ = \\10240;
+                while (<\$FILEHANDLER>) {
+                    \$file .= \$_;
+                }
+                \$c->response->body(\$file);
+                \$c->response->headers->content_type('application/x-download');
 
-    \$c->response->body(\$file);
-    \$fastaHeader =~ s/>//g;
-    \$c->response->header('Content-Disposition' => 'attachment; filename='.\$fastaHeader . ".fasta");
-    close \$FILEHANDLER;
-}
+                \$c->response->body(\$file);
+                \$fastaHeader =~ s/>//g;
+                \$c->response->header('Content-Disposition' => 'attachment; filename='.\$fastaHeader . ".fasta");
+                close \$FILEHANDLER;
+            }
 
-sub sequenceContig {
-    my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
-    use File::Basename;
-    my \$data     = "";
-    my \$sequence = \$c->model('Basic::Sequence')->search({ "name" => \$contig}, {})->first;
+            sub sequenceContig {
+                my ( \$c, \$contig, \$start, \$end, \$reverseComplement ) = \@_;
+                use File::Basename;
+                my \$data     = "";
+                my \$sequence = \$c->model('Basic::Sequence')->search({ "name" => \$contig}, {})->first;
 
-    open( my \$FILEHANDLER,
-        "<", \$c->path_to('root') . "/" . \$sequence->filepath );
+                open( my \$FILEHANDLER,
+                    "<", \$c->path_to('root') . "/" . \$sequence->filepath );
 
-    my \$content = do { local \$/; <\$FILEHANDLER> };
+                my \$content = do { local \$/; <\$FILEHANDLER> };
 
-    my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
-    \$data = join("", \@lines);
+                my \@lines = \$content =~ /^(\\w+)\\n*\$/mg;
+                \$data = join("", \@lines);
 
-    close(\$FILEHANDLER);
+                close(\$FILEHANDLER);
 
-    if ( \$start && \$end ) {
-        \$start += -1;
-        \$data = substr( \$data, \$start, ( \$end - \$start ) );
-        \$c->stash->{start}     = \$start;
-        \$c->stash->{end}       = \$end;
-        \$c->stash->{hadLimits} = 1;
-    }
-    if ( \$reverseComplement ) {
-        \$data = reverseComplement(\$data);
-        \$c->stash->{hadReverseComplement} = 1;
-    }
-    \$data = formatSequence(\$data);
-    my \$result = \$data;
+                if ( \$start && \$end ) {
+                    \$start += -1;
+                    \$data = substr( \$data, \$start, ( \$end - \$start ) );
+                    \$c->stash->{start}     = \$start;
+                    \$c->stash->{end}       = \$end;
+                    \$c->stash->{hadLimits} = 1;
+                }
+                if ( \$reverseComplement ) {
+                    \$data = reverseComplement(\$data);
+                    \$c->stash->{hadReverseComplement} = 1;
+                }
+                \$data = formatSequence(\$data);
+                my \$result = \$data;
 
-    my \%hash = ();
-    \$hash{'geneID'} = \$sequence->id;
-    \$hash{'gene'}   = \$sequence->name;
-    \$hash{'contig'} = \$result;
-    \$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
-    return \\\%hash;
-}
+                my \%hash = ();
+                \$hash{'geneID'} = \$sequence->id;
+                \$hash{'gene'}   = \$sequence->name;
+                \$hash{'contig'} = \$result;
+                \$hash{'reverseComplement'} = \$reverseComplement ? 1 : 0;
+                return \\\%hash;
+            }
 
 =head2 reverseComplement
 
@@ -7293,20 +7430,20 @@ sub formatSequence {
 
 sub reports : Path("reports") : CaptureArgs(3) {
     my ( \$self, \$c, \$type, \@files ) = \@_;
-        my \$filepath = "\$type";
-        \$filepath .= "/". \$_ foreach (\@files);
+    my \$filepath = "\$type";
+    \$filepath .= "/". \$_ foreach (\@files);
     #my \$filepath = "\$type/\$file";
     #\$filepath .= "/\$file2" if \$file2;
 
     \$self->status_bad_request( \$c, message => "Invalid request" )
-      if ( \$filepath =~ m/\\.\\.\\// );
+    if ( \$filepath =~ m/\\.\\.\\// );
 
     open( my \$FILEHANDLER,
         "<", \$c->path_to('root') . "/" . \$filepath );
     my \$content = "";
     while ( my \$line = <\$FILEHANDLER> ) {
         #\$line =~ s/href="/href="\\/reports\\/\$type\\//
-          #if ( \$line =~ /href="/ && \$line !~ /href="http\\:\\/\\// );
+        #if ( \$line =~ /href="/ && \$line !~ /href="http\\:\\/\\// );
         \$content .= \$line . "\\n";
     }
     close(\$FILEHANDLER);
@@ -7327,28 +7464,28 @@ sub reports : Path("reports") : CaptureArgs(3) {
             \$content =~ s/<link rel="stylesheet" href="/<link rel="stylesheet" href="\$pathname\\/reports\\/\$type\\/pathway_figures/g;
             \$content =~ s/<script language="JavaScript" src="/<script language="JavaScript" src="\$pathname\\/reports\\/\$type\\/pathway_figures/g;
             foreach (\$content =~ /<img[\\w\\s"=]*src="([\\.\\w\\s\\-\\/]*)"/img) {
-                if(\$_ =~ m/kegg.gif/) {
-                    my \$imagePath = \$_;
-                    \$imagePath =~ s/\\.\\.\\///;
-                    open( \$FILEHANDLER, "<", \$c->path_to('root') . "/\$type/" . \$imagePath );
-                } else {
-                    open( \$FILEHANDLER, "<", \$c->path_to('root') . "/\$type/\$files[0]" . "/" . \$_ );
-                }
-                my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
-                close(\$FILEHANDLER);
-                use MIME::Base64;
-                \$contentFile = MIME::Base64::encode_base64(\$contentFile);
-                \$content =~ s/<img[\\w\\s"=]*src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
-            }
-                        #\$content =~ s/HREF="/HREF="\/\$type/igm;
+        if(\$_ =~ m/kegg.gif/) {
+        my \$imagePath = \$_;
+        \$imagePath =~ s/\\.\\.\\///;
+        open( \$FILEHANDLER, "<", \$c->path_to('root') . "/\$type/" . \$imagePath );
+        } else {
+        open( \$FILEHANDLER, "<", \$c->path_to('root') . "/\$type/\$files[0]" . "/" . \$_ );
+        }
+        my \$contentFile = do { local(\$/); <\$FILEHANDLER> };
+        close(\$FILEHANDLER);
+        use MIME::Base64;
+        \$contentFile = MIME::Base64::encode_base64(\$contentFile);
+        \$content =~ s/<img[\\w\\s"=]*src="\$_/<img src="data:image\\/png;base64,\$contentFile/;
+}
+#\$content =~ s/HREF="/HREF="\/\$type/igm;
         }
         my \$pathname = \$c->req->base . "SearchDatabase?id"; 
         \$content =~ s/<th( align="center")*>Blast result<\\\/th>/<th\$1>Gene<\\\/th>/g; 
         \$content =~ s/<td><a href="[\\w\\/\\.]*">([\\w\\s]*)/<td><a href="\$pathname=\$1">\$1/g if ((\$content !~ /Class abbreviation/ && \$content !~ /KEGG Code/ ) && \$type ne "kegg_organism_report" );
         \$content =~ s/([\\w]+)+( -[<>\\s|\\w=".\\/]*<br>)/<a href='\$pathname=\$1'>\$1<\\/a>\$2/g if(\$type eq "go_report");
         \$content =~ s/(\\/kegg_organism_report\\/)([\\w.]+)+"/\$1\$files[0]\\/\$2"/;
-    }
-    \$c->response->body(\$content);
+}
+\$c->response->body(\$content);
 }
 
 =head2 default
@@ -7491,61 +7628,23 @@ $color_primary_text =~ s/"//g;
 $color_accent =~ s/"//g;
 $color_accent_text =~ s/"//g;
 $color_menu =~ s/"//g;
+$color_background =~ s/"//g;
+$color_footer =~ s/"//g;
+$color_footer_text =~ s/"//g;
 $titlePage =~ s/"//g;
 
-open (my $FILEHANDLER, ">>", "$html_dir/root/assets/css/style.css");
+open (my $FILEHANDLER, ">>", "$html_dir/root/assets/css/colors-$organism_name.css");
 print $FILEHANDLER "\n
-#informationPanel {
-text-align: justify;
-text-justify: inter-word;
-}
 
-.panel-body {
-background-color: #fff;
-}
-
-#organismImage {
-width:100%;
-height:100%;
-}
-
-header {
-background-color: $color_accent;
-color: $color_accent_text; 
-}
-
-.navbar-inverse {
-background-color: $color_primary;
-}
-
-.navbar-inverse .navbar-brand {
-color: $color_primary_text;
-}
-
-.menu-section {
-background-color: $color_menu;
-}
-
-.menu-top-active {
-background-color: $color_primary;
-}
-
-.menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
-background-color: $color_accent!important;
-}
-
-footer {
-background-color: $color_primary;
-color: $color_primary_text;
-}
-
-.page-head-line {
-color: $color_accent;
-border-bottom: 2px solid $color_accent;
-}                                        
-
-.navbar-toggle {
-background-color: $color_accent;
+:root {
+--color_primary: $color_primary;
+--color_accent: $color_accent;
+--color_primary_text: $color_primary_text;
+--color_accent_text: $color_accent_text;
+--color_menu: $color_menu;
+--color_background: $color_background;
+--color_footer: $color_footer;
+--color_footer_text: $color_footer_text;
 }
 
 ";
@@ -7641,7 +7740,8 @@ unless($homepage_image_organism) {
     </div>
     </div>";
 } else {
-    `cp $homepage_image_organism $html_dir/assets/img/`;
+    `mkdir -p $html_dir/root/assets/img/`;
+    `cp $homepage_image_organism $html_dir/root/assets/img/`;
     $homepage_image_organism = getFilenameByFilepath($homepage_image_organism);
     $panelInformation .= "
     <div class='row'>
@@ -7660,15 +7760,15 @@ unless($homepage_image_organism) {
 }
 $panelInformation .="</div>
 <div class='panel-footer'> 
+[% FOREACH text IN texts %]
+[% IF text.tag.search('home-sub')%] 
 <div class='row'>
 <div class='col-md-12'>
-[% FOREACH text IN texts %]
-[% IF text.tag.search('home-sub')%]
 <sub>[% text.value %]</sub>
-[% END %]
-[% END %] 
 </div>
 </div> 
+[% END %]
+[% END %]  
 </div>
 </div>
 </div>
@@ -8164,23 +8264,23 @@ CONTENTINDEXDOWNLOADS
                 </div>
                 <div id="collapse[% counter %]" class="panel-collapse collapse">
                     <div class="panel-body">
-                        [% counterTexts = 0 %]
-                        <div class="form-group">
+                        [% counterTexts = 1 %]
+
                         [% FOREACH content IN texts %]
-                            [% IF content.tag == "global-analyses-panel-" _ counter _ "-" _ counterTexts %]
-                            [% IF content.tag == "global-analyses-panel-" _ counter _ "-" _ counterTexts _ "-link" %]
-                                <label><a href="[% c.uri_for(text.details) %]">
+                            [% IF content.tag.search("global-analyses-panel-" _ counter _ "-" _ counterTexts _ "-link") %]
+                            <div class="form-group"> 
+                                <label><a href="[% c.uri_for(content.value) %]">
                                 [% FOREACH content2 IN texts %]
-                                [% IF content.tag == "global-analyses-panel-" _ counter _ "-" _ counterTexts _ "-paragraph" %]
-                                [% text.value %] 
+                                [% IF content2.tag == "global-analyses-panel-" _ counter _ "-" _ counterTexts _ "-paragraph" %]
+                                [% content2.value %] 
                                 [% END %]
                                 [% END %]
                                 </a></label> 
-                            [% END %]
+                            </div> 
                             [% counterTexts = counterTexts + 1 %]
                             [% END %]
                         [% END %]
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -8532,10 +8632,30 @@ CONTENTINDEXHOME
                                           </div>
                                       </div>
                                   [% END %]
+                                      <div class="form-group">
+                                        <select id="components" name="components" multiple="multiple">
+                                        [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-tab') %]
+                                            <option>[% text %]</option>
+                                        [% END %]
+                                        [% IF blast %]
+                                            <option>BLAST</option>
+                                        [% END %]
+                                        </select>
+                                        <script>
+                                            \$("#components").multipleSelect({
+                                               placeholder: "Containing components in search",
+                                               width: 300,
+                                            });
+                                        </script>
+                                     </div>
+
                                      <ul class="nav nav-pills">
                     [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-tab') %]
                                             <li class="">[% text %]</li>
                     [% END %]
+                                        [% IF blast %]
+                                            <li class=""><a href="#blast" data-toggle='tab'>BLAST</a></li>
+                                        [% END %]
                                      </ul>
                                      <h4></h4>
                                      <div class="tab-content">
@@ -8548,7 +8668,7 @@ CONTENTINDEXHOME
                                                 </div>
                                                 <div class="form-group">
                                                     <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domains') %]</label>
-                                                    <input class="form-control" type="number" name="TMHMMdom">
+                                                    <input class="form-control" type="number" min="0" name="TMHMMdom">
                             [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmhmmQuant') %]
                             <div class="radio">
                                 <label>[% text %]</label>
@@ -8712,7 +8832,7 @@ CONTENTINDEXHOME
                                                     </div>
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain') %]</label>
-                                                        <input class="form-control" type="number" name="TMdom">
+                                                        <input class="form-control" type="number" min="0" name="TMdom">
                                                         [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmQuant') %]
                                                             <div class="radio">
                                                                     <label>[% text %] </label>
@@ -8730,7 +8850,12 @@ CONTENTINDEXHOME
                                             </div>
                                         [% END %]
                                         [% IF signalP %]
-                                            <div id="phobius" class="tab-pane fade">
+                                            <div id="signalP" class="tab-pane fade">
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                    <label><input type="checkbox" name="noSignalP">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-signalP') %]</label>
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-signal-peptide') %]</label>
                                                         [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-signal-peptide-option-signalP') %]
@@ -8751,10 +8876,6 @@ CONTENTINDEXHOME
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-sequence') %]</label>
                                                         <input class="form-control" type="text" name="blastID">
-                                                    </div>
-                                                    <div class="form-group">
-                                <label>[% searchDBTexts.item('search-database-analyses-protein-code-search-by-description') %]</label>
-                                                        <input class="form-control" type="text" name="blastDesc">
                                                     </div>
                                             </div>
                                       [% END %]
@@ -10273,6 +10394,7 @@ FOOTER
 <link href="/assets/css/font-awesome.css" rel="stylesheet" />
 <!-- CUSTOM STYLE  -->
 <link href="/assets/css/style.css" rel="stylesheet" />
+<link href="/assets/css/colors-$organism_name.css" rel="stylesheet"  />
 <!-- PACE loader CSS -->
 <link href="/assets/css/pace-theme-fill-left.css" rel="stylesheet" />
 <!-- PACE loader js -->
@@ -10431,19 +10553,11 @@ sub readJSON {
     open( my $FILEHANDLER, "<", $file );
     my $content = do { local $/; <$FILEHANDLER> };
     my $sql = "";
-    while ( $content =~
-        /^\t"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:;?+(),'=&ããàâáéêíóõú#|&~]*)"/gm
-    )
-    {
-        my $tag   = $1;
-        my $value = $2;
-        $tag =~ s/"//g;
-        $value =~ s/"//g;
-        $sql .= <<SQL;
-            INSERT INTO TEXTS(tag, value) VALUES ("$tag", "$value");
-SQL
-    }
+    $sql .= "\nINSERT INTO TEXTS(tag, value) VALUES (\"$1\", \"$2\");\n" while ( $content =~
+        /"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:;?+(),'=&ããàâáéêíóõú#|&~]*)"/gm
+    );
     close($FILEHANDLER);
+    print STDERR "\n$sql\n"; 
     return $sql;
 }
 

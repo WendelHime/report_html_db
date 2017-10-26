@@ -1,33 +1,43 @@
 
 /*=============================================================
-    Authour URL: www.designbootstrap.com
-    
-    http://www.designbootstrap.com/
+Authour URL: www.designbootstrap.com
 
-    License: MIT
+http://www.designbootstrap.com/
 
-    http://opensource.org/licenses/MIT
+License: MIT
 
-    100% Free To use For Personal And Commercial Use.
+http://opensource.org/licenses/MIT
 
-    IN EXCHANGE JUST TELL PEOPLE ABOUT THIS WEBSITE
-   
+100% Free To use For Personal And Commercial Use.
+
+IN EXCHANGE JUST TELL PEOPLE ABOUT THIS WEBSITE
+
 ========================================================  */
 r
 
 /* =============================================================
-   GENERAL STYLES
- ============================================================ */
+GENERAL STYLES
+============================================================ */
 
 @import url(http://fonts.googleapis.com/css?family=Roboto); /* FREE GOOGLE FONT */
 
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 30px;
+    background-color: var(--color_background);
+}
+
+.pace-done {
+    background-color: var(--color_background);
+}
+
+.content-wrapper {
+    background-color: var(--color_background);
 }
 
 a {
-	text-decoration: none !important;
+    text-decoration: none !important;
+    color: rgb(35, 82, 124);
 }
 
 .set-radius-zero {
@@ -66,21 +76,21 @@ a {
 }
 .login-icon {
     height: 60px;
-width: 60px;
-padding: 13px;
-border-radius: 50%;
-font-size: 30px;
-margin-bottom: 20px;
-color: #fff;
-text-align: center;
-cursor:pointer;
-background-color:#81c784;
--webkit-border-radius:50%;
+    width: 60px;
+    padding: 13px;
+    border-radius: 50%;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    cursor:pointer;
+    background-color:#81c784;
+    -webkit-border-radius:50%;
     -moz-border-radius:50%;
 }
 /* =============================================================
-   HEADER SECTION STYLES
- ============================================================ */
+HEADER SECTION STYLES
+============================================================ */
 header {
     background-color: #81c784;
     color: #fff;
@@ -90,8 +100,8 @@ header {
 
 
 /* =============================================================
-   LOGO SECTION STYLES
- ============================================================ */
+LOGO SECTION STYLES
+============================================================ */
 .left-div {
     padding-left: 30px;
     margin-top: 40px;
@@ -102,9 +112,9 @@ header {
     width: 250px;
     padding-top: 30px;
     float: left;
-	height: 50px;
-	font-size: 18px;
-	line-height: 20px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 20px;
 }
 
 /* USER SETTINGS DIV */
@@ -125,42 +135,42 @@ header {
     margin-top: 10px;
 }
 
-    .user-settings-wrapper li {
-        display: inline-block;
-    }
+.user-settings-wrapper li {
+    display: inline-block;
+}
 
-    .user-settings-wrapper .dropdown-settings {
-        width: 200px;
-        padding: 10px;
-    }
+.user-settings-wrapper .dropdown-settings {
+    width: 200px;
+    padding: 10px;
+}
 
-    .user-settings-wrapper .nav > li > a:hover,.user-settings-wrapper .nav > li > a:focus {
-        text-decoration: none;
-        background-color: #4caf50!important;
-    }
+.user-settings-wrapper .nav > li > a:hover,.user-settings-wrapper .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #4caf50!important;
+}
 
-    .user-settings-wrapper img {
-        height: 64px;
-        width: 64px;
-        border: 1px solid #000000;
-    }
+.user-settings-wrapper img {
+    height: 64px;
+    width: 64px;
+    border: 1px solid #000000;
+}
 
-    .user-settings-wrapper .dropdown-menu {
-        margin: 0px;
-        border-radius: 0px!important;
-        -moz-border-radius: 0px!important;
-        -webkit-border-radius: 0px!important;
-    }
+.user-settings-wrapper .dropdown-menu {
+    margin: 0px;
+    border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+}
 
-    .user-settings-wrapper .btn {
-        border-radius: 0px!important;
-        -moz-border-radius: 0px!important;
-        -webkit-border-radius: 0px!important;
-    }
+.user-settings-wrapper .btn {
+    border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+}
 
-    .user-settings-wrapper .media-heading {
-        padding-top: 10px;
-    }
+.user-settings-wrapper .media-heading {
+    padding-top: 10px;
+}
 
 /* MENU LINKS SECTION*/
 
@@ -181,11 +191,11 @@ header {
 }
 
 .menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
-    background-color: #81c784!important;
+    background-color: var(--color_accent) !important;
 }
 
 .menu-section .dropdown-menu > li > a:hover,.menu-section .dropdown-menu > li > a:focus {
-    background-color: #81c784!important;
+    background-color: var(--color_accent) !important;
 }
 
 .navbar-inverse {
@@ -202,8 +212,8 @@ header {
     margin-bottom: 0px;
 }
 /* =============================================================
-   FOOTER SECTION STYLES
- ============================================================ */
+FOOTER SECTION STYLES
+============================================================ */
 footer {
     padding: 10px;
     color: #fff;
@@ -211,14 +221,14 @@ footer {
     background-color: #4caf50;
 }
 
-    footer a, footer a:hover {
-        color: #fff;
-        text-decoration: none;
-    }
+footer a, footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
 
 /*==============================================
-    DASHBOARD  STYLES    
- =============================================*/
+DASHBOARD  STYLES    
+=============================================*/
 
 /* DASHBOARD ICONS */
 
@@ -259,9 +269,9 @@ footer {
     margin-bottom: 50px;
 }
 
-    .dashboard-div-wrapper .progress {
-        height: 2px;
-    }
+.dashboard-div-wrapper .progress {
+    height: 2px;
+}
 
 /* NOTICE BOARD */
 
@@ -282,16 +292,16 @@ footer {
     border-bottom: 1px solid #E5E5E5;
 }
 
-    .notice-board li span {
-        margin-right: 10px;
-        border: 1px solid #DBDBDB;
-        padding: 5px;
-    }
+.notice-board li span {
+    margin-right: 10px;
+    border: 1px solid #DBDBDB;
+    padding: 5px;
+}
 
-    .notice-board li a, li a:hover {
-        text-decoration: none;
-        color: #000;
-    }
+.notice-board li a, li a:hover {
+    text-decoration: none;
+    color: #000;
+}
 
 /* SOCIAL BUTTONS */
 .btn-social {
@@ -299,11 +309,11 @@ footer {
     opacity: 0.8;
 }
 
-    .btn-social:hover {
-        color: white;
-        opacity: 1;
-        text-decoration: none;
-    }
+.btn-social:hover {
+    color: white;
+    opacity: 1;
+    text-decoration: none;
+}
 
 .btn-facebook {
     background-color: #3b5998;
@@ -322,5 +332,86 @@ footer {
 }
 
 .sequence {
-	font-family: monospace;
+    font-family: monospace;
 }
+
+#back {
+    margin-bottom: 20px;
+}
+
+.errors {
+    margin-top: 20px;
+}
+
+.pagination-section input {
+    width:100%;
+}
+
+.panel-title .row .col-md-11,
+.panel-title .row .col-md-10 a {
+    color: rgb(35, 82, 124);
+}
+
+.panel-title a {
+    color: rgb(35, 82, 124);
+}
+
+.panel-body {
+    background-color: var(--color_background);
+}
+
+#organismImage {
+    width:100%;
+    height:100%;
+}
+
+header {
+    background-color: var(--color_accent);
+    color: var(--color_accent_text);
+}
+
+header a {
+    color: var(--color_accent_text);
+}
+
+.navbar-inverse {
+    background-color: var(--color_primary);
+}
+
+.navbar-inverse .navbar-brand {
+    color: var(--color_primary_text);
+}
+
+.menu-section {
+    background-color: var(--color_menu);
+    color: var(--color_primary_text);
+}
+
+.menu-top-active {
+    background-color: var(--color_primary);
+    color: var(--color_primary_text); 
+}
+
+.menu-section .nav > li > a:hover,
+.menu-section .nav > li > a:focus {
+    background-color: var(--color_accent) !important;
+}
+
+footer, 
+footer a, 
+footer a:hover, 
+footer a:focus{
+    background-color: var(--color_footer);
+    color: var(--color_footer_text);
+}
+
+.page-head-line {
+    color: var(--color_accent);
+    border-bottom: 2px solid var(--color_accent);
+}
+
+.navbar-toggle {
+    background-color: var(--color_accent);
+}
+
+
