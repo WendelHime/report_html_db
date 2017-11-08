@@ -355,23 +355,20 @@ sub makeRequest {
 	my ( $rest_endpoint, $action, $parameters, $method ) = @_;
 	my $user_agent = LWP::UserAgent->new;
 	my $url        = "";
+    my $request;
 	if ( $method eq "GET" ) {
 		$url =
-		  $rest_endpoint . $action . "?" . stringifyParameters($parameters);
-		my $request = HTTP::Request->new( GET => $url );
-		$request->header( 'content_type' => 'application/json' );
-		my $response = $user_agent->request($request);
-		return $response->content;
+		    $rest_endpoint . $action . "?" . stringifyParameters($parameters);
+		$request = HTTP::Request->new( GET => $url );
 	}
 	elsif ( $method eq "POST" ) {
 		$url = $rest_endpoint;
-		my $request = HTTP::Request->new( POST => $url );
+		$request = HTTP::Request->new( POST => $url );
 		$request->content($parameters);
-		$request->header( 'content_type' => 'application/json' );
-		my $response = $user_agent->request($request);
-		return $response->content;
 	}
-
+	$request->header( 'content_type' => 'application/json' );
+	my $response = $user_agent->request($request);
+	return $response->content;
 }
 
 sub stringifyParameters {

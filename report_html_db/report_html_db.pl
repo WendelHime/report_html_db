@@ -937,7 +937,6 @@ my $tRNASequences = 0;
 my $nonCodingSequences = 0;
 my $allContigs = 0;
 my $ttSequences = 0;
-my %hash_ev = ();
 
 open(my $SEQUENCES, ">", "$html_dir/root/Sequences.fasta");
 open(my $SEQUENCES_NT, ">", "$html_dir/root/Sequences_NT.fasta");
@@ -1501,7 +1500,7 @@ SQL
 if($annotation_interpro) {
     $scriptSQL .= <<SQL;
                 INSERT INTO TEXTS(tag, value, details) VALUES
-                    ("search-database-analyses-protein-code-tab", "<a href='#geneOntology' data-toggle='tab'>Gene ontology</a>", "");
+                    ("search-database-analyses-protein-code-tab", "<a href='#geneOntology' data-toggle='tab'>GO</a>", "");
 SQL
 }
 if($annotation_tcdb) {
@@ -1514,7 +1513,7 @@ if($annotation_tcdb) {
         $scriptSQL .= readTCDBFile($tcdb_file);
         $scriptSQL .= <<SQL;
         INSERT INTO TEXTS(tag, value, details) VALUES
-        ("search-database-analyses-protein-code-tab", "<a href='#transporterClassification' data-toggle='tab'>Transporter classification</a>", ""),
+        ("search-database-analyses-protein-code-tab", "<a href='#transporterClassification' data-toggle='tab'>TCDB</a>", ""),
         ("search-database-analyses-protein-code-not-containing-classification-tcdb", " not containing TCDB classification", ""),
         ("search-database-analyses-protein-code-search-by-transporter-identifier", "Search by transporter identifier(e.g. 1.A.3.1.1):", ""),
         ("search-database-analyses-protein-code-search-by-transporter-family", "Or by transporter family(e.g. 3.A.17):", ""),
@@ -1534,7 +1533,7 @@ SQL
 if($annotation_orthology) {
     $scriptSQL .= <<SQL;
                 INSERT INTO TEXTS(tag, value, details) VALUES
-                    ("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>Orthology analysis (eggNOG)</a>", "");
+                    ("search-database-analyses-protein-code-tab", "<a href='#orthologyAnalysis' data-toggle='tab'>eggNOG</a>", "");
 SQL
 }
 if($annotation_blast) {
@@ -2194,9 +2193,13 @@ sub analyses_CDS {
     my \$query_ORTH     = "";
     my \$query_interpro = "";
     my \$query_tmhmm    = "";
-    my \$query_dgpi	   = "";
+    my \$query_dgpi	    = "";
     my \$query_predgpi  = "";
-    my \$query_bigpi	   = "";
+    my \$query_bigpi	= "";
+    my \%components = ();
+    if(exists \$hash->{components}) {
+        \%components = map { \$_ => 1} split(",", \$hash->{components});
+    }
 
     if (   ( exists \$hash->{geneDesc} && \$hash->{geneDesc} )
         || ( exists \$hash->{noDesc} && \$hash->{noDesc} ) )
@@ -2310,7 +2313,8 @@ sub analyses_CDS {
     }
     if (   ( exists \$hash->{noGO} && \$hash->{noGO} )
         || ( exists \$hash->{goID}   && \$hash->{goID} )
-        || ( exists \$hash->{goDesc} && \$hash->{goDesc} ) )
+        || ( exists \$hash->{goDesc} && \$hash->{goDesc} )
+        || \$components{"GO"} )
     {
         \$query_GO =
         "(SELECT DISTINCT r.object_id "
@@ -2349,7 +2353,8 @@ sub analyses_CDS {
         || ( exists \$hash->{'tcdbFam'}      && \$hash->{'tcdbFam'} )
         || ( exists \$hash->{'tcdbSubclass'} && \$hash->{'tcdbSubclass'} )
         || ( exists \$hash->{'tcdbClass'}    && \$hash->{'tcdbClass'} )
-        || ( exists \$hash->{'tcdbDesc'}     && \$hash->{'tcdbDesc'} ) )
+        || ( exists \$hash->{'tcdbDesc'}     && \$hash->{'tcdbDesc'} ) 
+        || \$components{"TCDB"} )
     {
         \$query_TCDB =
         "(SELECT DISTINCT r.object_id "
@@ -2361,7 +2366,9 @@ sub analyses_CDS {
         . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
         . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
         . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-        . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+        . "join analysisfeature af on (r.subject_id = af.feature_id)"
+        . "join analysis a on (a.analysis_id = af.analysis_id) "
+        . "WHERE a.program = 'annotation_tcdb.pl' and c.name ='pipeline_id' AND p.value = ? ";
         push \@args, \$hash->{pipeline};
 
         \$connector = " INTERSECT " if \$connector;
@@ -2400,7 +2407,8 @@ sub analyses_CDS {
     }
     if (   ( exists \$hash->{'noBlast'} && \$hash->{'noBlast'} )
         || ( exists \$hash->{'blastID'}   && \$hash->{'blastID'} )
-        || ( exists \$hash->{'blastDesc'} && \$hash->{'blastDesc'} ) )
+        || ( exists \$hash->{'blastDesc'} && \$hash->{'blastDesc'} ) 
+        || \$components{"BLAST"} )
     {
         \$query_blast = "(SELECT DISTINCT r.object_id " . " FROM feature f
         JOIN feature_relationship r ON (r.subject_id = f.feature_id)
@@ -2437,7 +2445,8 @@ sub analyses_CDS {
     }
     if (   ( exists \$hash->{'noRps'} && \$hash->{'noRps'} )
         || ( exists \$hash->{'rpsID'}   && \$hash->{'rpsID'} )
-        || ( exists \$hash->{'rpsDesc'} && \$hash->{'rpsDesc'} ) )
+        || ( exists \$hash->{'rpsDesc'} && \$hash->{'rpsDesc'} ) 
+        || \$components{"RPS-BLAST"} )
     {
         \$query_RPS =
         "(select distinct r.object_id "
@@ -2478,7 +2487,8 @@ sub analyses_CDS {
     if (   \$hash->{'noKEGG'}
         || \$hash->{'koID'}
         || \$hash->{'keggPath'}
-        || \$hash->{'keggDesc'} )
+        || \$hash->{'keggDesc'} 
+        || \$components{"KEGG"} )
     {
         \$query_KEGG =
         "(select distinct r.object_id "
@@ -2493,8 +2503,10 @@ sub analyses_CDS {
         . "join featureprop pd2 on (pr.subject_id = pd2.feature_id)"
         . "join cvterm cpd2 on (pd2.type_id = cpd2.cvterm_id) "
         . "join featureprop pd3 on (pr.subject_id = pd3.feature_id)"
-        . "join cvterm cpd3 on (pd3.type_id = cpd3.cvterm_id) ";
-        my \$conditional = " where c.name ='pipeline_id' and p.value = ? and cpd.name = 'orthologous_group_id' and cpd2.name = 'metabolic_pathway_id' and cpd3.name = 'orthologous_group_description' ";
+        . "join cvterm cpd3 on (pd3.type_id = cpd3.cvterm_id) "
+        . "join analysisfeature af on (r.subject_id = af.feature_id)"
+        . "join analysis a on (a.analysis_id = af.analysis_id) ";
+        my \$conditional = " where c.name ='pipeline_id' and p.value = ? and cpd.name = 'orthologous_group_id' and cpd2.name = 'metabolic_pathway_id' and cpd3.name = 'orthologous_group_description'  and a.program = 'annotation_pathways.pl' ";
         push \@args, \$hash->{pipeline};
         \$connector = " intersect " if \$connector;
         if ( \$hash->{'noKEGG'} ) {
@@ -2510,11 +2522,6 @@ sub analyses_CDS {
                 push \@args, "\%" . lc( \$hash->{'keggPath'} ) . "\%";
             }
             if ( \$hash->{'keggDesc'} ) {
-                \$query_KEGG .=
-                " join analysisfeature af on (r.subject_id = af.feature_id)"
-                . "join analysis a on (a.analysis_id = af.analysis_id) ";
-                \$conditional .=
-                " and a.program = 'annotation_pathways.pl' ";
                 while ( \$hash->{keggDesc} =~ /(\\S+)/g ) {
                     \$conditional .= " and ". 
                     generate_clause( "?", "", "",
@@ -2529,7 +2536,8 @@ sub analyses_CDS {
     }
     if (   ( exists \$hash->{'noOrth'} && \$hash->{'noOrth'} )
         || ( exists \$hash->{'orthID'}   && \$hash->{'orthID'} )
-        || ( exists \$hash->{'orthDesc'} && \$hash->{'orthDesc'} ) )
+        || ( exists \$hash->{'orthDesc'} && \$hash->{'orthDesc'} ) 
+        || \$components{"eggNOG"} )
     {
         \$query_ORTH =
         "(select distinct r.object_id"
@@ -2540,8 +2548,10 @@ sub analyses_CDS {
         . "join feature_relationship pr on (r.subject_id = pr.object_id) "
         . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
         . "join featureprop pd on (pr.subject_id = pd.feature_id) "
-        . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) ";
-        my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
+        . "join cvterm cpd on (pd.type_id = cpd.cvterm_id) "
+        . "join analysisfeature af on (r.subject_id = af.feature_id) "
+        . "join analysis a on (a.analysis_id = af.analysis_id) ";
+        my \$conditional = "where c.name ='pipeline_id' and p.value = ? and a.program = 'annotation_orthology.pl' ";
         push \@args, \$hash->{pipeline};
         \$connector = " intersect " if \$connector;
         if ( \$hash->{'noOrth'} ) {
@@ -2554,11 +2564,8 @@ sub analyses_CDS {
             push \@args, "\%" . lc( \$hash->{'orthID'} ) . "\%";
         }
         elsif ( \$hash->{'orthDesc'} ) {
-            \$query_ORTH .=
-            " join analysisfeature af on (r.subject_id = af.feature_id) "
-            . " join analysis a on (a.analysis_id = af.analysis_id) ";
             \$conditional .=
-            " and a.program = 'annotation_orthology.pl' and cpd.name = 'orthologous_group_description' "; 
+            "and cpd.name = 'orthologous_group_description' "; 
 
             while ( \$hash->{orthDesc} =~ /(\\S+)/g ) {
                 \$conditional .= " and ". 
@@ -2573,7 +2580,8 @@ sub analyses_CDS {
     }
     if (   ( exists \$hash->{'noIP'} && \$hash->{'noIP'} )
         || ( exists \$hash->{'interproID'}   && \$hash->{'interproID'} )
-        || ( exists \$hash->{'interproDesc'} && \$hash->{'interproDesc'} ) )
+        || ( exists \$hash->{'interproDesc'} && \$hash->{'interproDesc'} ) 
+        || \$components{"Interpro"} )
     {
         \$query_interpro =
         "(select distinct r.object_id "
@@ -2584,8 +2592,10 @@ sub analyses_CDS {
         . "join cvterm c on (p.type_id = c.cvterm_id) "
         . "join feature_relationship pr on (r.subject_id = pr.object_id) "
         . "join featureprop ppr on (pr.subject_id = ppr.feature_id) "
-        . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) ";
-        my \$conditional = "where c.name ='pipeline_id' and p.value = ? ";
+        . "join cvterm cpr on (ppr.type_id = cpr.cvterm_id) "
+        . "join analysisfeature af on (r.subject_id = af.feature_id) "
+        . "join analysis a on (a.analysis_id = af.analysis_id) ";
+        my \$conditional = "where c.name ='pipeline_id' and p.value = ? and a.program='annotation_interpro.pl'";
         push \@args, \$hash->{pipeline};
         \$connector = " intersect " if \$connector;
         if ( \$hash->{'noIP'} ) {
@@ -2606,7 +2616,8 @@ sub analyses_CDS {
         \$connector      = 1;
     }
     if (   ( exists \$hash->{'noTMHMM'} && \$hash->{'noTMHMM'} )
-        || ( exists \$hash->{'TMHMMdom'}   && \$hash->{'TMHMMdom'}   ) )
+        || ( exists \$hash->{'TMHMMdom'}   && \$hash->{'TMHMMdom'}   ) 
+        || \$components{"TMHMM"} )
     {
         my \$select = "(SELECT DISTINCT r.object_id       
         FROM feature f 
@@ -2628,8 +2639,8 @@ sub analyses_CDS {
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noTMHMM'}) {
-            $select .= " AND my_to_decimal(ppp.value) = ? ";
-            push @args, "-0";
+            \$select .= " AND my_to_decimal(ppp.value) = ? ";
+            push \@args, "-0";
             \$query_tmhmm = \$connector . \$select . ")";
         } elsif(\$hash->{'TMHMMdom'}) {
             \$select .= " AND my_to_decimal(ppp.value) ";
@@ -2652,7 +2663,8 @@ sub analyses_CDS {
     }
     if (    ( exists \$hash->{'noDGPI'} && \$hash->{'noDGPI'} )
         ||  ( exists \$hash->{'cleavageSiteDGPI'}   && \$hash->{'cleavageSiteDGPI'}   ) 
-        ||  ( exists \$hash->{'scoreDGPI'}   && \$hash->{'scoreDGPI'}   )  )
+        ||  ( exists \$hash->{'scoreDGPI'}   && \$hash->{'scoreDGPI'}   )  
+        || \$components{"DGPI"} )
     {
         my \$select = "(SELECT DISTINCT r.object_id       
         FROM feature f 
@@ -2711,7 +2723,8 @@ sub analyses_CDS {
         ||  ( exists \$hash->{'namePreDGPI'} && \$hash->{'namePreDGPI'} ) 
         ||  ( exists \$hash->{'positionPreDGPI'} && \$hash->{'positionPreDGPI'} ) 
         ||  ( exists \$hash->{'specificityPreDGPI'} && \$hash->{'specificityPreDGPI'} ) 
-        ||  ( exists \$hash->{'sequencePreDGPI'} && \$hash->{'sequencePreDGPI'} )  ) {
+        ||  ( exists \$hash->{'sequencePreDGPI'} && \$hash->{'sequencePreDGPI'} )   
+        || \$components{"PreDGPI"} ) {
         my \$select = "(SELECT DISTINCT r.object_id       
         FROM feature f 
         JOIN feature_relationship r ON (r.subject_id = f.feature_id) 
@@ -2783,7 +2796,8 @@ sub analyses_CDS {
     }
     if (    ( exists \$hash->{'noBigGPI'} && \$hash->{'noBigGPI'} )
         ||  ( exists \$hash->{'pvalueBigpi'}   && \$hash->{'pvalueBigpi'}   ) 
-        ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  )
+        ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  
+        || \$components{"BiGPI"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id       
         FROM feature f 
@@ -2837,7 +2851,8 @@ sub analyses_CDS {
     }
     if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
         || ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) 
-        || ( exists \$hash->{'sigP'} && \$hash->{'sigP'} ) )
+        || ( exists \$hash->{'sigP'} && \$hash->{'sigP'} ) 
+        || \$components{"Phobius"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id ";
         my \$join =
@@ -2885,19 +2900,16 @@ sub analyses_CDS {
         else {
             \$query_Phobius = "";
         }
-        if ( \$hash->{'sigP'} ne "sigPwhatever" ) {
-            if ( \$hash->{'sigP'} ne "sigPwhatever"
-                && !\$hash->{'noPhobius'} )
-            {
-                my \$sigPconn = "";
-                if ( \$hash->{'sigP'} eq "sigPyes" ) {
-                    \$sigPconn = " INTERSECT " if \$connector;
-                }
-                elsif ( \$hash->{'sigP'} eq "sigPno" ) {
-                    \$sigPconn = " EXCEPT " if \$connector;
-                }
+        if ( \$hash->{'sigP'} ne "sigPwhatever" || \$hash->{'noSignalPhobius'} ) {
+            my \$sigPconn = "";
+            if ( \$hash->{'sigP'} eq "sigPyes" ) {
+                \$sigPconn = " INTERSECT " if \$connector;
+            }
+            elsif ( \$hash->{'sigP'} eq "sigPno" || \$hash->{'noSignalPhobius'} ) {
+                \$sigPconn = " EXCEPT " if \$connector;
+            }
 
-                \$query_Phobius .=
+            \$query_Phobius .=
                 " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
                 JOIN feature_relationship r ON (r.subject_id = f.feature_id)
                 JOIN feature fo ON (r.object_id = fo.feature_id)
@@ -2912,14 +2924,14 @@ sub analyses_CDS {
                 JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
                 JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
                 where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
-                push \@args, \$hash->{pipeline};
-            }
+            push \@args, \$hash->{pipeline};
             \$connector = "1";
         }
     }
     if ((exists \$hash->{'signalP'} && \$hash->{'signalP'} ne "whatever") ||
         (exists \$hash->{'noSignalP'} && \$hash->{'noSignalP'})
-    ) {
+        || \$components{"SignalP"} ) 
+    {
         if ( \$hash->{'signalP'} eq "YES" ) {
             \$query_sigP = " INTERSECT " if \$connector;
 
@@ -6390,12 +6402,24 @@ ActionClass('REST') { }
 sub analysesCDS_GET {
     my ( \$self, \$c) = \@_;
     my \%hash = ();
+    my \$components = "";
     foreach my \$key ( keys \%{ \$c->request->params } ) {
-        if ( \$key && \$key ne "0" ) {
-            \$hash{\$key} = \$c->request->params->{\$key};
+        if ( \$key && \$key ne "0") {
+            if(\$c->request->params->{\$key} eq "0" ) {
+                \$hash{\$key} = "-0";
+            } elsif(\$key eq "components") {
+                \$components = \$c->request->params->{\$key};
+            } else {
+                \$hash{\$key} = \$c->request->params->{\$key};
+            }
         }
     }
     \$hash{pipeline} = \$c->config->{pipeline_id};
+    if (\$components =~ /ARRAY/) {
+       \$hash{components} = join(",", \@{\$components});
+    } else {
+       \$hash{components} = \$components ;
+    }
     my \$searchDBClient =
     Report_HTML_DB::Clients::SearchDBClient->new(
         rest_endpoint => \$c->config->{rest_endpoint} );
@@ -8591,7 +8615,7 @@ CONTENTINDEXHOME
                                                  <input class="form-control" type="text" name="geneID">
                                              </div>
                                              <input class="btn btn-primary btn-sm" type="submit" value="Search">  
-                                             <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset();">
+                                             <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                                          </form>
                                      </div>
                                  </div>
@@ -8631,23 +8655,24 @@ CONTENTINDEXHOME
                                               <label><input type="checkbox" name="individually" > [% searchDBTexts.item('search-database-analyses-protein-code-match-all') %]</label> 
                                           </div>
                                       </div>
-                                  [% END %]
                                       <div class="form-group">
-                                        <select id="components" name="components" multiple="multiple">
-                                        [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-tab') %]
-                                            <option>[% text %]</option>
-                                        [% END %]
+                                          
+                                          <select id="components" name="components" multiple="multiple">
+                                            [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-tab') %]
+                                            <option> [% text %]</option>
+                                            [% END %]
                                         [% IF blast %]
-                                            <option>BLAST</option>
+                                            <option> BLAST</option>
                                         [% END %]
-                                        </select>
-                                        <script>
-                                            \$("#components").multipleSelect({
-                                               placeholder: "Containing components in search",
-                                               width: 300,
-                                            });
-                                        </script>
-                                     </div>
+                                          </select>
+                                          <script>
+                                                \$("\#components").multipleSelect({
+                                                    placeholder: "Require component matches: ",
+                                                    width: 300,
+                                                });
+                                          </script>
+                                      </div>
+                                  [% END %]
 
                                      <ul class="nav nav-pills">
                     [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-tab') %]
@@ -8668,7 +8693,7 @@ CONTENTINDEXHOME
                                                 </div>
                                                 <div class="form-group">
                                                     <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domains') %]</label>
-                                                    <input class="form-control" type="number" min="0" name="TMHMMdom">
+                                                    <input class="form-control" type="number" min="1" name="TMHMMdom">
                             [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmhmmQuant') %]
                             <div class="radio">
                                 <label>[% text %]</label>
@@ -8832,13 +8857,18 @@ CONTENTINDEXHOME
                                                     </div>
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain') %]</label>
-                                                        <input class="form-control" type="number" min="0" name="TMdom">
+                                                        <input class="form-control" type="number" min="1" name="TMdom">
                                                         [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmQuant') %]
                                                             <div class="radio">
                                                                     <label>[% text %] </label>
                                                             </div>
                                                         [% END %]
                                                     </div>
+                                                    <div class="form-group">
+                                                        <div class="checkbox">
+                                                            <label><input type="checkbox" name="noSignalPhobius"> not containing signal peptide from Phobius results</label>
+                                                        </div>
+                                                    </div> 
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-signal-peptide') %]</label>
                                                         [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-signal-peptide-option') %]
@@ -8958,7 +8988,7 @@ CONTENTINDEXHOME
                                       [% END %]
                                      </div>
                                      <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset();">
+                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('#components').multipleSelect('uncheckAll');">
                                  </form>
                              </div>
                          </div>
@@ -9005,7 +9035,7 @@ CONTENTINDEXHOME
                                     </div>
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
                     [% IF trna %]
@@ -9039,7 +9069,7 @@ CONTENTINDEXHOME
                                     </select>
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
 
@@ -9083,7 +9113,7 @@ CONTENTINDEXHOME
                                     [% searchDBTexts.item('search-database-dna-based-analyses-tandem-repeats-note') %]
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
                     [% END %]
@@ -9136,7 +9166,7 @@ CONTENTINDEXHOME
                                     <input class="form-control" type="text" name="ncRNAtargetDesc">
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
                     [% END %]
@@ -9172,7 +9202,7 @@ CONTENTINDEXHOME
                                     </div>
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
                     [% END %]
@@ -9219,7 +9249,7 @@ CONTENTINDEXHOME
                                     [% searchDBTexts.item('search-database-dna-based-analyses-hairpin-note') %]
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
                     [% END %]
@@ -9263,7 +9293,7 @@ CONTENTINDEXHOME
                                     [% END %]
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
                     [% END %]
@@ -9290,7 +9320,7 @@ CONTENTINDEXHOME
                                 </div>
 
                                 <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
                             </form>
                         </div>
                     [% END %]
@@ -10397,6 +10427,7 @@ FOOTER
 <link href="/assets/css/colors-$organism_name.css" rel="stylesheet"  />
 <!-- PACE loader CSS -->
 <link href="/assets/css/pace-theme-fill-left.css" rel="stylesheet" />
+<link href="/assets/css/multiple-select.css" rel="stylesheet" />
 <!-- PACE loader js -->
 <script src="/assets/js/pace.min.js"></script>
  <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -10468,9 +10499,10 @@ my $wrapper = <<WRAPPER;
     </head>
     <body>
         <!-- CORE JQUERY SCRIPTS -->
-        <script src="/assets/js/jquery-1.11.1.js"></script>
+        <script src="/assets/js/jquery-3.2.1.min.js"></script>
         <!-- BOOTSTRAP SCRIPTS  -->
         <script src="/assets/js/bootstrap.js"></script>
+        <script src="/assets/js/multiple-select.js"></script>
         [% INCLUDE '$lowCaseName/shared/_header.tt' %]
         <!--import _header from Views/Shared-->
         [% INCLUDE '$lowCaseName/shared/_menu.tt' %]
@@ -10582,6 +10614,7 @@ SQL
         elsif ( $line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/ ) {
             my $change = $1;
             $change =~ s/\t/\ /;
+            chomp($change);
             $sql .= <<SQL;
             INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-subclass-option", "$change");
 SQL
