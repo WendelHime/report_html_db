@@ -8667,7 +8667,7 @@ CONTENTINDEXHOME
                                           </select>
                                           <script>
                                                 \$("\#components").multipleSelect({
-                                                    placeholder: "Require component matches: ",
+                                                    placeholder: "Require positive results for: ",
                                                     width: 300,
                                                 });
                                           </script>
