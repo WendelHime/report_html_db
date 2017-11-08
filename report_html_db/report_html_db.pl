@@ -2325,7 +2325,7 @@ sub analyses_CDS {
         . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
         . "JOIN featureprop pd ON (pr.subject_id = pd.feature_id) "
         . "JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) "
-        . "WHERE c.name ='pipeline_id' AND p.value = ? ";
+        . "WHERE c.name ='pipeline_id' AND p.value = ? AND cpd.name LIKE 'evidence_\%' ";
 
         push \@args, \$hash->{pipeline};
 
@@ -2333,16 +2333,15 @@ sub analyses_CDS {
 
         if ( exists \$hash->{noGO} && \$hash->{noGO} ) {
             \$connector = " EXCEPT " if \$connector;
-            \$query_GO .= "AND cpd.name LIKE 'evidence_\%' ";
         }
         elsif ( exists \$hash->{goID} && \$hash->{goID} ) {
             \$query_GO .=
-            "AND cpd.name LIKE 'evidence_\%' AND lower(pd.value) LIKE ? ";
+            " AND lower(pd.value) LIKE ? ";
             push \@args, "\%" . lc( \$hash->{'goID'} ) . "\%";
         }
         elsif ( exists \$hash->{goDesc} && \$hash->{goDesc} ) {
             \$query_GO .=
-            "and cpd.name like 'evidence_\%' and lower(pd.value) LIKE ? ";
+            " and lower(pd.value) LIKE ? ";
             push \@args, "\%" . lc( \$hash->{'goDesc'} ) . "\%";
         }
         \$query_GO  = \$connector . \$query_GO . ")";
@@ -2851,7 +2850,7 @@ sub analyses_CDS {
     }
     if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
         || ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) 
-        || ( exists \$hash->{'sigP'} && \$hash->{'sigP'} ) 
+        || ( exists \$hash->{'sigP'} && \$hash->{'sigP'} ne 'sigPwhatever' ) 
         || \$components{"Phobius"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id ";
@@ -8973,7 +8972,7 @@ CONTENTINDEXHOME
                                             <div id="interpro" class="tab-pane fade">
                                                     <div class="form-group">
                                                         <div class="checkbox">
-                                    <label><input type="checkbox" name="noOrth">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-interpro') %]</label>
+                                    <label><input type="checkbox" name="noIP">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-classification-interpro') %]</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

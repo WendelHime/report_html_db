@@ -235,6 +235,18 @@ $(function() {
     $("#formAnalysesProteinCodingGenes").submit(
             function() {
                 $(".errors").remove();
+                if(
+                        ($.inArray("Interpro", $('#components').val()) == 0 && $('input[name=noIP]').prop("checked")) ||
+                        ($.inArray("GO", $('#components').val()) == 0 && $('input[name=noGO]').prop("checked")) ||
+                        ($.inArray("TCDB", $('#components').val()) == 0 && $('input[name=noTC]').prop("checked")) ||
+                        ($.inArray("eggNOG", $('#components').val()) == 0 && $('input[name=noOrth]').prop("checked")) ||
+                        ($.inArray("KEGG", $('#components').val()) == 0 && $('input[name=noKEGG]').prop("checked")) ||
+                        ($.inArray("RPS-BLAST", $('#components').val()) == 0 && $('input[name=noRps]').prop("checked")) ||
+                        ($.inArray("BLAST", $('#components').val()) == 0 && $('input[name=noBlast]').prop("checked")) 
+                ) {
+                    $("#formAnalysesProteinCodingGenes").append("<div class='alert alert-danger errors'>Wrong query: positive and negative results required simultaneously</div>"); 
+                    return false;
+                }
                 $("input[name=blastID]").val($("input[name=blastID]").val().replace(/\s/g, "")); 
                 $("input[name=rpsID]").val($("input[name=rpsID]").val().replace(/\s/g, "")); 
                 $("input[name=koID]").val($("input[name=koID]").val().replace(/\s/g, "")); 
