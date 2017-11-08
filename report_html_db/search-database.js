@@ -740,7 +740,7 @@ function dealDataResults(href, featureName, data, product) {
 
             addPanelResult(href, htmlContent);
 
-            for (var component in components) {
+            for (var component in components.sort()) {
                 console.log(component);
                 if(components[component].id != "") {
                     $("#anchor-evidence-" + component + "-" + href.replace("#", "")).click(function clickEvidences() {
