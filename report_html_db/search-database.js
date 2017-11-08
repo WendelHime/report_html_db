@@ -693,12 +693,29 @@ function dealDataResults(href, featureName, data, product) {
         htmlSequence = htmlSequence.replace("[% result.sequence %]", subsequence.sequence);
         if (type == "CDS") {
             htmlContent += htmlSequence;
-            var subevidences = getSubEvidences(href.replace("#", ""), featureName).responseJSON.response;
-
+            var subevidencesUnsorted = getSubEvidences(href.replace("#", ""), featureName).responseJSON.response;
+            var subevidencesUnsortedCopy = subevidencesUnsorted;
+            var subevidencesEmpty = new Array();
+            componentsWithResults = new Array();
+            for (var i = subevidencesUnsorted.length - 1; i >= 0; i--) {
+                if(subevidencesUnsorted[i].type == "intervals" || subevidencesUnsorted[i].type == "similarity") {
+                    componentsWithResults.push(subevidencesUnsorted.pop());
+                } else {
+                    subevidencesEmpty.push(subevidencesUnsorted.pop());
+                }
+            }
+            subevidences = new Array();
+            subevidences = subevidences.concat(componentsWithResults);
+            subevidences = subevidences.sort(function(a,b){
+                var x = a.program.toLowerCase();
+                var y = b.program.toLowerCase();
+                return x < y ? -1 : x > y ? 1 : 0;
+            });
+            subevidences = subevidences.concat(subevidencesEmpty); 
             var components = new Object();
             var componentsEvidences = new Array();
             var counterComponentsEvidences = 0;
-            for (i = 0; i < subevidences.length; i++) {
+            for (var i = 0; i < subevidences.length; i++) {
                 var componentName = subevidences[i].program.replace(".pl", "");
 
                 if ($.inArray(componentName, componentsEvidences) == -1) {
@@ -740,7 +757,7 @@ function dealDataResults(href, featureName, data, product) {
 
             addPanelResult(href, htmlContent);
 
-            for (var component in components.sort()) {
+            for (var component in components) {
                 console.log(component);
                 if(components[component].id != "") {
                     $("#anchor-evidence-" + component + "-" + href.replace("#", "")).click(function clickEvidences() {
