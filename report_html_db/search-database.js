@@ -719,7 +719,7 @@ function dealDataResults(href, featureName, data, product) {
             subevidences = new Array();
             subevidences = subevidences.concat(componentsWithResults);
             subevidences = subevidences.sort(function(a,b){
-                var x = a.program.toLowerCase();
+                var x = a.program_description.toLowerCase();
                 var y = b.program.toLowerCase();
                 return x < y ? -1 : x > y ? 1 : 0;
             });
@@ -735,7 +735,30 @@ function dealDataResults(href, featureName, data, product) {
                     htmlEvidence = htmlEvidence.replace("[% result.componentName %]", componentName);
                     htmlEvidence = htmlEvidence.replace("[% result.id %]", href.replace("#", ""));
                     if (subevidences[i].type == 'intervals') {
-                        htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'><a style='color: inherit;' id='anchor-evidence-" + componentName + "-" + href.replace("#", "") + "' data-toggle='collapse' data-parent='#accordion' href='#evidence-" + componentName + "-" + href.replace("#", "") + "'>" + subevidences[i].program_description + "</a></div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name="+componentName+"' target='_blank'>View</a></div></div>");
+                        if(subevidences[i].program == "annotation_go.pl") {
+                            var fuckingTitle = subevidences[i].program_description;
+                            if(subevidences[i].is_obsolete[0].length == 0 || subevidences[i].is_obsolete[0].length == undefined)
+                                fuckingTitle += " - No results found";
+                            else
+                                fuckingTitle = "<a href='#evidence-annotation_go-"+href.replace("#", "")+"' data-toggle='collapse' data-parent='#accordion' >" + fuckingTitle + "</a>";
+                            htmlEvidence = "<div class='panel panel-default'>"+
+                                    "<div class='panel-heading'>"+
+                                    "    <div class='panel-title'>" +
+                                    "         <div class='row'><div class='col-md-11'>" + fuckingTitle + "</div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name=annotation_interpro' target='_blank'>View</a></div></div>"+
+                                    "    </div>"+
+                                    "</div>"+
+                                    "<div id='evidence-annotation_go-"+href.replace("#", "")+"' class='panel-body collapse'>";
+                            for (var j = 0; j < subevidences[i].is_obsolete.length; j++) {
+                                htmlEvidence += "<div class='panel panel-default'><div class='panel-heading'><div class='panel-title'>"+(j+1)+"</div></div><div class='panel-body'><div class='notice-board'><ul>";
+                                for (var k = 0; k < subevidences[i].is_obsolete[j].length; k++) {
+                                    htmlEvidence += "<li>" + subevidences[i].is_obsolete[j][k] + "</li>";
+                                }
+                                htmlEvidence += "</ul></div></div></div>";
+                            }
+                            htmlEvidence += "</div></div></div>";
+                        } else {
+                            htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'><a style='color: inherit;' id='anchor-evidence-" + componentName + "-" + href.replace("#", "") + "' data-toggle='collapse' data-parent='#accordion' href='#evidence-" + componentName + "-" + href.replace("#", "") + "'>" + subevidences[i].program_description + "</a></div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name="+componentName+"' target='_blank'>View</a></div></div>");
+                        }
                     } else if(subevidences[i].type == 'similarity') {
                         htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<a id='anchor-evidence-" + componentName + "-" + href.replace("#", "") + "' data-toggle='collapse' data-parent='#accordion' href='#evidence-" + componentName + "-" + href.replace("#", "") + "'>" + subevidences[i].program_description + "</a>");
                     } else {
