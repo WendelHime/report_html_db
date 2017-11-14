@@ -700,13 +700,12 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-analyses-protein-code-not-containing-classification-interpro", " not containing InterProScan matches", ""),
         ("search-database-analyses-protein-code-interpro", "Search by InterPro identifier: ", ""),
         ("search-database-analyses-protein-code-not-containing-classification-blast", " not containing BLAST matches", ""),
-        ("search-database-analyses-protein-code-not-containing-phobius", " not containing Phobius results", ""),
-        ("search-database-analyses-protein-code-not-containing-signalP", " not containing SignalP results", ""),
 
         ("search-database-analyses-protein-code-number-transmembrane-domain", "Number of transmembrane domains: ", ""),
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='orMore'> or more", ""),
         ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='exact'> exactly", ""),
+        ("search-database-quantity-tmhmmQuant", "<input type='radio' name='tmhmmQuant' value='none'> none", ""),
 
     ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='orLess'> or less", ""),
         ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='orMore'> or more", ""),
@@ -735,6 +734,7 @@ INSERT INTO TEXTS(tag, value, details) VALUES
     ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orMore'> or more", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='exact'> exactly", ""),
+        ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='none'> none", ""),
 
     ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='orLess'> or less", ""),
         ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='orMore'> or more", ""),
@@ -1593,7 +1593,6 @@ if($annotation_tmhmm) {
     $scriptSQL .= <<SQL;
                 INSERT INTO TEXTS(tag, value, details) VALUES
                     ("search-database-analyses-protein-code-tab", "<a href='#tmhmm' data-toggle='tab'>TMHMM</a>", ""),
-                    ("search-database-analyses-protein-code-not-containing-tmhmm", " not containing TMHMM matches", ""),
                     ("search-database-analyses-protein-code-number-transmembrane-domains", "Number of transmembrane domains:", "");
 SQL
 }
@@ -2614,8 +2613,8 @@ sub analyses_CDS {
         \$query_interpro = \$connector . \$query_interpro . \$conditional . ")";
         \$connector      = 1;
     }
-    if (   ( exists \$hash->{'noTMHMM'} && \$hash->{'noTMHMM'} )
-        || ( exists \$hash->{'TMHMMdom'}   && \$hash->{'TMHMMdom'}   ) 
+    if (    ( exists \$hash->{'TMHMMdom'}   && \$hash->{'TMHMMdom'}   ) 
+        ||  ( exists \$hash->{'tmhmmQuant'} && \$hash->{'tmhmmQuant'} )
         || \$components{"TMHMM"} )
     {
         my \$select = "(SELECT DISTINCT r.object_id       
@@ -2637,26 +2636,31 @@ sub analyses_CDS {
         WHERE a.program = 'annotation_tmhmm.pl' AND c.name ='pipeline_id' AND p.value=? AND cpr.name ='version' AND cpp.name='direction' AND cppp.name='predicted_TMHs' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
-        if(\$hash->{'noTMHMM'}) {
-            \$select .= " AND my_to_decimal(ppp.value) = ? ";
-            push \@args, "-0";
-            \$query_tmhmm = \$connector . \$select . ")";
-        } elsif(\$hash->{'TMHMMdom'}) {
-            \$select .= " AND my_to_decimal(ppp.value) ";
-            if ( \$hash->{'tmhmmQuant'} eq "exact" ) {
-                \$select .= "= ? ";
-            }
-            elsif ( \$hash->{'tmhmmQuant'} eq "orLess" ) {
-                \$select .= "<= ? ";
-            }
-            elsif ( \$hash->{'tmhmmQuant'} eq "orMore" ) {
-                \$select .= ">= ? ";
-            }
+        if ( \$hash->{'tmhmmQuant'} eq "exact" && \$hash->{'TMHMMdom'} ) {
+            \$select .= " AND my_to_decimal(ppp.value) = ?";
             push \@args, \$hash->{'TMHMMdom'} if \$hash->{'tmhmmQuant'};
             \$query_tmhmm = \$connector . \$select . ")";
             \$connector     = "1";
+        }
+        elsif ( \$hash->{'tmhmmQuant'} eq "orLess" && \$hash->{'TMHMMdom'} ) {
+            \$select .= " AND my_to_decimal(ppp.value) <= ?";
+            push \@args, \$hash->{'TMHMMdom'} if \$hash->{'tmhmmQuant'};
+            \$query_tmhmm = \$connector . \$select . ")";
+            \$connector     = "1";
+        }
+        elsif ( \$hash->{'tmhmmQuant'} eq "orMore" && \$hash->{'TMHMMdom'} ) {
+            \$select .= " AND my_to_decimal(ppp.value) >= ?";
+            push \@args, \$hash->{'TMHMMdom'} if \$hash->{'tmhmmQuant'};
+            \$query_tmhmm = \$connector . \$select . ")";
+            \$connector     = "1";
+        }
+        elsif ( \$hash->{'tmhmmQuant'} eq "none") {
+            \$select .= " AND my_to_decimal(ppp.value) != 0";
+            \$query_tmhmm = " EXCEPT " . \$select . ")";
+
         } else {
-            \$query_tmhmm = "";
+            \$select .= " AND my_to_decimal(ppp.value) != 0";
+            \$query_tmhmm = \$connector . \$select . ")";
         }
 
     }
@@ -2848,93 +2852,114 @@ sub analyses_CDS {
             \$connector     = "1";
         }
     }
-    if (   ( exists \$hash->{'noPhobius'} && \$hash->{'noPhobius'} )
-        || ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) 
+    if (   ( exists \$hash->{'TMdom'} && \$hash->{'TMdom'} ) 
+        || ( exists \$hash->{'tmQuant'} && \$hash->{'tmQuant'} )
         || ( exists \$hash->{'sigP'} && \$hash->{'sigP'} ne 'sigPwhatever' ) 
         || \$components{"Phobius"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id ";
         my \$join =
-        "FROM feature f "
-        . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) "
-        . "JOIN feature fo ON (r.object_id = fo.feature_id) "
-        . "JOIN featureloc l ON (r.object_id = l.feature_id) "
-        . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) "
-        . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) "
-        . "JOIN analysis a ON (a.analysis_id = af.analysis_id) "
-        . "JOIN cvterm c ON (p.type_id = c.cvterm_id) ";
+        "FROM feature f \n"
+        . "JOIN feature_relationship r ON (r.subject_id = f.feature_id) \n"
+        . "JOIN feature fo ON (r.object_id = fo.feature_id) \n"
+        . "JOIN featureloc l ON (r.object_id = l.feature_id) \n"
+        . "JOIN featureprop p ON (p.feature_id = l.srcfeature_id) \n"
+        . "JOIN analysisfeature af ON (f.feature_id = af.feature_id) \n"
+        . "JOIN analysis a ON (a.analysis_id = af.analysis_id) \n"
+        . "JOIN cvterm c ON (p.type_id = c.cvterm_id) \n"
+        . "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) \n"
+        . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) \n"
+        . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) \n"
+        . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) \n"
+        . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) \n";
         my \$conditional =
-        "WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? ";
+        "WHERE a.program = 'annotation_phobius.pl' AND c.name ='pipeline_id' AND p.value=? " .
+            " AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' ";
 
+        push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
-        if ( \$hash->{noPhobius} ) {
-            push \@args, \$hash->{pipeline};
-            \$connector = " EXCEPT " if \$connector;
-            \$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
-        }
-        elsif ( \$hash->{'TMdom'} ) {
-            push \@args, \$hash->{pipeline};
-            \$join .=
-            "JOIN feature_relationship pr ON (r.subject_id = pr.object_id) "
-            . "JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id) "
-            . "JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id) "
-            . "JOIN featureprop pp ON (pr.subject_id = pp.feature_id) "
-            . "JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id) ";
-            \$conditional .=
-            " AND cpr.name = 'classification' AND ppr.value= 'TRANSMEM' AND cpp.name = 'predicted_TMHs' AND my_to_decimal(pp.value) ";
 
-            if ( \$hash->{'tmQuant'} eq "exact" ) {
-                \$conditional .= "= ? ";
-            }
-            elsif ( \$hash->{'tmQuant'} eq "orLess" ) {
-                \$conditional .= "<= ? ";
-            }
-            elsif ( \$hash->{'tmQuant'} eq "orMore" ) {
-                \$conditional .= ">= ? ";
-            }
+        if ( \$hash->{'tmQuant'} eq "exact" && \$hash->{'TMdom'}) {
+            \$conditional .= " AND my_to_decimal(pp.value)  = ? ";
             push \@args, \$hash->{'TMdom'} if \$hash->{'tmQuant'};
             \$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
             \$connector     = "1";
         }
-        else {
-            \$query_Phobius = "";
+        elsif ( \$hash->{'tmQuant'} eq "orLess" && \$hash->{'TMdom'} ) {
+            my \$secondaryQuery = "select distinct f.feature_id 
+            from feature f 
+            join feature_relationship r on (f.feature_id = r.object_id) 
+            join cvterm cr on (r.type_id = cr.cvterm_id) 
+            join featureprop ps on (r.subject_id = ps.feature_id) 
+            join cvterm cs on (ps.type_id = cs.cvterm_id) 
+            join featureprop pf on (f.feature_id = pf.feature_id) 
+            join cvterm cf on (pf.type_id = cf.cvterm_id) 
+            join featureloc l on (l.feature_id = f.feature_id) 
+            join featureprop pl on (l.srcfeature_id = pl.feature_id) 
+            join cvterm cp on (pl.type_id = cp.cvterm_id) 
+            join featureprop pd on (r.subject_id = pd.feature_id) 
+            join cvterm cd on (pd.type_id = cd.cvterm_id) 
+            where cr.name = 'based_on' and cf.name = 'tag' and pf.value='CDS' and cs.name = 'locus_tag' and cd.name = 'description' and cp.name = 'pipeline_id' and pl.value=? ";
+
+            if(exists \$hash->{contig} && \$hash->{contig}) {
+                \$query .= " and l.srcfeature_id = ? ";
+                push \@args, \$hash->{contig};
+            } 
+            my \$oldQueryPhobius = "(".\$secondaryQuery. " EXCEPT "  . \$select . \$join . \$conditional . " AND my_to_decimal(pp.value)  != 0))";
+            \$conditional .= " AND my_to_decimal(pp.value)  <= ? ";
+            push \@args, \$hash->{'TMdom'} if \$hash->{'tmQuant'};
+            \$query_Phobius = \$connector . "(" . \$select . \$join . \$conditional . ") UNION \$oldQueryPhobius)";
+            push \@args, \$hash->{pipeline};
+            push \@args, \$hash->{pipeline};
+            \$connector     = "1";
         }
-        if ( \$hash->{'sigP'} ne "sigPwhatever" || \$hash->{'noSignalPhobius'} ) {
+        elsif ( \$hash->{'tmQuant'} eq "orMore" && \$hash->{'TMdom'} ) {
+            \$conditional .= " AND my_to_decimal(pp.value)  >= ? ";
+            push \@args, \$hash->{'TMdom'} if \$hash->{'tmQuant'};
+            \$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
+            \$connector     = "1";
+        }
+        elsif ( \$hash->{'tmQuant'} eq "none" ) {
+            \$connector = " EXCEPT " if \$connector;
+            \$query_Phobius = \$connector . \$select . \$join . \$conditional . ")";
+        } else {
+            \$query_Phobius = \$connector . \$select . \$join . \$conditional . " AND my_to_decimal(pp.value)  != 0)";
+        }
+        if ( \$hash->{'sigP'} ne "sigPwhatever" ) {
             my \$sigPconn = "";
             if ( \$hash->{'sigP'} eq "sigPyes" ) {
                 \$sigPconn = " INTERSECT " if \$connector;
             }
-            elsif ( \$hash->{'sigP'} eq "sigPno" || \$hash->{'noSignalPhobius'} ) {
+            elsif ( \$hash->{'sigP'} eq "sigPno") {
                 \$sigPconn = " EXCEPT " if \$connector;
             }
 
             \$query_Phobius .=
-                " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
-                JOIN feature_relationship r ON (r.subject_id = f.feature_id)
-                JOIN feature fo ON (r.object_id = fo.feature_id)
-                JOIN featureloc l ON (r.object_id = l.feature_id)
-                JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
-                JOIN analysisfeature af ON (f.feature_id = af.feature_id)
-                JOIN analysis a ON (a.analysis_id = af.analysis_id)
-                JOIN cvterm c ON (p.type_id = c.cvterm_id)
-                JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
-                JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
-                JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
-                JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
-                JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
-                where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
+            " \$sigPconn (SELECT DISTINCT r.object_id FROM feature f
+            JOIN feature_relationship r ON (r.subject_id = f.feature_id)
+            JOIN feature fo ON (r.object_id = fo.feature_id)
+            JOIN featureloc l ON (r.object_id = l.feature_id)
+            JOIN featureprop p ON (p.feature_id = l.srcfeature_id)
+            JOIN analysisfeature af ON (f.feature_id = af.feature_id)
+            JOIN analysis a ON (a.analysis_id = af.analysis_id)
+            JOIN cvterm c ON (p.type_id = c.cvterm_id)
+            JOIN feature_relationship pr ON (r.subject_id = pr.object_id)
+            JOIN featureprop ppr ON (pr.subject_id = ppr.feature_id)
+            JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
+            JOIN featureprop pp ON (pr.subject_id = pp.feature_id)
+            JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)
+            where a.program = 'annotation_phobius.pl' AND c.name = 'pipeline_id' AND p.value = ? AND cpr.name = 'classification' AND ppr.value = 'SIGNAL')";
             push \@args, \$hash->{pipeline};
             \$connector = "1";
         }
     }
-    if ((exists \$hash->{'signalP'} && \$hash->{'signalP'} ne "whatever") ||
-        (exists \$hash->{'noSignalP'} && \$hash->{'noSignalP'})
+    if ((exists \$hash->{'signalP'} && \$hash->{'signalP'} ne "whatever") 
         || \$components{"SignalP"} ) 
     {
         if ( \$hash->{'signalP'} eq "YES" ) {
             \$query_sigP = " INTERSECT " if \$connector;
 
-        }elsif (\$hash->{'signalP'} eq "NO" || \$hash->{'noSignalP'}) {
+        }elsif (\$hash->{'signalP'} eq "NO") {
             \$query_sigP = " EXCEPT " if \$connector;
         }
         \$query_sigP .= " (SELECT DISTINCT r.object_id       
@@ -4282,7 +4307,7 @@ sub subevidences {
     my \@rows = \@{ \$sth->fetchall_arrayref() };
 
     my \%component_name = (
-        'annotation_interpro.pl' => 'Domain search - InterProScan',
+        'annotation_interpro.pl' => 'Domain search and Gene Ontology - InterProScan and GO',
         'annotation_blast.pl'    => 'Similarity search - BLAST',
         'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
         'annotation_phobius.pl' =>
@@ -7656,7 +7681,7 @@ $color_footer =~ s/"//g;
 $color_footer_text =~ s/"//g;
 $titlePage =~ s/"//g;
 
-open (my $FILEHANDLER, ">>", "$html_dir/root/assets/css/colors-$organism_name.css");
+open ($FILEHANDLER, ">>", "$html_dir/root/assets/css/colors-$organism_name.css");
 print $FILEHANDLER "\n
 
 :root {
@@ -8686,11 +8711,6 @@ CONTENTINDEXHOME
                                         [% IF tmhmm %]
                                             <div id="tmhmm" class="tab-pane fade">
                                                 <div class="form-group">
-                                                  <div class="checkbox">
-                                                    <label><input type="checkbox" name="noTMHMM">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-tmhmm') %]</label>
-                                                  </div>
-                                                </div>
-                                                <div class="form-group">
                                                     <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domains') %]</label>
                                                     <input class="form-control" type="number" min="1" name="TMHMMdom">
                             [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmhmmQuant') %]
@@ -8850,11 +8870,6 @@ CONTENTINDEXHOME
                                          [% IF phobius %]
                                             <div id="phobius" class="tab-pane fade">
                                                     <div class="form-group">
-                                                        <div class="checkbox">
-                                    <label><input type="checkbox" name="noPhobius">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-phobius') %]</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain') %]</label>
                                                         <input class="form-control" type="number" min="1" name="TMdom">
                                                         [% FOREACH text IN searchDBTexts.item('search-database-quantity-tmQuant') %]
@@ -8863,11 +8878,6 @@ CONTENTINDEXHOME
                                                             </div>
                                                         [% END %]
                                                     </div>
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox" name="noSignalPhobius"> not containing signal peptide from Phobius results</label>
-                                                        </div>
-                                                    </div> 
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-signal-peptide') %]</label>
                                                         [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-signal-peptide-option') %]
@@ -8880,11 +8890,6 @@ CONTENTINDEXHOME
                                         [% END %]
                                         [% IF signalP %]
                                             <div id="signalP" class="tab-pane fade">
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                    <label><input type="checkbox" name="noSignalP">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-signalP') %]</label>
-                                                        </div>
-                                                    </div>
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-signal-peptide') %]</label>
                                                         [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-signal-peptide-option-signalP') %]
@@ -10610,7 +10615,7 @@ sub readTCDBFile {
             INSERT INTO TEXTS(tag, value) VALUES ("search-database-analyses-protein-code-search-by-transporter-class-option", "$change");
 SQL
         }
-        elsif ( $line =~ /(\d\.[\w.\s#&,:;\/\-+()'\[\]]*)/ ) {
+        elsif ( $line =~ /(\d\.[a-zA-Z]\s[a-zA-Z.\s#&,:;\/\-+()'\[\]]*)\n/ ) {
             my $change = $1;
             $change =~ s/\t/\ /;
             chomp($change);
