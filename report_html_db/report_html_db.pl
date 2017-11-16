@@ -4307,7 +4307,7 @@ sub subevidences {
     my \@rows = \@{ \$sth->fetchall_arrayref() };
 
     my \%component_name = (
-        'annotation_interpro.pl' => 'Domain search and Gene Ontology - InterProScan and GO',
+        'annotation_interpro.pl' => 'Domain search and Gene Ontology - InterProScan',
         'annotation_blast.pl'    => 'Similarity search - BLAST',
         'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
         'annotation_phobius.pl' =>
@@ -4572,6 +4572,50 @@ sub get_target_class {
     }
 
     return \\\@list;
+}
+
+=head2
+
+Method used to get GO results from feature ID
+
+=cut
+
+sub getGOResultsByFeatureID {
+    my (\$self, \$pipeline_id, \$feature_id) = \@_;
+    my \$dbh  = \$self->dbh;
+    my \$query = "SELECT pd.value 
+            FROM feature_relationship r 
+            JOIN featureloc l ON (r.object_id = l.feature_id) 
+            JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
+            JOIN cvterm c ON (p.type_id = c.cvterm_id) 
+            JOIN feature_relationship pr ON (r.subject_id = pr.object_id) 
+            JOIN featureprop pd ON (pr.subject_id = pd.feature_id) 
+            JOIN cvterm cpd ON (pd.type_id = cpd.cvterm_id) 
+            WHERE c.name ='pipeline_id' AND p.value = ? AND cpd.name LIKE 'evidence_\%' AND r.object_id = ? ";
+    my \@args = ();
+    push \@args, \$pipeline_id;
+    push \@args, \$feature_id;
+    my \$sth = \$dbh->prepare(\$query);
+    print STDERR \$query;
+    \$sth->execute(\@args);
+    my \@rows = \@{ \$sth->fetchall_arrayref() };
+    my \@listOfHashs = ();
+    my \@list = ();
+    my \@keys = ();
+    for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
+        my \$value = \$rows[\$i][0];
+        my \$key = \$1 if (\$value =~ /(\\w+ \\w+):/);
+        if(\$key ~~ \@keys ) {
+            push \@listOfHashs, \\\@list;
+            \@keys = ();
+            \@list = ();
+        }
+        push \@keys, \$key;
+        push \@list, \$value;
+    }
+    push \@listOfHashs, \\\@list unless scalar \@listOfHashs;
+
+    return \\\@listOfHashs;
 }
 
 =head1 NAME
@@ -6157,6 +6201,20 @@ sub targetClass_GET {
     standardStatusOk(\$self, \$c, \$c->model('SearchDatabaseRepository')->get_target_class(\$pipeline_id));
 }
 
+sub getGOResultsByFeatureID : Path("/SearchDatabase/getGOResultsByFeatureID") : CaptureArgs(2) : ActionClass('REST') { }
+
+sub getGOResultsByFeatureID_GET {
+    my (\$self, \$c, \$feature_id, \$pipeline_id) = \@_;
+    if ( !\$pipeline_id and defined \$c->request->param("pipeline_id") ) {
+        \$pipeline_id = \$c->request->param("pipeline_id");
+    }
+    if ( !\$feature_id and defined \$c->request->param("feature_id") ) {
+        \$feature_id = \$c->request->param("feature_id");
+    }
+    standardStatusOk(\$self, \$c, \$c->model('SearchDatabaseRepository')->getGOResultsByFeatureID(\$pipeline_id, \$feature_id));
+
+}
+
 =head2
 
 Method used to make a default return of every ok request using BaseResponse model
@@ -6367,6 +6425,38 @@ sub subEvidences_GET {
     my \%components = map { \$_ => 1 }  split(" ", \$c->config->{components_ev});
 
     exists \$components{\$_->{program}} ? delete \$components{\$_->{program}} : next foreach (\@subevidences);
+
+    unless (exists \$components{"annotation_interpro.pl"}) {                                                   
+        my \$subInterpro;
+        for my \$i(  0 .. \$#subevidences) {
+            \$subInterpro = \$subevidences[\$i] if(\$subevidences[\$i]->{program} eq "annotation_interpro.pl");
+        }
+        my \%subevidence = (
+                id                  => \$subInterpro->{id},
+                type                => \$subInterpro->{type},
+                number              => "",
+                start               => "",
+                end                 => "",
+                strand              => "",
+                is_obsolete         => \$searchDBClient->getGOResultsByFeatureID(\$feature, \$c->config->{pipeline_id})->{response},
+                program             => "annotation_go.pl",
+                program_description => "Gene Ontology - GO",
+        );
+        push \@subevidences, \\\%subevidence;
+    } else {
+        my \$subevidence = Report_HTML_DB::Models::Application::Subevidence->new(
+                id                  => "",
+                type                => "",
+                number              => "",
+                start               => "",
+                end                 => "",
+                strand              => "",
+                is_obsolete         => "",
+                program             => "annotation_go.pl",
+                program_description => "Gene Ontology - GO",
+        );
+        push \@subevidences, \$subevidence->pack();
+    }
 
     foreach my \$component (keys \%components) {
         \$component =~ s/\\.pl//;
