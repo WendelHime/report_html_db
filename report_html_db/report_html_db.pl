@@ -4599,23 +4599,12 @@ sub getGOResultsByFeatureID {
     print STDERR \$query;
     \$sth->execute(\@args);
     my \@rows = \@{ \$sth->fetchall_arrayref() };
-    my \@listOfHashs = ();
     my \@list = ();
-    my \@keys = ();
     for ( my \$i = 0 ; \$i < scalar \@rows ; \$i++ ) {
-        my \$value = \$rows[\$i][0];
-        my \$key = \$1 if (\$value =~ /(\\w+ \\w+):/);
-        if(\$key ~~ \@keys ) {
-            push \@listOfHashs, \\\@list;
-            \@keys = ();
-            \@list = ();
-        }
-        push \@keys, \$key;
-        push \@list, \$value;
+        push \@list, \$rows[\$i];
     }
-    push \@listOfHashs, \\\@list unless scalar \@listOfHashs;
 
-    return \\\@listOfHashs;
+    return \\\@list;
 }
 
 =head1 NAME
