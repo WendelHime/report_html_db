@@ -4307,19 +4307,19 @@ sub subevidences {
     my \@rows = \@{ \$sth->fetchall_arrayref() };
 
     my \%component_name = (
-        'annotation_interpro.pl' => 'Domain search and Gene Ontology - InterProScan',
-        'annotation_blast.pl'    => 'Similarity search - BLAST',
-        'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
+        'annotation_interpro.pl' => 'InterProScan - Domain search',
+        'annotation_blast.pl'    => 'BLAST - Similarity search',
+        'annotation_rpsblast.pl' => 'RPS-BLAST - Domain search',
         'annotation_phobius.pl' =>
-        'Transmembrane domains and signal peptide search - Phobius',
-        'annotation_pathways.pl'  => 'Pathway classification - KEGG',
-        'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
-        'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
-        'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
+        'Phobius - Transmembrane domains and signal peptide',
+        'annotation_pathways.pl'  => 'KEGG - Pathway mapping',
+        'annotation_orthology.pl' => 'eggNOG - Orthology assignment',
+        'annotation_tcdb.pl'      => 'TCDB - Transporter classification',
+        'annotation_dgpi.pl'      => 'DGPI - GPI anchor',
         'annotation_predgpi.pl'	=> 'PreDGPI',
-        'annotation_tmhmm.pl'     => 'TMHMM',
+        'annotation_tmhmm.pl'     => 'TMHMM - Transmembrane domains',
         'annotation_hmmer.pl'	=> 'HMMER',
-        "annotation_signalP.pl" => 'SignalP',
+        "annotation_signalP.pl" => 'SignalP - Signal peptide',
         'annotation_bigpi.pl'   => 'BIGPI',
     );
 
@@ -6440,7 +6440,7 @@ sub subEvidences_GET {
                 strand              => "",
                 is_obsolete         => \$searchDBClient->getGOResultsByFeatureID(\$feature, \$c->config->{pipeline_id})->{response},
                 program             => "annotation_go.pl",
-                program_description => "Gene Ontology - GO",
+                program_description => "GO - Gene Ontology",
         );
         push \@subevidences, \\\%subevidence;
     } else {
@@ -6453,7 +6453,7 @@ sub subEvidences_GET {
                 strand              => "",
                 is_obsolete         => "",
                 program             => "annotation_go.pl",
-                program_description => "Gene Ontology - GO",
+                program_description => "GO - Gene Ontology",
         );
         push \@subevidences, \$subevidence->pack();
     }
@@ -6476,12 +6476,12 @@ sub subEvidences_GET {
         my \%hash = ();
 
         my \%component_name = (
-            'annotation_interpro.pl' => 'Domain search - InterProScan',
-            'annotation_blast.pl'    => 'Similarity search - BLAST',
-            'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
+            'annotation_interpro.pl' => 'InterProScan - Domain search',
+            'annotation_blast.pl'    => 'BLAST - Similarity search',
+            'annotation_rpsblast.pl' => 'RPS-BLAST - Similarity search',
             'annotation_phobius.pl' =>
-            'Transmembrane domains and signal peptide search - Phobius',
-            'annotation_pathways.pl'  => 'Pathway classification - KEGG',
+            'Phobius - Transmembrane domains and signal peptide search',
+            'annotation_pathways.pl'  => 'KEGG - Pathway mapping',
             'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
             'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
             'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
