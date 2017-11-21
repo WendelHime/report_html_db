@@ -9071,7 +9071,7 @@ CONTENTINDEXHOME
                                       [% END %]
                                      </div>
                                      <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('#components').multipleSelect('uncheckAll');">
+                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('#components').multipleSelect('uncheckAll');\$('input[name=TMHMMdom]').prop('disabled', false);\$('input[name=TMdom]').prop('disabled', false);  ">
                                  </form>
                              </div>
                          </div>

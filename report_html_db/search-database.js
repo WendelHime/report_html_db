@@ -1331,3 +1331,16 @@ $(function() {
             }
     );
 });
+
+$("input[name=tmhmmQuant]").change(function() {
+    if($("input[name=tmhmmQuant]:checked").val() == "none")
+        $("input[name=TMHMMdom]").prop("disabled", true);
+    else
+        $("input[name=TMHMMdom]").prop("disabled", false);
+});
+$("input[name=tmQuant]").change(function() {
+    if($("input[name=tmQuant]:checked").val() == "none")
+        $("input[name=TMdom]").prop("disabled", true);
+    else
+        $("input[name=TMdom]").prop("disabled", false);
+});
