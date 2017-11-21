@@ -705,25 +705,25 @@ function dealDataResults(href, featureName, data, product) {
         htmlSequence = htmlSequence.replace("[% result.sequence %]", subsequence.sequence);
         if (type == "CDS") {
             htmlContent += htmlSequence;
-            var subevidencesUnsorted = getSubEvidences(href.replace("#", ""), featureName).responseJSON.response;
-            var subevidencesUnsortedCopy = subevidencesUnsorted;
-            var subevidencesEmpty = new Array();
-            componentsWithResults = new Array();
-            for (var i = subevidencesUnsorted.length - 1; i >= 0; i--) {
-                if(subevidencesUnsorted[i].type == "intervals" || subevidencesUnsorted[i].type == "similarity") {
-                    componentsWithResults.push(subevidencesUnsorted.pop());
-                } else {
-                    subevidencesEmpty.push(subevidencesUnsorted.pop());
-                }
-            }
-            subevidences = new Array();
-            subevidences = subevidences.concat(componentsWithResults);
+            var subevidences = getSubEvidences(href.replace("#", ""), featureName).responseJSON.response;
+            //var subevidencesUnsortedCopy = subevidencesUnsorted;
+            //var subevidencesEmpty = new Array();
+            //componentsWithResults = new Array();
+            //for (var i = subevidencesUnsorted.length - 1; i >= 0; i--) {
+            //    if(subevidencesUnsorted[i].type == "intervals" || subevidencesUnsorted[i].type == "similarity") {
+            //        componentsWithResults.push(subevidencesUnsorted.pop());
+            //    } else {
+            //        subevidencesEmpty.push(subevidencesUnsorted.pop());
+            //    }
+            //}
+            //subevidences = new Array();
+            //subevidences = subevidences.concat(componentsWithResults);
             subevidences = subevidences.sort(function(a,b){
                 var x = a.program_description.toLowerCase();
-                var y = b.program.toLowerCase();
+                var y = b.program_description.toLowerCase();
                 return x < y ? -1 : x > y ? 1 : 0;
             });
-            subevidences = subevidences.concat(subevidencesEmpty); 
+            //subevidences = subevidences.concat(subevidencesEmpty); 
             var components = new Object();
             var componentsEvidences = new Array();
             var counterComponentsEvidences = 0;

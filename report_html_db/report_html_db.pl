@@ -4307,7 +4307,7 @@ sub subevidences {
     my \@rows = \@{ \$sth->fetchall_arrayref() };
 
     my \%component_name = (
-        'annotation_interpro.pl' => 'InterProScan - Domain search and Gene Ontology',
+        'annotation_interpro.pl' => 'InterProScan - Domain search',
         'annotation_blast.pl'    => 'BLAST - Similarity search',
         'annotation_rpsblast.pl' => 'RPS-BLAST - Domain search',
         'annotation_phobius.pl' =>
@@ -6440,7 +6440,7 @@ sub subEvidences_GET {
                 strand              => "",
                 is_obsolete         => \$searchDBClient->getGOResultsByFeatureID(\$feature, \$c->config->{pipeline_id})->{response},
                 program             => "annotation_go.pl",
-                program_description => "Gene Ontology - GO",
+                program_description => "GO - Gene Ontology",
         );
         push \@subevidences, \\\%subevidence;
     } else {
@@ -6453,7 +6453,7 @@ sub subEvidences_GET {
                 strand              => "",
                 is_obsolete         => "",
                 program             => "annotation_go.pl",
-                program_description => "Gene Ontology - GO",
+                program_description => "GO - Gene Ontology",
         );
         push \@subevidences, \$subevidence->pack();
     }
