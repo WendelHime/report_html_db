@@ -6476,12 +6476,12 @@ sub subEvidences_GET {
         my \%hash = ();
 
         my \%component_name = (
-            'annotation_interpro.pl' => 'Domain search - InterProScan',
-            'annotation_blast.pl'    => 'Similarity search - BLAST',
-            'annotation_rpsblast.pl' => 'Similarity search - RPS-BLAST',
+            'annotation_interpro.pl' => 'InterProScan - Domain search',
+            'annotation_blast.pl'    => 'BLAST - Similarity search',
+            'annotation_rpsblast.pl' => 'RPS-BLAST - Similarity search',
             'annotation_phobius.pl' =>
-            'Transmembrane domains and signal peptide search - Phobius',
-            'annotation_pathways.pl'  => 'Pathway classification - KEGG',
+            'Phobius - Transmembrane domains and signal peptide search',
+            'annotation_pathways.pl'  => 'KEGG - Pathway mapping',
             'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
             'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
             'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
