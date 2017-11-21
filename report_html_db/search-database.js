@@ -705,25 +705,18 @@ function dealDataResults(href, featureName, data, product) {
         htmlSequence = htmlSequence.replace("[% result.sequence %]", subsequence.sequence);
         if (type == "CDS") {
             htmlContent += htmlSequence;
-            var subevidences = getSubEvidences(href.replace("#", ""), featureName).responseJSON.response;
-            //var subevidencesUnsortedCopy = subevidencesUnsorted;
-            //var subevidencesEmpty = new Array();
-            //componentsWithResults = new Array();
-            //for (var i = subevidencesUnsorted.length - 1; i >= 0; i--) {
-            //    if(subevidencesUnsorted[i].type == "intervals" || subevidencesUnsorted[i].type == "similarity") {
-            //        componentsWithResults.push(subevidencesUnsorted.pop());
-            //    } else {
-            //        subevidencesEmpty.push(subevidencesUnsorted.pop());
-            //    }
-            //}
-            //subevidences = new Array();
-            //subevidences = subevidences.concat(componentsWithResults);
+            var subevidences = new Array();
+            subevidences = getSubEvidences(href.replace("#", ""), featureName).responseJSON.response;
+            //subevidences = subevidences.sort(function(a,b){
+            //    var x = a.type.toLowerCase();
+            //    var y = b.type.toLowerCase();
+            //    return x > y ? -1 : x < y ? 1 : 0;
+            //});
             subevidences = subevidences.sort(function(a,b){
                 var x = a.program_description.toLowerCase();
                 var y = b.program_description.toLowerCase();
                 return x < y ? -1 : x > y ? 1 : 0;
             });
-            //subevidences = subevidences.concat(subevidencesEmpty); 
             var components = new Object();
             var componentsEvidences = new Array();
             var counterComponentsEvidences = 0;
@@ -737,25 +730,48 @@ function dealDataResults(href, featureName, data, product) {
                     if (subevidences[i].type == 'intervals') {
                         if(subevidences[i].program == "annotation_go.pl") {
                             var fuckingTitle = subevidences[i].program_description;
-                            if(subevidences[i].is_obsolete[0].length == 0 || subevidences[i].is_obsolete[0].length == undefined)
-                                fuckingTitle += " - No results found";
+                            if(subevidences[i].is_obsolete[0] == undefined)
+                                fuckingTitle = "<a>" + fuckingTitle + " - No results found</a>";
                             else
                                 fuckingTitle = "<a href='#evidence-annotation_go-"+href.replace("#", "")+"' data-toggle='collapse' data-parent='#accordion' >" + fuckingTitle + "</a>";
                             htmlEvidence = "<div class='panel panel-default'>"+
                                     "<div class='panel-heading'>"+
                                     "    <div class='panel-title'>" +
-                                    "         <div class='row'><div class='col-md-11'>" + fuckingTitle + "</div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name=annotation_interpro' target='_blank'>View</a></div></div>"+
+                                    "         <div class='row'><div class='col-md-12'>" + fuckingTitle + "</div></div>"+
                                     "    </div>"+
                                     "</div>"+
                                     "<div id='evidence-annotation_go-"+href.replace("#", "")+"' class='panel-body collapse'>";
+                            var biologicalProcess = "<div class='panel panel-default'><div class='panel-heading'><div class='panel-title'>Biological process</div></div><div class='panel-body'><div class='notice-board'><ul>";
+                            var molecularFunction = "<div class='panel panel-default'><div class='panel-heading'><div class='panel-title'>Molecular function</div></div><div class='panel-body'><div class='notice-board'><ul>";
+                            var celularComponent = "<div class='panel panel-default'><div class='panel-heading'><div class='panel-title'>Celular component</div></div><div class='panel-body'><div class='notice-board'><ul>";
                             for (var j = 0; j < subevidences[i].is_obsolete.length; j++) {
-                                htmlEvidence += "<div class='panel panel-default'><div class='panel-heading'><div class='panel-title'>"+(j+1)+"</div></div><div class='panel-body'><div class='notice-board'><ul>";
                                 for (var k = 0; k < subevidences[i].is_obsolete[j].length; k++) {
-                                    htmlEvidence += "<li>" + subevidences[i].is_obsolete[j][k] + "</li>";
+                                    var regexGO = /(GO:\d+)/g;
+                                    var evidence = subevidences[i].is_obsolete[j][k];
+                                    var process = regexGO.exec(evidence);
+                                    evidence = evidence.replace(process[0], "<a href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
+                                    if(subevidences[i].is_obsolete[j][k].includes('Biological Process')) {
+                                        biologicalProcess+= "<li>" + evidence + "</li>";
+                                    } else if(subevidences[i].is_obsolete[j][k].includes('Molecular Function')) {
+                                        molecularFunction+= "<li>" + evidence + "</li>";
+                                    } else if(subevidences[i].is_obsolete[j][k].includes('Celular Component')) {
+                                        celularComponent+= "<li>" + evidences + "</li>";
+                                    }
                                 }
-                                htmlEvidence += "</ul></div></div></div>";
                             }
-                            htmlEvidence += "</div></div></div>";
+                            var caralho = /li/g;
+                            if (caralho.exec(biologicalProcess) == undefined) {
+                                biologicalProcess += "<li>No terms found</li>";
+                            } else if (caralho.exec(molecularFunction) == undefined) { 
+                                molecularFunction += "<li>No terms found</li>";
+                            } else if (caralho.exec(celularComponent) == undefined) { 
+                                celularComponent += "<li>No terms found</li>";
+                            }
+
+                            biologicalProcess += "</ul></div></div></div>";
+                            molecularFunction += "</ul></div></div></div>";
+                            celularComponent += "</ul></div></div></div>";
+                            htmlEvidence += biologicalProcess + molecularFunction + celularComponent+ "</div></div></div>"; 
                         } else {
                             htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'><a style='color: inherit;' id='anchor-evidence-" + componentName + "-" + href.replace("#", "") + "' data-toggle='collapse' data-parent='#accordion' href='#evidence-" + componentName + "-" + href.replace("#", "") + "'>" + subevidences[i].program_description + "</a></div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name="+componentName+"' target='_blank'>View</a></div></div>");
                         }
@@ -880,9 +896,35 @@ function dealDataResults(href, featureName, data, product) {
                                             html = html.replace("[% result.DB_id %]", responseIntervals.properties[j].DB_id);
                                             html = html.replace("[% result.DB_name %]", responseIntervals.properties[j].DB_name);
                                             html = html.replace("[% result.description %]", responseIntervals.properties[j].description);
-                                            html = html.replace("[% result.evidence_process %]", responseIntervals.properties[j].evidence_process);
-                                            html = html.replace("[% result.evidence_function %]", responseIntervals.properties[j].evidence_function);
-                                            html = html.replace("[% result.evidence_component %]", responseIntervals.properties[j].evidence_component);
+                                            var regexGO = /(GO:\d+)/g;
+                                            if (responseIntervals.properties[j].evidence_process != undefined) {
+                                                var evidenceProcess = responseIntervals.properties[j].evidence_process;
+                                                var process = regexGO.exec(evidenceProcess);
+                                                evidenceProcess = evidenceProcess.replace(process[0], "<a href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
+                                                html = html.replace("[% result.evidence_process %]", evidenceProcess);
+                                            } else {
+                                                html = html.replace("[% result.evidence_process %]", responseIntervals.properties[j].evidence_process);
+                                            }
+                                            var regexGO = /(GO:\d+)/g;
+
+                                            if (responseIntervals.properties[j].evidence_function != undefined) {
+                                                var evidence = responseIntervals.properties[j].evidence_function;
+                                                var process2 = regexGO.exec(responseIntervals.properties[j].evidence_function);
+                                                evidence= evidence.replace(process2[0], "<a href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process2[0]+"'>"+process2[0]+"</a>");
+                                                html = html.replace("[% result.evidence_function %]", evidence);
+                                            } else {
+                                                html = html.replace("[% result.evidence_function %]", responseIntervals.properties[j].evidence_function);
+                                            }
+                                            var regexGO = /(GO:\d+)/g;
+
+                                            if (responseIntervals.properties[j].evidence_component != undefined) {
+                                                var evidence= responseIntervals.properties[j].evidence_component;
+                                                var process = regexGO.exec(evidence);
+                                                evidence= evidence.replace(process[0], "<a href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
+                                                html = html.replace("[% result.evidence_component %]", evidence);
+                                            } else {
+                                                html = html.replace("[% result.evidence_component %]", responseIntervals.properties[j].evidence_component);
+                                            }
                                             html = html.replace("[% result.score %]", responseIntervals.properties[j].score);
                                             listHTMLs[counterHTMLs] = html;
                                             counterHTMLs++;
