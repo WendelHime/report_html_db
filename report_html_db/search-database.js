@@ -1344,3 +1344,88 @@ $("input[name=tmQuant]").change(function() {
     else
         $("input[name=TMdom]").prop("disabled", false);
 });
+$("input[name=cleavageQuant]").change(function() {
+    if($("input[name=cleavageQuant]:checked").val() == "none")
+        $("input[name=cleavageSiteDGPI]").prop("disabled", true);
+    else
+        $("input[name=cleavageSiteDGPI]").prop("disabled", false);
+});
+$("input[name=scoreQuant]").change(function() {
+    if($("input[name=scoreQuant]:checked").val() == "none")
+        $("input[name=scoreDGPI]").prop("disabled", true);
+    else
+        $("input[name=scoreDGPI]").prop("disabled", false);
+});
+$("input[name=positionQuantPreDGPI]").change(function() {
+    if($("input[name=positionQuantPreDGPI]:checked").val() == "none")
+        $("input[name=positionPreDGPI]").prop("disabled", true);
+    else
+        $("input[name=positionPreDGPI]").prop("disabled", false);
+});
+$("input[name=specificityQuantPreDGPI]").change(function() {
+    if($("input[name=specificityQuantPreDGPI]:checked").val() == "none")
+        $("input[name=specificityPreDGPI]").prop("disabled", true);
+    else
+        $("input[name=specificityPreDGPI]").prop("disabled", false);
+});
+$("input[name=pvalueQuantBigpi]").change(function() {
+    if($("input[name=pvalueQuantBigpi]:checked").val() == "none")
+        $("input[name=pvalueBigpi]").prop("disabled", true);
+    else
+        $("input[name=pvalueBigpi]").prop("disabled", false);
+});
+$("input[name=positionQuantBigpi]").change(function() {
+    if($("input[name=positionQuantBigpi]:checked").val() == "none")
+        $("input[name=positionBigpi]").prop("disabled", true);
+    else
+        $("input[name=positionBigpi]").prop("disabled", false);
+});
+$("input[name=ncRNAevM]").change(function() {
+    if($("input[name=ncRNAevM]:checked").val() == "none")
+        $("input[name=ncRNAevalue]").prop("disabled", true);
+    else
+        $("input[name=ncRNAevalue]").prop("disabled", false);
+});
+$("input[name=TRFsize]").change(function() {
+    if($("input[name=TRFsize]:checked").val() == "none")
+        $("input[name=TRFrepSize]").prop("disabled", true);
+    else
+        $("input[name=TRFrepSize]").prop("disabled", false);
+});
+$("input[name=TTconfM]").change(function() {
+    if($("input[name=TTconfM]:checked").val() == "none")
+        $("input[name=TTconf]").prop("disabled", true);
+    else
+        $("input[name=TTconf]").prop("disabled", false);
+});
+$("input[name=TThpM]").change(function() {
+    if($("input[name=TThpM]:checked").val() == "none")
+        $("input[name=TThp]").prop("disabled", true);
+    else
+        $("input[name=TThp]").prop("disabled", false);
+});
+$("input[name=TTtailM]").change(function() {
+    if($("input[name=TTtailM]:checked").val() == "none")
+        $("input[name=TTtail]").prop("disabled", true);
+    else
+        $("input[name=TTtail]").prop("disabled", false);
+});
+$("input[name=AHlenM]").change(function() {
+    if($("input[name=AHlenM]:checked").val() == "none")
+        $("input[name=AHlen]").prop("disabled", true);
+    else
+        $("input[name=AHlen]").prop("disabled", false);
+});
+$("input[name=AHscM]").change(function() {
+    if($("input[name=AHscM]:checked").val() == "none")
+        $("input[name=AHscore]").prop("disabled", true);
+    else
+        $("input[name=AHscore]").prop("disabled", false);
+});
+$("input[name=AHthrM]").change(function() {
+    if($("input[name=AHthrM]:checked").val() == "none")
+        $("input[name=AHthr]").prop("disabled", true);
+    else
+        $("input[name=AHthr]").prop("disabled", false);
+});
+

@@ -710,26 +710,32 @@ INSERT INTO TEXTS(tag, value, details) VALUES
     ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='orLess'> or less", ""),
         ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='orMore'> or more", ""),
         ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='exact'> exactly", ""),
+        ("search-database-quantity-cleavageQuant", "<input type='radio' name='cleavageQuant' value='none'> none", ""),
 
     ("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='orLess'> or less", ""),
         ("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='orMore'> or more", ""),
         ("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='exact'> exactly", ""),
+        ("search-database-quantity-scoreQuant", "<input type='radio' name='scoreQuant' value='none'> none", ""),
 
     ("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='orLess'> or less", ""),
         ("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='orMore'> or more", ""),
         ("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='exact'> exactly", ""),
+        ("search-database-quantity-positionQuantPreDGPI", "<input type='radio' name='positionQuantPreDGPI' value='none'> none", ""),
 
     ("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='orLess'> or less", ""),
         ("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='orMore'> or more", ""),
         ("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='exact'> exactly", ""),
+        ("search-database-quantity-specificityQuantPreDGPI", "<input type='radio' name='specificityQuantPreDGPI' value='none'> none", ""),
 
     ("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='orLess'> or less", ""),
         ("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='orMore'> or more", ""),
         ("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='exact'> exactly", ""),
+        ("search-database-quantity-pvalueQuantBigpi", "<input type='radio' name='pvalueQuantBigpi' value='none'> none", ""),
 
     ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='orLess'> or less", ""),
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='orMore'> or more", ""),
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='exact'> exactly", ""),
+        ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='none'> none", ""),
 
     ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orMore'> or more", ""),
@@ -739,34 +745,42 @@ INSERT INTO TEXTS(tag, value, details) VALUES
     ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='orLess'> or less", ""),
         ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='orMore'> or more", ""),
         ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='exact'> exactly", ""),
+        ("search-database-quantity-ncrna", "<input type='radio' name='ncRNAevM' value='none'> none", ""),
 
     ("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='orLess'> or less", ""),
         ("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='orMore'> or more", ""),
         ("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='exact'> exactly", ""),
+        ("search-database-quantity-trf", "<input type='radio' name='TRFsize' value='none'> none", ""),
 
     ("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='exact'> exactly", ""),
+        ("search-database-analyses-protein-code-TTconfM", "<input type='radio' name='TTconfM' value='none'> none", ""),
 
     ("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='exact'> exactly", ""),
+        ("search-database-analyses-protein-code-TThpM", "<input type='radio' name='TThpM' value='none'> none", ""),
 
     ("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='exact'> exactly", ""),
+        ("search-database-analyses-protein-code-TTtailM", "<input type='radio' name='TTtailM' value='none'> none", ""),
 
     ("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='exact'> exactly", ""),
+        ("search-database-analyses-protein-code-AHlenM", "<input type='radio' name='AHlenM' value='none'> none", ""),
 
     ("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='exact'> exactly", ""),
+        ("search-database-analyses-protein-code-AHscM", "<input type='radio' name='AHscM' value='none'> none", ""),
 
     ("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='orLess'> or less", ""),
         ("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='orMore'> or more", ""),
         ("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='exact'> exactly", ""),
+        ("search-database-analyses-protein-code-AHthrM", "<input type='radio' name='AHthrM' value='none'> none", ""),
 
 
         ("search-database-analyses-protein-code-signal-peptide", "With signal peptide? ", ""),
@@ -1838,7 +1852,7 @@ $lowCaseName =~ s/-/_/g;
 #chmod("111", "$nameProject/script/".$lowCaseName."_create.pl");
 #create view
 open(my $FILEHANDLER, ">>", "$html_dir/$lowCaseName.conf");
-print $FILEHANDLER "\ncomponents_ev " . join(" ", keys %hash_ev) . "\n";
+print $FILEHANDLER "\ncomponents_ev " . join(".pl ", keys %hash_ev) . "\n";
 close($FILEHANDLER);
 print $LOG "\nCreating view\n";
 `./$html_dir/script/"$lowCaseName"_create.pl view TT TT`;
@@ -2694,14 +2708,19 @@ sub analyses_CDS {
 
             if ( \$hash->{'cleavageQuant'} eq "exact" ) {
                 \$select .= "= ? ";
+                push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
             }
             elsif ( \$hash->{'cleavageQuant'} eq "orLess" ) {
                 \$select .= "<= ? ";
+                push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
             }
-            elsif ( \$hash->{'cleavageQuant'} eq "orMore" ) {
+            elsif ( $hash->{'cleavageQuant'} eq "orMore" ) {
                 \$select .= ">= ? ";
+                push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
             }
-            push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
+            elsif (\$hash->{'cleavageQuant'} eq "none" ) {
+                \$select .= "= 0";
+            }
             \$query_Phobius = \$connector . \$select . ")";
             \$connector     = "1";
         } elsif(\$hash->{'scoreDGPI'}) {
@@ -2709,14 +2728,20 @@ sub analyses_CDS {
 
             if ( \$hash->{'scoreQuant'} eq "exact" ) {
                 \$select .= "= ? ";
+                push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
             }
             elsif ( \$hash->{'scoreQuant'} eq "orLess" ) {
                 \$select .= "<= ? ";
+                push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
             }
             elsif ( \$hash->{'scoreQuant'} eq "orMore" ) {
                 \$select .= ">= ? ";
+                push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
             }
-            push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
+            elsif ( \$hash->{'scoreQuant'} eq "none" ) {
+                \$select .= "= 0 ";
+                push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
+            }
             \$query_Phobius = \$connector . \$select . ")";
             \$connector     = "1";
         }
@@ -2763,14 +2788,19 @@ sub analyses_CDS {
             \$select .= " AND my_to_decimal(pp.value) ";
             if ( \$hash->{'positionQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
+                push \@args, \$hash->{'positionPreDGPI'} if \$hash->{positionQuantPreDGPI};
             }
             elsif ( \$hash->{'positionQuantPreDGPI'} eq "orLess" ) {
                 \$select .= "<= ? ";
+                push \@args, \$hash->{'positionPreDGPI'} if \$hash->{positionQuantPreDGPI};
             }
             elsif ( \$hash->{'positionQuantPreDGPI'} eq "orMore" ) {
                 \$select .= ">= ? ";
+                push \@args, \$hash->{'positionPreDGPI'} if \$hash->{positionQuantPreDGPI};
             }
-            push \@args, \$hash->{'positionPreDGPI'} if \$hash->{positionQuantPreDGPI};
+            elsif ( \$hash->{'positionQuantPreDGPI'} eq "none" ) {
+                \$select .= "= 0 ";
+            }
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
@@ -2778,20 +2808,25 @@ sub analyses_CDS {
             \$select .= " AND my_to_decimal(ppp.value) ";
             if ( \$hash->{'specificityQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
+                push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
             }
             elsif ( \$hash->{'specificityQuantPreDGPI'} eq "orLess" ) {
                 \$select .= "<= ? ";
+                push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
             }
             elsif ( \$hash->{'specificityQuantPreDGPI'} eq "orMore" ) {
                 \$select .= ">= ? ";
+                push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
             }
-            push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
+            elsif ( \$hash->{'specificityQuantPreDGPI'} eq "none" ) {
+                \$select .= "= 0 ";
+            }
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
         elsif(\$hash->{'sequencePreDGPI'}) {
             \$select .= " AND lower(pppp.value ) LIKE ? ";
-            push \@args, "%" . lc( \$hash->{'sequencePreDGPI'} ) . "%";
+            push \@args, "\%" . lc( \$hash->{'sequencePreDGPI'} ) . "\%";
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
@@ -2826,28 +2861,38 @@ sub analyses_CDS {
             \$select .= " AND my_to_decimal(ppr.value) ";
             if ( \$hash->{'pvalueQuantBigpi'} eq "exact" ) {
                 \$select .= "= ? ";
+                push \@args, \$hash->{'pvalueBigpi'} if \$hash->{pvalueQuantBigpi};
             }
             elsif ( \$hash->{'pvalueQuantBigpi'} eq "orLess" ) {
                 \$select .= "<= ? ";
+                push \@args, \$hash->{'pvalueBigpi'} if \$hash->{pvalueQuantBigpi};
             }
             elsif ( \$hash->{'pvalueQuantBigpi'} eq "orMore" ) {
                 \$select .= ">= ? ";
+                push \@args, \$hash->{'pvalueBigpi'} if \$hash->{pvalueQuantBigpi};
             }
-            push \@args, \$hash->{'pvalueBigpi'} if \$hash->{pvalueQuantBigpi};
+            elsif ( \$hash->{'pvalueQuantBigpi'} eq "none" ) {
+                \$select .= "= 0 ";
+            }
             \$query_bigpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         } elsif (\$hash->{'positionBigpi'}) {
             \$select .= " AND my_to_decimal(pp.value) ";
             if ( \$hash->{'positionQuantBigpi'} eq "exact" ) {
                 \$select .= "= ? ";
+                push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
             }
             elsif ( \$hash->{'positionQuantBigpi'} eq "orLess" ) {
                 \$select .= "<= ? ";
+                push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
             }
             elsif ( \$hash->{'positionQuantBigpi'} eq "orMore" ) {
                 \$select .= ">= ? ";
+                push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
             }
-            push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
+            elsif ( \$hash->{'positionQuantBigpi'} eq "none" ) {
+                \$select .= "= 0 ";
+            }
             \$query_bigpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
@@ -8769,6 +8814,17 @@ CONTENTINDEXHOME
                                         [% END %]
                                           </select>
                                           <script>
+                                                var options = \$('#components option');
+                                                var arr = options.map(function(_, o) { return { t: \$(o).text(), v: o.value }; }).get();
+                                                arr.sort(function(o1, o2) { 
+                                                    var t1 = o1.t.toLowerCase(), t2 = o2.t.toLowerCase();
+
+                                                    return t1 > t2 ? 1 : t1 < t2 ? -1 : 0;
+                                                });
+                                                options.each(function(i, o) {
+                                                    o.value = arr[i].v;
+                                                    \$(o).text(arr[i].t);
+                                                });
                                                 \$("\#components").multipleSelect({
                                                     placeholder: "Require positive results for: ",
                                                     width: 300,
@@ -8804,11 +8860,6 @@ CONTENTINDEXHOME
                                         [% IF dgpi %]
                                             <div id="dgpi" class="tab-pane fade">
                                                 <div class="form-group">
-                                                  <div class="checkbox">
-                                                    <label><input type="checkbox" name="noDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-dgpi') %]</label>
-                                                  </div>
-                                                </div>
-                                                <div class="form-group">
                                                         <label>[% searchDBTexts.item('search-database-analyses-protein-code-cleavage-site-dgpi') %]</label>
                                                     <input class="form-control" type="number" name="cleavageSiteDGPI">
                             [% FOREACH text IN searchDBTexts.item('search-database-quantity-cleavageQuant') %]
@@ -8818,7 +8869,6 @@ CONTENTINDEXHOME
                                                         [% END %]
                                                 </div>
                                                 <div class="form-group">
-                            <label><input type="checkbox" name="noDGPI">[% searchDBTexts.item('search-database-analyses-protein-code-score-dgpi') %]</label>                                                  
                             <input class="form-control" type="number" name="scoreDGPI">
                             [% FOREACH text IN searchDBTexts.item('search-database-quantity-scoreQuant') %]
                                                         <div class="radio">
@@ -8865,11 +8915,6 @@ CONTENTINDEXHOME
                                         [% END %]
                                         [% IF bigpi %]
                                             <div id="bigpi" class="tab-pane fade">
-                                                <div class="form-group">
-                                                        <div class="checkbox">
-                                    <label><input type="checkbox" name="noBigGPI">[% searchDBTexts.item('search-database-analyses-protein-code-not-containing-bigpi') %]</label>
-                                                        </div>
-                                                    </div>
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-value-bigpi') %]</label>
                                                         <input class="form-control" type="number" name="pvalueBigpi">
@@ -9071,7 +9116,7 @@ CONTENTINDEXHOME
                                       [% END %]
                                      </div>
                                      <input class="btn btn-primary btn-sm" type="submit" name="geneIDbutton" value="Search"> 
-                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('#components').multipleSelect('uncheckAll');\$('input[name=TMHMMdom]').prop('disabled', false);\$('input[name=TMdom]').prop('disabled', false);  ">
+                                     <input class="btn btn-default btn-sm" type="button" name="clear" value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('\#components').multipleSelect('uncheckAll');\$('input[name=TMHMMdom]').prop('disabled', false);\$('input[name=TMdom]').prop('disabled', false);  ">
                                  </form>
                              </div>
                          </div>
@@ -9196,7 +9241,7 @@ CONTENTINDEXHOME
                                     [% searchDBTexts.item('search-database-dna-based-analyses-tandem-repeats-note') %]
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('input[name=TRFrepSize]').prop('disabled', false); ">
                             </form>
                         </div>
                     [% END %]
@@ -9218,7 +9263,7 @@ CONTENTINDEXHOME
                                 </div>
                                 <div class="form-group">
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-evalue-match') %]</label>
-                                    <input class="form-control" type="number" step="any" min="0" name="ncRNAevalue">
+                                    <input class="form-control" type="number" step="any" min="1" name="ncRNAevalue">
                                     [% FOREACH text IN searchDBTexts.item('search-database-quantity-ncrna') %]
                                     <div class="radio">
                                         <label>[% text %]</label>
@@ -9249,7 +9294,7 @@ CONTENTINDEXHOME
                                     <input class="form-control" type="text" name="ncRNAtargetDesc">
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('input[name=ncRNAevalue]').prop('disabled', false);">
                             </form>
                         </div>
                     [% END %]
@@ -9332,7 +9377,7 @@ CONTENTINDEXHOME
                                     [% searchDBTexts.item('search-database-dna-based-analyses-hairpin-note') %]
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit"  value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('input[name=TTconf]').prop('disabled', false);\$('input[name=TThp]').prop('disabled', false);\$('input[name=TTtail]').prop('disabled', false);">
                             </form>
                         </div>
                     [% END %]
@@ -9350,7 +9395,7 @@ CONTENTINDEXHOME
                                 </div>
                                 <div class="form-group">
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-predicted-alienhunter') %]</label>
-                                    <input class="form-control" type="number" min="0" step="any" name="AHlen">
+                                    <input class="form-control" type="number" min="0.1" step="any" name="AHlen">
                                     [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHlenM') %]
                                     <div class="radio">
                                         <label>[% text %]</label>
@@ -9359,7 +9404,7 @@ CONTENTINDEXHOME
                                 </div>
                                 <div class="form-group">
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-score') %]</label>
-                                    <input class="form-control" type="number" min="0" step="any" name="AHscore">
+                                    <input class="form-control" type="number" min="0.1" step="any" name="AHscore">
                                     [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHscM') %]
                                     <div class="radio">
                                         <label>[% text %]</label>
@@ -9368,7 +9413,7 @@ CONTENTINDEXHOME
                                 </div>
                                 <div class="form-group">
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-get-regions-threshold') %]</label>
-                                    <input class="form-control" type="number" min="0" step="any" name="AHthr">
+                                    <input class="form-control" type="number" min="0.1" step="any" name="AHthr">
                                     [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-AHthrM') %]
                                     <div class="radio">
                                         <label>[% text %]</label>
@@ -9376,7 +9421,7 @@ CONTENTINDEXHOME
                                     [% END %]
                                 </div>
                                 <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();\$('input[name=AHlen]').prop('disabled', false);\$('input[name=AHscore]').prop('disabled', false);\$('input[name=AHthr]').prop('disabled', false);">
                             </form>
                         </div>
                     [% END %]
@@ -9403,7 +9448,7 @@ CONTENTINDEXHOME
                                 </div>
 
                                 <input class="btn btn-primary btn-sm" type="submit" value="Search"> 
-                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); \$('.errors').remove();">
+                                <input class="btn btn-default btn-sm" type="button"  value="Clear Form" onclick="this.form.reset(); $('.errors').remove();">
                             </form>
                         </div>
                     [% END %]
