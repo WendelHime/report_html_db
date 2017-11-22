@@ -2714,7 +2714,7 @@ sub analyses_CDS {
                 \$select .= "<= ? ";
                 push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
             }
-            elsif ( $hash->{'cleavageQuant'} eq "orMore" ) {
+            elsif ( \$hash->{'cleavageQuant'} eq "orMore" ) {
                 \$select .= ">= ? ";
                 push \@args, \$hash->{'cleavageSiteDGPI'} if \$hash->{'cleavageQuant'};
             }
@@ -4628,7 +4628,7 @@ Method used to get GO results from feature ID
 sub getGOResultsByFeatureID {
     my (\$self, \$pipeline_id, \$feature_id) = \@_;
     my \$dbh  = \$self->dbh;
-    my \$query = "SELECT pd.value 
+    my \$query = "SELECT DISTINCT pd.value 
             FROM feature_relationship r 
             JOIN featureloc l ON (r.object_id = l.feature_id) 
             JOIN featureprop p ON (p.feature_id = l.srcfeature_id) 
@@ -6514,15 +6514,15 @@ sub subEvidences_GET {
             'annotation_blast.pl'    => 'BLAST - Similarity search',
             'annotation_rpsblast.pl' => 'RPS-BLAST - Similarity search',
             'annotation_phobius.pl' =>
-            'Phobius - Transmembrane domains and signal peptide search',
+            'Phobius - Transmembrane domains and signal peptide',
             'annotation_pathways.pl'  => 'KEGG - Pathway mapping',
-            'annotation_orthology.pl' => 'Orthology assignment - eggNOG',
-            'annotation_tcdb.pl'      => 'Transporter classification - TCDB',
-            'annotation_dgpi.pl'      => 'GPI anchor - DGPI',
+            'annotation_orthology.pl' => 'eggNOG - Orthology assignment',
+            'annotation_tcdb.pl'      => 'TCDB - Transporter classification',
+            'annotation_dgpi.pl'      => 'DGPI - GPI anchor',
             'annotation_predgpi.pl'	=> 'PreDGPI',
             'annotation_tmhmm.pl'     => 'TMHMM',
             'annotation_hmmer.pl'	=> 'HMMER',
-            "annotation_signalP.pl" => 'SignalP',
+            "annotation_signalP.pl" => 'SignalP - Signal peptide',
             'annotation_bigpi.pl'   => 'BIGPI',
         );
         while ( my \$result = \$resultSet->next ) {
