@@ -3315,22 +3315,28 @@ sub trf_search {
         push \@args, lc("\%\$hash->{'TRFrepSeq'}\%");
     }
 
-    if ( \$hash->{'TRFrepSize'} !~ /^\\s*\$/ ) {
+    if ( \$hash->{'TRFrepSize'} !~ /^\\s*\$/ || \$hash->{'TRFsize'} eq "none") {
         \$hash->{'TRFrepSize'} =~ s/\\s+//g;
 
         if ( \$hash->{'TRFsize'} eq "exact" ) {
             \$query .= "and pp.value = ? ";
             \$connector = ",";
+            push \@args, \$hash->{'TRFrepSize'};
         }
         elsif ( \$hash->{'TRFsize'} eq "orLess" ) {
             \$query .= "and my_to_decimal(pp.value) <= ? ";
             \$connector = ",";
+            push \@args, \$hash->{'TRFrepSize'};
         }
         elsif ( \$hash->{'TRFsize'} eq "orMore" ) {
             \$query .= "and my_to_decimal(pp.value) >= ? ";
             \$connector = ",";
+            push \@args, \$hash->{'TRFrepSize'};
         }
-        push \@args, \$hash->{'TRFrepSize'};
+        elsif ( \$hash->{'TRFsize'} eq "none" ) {
+            \$query .= "and my_to_decimal(pp.value) = 0 ";
+            \$connector = ",";
+        }
     }
 
     if (   \$hash->{'TRFrepNumMin'} !~ /^\\s*\$/
@@ -3457,7 +3463,7 @@ sub ncRNA_search {
         push \@args, "\%" . lc( \$hash->{'ncRNAtargetID'} ) . "\%";
     }
 
-    elsif ( \$hash->{'ncRNAevalue'} !~ /^\\s*\$/ ) {
+    elsif ( \$hash->{'ncRNAevalue'} !~ /^\\s*\$/ || \$hash->{'ncRNAevM'} eq "none" ) {
         \$hash->{'ncRNAevalue'} =~ s/\\s+//g;
         \$select .= ", ppe.value AS evalue";
         \$join .=
@@ -3465,16 +3471,22 @@ sub ncRNA_search {
         if ( \$hash->{'ncRNAevM'} eq "exact" ) {
             \$query .=
             "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = ? ";
+            push \@args, \$hash->{'ncRNAevalue'};
         }
         elsif ( \$hash->{'ncRNAevM'} eq "orLess" ) {
             \$query .=
             "and cppe.name = 'evalue' and my_to_decimal(ppe.value) <= ? ";
+            push \@args, \$hash->{'ncRNAevalue'};
         }
         elsif ( \$hash->{'ncRNAevM'} eq "orMore" ) {
             \$query .=
             "and cppe.name = 'evalue' and my_to_decimal(ppe.value) >= ? ";
+            push \@args, \$hash->{'ncRNAevalue'};
         }
-        push \@args, \$hash->{'ncRNAevalue'};
+        elsif ( \$hash->{'ncRNAevM'} eq "none" ) {
+            \$query .=
+            "and cppe.name = 'evalue' and my_to_decimal(ppe.value) = 0 ";
+        }
     }
     elsif ( \$hash->{'ncRNAtargetName'} !~ /^\\s*\$/ ) {
         \$hash->{'ncRNAtargetName'} =~ s/^\\s+//;
@@ -3597,18 +3609,18 @@ sub transcriptional_terminator_search {
     my \$field;
     my \$modifier;
 
-    if ( \$hash->{'TTconf'} !~ /^\\s*\$/ ) {
-        \$search_field = \$hash->{'TTconf'} + 1;
+    if ( \$hash->{'TTconf'} !~ /^\\s*\$/ || \$hash->{'TTconfM'} eq "none" ) {
+        \$search_field = \$hash->{'TTconf'};
         \$modifier     = \$hash->{'TTconfM'};
         \$field        = "ppConfidence";
     }
-    elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ ) {
-        \$search_field = \$hash->{'TThp'} + 1;
+    elsif ( \$hash->{'TThp'} !~ /^\\s*\$/ || \$hash->{'TThpM'} eq "none") {
+        \$search_field = \$hash->{'TThp'};
         \$modifier     = \$hash->{'TThpM'};
         \$field        = "ppHairpinScore";
     }
-    elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ ) {
-        \$search_field = \$hash->{'TTtail'} + 1;
+    elsif ( \$hash->{'TTtail'} !~ /^\\s*\$/ || \$hash->{'TTtailM'} eq "none") {
+        \$search_field = \$hash->{'TTtail'};
         \$modifier     = \$hash->{'TTtailM'};
         \$field        = "ppTailScore";
     }
@@ -3617,15 +3629,20 @@ sub transcriptional_terminator_search {
 
     if ( \$modifier eq "exact" ) {
         \$query .= " and my_to_decimal(\$field.value) = ? ";
+        push \@args, (\$search_field ) if (\$search_field);
     }
     elsif ( \$modifier eq "orLess" ) {
         \$query .= " and my_to_decimal(\$field.value) <= ? ";
+        push \@args, (\$search_field ) if (\$search_field);
     }
     elsif ( \$modifier eq "orMore" ) {
         \$query .= " and my_to_decimal(\$field.value) >= ? ";
+        push \@args, (\$search_field ) if (\$search_field);
+    }
+    elsif ( \$modifier eq "none" ) {
+        \$query .= " and my_to_decimal(\$field.value) = 0 ";
     }
 
-    push \@args, (\$search_field - 1) if (\$search_field);
 
     \$query = \$select . \$join . \$query;
 
@@ -3832,17 +3849,17 @@ sub alienhunter_search {
     my \$field;
     my \$modifier;
 
-    if ( \$hash->{'AHlen'} !~ /^\\s*\$/ ) {
+    if ( \$hash->{'AHlen'} !~ /^\\s*\$/ || \$hash->{'AHlenM'} eq "none") {
         \$search_field = \$hash->{'AHlen'} + 1;
         \$modifier     = \$hash->{'AHlenM'};
         \$field		  = "ppLength";
     }
-    elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ ) {
+    elsif ( \$hash->{'AHscore'} !~ /^\\s*\$/ || \$hash->{'AHscM'} eq "none" ) {
         \$search_field = \$hash->{'AHscore'} + 1;
         \$modifier     = \$hash->{'AHscM'};
         \$field		  = "ppScore";
     }
-    elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ ) {
+    elsif ( \$hash->{'AHthr'} !~ /^\\s*\$/ || \$hash->{'AHthrM'} eq "none" ) {
         \$search_field = \$hash->{'AHthr'} + 1;
         \$modifier     = \$hash->{'AHthrM'};
         \$field		  = "ppThreshold";
@@ -3852,15 +3869,20 @@ sub alienhunter_search {
 
     if ( \$modifier eq "exact" ) {
         \$query .= " and my_to_decimal(\$field.value) = ? ";
+        push \@args, (\$search_field) if \$search_field;
     }
     elsif ( \$modifier eq "orLess" ) {
         \$query .= " and my_to_decimal(\$field.value) <= ? ";
+        push \@args, (\$search_field) if \$search_field;
     }
     elsif ( \$modifier eq "orMore" ) {
         \$query .= " and my_to_decimal(\$field.value) >= ? ";
+        push \@args, (\$search_field) if \$search_field;
+    }
+    elsif ( \$modifier eq "none" ) {
+        \$query .= " and my_to_decimal(\$field.value) = 0 ";
     }
 
-    push \@args, (\$search_field - 1) if \$search_field;
 
     \$query = \$select . \$join . \$query;
 
@@ -9263,7 +9285,7 @@ CONTENTINDEXHOME
                                 </div>
                                 <div class="form-group">
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-evalue-match') %]</label>
-                                    <input class="form-control" type="number" step="any" min="1" name="ncRNAevalue">
+                                    <input class="form-control" type="number" step="any" min="0.00000000000000000000000000001" name="ncRNAevalue">
                                     [% FOREACH text IN searchDBTexts.item('search-database-quantity-ncrna') %]
                                     <div class="radio">
                                         <label>[% text %]</label>
