@@ -749,26 +749,27 @@ function dealDataResults(href, featureName, data, product) {
                                     var regexGO = /(GO:\d+)/g;
                                     var evidence = subevidences[i].is_obsolete[j][k];
                                     var process = regexGO.exec(evidence);
-                                    evidence = evidence.replace(process[0], "<a href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
+                                    evidence = evidence.replace(process[0], "<a style='color: rgb(35, 82, 124);' target='_blank' href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
                                     if(subevidences[i].is_obsolete[j][k].includes('Biological Process')) {
                                         biologicalProcess+= "<li>" + evidence + "</li>";
                                     } else if(subevidences[i].is_obsolete[j][k].includes('Molecular Function')) {
                                         molecularFunction+= "<li>" + evidence + "</li>";
-                                    } else if(subevidences[i].is_obsolete[j][k].includes('Celular Component')) {
-                                        celularComponent+= "<li>" + evidences + "</li>";
+                                    } else if(subevidences[i].is_obsolete[j][k].includes('Cellular Component')) {
+                                        celularComponent+= "<li>" + evidence + "</li>";
                                     }
                                 }
                             }
                             var caralho = /li/g;
                             if (caralho.exec(biologicalProcess) == undefined || caralho.exec(biologicalProcess) == null ) {
                                 biologicalProcess += "<li>No terms found</li>";
-                            }
-                            caralho = /li/g;
-                            if (caralho.exec(molecularFunction) == undefined || caralho.exec(molecularFunction) == null) {
+                            } 
+			    caralho = /li/g;
+	
+			    if (caralho.exec(molecularFunction) == undefined || caralho.exec(molecularFunction) == null) { 
                                 molecularFunction += "<li>No terms found</li>";
-                            }
-                            caralho = /li/g;
-                            if (caralho.exec(celularComponent) == undefined || caralho.exec(celularComponent) == null) {
+                            } 
+			    caralho = /li/g;
+			    if (caralho.exec(celularComponent) == undefined || caralho.exec(celularComponent) == null) { 
                                 celularComponent += "<li>No terms found</li>";
                             }
 
