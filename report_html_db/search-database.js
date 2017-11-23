@@ -760,11 +760,15 @@ function dealDataResults(href, featureName, data, product) {
                                 }
                             }
                             var caralho = /li/g;
-                            if (caralho.exec(biologicalProcess) == undefined) {
+                            if (caralho.exec(biologicalProcess) == undefined || caralho.exec(biologicalProcess) == null ) {
                                 biologicalProcess += "<li>No terms found</li>";
-                            } else if (caralho.exec(molecularFunction) == undefined) { 
+                            }
+                            caralho = /li/g;
+                            if (caralho.exec(molecularFunction) == undefined || caralho.exec(molecularFunction) == null) {
                                 molecularFunction += "<li>No terms found</li>";
-                            } else if (caralho.exec(celularComponent) == undefined) { 
+                            }
+                            caralho = /li/g;
+                            if (caralho.exec(celularComponent) == undefined || caralho.exec(celularComponent) == null) {
                                 celularComponent += "<li>No terms found</li>";
                             }
 
