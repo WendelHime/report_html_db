@@ -1058,7 +1058,7 @@ function dealDataResults(href, featureName, data, product) {
                                         }
                                     } else if (componentTemp == 'annotation_predgpi') {
                                         $("#evidence-" + componentTemp + "-" + href.replace("#", "")).empty();
-                                        if (responseIntervals.properties.length > 1) {
+                                        if (typeof (responseIntervals.properties[0].result) === 'undefined') {
                                             for (var j = 0; j < responseIntervals.properties.length; j++) {
                                                 html = getHTMLContent("search-database/predgpiBasicResult.tt").responseJSON.response;
                                                 html = html.replace("[% result.componentName %]", componentTemp);
@@ -1074,7 +1074,7 @@ function dealDataResults(href, featureName, data, product) {
                                                 html = html.replace("[% result.sequence %]", responseIntervals.properties[j].sequence);
                                                 html = html.replace("[% result.start %]", responseIntervals.properties[j].start);
                                                 html = html.replace("[% result.end %]", responseIntervals.properties[j].end);
-                                                html = html.replace("[% result.strand %]", responseIntervals.properties[j].strand);
+                                                html = html.replace("[% result.strand %]", (responseIntervals.properties[j].fstart >responseIntervals.properties[j].fend ) ? -1 : 1);
                                                 listHTMLs[counterHTMLs] = html;
                                                 counterHTMLs++;
                                             }
