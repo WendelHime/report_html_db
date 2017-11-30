@@ -2211,7 +2211,7 @@ sub analyses_CDS {
     my \$query_bigpi	= "";
     my \%components = ();
     if(exists \$hash->{components}) {
-        \%components = map { \$_ => 1} split(",", \$hash->{components});
+        \%components =  (\$hash->{components} =~ /,/) ? map { \$_ => 1} split(",", \$hash->{components}) : (\$hash->{components} => 1 );
     }
 
     if (   ( exists \$hash->{geneDesc} && \$hash->{geneDesc} )
@@ -2721,7 +2721,7 @@ sub analyses_CDS {
             elsif (\$hash->{'cleavageQuant'} eq "none" ) {
                 \$select .= "= 0";
             }
-            \$query_Phobius = \$connector . \$select . ")";
+            \$query_dgpi = \$connector . \$select . ")";
             \$connector     = "1";
         } elsif(\$hash->{'scoreDGPI'}) {
             \$select .= " AND my_to_decimal(pp.value) ";
@@ -2742,7 +2742,10 @@ sub analyses_CDS {
                 \$select .= "= 0 ";
                 push \@args, \$hash->{'scoreDGPI'} if \$hash->{'scoreQuant'};
             }
-            \$query_Phobius = \$connector . \$select . ")";
+            \$query_dgpi = \$connector . \$select . ")";
+            \$connector     = "1";
+        } else {
+            \$query_dgpi = \$connector . \$select . ")";
             \$connector     = "1";
         }
         \$connector      = 1;
@@ -2829,13 +2832,16 @@ sub analyses_CDS {
             push \@args, "\%" . lc( \$hash->{'sequencePreDGPI'} ) . "\%";
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
+        } else {
+            \$query_predgpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
         }
 
     }
     if (    ( exists \$hash->{'noBigGPI'} && \$hash->{'noBigGPI'} )
         ||  ( exists \$hash->{'pvalueBigpi'}   && \$hash->{'pvalueBigpi'}   ) 
         ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  
-        || \$components{"BiGPI"} ) 
+        || \$components{"BIGPI"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id       
         FROM feature f 
@@ -2893,6 +2899,9 @@ sub analyses_CDS {
             elsif ( \$hash->{'positionQuantBigpi'} eq "none" ) {
                 \$select .= "= 0 ";
             }
+            \$query_bigpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        } else {
             \$query_bigpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }

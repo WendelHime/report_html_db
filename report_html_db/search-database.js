@@ -751,11 +751,11 @@ function dealDataResults(href, featureName, data, product) {
                                     var process = regexGO.exec(evidence);
                                     evidence = evidence.replace(process[0], "<a style='color: rgb(35, 82, 124);' target='_blank' href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
                                     if(subevidences[i].is_obsolete[j][k].includes('Biological Process')) {
-                                        biologicalProcess+= "<li>" + evidence + "</li>";
+                                        biologicalProcess+= "<li>" + evidence.replace("Biological Process:", "") + "</li>";
                                     } else if(subevidences[i].is_obsolete[j][k].includes('Molecular Function')) {
-                                        molecularFunction+= "<li>" + evidence + "</li>";
+                                        molecularFunction+= "<li>" + evidence.replace("Molecular Function:", "") + "</li>";
                                     } else if(subevidences[i].is_obsolete[j][k].includes('Cellular Component')) {
-                                        celularComponent+= "<li>" + evidence + "</li>";
+                                        celularComponent+= "<li>" + evidence.replace("Cellular Component:", "") + "</li>";
                                     }
                                 }
                             }
@@ -783,7 +783,11 @@ function dealDataResults(href, featureName, data, product) {
                     } else if(subevidences[i].type == 'similarity') {
                         htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<a id='anchor-evidence-" + componentName + "-" + href.replace("#", "") + "' data-toggle='collapse' data-parent='#accordion' href='#evidence-" + componentName + "-" + href.replace("#", "") + "'>" + subevidences[i].program_description + "</a>");
                     } else {
-                        htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'>" + subevidences[i].program_description + " - No results found</div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name="+componentName+"' target='_blank'>View</a></div></div>");
+                        if(componentName == 'annotation_tcdb') {
+                            htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'>" + subevidences[i].program_description + " - No results found</div></div>");
+                        } else {
+                            htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'>" + subevidences[i].program_description + " - No results found</div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name="+componentName+"' target='_blank'>View</a></div></div>");
+                        }
                     }
                     htmlContent += htmlEvidence;
                     componentsEvidences[counterComponentsEvidences] = componentName;
@@ -1054,7 +1058,7 @@ function dealDataResults(href, featureName, data, product) {
                                         }
                                     } else if (componentTemp == 'annotation_predgpi') {
                                         $("#evidence-" + componentTemp + "-" + href.replace("#", "")).empty();
-                                        if (responseIntervals.properties.length > 1) {
+                                        if (typeof (responseIntervals.properties[0].result) === 'undefined') {
                                             for (var j = 0; j < responseIntervals.properties.length; j++) {
                                                 html = getHTMLContent("search-database/predgpiBasicResult.tt").responseJSON.response;
                                                 html = html.replace("[% result.componentName %]", componentTemp);
@@ -1070,7 +1074,7 @@ function dealDataResults(href, featureName, data, product) {
                                                 html = html.replace("[% result.sequence %]", responseIntervals.properties[j].sequence);
                                                 html = html.replace("[% result.start %]", responseIntervals.properties[j].start);
                                                 html = html.replace("[% result.end %]", responseIntervals.properties[j].end);
-                                                html = html.replace("[% result.strand %]", responseIntervals.properties[j].strand);
+                                                html = html.replace("[% result.strand %]", (responseIntervals.properties[j].fstart >responseIntervals.properties[j].fend ) ? -1 : 1);
                                                 listHTMLs[counterHTMLs] = html;
                                                 counterHTMLs++;
                                             }
