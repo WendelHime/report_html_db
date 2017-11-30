@@ -2211,7 +2211,7 @@ sub analyses_CDS {
     my \$query_bigpi	= "";
     my \%components = ();
     if(exists \$hash->{components}) {
-        \%components = map { \$_ => 1} split(",", \$hash->{components});
+        \%components =  (\$hash->{components} =~ /,/) ? map { \$_ => 1} split(",", \$hash->{components}) : (\$hash->{components} => 1 );
     }
 
     if (   ( exists \$hash->{geneDesc} && \$hash->{geneDesc} )
