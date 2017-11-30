@@ -784,7 +784,7 @@ function dealDataResults(href, featureName, data, product) {
                         htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<a id='anchor-evidence-" + componentName + "-" + href.replace("#", "") + "' data-toggle='collapse' data-parent='#accordion' href='#evidence-" + componentName + "-" + href.replace("#", "") + "'>" + subevidences[i].program_description + "</a>");
                     } else {
                         if(componentName == 'annotation_tcdb') {
-                            htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-12'>" + subevidences[i].program_description + " - No results found</div></div>");
+                            htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'>" + subevidences[i].program_description + " - No results found</div></div>");
                         } else {
                             htmlEvidence = htmlEvidence.replace("[% result.descriptionComponent %]", "<div class='row'><div class='col-md-11'>" + subevidences[i].program_description + " - No results found</div><div class='col-md-1'><a href='" + window.location.pathname.replace("/SearchDatabase", "") + "/ViewResultByComponentID?locus_tag=" + featureName + "&name="+componentName+"' target='_blank'>View</a></div></div>");
                         }
