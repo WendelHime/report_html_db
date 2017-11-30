@@ -751,11 +751,11 @@ function dealDataResults(href, featureName, data, product) {
                                     var process = regexGO.exec(evidence);
                                     evidence = evidence.replace(process[0], "<a style='color: rgb(35, 82, 124);' target='_blank' href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
                                     if(subevidences[i].is_obsolete[j][k].includes('Biological Process')) {
-                                        biologicalProcess+= "<li>" + evidence + "</li>";
+                                        biologicalProcess+= "<li>" + evidence.replace("Biological Process:", "") + "</li>";
                                     } else if(subevidences[i].is_obsolete[j][k].includes('Molecular Function')) {
-                                        molecularFunction+= "<li>" + evidence + "</li>";
+                                        molecularFunction+= "<li>" + evidence.replace("Molecular Function:", "") + "</li>";
                                     } else if(subevidences[i].is_obsolete[j][k].includes('Cellular Component')) {
-                                        celularComponent+= "<li>" + evidence + "</li>";
+                                        celularComponent+= "<li>" + evidence.replace("Cellular Component:", "") + "</li>";
                                     }
                                 }
                             }
