@@ -2762,6 +2762,8 @@ sub analyses_CDS {
         ||  ( exists \$hash->{'positionPreDGPI'} && \$hash->{'positionPreDGPI'} ) 
         ||  ( exists \$hash->{'specificityPreDGPI'} && \$hash->{'specificityPreDGPI'} ) 
         ||  ( exists \$hash->{'sequencePreDGPI'} && \$hash->{'sequencePreDGPI'} )   
+        ||  ( exists \$hash->{'positionQuantPreDGPI'} && \$hash->{'positionQuantPreDGPI'} )
+        ||  ( exists \$hash->{'specificityQuantPreDGPI'} && \$hash->{'specificityQuantPreDGPI'} )
         || \$components{"PreDGPI"} ) {
         my \$select = "(SELECT DISTINCT r.object_id       
         FROM feature f 
@@ -2794,7 +2796,7 @@ sub analyses_CDS {
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
-        elsif(\$hash->{'positionPreDGPI'}) {
+        elsif(\$hash->{'positionPreDGPI'} || \$hash->{positionQuantPreDGPI} eq 'none') {
             \$select .= " AND my_to_decimal(pp.value) ";
             if ( \$hash->{'positionQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
@@ -2814,7 +2816,7 @@ sub analyses_CDS {
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
-        elsif(\$hash->{'specificityPreDGPI'}) {
+        elsif(\$hash->{'specificityPreDGPI'} || \$hash->{specificityQuantPreDGPI} eq 'none') {
             \$select .= " AND my_to_decimal(replace(ppp.value, '\%', '')) ";
             if ( \$hash->{'specificityQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
@@ -2849,6 +2851,10 @@ sub analyses_CDS {
         ||  ( exists \$hash->{'pvalueBigpi'}   && \$hash->{'pvalueBigpi'}   ) 
         ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  
         ||  ( exists \$hash->{'scoreBigpi'} && \$hash->{'scoreBigpi'} )
+        ||  ( exists \$hash->{pvalueQuantBigpi} && \$hash->{pvalueQuantBigpi} )
+        ||  ( exists \$hash->{positionQuantBigpi} && \$hash->{positionQuantBigpi} )
+        ||  ( exists \$hash->{specificityQuantPreDGPI} && \$hash->{specificityQuantPreDGPI} )
+        ||  ( exists \$hash->{scoreQuantBigpi} && \$hash->{scoreQuantBigpi} )
         || \$components{"BIGPI"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id       
@@ -2873,7 +2879,7 @@ sub analyses_CDS {
         if(\$hash->{'noBigGPI'}) {
             \$connector = " EXCEPT " if \$connector;
             \$query_predgpi = \$connector . \$select . ")";
-        } elsif (\$hash->{'pvalueBigpi'}) {
+        } elsif (\$hash->{'pvalueBigpi'} || \$hash->{'pvalueBigpi'} eq 'none') {
             \$select .= " AND my_to_decimal(ppr.value) ";
             if ( \$hash->{'pvalueQuantBigpi'} eq "exact" ) {
                 \$select .= "= ? ";
@@ -2892,7 +2898,7 @@ sub analyses_CDS {
             }
             \$query_bigpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
-        } elsif (\$hash->{'positionBigpi'}) {
+        } elsif (\$hash->{'positionBigpi'} || \$hash->{'positionBigpi'} eq 'none') {
             \$select .= " AND my_to_decimal(pp.value) ";
             if ( \$hash->{'positionQuantBigpi'} eq "exact" ) {
                 \$select .= "= ? ";
@@ -2911,7 +2917,7 @@ sub analyses_CDS {
             }
             \$query_bigpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
-        } elsif(\$hash->{'scoreBigpi'}) {
+        } elsif(\$hash->{'scoreBigpi'} || \$hash->{'scoreBigpi'} eq 'none') {
             \$select .= " AND my_to_decimal(ppp.value) ";
             if ( \$hash->{'scoreQuantBigpi'} eq "exact" ) {
                 \$select .= "= ? ";
