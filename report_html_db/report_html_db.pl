@@ -2808,7 +2808,7 @@ sub analyses_CDS {
             \$connector     = "1";
         }
         elsif(\$hash->{'specificityPreDGPI'}) {
-            \$select .= " AND my_to_decimal(ppp.value) ";
+            \$select .= " AND my_to_decimal(replace(ppp.value, '%', '')) ";
             if ( \$hash->{'specificityQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
                 push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
@@ -2857,7 +2857,7 @@ sub analyses_CDS {
         JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
         JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
         JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
-        WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='pvalue' AND cpp.name='position' ";
+        WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='p_value' AND cpp.name='position' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noBigGPI'}) {
@@ -8931,8 +8931,8 @@ CONTENTINDEXHOME
                                                     </div>
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-specificity-predgpi') %]</label>
-                                                        <input class="form-control" type="number" name="specificityPreDGPI">
-                                [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                        <input class="form-control" step="any" min="0.00000000000000000000000000001" type="number" name="specificityPreDGPI">
+                                [% FOREACH text IN searchDBTexts.item('search-database-quantity-specificityQuantPreDGPI') %]
                                                                 <div class="radio">
                                                                         <label>[% text %]</label>
                                                                 </div>
@@ -8948,7 +8948,7 @@ CONTENTINDEXHOME
                                             <div id="bigpi" class="tab-pane fade">
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-value-bigpi') %]</label>
-                                                        <input class="form-control" type="number" name="pvalueBigpi">
+                                                        <input class="form-control" step="any" min="0.00000000000000000000000000001" type="number" name="pvalueBigpi">
                                                         [% FOREACH text IN searchDBTexts.item('search-database-quantity-pvalueQuantBigpi') %]
                                     <div class="radio">
                                         <label>[% text %]</label>
