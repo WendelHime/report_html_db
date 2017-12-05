@@ -1072,8 +1072,8 @@ function dealDataResults(href, featureName, data, product) {
                                                 html = html.replace("[% result.position %]", responseIntervals.properties[j].position);
                                                 html = html.replace("[% result.specificity %]", responseIntervals.properties[j].specificity);
                                                 html = html.replace("[% result.sequence %]", responseIntervals.properties[j].sequence);
-                                                html = html.replace("[% result.start %]", responseIntervals.properties[j].start);
-                                                html = html.replace("[% result.end %]", responseIntervals.properties[j].end);
+                                                html = html.replace("[% result.start %]", responseIntervals.properties[j].fstart);
+                                                html = html.replace("[% result.end %]", responseIntervals.properties[j].fend);
                                                 html = html.replace("[% result.strand %]", (responseIntervals.properties[j].fstart >responseIntervals.properties[j].fend ) ? -1 : 1);
                                                 listHTMLs[counterHTMLs] = html;
                                                 counterHTMLs++;
