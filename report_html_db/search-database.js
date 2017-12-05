@@ -1115,11 +1115,6 @@ function dealDataResults(href, featureName, data, product) {
                                         if (typeof (responseIntervals.properties[0].result) === 'undefined') {
                                             for (var j = 0; j < responseIntervals.properties.length; j++) {
                                                 html = getHTMLContent("search-database/bigpiBasicResult.tt").responseJSON.response;
-                                                html = html.replace("[% result.componentName %]", componentTemp);
-                                                html = html.replace("[% result.componentName %]", componentTemp);
-                                                html = html.replace("[% result.feature_id %]", href.replace("#", ""));
-                                                html = html.replace("[% result.feature_id %]", href.replace("#", ""));
-                                                html = html.replace("[% result.counter %]", counterHTMLs);
                                                 html = html.replace("[% result.counter %]", responseIntervals.properties[j].p_value);
                                                 html = html.replace("[% result.counter %]", counterHTMLs);
                                                 html = html.replace("[% result.pvalue %]", responseIntervals.properties[j].p_value);
@@ -1127,6 +1122,7 @@ function dealDataResults(href, featureName, data, product) {
                                                 html = html.replace("[% result.start %]", responseIntervals.properties[j].fstart);
                                                 html = html.replace("[% result.end %]", responseIntervals.properties[j].fend);
                                                 html = html.replace("[% result.strand %]", (responseIntervals.properties[j].fstart >responseIntervals.properties[j].fend ) ? -1 : 1);
+                                                html = html.replace("[% result.score %]", responseIntervals.properties[j].score);
                                                 listHTMLs[counterHTMLs] = html;
                                                 counterHTMLs++;
                                             }

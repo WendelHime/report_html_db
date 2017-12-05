@@ -737,6 +737,12 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='exact'> exactly", ""),
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='none'> none", ""),
 
+        
+    ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='orLess'> or less", ""),
+        ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='orMore'> or more", ""),
+        ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='exact'> exactly", ""),
+        ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='none'> none", ""),
+
     ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orMore'> or more", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='exact'> exactly", ""),
@@ -1636,6 +1642,7 @@ if($annotation_bigpi) {
                     ("search-database-analyses-protein-code-tab", "<a href='#bigpi' data-toggle='tab'>BIGPI</a>", ""),
                     ("search-database-analyses-protein-code-not-containing-bigpi", " not containing BIGPI matches", ""),
                     ("search-database-analyses-protein-code-value-bigpi", "Get by value", ""),
+                    ("search-database-analyses-protein-code-score-bigpi", "Or get by score", ""),
                     ("search-database-analyses-protein-code-position-bigpi", "Or get by position", "");
 SQL
 }
@@ -2808,7 +2815,7 @@ sub analyses_CDS {
             \$connector     = "1";
         }
         elsif(\$hash->{'specificityPreDGPI'}) {
-            \$select .= " AND my_to_decimal(replace(ppp.value, '%', '')) ";
+            \$select .= " AND my_to_decimal(replace(ppp.value, '\%', '')) ";
             if ( \$hash->{'specificityQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
                 push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
@@ -2841,6 +2848,7 @@ sub analyses_CDS {
     if (    ( exists \$hash->{'noBigGPI'} && \$hash->{'noBigGPI'} )
         ||  ( exists \$hash->{'pvalueBigpi'}   && \$hash->{'pvalueBigpi'}   ) 
         ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  
+        ||  ( exists \$hash->{'scoreBigpi'} && \$hash->{'scoreBigpi'} )
         || \$components{"BIGPI"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id       
@@ -2857,7 +2865,9 @@ sub analyses_CDS {
         JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
         JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
         JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
-        WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='p_value' AND cpp.name='position' ";
+        JOIN featureprop ppp ON (pr.subject_id = ppp.feature_id) 
+        JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id)  
+        WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='p_value' AND cpp.name='position' AND cppp.name='score' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noBigGPI'}) {
@@ -2897,6 +2907,25 @@ sub analyses_CDS {
                 push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
             }
             elsif ( \$hash->{'positionQuantBigpi'} eq "none" ) {
+                \$select .= "= 0 ";
+            }
+            \$query_bigpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        } elsif(\$hash->{'scoreBigpi'}) {
+            \$select .= " AND my_to_decimal(ppp.value) ";
+            if ( \$hash->{'scoreQuantBigpi'} eq "exact" ) {
+                \$select .= "= ? ";
+                push \@args, \$hash->{'scoreBigpi'} if \$hash->{scoreQuantBigpi};
+            }
+            elsif ( \$hash->{'scoreQuantBigpi'} eq "orLess" ) {
+                \$select .= "<= ? ";
+                push \@args, \$hash->{'scoreBigpi'} if \$hash->{scoreQuantBigpi};
+            }
+            elsif ( \$hash->{'scoreQuantBigpi'} eq "orMore" ) {
+                \$select .= ">= ? ";
+                push \@args, \$hash->{'scoreBigpi'} if \$hash->{scoreQuantBigpi};
+            }
+            elsif ( \$hash->{'scoreQuantBigpi'} eq "none" ) {
                 \$select .= "= 0 ";
             }
             \$query_bigpi .= \$connector . \$select . " ) ";
@@ -8965,6 +8994,16 @@ CONTENTINDEXHOME
                                 [% END %]
                                                     </div>
                                                 </div>
+                                                 <div class="form-group">
+                                                    <label>[% searchDBTexts.item('search-database-analyses-protein-code-score-bigpi') %]</label>
+                                                    <input class="form-control" step="any" min="0.00000000000000000000000000001"  type="number" name="scoreBigpi">
+                                                    [% FOREACH text IN searchDBTexts.item('search-database-quantity-scoreQuantBigpi') %]
+                                                    <div class="radio">
+                                                        <label>[% text %]</label>
+                                                    </div>
+                                                    [% END %]
+                                                </div>
+                                            </div>
                                         [% END %]
                                         [% IF interpro %]
                                             <div id="geneOntology" class="tab-pane fade">
@@ -9674,13 +9713,6 @@ CONTENT
         ,
         "bigpiBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
-        </div>
-    </div>
-    <div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
         <div class="row">
             <div class="col-md-3">
                 <p>Value:</p>
@@ -9721,8 +9753,6 @@ CONTENT
                 <p>[% result.strand %]</p>
             </div>
         </div>
-    </div>
-</div>
 CONTENT
         ,
         "dgpiNoResult.tt" => <<CONTENT
