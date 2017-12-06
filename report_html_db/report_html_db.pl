@@ -7959,7 +7959,7 @@ my $panelInformation = "
 <div class='panel panel-info'>
 <div class='panel-heading'>
 [% FOREACH text IN texts %]
-[% IF text.tag.search('home') && !text.tag.search('value') %]
+[% IF text.tag.search('home-title') && !text.tag.search('value') %]
 [% text.value %]
 [% END %]
 [% END %]
