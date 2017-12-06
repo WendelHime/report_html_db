@@ -1434,3 +1434,9 @@ $("input[name=AHthrM]").change(function() {
         $("input[name=AHthr]").prop("disabled", false);
 });
 
+$("input[name=scoreQuantBigpi]").change(function() {
+    if($("input[name=scoreQuantBigpi]:checked").val() == "none")
+        $("input[name=scoreBigpi]").prop("disabled", true);
+    else
+        $("input[name=scoreBigpi]").prop("disabled", false);
+});
