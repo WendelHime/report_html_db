@@ -1072,8 +1072,8 @@ function dealDataResults(href, featureName, data, product) {
                                                 html = html.replace("[% result.position %]", responseIntervals.properties[j].position);
                                                 html = html.replace("[% result.specificity %]", responseIntervals.properties[j].specificity);
                                                 html = html.replace("[% result.sequence %]", responseIntervals.properties[j].sequence);
-                                                html = html.replace("[% result.start %]", responseIntervals.properties[j].start);
-                                                html = html.replace("[% result.end %]", responseIntervals.properties[j].end);
+                                                html = html.replace("[% result.start %]", responseIntervals.properties[j].fstart);
+                                                html = html.replace("[% result.end %]", responseIntervals.properties[j].fend);
                                                 html = html.replace("[% result.strand %]", (responseIntervals.properties[j].fstart >responseIntervals.properties[j].fend ) ? -1 : 1);
                                                 listHTMLs[counterHTMLs] = html;
                                                 counterHTMLs++;
@@ -1086,7 +1086,7 @@ function dealDataResults(href, featureName, data, product) {
                                         }
                                     } else if (componentTemp == 'annotation_dgpi') {
                                         $("#evidence-" + componentTemp + "-" + href.replace("#", "")).empty();
-                                        if (responseIntervals.properties.length > 1) {
+                                        if (typeof (responseIntervals.properties[0].result) === 'undefined') {
                                             for (var j = 0; j < responseIntervals.properties.length; j++) {
                                                 html = getHTMLContent("search-database/dgpiBasicResult.tt").responseJSON.response;
                                                 html = html.replace("[% result.componentName %]", componentTemp);
@@ -1112,21 +1112,17 @@ function dealDataResults(href, featureName, data, product) {
                                         }
                                     } else if (componentTemp == 'annotation_bigpi') {
                                         $("#evidence-" + componentTemp + "-" + href.replace("#", "")).empty();
-                                        if (responseIntervals.properties.length > 1) {
+                                        if (typeof (responseIntervals.properties[0].result) === 'undefined') {
                                             for (var j = 0; j < responseIntervals.properties.length; j++) {
                                                 html = getHTMLContent("search-database/bigpiBasicResult.tt").responseJSON.response;
-                                                html = html.replace("[% result.componentName %]", componentTemp);
-                                                html = html.replace("[% result.componentName %]", componentTemp);
-                                                html = html.replace("[% result.feature_id %]", href.replace("#", ""));
-                                                html = html.replace("[% result.feature_id %]", href.replace("#", ""));
+                                                html = html.replace("[% result.counter %]", responseIntervals.properties[j].p_value);
                                                 html = html.replace("[% result.counter %]", counterHTMLs);
-                                                html = html.replace("[% result.counter %]", responseIntervals.properties[j].pvalue);
-                                                html = html.replace("[% result.counter %]", counterHTMLs);
-                                                html = html.replace("[% result.pvalue %]", responseIntervals.properties[j].pvalue);
+                                                html = html.replace("[% result.pvalue %]", responseIntervals.properties[j].p_value);
                                                 html = html.replace("[% result.position %]", responseIntervals.properties[j].position);
-                                                html = html.replace("[% result.start %]", responseIntervals.properties[j].start);
-                                                html = html.replace("[% result.end %]", responseIntervals.properties[j].end);
-                                                html = html.replace("[% result.strand %]", responseIntervals.properties[j].strand);
+                                                html = html.replace("[% result.start %]", responseIntervals.properties[j].fstart);
+                                                html = html.replace("[% result.end %]", responseIntervals.properties[j].fend);
+                                                html = html.replace("[% result.strand %]", (responseIntervals.properties[j].fstart >responseIntervals.properties[j].fend ) ? -1 : 1);
+                                                html = html.replace("[% result.score %]", responseIntervals.properties[j].score);
                                                 listHTMLs[counterHTMLs] = html;
                                                 counterHTMLs++;
                                             }
@@ -1438,3 +1434,9 @@ $("input[name=AHthrM]").change(function() {
         $("input[name=AHthr]").prop("disabled", false);
 });
 
+$("input[name=scoreQuantBigpi]").change(function() {
+    if($("input[name=scoreQuantBigpi]:checked").val() == "none")
+        $("input[name=scoreBigpi]").prop("disabled", true);
+    else
+        $("input[name=scoreBigpi]").prop("disabled", false);
+});

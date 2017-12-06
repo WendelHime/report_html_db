@@ -737,6 +737,12 @@ INSERT INTO TEXTS(tag, value, details) VALUES
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='exact'> exactly", ""),
         ("search-database-quantity-positionQuantBigpi", "<input type='radio' name='positionQuantBigpi' value='none'> none", ""),
 
+        
+    ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='orLess'> or less", ""),
+        ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='orMore'> or more", ""),
+        ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='exact'> exactly", ""),
+        ("search-database-quantity-scoreQuantBigpi", "<input type='radio' name='scoreQuantBigpi' value='none'> none", ""),
+
     ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orLess'> or less", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='orMore'> or more", ""),
         ("search-database-quantity-tmQuant", "<input type='radio' name='tmQuant' value='exact'> exactly", ""),
@@ -1636,6 +1642,7 @@ if($annotation_bigpi) {
                     ("search-database-analyses-protein-code-tab", "<a href='#bigpi' data-toggle='tab'>BIGPI</a>", ""),
                     ("search-database-analyses-protein-code-not-containing-bigpi", " not containing BIGPI matches", ""),
                     ("search-database-analyses-protein-code-value-bigpi", "Get by value", ""),
+                    ("search-database-analyses-protein-code-score-bigpi", "Or get by score", ""),
                     ("search-database-analyses-protein-code-position-bigpi", "Or get by position", "");
 SQL
 }
@@ -2755,6 +2762,8 @@ sub analyses_CDS {
         ||  ( exists \$hash->{'positionPreDGPI'} && \$hash->{'positionPreDGPI'} ) 
         ||  ( exists \$hash->{'specificityPreDGPI'} && \$hash->{'specificityPreDGPI'} ) 
         ||  ( exists \$hash->{'sequencePreDGPI'} && \$hash->{'sequencePreDGPI'} )   
+        ||  ( exists \$hash->{'positionQuantPreDGPI'} && \$hash->{'positionQuantPreDGPI'} )
+        ||  ( exists \$hash->{'specificityQuantPreDGPI'} && \$hash->{'specificityQuantPreDGPI'} )
         || \$components{"PreDGPI"} ) {
         my \$select = "(SELECT DISTINCT r.object_id       
         FROM feature f 
@@ -2787,7 +2796,7 @@ sub analyses_CDS {
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
-        elsif(\$hash->{'positionPreDGPI'}) {
+        elsif(\$hash->{'positionPreDGPI'} || \$hash->{positionQuantPreDGPI} eq 'none') {
             \$select .= " AND my_to_decimal(pp.value) ";
             if ( \$hash->{'positionQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
@@ -2807,8 +2816,8 @@ sub analyses_CDS {
             \$query_predgpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
         }
-        elsif(\$hash->{'specificityPreDGPI'}) {
-            \$select .= " AND my_to_decimal(ppp.value) ";
+        elsif(\$hash->{'specificityPreDGPI'} || \$hash->{specificityQuantPreDGPI} eq 'none') {
+            \$select .= " AND my_to_decimal(replace(ppp.value, '\%', '')) ";
             if ( \$hash->{'specificityQuantPreDGPI'} eq "exact" ) {
                 \$select .= "= ? ";
                 push \@args, \$hash->{'specificityPreDGPI'} if \$hash->{specificityQuantPreDGPI};
@@ -2841,6 +2850,11 @@ sub analyses_CDS {
     if (    ( exists \$hash->{'noBigGPI'} && \$hash->{'noBigGPI'} )
         ||  ( exists \$hash->{'pvalueBigpi'}   && \$hash->{'pvalueBigpi'}   ) 
         ||  ( exists \$hash->{'positionBigpi'}   && \$hash->{'positionBigpi'}   )  
+        ||  ( exists \$hash->{'scoreBigpi'} && \$hash->{'scoreBigpi'} )
+        ||  ( exists \$hash->{pvalueQuantBigpi} && \$hash->{pvalueQuantBigpi} )
+        ||  ( exists \$hash->{positionQuantBigpi} && \$hash->{positionQuantBigpi} )
+        ||  ( exists \$hash->{specificityQuantPreDGPI} && \$hash->{specificityQuantPreDGPI} )
+        ||  ( exists \$hash->{scoreQuantBigpi} && \$hash->{scoreQuantBigpi} )
         || \$components{"BIGPI"} ) 
     {
         my \$select = "(SELECT DISTINCT r.object_id       
@@ -2857,13 +2871,15 @@ sub analyses_CDS {
         JOIN cvterm cpr ON (ppr.type_id = cpr.cvterm_id)
         JOIN featureprop pp ON (pr.subject_id = pp.feature_id) 
         JOIN cvterm cpp ON (pp.type_id = cpp.cvterm_id)  
-        WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='pvalue' AND cpp.name='position' ";
+        JOIN featureprop ppp ON (pr.subject_id = ppp.feature_id) 
+        JOIN cvterm cppp ON (ppp.type_id = cppp.cvterm_id)  
+        WHERE a.program = 'annotation_bigpi.pl' AND c.name='pipeline_id' AND p.value=? AND cpr.name='p_value' AND cpp.name='position' AND cppp.name='score' ";
         push \@args, \$hash->{pipeline};
         \$connector = " INTERSECT " if \$connector;
         if(\$hash->{'noBigGPI'}) {
             \$connector = " EXCEPT " if \$connector;
             \$query_predgpi = \$connector . \$select . ")";
-        } elsif (\$hash->{'pvalueBigpi'}) {
+        } elsif (\$hash->{'pvalueBigpi'} || \$hash->{'pvalueBigpi'} eq 'none') {
             \$select .= " AND my_to_decimal(ppr.value) ";
             if ( \$hash->{'pvalueQuantBigpi'} eq "exact" ) {
                 \$select .= "= ? ";
@@ -2882,7 +2898,7 @@ sub analyses_CDS {
             }
             \$query_bigpi .= \$connector . \$select . " ) ";
             \$connector     = "1";
-        } elsif (\$hash->{'positionBigpi'}) {
+        } elsif (\$hash->{'positionBigpi'} || \$hash->{'positionBigpi'} eq 'none') {
             \$select .= " AND my_to_decimal(pp.value) ";
             if ( \$hash->{'positionQuantBigpi'} eq "exact" ) {
                 \$select .= "= ? ";
@@ -2897,6 +2913,25 @@ sub analyses_CDS {
                 push \@args, \$hash->{'positionBigpi'} if \$hash->{positionQuantBigpi};
             }
             elsif ( \$hash->{'positionQuantBigpi'} eq "none" ) {
+                \$select .= "= 0 ";
+            }
+            \$query_bigpi .= \$connector . \$select . " ) ";
+            \$connector     = "1";
+        } elsif(\$hash->{'scoreBigpi'} || \$hash->{'scoreBigpi'} eq 'none') {
+            \$select .= " AND my_to_decimal(ppp.value) ";
+            if ( \$hash->{'scoreQuantBigpi'} eq "exact" ) {
+                \$select .= "= ? ";
+                push \@args, \$hash->{'scoreBigpi'} if \$hash->{scoreQuantBigpi};
+            }
+            elsif ( \$hash->{'scoreQuantBigpi'} eq "orLess" ) {
+                \$select .= "<= ? ";
+                push \@args, \$hash->{'scoreBigpi'} if \$hash->{scoreQuantBigpi};
+            }
+            elsif ( \$hash->{'scoreQuantBigpi'} eq "orMore" ) {
+                \$select .= ">= ? ";
+                push \@args, \$hash->{'scoreBigpi'} if \$hash->{scoreQuantBigpi};
+            }
+            elsif ( \$hash->{'scoreQuantBigpi'} eq "none" ) {
                 \$select .= "= 0 ";
             }
             \$query_bigpi .= \$connector . \$select . " ) ";
@@ -8931,8 +8966,8 @@ CONTENTINDEXHOME
                                                     </div>
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-specificity-predgpi') %]</label>
-                                                        <input class="form-control" type="number" name="specificityPreDGPI">
-                                [% FOREACH text IN searchDBTexts.item('search-database-analyses-protein-code-number-transmembrane-domain-quantity') %]
+                                                        <input class="form-control" step="any" min="0.00000000000000000000000000001" type="number" name="specificityPreDGPI">
+                                [% FOREACH text IN searchDBTexts.item('search-database-quantity-specificityQuantPreDGPI') %]
                                                                 <div class="radio">
                                                                         <label>[% text %]</label>
                                                                 </div>
@@ -8948,7 +8983,7 @@ CONTENTINDEXHOME
                                             <div id="bigpi" class="tab-pane fade">
                                                     <div class="form-group">
                                 <label>[% searchDBTexts.item('search-database-analyses-protein-code-value-bigpi') %]</label>
-                                                        <input class="form-control" type="number" name="pvalueBigpi">
+                                                        <input class="form-control" step="any" min="0.00000000000000000000000000001" type="number" name="pvalueBigpi">
                                                         [% FOREACH text IN searchDBTexts.item('search-database-quantity-pvalueQuantBigpi') %]
                                     <div class="radio">
                                         <label>[% text %]</label>
@@ -8965,6 +9000,16 @@ CONTENTINDEXHOME
                                 [% END %]
                                                     </div>
                                                 </div>
+                                                 <div class="form-group">
+                                                    <label>[% searchDBTexts.item('search-database-analyses-protein-code-score-bigpi') %]</label>
+                                                    <input class="form-control" step="any" min="0.00000000000000000000000000001"  type="number" name="scoreBigpi">
+                                                    [% FOREACH text IN searchDBTexts.item('search-database-quantity-scoreQuantBigpi') %]
+                                                    <div class="radio">
+                                                        <label>[% text %]</label>
+                                                    </div>
+                                                    [% END %]
+                                                </div>
+                                            </div>
                                         [% END %]
                                         [% IF interpro %]
                                             <div id="geneOntology" class="tab-pane fade">
@@ -9674,13 +9719,6 @@ CONTENT
         ,
         "bigpiBasicResult.tt" => <<CONTENT
 <!DOCTYPE html>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#[% result.componentName %]-[% result.feature_id %]-[% result.counter %]">[% result.counter %]</a>
-        </div>
-    </div>
-    <div id="[% result.componentName %]-[% result.feature_id %]-[% result.counter %]" class="panel-body collapsed">
         <div class="row">
             <div class="col-md-3">
                 <p>Value:</p>
@@ -9721,8 +9759,6 @@ CONTENT
                 <p>[% result.strand %]</p>
             </div>
         </div>
-    </div>
-</div>
 CONTENT
         ,
         "dgpiNoResult.tt" => <<CONTENT
