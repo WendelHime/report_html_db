@@ -13,7 +13,7 @@ Para rodar:<br /><br />
 
 Inicialize a aplicação de serviço:<br /><br />
 
-`./output_dir/Organism-Service/script/organism_service__server.pl -r &`<br /><br /> 
+`./output_dir/Organism-Service/script/organism_service_server.pl -r &`<br /><br /> 
 Adicione o caminho do serviço na configuração do Organism-Website:<br /><br />
 `echo "\nrest_endpoint http://127.0.0.1:3000\npipeline_id 4528" >> ./output_dir/Organism-Website/organism_website.conf`<br /><br /> 
 
