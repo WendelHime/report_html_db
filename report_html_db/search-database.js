@@ -746,21 +746,31 @@ function dealDataResults(href, featureName, data, product) {
                             var celularComponent = "<div class='panel panel-default'><div class='panel-heading'><div class='panel-title'>Celular component</div></div><div class='panel-body'><div class='notice-board'><ul>";
                             for (var j = 0; j < subevidences[i].is_obsolete.length; j++) {
                                 for (var k = 0; k < subevidences[i].is_obsolete[j].length; k++) {
-                                    var evidences = subevidences[i].is_obsolete[j][k].split(",");
-				                    for(var l = 0; l < evidences.length; l++) {
-                                    	var regexGO = /(GO:\d+)/g;
-                    					var evidence = evidences[l];
-                                        var process = regexGO.exec(evidence);
-					                    if(process != null) {
-                                            evidence = evidence.replace(process[0], "<a style='color: rgb(35, 82, 124);' target='_blank' href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
-                    					}
-                                        if(subevidences[i].is_obsolete[j][k].includes('Biological Process')) {
-                                            biologicalProcess+= "<li>" + evidence.replace("Biological Process:", "") + "</li>";
-                                        } else if(subevidences[i].is_obsolete[j][k].includes('Molecular Function')) {
-                                            molecularFunction+= "<li>" + evidence.replace("Molecular Function:", "") + "</li>";
-                                        } else if(subevidences[i].is_obsolete[j][k].includes('Cellular Component')) {
-                                            celularComponent+= "<li>" + evidence.replace("Cellular Component:", "") + "</li>";
-                                        }
+                                    var evidences = ""; 
+				    if(subevidences[i].is_obsolete[j][k].includes('Biological Process')) {
+					evidences = subevidences[i].is_obsolete[j][k].split("Biological Process: ");
+				    } else if(subevidences[i].is_obsolete[j][k].includes('Molecular Function')) {
+					evidences = subevidences[i].is_obsolete[j][k].split("Molecular Function: ");
+				    } else if(subevidences[i].is_obsolete[j][k].includes('Cellular Component')) {
+					evidences = subevidences[i].is_obsolete[j][k].split("Cellular Component: ");
+  				    }
+				    
+				    for(var l = 0; l < evidences.length; l++) {
+					if(evidences[l] != "") {
+                                    	    var regexGO = /(GO:\d+)/g;
+					    var evidence = evidences[l];
+                                            var process = regexGO.exec(evidence);
+					    if(process != null) {
+                                                evidence = evidence.replace(process[0], "<a style='color: rgb(35, 82, 124);' target='_blank' href='http://www.ebi.ac.uk/QuickGO/GTerm?id="+process[0]+"'>"+process[0]+"</a>");
+					    }
+                                            if(subevidences[i].is_obsolete[j][k].includes('Biological Process') && !biologicalProcess.includes(process[0]) ) {
+                                                biologicalProcess+= "<li>" + evidence + "</li>";
+                                            } else if(subevidences[i].is_obsolete[j][k].includes('Molecular Function') && !molecularFunction.includes(process[0])) {
+                                                molecularFunction+= "<li>" + evidence + "</li>";
+                                            } else if(subevidences[i].is_obsolete[j][k].includes('Cellular Component') && !celularComponent.includes(process[0])) {
+                                                celularComponent+= "<li>" + evidence + "</li>";
+                                            }
+					}
                                     }
                                 }
                             }
