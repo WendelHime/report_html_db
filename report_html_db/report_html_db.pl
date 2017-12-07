@@ -8663,6 +8663,19 @@ CONTENTHELP
         [% INCLUDE '$lowCaseName/help/_content.tt' %]
     </div>
 </div>
+<script>
+\$(".collapsed").click(function() {
+    var regex = /\\./g;
+    if (regex.exec(\$(this).attr('href')).length > 0) {
+        regex = /(#\\w+\\d)+[\\.\\d]+/g;
+        var idPanel = regex.exec(\$(this).attr('href'))[1];
+        \$("#collapseTwo").collapse("toggle");
+        \$(idPanel).collapse("show");
+        var id = \$(this).attr('href');
+        setTimeout(function() { window.location.hash = id; }, 300);
+    }
+});
+</script>
 CONTENTINDEXHELP
     },
     "home" => {
