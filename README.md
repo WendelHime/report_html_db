@@ -24,5 +24,5 @@ Acesse o site:<br /><br />
 
 http://127.0.0.1:8080<br /><br />                                                                                                                                     
 
-You can see more informations in [Report_HTML_DB Wiki!](report_html_db/wiki)
+You can see more informations in [Report_HTML_DB Wiki!](https://github.com/WendelHime/report_html_db/wiki)
 
