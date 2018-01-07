@@ -22,8 +22,6 @@ $ungappedAlignment		=>	scalar with off or on for ungapped alignments
 $geneticCode			=>	scalar with the genetic code
 $databaseGeneticCode	=>	scalar with the database genetic code
 $frameShiftPenality		=>	scalar with the frame shift penality option
-$otherAdvanced			=>	scalar with other advanced options
-$graphicalOverview		=>	scalar with off or on for graphical overview
 $alignmentView			=>	scalar with the alignment view
 $descriptions			=>	scalar with the quantity of descriptions
 $alignments				=>	scalar with the quantity of alignments
@@ -39,7 +37,6 @@ sub executeBlastSearch {
 		$fastaSequence,     $from,          $to,
 		$filter,            $expect,        $matrix,
 		$ungappedAlignment, $geneticCode,   $databaseGeneticCode,
-		$otherAdvanced,     $graphicalOverview,
 		$alignmentView,     $descriptions,  $alignments,
         $costOpenGap,       $costToExtendGap,   $wordSize
 	) = @_;
@@ -124,8 +121,6 @@ sub executeBlastSearch {
 	$command .= " -num_alignments \"$alignments\" " if $alignments;
 	$command .= " -outfmt 0 " if !$alignmentView || undef $alignmentView;
 	$command .= " -outfmt \"$alignmentView\" " if $alignmentView;
-	$otherAdvanced =~ s/['"&.|]//g;
-	$command .= " $otherAdvanced ";
 	print STDERR "\n$command\n";
 	my @response = `$command`;
 

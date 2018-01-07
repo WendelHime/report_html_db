@@ -131,24 +131,6 @@ sub getSubsequence {
 	return Report_HTML_DB::Models::Services::BaseResponse->thaw($response);
 }
 
-sub getncRNA_desc {
-	my ( $self, $feature, $pipeline, $pageSize, $offset ) = @_;
-	my $response = makeRequest(
-		$self->{rest_endpoint},
-		"/SearchDatabase/ncRNA_desc",
-		\%{
-			{
-				feature  => $feature,
-				pipeline => $pipeline,
-				pageSize => $pageSize,
-				offset	 => $offset,
-			}
-		},
-		"GET"
-	);
-	return Report_HTML_DB::Models::Services::PagedResponse->thaw($response);
-}
-
 sub getSubevidences {
 	my ( $self, $feature, $pipeline ) = @_;
 	my $response = makeRequest(

@@ -970,7 +970,7 @@ SQL
 
 while ( $sequence_object->read() ) {
     $sequence_object->print();
-    print $LOG "\nSequence:\t" . $sequence_object->{sequence_id} . "\nName:\t".$sequence_object->sequence_name()."\n"; 
+    print $LOG "\nSequence:\t" . $sequence_object->{sequence_id} . "\nName:\t".$sequence_object->sequence_name()."\nPipeline ID: ". $sequence_object->{pipeline_id}."\n"; 
     ++$seq_count;
     $header = $sequence_object->fasta_header();
     my @conclusions = @{ $sequence_object->get_conclusions() };
@@ -2091,6 +2091,7 @@ my $packageDBI = $packageServices . "::Model::SearchDatabaseRepository";
 my $DBI        = <<DBI;
 package $packageDBI;
 
+
 use strict;
 use warnings;
 use parent 'Catalyst::Model::DBI';
@@ -2102,10 +2103,13 @@ __PACKAGE__->config(
     options  => {},
 );
 
-=head2
+=head2 getPipeline
 
-Method used to get pipeline from database
-
+  Title    : getPipeline
+  Usage    : my \$results = \$my_object->getPipeline();
+  Function : Method used to get pipeline from database
+  Returns  : Reference to a hash
+           :
 =cut
 
 sub getPipeline {
@@ -2130,10 +2134,15 @@ sub getPipeline {
     return \\\%returnedHash;
 }
 
-=head2
+=head2 getRibosomalRNAs
 
-Method used to get rRNAs availables in the sequence
-
+  Title    : getRibosomalRNAs
+  Usage    : my \$results = \$my_object->getRibosomalRNAs( -hash => \%{ ( "pipeline_id" => "4528" ) } );
+  Function : Method used to get rRNAs availables in the sequence
+  Returns  : list reference of rRNAs available
+  Args     : named arguments:
+           : -hash => referenced hash with pipeline_id property
+           :
 =cut
 
 sub getRibosomalRNAs {
@@ -2166,9 +2175,77 @@ sub getRibosomalRNAs {
     return \\\@list;
 }
 
-=head2
+=head2 analyses_CDS
 
-Method used to realize search based on parameters received by form of analyses of protein-coding genes
+  Title    : analyses_CDS
+  Usage    : my \$results = \$my_object->analyses_CDS( -hash => \%{ (
+    "pipeline" => "4528"
+  ) } );
+  Function : Method used to realize search based on parameters received by form of analyses of protein-coding genes
+  Returns  : Return a referenced hash with a list of feature IDs and total number of results
+  Args     : named arguments:
+           : -hash => referenced hash with the following properties:
+| Key | Description |
+| :-- | :-- |
+| pipeline | Scalar variable with pipeline ID |
+| contig | Scalar variable with feature ID from contig |
+| geneDesc | Scalar variable which realize search by all CDS with this description |
+| noDesc | Scalar variable which realize search by all CDS that doesn’t have this description |
+| individually | Scalar variable which make all terms from geneDesc and noDesc match  |
+| noGO | Scalar variable, if you don’t want to have results related to GO annotation |
+| goID | Scalar variable with GO Identifier  |
+| goDesc | Scalar variable with GO Description  |
+| noTC | Scalar variable, if you don’t want to have results related to TCDB annotation  |
+| tcdbID | Scalar variable with TCDB ID  |
+| tcdbFam | Scalar variable with TCDB Family |
+| tcdbSubclass | Scalar variable with TCDB subclass  |
+| tcdbClass | Scalar variable with TCDB class  |
+| tcdbDesc | Scalar variable with TCDB description  |
+| noBlast | Scalar variable, if you don’t want to have results related to BLAST annotations  |
+| blastID | Scalar variable with BLAST identifier  |
+| blastDesc | Scalar variable with BLAST description  |
+| noRps | Scalar variable, if you don’t want to have results related to RPS-BLAST annotations  |
+| rpsID | Scalar variable with RPS-BLAST Identifier  |
+| rpsDesc | Scalar variable with RPS-BLAST Description  |
+| noKEGG | Scalar variable, if you don’t want to have results related to KEGG annotations  |
+| koID | Scalar variable with KEGG Identifier  |
+| keggPath | Scalar variable with KEGG Pathway |
+| keggDesc | Scalar variable with KEGG description  |
+| noOrth | Scalar variable, if you don’t want to see results related to orthology annotations.  |
+| orthID | Scalar variable with orthology Identifier  |
+| orthDesc | Scalar variable with orthology description  |
+| noIP | Scalar variable, if you don’t want to see results related to InterProScan annotations.  |
+| interproID | Scalar variable with InterProScan identifier  |
+| interproDesc | Scalar variable with InterProScan description  |
+| noTMHMM | Scalar variable, if you don’t want results related to TMHMM annotations.  |
+| TMHMMdom | Scalar variable with number of transmembrane domains  |
+| tmhmmQuant | Scalar variable which auxiliate search of TMHMMdom, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none" |
+| noDGPI | Scalar variable, if you don’t want results related to DGPI annotations.  |
+| cleavageSiteDGPI | Scalar variable with cleavage site from DGPI  |
+| scoreDGPI | Scalar variable with score from DGPI  |
+| cleavageQuant | Scalar variable which auxiliate search of cleavageSiteDGPI, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none"  |
+| scoreQuant | Scalar variable which auxiliate search of scoreDGPI, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none"  |
+| noPreDGPI | Scalar variable, if you don’t want results related to PreDGPI annotations.  |
+| namePreDGPI | Scalar variable with name of PreDGPI  |
+| positionPreDGPI | Scalar variable with position from PreDGPI  |
+| positionQuantPreDGPI | Scalar variable which auxiliate search of positionPreDGPI, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none"  |
+| specificityPreDGPI | Scalar variable specifity from PreDGPI  |
+| specificityQuantPreDGPI | Scalar variable which auxiliate search of specificityPreDGPI, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none"  |
+| sequencePreDGPI | Scalar variable with sequence to compare with PreDGPI annotations  |
+| noBigGPI | Scalar variable, if you don’t want results related to BiGPI annotations.  |
+| pvalueBigpi | Scalar variable value from BiGPI  |
+| pvalueQuantBigpi | Scalar variable which auxiliate search of quantity BiGPI, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none"  |
+| positionBigpi | Scalar variable value with the position of BiGPI annotation  |
+| positionQuantBigpi | Scalar variable which auxiliate search of position BiGPI, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none"  |
+| noPhobius | Scalar variable, if you don’t want results related to Phobius annotations.  |
+| TMdom | Scalar vairable, quantity of transmembrane domains  |
+| tmQuant | Scalar variable which auxiliate search of parameter TMdom, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none"  |
+| sigP | Scalar variable if you want the phobius with result with signal peptide. If you don’t care: “sigPwhatever”, if you want: “sigPyes”, if you don’t want: “sigPno”  |
+| pageSize | Scalar variable with the page size |
+| offset | Scalar variable with the offset |
+| components | Scalar variable with annotation component names used |            
+           :
+
 
 =cut
 
@@ -3137,7 +3214,7 @@ sub analyses_CDS {
     return \\\%returnedHash;
 }
 
-=head2
+=head2 generate_clause
 
 Method used to generate clause for any query
 
@@ -3162,10 +3239,23 @@ sub generate_clause {
     return \$clause;
 }
 
-=head2
+=head2 rRNA_search
 
-Method used to realize search of rRNAs by contig and type
+  Title    : rRNA_search
+  Usage    : my \$results = \$my_object->rRNA_search( -hash => \%{ ("pipeline" => "4528", "pageSize" => "10", "offset" => "0") } );
+  Function : Method used to realize search of rRNAs by contig and type 
+  Returns  : Returns a array of feature IDs of rRNA results as response
+  Args     : named arguments:
+           : -hash => referenced hash with the following properties:
+| Key | Descriptions |
+| :-- | :-- |
+| pipeline | Pipeline ID |
+| pageSize | Quantity of elements |
+| offset   | Offset of search |
+| type     | Type of rRNA |
+| contig   | Contig ID |
 
+           :
 =cut
 
 sub rRNA_search {
@@ -3232,9 +3322,23 @@ sub rRNA_search {
 
 }
 
-=head2
+=head2 tRNA_search
 
-Method used to return tRNA data from database
+  Title    : tRNA_search
+  Usage    : my \$results = \$my_object->tRNA_search( -hash => \%{ ("pipeline" => "4528") } );
+  Function : Method used to return tRNA data from database 
+  Returns  : Returns hash with Report_HTML_DB::Models::Application::TRNASearch list and total number of results
+  Args     : named arguments:
+           : -hash => referenced hash with the following properties:
+| Key | Description |
+| :-- | :-- |
+| pipeline | Scalar variable with pipeline ID |
+| pageSize | Scalar variable with the page size |
+| offset | Scalar variable with the offset |
+| contig | Scalar variable with feature ID from contig |
+| tRNAaa | Scalar variable to search tRNA by amino acid |
+| tRNAcd | Scalar variable to search tRNA by codon |           
+           :
 
 =cut
 
@@ -3317,9 +3421,25 @@ sub tRNA_search {
     return \\\%returnedHash;
 }
 
-=head2
+=head2 trf_search
 
-Method used to return tandem repeats data from database
+  Title    : trf_search
+  Usage    : my \$results = \$my_object->trf_search( -hash => \%{ ("pipeline" => "4528") } );
+  Function : Method used to return tandem repeats data from database 
+  Returns  : Returns a referenced hash with Report_HTML_DB::Models::Application::TRFSearch list and total number of results available
+  Args     : named arguments:
+           : -hash => referenced hash with the following properties:
+| Key | Description |
+| :-- | :-- |
+| pipeline | Scalar variable with pipeline ID |
+| pageSize | Scalar variable with the page size |
+| offset | Scalar variable with the offset |
+| contig | Scalar variable with feature ID from contig |
+| TRFrepSeq | Scalar variable with sequence in repetition unit |
+| TRFrepSize | Scalar variable with repetition units of bases |
+| TRFsize | Scalar variable which auxiliate search of repetition units of bases, if you want exatly value: “exact”, less: “orLess”, more: “orMore”, or none: "none" |
+| TRFrepNumMin | Scalar variable with occurrences in this min value |
+| TRFrepNumMax | Scalar variable with occurrences in this max value |
 
 =cut
 
@@ -4720,19 +4840,19 @@ sub getGOResultsByFeatureID {
 
 =head1 NAME
 
-services::Model::SearchDatabaseRepository - DBI Model Class
+  $packageDBI - DBI Model Class 
 
 =head1 SYNOPSIS
-
-See L<HTML_DIR>
+  
+  This repository execute queries in annotation database created by EGene2
 
 =head1 DESCRIPTION
 
 DBI Model Class.
 
-=head1 AUTHOR
+=head1 AUTHOR - Wendel Hime Lino Castro
 
-Wendel Hime L. Castro,,,
+Wendel Hime Lino Castro wendelhime\@hotmail.com
 
 =head1 LICENSE
 
@@ -5371,7 +5491,6 @@ sub search_POST {
             \$hash{EXPECT},             \$hash{MAT_PARAM},
             \$hash{UNGAPPED_ALIGNMENT}, \$hash{GENETIC_CODE},
             \$hash{DB_GENETIC_CODE},    
-            \$hash{OTHER_ADVANCED},     \$hash{OVERVIEW},
             \$hash{ALIGNMENT_VIEW},     \$hash{DESCRIPTIONS},
             \$hash{ALIGNMENTS},         \$hash{COST_OPEN_GAP},
             \$hash{COST_EXTEND_GAP},    \$hash{WORD_SIZE}
@@ -5511,7 +5630,7 @@ Catalyst Controller.
 use base 'Catalyst::Controller::REST';
 BEGIN { extends 'Catalyst::Controller::REST'; }
 
-=head2
+=head2 getFeatureID
 
 Method used to get feature id
 
@@ -8288,24 +8407,6 @@ CONTENTABOUTINDEX
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    <div class="form-group">
-                                        <label>Contig: </label>
-                                        <select name="contig">
-                                            <option value="">Select</option>
-                                            [% FOREACH sequence IN sequences %]
-                                                <option value="[% sequence.id %]">[% sequence.name %]</option>
-                                            [% END %]
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="checkbox">
-                                            [% FOREACH text IN texts %]
-                                                [% IF text.tag == "blast-display-options-graphical-overview" %]
-                                                    <label><input type="checkbox" name="OVERVIEW" checked=""><a href="[% text.details %]">[% text.value %]</a></label>
-                                                [% END %]
-                                            [% END %]
-                                        </div>
-                                    </div>
                                     <div class="form-group">
                                         [% FOREACH text IN texts %]
                                             [% IF text.tag == "blast-display-options-alignment-view-title" %]

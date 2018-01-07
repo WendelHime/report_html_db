@@ -1260,7 +1260,7 @@ function dealDataResults(href, featureName, data, product) {
             htmlBasic = htmlBasic.replace("[% result.target_description %]", data.properties[0].target_description);
             htmlBasic = htmlBasic.replace("[% result.score %]", data.properties[0].score);
             htmlBasic = htmlBasic.replace("[% result.evalue %]", data.properties[0].evalue);
-            htmlBasic = htmlBasic.replace("[% result.target_identifier %]", data.properties[0].target_identifier);
+            htmlBasic = htmlBasic.replace("[% result.target_identifier %]", "<a href='http://rfam.xfam.org/family/"+data.properties[0].target_identifier+"'>"+data.properties[0].target_identifier+"</a>");
             htmlBasic = htmlBasic.replace("[% result.target_name %]", data.properties[0].target_name);
             htmlBasic = htmlBasic.replace("[% result.target_class %]", data.properties[0].target_class);
             htmlBasic = htmlBasic.replace("[% result.bias %]", data.properties[0].bias);
