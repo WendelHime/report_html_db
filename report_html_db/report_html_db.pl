@@ -4478,45 +4478,6 @@ sub geneByPosition {
     return \\\%hash;
 }
 
-=head2
-
-Method used to realize search for description of non coding RNA
-
-=cut
-
-sub ncRNA_description {
-    my ( \$self, \$feature_id, \$pipeline ) = \@_;
-    my \$dbh  = \$self->dbh;
-    my \@args = ();
-    my \$query =
-    "SELECT me.object_id AS object_id, feature_relationship_props_subject_feature_2.value AS value "
-    . "FROM feature_relationship me  "
-    . "JOIN cvterm type ON type.cvterm_id = me.type_id "
-    . "LEFT JOIN analysisfeature feature_relationship_analysis_feature_feature_object_2 ON feature_relationship_analysis_feature_feature_object_2.feature_id = me.object_id "
-    . "LEFT JOIN analysis analysis ON analysis.analysis_id = feature_relationship_analysis_feature_feature_object_2.analysis_id "
-    . "LEFT JOIN featureloc feature_relationship_featureloc_subject_feature_2 ON feature_relationship_featureloc_subject_feature_2.feature_id = me.subject_id "
-    . "LEFT JOIN featureprop featureloc_featureprop ON featureloc_featureprop.feature_id = feature_relationship_featureloc_subject_feature_2.srcfeature_id "
-    . "LEFT JOIN cvterm type_2 ON type_2.cvterm_id = featureloc_featureprop.type_id "
-    . "LEFT JOIN featureprop feature_relationship_props_subject_feature_2 ON feature_relationship_props_subject_feature_2.feature_id = me.subject_id "
-    . "LEFT JOIN cvterm type_3 ON type_3.cvterm_id = feature_relationship_props_subject_feature_2.type_id "
-    . "WHERE ( ( analysis.program = 'annotation_infernal.pl' AND featureloc_featureprop.value = ? AND me.object_id = ? AND type.name = 'interval' AND type_2.name = 'pipeline_id' AND type_3.name = 'target_description' ) ) "
-    . "GROUP BY me.object_id, feature_relationship_props_subject_feature_2.value "
-    . "ORDER BY feature_relationship_props_subject_feature_2.value ASC";
-    push \@args, \$pipeline;
-    push \@args, \$feature_id;
-    my \$sth = \$dbh->prepare(\$query);
-    print STDERR \$query;
-    \$sth->execute(\@args);
-    my \@rows    = \@{ \$sth->fetchall_arrayref() };
-    my \%hash    = ();
-    my \@columns = \@{ \$sth->{NAME} };
-
-    for ( my \$i = 0 ; \$i < scalar \@columns ; \$i++ ) {
-        \$hash{ \$columns[\$i] } = \$rows[0][\$i];
-    }
-
-    return \\\%hash;
-}
 
 =head2
 
@@ -5914,28 +5875,6 @@ sub getSubsequence_GET {
     standardStatusOk( \$self, \$c, { "sequence" => \$content } );
 }
 
-=head2 ncRNA_desc  
-
-Method used to return nc rna description
-
-=cut
-
-sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(2) :
-ActionClass('REST') { }
-
-sub ncRNA_desc_GET {
-    my ( \$self, \$c, \$feature, \$pipeline ) = \@_;
-    if ( !\$feature and defined \$c->request->param("feature") ) {
-        \$feature = \$c->request->param("feature");
-    }
-    if ( !\$pipeline and defined \$c->request->param("pipeline") ) {
-        \$pipeline = \$c->request->param("pipeline");
-    }
-    standardStatusOk( \$self, \$c,
-        \$c->model('SearchDatabaseRepository')->ncRNA_description( \$feature, \$pipeline ) );
-
-}
-
 =head2
 
 Method used to return subevidences based on feature id
@@ -6602,25 +6541,6 @@ sub subsequence_GET {
             \$type, \$contig, \$sequenceName, \$start, \$end, \$c->config->{pipeline_id}
         )->{response}
     );
-}
-
-sub ncRNA_desc : Path("/SearchDatabase/ncRNA_desc") : CaptureArgs(1) :
-ActionClass('REST') { }
-
-sub ncRNA_desc_GET {
-    my ( \$self, \$c, \$feature ) = \@_;
-    if ( !\$feature and defined \$c->request->param("feature") ) {
-        \$feature = \$c->request->param("feature");
-    }
-    my \$searchDBClient =
-    Report_HTML_DB::Clients::SearchDBClient->new(
-        rest_endpoint => \$c->config->{rest_endpoint} );
-    standardStatusOk(
-        \$self, \$c,
-        \$searchDBClient->getncRNA_desc(
-            \$feature, \$c->config->{pipeline_id}
-        )->{response}
-    ); 
 }
 
 sub subEvidences : Path("/SearchDatabase/SubEvidences") : CaptureArgs(1) :
