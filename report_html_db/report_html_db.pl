@@ -1836,7 +1836,7 @@ chomp $pathCatalyst;
 
 #give permission to execute catalyst.pl
 #chmod( "755", $pathCatalyst );
-`chmod 755 $pathCatalyst`;
+#`chmod 755 $pathCatalyst`;
 my $packageWebsite = $html_dir;
 $packageWebsite =~ s/-/::/; 
 my $packageServices = $services_dir; 
