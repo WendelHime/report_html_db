@@ -196,6 +196,7 @@ my $ko_file;
 my $annotation_dir;
 
 my $homepage_image_organism;
+my $filepath_assets;
 
 #
 #read configuration file
@@ -377,6 +378,9 @@ if ( defined( $config->{"annotation_dir"} ) ) {
 
 if ( defined( $config->{"homepage_image_organism"} ) ) {
     $homepage_image_organism = $config->{"homepage_image_organism"};
+}
+if ( defined( $config->{"filepath_assets"} ) ) {
+    $filepath_assets = $config->{"filepath_assets"};
 }
 
 #
@@ -7895,10 +7899,9 @@ foreach my $filepathComponent (@filepathsComponents) {
 
 #Descompacta assets
 print $LOG "Copying files assets\n";
-`tar -zxf assets.tar.gz`;
+`tar -zxf $filepath_assets`;
 `mkdir -p $html_dir/root/` if ( !-e "$html_dir/root/" );
-`cp -r assets $html_dir/root/`;
-`rm -Rf assets`;
+`mv assets $html_dir/root/`;
 
 $color_primary =~ s/"//g;
 $color_primary_text =~ s/"//g;
