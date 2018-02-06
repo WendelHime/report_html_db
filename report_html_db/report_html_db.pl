@@ -10821,7 +10821,6 @@ sub readJSON {
         /"([\w\-\_]*)"\s*:\s*"([\w\s<>\/@.\-:;?+(),'=&ããàâáéêíóõú#|&~]*)"/gm
     );
     close($FILEHANDLER);
-    print STDERR "\n$sql\n"; 
     return $sql;
 }
 
