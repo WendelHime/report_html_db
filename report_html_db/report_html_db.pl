@@ -10923,15 +10923,18 @@ Method used to verify if element exists in list reference
 =cut
 
 sub verify_element {
-    my $element = shift;
-    my $vector  = shift;
-    my @array   = grep /\S/, @{$vector};
-    my %params  = map { $_ => 1 } @array;
+    my ($element, $vector) = @_;
+    if (scalar @$vector > 0) {
+        my @cleanedVector = grep { defined $_ } @$vector;
+        if (@cleanedVector) {
+            my @array   = grep /\S/, @cleanedVector;
+            my %params  = map { $_ => 1 } @array;
 
-    if ( exists( $params{$element} ) ) {
-        return 1;
+            if ( exists( $params{$element} ) ) {
+                return 1;
+            }
+        }
     }
-
     return 0;
 
 }
