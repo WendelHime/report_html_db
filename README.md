@@ -5,7 +5,7 @@ Para instalar dependencias:<br /><br />
 
 `sudo apt-get install sqlite3`<br /><br /> 
 
-`cpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema  DBIx::Class::Schema::Loader MooseX::NonMoose Helper::ResultSet::SetOperations`<br /><br /> 
+`cpan DBIx::Class Catalyst::Devel Catalyst::Runtime Catalyst::View::TT Catalyst::View::JSON Catalyst::Model::DBIC::Schema  DBIx::Class::Schema::Loader MooseX::NonMoose Helper::ResultSet::SetOperations LWP::UserAgent::Cached`<br /><br /> 
 
 Para rodar:<br /><br /> 
 

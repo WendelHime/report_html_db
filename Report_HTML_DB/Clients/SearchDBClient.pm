@@ -351,7 +351,8 @@ sub postBlast {
 
 sub makeRequest {
 	my ( $rest_endpoint, $action, $parameters, $method ) = @_;
-	my $user_agent = LWP::UserAgent->new;
+    mkdir '/tmp/report_html_db_cache' if not -d '/tmp/report_html_db_cache';
+	my $user_agent = LWP::UserAgent::Cached->new(cache_dir => '/tmp/report_html_db_cache');
 	my $url        = "";
     my $request;
 	if ( $method eq "GET" ) {
