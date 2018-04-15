@@ -395,6 +395,40 @@ $(function() {
     );
 });
 
+$(function() {
+  $('select[name=type]').focus(
+    function() {
+      if ($('select[name=type] option').length <= 1) {
+        ribosomal_rnas = getRibosomalRNAs().responseJSON.response;
+        for (i = 0; i < ribosomal_rnas.length; i++) {
+          $('select[name=type]').append($('<option>', {
+            value: ribosomal_rnas[i],
+            text: ribosomal_rnas[i]
+          }));
+        }
+      }
+      return false
+    }
+  );
+});
+
+$(function() {
+  $('select[name=ncRNAtargetClass]').focus(
+    function() {
+      if ($('select[name=ncRNAtargetClass] option').length <= 1) {
+        target_classes = getTargetClass().responseJSON.response;
+        for (i = 0; i < target_classes.length; i++) {
+          $('select[name=ncRNAtargetClass]').append($('<option>', {
+            value: target_classes[i],
+            text: target_classes[i]
+          }));
+        }
+      }
+      return false
+    }
+  );
+});
+
 /**
  * Add function to submit form
  */
@@ -1260,7 +1294,7 @@ function dealDataResults(href, featureName, data, product) {
             htmlBasic = htmlBasic.replace("[% result.target_description %]", data.properties[0].target_description);
             htmlBasic = htmlBasic.replace("[% result.score %]", data.properties[0].score);
             htmlBasic = htmlBasic.replace("[% result.evalue %]", data.properties[0].evalue);
-            htmlBasic = htmlBasic.replace("[% result.target_identifier %]", "<a href='http://rfam.xfam.org/family/"+data.properties[0].target_identifier+"'>"+data.properties[0].target_identifier+"</a>");
+            htmlBasic = htmlBasic.replace("[% result.target_identifier %]", data.properties[0].target_identifier);
             htmlBasic = htmlBasic.replace("[% result.target_name %]", data.properties[0].target_name);
             htmlBasic = htmlBasic.replace("[% result.target_class %]", data.properties[0].target_class);
             htmlBasic = htmlBasic.replace("[% result.bias %]", data.properties[0].bias);

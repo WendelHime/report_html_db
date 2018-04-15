@@ -6926,6 +6926,33 @@ sub getIntervalEvidenceProperties_GET {
         \$searchDBClient->getIntervalEvidenceProperties(\$feature, \$typeFeature, \$pipeline)->{response} );
 }
 
+
+sub getTargetClass :
+Path("/SearchDatabase/target_class") : CaptureArgs(0) :
+ActionClass('REST') { }
+
+sub getTargetClass_GET {
+    my (\$self, \$c) = \@_;
+    my \$searchDBClient =
+    Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    standardStatusOk( \$self, \$c,
+        \$searchDBClient->getTargetClass(\$c->config->{pipeline_id})->getResponse() );
+}
+
+sub getRibosomalRNAs :
+Path("/SearchDatabase/getRibosomalRNAs") : CaptureArgs(0) :
+ActionClass('REST') { }
+
+sub getRibosomalRNAs_GET {
+    my (\$self, \$c) = \@_;
+    my \$searchDBClient =
+    Report_HTML_DB::Clients::SearchDBClient->new(
+        rest_endpoint => \$c->config->{rest_endpoint} );
+    standardStatusOk( \$self, \$c,
+        [sort { \$a <=> \$b } \@{\$searchDBClient->getRibosomalRNAs(\$c->config->{pipeline_id})->getResponse()}]);
+}
+
 =head2
 Standard return of status ok
 =cut
@@ -7300,14 +7327,6 @@ sub searchDatabase :Path("SearchDatabase") :Args(0) {
     }
 
     \$c->stash(id => \$id);
-
-    \$c->stash(
-        targetClass => \$searchDBClient->getTargetClass(\$pipeline)->getResponse()  
-    );
-
-    \$c->stash(
-        rRNAsAvailable => [sort { \$a <=> \$b } \@{\$searchDBClient->getRibosomalRNAs(\$pipeline)->getResponse()}]
-    );
 
     \$c->stash(
         sequences => [
@@ -9387,17 +9406,12 @@ CONTENTINDEXHOME
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-name') %]</label>
                                     <input class="form-control" type="text" name="ncRNAtargetName">
                                 </div>
-                                [% IF targetClass.size > 0 %]
                                 <div class="form-group">
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-class') %]</label>
                                     <select class="form-control"  name="ncRNAtargetClass">
                                         <option value=""></option>
-                                        [% FOREACH text IN targetClass %]
-                                        <option value="[% text %]">[% text %]</option>
-                                        [% END %]
                                     </select>
                                 </div>
-                                [% END %]
                                 <div class="form-group">
                                     <label>[% searchDBTexts.item('search-database-dna-based-analyses-or-by-target-type') %]</label>
                                     <input class="form-control" type="text" name="ncRNAtargetType">
