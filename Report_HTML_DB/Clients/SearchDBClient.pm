@@ -1,7 +1,8 @@
 package Report_HTML_DB::Clients::SearchDBClient;
 use Moose;
 use HTTP::Request;
-use LWP::UserAgent;
+use LWP::UserAgent::Cached;
+use File::Path qw(make_path remove_tree);
 use Report_HTML_DB::Models::Services::BaseResponse;
 use Report_HTML_DB::Models::Services::PagedResponse;
 
@@ -351,8 +352,12 @@ sub postBlast {
 
 sub makeRequest {
 	my ( $rest_endpoint, $action, $parameters, $method ) = @_;
-    mkdir '/tmp/report_html_db_cache' if not -d '/tmp/report_html_db_cache';
-	my $user_agent = LWP::UserAgent::Cached->new(cache_dir => '/tmp/report_html_db_cache');
+    my $dir = '/tmp/report_html_db';
+    opendir(my $DIR, $dir);
+    my $num_entries = () = readdir($DIR);
+    remove_tree($dir) if $num_entries > 1000;
+    mkdir $dir if not -d $dir;
+	my $user_agent = LWP::UserAgent::Cached->new(cache_dir => $dir);
 	my $url        = "";
     my $request;
 	if ( $method eq "GET" ) {
