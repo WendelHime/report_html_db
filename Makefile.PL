@@ -68,6 +68,62 @@ WriteMakefile(
         'lib/Report_HTML_DB/Models/Services/PagedResponse.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Services/PagedResponse.pm',
         'lib/Report_HTML_DB/Repositories/BlastRepository.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Repositories/BlastRepository.pm'
     },
+    META_ADD => {
+        provides => {
+            'Report_HTML_DB::Clients::BlastClient' => {
+                'file' => 'lib/Report_HTML_DB/Clients/BlastClient.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Clients::SearchDBClient' => {
+                'file' => 'lib/Report_HTML_DB/Clients/SearchDBClient.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::AlienHunterSearch' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::Feature' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/Feature.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::NcRNASearch' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/NcRNASearch.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::RBSSearch' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/RBSSearch.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::Subevidence' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/Subevidence.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::TRFSearch' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/TRFSearch.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::TRNASearch' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/TRNASearch.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Application::TranscriptionalTerminator' => {
+                'file' => 'lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Services::BaseResponse' => {
+                'file' => 'lib/Report_HTML_DB/Models/Services/BaseResponse.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Models::Services::PagedResponse' => {
+                'file' => 'lib/Report_HTML_DB/Models/Services/PagedResponse.pm',
+                'version' => '0.01',
+            },
+            'Report_HTML_DB::Repositories::BlastRepository' => {
+                'file' => 'lib/Report_HTML_DB/Repositories/BlastRepository.pm',
+                'version' => '0.01',
+            },
+        }
+    }
     (eval { ExtUtils::MakeMaker->VERSION(6.46) } ? (META_MERGE  =>  {
                 'meta-spec' => {version => 2},
                 resources => {
