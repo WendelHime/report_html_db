@@ -17,6 +17,7 @@
 #     CONFIGURE_REQUIRES => {  }
 #     EXE_FILES => [q[script/report_html_db.pl]]
 #     LICENSE => q[gpl_3]
+#     META_ADD => { provides=>{ Report_HTML_DB::Clients::BlastClient=>{ file=>q[lib/Report_HTML_DB/Clients/BlastClient.pm], version=>q[0.01] }, Report_HTML_DB::Clients::SearchDBClient=>{ file=>q[lib/Report_HTML_DB/Clients/SearchDBClient.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::AlienHunterSearch=>{ file=>q[lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::Feature=>{ file=>q[lib/Report_HTML_DB/Models/Application/Feature.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::NcRNASearch=>{ file=>q[lib/Report_HTML_DB/Models/Application/NcRNASearch.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::RBSSearch=>{ file=>q[lib/Report_HTML_DB/Models/Application/RBSSearch.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::Subevidence=>{ file=>q[lib/Report_HTML_DB/Models/Application/Subevidence.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::TRFSearch=>{ file=>q[lib/Report_HTML_DB/Models/Application/TRFSearch.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::TRNASearch=>{ file=>q[lib/Report_HTML_DB/Models/Application/TRNASearch.pm], version=>q[0.01] }, Report_HTML_DB::Models::Application::TranscriptionalTerminator=>{ file=>q[lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm], version=>q[0.01] }, Report_HTML_DB::Models::Services::BaseResponse=>{ file=>q[lib/Report_HTML_DB/Models/Services/BaseResponse.pm], version=>q[0.01] }, Report_HTML_DB::Models::Services::PagedResponse=>{ file=>q[lib/Report_HTML_DB/Models/Services/PagedResponse.pm], version=>q[0.01] }, Report_HTML_DB::Repositories::BlastRepository=>{ file=>q[lib/Report_HTML_DB/Repositories/BlastRepository.pm], version=>q[0.01] } } }
 #     META_MERGE => { meta-spec=>{ version=>q[2] }, resources=>{ repository=>{ type=>q[git], url=>q[https://github.com/WendelHime/report_html_db.git], web=>q[https://github.com/WendelHime/report_html_db] } } }
 #     MIN_PERL_VERSION => q[5.022001]
 #     NAME => q[Report_HTML_DB]
@@ -62,11 +63,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Report_HTML_DB
 NAME_SYM = Report_HTML_DB
-VERSION = 0.04
+VERSION = 0.05
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_04
+VERSION_SYM = 0_05
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.04
+XS_VERSION = 0.05
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -310,7 +311,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Report_HTML_DB
-DISTVNAME = Report_HTML_DB-0.04
+DISTVNAME = Report_HTML_DB-0.05
 
 
 # --- MakeMaker macro section:
@@ -595,6 +596,46 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  directory:' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - t' >> META_new.yml
 	$(NOECHO) $(ECHO) '    - inc' >> META_new.yml
+	$(NOECHO) $(ECHO) 'provides:' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Clients::BlastClient:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Clients/BlastClient.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Clients::SearchDBClient:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Clients/SearchDBClient.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::AlienHunterSearch:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::Feature:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/Feature.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::NcRNASearch:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/NcRNASearch.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::RBSSearch:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/RBSSearch.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::Subevidence:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/Subevidence.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::TRFSearch:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/TRFSearch.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::TRNASearch:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/TRNASearch.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Application::TranscriptionalTerminator:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Services::BaseResponse:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Services/BaseResponse.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Models::Services::PagedResponse:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Models/Services/PagedResponse.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Report_HTML_DB::Repositories::BlastRepository:' >> META_new.yml
+	$(NOECHO) $(ECHO) '    file: lib/Report_HTML_DB/Repositories/BlastRepository.pm' >> META_new.yml
+	$(NOECHO) $(ECHO) '    version: '\''0.01'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Archive::Zip: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Capture::Tiny: '\''0'\''' >> META_new.yml
@@ -639,7 +680,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  warnings: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'resources:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  repository: https://github.com/WendelHime/report_html_db.git' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: 0.04' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: 0.05' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -720,6 +761,60 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
+	$(NOECHO) $(ECHO) '   "provides" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Clients::BlastClient" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Clients/BlastClient.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Clients::SearchDBClient" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Clients/SearchDBClient.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::AlienHunterSearch" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::Feature" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/Feature.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::NcRNASearch" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/NcRNASearch.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::RBSSearch" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/RBSSearch.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::Subevidence" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/Subevidence.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::TRFSearch" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/TRFSearch.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::TRNASearch" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/TRNASearch.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Application::TranscriptionalTerminator" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Services::BaseResponse" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Services/BaseResponse.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Models::Services::PagedResponse" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Models/Services/PagedResponse.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      },' >> META_new.json
+	$(NOECHO) $(ECHO) '      "Report_HTML_DB::Repositories::BlastRepository" : {' >> META_new.json
+	$(NOECHO) $(ECHO) '         "file" : "lib/Report_HTML_DB/Repositories/BlastRepository.pm",' >> META_new.json
+	$(NOECHO) $(ECHO) '         "version" : "0.01"' >> META_new.json
+	$(NOECHO) $(ECHO) '      }' >> META_new.json
+	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "resources" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '      "repository" : {' >> META_new.json
@@ -728,7 +823,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '         "web" : "https://github.com/WendelHime/report_html_db"' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : 0.04' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : 0.05' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
