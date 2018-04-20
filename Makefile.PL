@@ -53,6 +53,21 @@ WriteMakefile(
         'Catalyst::Model::DBI'                              => 0,
         'LWP::UserAgent::Cached'                            => 0,
     },
+    'PM'                => {
+        'lib/Report_HTML_DB/Clients/BlastClient.pm'             => '$(INST_LIBDIR)/Report_HTML_DB/Clients/BlastClient.pm',
+        'lib/Report_HTML_DB/Clients/SearchDBClient.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Clients/SearchDBClient.pm',
+        'lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/AlienHunterSearch.pm',
+        'lib/Report_HTML_DB/Models/Application/Feature.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/Feature.pm',
+        'lib/Report_HTML_DB/Models/Application/NcRNASearch.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/NcRNASearch.pm',
+        'lib/Report_HTML_DB/Models/Application/RBSSearch.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/RBSSearch.pm',
+        'lib/Report_HTML_DB/Models/Application/Subevidence.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/Subevidence.pm',
+        'lib/Report_HTML_DB/Models/Application/TRFSearch.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRFSearch.pm',
+        'lib/Report_HTML_DB/Models/Application/TRNASearch.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRNASearch.pm',
+        'lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm',
+        'lib/Report_HTML_DB/Models/Services/BaseResponse.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Services/BaseResponse.pm',
+        'lib/Report_HTML_DB/Models/Services/PagedResponse.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Models/Services/PagedResponse.pm',
+        'lib/Report_HTML_DB/Repositories/BlastRepository.pm' => '$(INST_LIBDIR)/Report_HTML_DB/Repositories/BlastRepository.pm'
+    },
     (eval { ExtUtils::MakeMaker->VERSION(6.46) } ? (META_MERGE  =>  {
                 'meta-spec' => {version => 2},
                 resources => {

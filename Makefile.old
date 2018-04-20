@@ -20,6 +20,7 @@
 #     META_MERGE => { meta-spec=>{ version=>q[2] }, resources=>{ repository=>{ type=>q[git], url=>q[https://github.com/WendelHime/report_html_db.git], web=>q[https://github.com/WendelHime/report_html_db] } } }
 #     MIN_PERL_VERSION => q[5.022001]
 #     NAME => q[Report_HTML_DB]
+#     PM => { lib/Report_HTML_DB/Clients/BlastClient.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Clients/BlastClient.pm], lib/Report_HTML_DB/Clients/SearchDBClient.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Clients/SearchDBClient.pm], lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/AlienHunterSearch.pm], lib/Report_HTML_DB/Models/Application/Feature.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/Feature.pm], lib/Report_HTML_DB/Models/Application/NcRNASearch.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/NcRNASearch.pm], lib/Report_HTML_DB/Models/Application/RBSSearch.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/RBSSearch.pm], lib/Report_HTML_DB/Models/Application/Subevidence.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/Subevidence.pm], lib/Report_HTML_DB/Models/Application/TRFSearch.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRFSearch.pm], lib/Report_HTML_DB/Models/Application/TRNASearch.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRNASearch.pm], lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm], lib/Report_HTML_DB/Models/Services/BaseResponse.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Services/BaseResponse.pm], lib/Report_HTML_DB/Models/Services/PagedResponse.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Models/Services/PagedResponse.pm], lib/Report_HTML_DB/Repositories/BlastRepository.pm=>q[$(INST_LIBDIR)/Report_HTML_DB/Repositories/BlastRepository.pm] }
 #     PREREQ_PM => { Archive::Zip=>q[0], Capture::Tiny=>q[0], Catalyst::Action::REST=>q[0], Catalyst::Controller::REST=>q[0], Catalyst::Devel=>q[0], Catalyst::Engine::Apache=>q[0], Catalyst::Model::Adaptor=>q[0], Catalyst::Model::DBI=>q[0], Catalyst::Model::DBI::SQL::Library=>q[0], Catalyst::Model::DBIC::Schema=>q[0], Catalyst::Restarter=>q[0], Catalyst::Runtime=>q[0], Catalyst::ScriptRunner=>q[0], Catalyst::View::JSON=>q[0], Catalyst::View::TT=>q[0], Class::Load=>q[0], Class::Load::PP=>q[0], Class::Load::XS=>q[0], Class::MOP=>q[0], DBD::Pg=>q[0], DBI=>q[0], DBIx::Class=>q[0], DBIx::Class::Helper::ResultSet::SetOperations=>q[0], DBIx::Class::Schema::Loader=>q[0], Data::OptList=>q[0], File::Find::Rule=>q[0], LWP::UserAgent::Cached=>q[0], Moose=>q[0], Moose::Exporter=>q[0], Moose::Role=>q[0], Moose::Util::TypeConstraint=>q[0], MooseX::NonMoose=>q[0], MooseX::Storage=>q[0], Reindeer=>q[0], SQL::Library=>q[0], Task::Catalyst=>q[0], Task::Plack=>q[0], YAML=>q[0], strict=>q[0], warnings=>q[0] }
 #     TEST_REQUIRES => {  }
 #     VERSION_FROM => q[script/report_html_db.pl]
@@ -61,11 +62,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Report_HTML_DB
 NAME_SYM = Report_HTML_DB
-VERSION = 0.03
+VERSION = 0.04
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_03
+VERSION_SYM = 0_04
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.03
+XS_VERSION = 0.04
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -165,21 +166,7 @@ C_FILES  =
 O_FILES  = 
 H_FILES  = 
 MAN1PODS = script/report_html_db.pl
-MAN3PODS = README.pod \
-	Report_HTML_DB/Clients/BlastClient.pm \
-	Report_HTML_DB/Clients/SearchDBClient.pm \
-	Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	Report_HTML_DB/Models/Application/Feature.pm \
-	Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	Report_HTML_DB/Models/Application/RBSSearch.pm \
-	Report_HTML_DB/Models/Application/Subevidence.pm \
-	Report_HTML_DB/Models/Application/TRFSearch.pm \
-	Report_HTML_DB/Models/Application/TRNASearch.pm \
-	Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	Report_HTML_DB/Models/Services/BaseResponse.pm \
-	Report_HTML_DB/Models/Services/PagedResponse.pm \
-	Report_HTML_DB/Repositories/BlastRepository.pm \
-	lib/Report_HTML_DB/Clients/BlastClient.pm \
+MAN3PODS = lib/Report_HTML_DB/Clients/BlastClient.pm \
 	lib/Report_HTML_DB/Clients/SearchDBClient.pm \
 	lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
 	lib/Report_HTML_DB/Models/Application/Feature.pm \
@@ -214,21 +201,7 @@ PERL_ARCHIVEDEP    =
 PERL_ARCHIVE_AFTER = 
 
 
-TO_INST_PM = README.pod \
-	Report_HTML_DB/Clients/BlastClient.pm \
-	Report_HTML_DB/Clients/SearchDBClient.pm \
-	Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	Report_HTML_DB/Models/Application/Feature.pm \
-	Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	Report_HTML_DB/Models/Application/RBSSearch.pm \
-	Report_HTML_DB/Models/Application/Subevidence.pm \
-	Report_HTML_DB/Models/Application/TRFSearch.pm \
-	Report_HTML_DB/Models/Application/TRNASearch.pm \
-	Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	Report_HTML_DB/Models/Services/BaseResponse.pm \
-	Report_HTML_DB/Models/Services/PagedResponse.pm \
-	Report_HTML_DB/Repositories/BlastRepository.pm \
-	lib/Report_HTML_DB/Clients/BlastClient.pm \
+TO_INST_PM = lib/Report_HTML_DB/Clients/BlastClient.pm \
 	lib/Report_HTML_DB/Clients/SearchDBClient.pm \
 	lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
 	lib/Report_HTML_DB/Models/Application/Feature.pm \
@@ -242,60 +215,32 @@ TO_INST_PM = README.pod \
 	lib/Report_HTML_DB/Models/Services/PagedResponse.pm \
 	lib/Report_HTML_DB/Repositories/BlastRepository.pm
 
-PM_TO_BLIB = README.pod \
-	$(INST_LIB)/README.pod \
-	Report_HTML_DB/Clients/BlastClient.pm \
-	$(INST_LIB)/Report_HTML_DB/Clients/BlastClient.pm \
-	Report_HTML_DB/Clients/SearchDBClient.pm \
-	$(INST_LIB)/Report_HTML_DB/Clients/SearchDBClient.pm \
-	Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	Report_HTML_DB/Models/Application/Feature.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/Feature.pm \
-	Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	Report_HTML_DB/Models/Application/RBSSearch.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/RBSSearch.pm \
-	Report_HTML_DB/Models/Application/Subevidence.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/Subevidence.pm \
-	Report_HTML_DB/Models/Application/TRFSearch.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/TRFSearch.pm \
-	Report_HTML_DB/Models/Application/TRNASearch.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/TRNASearch.pm \
-	Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	Report_HTML_DB/Models/Services/BaseResponse.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Services/BaseResponse.pm \
-	Report_HTML_DB/Models/Services/PagedResponse.pm \
-	$(INST_LIB)/Report_HTML_DB/Models/Services/PagedResponse.pm \
-	Report_HTML_DB/Repositories/BlastRepository.pm \
-	$(INST_LIB)/Report_HTML_DB/Repositories/BlastRepository.pm \
-	lib/Report_HTML_DB/Clients/BlastClient.pm \
-	blib/lib/Report_HTML_DB/Clients/BlastClient.pm \
+PM_TO_BLIB = lib/Report_HTML_DB/Clients/BlastClient.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Clients/BlastClient.pm \
 	lib/Report_HTML_DB/Clients/SearchDBClient.pm \
-	blib/lib/Report_HTML_DB/Clients/SearchDBClient.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Clients/SearchDBClient.pm \
 	lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	blib/lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
 	lib/Report_HTML_DB/Models/Application/Feature.pm \
-	blib/lib/Report_HTML_DB/Models/Application/Feature.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/Feature.pm \
 	lib/Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	blib/lib/Report_HTML_DB/Models/Application/NcRNASearch.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/NcRNASearch.pm \
 	lib/Report_HTML_DB/Models/Application/RBSSearch.pm \
-	blib/lib/Report_HTML_DB/Models/Application/RBSSearch.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/RBSSearch.pm \
 	lib/Report_HTML_DB/Models/Application/Subevidence.pm \
-	blib/lib/Report_HTML_DB/Models/Application/Subevidence.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/Subevidence.pm \
 	lib/Report_HTML_DB/Models/Application/TRFSearch.pm \
-	blib/lib/Report_HTML_DB/Models/Application/TRFSearch.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRFSearch.pm \
 	lib/Report_HTML_DB/Models/Application/TRNASearch.pm \
-	blib/lib/Report_HTML_DB/Models/Application/TRNASearch.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRNASearch.pm \
 	lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	blib/lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
 	lib/Report_HTML_DB/Models/Services/BaseResponse.pm \
-	blib/lib/Report_HTML_DB/Models/Services/BaseResponse.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Services/BaseResponse.pm \
 	lib/Report_HTML_DB/Models/Services/PagedResponse.pm \
-	blib/lib/Report_HTML_DB/Models/Services/PagedResponse.pm \
+	$(INST_LIBDIR)/Report_HTML_DB/Models/Services/PagedResponse.pm \
 	lib/Report_HTML_DB/Repositories/BlastRepository.pm \
-	blib/lib/Report_HTML_DB/Repositories/BlastRepository.pm
+	$(INST_LIBDIR)/Report_HTML_DB/Repositories/BlastRepository.pm
 
 
 # --- MakeMaker platform_constants section:
@@ -365,7 +310,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Report_HTML_DB
-DISTVNAME = Report_HTML_DB-0.03
+DISTVNAME = Report_HTML_DB-0.04
 
 
 # --- MakeMaker macro section:
@@ -520,20 +465,6 @@ POD2MAN = $(POD2MAN_EXE)
 
 
 manifypods : pure_all  \
-	README.pod \
-	Report_HTML_DB/Clients/BlastClient.pm \
-	Report_HTML_DB/Clients/SearchDBClient.pm \
-	Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	Report_HTML_DB/Models/Application/Feature.pm \
-	Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	Report_HTML_DB/Models/Application/RBSSearch.pm \
-	Report_HTML_DB/Models/Application/Subevidence.pm \
-	Report_HTML_DB/Models/Application/TRFSearch.pm \
-	Report_HTML_DB/Models/Application/TRNASearch.pm \
-	Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	Report_HTML_DB/Models/Services/BaseResponse.pm \
-	Report_HTML_DB/Models/Services/PagedResponse.pm \
-	Report_HTML_DB/Repositories/BlastRepository.pm \
 	lib/Report_HTML_DB/Clients/BlastClient.pm \
 	lib/Report_HTML_DB/Clients/SearchDBClient.pm \
 	lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
@@ -551,20 +482,6 @@ manifypods : pure_all  \
 	$(NOECHO) $(POD2MAN) --section=$(MAN1EXT) --perm_rw=$(PERM_RW) -u \
 	  script/report_html_db.pl $(INST_MAN1DIR)/report_html_db.pl.$(MAN1EXT) 
 	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
-	  README.pod $(INST_MAN3DIR)/README.$(MAN3EXT) \
-	  Report_HTML_DB/Clients/BlastClient.pm $(INST_MAN3DIR)/Report_HTML_DB::Clients::BlastClient.$(MAN3EXT) \
-	  Report_HTML_DB/Clients/SearchDBClient.pm $(INST_MAN3DIR)/Report_HTML_DB::Clients::SearchDBClient.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/AlienHunterSearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::AlienHunterSearch.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/Feature.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::Feature.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/NcRNASearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::NcRNASearch.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/RBSSearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::RBSSearch.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/Subevidence.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::Subevidence.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/TRFSearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::TRFSearch.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/TRNASearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::TRNASearch.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::TranscriptionalTerminator.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Services/BaseResponse.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Services::BaseResponse.$(MAN3EXT) \
-	  Report_HTML_DB/Models/Services/PagedResponse.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Services::PagedResponse.$(MAN3EXT) \
-	  Report_HTML_DB/Repositories/BlastRepository.pm $(INST_MAN3DIR)/Report_HTML_DB::Repositories::BlastRepository.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Clients/BlastClient.pm $(INST_MAN3DIR)/Report_HTML_DB::Clients::BlastClient.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Clients/SearchDBClient.pm $(INST_MAN3DIR)/Report_HTML_DB::Clients::SearchDBClient.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::AlienHunterSearch.$(MAN3EXT) \
@@ -572,8 +489,7 @@ manifypods : pure_all  \
 	  lib/Report_HTML_DB/Models/Application/NcRNASearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::NcRNASearch.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Models/Application/RBSSearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::RBSSearch.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Models/Application/Subevidence.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::Subevidence.$(MAN3EXT) \
-	  lib/Report_HTML_DB/Models/Application/TRFSearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::TRFSearch.$(MAN3EXT) 
-	$(NOECHO) $(POD2MAN) --section=$(MAN3EXT) --perm_rw=$(PERM_RW) -u \
+	  lib/Report_HTML_DB/Models/Application/TRFSearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::TRFSearch.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Models/Application/TRNASearch.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::TRNASearch.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Application::TranscriptionalTerminator.$(MAN3EXT) \
 	  lib/Report_HTML_DB/Models/Services/BaseResponse.pm $(INST_MAN3DIR)/Report_HTML_DB::Models::Services::BaseResponse.$(MAN3EXT) \
@@ -723,7 +639,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  warnings: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'resources:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  repository: https://github.com/WendelHime/report_html_db.git' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: 0.03' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: 0.04' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -812,7 +728,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '         "web" : "https://github.com/WendelHime/report_html_db"' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : 0.03' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : 0.04' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
@@ -1144,34 +1060,19 @@ ppd :
 
 pm_to_blib : $(FIRST_MAKEFILE) $(TO_INST_PM)
 	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
-	  README.pod $(INST_LIB)/README.pod \
-	  Report_HTML_DB/Clients/BlastClient.pm $(INST_LIB)/Report_HTML_DB/Clients/BlastClient.pm \
-	  Report_HTML_DB/Clients/SearchDBClient.pm $(INST_LIB)/Report_HTML_DB/Clients/SearchDBClient.pm \
-	  Report_HTML_DB/Models/Application/AlienHunterSearch.pm $(INST_LIB)/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	  Report_HTML_DB/Models/Application/Feature.pm $(INST_LIB)/Report_HTML_DB/Models/Application/Feature.pm \
-	  Report_HTML_DB/Models/Application/NcRNASearch.pm $(INST_LIB)/Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	  Report_HTML_DB/Models/Application/RBSSearch.pm $(INST_LIB)/Report_HTML_DB/Models/Application/RBSSearch.pm \
-	  Report_HTML_DB/Models/Application/Subevidence.pm $(INST_LIB)/Report_HTML_DB/Models/Application/Subevidence.pm \
-	  Report_HTML_DB/Models/Application/TRFSearch.pm $(INST_LIB)/Report_HTML_DB/Models/Application/TRFSearch.pm \
-	  Report_HTML_DB/Models/Application/TRNASearch.pm $(INST_LIB)/Report_HTML_DB/Models/Application/TRNASearch.pm \
-	  Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm $(INST_LIB)/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	  Report_HTML_DB/Models/Services/BaseResponse.pm $(INST_LIB)/Report_HTML_DB/Models/Services/BaseResponse.pm \
-	  Report_HTML_DB/Models/Services/PagedResponse.pm $(INST_LIB)/Report_HTML_DB/Models/Services/PagedResponse.pm \
-	  Report_HTML_DB/Repositories/BlastRepository.pm $(INST_LIB)/Report_HTML_DB/Repositories/BlastRepository.pm \
-	  lib/Report_HTML_DB/Clients/BlastClient.pm blib/lib/Report_HTML_DB/Clients/BlastClient.pm \
-	  lib/Report_HTML_DB/Clients/SearchDBClient.pm blib/lib/Report_HTML_DB/Clients/SearchDBClient.pm \
-	  lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm blib/lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
-	  lib/Report_HTML_DB/Models/Application/Feature.pm blib/lib/Report_HTML_DB/Models/Application/Feature.pm \
-	  lib/Report_HTML_DB/Models/Application/NcRNASearch.pm blib/lib/Report_HTML_DB/Models/Application/NcRNASearch.pm \
-	  lib/Report_HTML_DB/Models/Application/RBSSearch.pm blib/lib/Report_HTML_DB/Models/Application/RBSSearch.pm \
-	  lib/Report_HTML_DB/Models/Application/Subevidence.pm blib/lib/Report_HTML_DB/Models/Application/Subevidence.pm \
-	  lib/Report_HTML_DB/Models/Application/TRFSearch.pm blib/lib/Report_HTML_DB/Models/Application/TRFSearch.pm \
-	  lib/Report_HTML_DB/Models/Application/TRNASearch.pm blib/lib/Report_HTML_DB/Models/Application/TRNASearch.pm \
-	  lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm blib/lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
-	  lib/Report_HTML_DB/Models/Services/BaseResponse.pm blib/lib/Report_HTML_DB/Models/Services/BaseResponse.pm 
-	$(NOECHO) $(ABSPERLRUN) -MExtUtils::Install -e 'pm_to_blib({@ARGV}, '\''$(INST_LIB)/auto'\'', q[$(PM_FILTER)], '\''$(PERM_DIR)'\'')' -- \
-	  lib/Report_HTML_DB/Models/Services/PagedResponse.pm blib/lib/Report_HTML_DB/Models/Services/PagedResponse.pm \
-	  lib/Report_HTML_DB/Repositories/BlastRepository.pm blib/lib/Report_HTML_DB/Repositories/BlastRepository.pm 
+	  lib/Report_HTML_DB/Clients/BlastClient.pm $(INST_LIBDIR)/Report_HTML_DB/Clients/BlastClient.pm \
+	  lib/Report_HTML_DB/Clients/SearchDBClient.pm $(INST_LIBDIR)/Report_HTML_DB/Clients/SearchDBClient.pm \
+	  lib/Report_HTML_DB/Models/Application/AlienHunterSearch.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/AlienHunterSearch.pm \
+	  lib/Report_HTML_DB/Models/Application/Feature.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/Feature.pm \
+	  lib/Report_HTML_DB/Models/Application/NcRNASearch.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/NcRNASearch.pm \
+	  lib/Report_HTML_DB/Models/Application/RBSSearch.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/RBSSearch.pm \
+	  lib/Report_HTML_DB/Models/Application/Subevidence.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/Subevidence.pm \
+	  lib/Report_HTML_DB/Models/Application/TRFSearch.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRFSearch.pm \
+	  lib/Report_HTML_DB/Models/Application/TRNASearch.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/TRNASearch.pm \
+	  lib/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Application/TranscriptionalTerminator.pm \
+	  lib/Report_HTML_DB/Models/Services/BaseResponse.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Services/BaseResponse.pm \
+	  lib/Report_HTML_DB/Models/Services/PagedResponse.pm $(INST_LIBDIR)/Report_HTML_DB/Models/Services/PagedResponse.pm \
+	  lib/Report_HTML_DB/Repositories/BlastRepository.pm $(INST_LIBDIR)/Report_HTML_DB/Repositories/BlastRepository.pm 
 	$(NOECHO) $(TOUCH) pm_to_blib
 
 
