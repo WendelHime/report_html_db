@@ -6,7 +6,7 @@ WriteMakefile(
     ABSTRACT_FROM       => 'script/report_html_db.pl',
     AUTHOR              => 'Wendel Hime Lino Castro',
     LICENSE             => 'gpl_3',
-    MIN_PERL_VERSION    => '5.22',
+    MIN_PERL_VERSION    => '5.022001',
     EXE_FILES           => ['script/report_html_db.pl'],
     PREREQ_PM           => {
         'strict'                                            => 0,

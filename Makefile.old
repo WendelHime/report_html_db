@@ -18,7 +18,7 @@
 #     EXE_FILES => [q[script/report_html_db.pl]]
 #     LICENSE => q[gpl_3]
 #     META_MERGE => { meta-spec=>{ version=>q[2] }, resources=>{ repository=>{ type=>q[git], url=>q[https://github.com/WendelHime/report_html_db.git], web=>q[https://github.com/WendelHime/report_html_db] } } }
-#     MIN_PERL_VERSION => q[5.22]
+#     MIN_PERL_VERSION => q[5.022001]
 #     NAME => q[Report_HTML_DB]
 #     PREREQ_PM => { Archive::Zip=>q[0], Capture::Tiny=>q[0], Catalyst::Action::REST=>q[0], Catalyst::Controller::REST=>q[0], Catalyst::Devel=>q[0], Catalyst::Engine::Apache=>q[0], Catalyst::Model::Adaptor=>q[0], Catalyst::Model::DBI=>q[0], Catalyst::Model::DBI::SQL::Library=>q[0], Catalyst::Model::DBIC::Schema=>q[0], Catalyst::Restarter=>q[0], Catalyst::Runtime=>q[0], Catalyst::ScriptRunner=>q[0], Catalyst::View::JSON=>q[0], Catalyst::View::TT=>q[0], Class::Load=>q[0], Class::Load::PP=>q[0], Class::Load::XS=>q[0], Class::MOP=>q[0], DBD::Pg=>q[0], DBI=>q[0], DBIx::Class=>q[0], DBIx::Class::Helper::ResultSet::SetOperations=>q[0], DBIx::Class::Schema::Loader=>q[0], Data::OptList=>q[0], File::Find::Rule=>q[0], LWP::UserAgent::Cached=>q[0], Moose=>q[0], Moose::Exporter=>q[0], Moose::Role=>q[0], Moose::Util::TypeConstraint=>q[0], MooseX::NonMoose=>q[0], MooseX::Storage=>q[0], Reindeer=>q[0], SQL::Library=>q[0], Task::Catalyst=>q[0], Task::Plack=>q[0], YAML=>q[0], strict=>q[0], warnings=>q[0] }
 #     TEST_REQUIRES => {  }
@@ -61,11 +61,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Report_HTML_DB
 NAME_SYM = Report_HTML_DB
-VERSION = 0.01
+VERSION = 0.03
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_01
+VERSION_SYM = 0_03
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.01
+XS_VERSION = 0.03
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -365,7 +365,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Report_HTML_DB
-DISTVNAME = Report_HTML_DB-0.01
+DISTVNAME = Report_HTML_DB-0.03
 
 
 # --- MakeMaker macro section:
@@ -718,12 +718,12 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  Task::Catalyst: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  Task::Plack: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  YAML: '\''0'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) '  perl: '\''5.22'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  perl: '\''5.022001'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  strict: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) '  warnings: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'resources:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  repository: https://github.com/WendelHime/report_html_db.git' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: 0.01' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: 0.03' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
@@ -798,7 +798,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '            "Task::Catalyst" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "Task::Plack" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "YAML" : "0",' >> META_new.json
-	$(NOECHO) $(ECHO) '            "perl" : "5.22",' >> META_new.json
+	$(NOECHO) $(ECHO) '            "perl" : "5.022001",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "strict" : "0",' >> META_new.json
 	$(NOECHO) $(ECHO) '            "warnings" : "0"' >> META_new.json
 	$(NOECHO) $(ECHO) '         }' >> META_new.json
@@ -812,7 +812,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '         "web" : "https://github.com/WendelHime/report_html_db"' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : 0.01' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : 0.03' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
 
@@ -1093,7 +1093,7 @@ ppd :
 	$(NOECHO) $(ECHO) '    <ABSTRACT></ABSTRACT>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Wendel Hime Lino Castro</AUTHOR>' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> $(DISTNAME).ppd
-	$(NOECHO) $(ECHO) '        <PERLCORE VERSION="5,22,0,0" />' >> $(DISTNAME).ppd
+	$(NOECHO) $(ECHO) '        <PERLCORE VERSION="5,022001,0,0" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Archive::Zip" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Capture::Tiny" />' >> $(DISTNAME).ppd
 	$(NOECHO) $(ECHO) '        <REQUIRE NAME="Catalyst::Action::REST" />' >> $(DISTNAME).ppd
