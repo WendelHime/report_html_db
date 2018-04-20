@@ -5,9 +5,6 @@ use Moose;
 
 This repository is responsible to execute functions related with the BLAST tool
 
-=cut
-
-=pod
 executeBlastSearch is used to execute search of the blast tool, 
 using external parameters, mount the command line, and returns the reference of String
 $program				=>	scalar with the name of the program
