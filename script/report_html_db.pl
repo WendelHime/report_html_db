@@ -13,7 +13,7 @@ use utf8;
 use open qw(:utf8);
 use experimental 'smartmatch';
 
-our $VERSION = 0.05;
+our $VERSION = 0.10;
 
 #
 # ==> BEGIN OF AUTO GENERATED CODE (do not edit!!!)

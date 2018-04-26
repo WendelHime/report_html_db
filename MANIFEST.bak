@@ -11,7 +11,6 @@ images/global-analyses.png
 images/header.png
 images/help.png
 images/home.png
-lib/Report_HTML_DB.pm
 lib/Report_HTML_DB/Clients.pm
 lib/Report_HTML_DB/Clients/BlastClient.pm
 lib/Report_HTML_DB/Clients/SearchDBClient.pm
